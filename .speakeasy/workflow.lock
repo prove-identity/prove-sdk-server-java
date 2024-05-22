@@ -1,0 +1,27 @@
+speakeasyVersion: 1.295.0
+sources:
+    my-source:
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:90204ddae5cb825070a3fa6a686c34ce582f75be9f01bf94fdcf3867a301218f
+        sourceBlobDigest: sha256:f49c3e48146abfad2e81a64cacd1347553d6885a2dceaae2e62519eb414bf3a0
+        tags:
+            - latest
+targets:
+    my-first-target:
+        source: my-source
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:90204ddae5cb825070a3fa6a686c34ce582f75be9f01bf94fdcf3867a301218f
+        sourceBlobDigest: sha256:f49c3e48146abfad2e81a64cacd1347553d6885a2dceaae2e62519eb414bf3a0
+        outLocation: /Users/jspurrier/godev/proveauth/prove-sdk-server-java
+workflow:
+    workflowVersion: 1.0.0
+    sources:
+        my-source:
+            inputs:
+                - location: https://raw.githubusercontent.com/payfone/prove-openapi/main/orchestration.yaml
+            registry:
+                location: registry.speakeasyapi.dev/prove/prove-dev/my-source
+    targets:
+        my-first-target:
+            target: java
+            source: my-source
