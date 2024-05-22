@@ -6,4 +6,7 @@ bin/
 # Ignore IDE-specific configs
 .project
 .settings/
+.envrc
 .DS_Store
+openapi.yaml
+.speakeasy/temp
