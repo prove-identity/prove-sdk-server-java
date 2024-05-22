@@ -2,16 +2,16 @@ speakeasyVersion: 1.295.1
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:1a896961fa63ba23c389cfc8c55e9a0be7c31d8df62c23561156422df5b20a4d
-        sourceBlobDigest: sha256:b81480d33dbc720a9eb74de8d72479b66e2901d8e9c783a272054d6f282e674b
+        sourceRevisionDigest: sha256:b85e2d429fc34227fcce59e410cdd6be000068c2bf9ce478e21ca7d98e95e662
+        sourceBlobDigest: sha256:f07abe11affe2386218582f6a1d2d410af3f912a070641456fef3ee56db43ee0
         tags:
             - latest
 targets:
     my-first-target:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:1a896961fa63ba23c389cfc8c55e9a0be7c31d8df62c23561156422df5b20a4d
-        sourceBlobDigest: sha256:b81480d33dbc720a9eb74de8d72479b66e2901d8e9c783a272054d6f282e674b
+        sourceRevisionDigest: sha256:b85e2d429fc34227fcce59e410cdd6be000068c2bf9ce478e21ca7d98e95e662
+        sourceBlobDigest: sha256:f07abe11affe2386218582f6a1d2d410af3f912a070641456fef3ee56db43ee0
         outLocation: /Users/jspurrier/godev/proveauth/prove-sdk-server-java
 workflow:
     workflowVersion: 1.0.0
@@ -20,6 +20,8 @@ workflow:
         my-source:
             inputs:
                 - location: https://raw.githubusercontent.com/payfone/prove-openapi/main/orchestration.yaml
+                  authHeader: Authorization
+                  authSecret: $OPENAPI_DOC_AUTH_TOKEN
             registry:
                 location: registry.speakeasyapi.dev/prove/prove-dev/my-source
     targets:
