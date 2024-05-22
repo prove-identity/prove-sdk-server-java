@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 java:
-  version: 0.0.1
+  version: 0.1.0
   additionalDependencies: []
   artifactID: proveapi
   clientServerStatusCodesAsErrors: true
@@ -21,7 +21,7 @@ java:
   companyURL: www.mycompany.com
   flattenGlobalSecurity: true
   githubURL: github.com/owner/repo
-  groupID: com.prove.proveapi
+  groupID: com.prove.sdk
   imports:
     option: openapi
     paths:

@@ -19,10 +19,12 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ```java
 package hello.world;
 
-import com.prove.proveapi.proveapi.Proveapi;
-import com.prove.proveapi.proveapi.models.components.*;
-import com.prove.proveapi.proveapi.models.components.Security;
-import com.prove.proveapi.proveapi.models.operations.*;
+import com.prove.sdk.proveapi.Proveapi;
+import com.prove.sdk.proveapi.models.components.*;
+import com.prove.sdk.proveapi.models.components.Security;
+import com.prove.sdk.proveapi.models.operations.*;
+import com.prove.sdk.proveapi.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -52,10 +54,10 @@ public class Application {
             if (res.v3ChallengeResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.prove.proveapi.proveapi.models.errors.Error e) {
+        } catch (com.prove.sdk.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.proveapi.models.errors.SDKError e) {
+        } catch (com.prove.sdk.proveapi.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -83,10 +85,12 @@ You can override the default server globally by passing a server index to the `s
 ```java
 package hello.world;
 
-import com.prove.proveapi.proveapi.Proveapi;
-import com.prove.proveapi.proveapi.models.components.*;
-import com.prove.proveapi.proveapi.models.components.Security;
-import com.prove.proveapi.proveapi.models.operations.*;
+import com.prove.sdk.proveapi.Proveapi;
+import com.prove.sdk.proveapi.models.components.*;
+import com.prove.sdk.proveapi.models.components.Security;
+import com.prove.sdk.proveapi.models.operations.*;
+import com.prove.sdk.proveapi.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -117,10 +121,10 @@ public class Application {
             if (res.v3ChallengeResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.prove.proveapi.proveapi.models.errors.Error e) {
+        } catch (com.prove.sdk.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.proveapi.models.errors.SDKError e) {
+        } catch (com.prove.sdk.proveapi.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -138,10 +142,12 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```java
 package hello.world;
 
-import com.prove.proveapi.proveapi.Proveapi;
-import com.prove.proveapi.proveapi.models.components.*;
-import com.prove.proveapi.proveapi.models.components.Security;
-import com.prove.proveapi.proveapi.models.operations.*;
+import com.prove.sdk.proveapi.Proveapi;
+import com.prove.sdk.proveapi.models.components.*;
+import com.prove.sdk.proveapi.models.components.Security;
+import com.prove.sdk.proveapi.models.operations.*;
+import com.prove.sdk.proveapi.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -172,10 +178,10 @@ public class Application {
             if (res.v3ChallengeResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.prove.proveapi.proveapi.models.errors.Error e) {
+        } catch (com.prove.sdk.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.proveapi.models.errors.SDKError e) {
+        } catch (com.prove.sdk.proveapi.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -202,10 +208,12 @@ To authenticate with the API the `auth` parameter must be set when initializing 
 ```java
 package hello.world;
 
-import com.prove.proveapi.proveapi.Proveapi;
-import com.prove.proveapi.proveapi.models.components.*;
-import com.prove.proveapi.proveapi.models.components.Security;
-import com.prove.proveapi.proveapi.models.operations.*;
+import com.prove.sdk.proveapi.Proveapi;
+import com.prove.sdk.proveapi.models.components.*;
+import com.prove.sdk.proveapi.models.components.Security;
+import com.prove.sdk.proveapi.models.operations.*;
+import com.prove.sdk.proveapi.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -235,10 +243,10 @@ public class Application {
             if (res.v3ChallengeResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.prove.proveapi.proveapi.models.errors.Error e) {
+        } catch (com.prove.sdk.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.proveapi.models.errors.SDKError e) {
+        } catch (com.prove.sdk.proveapi.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
