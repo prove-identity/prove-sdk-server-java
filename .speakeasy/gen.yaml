@@ -1,0 +1,37 @@
+configVersion: 2.0.0
+generation:
+  sdkClassName: proveapi
+  maintainOpenAPIOrder: true
+  usageSnippets:
+    optionalPropertyRendering: withExample
+  useClassNamesForArrayFields: true
+  fixes:
+    nameResolutionDec2023: true
+    parameterOrderingFeb2024: true
+    requestResponseComponentNamesFeb2024: true
+  auth:
+    oAuth2ClientCredentialsEnabled: true
+java:
+  version: 0.2.0
+  additionalDependencies: []
+  artifactID: proveapi
+  clientServerStatusCodesAsErrors: true
+  companyEmail: info@prove.com
+  companyName: Prove Identity
+  companyURL: www.prove.com
+  flattenGlobalSecurity: true
+  githubURL: github.com/prove-identity/prove-sdk-server-java
+  groupID: com.prove.sdk
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/errors
+      operations: models/operations
+      shared: models/components
+      webhooks: models/webhooks
+  inputModelSuffix: input
+  maxMethodParams: 4
+  outputModelSuffix: output
+  projectName: openapi
+  templateVersion: v2
