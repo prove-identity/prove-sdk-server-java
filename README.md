@@ -72,13 +72,14 @@ public class Application {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
+### Select Server by Name
 
-You can override the default server globally by passing a server index to the `serverIndex` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server name to the `server` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.uat.proveapis.com/` | None |
+| Name | Server | Variables |
+| ----- | ------ | --------- |
+| `uat-us` | `https://link.uat.proveapis.com` | None |
+| `prod-us` | `https://link.proveapis.com` | None |
 
 #### Example
 
@@ -104,7 +105,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .serverIndex(0)
+                .server(Proveapi.AvailableServers.PROD_US)
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 
@@ -161,7 +162,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .serverURL("https://api.uat.proveapis.com/")
+                .serverURL("https://link.uat.proveapis.com")
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 

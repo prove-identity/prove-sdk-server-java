@@ -12,15 +12,15 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 java:
-  version: 0.1.0
+  version: 0.2.0
   additionalDependencies: []
   artifactID: proveapi
   clientServerStatusCodesAsErrors: true
-  companyEmail: info@mycompany.com
-  companyName: My Company
-  companyURL: www.mycompany.com
+  companyEmail: info@prove.com
+  companyName: Prove Identity
+  companyURL: www.prove.com
   flattenGlobalSecurity: true
-  githubURL: github.com/owner/repo
+  githubURL: github.com/prove-identity/prove-sdk-server-java
   groupID: com.prove.sdk
   imports:
     option: openapi

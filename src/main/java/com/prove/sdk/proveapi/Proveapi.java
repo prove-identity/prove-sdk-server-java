@@ -30,13 +30,38 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class Proveapi {
 
+  
+    /**
+     * AvailableServers contains identifiers for the servers available to the SDK.
+     */
+    public enum AvailableServers {
+        /**
+         * UAT_US - UAT for US Region
+         */
+      UAT_US("uat-us"),
+        /**
+         * PROD_US - Prod for US Region
+         */
+      PROD_US("prod-us");
+
+        private final String server;
+
+        private AvailableServers(String server) {
+            this.server = server;
+        }
+
+        public String server() {
+           return server;
+        }
+    }
 
     /**
      * SERVERS contains the list of server urls available to the SDK.
      */
-    public static final String[] SERVERS = {
-        "https://api.uat.proveapis.com/",
-    };
+    public static final java.util.Map<AvailableServers, String> SERVERS = new java.util.HashMap<>() {{
+    put(AvailableServers.UAT_US, "https://link.uat.proveapis.com");
+    put(AvailableServers.PROD_US, "https://link.proveapis.com");
+    }};
 
     private final V3 v3;
 
@@ -113,14 +138,14 @@ public class Proveapi {
         }
         
         /**
-         * Overrides the default server by index.
+         * Overrides the default server by name.
          *
-         * @param serverIdx The server to use for all requests.
+         * @param server The server to use for all requests.
          * @return The builder instance.
          */
-        public Builder serverIndex(int serverIdx) {
-            this.sdkConfiguration.serverIdx = serverIdx;
-            this.sdkConfiguration.serverUrl = SERVERS[serverIdx];
+        public Builder server(AvailableServers server) {
+            this.sdkConfiguration.server = server.toString();
+            this.sdkConfiguration.serverUrl = SERVERS.get(server);
             return this;
         }
         
@@ -151,8 +176,8 @@ public class Proveapi {
 	    	    sdkConfiguration.securitySource = SecuritySource.of(null);
 	        }
             if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
-                sdkConfiguration.serverUrl = SERVERS[0];
-                sdkConfiguration.serverIdx = 0;
+                sdkConfiguration.serverUrl = SERVERS.get(AvailableServers.UAT_US);
+                sdkConfiguration.server = AvailableServers.UAT_US.toString();
             }
             if (sdkConfiguration.serverUrl.endsWith("/")) {
                 sdkConfiguration.serverUrl = sdkConfiguration.serverUrl.substring(0, sdkConfiguration.serverUrl.length() - 1);

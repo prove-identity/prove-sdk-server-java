@@ -604,7 +604,7 @@ public class V3StartRequest {
         private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_FlowType =
                 new LazySingletonValue<>(
                         "flowType",
-                        "\"web\"",
+                        "\"mobile\"",
                         new TypeReference<Optional<? extends String>>() {});
 
         private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_IpAddress =
