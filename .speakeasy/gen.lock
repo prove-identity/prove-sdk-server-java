@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.300.1
   generationVersion: 2.339.1
-  releaseVersion: 0.3.3
-  configChecksum: 6f5b32224228ee5abeee966b761db1da
+  releaseVersion: 0.3.4
+  configChecksum: 6e0fa439455213cd50bbf2708940f62b
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
 features:
   java:
