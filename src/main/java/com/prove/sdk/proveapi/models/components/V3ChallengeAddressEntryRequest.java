@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.prove.sdk.proveapi.utils.LazySingletonValue;
 import com.prove.sdk.proveapi.utils.Utils;
 import java.io.InputStream;
 import java.lang.Deprecated;
@@ -19,7 +18,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-public class AddressEntry {
+public class V3ChallengeAddressEntryRequest {
 
     /**
      * Address is the street address of the individual.
@@ -57,7 +56,7 @@ public class AddressEntry {
     private Optional<? extends String> region;
 
     @JsonCreator
-    public AddressEntry(
+    public V3ChallengeAddressEntryRequest(
             @JsonProperty("address") Optional<? extends String> address,
             @JsonProperty("city") Optional<? extends String> city,
             @JsonProperty("extendedAddress") Optional<? extends String> extendedAddress,
@@ -75,7 +74,7 @@ public class AddressEntry {
         this.region = region;
     }
     
-    public AddressEntry() {
+    public V3ChallengeAddressEntryRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -131,7 +130,7 @@ public class AddressEntry {
     /**
      * Address is the street address of the individual.
      */
-    public AddressEntry withAddress(String address) {
+    public V3ChallengeAddressEntryRequest withAddress(String address) {
         Utils.checkNotNull(address, "address");
         this.address = Optional.ofNullable(address);
         return this;
@@ -140,7 +139,7 @@ public class AddressEntry {
     /**
      * Address is the street address of the individual.
      */
-    public AddressEntry withAddress(Optional<? extends String> address) {
+    public V3ChallengeAddressEntryRequest withAddress(Optional<? extends String> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -149,7 +148,7 @@ public class AddressEntry {
     /**
      * City of the individual.
      */
-    public AddressEntry withCity(String city) {
+    public V3ChallengeAddressEntryRequest withCity(String city) {
         Utils.checkNotNull(city, "city");
         this.city = Optional.ofNullable(city);
         return this;
@@ -158,7 +157,7 @@ public class AddressEntry {
     /**
      * City of the individual.
      */
-    public AddressEntry withCity(Optional<? extends String> city) {
+    public V3ChallengeAddressEntryRequest withCity(Optional<? extends String> city) {
         Utils.checkNotNull(city, "city");
         this.city = city;
         return this;
@@ -167,7 +166,7 @@ public class AddressEntry {
     /**
      * Extended address is the apartment number or other extended address information.
      */
-    public AddressEntry withExtendedAddress(String extendedAddress) {
+    public V3ChallengeAddressEntryRequest withExtendedAddress(String extendedAddress) {
         Utils.checkNotNull(extendedAddress, "extendedAddress");
         this.extendedAddress = Optional.ofNullable(extendedAddress);
         return this;
@@ -176,7 +175,7 @@ public class AddressEntry {
     /**
      * Extended address is the apartment number or other extended address information.
      */
-    public AddressEntry withExtendedAddress(Optional<? extends String> extendedAddress) {
+    public V3ChallengeAddressEntryRequest withExtendedAddress(Optional<? extends String> extendedAddress) {
         Utils.checkNotNull(extendedAddress, "extendedAddress");
         this.extendedAddress = extendedAddress;
         return this;
@@ -185,7 +184,7 @@ public class AddressEntry {
     /**
      * Postal code is the zip code of the individual.
      */
-    public AddressEntry withPostalCode(String postalCode) {
+    public V3ChallengeAddressEntryRequest withPostalCode(String postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
         this.postalCode = Optional.ofNullable(postalCode);
         return this;
@@ -194,7 +193,7 @@ public class AddressEntry {
     /**
      * Postal code is the zip code of the individual.
      */
-    public AddressEntry withPostalCode(Optional<? extends String> postalCode) {
+    public V3ChallengeAddressEntryRequest withPostalCode(Optional<? extends String> postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
         this.postalCode = postalCode;
         return this;
@@ -203,7 +202,7 @@ public class AddressEntry {
     /**
      * Region is the state or locality of the individual.
      */
-    public AddressEntry withRegion(String region) {
+    public V3ChallengeAddressEntryRequest withRegion(String region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.ofNullable(region);
         return this;
@@ -212,7 +211,7 @@ public class AddressEntry {
     /**
      * Region is the state or locality of the individual.
      */
-    public AddressEntry withRegion(Optional<? extends String> region) {
+    public V3ChallengeAddressEntryRequest withRegion(Optional<? extends String> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
@@ -226,7 +225,7 @@ public class AddressEntry {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        AddressEntry other = (AddressEntry) o;
+        V3ChallengeAddressEntryRequest other = (V3ChallengeAddressEntryRequest) o;
         return 
             java.util.Objects.deepEquals(this.address, other.address) &&
             java.util.Objects.deepEquals(this.city, other.city) &&
@@ -247,7 +246,7 @@ public class AddressEntry {
     
     @Override
     public String toString() {
-        return Utils.toString(AddressEntry.class,
+        return Utils.toString(V3ChallengeAddressEntryRequest.class,
                 "address", address,
                 "city", city,
                 "extendedAddress", extendedAddress,
@@ -257,15 +256,15 @@ public class AddressEntry {
     
     public final static class Builder {
  
-        private Optional<? extends String> address;
+        private Optional<? extends String> address = Optional.empty();
  
-        private Optional<? extends String> city;
+        private Optional<? extends String> city = Optional.empty();
  
         private Optional<? extends String> extendedAddress = Optional.empty();
  
-        private Optional<? extends String> postalCode;
+        private Optional<? extends String> postalCode = Optional.empty();
  
-        private Optional<? extends String> region;  
+        private Optional<? extends String> region = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -361,50 +360,14 @@ public class AddressEntry {
             return this;
         }
         
-        public AddressEntry build() {
-            if (address == null) {
-                address = _SINGLETON_VALUE_Address.value();
-            }
-            if (city == null) {
-                city = _SINGLETON_VALUE_City.value();
-            }
-            if (postalCode == null) {
-                postalCode = _SINGLETON_VALUE_PostalCode.value();
-            }
-            if (region == null) {
-                region = _SINGLETON_VALUE_Region.value();
-            }
-            return new AddressEntry(
+        public V3ChallengeAddressEntryRequest build() {
+            return new V3ChallengeAddressEntryRequest(
                 address,
                 city,
                 extendedAddress,
                 postalCode,
                 region);
         }
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_Address =
-                new LazySingletonValue<>(
-                        "address",
-                        "\"39 South Trail\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_City =
-                new LazySingletonValue<>(
-                        "city",
-                        "\"San Antonio\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_PostalCode =
-                new LazySingletonValue<>(
-                        "postalCode",
-                        "\"78285\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_Region =
-                new LazySingletonValue<>(
-                        "region",
-                        "\"TX\"",
-                        new TypeReference<Optional<? extends String>>() {});
     }
 }
 

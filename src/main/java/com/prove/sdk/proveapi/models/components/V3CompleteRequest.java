@@ -7,56 +7,45 @@ package com.prove.sdk.proveapi.models.components;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.prove.sdk.proveapi.utils.LazySingletonValue;
 import com.prove.sdk.proveapi.utils.Utils;
 import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Optional;
 
 public class V3CompleteRequest {
 
     /**
      * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("correlationId")
-    private Optional<? extends String> correlationId;
+    private String correlationId;
 
     @JsonProperty("individual")
-    private Individual individual;
+    private V3CompleteIndividualRequest individual;
 
     @JsonCreator
     public V3CompleteRequest(
-            @JsonProperty("correlationId") Optional<? extends String> correlationId,
-            @JsonProperty("individual") Individual individual) {
+            @JsonProperty("correlationId") String correlationId,
+            @JsonProperty("individual") V3CompleteIndividualRequest individual) {
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(individual, "individual");
         this.correlationId = correlationId;
         this.individual = individual;
     }
-    
-    public V3CompleteRequest(
-            Individual individual) {
-        this(Optional.empty(), individual);
-    }
 
     /**
      * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> correlationId() {
-        return (Optional<String>) correlationId;
+    public String correlationId() {
+        return correlationId;
     }
 
     @JsonIgnore
-    public Individual individual() {
+    public V3CompleteIndividualRequest individual() {
         return individual;
     }
 
@@ -69,20 +58,11 @@ public class V3CompleteRequest {
      */
     public V3CompleteRequest withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
-        this.correlationId = Optional.ofNullable(correlationId);
-        return this;
-    }
-
-    /**
-     * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
-     */
-    public V3CompleteRequest withCorrelationId(Optional<? extends String> correlationId) {
-        Utils.checkNotNull(correlationId, "correlationId");
         this.correlationId = correlationId;
         return this;
     }
 
-    public V3CompleteRequest withIndividual(Individual individual) {
+    public V3CompleteRequest withIndividual(V3CompleteIndividualRequest individual) {
         Utils.checkNotNull(individual, "individual");
         this.individual = individual;
         return this;
@@ -118,9 +98,9 @@ public class V3CompleteRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> correlationId;
+        private String correlationId;
  
-        private Individual individual;  
+        private V3CompleteIndividualRequest individual;  
         
         private Builder() {
           // force use of static builder() method
@@ -131,39 +111,21 @@ public class V3CompleteRequest {
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");
-            this.correlationId = Optional.ofNullable(correlationId);
-            return this;
-        }
-
-        /**
-         * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
-         */
-        public Builder correlationId(Optional<? extends String> correlationId) {
-            Utils.checkNotNull(correlationId, "correlationId");
             this.correlationId = correlationId;
             return this;
         }
 
-        public Builder individual(Individual individual) {
+        public Builder individual(V3CompleteIndividualRequest individual) {
             Utils.checkNotNull(individual, "individual");
             this.individual = individual;
             return this;
         }
         
         public V3CompleteRequest build() {
-            if (correlationId == null) {
-                correlationId = _SINGLETON_VALUE_CorrelationId.value();
-            }
             return new V3CompleteRequest(
                 correlationId,
                 individual);
         }
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_CorrelationId =
-                new LazySingletonValue<>(
-                        "correlationId",
-                        "\"713189b8-5555-4b08-83ba-75d08780aebd\"",
-                        new TypeReference<Optional<? extends String>>() {});
     }
 }
 

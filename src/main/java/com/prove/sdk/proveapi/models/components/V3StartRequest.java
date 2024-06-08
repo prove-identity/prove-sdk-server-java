@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.prove.sdk.proveapi.utils.LazySingletonValue;
 import com.prove.sdk.proveapi.utils.Utils;
 import java.io.InputStream;
 import java.lang.Deprecated;
@@ -43,18 +42,24 @@ public class V3StartRequest {
     private Optional<? extends String> emailAddress;
 
     /**
-     * Final target URL is the URL where the end user will be redirected at the end of Instant Link. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("finalTargetUrl")
     private Optional<? extends String> finalTargetUrl;
 
     /**
-     * Flow type is based on the method used  - either desktop for native for iOS/Android native apps or mobile web. Acceptable options are: native or web.
+     * Flow ID defines which flow to use during the transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("flowId")
+    private Optional<? extends String> flowId;
+
+    /**
+     * Flow type is based on the method used - either 'desktop' if using desktop or 'mobile' for iOS/Android native apps and mobile web. Acceptable options are: 'desktop' or 'mobile'.
+     */
     @JsonProperty("flowType")
-    private Optional<? extends String> flowType;
+    private String flowType;
 
     /**
      * IP address is the IP address of the device of the customer. Acceptable characters are: numeric with symbols ':.'.
@@ -83,7 +88,8 @@ public class V3StartRequest {
             @JsonProperty("dob") Optional<? extends String> dob,
             @JsonProperty("emailAddress") Optional<? extends String> emailAddress,
             @JsonProperty("finalTargetUrl") Optional<? extends String> finalTargetUrl,
-            @JsonProperty("flowType") Optional<? extends String> flowType,
+            @JsonProperty("flowId") Optional<? extends String> flowId,
+            @JsonProperty("flowType") String flowType,
             @JsonProperty("ipAddress") Optional<? extends String> ipAddress,
             @JsonProperty("last4SSN") Optional<? extends String> last4SSN,
             @JsonProperty("phoneNumber") Optional<? extends String> phoneNumber) {
@@ -91,6 +97,7 @@ public class V3StartRequest {
         Utils.checkNotNull(dob, "dob");
         Utils.checkNotNull(emailAddress, "emailAddress");
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
+        Utils.checkNotNull(flowId, "flowId");
         Utils.checkNotNull(flowType, "flowType");
         Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(last4SSN, "last4SSN");
@@ -99,14 +106,16 @@ public class V3StartRequest {
         this.dob = dob;
         this.emailAddress = emailAddress;
         this.finalTargetUrl = finalTargetUrl;
+        this.flowId = flowId;
         this.flowType = flowType;
         this.ipAddress = ipAddress;
         this.last4SSN = last4SSN;
         this.phoneNumber = phoneNumber;
     }
     
-    public V3StartRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    public V3StartRequest(
+            String flowType) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), flowType, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -137,7 +146,7 @@ public class V3StartRequest {
     }
 
     /**
-     * Final target URL is the URL where the end user will be redirected at the end of Instant Link. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -146,12 +155,20 @@ public class V3StartRequest {
     }
 
     /**
-     * Flow type is based on the method used  - either desktop for native for iOS/Android native apps or mobile web. Acceptable options are: native or web.
+     * Flow ID defines which flow to use during the transaction.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> flowType() {
-        return (Optional<String>) flowType;
+    public Optional<String> flowId() {
+        return (Optional<String>) flowId;
+    }
+
+    /**
+     * Flow type is based on the method used - either 'desktop' if using desktop or 'mobile' for iOS/Android native apps and mobile web. Acceptable options are: 'desktop' or 'mobile'.
+     */
+    @JsonIgnore
+    public String flowType() {
+        return flowType;
     }
 
     /**
@@ -240,7 +257,7 @@ public class V3StartRequest {
     }
 
     /**
-     * Final target URL is the URL where the end user will be redirected at the end of Instant Link. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     public V3StartRequest withFinalTargetUrl(String finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -249,7 +266,7 @@ public class V3StartRequest {
     }
 
     /**
-     * Final target URL is the URL where the end user will be redirected at the end of Instant Link. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     public V3StartRequest withFinalTargetUrl(Optional<? extends String> finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -258,18 +275,27 @@ public class V3StartRequest {
     }
 
     /**
-     * Flow type is based on the method used  - either desktop for native for iOS/Android native apps or mobile web. Acceptable options are: native or web.
+     * Flow ID defines which flow to use during the transaction.
      */
-    public V3StartRequest withFlowType(String flowType) {
-        Utils.checkNotNull(flowType, "flowType");
-        this.flowType = Optional.ofNullable(flowType);
+    public V3StartRequest withFlowId(String flowId) {
+        Utils.checkNotNull(flowId, "flowId");
+        this.flowId = Optional.ofNullable(flowId);
         return this;
     }
 
     /**
-     * Flow type is based on the method used  - either desktop for native for iOS/Android native apps or mobile web. Acceptable options are: native or web.
+     * Flow ID defines which flow to use during the transaction.
      */
-    public V3StartRequest withFlowType(Optional<? extends String> flowType) {
+    public V3StartRequest withFlowId(Optional<? extends String> flowId) {
+        Utils.checkNotNull(flowId, "flowId");
+        this.flowId = flowId;
+        return this;
+    }
+
+    /**
+     * Flow type is based on the method used - either 'desktop' if using desktop or 'mobile' for iOS/Android native apps and mobile web. Acceptable options are: 'desktop' or 'mobile'.
+     */
+    public V3StartRequest withFlowType(String flowType) {
         Utils.checkNotNull(flowType, "flowType");
         this.flowType = flowType;
         return this;
@@ -343,6 +369,7 @@ public class V3StartRequest {
             java.util.Objects.deepEquals(this.dob, other.dob) &&
             java.util.Objects.deepEquals(this.emailAddress, other.emailAddress) &&
             java.util.Objects.deepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
+            java.util.Objects.deepEquals(this.flowId, other.flowId) &&
             java.util.Objects.deepEquals(this.flowType, other.flowType) &&
             java.util.Objects.deepEquals(this.ipAddress, other.ipAddress) &&
             java.util.Objects.deepEquals(this.last4SSN, other.last4SSN) &&
@@ -356,6 +383,7 @@ public class V3StartRequest {
             dob,
             emailAddress,
             finalTargetUrl,
+            flowId,
             flowType,
             ipAddress,
             last4SSN,
@@ -369,6 +397,7 @@ public class V3StartRequest {
                 "dob", dob,
                 "emailAddress", emailAddress,
                 "finalTargetUrl", finalTargetUrl,
+                "flowId", flowId,
                 "flowType", flowType,
                 "ipAddress", ipAddress,
                 "last4SSN", last4SSN,
@@ -377,21 +406,23 @@ public class V3StartRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> deviceId;
+        private Optional<? extends String> deviceId = Optional.empty();
  
-        private Optional<? extends String> dob;
+        private Optional<? extends String> dob = Optional.empty();
  
-        private Optional<? extends String> emailAddress;
+        private Optional<? extends String> emailAddress = Optional.empty();
  
-        private Optional<? extends String> finalTargetUrl;
+        private Optional<? extends String> finalTargetUrl = Optional.empty();
  
-        private Optional<? extends String> flowType;
+        private Optional<? extends String> flowId = Optional.empty();
  
-        private Optional<? extends String> ipAddress;
+        private String flowType;
  
-        private Optional<? extends String> last4SSN;
+        private Optional<? extends String> ipAddress = Optional.empty();
  
-        private Optional<? extends String> phoneNumber;  
+        private Optional<? extends String> last4SSN = Optional.empty();
+ 
+        private Optional<? extends String> phoneNumber = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -452,7 +483,7 @@ public class V3StartRequest {
         }
 
         /**
-         * Final target URL is the URL where the end user will be redirected at the end of Instant Link. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+         * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
         public Builder finalTargetUrl(String finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -461,7 +492,7 @@ public class V3StartRequest {
         }
 
         /**
-         * Final target URL is the URL where the end user will be redirected at the end of Instant Link. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+         * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
         public Builder finalTargetUrl(Optional<? extends String> finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -470,18 +501,27 @@ public class V3StartRequest {
         }
 
         /**
-         * Flow type is based on the method used  - either desktop for native for iOS/Android native apps or mobile web. Acceptable options are: native or web.
+         * Flow ID defines which flow to use during the transaction.
          */
-        public Builder flowType(String flowType) {
-            Utils.checkNotNull(flowType, "flowType");
-            this.flowType = Optional.ofNullable(flowType);
+        public Builder flowId(String flowId) {
+            Utils.checkNotNull(flowId, "flowId");
+            this.flowId = Optional.ofNullable(flowId);
             return this;
         }
 
         /**
-         * Flow type is based on the method used  - either desktop for native for iOS/Android native apps or mobile web. Acceptable options are: native or web.
+         * Flow ID defines which flow to use during the transaction.
          */
-        public Builder flowType(Optional<? extends String> flowType) {
+        public Builder flowId(Optional<? extends String> flowId) {
+            Utils.checkNotNull(flowId, "flowId");
+            this.flowId = flowId;
+            return this;
+        }
+
+        /**
+         * Flow type is based on the method used - either 'desktop' if using desktop or 'mobile' for iOS/Android native apps and mobile web. Acceptable options are: 'desktop' or 'mobile'.
+         */
+        public Builder flowType(String flowType) {
             Utils.checkNotNull(flowType, "flowType");
             this.flowType = flowType;
             return this;
@@ -542,88 +582,17 @@ public class V3StartRequest {
         }
         
         public V3StartRequest build() {
-            if (deviceId == null) {
-                deviceId = _SINGLETON_VALUE_DeviceId.value();
-            }
-            if (dob == null) {
-                dob = _SINGLETON_VALUE_Dob.value();
-            }
-            if (emailAddress == null) {
-                emailAddress = _SINGLETON_VALUE_EmailAddress.value();
-            }
-            if (finalTargetUrl == null) {
-                finalTargetUrl = _SINGLETON_VALUE_FinalTargetUrl.value();
-            }
-            if (flowType == null) {
-                flowType = _SINGLETON_VALUE_FlowType.value();
-            }
-            if (ipAddress == null) {
-                ipAddress = _SINGLETON_VALUE_IpAddress.value();
-            }
-            if (last4SSN == null) {
-                last4SSN = _SINGLETON_VALUE_Last4SSN.value();
-            }
-            if (phoneNumber == null) {
-                phoneNumber = _SINGLETON_VALUE_PhoneNumber.value();
-            }
             return new V3StartRequest(
                 deviceId,
                 dob,
                 emailAddress,
                 finalTargetUrl,
+                flowId,
                 flowType,
                 ipAddress,
                 last4SSN,
                 phoneNumber);
         }
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_DeviceId =
-                new LazySingletonValue<>(
-                        "deviceId",
-                        "\"713189b8-5555-4b08-83ba-75d08780aebd\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_Dob =
-                new LazySingletonValue<>(
-                        "dob",
-                        "\"2024-05-02 00:00:00 +0000 UTC\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_EmailAddress =
-                new LazySingletonValue<>(
-                        "emailAddress",
-                        "\"jdoe@example.com\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_FinalTargetUrl =
-                new LazySingletonValue<>(
-                        "finalTargetUrl",
-                        "\"https://www.example.com/landing-page\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_FlowType =
-                new LazySingletonValue<>(
-                        "flowType",
-                        "\"mobile\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_IpAddress =
-                new LazySingletonValue<>(
-                        "ipAddress",
-                        "\"10.0.0.1\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_Last4SSN =
-                new LazySingletonValue<>(
-                        "last4SSN",
-                        "\"1234\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_PhoneNumber =
-                new LazySingletonValue<>(
-                        "phoneNumber",
-                        "\"12065550100\"",
-                        new TypeReference<Optional<? extends String>>() {});
     }
 }
 

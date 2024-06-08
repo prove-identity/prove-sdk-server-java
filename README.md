@@ -78,8 +78,8 @@ You can override the default server globally by passing a server name to the `se
 
 | Name | Server | Variables |
 | ----- | ------ | --------- |
-| `uat-us` | `https://link.uat.proveapis.com` | None |
-| `prod-us` | `https://link.proveapis.com` | None |
+| `uat-us` | `https://platform.uat.proveapis.com` | None |
+| `prod-us` | `https://platform.proveapis.com` | None |
 
 #### Example
 
@@ -162,7 +162,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .serverURL("https://link.uat.proveapis.com")
+                .serverURL("https://platform.uat.proveapis.com")
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 

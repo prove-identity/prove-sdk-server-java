@@ -12,8 +12,9 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 java:
-  version: 0.2.0
+  version: 0.3.0
   additionalDependencies: []
+  additionalPlugins: []
   artifactID: proveapi
   clientServerStatusCodesAsErrors: true
   companyEmail: info@prove.com
