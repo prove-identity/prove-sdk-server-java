@@ -1,4 +1,4 @@
-# AddressEntry
+# V3ChallengeAddressEntryRequest
 
 
 ## Fields

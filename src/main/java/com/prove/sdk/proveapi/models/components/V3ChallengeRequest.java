@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.prove.sdk.proveapi.utils.LazySingletonValue;
 import com.prove.sdk.proveapi.utils.Utils;
 import java.io.InputStream;
 import java.lang.Deprecated;
@@ -24,9 +23,8 @@ public class V3ChallengeRequest {
     /**
      * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("correlationId")
-    private Optional<? extends String> correlationId;
+    private String correlationId;
 
     /**
      * DOB is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
@@ -44,7 +42,7 @@ public class V3ChallengeRequest {
 
     @JsonCreator
     public V3ChallengeRequest(
-            @JsonProperty("correlationId") Optional<? extends String> correlationId,
+            @JsonProperty("correlationId") String correlationId,
             @JsonProperty("dob") Optional<? extends String> dob,
             @JsonProperty("last4SSN") Optional<? extends String> last4SSN) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -55,17 +53,17 @@ public class V3ChallengeRequest {
         this.last4SSN = last4SSN;
     }
     
-    public V3ChallengeRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+    public V3ChallengeRequest(
+            String correlationId) {
+        this(correlationId, Optional.empty(), Optional.empty());
     }
 
     /**
      * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> correlationId() {
-        return (Optional<String>) correlationId;
+    public String correlationId() {
+        return correlationId;
     }
 
     /**
@@ -94,15 +92,6 @@ public class V3ChallengeRequest {
      * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
      */
     public V3ChallengeRequest withCorrelationId(String correlationId) {
-        Utils.checkNotNull(correlationId, "correlationId");
-        this.correlationId = Optional.ofNullable(correlationId);
-        return this;
-    }
-
-    /**
-     * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
-     */
-    public V3ChallengeRequest withCorrelationId(Optional<? extends String> correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
         this.correlationId = correlationId;
         return this;
@@ -177,11 +166,11 @@ public class V3ChallengeRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> correlationId;
+        private String correlationId;
  
-        private Optional<? extends String> dob;
+        private Optional<? extends String> dob = Optional.empty();
  
-        private Optional<? extends String> last4SSN;  
+        private Optional<? extends String> last4SSN = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -191,15 +180,6 @@ public class V3ChallengeRequest {
          * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
          */
         public Builder correlationId(String correlationId) {
-            Utils.checkNotNull(correlationId, "correlationId");
-            this.correlationId = Optional.ofNullable(correlationId);
-            return this;
-        }
-
-        /**
-         * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
-         */
-        public Builder correlationId(Optional<? extends String> correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");
             this.correlationId = correlationId;
             return this;
@@ -242,38 +222,11 @@ public class V3ChallengeRequest {
         }
         
         public V3ChallengeRequest build() {
-            if (correlationId == null) {
-                correlationId = _SINGLETON_VALUE_CorrelationId.value();
-            }
-            if (dob == null) {
-                dob = _SINGLETON_VALUE_Dob.value();
-            }
-            if (last4SSN == null) {
-                last4SSN = _SINGLETON_VALUE_Last4SSN.value();
-            }
             return new V3ChallengeRequest(
                 correlationId,
                 dob,
                 last4SSN);
         }
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_CorrelationId =
-                new LazySingletonValue<>(
-                        "correlationId",
-                        "\"713189b8-5555-4b08-83ba-75d08780aebd\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_Dob =
-                new LazySingletonValue<>(
-                        "dob",
-                        "\"2024-05-02 00:00:00 +0000 UTC\"",
-                        new TypeReference<Optional<? extends String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_Last4SSN =
-                new LazySingletonValue<>(
-                        "last4SSN",
-                        "\"1234\"",
-                        new TypeReference<Optional<? extends String>>() {});
     }
 }
 

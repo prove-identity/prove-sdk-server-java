@@ -59,8 +59,8 @@ public class Proveapi {
      * SERVERS contains the list of server urls available to the SDK.
      */
     public static final java.util.Map<AvailableServers, String> SERVERS = new java.util.HashMap<>() {{
-    put(AvailableServers.UAT_US, "https://link.uat.proveapis.com");
-    put(AvailableServers.PROD_US, "https://link.proveapis.com");
+    put(AvailableServers.UAT_US, "https://platform.uat.proveapis.com");
+    put(AvailableServers.PROD_US, "https://platform.proveapis.com");
     }};
 
     private final V3 v3;
