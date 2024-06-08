@@ -36,7 +36,6 @@ dependencies {
     implementation 'org.apache.httpcomponents:httpclient:4.5.14'
     implementation 'org.apache.httpcomponents:httpmime:4.5.14'
     implementation 'commons-io:commons-io:2.15.1'
-    implementation 'com.github.jitpack:gradle-simple:1.0'
 }
 
 apply from: 'build-extras.gradle'

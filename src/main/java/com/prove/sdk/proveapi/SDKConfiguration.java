@@ -21,9 +21,9 @@ class SDKConfiguration {
       public String server;
     public String language = "java";
     public String openapiDocVersion = "1.0.0";
-    public String sdkVersion = "0.3.1";
+    public String sdkVersion = "0.3.3";
     public String genVersion = "2.339.1";
-    public String userAgent = "speakeasy-sdk/java 0.3.1 2.339.1 1.0.0 com.prove.sdk.proveapi";
+    public String userAgent = "speakeasy-sdk/java 0.3.3 2.339.1 1.0.0 com.prove.sdk.proveapi";
 
     private com.prove.sdk.proveapi.utils.Hooks _hooks = new com.prove.sdk.proveapi.utils.Hooks();
 
