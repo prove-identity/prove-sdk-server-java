@@ -12,9 +12,10 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 java:
-  version: 0.3.3
+  version: 0.3.4
   additionalDependencies: []
-  additionalPlugins: ["id 'maven-publish'"]
+  additionalPlugins:
+    - id 'maven-publish'
   artifactID: proveapi
   clientServerStatusCodesAsErrors: true
   companyEmail: info@prove.com
