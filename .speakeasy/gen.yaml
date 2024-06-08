@@ -14,7 +14,7 @@ generation:
 java:
   version: 0.3.1
   additionalDependencies: []
-  additionalPlugins: []
+  additionalPlugins: ["id 'maven-publish'"]
   artifactID: proveapi
   clientServerStatusCodesAsErrors: true
   companyEmail: info@prove.com

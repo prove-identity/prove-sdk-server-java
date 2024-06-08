@@ -11,6 +11,7 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+    id 'maven-publish'
 }
 
 compileJava.options.encoding = "UTF-8"
@@ -20,7 +21,6 @@ compileTestJava.options.encoding = "UTF-8"
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
-    maven { url "https://jitpack.io" }
 }
 
 tasks.withType(Javadoc) {
@@ -38,7 +38,5 @@ dependencies {
     implementation 'commons-io:commons-io:2.15.1'
     implementation 'com.github.jitpack:gradle-simple:1.0'
 }
-
-
 
 apply from: 'build-extras.gradle'
