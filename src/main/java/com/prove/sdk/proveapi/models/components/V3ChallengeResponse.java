@@ -18,7 +18,7 @@ import java.math.BigInteger;
 public class V3ChallengeResponse {
 
     @JsonProperty("individual")
-    private Individual individual;
+    private V3ChallengeIndividualRequest individual;
 
     /**
      * Next contains the next set of allowed calls in the same flow.
@@ -34,7 +34,7 @@ public class V3ChallengeResponse {
 
     @JsonCreator
     public V3ChallengeResponse(
-            @JsonProperty("individual") Individual individual,
+            @JsonProperty("individual") V3ChallengeIndividualRequest individual,
             @JsonProperty("next") java.util.Map<String, String> next,
             @JsonProperty("success") boolean success) {
         Utils.checkNotNull(individual, "individual");
@@ -46,7 +46,7 @@ public class V3ChallengeResponse {
     }
 
     @JsonIgnore
-    public Individual individual() {
+    public V3ChallengeIndividualRequest individual() {
         return individual;
     }
 
@@ -70,7 +70,7 @@ public class V3ChallengeResponse {
         return new Builder();
     }
 
-    public V3ChallengeResponse withIndividual(Individual individual) {
+    public V3ChallengeResponse withIndividual(V3ChallengeIndividualRequest individual) {
         Utils.checkNotNull(individual, "individual");
         this.individual = individual;
         return this;
@@ -127,7 +127,7 @@ public class V3ChallengeResponse {
     
     public final static class Builder {
  
-        private Individual individual;
+        private V3ChallengeIndividualRequest individual;
  
         private java.util.Map<String, String> next;
  
@@ -137,7 +137,7 @@ public class V3ChallengeResponse {
           // force use of static builder() method
         }
 
-        public Builder individual(Individual individual) {
+        public Builder individual(V3ChallengeIndividualRequest individual) {
             Utils.checkNotNull(individual, "individual");
             this.individual = individual;
             return this;

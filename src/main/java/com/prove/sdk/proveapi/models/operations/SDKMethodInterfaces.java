@@ -32,6 +32,12 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallV3TokenRequest {
+        com.prove.sdk.proveapi.models.operations.V3TokenRequestResponse v3TokenRequest(
+            Optional<? extends com.prove.sdk.proveapi.models.components.V3TokenRequest> request) throws Exception;
+    }
+
+
     public interface MethodCallV3ValidateRequest {
         com.prove.sdk.proveapi.models.operations.V3ValidateRequestResponse v3ValidateRequest(
             Optional<? extends com.prove.sdk.proveapi.models.components.V3ValidateRequest> request) throws Exception;
