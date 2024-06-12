@@ -31,3 +31,13 @@ Based on:
 - Speakeasy CLI 1.300.1 (2.339.1) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [java v0.3.4] .
+
+## 2024-06-12 02:21:36
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.305.0 (2.340.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v0.4.5] .
+### Releases
+- [Maven Central v0.4.5] https://central.sonatype.com/artifact/com.prove/proveapi/0.4.5 - .
