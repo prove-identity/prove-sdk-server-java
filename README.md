@@ -41,17 +41,19 @@ public class Application {
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 
-            V3ChallengeRequest req = V3ChallengeRequest.builder()
-                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
-                .dob("2024-05-02T00:00:00Z")
-                .last4SSN("1234")
+            V3TokenRequest req = V3TokenRequest.builder()
+                .grantType("client_credentials")
+                .clientId("customer_id")
+                .clientSecret("secret")
+                .password("password")
+                .username("jdoe")
                 .build();
 
-            V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
+            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3ChallengeResponse().isPresent()) {
+            if (res.v3TokenResponse().isPresent()) {
                 // handle response
             }
         } catch (com.prove.sdk.proveapi.models.errors.Error e) {
@@ -109,17 +111,19 @@ public class Application {
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 
-            V3ChallengeRequest req = V3ChallengeRequest.builder()
-                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
-                .dob("2024-05-02T00:00:00Z")
-                .last4SSN("1234")
+            V3TokenRequest req = V3TokenRequest.builder()
+                .grantType("client_credentials")
+                .clientId("customer_id")
+                .clientSecret("secret")
+                .password("password")
+                .username("jdoe")
                 .build();
 
-            V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
+            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3ChallengeResponse().isPresent()) {
+            if (res.v3TokenResponse().isPresent()) {
                 // handle response
             }
         } catch (com.prove.sdk.proveapi.models.errors.Error e) {
@@ -166,17 +170,19 @@ public class Application {
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 
-            V3ChallengeRequest req = V3ChallengeRequest.builder()
-                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
-                .dob("2024-05-02T00:00:00Z")
-                .last4SSN("1234")
+            V3TokenRequest req = V3TokenRequest.builder()
+                .grantType("client_credentials")
+                .clientId("customer_id")
+                .clientSecret("secret")
+                .password("password")
+                .username("jdoe")
                 .build();
 
-            V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
+            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3ChallengeResponse().isPresent()) {
+            if (res.v3TokenResponse().isPresent()) {
                 // handle response
             }
         } catch (com.prove.sdk.proveapi.models.errors.Error e) {
@@ -231,17 +237,19 @@ public class Application {
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 
-            V3ChallengeRequest req = V3ChallengeRequest.builder()
-                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
-                .dob("2024-05-02T00:00:00Z")
-                .last4SSN("1234")
+            V3TokenRequest req = V3TokenRequest.builder()
+                .grantType("client_credentials")
+                .clientId("customer_id")
+                .clientSecret("secret")
+                .password("password")
+                .username("jdoe")
                 .build();
 
-            V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
+            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3ChallengeResponse().isPresent()) {
+            if (res.v3TokenResponse().isPresent()) {
                 // handle response
             }
         } catch (com.prove.sdk.proveapi.models.errors.Error e) {

@@ -28,6 +28,13 @@ public class V3TokenRequest {
     private Optional<? extends String> clientId;
 
     /**
+     * ClientSecret is the client secret ID provided to the customer during onboarding.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("client_secret")
+    private Optional<? extends String> clientSecret;
+
+    /**
      * GrantType only allows option: `password`.
      */
     @JsonProperty("grant_type")
@@ -36,36 +43,39 @@ public class V3TokenRequest {
     /**
      * Password is the secret ID provided to the customer during onboarding.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("password")
-    private String password;
+    private Optional<? extends String> password;
 
     /**
      * Username is the ID provided to the customer during onboarding.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("username")
-    private String username;
+    private Optional<? extends String> username;
 
     @JsonCreator
     public V3TokenRequest(
             @JsonProperty("client_id") Optional<? extends String> clientId,
+            @JsonProperty("client_secret") Optional<? extends String> clientSecret,
             @JsonProperty("grant_type") String grantType,
-            @JsonProperty("password") String password,
-            @JsonProperty("username") String username) {
+            @JsonProperty("password") Optional<? extends String> password,
+            @JsonProperty("username") Optional<? extends String> username) {
         Utils.checkNotNull(clientId, "clientId");
+        Utils.checkNotNull(clientSecret, "clientSecret");
         Utils.checkNotNull(grantType, "grantType");
         Utils.checkNotNull(password, "password");
         Utils.checkNotNull(username, "username");
         this.clientId = clientId;
+        this.clientSecret = clientSecret;
         this.grantType = grantType;
         this.password = password;
         this.username = username;
     }
     
     public V3TokenRequest(
-            String grantType,
-            String password,
-            String username) {
-        this(Optional.empty(), grantType, password, username);
+            String grantType) {
+        this(Optional.empty(), Optional.empty(), grantType, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -75,6 +85,15 @@ public class V3TokenRequest {
     @JsonIgnore
     public Optional<String> clientId() {
         return (Optional<String>) clientId;
+    }
+
+    /**
+     * ClientSecret is the client secret ID provided to the customer during onboarding.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> clientSecret() {
+        return (Optional<String>) clientSecret;
     }
 
     /**
@@ -88,17 +107,19 @@ public class V3TokenRequest {
     /**
      * Password is the secret ID provided to the customer during onboarding.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public String password() {
-        return password;
+    public Optional<String> password() {
+        return (Optional<String>) password;
     }
 
     /**
      * Username is the ID provided to the customer during onboarding.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public String username() {
-        return username;
+    public Optional<String> username() {
+        return (Optional<String>) username;
     }
 
     public final static Builder builder() {
@@ -124,6 +145,24 @@ public class V3TokenRequest {
     }
 
     /**
+     * ClientSecret is the client secret ID provided to the customer during onboarding.
+     */
+    public V3TokenRequest withClientSecret(String clientSecret) {
+        Utils.checkNotNull(clientSecret, "clientSecret");
+        this.clientSecret = Optional.ofNullable(clientSecret);
+        return this;
+    }
+
+    /**
+     * ClientSecret is the client secret ID provided to the customer during onboarding.
+     */
+    public V3TokenRequest withClientSecret(Optional<? extends String> clientSecret) {
+        Utils.checkNotNull(clientSecret, "clientSecret");
+        this.clientSecret = clientSecret;
+        return this;
+    }
+
+    /**
      * GrantType only allows option: `password`.
      */
     public V3TokenRequest withGrantType(String grantType) {
@@ -137,6 +176,15 @@ public class V3TokenRequest {
      */
     public V3TokenRequest withPassword(String password) {
         Utils.checkNotNull(password, "password");
+        this.password = Optional.ofNullable(password);
+        return this;
+    }
+
+    /**
+     * Password is the secret ID provided to the customer during onboarding.
+     */
+    public V3TokenRequest withPassword(Optional<? extends String> password) {
+        Utils.checkNotNull(password, "password");
         this.password = password;
         return this;
     }
@@ -145,6 +193,15 @@ public class V3TokenRequest {
      * Username is the ID provided to the customer during onboarding.
      */
     public V3TokenRequest withUsername(String username) {
+        Utils.checkNotNull(username, "username");
+        this.username = Optional.ofNullable(username);
+        return this;
+    }
+
+    /**
+     * Username is the ID provided to the customer during onboarding.
+     */
+    public V3TokenRequest withUsername(Optional<? extends String> username) {
         Utils.checkNotNull(username, "username");
         this.username = username;
         return this;
@@ -161,6 +218,7 @@ public class V3TokenRequest {
         V3TokenRequest other = (V3TokenRequest) o;
         return 
             java.util.Objects.deepEquals(this.clientId, other.clientId) &&
+            java.util.Objects.deepEquals(this.clientSecret, other.clientSecret) &&
             java.util.Objects.deepEquals(this.grantType, other.grantType) &&
             java.util.Objects.deepEquals(this.password, other.password) &&
             java.util.Objects.deepEquals(this.username, other.username);
@@ -170,6 +228,7 @@ public class V3TokenRequest {
     public int hashCode() {
         return java.util.Objects.hash(
             clientId,
+            clientSecret,
             grantType,
             password,
             username);
@@ -179,6 +238,7 @@ public class V3TokenRequest {
     public String toString() {
         return Utils.toString(V3TokenRequest.class,
                 "clientId", clientId,
+                "clientSecret", clientSecret,
                 "grantType", grantType,
                 "password", password,
                 "username", username);
@@ -188,11 +248,13 @@ public class V3TokenRequest {
  
         private Optional<? extends String> clientId = Optional.empty();
  
+        private Optional<? extends String> clientSecret = Optional.empty();
+ 
         private String grantType;
  
-        private String password;
+        private Optional<? extends String> password = Optional.empty();
  
-        private String username;  
+        private Optional<? extends String> username = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -217,6 +279,24 @@ public class V3TokenRequest {
         }
 
         /**
+         * ClientSecret is the client secret ID provided to the customer during onboarding.
+         */
+        public Builder clientSecret(String clientSecret) {
+            Utils.checkNotNull(clientSecret, "clientSecret");
+            this.clientSecret = Optional.ofNullable(clientSecret);
+            return this;
+        }
+
+        /**
+         * ClientSecret is the client secret ID provided to the customer during onboarding.
+         */
+        public Builder clientSecret(Optional<? extends String> clientSecret) {
+            Utils.checkNotNull(clientSecret, "clientSecret");
+            this.clientSecret = clientSecret;
+            return this;
+        }
+
+        /**
          * GrantType only allows option: `password`.
          */
         public Builder grantType(String grantType) {
@@ -230,6 +310,15 @@ public class V3TokenRequest {
          */
         public Builder password(String password) {
             Utils.checkNotNull(password, "password");
+            this.password = Optional.ofNullable(password);
+            return this;
+        }
+
+        /**
+         * Password is the secret ID provided to the customer during onboarding.
+         */
+        public Builder password(Optional<? extends String> password) {
+            Utils.checkNotNull(password, "password");
             this.password = password;
             return this;
         }
@@ -239,6 +328,15 @@ public class V3TokenRequest {
          */
         public Builder username(String username) {
             Utils.checkNotNull(username, "username");
+            this.username = Optional.ofNullable(username);
+            return this;
+        }
+
+        /**
+         * Username is the ID provided to the customer during onboarding.
+         */
+        public Builder username(Optional<? extends String> username) {
+            Utils.checkNotNull(username, "username");
             this.username = username;
             return this;
         }
@@ -246,6 +344,7 @@ public class V3TokenRequest {
         public V3TokenRequest build() {
             return new V3TokenRequest(
                 clientId,
+                clientSecret,
                 grantType,
                 password,
                 username);

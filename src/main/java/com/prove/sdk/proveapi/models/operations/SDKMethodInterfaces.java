@@ -14,6 +14,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class SDKMethodInterfaces {
 
+    public interface MethodCallV3TokenRequest {
+        com.prove.sdk.proveapi.models.operations.V3TokenRequestResponse v3TokenRequest(
+            Optional<? extends com.prove.sdk.proveapi.models.components.V3TokenRequest> request) throws Exception;
+    }
+
+
     public interface MethodCallV3ChallengeRequest {
         com.prove.sdk.proveapi.models.operations.V3ChallengeRequestResponse v3ChallengeRequest(
             Optional<? extends com.prove.sdk.proveapi.models.components.V3ChallengeRequest> request) throws Exception;
@@ -29,12 +35,6 @@ public class SDKMethodInterfaces {
     public interface MethodCallV3StartRequest {
         com.prove.sdk.proveapi.models.operations.V3StartRequestResponse v3StartRequest(
             Optional<? extends com.prove.sdk.proveapi.models.components.V3StartRequest> request) throws Exception;
-    }
-
-
-    public interface MethodCallV3TokenRequest {
-        com.prove.sdk.proveapi.models.operations.V3TokenRequestResponse v3TokenRequest(
-            Optional<? extends com.prove.sdk.proveapi.models.components.V3TokenRequest> request) throws Exception;
     }
 
 

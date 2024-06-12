@@ -24,17 +24,23 @@ public class Application {
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 
-            V3ChallengeRequest req = V3ChallengeRequest.builder()
-                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+            V3StartRequest req = V3StartRequest.builder()
+                .flowType("mobile")
+                .deviceId("713189b8-5555-4b08-83ba-75d08780aebd")
                 .dob("2024-05-02T00:00:00Z")
+                .emailAddress("jdoe@example.com")
+                .finalTargetUrl("https://www.example.com/landing-page")
+                .flowId("\"prove-standard-prefill-i1\"")
+                .ipAddress("10.0.0.1")
                 .last4SSN("1234")
+                .phoneNumber("12065550100")
                 .build();
 
-            V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
+            V3StartRequestResponse res = sdk.v3().v3StartRequest()
                 .request(req)
                 .call();
 
-            if (res.v3ChallengeResponse().isPresent()) {
+            if (res.v3StartResponse().isPresent()) {
                 // handle response
             }
         } catch (com.prove.sdk.proveapi.models.errors.Error e) {
