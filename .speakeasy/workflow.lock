@@ -2,16 +2,16 @@ speakeasyVersion: 1.305.0
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:934e192473888e889a5cc3c4dd22c32a136e145aa86a65998439d5dcd7642e4c
-        sourceBlobDigest: sha256:1db62b11a76b7148c97d7376373dcbc3261d664962b61126fb7b4345773dfbf4
+        sourceRevisionDigest: sha256:b023b88fd858502fd5b9279cd72aeff168feb5266cd71fad017fb603e0b9e68a
+        sourceBlobDigest: sha256:6c6a64fe9a0814fbf40460ba2aab12eef9f4223ad6d18007adc01894d6eee65c
         tags:
             - latest
 targets:
     my-first-target:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:934e192473888e889a5cc3c4dd22c32a136e145aa86a65998439d5dcd7642e4c
-        sourceBlobDigest: sha256:1db62b11a76b7148c97d7376373dcbc3261d664962b61126fb7b4345773dfbf4
+        sourceRevisionDigest: sha256:b023b88fd858502fd5b9279cd72aeff168feb5266cd71fad017fb603e0b9e68a
+        sourceBlobDigest: sha256:6c6a64fe9a0814fbf40460ba2aab12eef9f4223ad6d18007adc01894d6eee65c
         outLocation: /Users/jspurrier/godev/proveauth/prove-sdk-server-java
 workflow:
     workflowVersion: 1.0.0
