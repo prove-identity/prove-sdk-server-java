@@ -19,11 +19,11 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ```java
 package hello.world;
 
-import com.prove.sdk.proveapi.Proveapi;
-import com.prove.sdk.proveapi.models.components.*;
-import com.prove.sdk.proveapi.models.components.Security;
-import com.prove.sdk.proveapi.models.operations.*;
-import com.prove.sdk.proveapi.utils.EventStream;
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.*;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.operations.*;
+import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -41,23 +41,25 @@ public class Application {
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 
-            V3ChallengeRequest req = V3ChallengeRequest.builder()
-                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
-                .dob("2024-05-02T00:00:00Z")
-                .last4SSN("1234")
+            V3TokenRequest req = V3TokenRequest.builder()
+                .grantType("client_credentials")
+                .clientId("customer_id")
+                .clientSecret("secret")
+                .password("password")
+                .username("jdoe")
                 .build();
 
-            V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
+            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3ChallengeResponse().isPresent()) {
+            if (res.v3TokenResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.prove.sdk.proveapi.models.errors.Error e) {
+        } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.sdk.proveapi.models.errors.SDKError e) {
+        } catch (com.prove.proveapi.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -86,11 +88,11 @@ You can override the default server globally by passing a server name to the `se
 ```java
 package hello.world;
 
-import com.prove.sdk.proveapi.Proveapi;
-import com.prove.sdk.proveapi.models.components.*;
-import com.prove.sdk.proveapi.models.components.Security;
-import com.prove.sdk.proveapi.models.operations.*;
-import com.prove.sdk.proveapi.utils.EventStream;
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.*;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.operations.*;
+import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -109,23 +111,25 @@ public class Application {
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 
-            V3ChallengeRequest req = V3ChallengeRequest.builder()
-                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
-                .dob("2024-05-02T00:00:00Z")
-                .last4SSN("1234")
+            V3TokenRequest req = V3TokenRequest.builder()
+                .grantType("client_credentials")
+                .clientId("customer_id")
+                .clientSecret("secret")
+                .password("password")
+                .username("jdoe")
                 .build();
 
-            V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
+            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3ChallengeResponse().isPresent()) {
+            if (res.v3TokenResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.prove.sdk.proveapi.models.errors.Error e) {
+        } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.sdk.proveapi.models.errors.SDKError e) {
+        } catch (com.prove.proveapi.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -143,11 +147,11 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```java
 package hello.world;
 
-import com.prove.sdk.proveapi.Proveapi;
-import com.prove.sdk.proveapi.models.components.*;
-import com.prove.sdk.proveapi.models.components.Security;
-import com.prove.sdk.proveapi.models.operations.*;
-import com.prove.sdk.proveapi.utils.EventStream;
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.*;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.operations.*;
+import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -166,23 +170,25 @@ public class Application {
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 
-            V3ChallengeRequest req = V3ChallengeRequest.builder()
-                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
-                .dob("2024-05-02T00:00:00Z")
-                .last4SSN("1234")
+            V3TokenRequest req = V3TokenRequest.builder()
+                .grantType("client_credentials")
+                .clientId("customer_id")
+                .clientSecret("secret")
+                .password("password")
+                .username("jdoe")
                 .build();
 
-            V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
+            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3ChallengeResponse().isPresent()) {
+            if (res.v3TokenResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.prove.sdk.proveapi.models.errors.Error e) {
+        } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.sdk.proveapi.models.errors.SDKError e) {
+        } catch (com.prove.proveapi.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -209,11 +215,11 @@ To authenticate with the API the `auth` parameter must be set when initializing 
 ```java
 package hello.world;
 
-import com.prove.sdk.proveapi.Proveapi;
-import com.prove.sdk.proveapi.models.components.*;
-import com.prove.sdk.proveapi.models.components.Security;
-import com.prove.sdk.proveapi.models.operations.*;
-import com.prove.sdk.proveapi.utils.EventStream;
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.*;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.operations.*;
+import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -231,23 +237,25 @@ public class Application {
                 .auth("<YOUR_AUTH_HERE>")
                 .build();
 
-            V3ChallengeRequest req = V3ChallengeRequest.builder()
-                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
-                .dob("2024-05-02T00:00:00Z")
-                .last4SSN("1234")
+            V3TokenRequest req = V3TokenRequest.builder()
+                .grantType("client_credentials")
+                .clientId("customer_id")
+                .clientSecret("secret")
+                .password("password")
+                .username("jdoe")
                 .build();
 
-            V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
+            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3ChallengeResponse().isPresent()) {
+            if (res.v3TokenResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.prove.sdk.proveapi.models.errors.Error e) {
+        } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.sdk.proveapi.models.errors.SDKError e) {
+        } catch (com.prove.proveapi.models.errors.SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {

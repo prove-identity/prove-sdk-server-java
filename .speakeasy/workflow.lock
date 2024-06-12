@@ -1,19 +1,18 @@
-speakeasyVersion: 1.300.1
+speakeasyVersion: 1.305.0
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:6fbe2f564f2adbdcff21ba6852279da93c8a0e4e40b8680cb010579fd3c22c56
-        sourceBlobDigest: sha256:5f81124fb78c6e338882d7a52318866f8b3a1db0c1c59e1c54777cfd36368d02
+        sourceRevisionDigest: sha256:934e192473888e889a5cc3c4dd22c32a136e145aa86a65998439d5dcd7642e4c
+        sourceBlobDigest: sha256:1db62b11a76b7148c97d7376373dcbc3261d664962b61126fb7b4345773dfbf4
         tags:
             - latest
-            - main
 targets:
     my-first-target:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:6fbe2f564f2adbdcff21ba6852279da93c8a0e4e40b8680cb010579fd3c22c56
-        sourceBlobDigest: sha256:5f81124fb78c6e338882d7a52318866f8b3a1db0c1c59e1c54777cfd36368d02
-        outLocation: /github/workspace/repo
+        sourceRevisionDigest: sha256:934e192473888e889a5cc3c4dd22c32a136e145aa86a65998439d5dcd7642e4c
+        sourceBlobDigest: sha256:1db62b11a76b7148c97d7376373dcbc3261d664962b61126fb7b4345773dfbf4
+        outLocation: /Users/jspurrier/godev/proveauth/prove-sdk-server-java
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -29,3 +28,9 @@ workflow:
         my-first-target:
             target: java
             source: my-source
+            publish:
+                java:
+                    ossrhUsername: $ossrh_username
+                    ossrhPassword: $ossrh_password
+                    gpgSecretKey: $gpg_secret_key
+                    gpgPassPhrase: $gpg_pass_phrase

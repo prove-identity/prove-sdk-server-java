@@ -10,20 +10,19 @@ generation:
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
   auth:
-    oAuth2ClientCredentialsEnabled: true
+    oAuth2ClientCredentialsEnabled: false
 java:
-  version: 0.3.4
+  version: 0.4.2
   additionalDependencies: []
-  additionalPlugins:
-    - id 'maven-publish'
+  additionalPlugins: []
   artifactID: proveapi
   clientServerStatusCodesAsErrors: true
   companyEmail: info@prove.com
   companyName: Prove Identity
-  companyURL: www.prove.com
+  companyURL: https://www.prove.com
   flattenGlobalSecurity: true
   githubURL: github.com/prove-identity/prove-sdk-server-java
-  groupID: com.prove.sdk
+  groupID: com.prove
   imports:
     option: openapi
     paths:
