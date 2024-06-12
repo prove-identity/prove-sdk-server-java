@@ -17,4 +17,4 @@ targets:
                 ossrhUsername: $ossrh_username
                 ossrhPassword: $ossrh_password
                 gpgSecretKey: $gpg_secret_key
-                gpgPassPhrase: $gpg_pass_phrase
+                gpgPassPhrase: $gpg_passphrase
