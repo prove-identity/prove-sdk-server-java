@@ -13,7 +13,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove.proveapi:openapi:0.4.3'
+implementation 'com.prove.proveapi:openapi:0.4.4'
 ```
 
 Maven:
@@ -21,7 +21,7 @@ Maven:
 <dependency>
     <groupId>com.prove.proveapi</groupId>
     <artifactId>openapi</artifactId>
-    <version>0.4.3</version>
+    <version>0.4.4</version>
 </dependency>
 ```
 
@@ -121,10 +121,10 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Exception type.
 
-| Error Object           | Status Code | Content Type     |
-| ---------------------- | ----------- | ---------------- |
-| models/errors/Error    | 400,500     | application/json |
-| models/errors/SDKError | 4xx-5xx     | */*              |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 400,500                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ### Example
 
@@ -190,10 +190,10 @@ public class Application {
 
 You can override the default server globally by passing a server name to the `server` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| Name      | Server                               | Variables |
-| --------- | ------------------------------------ | --------- |
-| `uat-us`  | `https://platform.uat.proveapis.com` | None      |
-| `prod-us` | `https://platform.proveapis.com`     | None      |
+| Name | Server | Variables |
+| ----- | ------ | --------- |
+| `uat-us` | `https://platform.uat.proveapis.com` | None |
+| `prod-us` | `https://platform.proveapis.com` | None |
 
 #### Example
 
@@ -319,9 +319,9 @@ public class Application {
 
 This SDK supports the following security scheme globally:
 
-| Name   | Type   | Scheme       |
-| ------ | ------ | ------------ |
-| `auth` | oauth2 | OAuth2 token |
+| Name         | Type         | Scheme       |
+| ------------ | ------------ | ------------ |
+| `auth`       | oauth2       | OAuth2 token |
 
 To authenticate with the API the `auth` parameter must be set when initializing the SDK client instance. For example:
 ```java

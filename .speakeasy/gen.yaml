@@ -10,9 +10,9 @@ generation:
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
   auth:
-    oAuth2ClientCredentialsEnabled: false
+    oAuth2ClientCredentialsEnabled: true
 java:
-  version: 0.4.3
+  version: 0.4.4
   additionalDependencies: []
   additionalPlugins: []
   artifactID: proveapi
