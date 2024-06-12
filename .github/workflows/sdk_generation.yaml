@@ -22,5 +22,9 @@ jobs:
       speakeasy_version: latest
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      gpg_pass_phrase: ${{ secrets.GPG_PASSPHRASE }}
+      gpg_secret_key: ${{ secrets.GPG_SECRET_KEY }}
       openapi_doc_auth_token: ${{ secrets.OPENAPI_DOC_AUTH_TOKEN }}
+      ossrh_username: ${{ secrets.OSSRH_USERNAME }}
+      ossrh_password: ${{ secrets.OSSRH_PASSWORD }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}

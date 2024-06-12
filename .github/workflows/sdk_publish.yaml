@@ -5,7 +5,6 @@ permissions:
   pull-requests: write
   statuses: write
 "on":
-  workflow_dispatch:
   push:
     branches:
       - main
@@ -13,41 +12,12 @@ permissions:
       - RELEASES.md
       - "*/RELEASES.md"
 jobs:
-  # publish:
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     contents: read
-  #     packages: write
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: actions/setup-java@v4
-  #       with:
-  #         java-version: "11"
-  #         distribution: "temurin"
-  #     - name: Publish package
-  #       run: mvn --batch-mode deploy
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   publish:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          java-version: "11"
-          distribution: "temurin"
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
-
-      - name: Publish package
-        run: ./gradlew publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  release:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      gpg_pass_phrase: ${{ secrets.GPG_PASSPHRASE }}
+      gpg_secret_key: ${{ secrets.GPG_SECRET_KEY }}
+      ossrh_username: ${{ secrets.OSSRH_USERNAME }}
+      ossrh_password: ${{ secrets.OSSRH_PASSWORD }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
