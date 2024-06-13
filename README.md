@@ -13,7 +13,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove.proveapi:openapi:0.4.5'
+implementation 'com.prove.proveapi:openapi:0.4.6'
 ```
 
 Maven:
@@ -21,7 +21,7 @@ Maven:
 <dependency>
     <groupId>com.prove.proveapi</groupId>
     <artifactId>openapi</artifactId>
-    <version>0.4.5</version>
+    <version>0.4.6</version>
 </dependency>
 ```
 
@@ -111,7 +111,7 @@ public class Application {
 
 * [v3TokenRequest](docs/sdks/v3/README.md#v3tokenrequest) - Request OAuth token.
 * [v3ChallengeRequest](docs/sdks/v3/README.md#v3challengerequest) - Submit challenge.
-* [v3CompleteRequest](docs/sdks/v3/README.md#v3completerequest) - Verify user.
+* [v3CompleteRequest](docs/sdks/v3/README.md#v3completerequest) - Complete flow.
 * [v3StartRequest](docs/sdks/v3/README.md#v3startrequest) - Start flow.
 * [v3ValidateRequest](docs/sdks/v3/README.md#v3validaterequest) - Validate phone number.
 <!-- End Available Resources and Operations [operations] -->
@@ -157,8 +157,6 @@ public class Application {
                 .grantType("client_credentials")
                 .clientId("customer_id")
                 .clientSecret("secret")
-                .password("password")
-                .username("jdoe")
                 .build();
 
             V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
@@ -227,8 +225,6 @@ public class Application {
                 .grantType("client_credentials")
                 .clientId("customer_id")
                 .clientSecret("secret")
-                .password("password")
-                .username("jdoe")
                 .build();
 
             V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
@@ -286,8 +282,6 @@ public class Application {
                 .grantType("client_credentials")
                 .clientId("customer_id")
                 .clientSecret("secret")
-                .password("password")
-                .username("jdoe")
                 .build();
 
             V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
@@ -353,8 +347,6 @@ public class Application {
                 .grantType("client_credentials")
                 .clientId("customer_id")
                 .clientSecret("secret")
-                .password("password")
-                .username("jdoe")
                 .build();
 
             V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
