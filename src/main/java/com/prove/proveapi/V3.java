@@ -69,7 +69,7 @@ public class V3 implements
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
-                "/realms/US/protocol/openid-connect/token");
+                "/token");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
@@ -300,7 +300,7 @@ public class V3 implements
 
 
     /**
-     * Verify user.
+     * Complete flow.
      * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow.
      * @return The call builder
      */
@@ -309,7 +309,7 @@ public class V3 implements
     }
 
     /**
-     * Verify user.
+     * Complete flow.
      * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -318,7 +318,7 @@ public class V3 implements
         return v3CompleteRequest(Optional.empty());
     }
     /**
-     * Verify user.
+     * Complete flow.
      * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow.
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
