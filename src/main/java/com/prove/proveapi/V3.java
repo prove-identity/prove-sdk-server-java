@@ -39,6 +39,7 @@ public class V3 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
+
     /**
      * Request OAuth token.
      * Send this request to request the OAuth token.
@@ -75,7 +76,7 @@ public class V3 implements
         Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
             new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3TokenRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, "request", "form", false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -88,7 +89,7 @@ public class V3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("V3TokenRequest", sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("V3TokenRequest", Optional.empty(), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -96,18 +97,18 @@ public class V3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("V3TokenRequest", sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("V3TokenRequest", Optional.empty(), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("V3TokenRequest", sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("V3TokenRequest", Optional.empty(), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("V3TokenRequest", sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("V3TokenRequest", Optional.empty(), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -169,6 +170,7 @@ public class V3 implements
     }
 
 
+
     /**
      * Submit challenge.
      * Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint. It will return a correlation ID, user information, and the next step to call in the flow.
@@ -218,7 +220,7 @@ public class V3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("V3ChallengeRequest", sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("V3ChallengeRequest", Optional.empty(), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -226,18 +228,18 @@ public class V3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("V3ChallengeRequest", sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("V3ChallengeRequest", Optional.empty(), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("V3ChallengeRequest", sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("V3ChallengeRequest", Optional.empty(), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("V3ChallengeRequest", sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("V3ChallengeRequest", Optional.empty(), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -299,6 +301,7 @@ public class V3 implements
     }
 
 
+
     /**
      * Complete flow.
      * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow.
@@ -348,7 +351,7 @@ public class V3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("V3CompleteRequest", sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("V3CompleteRequest", Optional.empty(), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -356,18 +359,18 @@ public class V3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("V3CompleteRequest", sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("V3CompleteRequest", Optional.empty(), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("V3CompleteRequest", sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("V3CompleteRequest", Optional.empty(), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("V3CompleteRequest", sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("V3CompleteRequest", Optional.empty(), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -429,6 +432,7 @@ public class V3 implements
     }
 
 
+
     /**
      * Start flow.
      * Send this request to start a Prove flow. It will return a correlation ID and an authToken for the client SDK.
@@ -478,7 +482,7 @@ public class V3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("V3StartRequest", sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("V3StartRequest", Optional.empty(), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -486,18 +490,18 @@ public class V3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("V3StartRequest", sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("V3StartRequest", Optional.empty(), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("V3StartRequest", sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("V3StartRequest", Optional.empty(), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("V3StartRequest", sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("V3StartRequest", Optional.empty(), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -559,6 +563,7 @@ public class V3 implements
     }
 
 
+
     /**
      * Validate phone number.
      * Send this request to check the phone number entered/discovered earlier in the flow is validated. It will return a correlation ID and the next step.
@@ -608,7 +613,7 @@ public class V3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("V3ValidateRequest", sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("V3ValidateRequest", Optional.empty(), sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -616,18 +621,18 @@ public class V3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("V3ValidateRequest", sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("V3ValidateRequest", Optional.empty(), sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("V3ValidateRequest", sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("V3ValidateRequest", Optional.empty(), sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("V3ValidateRequest", sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("V3ValidateRequest", Optional.empty(), sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }

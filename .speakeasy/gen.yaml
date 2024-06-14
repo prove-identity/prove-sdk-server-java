@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 java:
-  version: 0.4.6
+  version: 0.5.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: proveapi

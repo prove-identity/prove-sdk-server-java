@@ -9,19 +9,21 @@
 
 ### Getting started
 
+JDK 11 or later is required.
+
 The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove.proveapi:openapi:0.4.6'
+implementation 'com.prove:proveapi:0.5.0'
 ```
 
 Maven:
 ```xml
 <dependency>
-    <groupId>com.prove.proveapi</groupId>
-    <artifactId>openapi</artifactId>
-    <version>0.4.6</version>
+    <groupId>com.prove</groupId>
+    <artifactId>proveapi</artifactId>
+    <version>0.5.0</version>
 </dependency>
 ```
 
@@ -67,7 +69,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3StartRequest req = V3StartRequest.builder()
@@ -150,7 +154,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3TokenRequest req = V3TokenRequest.builder()
@@ -218,7 +224,9 @@ public class Application {
         try {
             Proveapi sdk = Proveapi.builder()
                 .server(Proveapi.AvailableServers.PROD_US)
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3TokenRequest req = V3TokenRequest.builder()
@@ -275,7 +283,9 @@ public class Application {
         try {
             Proveapi sdk = Proveapi.builder()
                 .serverURL("https://platform.uat.proveapis.com")
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3TokenRequest req = V3TokenRequest.builder()
@@ -311,13 +321,14 @@ public class Application {
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security scheme globally:
+This SDK supports the following security schemes globally:
 
-| Name         | Type         | Scheme       |
-| ------------ | ------------ | ------------ |
-| `auth`       | oauth2       | OAuth2 token |
+| Name           | Type           | Scheme         |
+| -------------- | -------------- | -------------- |
+| `clientID`     | oauth2         | OAuth2 token   |
+| `clientSecret` | oauth2         | OAuth2 token   |
 
-To authenticate with the API the `auth` parameter must be set when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```java
 package hello.world;
 
@@ -340,7 +351,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3TokenRequest req = V3TokenRequest.builder()

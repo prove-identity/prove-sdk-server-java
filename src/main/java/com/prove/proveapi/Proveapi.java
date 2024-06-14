@@ -91,16 +91,15 @@ public class Proveapi {
             this.sdkConfiguration.defaultClient = client;
             return this;
         }
+        
         /**
-         * Configures the SDK security to use the provided secret.
+         * Configures the SDK to use the provided security details.
          *
-         * @param auth The secret to use for all requests.
+         * @param security The security details to use for all requests.
          * @return The builder instance.
          */
-        public Builder auth(String auth) {
-            this.sdkConfiguration.securitySource = SecuritySource.of(com.prove.proveapi.models.components.Security.builder()
-              .auth(auth)
-              .build());
+        public Builder security(com.prove.proveapi.models.components.Security security) {
+            this.sdkConfiguration.securitySource = SecuritySource.of(security);
             return this;
         }
 
