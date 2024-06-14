@@ -27,7 +27,7 @@ public class V3ChallengeRequest {
     private String correlationId;
 
     /**
-     * DOB is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * DOB is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dob")
@@ -67,7 +67,7 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * DOB is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * DOB is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -98,7 +98,7 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * DOB is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * DOB is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     public V3ChallengeRequest withDob(String dob) {
         Utils.checkNotNull(dob, "dob");
@@ -107,7 +107,7 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * DOB is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * DOB is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     public V3ChallengeRequest withDob(Optional<? extends String> dob) {
         Utils.checkNotNull(dob, "dob");
@@ -186,7 +186,7 @@ public class V3ChallengeRequest {
         }
 
         /**
-         * DOB is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * DOB is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
          */
         public Builder dob(String dob) {
             Utils.checkNotNull(dob, "dob");
@@ -195,7 +195,7 @@ public class V3ChallengeRequest {
         }
 
         /**
-         * DOB is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * DOB is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
          */
         public Builder dob(Optional<? extends String> dob) {
             Utils.checkNotNull(dob, "dob");

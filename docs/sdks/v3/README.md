@@ -37,7 +37,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3TokenRequest req = V3TokenRequest.builder()
@@ -112,7 +114,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3ChallengeRequest req = V3ChallengeRequest.builder()
@@ -187,7 +191,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3CompleteRequest req = V3CompleteRequest.builder()
@@ -285,7 +291,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3StartRequest req = V3StartRequest.builder()
@@ -366,7 +374,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3ValidateRequest req = V3ValidateRequest.builder()

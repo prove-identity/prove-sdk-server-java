@@ -1,23 +1,23 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: a1d74390def8863169dada0fd7f4b1d8
+  docChecksum: c2283931de5f54f1b45dffd0b031b0e2
   docVersion: 1.0.0
-  speakeasyVersion: 1.306.0
-  generationVersion: 2.340.3
-  releaseVersion: 0.4.6
-  configChecksum: 8a6e12cb2f931005d262820b0579f34a
+  speakeasyVersion: 1.308.1
+  generationVersion: 2.342.6
+  releaseVersion: 0.5.1
+  configChecksum: b820464792b59ac20f846783917088a0
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.22.0
+    core: 3.23.2
     examples: 2.81.3
     globalSecurity: 2.82.5
     globalSecurityCallbacks: 0.1.0
-    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.1
+    oauth2ClientCredentials: 0.0.1
     sdkHooks: 0.1.0
     serverIDs: 2.81.1
 generatedFiles:
@@ -50,6 +50,7 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/utils/HTTPClient.java
   - src/main/java/com/prove/proveapi/utils/HTTPRequest.java
   - src/main/java/com/prove/proveapi/utils/HeaderMetadata.java
+  - src/main/java/com/prove/proveapi/utils/Helpers.java
   - src/main/java/com/prove/proveapi/utils/Hook.java
   - src/main/java/com/prove/proveapi/utils/Hooks.java
   - src/main/java/com/prove/proveapi/utils/JSON.java
@@ -74,6 +75,7 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/utils/TypedObject.java
   - src/main/java/com/prove/proveapi/utils/Types.java
   - src/main/java/com/prove/proveapi/utils/Utils.java
+  - src/main/java/com/prove/proveapi/models/errors/AuthException.java
   - src/main/java/com/prove/proveapi/models/errors/SDKError.java
   - src/main/java/com/prove/proveapi/models/operations/V3TokenRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3ChallengeRequestResponse.java
@@ -120,3 +122,4 @@ generatedFiles:
   - docs/sdks/proveapi/README.md
   - docs/sdks/v3/README.md
   - USAGE.md
+  - src/main/java/com/prove/proveapi/hooks/ClientCredentialsHook.java

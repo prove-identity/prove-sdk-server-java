@@ -28,7 +28,7 @@ public class V3StartRequest {
     private Optional<? extends String> deviceId;
 
     /**
-     * DOB, an optional challenge, is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * DOB, an optional challenge, is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dob")
@@ -128,7 +128,7 @@ public class V3StartRequest {
     }
 
     /**
-     * DOB, an optional challenge, is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * DOB, an optional challenge, is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -221,7 +221,7 @@ public class V3StartRequest {
     }
 
     /**
-     * DOB, an optional challenge, is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * DOB, an optional challenge, is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     public V3StartRequest withDob(String dob) {
         Utils.checkNotNull(dob, "dob");
@@ -230,7 +230,7 @@ public class V3StartRequest {
     }
 
     /**
-     * DOB, an optional challenge, is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * DOB, an optional challenge, is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     public V3StartRequest withDob(Optional<? extends String> dob) {
         Utils.checkNotNull(dob, "dob");
@@ -447,7 +447,7 @@ public class V3StartRequest {
         }
 
         /**
-         * DOB, an optional challenge, is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * DOB, an optional challenge, is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
          */
         public Builder dob(String dob) {
             Utils.checkNotNull(dob, "dob");
@@ -456,7 +456,7 @@ public class V3StartRequest {
         }
 
         /**
-         * DOB, an optional challenge, is the date of birth in this format: YYYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * DOB, an optional challenge, is the date of birth in this format: YYYY-MM-DD. Acceptable characters are: numeric with symbol '-'.
          */
         public Builder dob(Optional<? extends String> dob) {
             Utils.checkNotNull(dob, "dob");

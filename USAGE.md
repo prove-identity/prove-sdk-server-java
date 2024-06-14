@@ -21,7 +21,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .auth("<YOUR_AUTH_HERE>")
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .build())
                 .build();
 
             V3StartRequest req = V3StartRequest.builder()

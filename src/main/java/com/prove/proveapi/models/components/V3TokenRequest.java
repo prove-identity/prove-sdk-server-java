@@ -7,10 +7,9 @@ package com.prove.proveapi.models.components;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.prove.proveapi.utils.SpeakeasyMetadata;
 import com.prove.proveapi.utils.Utils;
 import java.io.InputStream;
 import java.lang.Deprecated;
@@ -23,28 +22,26 @@ public class V3TokenRequest {
     /**
      * ClientID is the optional client ID.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("client_id")
+    @SpeakeasyMetadata("form:name=client_id")
     private Optional<? extends String> clientId;
 
     /**
      * ClientSecret is the client secret ID provided to the customer during onboarding.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("client_secret")
+    @SpeakeasyMetadata("form:name=client_secret")
     private Optional<? extends String> clientSecret;
 
     /**
      * GrantType only allows option: `client_credentials`.
      */
-    @JsonProperty("grant_type")
+    @SpeakeasyMetadata("form:name=grant_type")
     private String grantType;
 
     @JsonCreator
     public V3TokenRequest(
-            @JsonProperty("client_id") Optional<? extends String> clientId,
-            @JsonProperty("client_secret") Optional<? extends String> clientSecret,
-            @JsonProperty("grant_type") String grantType) {
+            Optional<? extends String> clientId,
+            Optional<? extends String> clientSecret,
+            String grantType) {
         Utils.checkNotNull(clientId, "clientId");
         Utils.checkNotNull(clientSecret, "clientSecret");
         Utils.checkNotNull(grantType, "grantType");
