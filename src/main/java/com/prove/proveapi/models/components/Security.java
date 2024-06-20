@@ -7,6 +7,7 @@ package com.prove.proveapi.models.components;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.LazySingletonValue;
 import com.prove.proveapi.utils.SpeakeasyMetadata;
@@ -15,49 +16,41 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Optional;
 
 public class Security {
 
     @SpeakeasyMetadata("security:scheme=true,type=oauth2,subtype=client_credentials,name=clientID")
-    private Optional<? extends String> clientID;
+    private String clientID;
 
     @SpeakeasyMetadata("security:scheme=true,type=oauth2,subtype=client_credentials,name=clientSecret")
-    private Optional<? extends String> clientSecret;
+    private String clientSecret;
 
-    private Optional<? extends String> tokenURL;
+    private String tokenURL;
 
     @JsonCreator
     public Security(
-            Optional<? extends String> clientID,
-            Optional<? extends String> clientSecret) {
+            String clientID,
+            String clientSecret) {
         Utils.checkNotNull(clientID, "clientID");
         Utils.checkNotNull(clientSecret, "clientSecret");
         this.clientID = clientID;
         this.clientSecret = clientSecret;
         this.tokenURL = Builder._SINGLETON_VALUE_TokenURL.value();
     }
-    
-    public Security() {
-        this(Optional.empty(), Optional.empty());
+
+    @JsonIgnore
+    public String clientID() {
+        return clientID;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> clientID() {
-        return (Optional<String>) clientID;
+    public String clientSecret() {
+        return clientSecret;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> clientSecret() {
-        return (Optional<String>) clientSecret;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<String> tokenURL() {
-        return (Optional<String>) tokenURL;
+    public String tokenURL() {
+        return tokenURL;
     }
 
     public final static Builder builder() {
@@ -66,23 +59,11 @@ public class Security {
 
     public Security withClientID(String clientID) {
         Utils.checkNotNull(clientID, "clientID");
-        this.clientID = Optional.ofNullable(clientID);
-        return this;
-    }
-
-    public Security withClientID(Optional<? extends String> clientID) {
-        Utils.checkNotNull(clientID, "clientID");
         this.clientID = clientID;
         return this;
     }
 
     public Security withClientSecret(String clientSecret) {
-        Utils.checkNotNull(clientSecret, "clientSecret");
-        this.clientSecret = Optional.ofNullable(clientSecret);
-        return this;
-    }
-
-    public Security withClientSecret(Optional<? extends String> clientSecret) {
         Utils.checkNotNull(clientSecret, "clientSecret");
         this.clientSecret = clientSecret;
         return this;
@@ -121,9 +102,9 @@ public class Security {
     
     public final static class Builder {
  
-        private Optional<? extends String> clientID = Optional.empty();
+        private String clientID;
  
-        private Optional<? extends String> clientSecret = Optional.empty();  
+        private String clientSecret;  
         
         private Builder() {
           // force use of static builder() method
@@ -131,23 +112,11 @@ public class Security {
 
         public Builder clientID(String clientID) {
             Utils.checkNotNull(clientID, "clientID");
-            this.clientID = Optional.ofNullable(clientID);
-            return this;
-        }
-
-        public Builder clientID(Optional<? extends String> clientID) {
-            Utils.checkNotNull(clientID, "clientID");
             this.clientID = clientID;
             return this;
         }
 
         public Builder clientSecret(String clientSecret) {
-            Utils.checkNotNull(clientSecret, "clientSecret");
-            this.clientSecret = Optional.ofNullable(clientSecret);
-            return this;
-        }
-
-        public Builder clientSecret(Optional<? extends String> clientSecret) {
             Utils.checkNotNull(clientSecret, "clientSecret");
             this.clientSecret = clientSecret;
             return this;
@@ -159,11 +128,11 @@ public class Security {
                 clientSecret);
         }
 
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_TokenURL =
+        private static final LazySingletonValue<String> _SINGLETON_VALUE_TokenURL =
                 new LazySingletonValue<>(
                         "TokenURL",
                         "\"/token\"",
-                        new TypeReference<Optional<? extends String>>() {});
+                        new TypeReference<String>() {});
     }
 }
 

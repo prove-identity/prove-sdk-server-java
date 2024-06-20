@@ -15,7 +15,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Optional;
 
 public class V3TokenRequest {
 
@@ -23,13 +22,13 @@ public class V3TokenRequest {
      * ClientID is the optional client ID.
      */
     @SpeakeasyMetadata("form:name=client_id")
-    private Optional<? extends String> clientId;
+    private String clientId;
 
     /**
      * ClientSecret is the client secret ID provided to the customer during onboarding.
      */
     @SpeakeasyMetadata("form:name=client_secret")
-    private Optional<? extends String> clientSecret;
+    private String clientSecret;
 
     /**
      * GrantType only allows option: `client_credentials`.
@@ -39,8 +38,8 @@ public class V3TokenRequest {
 
     @JsonCreator
     public V3TokenRequest(
-            Optional<? extends String> clientId,
-            Optional<? extends String> clientSecret,
+            String clientId,
+            String clientSecret,
             String grantType) {
         Utils.checkNotNull(clientId, "clientId");
         Utils.checkNotNull(clientSecret, "clientSecret");
@@ -49,28 +48,21 @@ public class V3TokenRequest {
         this.clientSecret = clientSecret;
         this.grantType = grantType;
     }
-    
-    public V3TokenRequest(
-            String grantType) {
-        this(Optional.empty(), Optional.empty(), grantType);
-    }
 
     /**
      * ClientID is the optional client ID.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> clientId() {
-        return (Optional<String>) clientId;
+    public String clientId() {
+        return clientId;
     }
 
     /**
      * ClientSecret is the client secret ID provided to the customer during onboarding.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> clientSecret() {
-        return (Optional<String>) clientSecret;
+    public String clientSecret() {
+        return clientSecret;
     }
 
     /**
@@ -90,15 +82,6 @@ public class V3TokenRequest {
      */
     public V3TokenRequest withClientId(String clientId) {
         Utils.checkNotNull(clientId, "clientId");
-        this.clientId = Optional.ofNullable(clientId);
-        return this;
-    }
-
-    /**
-     * ClientID is the optional client ID.
-     */
-    public V3TokenRequest withClientId(Optional<? extends String> clientId) {
-        Utils.checkNotNull(clientId, "clientId");
         this.clientId = clientId;
         return this;
     }
@@ -107,15 +90,6 @@ public class V3TokenRequest {
      * ClientSecret is the client secret ID provided to the customer during onboarding.
      */
     public V3TokenRequest withClientSecret(String clientSecret) {
-        Utils.checkNotNull(clientSecret, "clientSecret");
-        this.clientSecret = Optional.ofNullable(clientSecret);
-        return this;
-    }
-
-    /**
-     * ClientSecret is the client secret ID provided to the customer during onboarding.
-     */
-    public V3TokenRequest withClientSecret(Optional<? extends String> clientSecret) {
         Utils.checkNotNull(clientSecret, "clientSecret");
         this.clientSecret = clientSecret;
         return this;
@@ -163,9 +137,9 @@ public class V3TokenRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> clientId = Optional.empty();
+        private String clientId;
  
-        private Optional<? extends String> clientSecret = Optional.empty();
+        private String clientSecret;
  
         private String grantType;  
         
@@ -178,15 +152,6 @@ public class V3TokenRequest {
          */
         public Builder clientId(String clientId) {
             Utils.checkNotNull(clientId, "clientId");
-            this.clientId = Optional.ofNullable(clientId);
-            return this;
-        }
-
-        /**
-         * ClientID is the optional client ID.
-         */
-        public Builder clientId(Optional<? extends String> clientId) {
-            Utils.checkNotNull(clientId, "clientId");
             this.clientId = clientId;
             return this;
         }
@@ -195,15 +160,6 @@ public class V3TokenRequest {
          * ClientSecret is the client secret ID provided to the customer during onboarding.
          */
         public Builder clientSecret(String clientSecret) {
-            Utils.checkNotNull(clientSecret, "clientSecret");
-            this.clientSecret = Optional.ofNullable(clientSecret);
-            return this;
-        }
-
-        /**
-         * ClientSecret is the client secret ID provided to the customer during onboarding.
-         */
-        public Builder clientSecret(Optional<? extends String> clientSecret) {
             Utils.checkNotNull(clientSecret, "clientSecret");
             this.clientSecret = clientSecret;
             return this;

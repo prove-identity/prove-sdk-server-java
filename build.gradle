@@ -61,7 +61,7 @@ tasks.withType(Javadoc) {
   options.addStringOption('Xdoclint:none', '-quiet')
 }
 group = "com.prove"
-version = "0.5.1"
+version = "0.5.2"
 
 sourcesJar {
     archiveBaseName = "proveapi"
@@ -98,7 +98,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.prove'
             artifactId = 'proveapi'
-            version = '0.5.1'
+            version = '0.5.2'
 
             from components.java
 
