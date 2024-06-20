@@ -119,7 +119,7 @@ public class Application {
             V3ChallengeRequest req = V3ChallengeRequest.builder()
                 .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
                 .dob("2024-05-02T00:00:00Z")
-                .last4SSN("1234")
+                .ssn("1234")
                 .build();
 
             V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
@@ -303,8 +303,8 @@ public class Application {
                 .finalTargetUrl("https://www.example.com/landing-page")
                 .flowId("prove-standard-prefill-i1")
                 .ipAddress("10.0.0.1")
-                .last4SSN("1234")
-                .phoneNumber("12065550100")
+                .phoneNumber("2001001686")
+                .ssn("1234")
                 .build();
 
             V3StartRequestResponse res = sdk.v3().v3StartRequest()
