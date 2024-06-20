@@ -69,18 +69,18 @@ public class V3StartRequest {
     private Optional<? extends String> ipAddress;
 
     /**
-     * Last4SSN, an optional challenge, is the last 4 numbers of the social security number. Acceptable characters are: numeric.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("last4SSN")
-    private Optional<? extends String> last4SSN;
-
-    /**
      * Phone number is the number of the mobile phone. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
     private Optional<? extends String> phoneNumber;
+
+    /**
+     * SSN, an optional challenge, is either the full or last 4 digits of the the social security number. Acceptable characters are: numeric.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ssn")
+    private Optional<? extends String> ssn;
 
     @JsonCreator
     public V3StartRequest(
@@ -91,8 +91,8 @@ public class V3StartRequest {
             @JsonProperty("flowId") Optional<? extends String> flowId,
             @JsonProperty("flowType") String flowType,
             @JsonProperty("ipAddress") Optional<? extends String> ipAddress,
-            @JsonProperty("last4SSN") Optional<? extends String> last4SSN,
-            @JsonProperty("phoneNumber") Optional<? extends String> phoneNumber) {
+            @JsonProperty("phoneNumber") Optional<? extends String> phoneNumber,
+            @JsonProperty("ssn") Optional<? extends String> ssn) {
         Utils.checkNotNull(deviceId, "deviceId");
         Utils.checkNotNull(dob, "dob");
         Utils.checkNotNull(emailAddress, "emailAddress");
@@ -100,8 +100,8 @@ public class V3StartRequest {
         Utils.checkNotNull(flowId, "flowId");
         Utils.checkNotNull(flowType, "flowType");
         Utils.checkNotNull(ipAddress, "ipAddress");
-        Utils.checkNotNull(last4SSN, "last4SSN");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(ssn, "ssn");
         this.deviceId = deviceId;
         this.dob = dob;
         this.emailAddress = emailAddress;
@@ -109,8 +109,8 @@ public class V3StartRequest {
         this.flowId = flowId;
         this.flowType = flowType;
         this.ipAddress = ipAddress;
-        this.last4SSN = last4SSN;
         this.phoneNumber = phoneNumber;
+        this.ssn = ssn;
     }
     
     public V3StartRequest(
@@ -181,21 +181,21 @@ public class V3StartRequest {
     }
 
     /**
-     * Last4SSN, an optional challenge, is the last 4 numbers of the social security number. Acceptable characters are: numeric.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<String> last4SSN() {
-        return (Optional<String>) last4SSN;
-    }
-
-    /**
      * Phone number is the number of the mobile phone. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> phoneNumber() {
         return (Optional<String>) phoneNumber;
+    }
+
+    /**
+     * SSN, an optional challenge, is either the full or last 4 digits of the the social security number. Acceptable characters are: numeric.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> ssn() {
+        return (Optional<String>) ssn;
     }
 
     public final static Builder builder() {
@@ -320,24 +320,6 @@ public class V3StartRequest {
     }
 
     /**
-     * Last4SSN, an optional challenge, is the last 4 numbers of the social security number. Acceptable characters are: numeric.
-     */
-    public V3StartRequest withLast4SSN(String last4SSN) {
-        Utils.checkNotNull(last4SSN, "last4SSN");
-        this.last4SSN = Optional.ofNullable(last4SSN);
-        return this;
-    }
-
-    /**
-     * Last4SSN, an optional challenge, is the last 4 numbers of the social security number. Acceptable characters are: numeric.
-     */
-    public V3StartRequest withLast4SSN(Optional<? extends String> last4SSN) {
-        Utils.checkNotNull(last4SSN, "last4SSN");
-        this.last4SSN = last4SSN;
-        return this;
-    }
-
-    /**
      * Phone number is the number of the mobile phone. Acceptable characters are: alphanumeric with symbols '+'.
      */
     public V3StartRequest withPhoneNumber(String phoneNumber) {
@@ -352,6 +334,24 @@ public class V3StartRequest {
     public V3StartRequest withPhoneNumber(Optional<? extends String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    /**
+     * SSN, an optional challenge, is either the full or last 4 digits of the the social security number. Acceptable characters are: numeric.
+     */
+    public V3StartRequest withSsn(String ssn) {
+        Utils.checkNotNull(ssn, "ssn");
+        this.ssn = Optional.ofNullable(ssn);
+        return this;
+    }
+
+    /**
+     * SSN, an optional challenge, is either the full or last 4 digits of the the social security number. Acceptable characters are: numeric.
+     */
+    public V3StartRequest withSsn(Optional<? extends String> ssn) {
+        Utils.checkNotNull(ssn, "ssn");
+        this.ssn = ssn;
         return this;
     }
     
@@ -372,8 +372,8 @@ public class V3StartRequest {
             java.util.Objects.deepEquals(this.flowId, other.flowId) &&
             java.util.Objects.deepEquals(this.flowType, other.flowType) &&
             java.util.Objects.deepEquals(this.ipAddress, other.ipAddress) &&
-            java.util.Objects.deepEquals(this.last4SSN, other.last4SSN) &&
-            java.util.Objects.deepEquals(this.phoneNumber, other.phoneNumber);
+            java.util.Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
+            java.util.Objects.deepEquals(this.ssn, other.ssn);
     }
     
     @Override
@@ -386,8 +386,8 @@ public class V3StartRequest {
             flowId,
             flowType,
             ipAddress,
-            last4SSN,
-            phoneNumber);
+            phoneNumber,
+            ssn);
     }
     
     @Override
@@ -400,8 +400,8 @@ public class V3StartRequest {
                 "flowId", flowId,
                 "flowType", flowType,
                 "ipAddress", ipAddress,
-                "last4SSN", last4SSN,
-                "phoneNumber", phoneNumber);
+                "phoneNumber", phoneNumber,
+                "ssn", ssn);
     }
     
     public final static class Builder {
@@ -420,9 +420,9 @@ public class V3StartRequest {
  
         private Optional<? extends String> ipAddress = Optional.empty();
  
-        private Optional<? extends String> last4SSN = Optional.empty();
+        private Optional<? extends String> phoneNumber = Optional.empty();
  
-        private Optional<? extends String> phoneNumber = Optional.empty();  
+        private Optional<? extends String> ssn = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -546,24 +546,6 @@ public class V3StartRequest {
         }
 
         /**
-         * Last4SSN, an optional challenge, is the last 4 numbers of the social security number. Acceptable characters are: numeric.
-         */
-        public Builder last4SSN(String last4SSN) {
-            Utils.checkNotNull(last4SSN, "last4SSN");
-            this.last4SSN = Optional.ofNullable(last4SSN);
-            return this;
-        }
-
-        /**
-         * Last4SSN, an optional challenge, is the last 4 numbers of the social security number. Acceptable characters are: numeric.
-         */
-        public Builder last4SSN(Optional<? extends String> last4SSN) {
-            Utils.checkNotNull(last4SSN, "last4SSN");
-            this.last4SSN = last4SSN;
-            return this;
-        }
-
-        /**
          * Phone number is the number of the mobile phone. Acceptable characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
@@ -580,6 +562,24 @@ public class V3StartRequest {
             this.phoneNumber = phoneNumber;
             return this;
         }
+
+        /**
+         * SSN, an optional challenge, is either the full or last 4 digits of the the social security number. Acceptable characters are: numeric.
+         */
+        public Builder ssn(String ssn) {
+            Utils.checkNotNull(ssn, "ssn");
+            this.ssn = Optional.ofNullable(ssn);
+            return this;
+        }
+
+        /**
+         * SSN, an optional challenge, is either the full or last 4 digits of the the social security number. Acceptable characters are: numeric.
+         */
+        public Builder ssn(Optional<? extends String> ssn) {
+            Utils.checkNotNull(ssn, "ssn");
+            this.ssn = ssn;
+            return this;
+        }
         
         public V3StartRequest build() {
             return new V3StartRequest(
@@ -590,8 +590,8 @@ public class V3StartRequest {
                 flowId,
                 flowType,
                 ipAddress,
-                last4SSN,
-                phoneNumber);
+                phoneNumber,
+                ssn);
         }
     }
 }

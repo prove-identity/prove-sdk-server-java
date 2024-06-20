@@ -34,23 +34,23 @@ public class V3ChallengeRequest {
     private Optional<? extends String> dob;
 
     /**
-     * Last4SSN is the last 4 numbers of the social security number. Acceptable characters are: numeric.
+     * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("last4SSN")
-    private Optional<? extends String> last4SSN;
+    @JsonProperty("ssn")
+    private Optional<? extends String> ssn;
 
     @JsonCreator
     public V3ChallengeRequest(
             @JsonProperty("correlationId") String correlationId,
             @JsonProperty("dob") Optional<? extends String> dob,
-            @JsonProperty("last4SSN") Optional<? extends String> last4SSN) {
+            @JsonProperty("ssn") Optional<? extends String> ssn) {
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(dob, "dob");
-        Utils.checkNotNull(last4SSN, "last4SSN");
+        Utils.checkNotNull(ssn, "ssn");
         this.correlationId = correlationId;
         this.dob = dob;
-        this.last4SSN = last4SSN;
+        this.ssn = ssn;
     }
     
     public V3ChallengeRequest(
@@ -76,12 +76,12 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * Last4SSN is the last 4 numbers of the social security number. Acceptable characters are: numeric.
+     * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> last4SSN() {
-        return (Optional<String>) last4SSN;
+    public Optional<String> ssn() {
+        return (Optional<String>) ssn;
     }
 
     public final static Builder builder() {
@@ -116,20 +116,20 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * Last4SSN is the last 4 numbers of the social security number. Acceptable characters are: numeric.
+     * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
-    public V3ChallengeRequest withLast4SSN(String last4SSN) {
-        Utils.checkNotNull(last4SSN, "last4SSN");
-        this.last4SSN = Optional.ofNullable(last4SSN);
+    public V3ChallengeRequest withSsn(String ssn) {
+        Utils.checkNotNull(ssn, "ssn");
+        this.ssn = Optional.ofNullable(ssn);
         return this;
     }
 
     /**
-     * Last4SSN is the last 4 numbers of the social security number. Acceptable characters are: numeric.
+     * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
-    public V3ChallengeRequest withLast4SSN(Optional<? extends String> last4SSN) {
-        Utils.checkNotNull(last4SSN, "last4SSN");
-        this.last4SSN = last4SSN;
+    public V3ChallengeRequest withSsn(Optional<? extends String> ssn) {
+        Utils.checkNotNull(ssn, "ssn");
+        this.ssn = ssn;
         return this;
     }
     
@@ -145,7 +145,7 @@ public class V3ChallengeRequest {
         return 
             java.util.Objects.deepEquals(this.correlationId, other.correlationId) &&
             java.util.Objects.deepEquals(this.dob, other.dob) &&
-            java.util.Objects.deepEquals(this.last4SSN, other.last4SSN);
+            java.util.Objects.deepEquals(this.ssn, other.ssn);
     }
     
     @Override
@@ -153,7 +153,7 @@ public class V3ChallengeRequest {
         return java.util.Objects.hash(
             correlationId,
             dob,
-            last4SSN);
+            ssn);
     }
     
     @Override
@@ -161,7 +161,7 @@ public class V3ChallengeRequest {
         return Utils.toString(V3ChallengeRequest.class,
                 "correlationId", correlationId,
                 "dob", dob,
-                "last4SSN", last4SSN);
+                "ssn", ssn);
     }
     
     public final static class Builder {
@@ -170,7 +170,7 @@ public class V3ChallengeRequest {
  
         private Optional<? extends String> dob = Optional.empty();
  
-        private Optional<? extends String> last4SSN = Optional.empty();  
+        private Optional<? extends String> ssn = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -204,20 +204,20 @@ public class V3ChallengeRequest {
         }
 
         /**
-         * Last4SSN is the last 4 numbers of the social security number. Acceptable characters are: numeric.
+         * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
          */
-        public Builder last4SSN(String last4SSN) {
-            Utils.checkNotNull(last4SSN, "last4SSN");
-            this.last4SSN = Optional.ofNullable(last4SSN);
+        public Builder ssn(String ssn) {
+            Utils.checkNotNull(ssn, "ssn");
+            this.ssn = Optional.ofNullable(ssn);
             return this;
         }
 
         /**
-         * Last4SSN is the last 4 numbers of the social security number. Acceptable characters are: numeric.
+         * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
          */
-        public Builder last4SSN(Optional<? extends String> last4SSN) {
-            Utils.checkNotNull(last4SSN, "last4SSN");
-            this.last4SSN = last4SSN;
+        public Builder ssn(Optional<? extends String> ssn) {
+            Utils.checkNotNull(ssn, "ssn");
+            this.ssn = ssn;
             return this;
         }
         
@@ -225,7 +225,7 @@ public class V3ChallengeRequest {
             return new V3ChallengeRequest(
                 correlationId,
                 dob,
-                last4SSN);
+                ssn);
         }
     }
 }
