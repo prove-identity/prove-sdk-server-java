@@ -82,9 +82,6 @@ public class V3 implements
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

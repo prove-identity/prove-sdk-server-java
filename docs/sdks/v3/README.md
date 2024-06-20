@@ -20,7 +20,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
@@ -37,15 +36,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .build())
                 .build();
 
             V3TokenRequest req = V3TokenRequest.builder()
-                .grantType("client_credentials")
                 .clientId("customer_id")
                 .clientSecret("secret")
+                .grantType("client_credentials")
                 .build();
 
             V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
@@ -116,6 +112,7 @@ public class Application {
             Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -193,6 +190,7 @@ public class Application {
             Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -203,16 +201,16 @@ public class Application {
                             V3CompleteAddressEntryRequest.builder()
                                 .address("39 South Trail")
                                 .city("San Antonio")
-                                .extendedAddress("Apt 23")
+                                .extendedAddress("39 South Trail")
                                 .postalCode("78285")
                                 .region("TX")
                                 .build(),
                             V3CompleteAddressEntryRequest.builder()
-                                .address("4861 Jay Junction")
-                                .city("Boston")
-                                .extendedAddress("Apt 78")
-                                .postalCode("02208")
-                                .region("MS")
+                                .address("39 South Trail")
+                                .city("San Antonio")
+                                .extendedAddress("39 South Trail")
+                                .postalCode("78285")
+                                .region("TX")
                                 .build()))
                         .dob("2024-05-02T00:00:00Z")
                         .emailAddresses(java.util.List.of(
@@ -293,6 +291,7 @@ public class Application {
             Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -376,6 +375,7 @@ public class Application {
             Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 

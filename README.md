@@ -15,7 +15,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.5.1'
+implementation 'com.prove:proveapi:0.5.2'
 ```
 
 Maven:
@@ -23,7 +23,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.5.1</version>
+    <version>0.5.2</version>
 </dependency>
 ```
 
@@ -71,6 +71,7 @@ public class Application {
             Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -137,7 +138,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
@@ -154,15 +154,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
         try {
             Proveapi sdk = Proveapi.builder()
-                .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .build())
                 .build();
 
             V3TokenRequest req = V3TokenRequest.builder()
-                .grantType("client_credentials")
                 .clientId("customer_id")
                 .clientSecret("secret")
+                .grantType("client_credentials")
                 .build();
 
             V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
@@ -206,7 +203,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
@@ -224,15 +220,12 @@ public class Application {
         try {
             Proveapi sdk = Proveapi.builder()
                 .server(Proveapi.AvailableServers.PROD_US)
-                .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .build())
                 .build();
 
             V3TokenRequest req = V3TokenRequest.builder()
-                .grantType("client_credentials")
                 .clientId("customer_id")
                 .clientSecret("secret")
+                .grantType("client_credentials")
                 .build();
 
             V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
@@ -265,7 +258,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
@@ -283,15 +275,12 @@ public class Application {
         try {
             Proveapi sdk = Proveapi.builder()
                 .serverURL("https://platform.uat.proveapis.com")
-                .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .build())
                 .build();
 
             V3TokenRequest req = V3TokenRequest.builder()
-                .grantType("client_credentials")
                 .clientId("customer_id")
                 .clientSecret("secret")
+                .grantType("client_credentials")
                 .build();
 
             V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
@@ -334,7 +323,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
@@ -353,13 +341,14 @@ public class Application {
             Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             V3TokenRequest req = V3TokenRequest.builder()
-                .grantType("client_credentials")
                 .clientId("customer_id")
                 .clientSecret("secret")
+                .grantType("client_credentials")
                 .build();
 
             V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
