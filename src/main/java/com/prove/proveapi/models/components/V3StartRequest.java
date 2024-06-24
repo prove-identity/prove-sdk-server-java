@@ -21,13 +21,6 @@ import java.util.Optional;
 public class V3StartRequest {
 
     /**
-     * Device ID is the ID of the device. Acceptable characters are: alphanumeric with symbols '-._+=/'.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("deviceId")
-    private Optional<? extends String> deviceId;
-
-    /**
      * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -42,18 +35,11 @@ public class V3StartRequest {
     private Optional<? extends String> emailAddress;
 
     /**
-     * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("finalTargetUrl")
     private Optional<? extends String> finalTargetUrl;
-
-    /**
-     * Flow ID defines which flow to use during the transaction.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("flowId")
-    private Optional<? extends String> flowId;
 
     /**
      * Flow type is based on the method used - either 'desktop' if using desktop or 'mobile' for iOS/Android native apps and mobile web. Acceptable options are: 'desktop' or 'mobile'.
@@ -69,7 +55,7 @@ public class V3StartRequest {
     private Optional<? extends String> ipAddress;
 
     /**
-     * Phone number is the number of the mobile phone. Acceptable characters are: alphanumeric with symbols '+'.
+     * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. It is also required in the Production environment when flowType=desktop and when flowType=Mobile during Phase 1 of implementation. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
@@ -84,29 +70,23 @@ public class V3StartRequest {
 
     @JsonCreator
     public V3StartRequest(
-            @JsonProperty("deviceId") Optional<? extends String> deviceId,
             @JsonProperty("dob") Optional<? extends String> dob,
             @JsonProperty("emailAddress") Optional<? extends String> emailAddress,
             @JsonProperty("finalTargetUrl") Optional<? extends String> finalTargetUrl,
-            @JsonProperty("flowId") Optional<? extends String> flowId,
             @JsonProperty("flowType") String flowType,
             @JsonProperty("ipAddress") Optional<? extends String> ipAddress,
             @JsonProperty("phoneNumber") Optional<? extends String> phoneNumber,
             @JsonProperty("ssn") Optional<? extends String> ssn) {
-        Utils.checkNotNull(deviceId, "deviceId");
         Utils.checkNotNull(dob, "dob");
         Utils.checkNotNull(emailAddress, "emailAddress");
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
-        Utils.checkNotNull(flowId, "flowId");
         Utils.checkNotNull(flowType, "flowType");
         Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(ssn, "ssn");
-        this.deviceId = deviceId;
         this.dob = dob;
         this.emailAddress = emailAddress;
         this.finalTargetUrl = finalTargetUrl;
-        this.flowId = flowId;
         this.flowType = flowType;
         this.ipAddress = ipAddress;
         this.phoneNumber = phoneNumber;
@@ -115,16 +95,7 @@ public class V3StartRequest {
     
     public V3StartRequest(
             String flowType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), flowType, Optional.empty(), Optional.empty(), Optional.empty());
-    }
-
-    /**
-     * Device ID is the ID of the device. Acceptable characters are: alphanumeric with symbols '-._+=/'.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<String> deviceId() {
-        return (Optional<String>) deviceId;
+        this(Optional.empty(), Optional.empty(), Optional.empty(), flowType, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -146,21 +117,12 @@ public class V3StartRequest {
     }
 
     /**
-     * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> finalTargetUrl() {
         return (Optional<String>) finalTargetUrl;
-    }
-
-    /**
-     * Flow ID defines which flow to use during the transaction.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<String> flowId() {
-        return (Optional<String>) flowId;
     }
 
     /**
@@ -181,7 +143,7 @@ public class V3StartRequest {
     }
 
     /**
-     * Phone number is the number of the mobile phone. Acceptable characters are: alphanumeric with symbols '+'.
+     * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. It is also required in the Production environment when flowType=desktop and when flowType=Mobile during Phase 1 of implementation. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -200,24 +162,6 @@ public class V3StartRequest {
 
     public final static Builder builder() {
         return new Builder();
-    }
-
-    /**
-     * Device ID is the ID of the device. Acceptable characters are: alphanumeric with symbols '-._+=/'.
-     */
-    public V3StartRequest withDeviceId(String deviceId) {
-        Utils.checkNotNull(deviceId, "deviceId");
-        this.deviceId = Optional.ofNullable(deviceId);
-        return this;
-    }
-
-    /**
-     * Device ID is the ID of the device. Acceptable characters are: alphanumeric with symbols '-._+=/'.
-     */
-    public V3StartRequest withDeviceId(Optional<? extends String> deviceId) {
-        Utils.checkNotNull(deviceId, "deviceId");
-        this.deviceId = deviceId;
-        return this;
     }
 
     /**
@@ -257,7 +201,7 @@ public class V3StartRequest {
     }
 
     /**
-     * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     public V3StartRequest withFinalTargetUrl(String finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -266,29 +210,11 @@ public class V3StartRequest {
     }
 
     /**
-     * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     public V3StartRequest withFinalTargetUrl(Optional<? extends String> finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
         this.finalTargetUrl = finalTargetUrl;
-        return this;
-    }
-
-    /**
-     * Flow ID defines which flow to use during the transaction.
-     */
-    public V3StartRequest withFlowId(String flowId) {
-        Utils.checkNotNull(flowId, "flowId");
-        this.flowId = Optional.ofNullable(flowId);
-        return this;
-    }
-
-    /**
-     * Flow ID defines which flow to use during the transaction.
-     */
-    public V3StartRequest withFlowId(Optional<? extends String> flowId) {
-        Utils.checkNotNull(flowId, "flowId");
-        this.flowId = flowId;
         return this;
     }
 
@@ -320,7 +246,7 @@ public class V3StartRequest {
     }
 
     /**
-     * Phone number is the number of the mobile phone. Acceptable characters are: alphanumeric with symbols '+'.
+     * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. It is also required in the Production environment when flowType=desktop and when flowType=Mobile during Phase 1 of implementation. Acceptable characters are: alphanumeric with symbols '+'.
      */
     public V3StartRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -329,7 +255,7 @@ public class V3StartRequest {
     }
 
     /**
-     * Phone number is the number of the mobile phone. Acceptable characters are: alphanumeric with symbols '+'.
+     * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. It is also required in the Production environment when flowType=desktop and when flowType=Mobile during Phase 1 of implementation. Acceptable characters are: alphanumeric with symbols '+'.
      */
     public V3StartRequest withPhoneNumber(Optional<? extends String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -365,11 +291,9 @@ public class V3StartRequest {
         }
         V3StartRequest other = (V3StartRequest) o;
         return 
-            java.util.Objects.deepEquals(this.deviceId, other.deviceId) &&
             java.util.Objects.deepEquals(this.dob, other.dob) &&
             java.util.Objects.deepEquals(this.emailAddress, other.emailAddress) &&
             java.util.Objects.deepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
-            java.util.Objects.deepEquals(this.flowId, other.flowId) &&
             java.util.Objects.deepEquals(this.flowType, other.flowType) &&
             java.util.Objects.deepEquals(this.ipAddress, other.ipAddress) &&
             java.util.Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
@@ -379,11 +303,9 @@ public class V3StartRequest {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            deviceId,
             dob,
             emailAddress,
             finalTargetUrl,
-            flowId,
             flowType,
             ipAddress,
             phoneNumber,
@@ -393,11 +315,9 @@ public class V3StartRequest {
     @Override
     public String toString() {
         return Utils.toString(V3StartRequest.class,
-                "deviceId", deviceId,
                 "dob", dob,
                 "emailAddress", emailAddress,
                 "finalTargetUrl", finalTargetUrl,
-                "flowId", flowId,
                 "flowType", flowType,
                 "ipAddress", ipAddress,
                 "phoneNumber", phoneNumber,
@@ -406,15 +326,11 @@ public class V3StartRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> deviceId = Optional.empty();
- 
         private Optional<? extends String> dob = Optional.empty();
  
         private Optional<? extends String> emailAddress = Optional.empty();
  
         private Optional<? extends String> finalTargetUrl = Optional.empty();
- 
-        private Optional<? extends String> flowId = Optional.empty();
  
         private String flowType;
  
@@ -426,24 +342,6 @@ public class V3StartRequest {
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        /**
-         * Device ID is the ID of the device. Acceptable characters are: alphanumeric with symbols '-._+=/'.
-         */
-        public Builder deviceId(String deviceId) {
-            Utils.checkNotNull(deviceId, "deviceId");
-            this.deviceId = Optional.ofNullable(deviceId);
-            return this;
-        }
-
-        /**
-         * Device ID is the ID of the device. Acceptable characters are: alphanumeric with symbols '-._+=/'.
-         */
-        public Builder deviceId(Optional<? extends String> deviceId) {
-            Utils.checkNotNull(deviceId, "deviceId");
-            this.deviceId = deviceId;
-            return this;
         }
 
         /**
@@ -483,7 +381,7 @@ public class V3StartRequest {
         }
 
         /**
-         * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+         * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
         public Builder finalTargetUrl(String finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -492,29 +390,11 @@ public class V3StartRequest {
         }
 
         /**
-         * Final target URL is the URL where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+         * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
         public Builder finalTargetUrl(Optional<? extends String> finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
             this.finalTargetUrl = finalTargetUrl;
-            return this;
-        }
-
-        /**
-         * Flow ID defines which flow to use during the transaction.
-         */
-        public Builder flowId(String flowId) {
-            Utils.checkNotNull(flowId, "flowId");
-            this.flowId = Optional.ofNullable(flowId);
-            return this;
-        }
-
-        /**
-         * Flow ID defines which flow to use during the transaction.
-         */
-        public Builder flowId(Optional<? extends String> flowId) {
-            Utils.checkNotNull(flowId, "flowId");
-            this.flowId = flowId;
             return this;
         }
 
@@ -546,7 +426,7 @@ public class V3StartRequest {
         }
 
         /**
-         * Phone number is the number of the mobile phone. Acceptable characters are: alphanumeric with symbols '+'.
+         * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. It is also required in the Production environment when flowType=desktop and when flowType=Mobile during Phase 1 of implementation. Acceptable characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -555,7 +435,7 @@ public class V3StartRequest {
         }
 
         /**
-         * Phone number is the number of the mobile phone. Acceptable characters are: alphanumeric with symbols '+'.
+         * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. It is also required in the Production environment when flowType=desktop and when flowType=Mobile during Phase 1 of implementation. Acceptable characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(Optional<? extends String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -583,11 +463,9 @@ public class V3StartRequest {
         
         public V3StartRequest build() {
             return new V3StartRequest(
-                deviceId,
                 dob,
                 emailAddress,
                 finalTargetUrl,
-                flowId,
                 flowType,
                 ipAddress,
                 phoneNumber,

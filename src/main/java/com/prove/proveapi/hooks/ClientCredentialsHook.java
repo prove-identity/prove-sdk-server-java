@@ -234,10 +234,23 @@ public final class ClientCredentialsHook implements SdkInit, BeforeRequest, Afte
         if (!source.isPresent()) {
             return Optional.empty();
         }
-        String clientId = source.get().getSecurity().clientID();
-        String clientSecret = source.get().getSecurity().clientSecret();
-        String tokenUrl = source.get().getSecurity().tokenURL();
-        return Optional.ofNullable(new Credentials(clientId, clientSecret, tokenUrl));
+        // clientID, clientSecret etc will be typed as `Optional` if global security not present
+        Optional<String> clientId = toOptional(source.get().getSecurity().clientID());
+        Optional<String> clientSecret = toOptional(source.get().getSecurity().clientSecret());
+        Optional<String> tokenUrl = toOptional(source.get().getSecurity().tokenURL());
+        if (clientId.isEmpty() || clientSecret.isEmpty() || tokenUrl.isEmpty()) {
+            return Optional.empty();
+        } else {
+           return Optional.of(new Credentials(clientId.get(), clientSecret.get(), tokenUrl.get()));
+        }
+    }
+
+    private static Optional<String> toOptional(String s) {
+        return Optional.ofNullable(s);
+    }
+    
+    private static Optional<String> toOptional(Optional<String> s) {
+        return s;
     }
 
     private static String sessionKey(Credentials credentials) {

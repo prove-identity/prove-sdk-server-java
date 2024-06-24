@@ -7,6 +7,8 @@ package com.prove.proveapi.models.components;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
@@ -14,14 +16,20 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Optional;
 
 public class V3CompleteResponse {
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("idv")
+    private Optional<? extends IDVData> idv;
+
     /**
-     * ChangeDetected returns true if the individual information changed.
+     * Kyc contains optional KYC data to be returned.
      */
-    @JsonProperty("changeDetected")
-    private boolean changeDetected;
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("kyc")
+    private Optional<? extends String> kyc;
 
     /**
      * Next contains the next set of allowed calls in the same flow.
@@ -37,23 +45,39 @@ public class V3CompleteResponse {
 
     @JsonCreator
     public V3CompleteResponse(
-            @JsonProperty("changeDetected") boolean changeDetected,
+            @JsonProperty("idv") Optional<? extends IDVData> idv,
+            @JsonProperty("kyc") Optional<? extends String> kyc,
             @JsonProperty("next") java.util.Map<String, String> next,
             @JsonProperty("success") boolean success) {
-        Utils.checkNotNull(changeDetected, "changeDetected");
+        Utils.checkNotNull(idv, "idv");
+        Utils.checkNotNull(kyc, "kyc");
         next = Utils.emptyMapIfNull(next);
         Utils.checkNotNull(success, "success");
-        this.changeDetected = changeDetected;
+        this.idv = idv;
+        this.kyc = kyc;
         this.next = next;
         this.success = success;
     }
+    
+    public V3CompleteResponse(
+            java.util.Map<String, String> next,
+            boolean success) {
+        this(Optional.empty(), Optional.empty(), next, success);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<IDVData> idv() {
+        return (Optional<IDVData>) idv;
+    }
 
     /**
-     * ChangeDetected returns true if the individual information changed.
+     * Kyc contains optional KYC data to be returned.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public boolean changeDetected() {
-        return changeDetected;
+    public Optional<String> kyc() {
+        return (Optional<String>) kyc;
     }
 
     /**
@@ -76,12 +100,33 @@ public class V3CompleteResponse {
         return new Builder();
     }
 
+    public V3CompleteResponse withIdv(IDVData idv) {
+        Utils.checkNotNull(idv, "idv");
+        this.idv = Optional.ofNullable(idv);
+        return this;
+    }
+
+    public V3CompleteResponse withIdv(Optional<? extends IDVData> idv) {
+        Utils.checkNotNull(idv, "idv");
+        this.idv = idv;
+        return this;
+    }
+
     /**
-     * ChangeDetected returns true if the individual information changed.
+     * Kyc contains optional KYC data to be returned.
      */
-    public V3CompleteResponse withChangeDetected(boolean changeDetected) {
-        Utils.checkNotNull(changeDetected, "changeDetected");
-        this.changeDetected = changeDetected;
+    public V3CompleteResponse withKyc(String kyc) {
+        Utils.checkNotNull(kyc, "kyc");
+        this.kyc = Optional.ofNullable(kyc);
+        return this;
+    }
+
+    /**
+     * Kyc contains optional KYC data to be returned.
+     */
+    public V3CompleteResponse withKyc(Optional<? extends String> kyc) {
+        Utils.checkNotNull(kyc, "kyc");
+        this.kyc = kyc;
         return this;
     }
 
@@ -113,7 +158,8 @@ public class V3CompleteResponse {
         }
         V3CompleteResponse other = (V3CompleteResponse) o;
         return 
-            java.util.Objects.deepEquals(this.changeDetected, other.changeDetected) &&
+            java.util.Objects.deepEquals(this.idv, other.idv) &&
+            java.util.Objects.deepEquals(this.kyc, other.kyc) &&
             java.util.Objects.deepEquals(this.next, other.next) &&
             java.util.Objects.deepEquals(this.success, other.success);
     }
@@ -121,7 +167,8 @@ public class V3CompleteResponse {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            changeDetected,
+            idv,
+            kyc,
             next,
             success);
     }
@@ -129,14 +176,17 @@ public class V3CompleteResponse {
     @Override
     public String toString() {
         return Utils.toString(V3CompleteResponse.class,
-                "changeDetected", changeDetected,
+                "idv", idv,
+                "kyc", kyc,
                 "next", next,
                 "success", success);
     }
     
     public final static class Builder {
  
-        private Boolean changeDetected;
+        private Optional<? extends IDVData> idv = Optional.empty();
+ 
+        private Optional<? extends String> kyc = Optional.empty();
  
         private java.util.Map<String, String> next;
  
@@ -146,12 +196,33 @@ public class V3CompleteResponse {
           // force use of static builder() method
         }
 
+        public Builder idv(IDVData idv) {
+            Utils.checkNotNull(idv, "idv");
+            this.idv = Optional.ofNullable(idv);
+            return this;
+        }
+
+        public Builder idv(Optional<? extends IDVData> idv) {
+            Utils.checkNotNull(idv, "idv");
+            this.idv = idv;
+            return this;
+        }
+
         /**
-         * ChangeDetected returns true if the individual information changed.
+         * Kyc contains optional KYC data to be returned.
          */
-        public Builder changeDetected(boolean changeDetected) {
-            Utils.checkNotNull(changeDetected, "changeDetected");
-            this.changeDetected = changeDetected;
+        public Builder kyc(String kyc) {
+            Utils.checkNotNull(kyc, "kyc");
+            this.kyc = Optional.ofNullable(kyc);
+            return this;
+        }
+
+        /**
+         * Kyc contains optional KYC data to be returned.
+         */
+        public Builder kyc(Optional<? extends String> kyc) {
+            Utils.checkNotNull(kyc, "kyc");
+            this.kyc = kyc;
             return this;
         }
 
@@ -175,7 +246,8 @@ public class V3CompleteResponse {
         
         public V3CompleteResponse build() {
             return new V3CompleteResponse(
-                changeDetected,
+                idv,
+                kyc,
                 next,
                 success);
         }

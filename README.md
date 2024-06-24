@@ -15,7 +15,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.5.5'
+implementation 'com.prove:proveapi:0.6.0'
 ```
 
 Maven:
@@ -23,7 +23,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.5.5</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 
@@ -77,11 +77,9 @@ public class Application {
 
             V3StartRequest req = V3StartRequest.builder()
                 .flowType("mobile")
-                .deviceId("713189b8-5555-4b08-83ba-75d08780aebd")
                 .dob("2024-05-02T00:00:00Z")
                 .emailAddress("jdoe@example.com")
                 .finalTargetUrl("https://www.example.com/landing-page")
-                .flowId("prove-standard-prefill-i1")
                 .ipAddress("10.0.0.1")
                 .phoneNumber("2001001686")
                 .ssn("1234")
@@ -104,6 +102,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -179,6 +178,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -245,6 +245,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -300,6 +301,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -368,6 +370,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
