@@ -18,7 +18,7 @@ import java.math.BigInteger;
 public class V3CompleteRequest {
 
     /**
-     * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
+     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
      */
     @JsonProperty("correlationId")
     private String correlationId;
@@ -37,7 +37,7 @@ public class V3CompleteRequest {
     }
 
     /**
-     * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
+     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
      */
     @JsonIgnore
     public String correlationId() {
@@ -54,7 +54,7 @@ public class V3CompleteRequest {
     }
 
     /**
-     * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
+     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
      */
     public V3CompleteRequest withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -107,7 +107,7 @@ public class V3CompleteRequest {
         }
 
         /**
-         * Correlation ID is the unique ID of the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow.
+         * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");

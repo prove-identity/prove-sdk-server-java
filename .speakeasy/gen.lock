@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: 19777513376edaeea7b792577b099de5
+  docChecksum: bbcb7ca8bca610aa39148b82a59d73f6
   docVersion: 1.0.0
-  speakeasyVersion: 1.313.2
-  generationVersion: 2.347.8
-  releaseVersion: 0.5.5
-  configChecksum: f6a0ca423accc0e821d8256cf38ab796
+  speakeasyVersion: 1.315.2
+  generationVersion: 2.352.0
+  releaseVersion: 0.6.0
+  configChecksum: f5834048b8f83aa6246130213b27831d
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.23.4
+    core: 3.25.1
     examples: 2.81.3
     globalSecurity: 2.82.5
     globalSecurityCallbacks: 0.1.0
@@ -89,6 +89,8 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/V3ChallengeAddressEntryRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3ChallengeRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteResponse.java
+  - src/main/java/com/prove/proveapi/models/components/IDVData.java
+  - src/main/java/com/prove/proveapi/models/components/DataSource.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteIndividualRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteAddressEntryRequest.java
@@ -110,6 +112,8 @@ generatedFiles:
   - docs/models/components/V3ChallengeAddressEntryRequest.md
   - docs/models/components/V3ChallengeRequest.md
   - docs/models/components/V3CompleteResponse.md
+  - docs/models/components/IDVData.md
+  - docs/models/components/DataSource.md
   - docs/models/components/V3CompleteRequest.md
   - docs/models/components/V3CompleteIndividualRequest.md
   - docs/models/components/V3CompleteAddressEntryRequest.md
