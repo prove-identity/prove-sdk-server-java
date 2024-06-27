@@ -25,11 +25,11 @@ public class V3CompleteResponse {
     private Optional<? extends IDVData> idv;
 
     /**
-     * Kyc contains optional KYC data to be returned.
+     * KnowYourCustomerResponse - KYC response
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("kyc")
-    private Optional<? extends String> kyc;
+    private Optional<? extends KnowYourCustomerResponse> kyc;
 
     /**
      * Next contains the next set of allowed calls in the same flow.
@@ -46,7 +46,7 @@ public class V3CompleteResponse {
     @JsonCreator
     public V3CompleteResponse(
             @JsonProperty("idv") Optional<? extends IDVData> idv,
-            @JsonProperty("kyc") Optional<? extends String> kyc,
+            @JsonProperty("kyc") Optional<? extends KnowYourCustomerResponse> kyc,
             @JsonProperty("next") java.util.Map<String, String> next,
             @JsonProperty("success") boolean success) {
         Utils.checkNotNull(idv, "idv");
@@ -72,12 +72,12 @@ public class V3CompleteResponse {
     }
 
     /**
-     * Kyc contains optional KYC data to be returned.
+     * KnowYourCustomerResponse - KYC response
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> kyc() {
-        return (Optional<String>) kyc;
+    public Optional<KnowYourCustomerResponse> kyc() {
+        return (Optional<KnowYourCustomerResponse>) kyc;
     }
 
     /**
@@ -113,18 +113,18 @@ public class V3CompleteResponse {
     }
 
     /**
-     * Kyc contains optional KYC data to be returned.
+     * KnowYourCustomerResponse - KYC response
      */
-    public V3CompleteResponse withKyc(String kyc) {
+    public V3CompleteResponse withKyc(KnowYourCustomerResponse kyc) {
         Utils.checkNotNull(kyc, "kyc");
         this.kyc = Optional.ofNullable(kyc);
         return this;
     }
 
     /**
-     * Kyc contains optional KYC data to be returned.
+     * KnowYourCustomerResponse - KYC response
      */
-    public V3CompleteResponse withKyc(Optional<? extends String> kyc) {
+    public V3CompleteResponse withKyc(Optional<? extends KnowYourCustomerResponse> kyc) {
         Utils.checkNotNull(kyc, "kyc");
         this.kyc = kyc;
         return this;
@@ -186,7 +186,7 @@ public class V3CompleteResponse {
  
         private Optional<? extends IDVData> idv = Optional.empty();
  
-        private Optional<? extends String> kyc = Optional.empty();
+        private Optional<? extends KnowYourCustomerResponse> kyc = Optional.empty();
  
         private java.util.Map<String, String> next;
  
@@ -209,18 +209,18 @@ public class V3CompleteResponse {
         }
 
         /**
-         * Kyc contains optional KYC data to be returned.
+         * KnowYourCustomerResponse - KYC response
          */
-        public Builder kyc(String kyc) {
+        public Builder kyc(KnowYourCustomerResponse kyc) {
             Utils.checkNotNull(kyc, "kyc");
             this.kyc = Optional.ofNullable(kyc);
             return this;
         }
 
         /**
-         * Kyc contains optional KYC data to be returned.
+         * KnowYourCustomerResponse - KYC response
          */
-        public Builder kyc(Optional<? extends String> kyc) {
+        public Builder kyc(Optional<? extends KnowYourCustomerResponse> kyc) {
             Utils.checkNotNull(kyc, "kyc");
             this.kyc = kyc;
             return this;
