@@ -22,7 +22,7 @@ public class DataSource {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
-    private Optional<? extends String> address;
+    private Optional<? extends AddressResponse> address;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cipConfidence")
@@ -30,15 +30,15 @@ public class DataSource {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
-    private Optional<? extends String> email;
+    private Optional<? extends EmailAddressResponse> email;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("identifiers")
-    private Optional<? extends String> identifiers;
+    private Optional<? extends IdentifiersResponse> identifiers;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<? extends String> name;
+    private Optional<? extends NameResponse> name;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reasonCodes")
@@ -50,11 +50,11 @@ public class DataSource {
 
     @JsonCreator
     public DataSource(
-            @JsonProperty("address") Optional<? extends String> address,
+            @JsonProperty("address") Optional<? extends AddressResponse> address,
             @JsonProperty("cipConfidence") Optional<? extends String> cipConfidence,
-            @JsonProperty("email") Optional<? extends String> email,
-            @JsonProperty("identifiers") Optional<? extends String> identifiers,
-            @JsonProperty("name") Optional<? extends String> name,
+            @JsonProperty("email") Optional<? extends EmailAddressResponse> email,
+            @JsonProperty("identifiers") Optional<? extends IdentifiersResponse> identifiers,
+            @JsonProperty("name") Optional<? extends NameResponse> name,
             @JsonProperty("reasonCodes") Optional<? extends java.util.List<String>> reasonCodes,
             @JsonProperty("verified") Optional<? extends Boolean> verified) {
         Utils.checkNotNull(address, "address");
@@ -79,8 +79,8 @@ public class DataSource {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> address() {
-        return (Optional<String>) address;
+    public Optional<AddressResponse> address() {
+        return (Optional<AddressResponse>) address;
     }
 
     @SuppressWarnings("unchecked")
@@ -91,20 +91,20 @@ public class DataSource {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> email() {
-        return (Optional<String>) email;
+    public Optional<EmailAddressResponse> email() {
+        return (Optional<EmailAddressResponse>) email;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> identifiers() {
-        return (Optional<String>) identifiers;
+    public Optional<IdentifiersResponse> identifiers() {
+        return (Optional<IdentifiersResponse>) identifiers;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> name() {
-        return (Optional<String>) name;
+    public Optional<NameResponse> name() {
+        return (Optional<NameResponse>) name;
     }
 
     @SuppressWarnings("unchecked")
@@ -123,13 +123,13 @@ public class DataSource {
         return new Builder();
     }
 
-    public DataSource withAddress(String address) {
+    public DataSource withAddress(AddressResponse address) {
         Utils.checkNotNull(address, "address");
         this.address = Optional.ofNullable(address);
         return this;
     }
 
-    public DataSource withAddress(Optional<? extends String> address) {
+    public DataSource withAddress(Optional<? extends AddressResponse> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -147,37 +147,37 @@ public class DataSource {
         return this;
     }
 
-    public DataSource withEmail(String email) {
+    public DataSource withEmail(EmailAddressResponse email) {
         Utils.checkNotNull(email, "email");
         this.email = Optional.ofNullable(email);
         return this;
     }
 
-    public DataSource withEmail(Optional<? extends String> email) {
+    public DataSource withEmail(Optional<? extends EmailAddressResponse> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
     }
 
-    public DataSource withIdentifiers(String identifiers) {
+    public DataSource withIdentifiers(IdentifiersResponse identifiers) {
         Utils.checkNotNull(identifiers, "identifiers");
         this.identifiers = Optional.ofNullable(identifiers);
         return this;
     }
 
-    public DataSource withIdentifiers(Optional<? extends String> identifiers) {
+    public DataSource withIdentifiers(Optional<? extends IdentifiersResponse> identifiers) {
         Utils.checkNotNull(identifiers, "identifiers");
         this.identifiers = identifiers;
         return this;
     }
 
-    public DataSource withName(String name) {
+    public DataSource withName(NameResponse name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
         return this;
     }
 
-    public DataSource withName(Optional<? extends String> name) {
+    public DataSource withName(Optional<? extends NameResponse> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -252,15 +252,15 @@ public class DataSource {
     
     public final static class Builder {
  
-        private Optional<? extends String> address = Optional.empty();
+        private Optional<? extends AddressResponse> address = Optional.empty();
  
         private Optional<? extends String> cipConfidence = Optional.empty();
  
-        private Optional<? extends String> email = Optional.empty();
+        private Optional<? extends EmailAddressResponse> email = Optional.empty();
  
-        private Optional<? extends String> identifiers = Optional.empty();
+        private Optional<? extends IdentifiersResponse> identifiers = Optional.empty();
  
-        private Optional<? extends String> name = Optional.empty();
+        private Optional<? extends NameResponse> name = Optional.empty();
  
         private Optional<? extends java.util.List<String>> reasonCodes = Optional.empty();
  
@@ -270,13 +270,13 @@ public class DataSource {
           // force use of static builder() method
         }
 
-        public Builder address(String address) {
+        public Builder address(AddressResponse address) {
             Utils.checkNotNull(address, "address");
             this.address = Optional.ofNullable(address);
             return this;
         }
 
-        public Builder address(Optional<? extends String> address) {
+        public Builder address(Optional<? extends AddressResponse> address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
@@ -294,37 +294,37 @@ public class DataSource {
             return this;
         }
 
-        public Builder email(String email) {
+        public Builder email(EmailAddressResponse email) {
             Utils.checkNotNull(email, "email");
             this.email = Optional.ofNullable(email);
             return this;
         }
 
-        public Builder email(Optional<? extends String> email) {
+        public Builder email(Optional<? extends EmailAddressResponse> email) {
             Utils.checkNotNull(email, "email");
             this.email = email;
             return this;
         }
 
-        public Builder identifiers(String identifiers) {
+        public Builder identifiers(IdentifiersResponse identifiers) {
             Utils.checkNotNull(identifiers, "identifiers");
             this.identifiers = Optional.ofNullable(identifiers);
             return this;
         }
 
-        public Builder identifiers(Optional<? extends String> identifiers) {
+        public Builder identifiers(Optional<? extends IdentifiersResponse> identifiers) {
             Utils.checkNotNull(identifiers, "identifiers");
             this.identifiers = identifiers;
             return this;
         }
 
-        public Builder name(String name) {
+        public Builder name(NameResponse name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
             return this;
         }
 
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<? extends NameResponse> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;

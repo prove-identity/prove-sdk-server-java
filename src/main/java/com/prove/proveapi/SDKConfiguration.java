@@ -22,9 +22,9 @@ class SDKConfiguration {
       public String server;
     public String language = "java";
     public String openapiDocVersion = "1.0.0";
-    public String sdkVersion = "0.6.0";
-    public String genVersion = "2.352.0";
-    public String userAgent = "speakeasy-sdk/java 0.6.0 2.352.0 1.0.0 com.prove.proveapi";
+    public String sdkVersion = "0.7.0";
+    public String genVersion = "2.354.2";
+    public String userAgent = "speakeasy-sdk/java 0.7.0 2.354.2 1.0.0 com.prove.proveapi";
 
     private com.prove.proveapi.utils.Hooks _hooks = createHooks();
 

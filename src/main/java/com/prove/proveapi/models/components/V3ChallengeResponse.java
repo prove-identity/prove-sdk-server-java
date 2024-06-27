@@ -7,6 +7,8 @@ package com.prove.proveapi.models.components;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
@@ -14,11 +16,13 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Optional;
 
 public class V3ChallengeResponse {
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("individual")
-    private V3ChallengeIndividualRequest individual;
+    private Optional<? extends V3ChallengeIndividualRequest> individual;
 
     /**
      * Next contains the next set of allowed calls in the same flow.
@@ -34,7 +38,7 @@ public class V3ChallengeResponse {
 
     @JsonCreator
     public V3ChallengeResponse(
-            @JsonProperty("individual") V3ChallengeIndividualRequest individual,
+            @JsonProperty("individual") Optional<? extends V3ChallengeIndividualRequest> individual,
             @JsonProperty("next") java.util.Map<String, String> next,
             @JsonProperty("success") boolean success) {
         Utils.checkNotNull(individual, "individual");
@@ -44,10 +48,17 @@ public class V3ChallengeResponse {
         this.next = next;
         this.success = success;
     }
+    
+    public V3ChallengeResponse(
+            java.util.Map<String, String> next,
+            boolean success) {
+        this(Optional.empty(), next, success);
+    }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public V3ChallengeIndividualRequest individual() {
-        return individual;
+    public Optional<V3ChallengeIndividualRequest> individual() {
+        return (Optional<V3ChallengeIndividualRequest>) individual;
     }
 
     /**
@@ -71,6 +82,12 @@ public class V3ChallengeResponse {
     }
 
     public V3ChallengeResponse withIndividual(V3ChallengeIndividualRequest individual) {
+        Utils.checkNotNull(individual, "individual");
+        this.individual = Optional.ofNullable(individual);
+        return this;
+    }
+
+    public V3ChallengeResponse withIndividual(Optional<? extends V3ChallengeIndividualRequest> individual) {
         Utils.checkNotNull(individual, "individual");
         this.individual = individual;
         return this;
@@ -127,7 +144,7 @@ public class V3ChallengeResponse {
     
     public final static class Builder {
  
-        private V3ChallengeIndividualRequest individual;
+        private Optional<? extends V3ChallengeIndividualRequest> individual = Optional.empty();
  
         private java.util.Map<String, String> next;
  
@@ -138,6 +155,12 @@ public class V3ChallengeResponse {
         }
 
         public Builder individual(V3ChallengeIndividualRequest individual) {
+            Utils.checkNotNull(individual, "individual");
+            this.individual = Optional.ofNullable(individual);
+            return this;
+        }
+
+        public Builder individual(Optional<? extends V3ChallengeIndividualRequest> individual) {
             Utils.checkNotNull(individual, "individual");
             this.individual = individual;
             return this;
