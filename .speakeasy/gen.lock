@@ -3,21 +3,21 @@ id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
   docChecksum: 50188f028e8e9a8924078cdaf549a29a
   docVersion: 1.0.0
-  speakeasyVersion: 1.321.0
-  generationVersion: 2.354.2
-  releaseVersion: 0.7.0
-  configChecksum: 576f35e80b680e2510d0feede3f5aa25
+  speakeasyVersion: 1.325.0
+  generationVersion: 2.356.0
+  releaseVersion: 0.7.1
+  configChecksum: b1fe0a5670e5b91ae58901373a8800ea
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.26.0
+    core: 3.26.1
     examples: 2.81.3
     globalSecurity: 2.82.5
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
-    oauth2ClientCredentials: 0.0.1
+    oauth2ClientCredentials: 0.0.2
     sdkHooks: 0.1.0
     serverIDs: 2.81.1
 generatedFiles:
