@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 
 import com.prove.proveapi.SecuritySource;
 import com.prove.proveapi.models.errors.AuthException;
+
 import com.prove.proveapi.utils.Helpers;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.Hook.AfterError;

@@ -75,13 +75,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.prove.proveapi.models.operations.V3TokenRequestResponse>](../../models/operations/V3TokenRequestResponse.md)**
+**[com.prove.proveapi.models.operations.V3TokenRequestResponse](../../models/operations/V3TokenRequestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## v3ChallengeRequest
 
@@ -154,13 +154,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.prove.proveapi.models.operations.V3ChallengeRequestResponse>](../../models/operations/V3ChallengeRequestResponse.md)**
+**[com.prove.proveapi.models.operations.V3ChallengeRequestResponse](../../models/operations/V3ChallengeRequestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## v3CompleteRequest
 
@@ -256,13 +256,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.prove.proveapi.models.operations.V3CompleteRequestResponse>](../../models/operations/V3CompleteRequestResponse.md)**
+**[com.prove.proveapi.models.operations.V3CompleteRequestResponse](../../models/operations/V3CompleteRequestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## v3StartRequest
 
@@ -339,13 +339,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.prove.proveapi.models.operations.V3StartRequestResponse>](../../models/operations/V3StartRequestResponse.md)**
+**[com.prove.proveapi.models.operations.V3StartRequestResponse](../../models/operations/V3StartRequestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## v3ValidateRequest
 
@@ -416,10 +416,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.prove.proveapi.models.operations.V3ValidateRequestResponse>](../../models/operations/V3ValidateRequestResponse.md)**
+**[com.prove.proveapi.models.operations.V3ValidateRequestResponse](../../models/operations/V3ValidateRequestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
