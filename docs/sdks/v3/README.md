@@ -75,17 +75,17 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.prove.proveapi.models.operations.V3TokenRequestResponse>](../../models/operations/V3TokenRequestResponse.md)**
+**[com.prove.proveapi.models.operations.V3TokenRequestResponse](../../models/operations/V3TokenRequestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## v3ChallengeRequest
 
-Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint. It will return a correlation ID, user information, and the next step to call in the flow.
+Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Prove Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
 
 ### Example Usage
 
@@ -94,7 +94,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
@@ -154,17 +153,17 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.prove.proveapi.models.operations.V3ChallengeRequestResponse>](../../models/operations/V3ChallengeRequestResponse.md)**
+**[com.prove.proveapi.models.operations.V3ChallengeRequestResponse](../../models/operations/V3ChallengeRequestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## v3CompleteRequest
 
-Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow.
+Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify an individual.
 
 ### Example Usage
 
@@ -173,7 +172,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
@@ -256,13 +254,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.prove.proveapi.models.operations.V3CompleteRequestResponse>](../../models/operations/V3CompleteRequestResponse.md)**
+**[com.prove.proveapi.models.operations.V3CompleteRequestResponse](../../models/operations/V3CompleteRequestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## v3StartRequest
 
@@ -275,7 +273,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
@@ -339,13 +336,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.prove.proveapi.models.operations.V3StartRequestResponse>](../../models/operations/V3StartRequestResponse.md)**
+**[com.prove.proveapi.models.operations.V3StartRequestResponse](../../models/operations/V3StartRequestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## v3ValidateRequest
 
@@ -358,7 +355,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
@@ -416,10 +412,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.prove.proveapi.models.operations.V3ValidateRequestResponse>](../../models/operations/V3ValidateRequestResponse.md)**
+**[com.prove.proveapi.models.operations.V3ValidateRequestResponse](../../models/operations/V3ValidateRequestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

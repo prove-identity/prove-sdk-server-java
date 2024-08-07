@@ -1,23 +1,23 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: 50188f028e8e9a8924078cdaf549a29a
+  docChecksum: d2889a17f0a6848772ba5deb903d9870
   docVersion: 1.0.0
-  speakeasyVersion: 1.321.0
-  generationVersion: 2.354.2
-  releaseVersion: 0.7.0
-  configChecksum: 576f35e80b680e2510d0feede3f5aa25
+  speakeasyVersion: 1.356.0
+  generationVersion: 2.388.1
+  releaseVersion: 0.8.0
+  configChecksum: 6f8a1457c4445b1ca67fdb24e42d8fc8
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.26.0
+    core: 3.27.0
     examples: 2.81.3
-    globalSecurity: 2.82.5
+    globalSecurity: 2.82.6
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
-    oauth2ClientCredentials: 0.0.1
+    oauth2ClientCredentials: 0.0.2
     sdkHooks: 0.1.0
     serverIDs: 2.81.1
 generatedFiles:
@@ -89,16 +89,16 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/V3ChallengeAddressEntryRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3ChallengeRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteResponse.java
-  - src/main/java/com/prove/proveapi/models/components/KnowYourCustomerResponse.java
-  - src/main/java/com/prove/proveapi/models/components/AmlTypeListResponse.java
-  - src/main/java/com/prove/proveapi/models/components/FieldTypeResponse.java
-  - src/main/java/com/prove/proveapi/models/components/AdverseMediaResponse.java
-  - src/main/java/com/prove/proveapi/models/components/IDVData.java
-  - src/main/java/com/prove/proveapi/models/components/DataSource.java
-  - src/main/java/com/prove/proveapi/models/components/NameResponse.java
-  - src/main/java/com/prove/proveapi/models/components/IdentifiersResponse.java
-  - src/main/java/com/prove/proveapi/models/components/EmailAddressResponse.java
-  - src/main/java/com/prove/proveapi/models/components/AddressResponse.java
+  - src/main/java/com/prove/proveapi/models/components/KYCInternal.java
+  - src/main/java/com/prove/proveapi/models/components/AmlTypeListResponseInternal.java
+  - src/main/java/com/prove/proveapi/models/components/KYCFieldTypeResponseInternal.java
+  - src/main/java/com/prove/proveapi/models/components/AdverseMediaResponseInternal.java
+  - src/main/java/com/prove/proveapi/models/components/IDVDataInternal.java
+  - src/main/java/com/prove/proveapi/models/components/DataSourceInternal.java
+  - src/main/java/com/prove/proveapi/models/components/DataSourceNameResponseInternal.java
+  - src/main/java/com/prove/proveapi/models/components/DataSourceIdentifiersResponseInternal.java
+  - src/main/java/com/prove/proveapi/models/components/DataSourceEmailAddressResponseInternal.java
+  - src/main/java/com/prove/proveapi/models/components/DataSourceAddressResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteIndividualRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteAddressEntryRequest.java
@@ -120,16 +120,16 @@ generatedFiles:
   - docs/models/components/V3ChallengeAddressEntryRequest.md
   - docs/models/components/V3ChallengeRequest.md
   - docs/models/components/V3CompleteResponse.md
-  - docs/models/components/KnowYourCustomerResponse.md
-  - docs/models/components/AmlTypeListResponse.md
-  - docs/models/components/FieldTypeResponse.md
-  - docs/models/components/AdverseMediaResponse.md
-  - docs/models/components/IDVData.md
-  - docs/models/components/DataSource.md
-  - docs/models/components/NameResponse.md
-  - docs/models/components/IdentifiersResponse.md
-  - docs/models/components/EmailAddressResponse.md
-  - docs/models/components/AddressResponse.md
+  - docs/models/components/KYCInternal.md
+  - docs/models/components/AmlTypeListResponseInternal.md
+  - docs/models/components/KYCFieldTypeResponseInternal.md
+  - docs/models/components/AdverseMediaResponseInternal.md
+  - docs/models/components/IDVDataInternal.md
+  - docs/models/components/DataSourceInternal.md
+  - docs/models/components/DataSourceNameResponseInternal.md
+  - docs/models/components/DataSourceIdentifiersResponseInternal.md
+  - docs/models/components/DataSourceEmailAddressResponseInternal.md
+  - docs/models/components/DataSourceAddressResponseInternal.md
   - docs/models/components/V3CompleteRequest.md
   - docs/models/components/V3CompleteIndividualRequest.md
   - docs/models/components/V3CompleteAddressEntryRequest.md
@@ -143,3 +143,4 @@ generatedFiles:
   - docs/sdks/v3/README.md
   - USAGE.md
   - src/main/java/com/prove/proveapi/hooks/ClientCredentialsHook.java
+  - CONTRIBUTING.md

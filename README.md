@@ -15,7 +15,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.7.0'
+implementation 'com.prove:proveapi:0.8.0'
 ```
 
 Maven:
@@ -23,7 +23,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.7.0</version>
+    <version>0.8.0</version>
 </dependency>
 ```
 
@@ -52,7 +52,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
@@ -128,7 +127,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ### Example
 
@@ -312,14 +311,13 @@ public class Application {
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security schemes globally:
+This SDK supports the following security scheme globally:
 
-| Name           | Type           | Scheme         |
-| -------------- | -------------- | -------------- |
-| `clientID`     | oauth2         | OAuth2 token   |
-| `clientSecret` | oauth2         | OAuth2 token   |
+| Name                           | Type                           | Scheme                         |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| `clientID` `clientSecret`      | oauth2                         | OAuth2 Client Credentials Flow |
 
-You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
+You can set the security parameters through the `security` builder method when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
