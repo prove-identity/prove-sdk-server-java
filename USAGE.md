@@ -4,7 +4,6 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.operations.*;
 import com.prove.proveapi.utils.EventStream;
 import java.math.BigDecimal;
