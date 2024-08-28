@@ -4,19 +4,19 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class IDVDataInternal {
 
@@ -30,30 +30,23 @@ public class IDVDataInternal {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("multiCIPConfidence")
-    private Optional<? extends String> multiCIPConfidence;
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("multiVerified")
-    private Optional<? extends Boolean> multiVerified;
+    private Optional<String> multiCIPConfidence;
 
     @JsonCreator
     public IDVDataInternal(
             @JsonProperty("dataSource1") Optional<? extends DataSourceInternal> dataSource1,
             @JsonProperty("dataSource2") Optional<? extends DataSourceInternal> dataSource2,
-            @JsonProperty("multiCIPConfidence") Optional<? extends String> multiCIPConfidence,
-            @JsonProperty("multiVerified") Optional<? extends Boolean> multiVerified) {
+            @JsonProperty("multiCIPConfidence") Optional<String> multiCIPConfidence) {
         Utils.checkNotNull(dataSource1, "dataSource1");
         Utils.checkNotNull(dataSource2, "dataSource2");
         Utils.checkNotNull(multiCIPConfidence, "multiCIPConfidence");
-        Utils.checkNotNull(multiVerified, "multiVerified");
         this.dataSource1 = dataSource1;
         this.dataSource2 = dataSource2;
         this.multiCIPConfidence = multiCIPConfidence;
-        this.multiVerified = multiVerified;
     }
     
     public IDVDataInternal() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -68,16 +61,9 @@ public class IDVDataInternal {
         return (Optional<DataSourceInternal>) dataSource2;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> multiCIPConfidence() {
-        return (Optional<String>) multiCIPConfidence;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Boolean> multiVerified() {
-        return (Optional<Boolean>) multiVerified;
+        return multiCIPConfidence;
     }
 
     public final static Builder builder() {
@@ -114,21 +100,9 @@ public class IDVDataInternal {
         return this;
     }
 
-    public IDVDataInternal withMultiCIPConfidence(Optional<? extends String> multiCIPConfidence) {
+    public IDVDataInternal withMultiCIPConfidence(Optional<String> multiCIPConfidence) {
         Utils.checkNotNull(multiCIPConfidence, "multiCIPConfidence");
         this.multiCIPConfidence = multiCIPConfidence;
-        return this;
-    }
-
-    public IDVDataInternal withMultiVerified(boolean multiVerified) {
-        Utils.checkNotNull(multiVerified, "multiVerified");
-        this.multiVerified = Optional.ofNullable(multiVerified);
-        return this;
-    }
-
-    public IDVDataInternal withMultiVerified(Optional<? extends Boolean> multiVerified) {
-        Utils.checkNotNull(multiVerified, "multiVerified");
-        this.multiVerified = multiVerified;
         return this;
     }
     
@@ -142,19 +116,17 @@ public class IDVDataInternal {
         }
         IDVDataInternal other = (IDVDataInternal) o;
         return 
-            java.util.Objects.deepEquals(this.dataSource1, other.dataSource1) &&
-            java.util.Objects.deepEquals(this.dataSource2, other.dataSource2) &&
-            java.util.Objects.deepEquals(this.multiCIPConfidence, other.multiCIPConfidence) &&
-            java.util.Objects.deepEquals(this.multiVerified, other.multiVerified);
+            Objects.deepEquals(this.dataSource1, other.dataSource1) &&
+            Objects.deepEquals(this.dataSource2, other.dataSource2) &&
+            Objects.deepEquals(this.multiCIPConfidence, other.multiCIPConfidence);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             dataSource1,
             dataSource2,
-            multiCIPConfidence,
-            multiVerified);
+            multiCIPConfidence);
     }
     
     @Override
@@ -162,8 +134,7 @@ public class IDVDataInternal {
         return Utils.toString(IDVDataInternal.class,
                 "dataSource1", dataSource1,
                 "dataSource2", dataSource2,
-                "multiCIPConfidence", multiCIPConfidence,
-                "multiVerified", multiVerified);
+                "multiCIPConfidence", multiCIPConfidence);
     }
     
     public final static class Builder {
@@ -172,9 +143,7 @@ public class IDVDataInternal {
  
         private Optional<? extends DataSourceInternal> dataSource2 = Optional.empty();
  
-        private Optional<? extends String> multiCIPConfidence = Optional.empty();
- 
-        private Optional<? extends Boolean> multiVerified = Optional.empty();  
+        private Optional<String> multiCIPConfidence = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -210,21 +179,9 @@ public class IDVDataInternal {
             return this;
         }
 
-        public Builder multiCIPConfidence(Optional<? extends String> multiCIPConfidence) {
+        public Builder multiCIPConfidence(Optional<String> multiCIPConfidence) {
             Utils.checkNotNull(multiCIPConfidence, "multiCIPConfidence");
             this.multiCIPConfidence = multiCIPConfidence;
-            return this;
-        }
-
-        public Builder multiVerified(boolean multiVerified) {
-            Utils.checkNotNull(multiVerified, "multiVerified");
-            this.multiVerified = Optional.ofNullable(multiVerified);
-            return this;
-        }
-
-        public Builder multiVerified(Optional<? extends Boolean> multiVerified) {
-            Utils.checkNotNull(multiVerified, "multiVerified");
-            this.multiVerified = multiVerified;
             return this;
         }
         
@@ -232,8 +189,7 @@ public class IDVDataInternal {
             return new IDVDataInternal(
                 dataSource1,
                 dataSource2,
-                multiCIPConfidence,
-                multiVerified);
+                multiCIPConfidence);
         }
     }
 }

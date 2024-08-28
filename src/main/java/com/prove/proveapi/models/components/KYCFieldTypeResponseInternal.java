@@ -4,39 +4,38 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class KYCFieldTypeResponseInternal {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
-    private Optional<? extends String> source;
+    private Optional<String> source;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<? extends String> value;
+    private Optional<String> value;
 
     @JsonCreator
     public KYCFieldTypeResponseInternal(
-            @JsonProperty("name") Optional<? extends String> name,
-            @JsonProperty("source") Optional<? extends String> source,
-            @JsonProperty("value") Optional<? extends String> value) {
+            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("source") Optional<String> source,
+            @JsonProperty("value") Optional<String> value) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(source, "source");
         Utils.checkNotNull(value, "value");
@@ -49,22 +48,19 @@ public class KYCFieldTypeResponseInternal {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> source() {
-        return (Optional<String>) source;
+        return source;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> value() {
-        return (Optional<String>) value;
+        return value;
     }
 
     public final static Builder builder() {
@@ -77,7 +73,7 @@ public class KYCFieldTypeResponseInternal {
         return this;
     }
 
-    public KYCFieldTypeResponseInternal withName(Optional<? extends String> name) {
+    public KYCFieldTypeResponseInternal withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -89,7 +85,7 @@ public class KYCFieldTypeResponseInternal {
         return this;
     }
 
-    public KYCFieldTypeResponseInternal withSource(Optional<? extends String> source) {
+    public KYCFieldTypeResponseInternal withSource(Optional<String> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
@@ -101,7 +97,7 @@ public class KYCFieldTypeResponseInternal {
         return this;
     }
 
-    public KYCFieldTypeResponseInternal withValue(Optional<? extends String> value) {
+    public KYCFieldTypeResponseInternal withValue(Optional<String> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
@@ -117,14 +113,14 @@ public class KYCFieldTypeResponseInternal {
         }
         KYCFieldTypeResponseInternal other = (KYCFieldTypeResponseInternal) o;
         return 
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.source, other.source) &&
-            java.util.Objects.deepEquals(this.value, other.value);
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.source, other.source) &&
+            Objects.deepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             name,
             source,
             value);
@@ -140,11 +136,11 @@ public class KYCFieldTypeResponseInternal {
     
     public final static class Builder {
  
-        private Optional<? extends String> name = Optional.empty();
+        private Optional<String> name = Optional.empty();
  
-        private Optional<? extends String> source = Optional.empty();
+        private Optional<String> source = Optional.empty();
  
-        private Optional<? extends String> value = Optional.empty();  
+        private Optional<String> value = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -156,7 +152,7 @@ public class KYCFieldTypeResponseInternal {
             return this;
         }
 
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -168,7 +164,7 @@ public class KYCFieldTypeResponseInternal {
             return this;
         }
 
-        public Builder source(Optional<? extends String> source) {
+        public Builder source(Optional<String> source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
             return this;
@@ -180,7 +176,7 @@ public class KYCFieldTypeResponseInternal {
             return this;
         }
 
-        public Builder value(Optional<? extends String> value) {
+        public Builder value(Optional<String> value) {
             Utils.checkNotNull(value, "value");
             this.value = value;
             return this;

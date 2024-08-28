@@ -5,8 +5,6 @@
 package com.prove.proveapi.utils;
 
 import java.util.Optional;
-import com.prove.proveapi.utils.Utils;
-
 
 public class RetryConfig {
 

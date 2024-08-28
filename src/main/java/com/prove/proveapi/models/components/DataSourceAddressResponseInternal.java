@@ -4,59 +4,61 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Double;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class DataSourceAddressResponseInternal {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addressScore")
-    private Optional<? extends Long> addressScore;
+    private Optional<Long> addressScore;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("city")
-    private Optional<? extends Boolean> city;
+    private Optional<Boolean> city;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("distance")
-    private Optional<? extends Double> distance;
+    private Optional<Double> distance;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postalCode")
-    private Optional<? extends Boolean> postalCode;
+    private Optional<Boolean> postalCode;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("region")
-    private Optional<? extends Boolean> region;
+    private Optional<Boolean> region;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("street")
-    private Optional<? extends Boolean> street;
+    private Optional<Boolean> street;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("streetNumber")
-    private Optional<? extends Long> streetNumber;
+    private Optional<Long> streetNumber;
 
     @JsonCreator
     public DataSourceAddressResponseInternal(
-            @JsonProperty("addressScore") Optional<? extends Long> addressScore,
-            @JsonProperty("city") Optional<? extends Boolean> city,
-            @JsonProperty("distance") Optional<? extends Double> distance,
-            @JsonProperty("postalCode") Optional<? extends Boolean> postalCode,
-            @JsonProperty("region") Optional<? extends Boolean> region,
-            @JsonProperty("street") Optional<? extends Boolean> street,
-            @JsonProperty("streetNumber") Optional<? extends Long> streetNumber) {
+            @JsonProperty("addressScore") Optional<Long> addressScore,
+            @JsonProperty("city") Optional<Boolean> city,
+            @JsonProperty("distance") Optional<Double> distance,
+            @JsonProperty("postalCode") Optional<Boolean> postalCode,
+            @JsonProperty("region") Optional<Boolean> region,
+            @JsonProperty("street") Optional<Boolean> street,
+            @JsonProperty("streetNumber") Optional<Long> streetNumber) {
         Utils.checkNotNull(addressScore, "addressScore");
         Utils.checkNotNull(city, "city");
         Utils.checkNotNull(distance, "distance");
@@ -77,46 +79,39 @@ public class DataSourceAddressResponseInternal {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> addressScore() {
-        return (Optional<Long>) addressScore;
+        return addressScore;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> city() {
-        return (Optional<Boolean>) city;
+        return city;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Double> distance() {
-        return (Optional<Double>) distance;
+        return distance;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> postalCode() {
-        return (Optional<Boolean>) postalCode;
+        return postalCode;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> region() {
-        return (Optional<Boolean>) region;
+        return region;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> street() {
-        return (Optional<Boolean>) street;
+        return street;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> streetNumber() {
-        return (Optional<Long>) streetNumber;
+        return streetNumber;
     }
 
     public final static Builder builder() {
@@ -129,7 +124,7 @@ public class DataSourceAddressResponseInternal {
         return this;
     }
 
-    public DataSourceAddressResponseInternal withAddressScore(Optional<? extends Long> addressScore) {
+    public DataSourceAddressResponseInternal withAddressScore(Optional<Long> addressScore) {
         Utils.checkNotNull(addressScore, "addressScore");
         this.addressScore = addressScore;
         return this;
@@ -141,7 +136,7 @@ public class DataSourceAddressResponseInternal {
         return this;
     }
 
-    public DataSourceAddressResponseInternal withCity(Optional<? extends Boolean> city) {
+    public DataSourceAddressResponseInternal withCity(Optional<Boolean> city) {
         Utils.checkNotNull(city, "city");
         this.city = city;
         return this;
@@ -153,7 +148,7 @@ public class DataSourceAddressResponseInternal {
         return this;
     }
 
-    public DataSourceAddressResponseInternal withDistance(Optional<? extends Double> distance) {
+    public DataSourceAddressResponseInternal withDistance(Optional<Double> distance) {
         Utils.checkNotNull(distance, "distance");
         this.distance = distance;
         return this;
@@ -165,7 +160,7 @@ public class DataSourceAddressResponseInternal {
         return this;
     }
 
-    public DataSourceAddressResponseInternal withPostalCode(Optional<? extends Boolean> postalCode) {
+    public DataSourceAddressResponseInternal withPostalCode(Optional<Boolean> postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
         this.postalCode = postalCode;
         return this;
@@ -177,7 +172,7 @@ public class DataSourceAddressResponseInternal {
         return this;
     }
 
-    public DataSourceAddressResponseInternal withRegion(Optional<? extends Boolean> region) {
+    public DataSourceAddressResponseInternal withRegion(Optional<Boolean> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
@@ -189,7 +184,7 @@ public class DataSourceAddressResponseInternal {
         return this;
     }
 
-    public DataSourceAddressResponseInternal withStreet(Optional<? extends Boolean> street) {
+    public DataSourceAddressResponseInternal withStreet(Optional<Boolean> street) {
         Utils.checkNotNull(street, "street");
         this.street = street;
         return this;
@@ -201,7 +196,7 @@ public class DataSourceAddressResponseInternal {
         return this;
     }
 
-    public DataSourceAddressResponseInternal withStreetNumber(Optional<? extends Long> streetNumber) {
+    public DataSourceAddressResponseInternal withStreetNumber(Optional<Long> streetNumber) {
         Utils.checkNotNull(streetNumber, "streetNumber");
         this.streetNumber = streetNumber;
         return this;
@@ -217,18 +212,18 @@ public class DataSourceAddressResponseInternal {
         }
         DataSourceAddressResponseInternal other = (DataSourceAddressResponseInternal) o;
         return 
-            java.util.Objects.deepEquals(this.addressScore, other.addressScore) &&
-            java.util.Objects.deepEquals(this.city, other.city) &&
-            java.util.Objects.deepEquals(this.distance, other.distance) &&
-            java.util.Objects.deepEquals(this.postalCode, other.postalCode) &&
-            java.util.Objects.deepEquals(this.region, other.region) &&
-            java.util.Objects.deepEquals(this.street, other.street) &&
-            java.util.Objects.deepEquals(this.streetNumber, other.streetNumber);
+            Objects.deepEquals(this.addressScore, other.addressScore) &&
+            Objects.deepEquals(this.city, other.city) &&
+            Objects.deepEquals(this.distance, other.distance) &&
+            Objects.deepEquals(this.postalCode, other.postalCode) &&
+            Objects.deepEquals(this.region, other.region) &&
+            Objects.deepEquals(this.street, other.street) &&
+            Objects.deepEquals(this.streetNumber, other.streetNumber);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             addressScore,
             city,
             distance,
@@ -252,19 +247,19 @@ public class DataSourceAddressResponseInternal {
     
     public final static class Builder {
  
-        private Optional<? extends Long> addressScore = Optional.empty();
+        private Optional<Long> addressScore = Optional.empty();
  
-        private Optional<? extends Boolean> city = Optional.empty();
+        private Optional<Boolean> city = Optional.empty();
  
-        private Optional<? extends Double> distance = Optional.empty();
+        private Optional<Double> distance = Optional.empty();
  
-        private Optional<? extends Boolean> postalCode = Optional.empty();
+        private Optional<Boolean> postalCode = Optional.empty();
  
-        private Optional<? extends Boolean> region = Optional.empty();
+        private Optional<Boolean> region = Optional.empty();
  
-        private Optional<? extends Boolean> street = Optional.empty();
+        private Optional<Boolean> street = Optional.empty();
  
-        private Optional<? extends Long> streetNumber = Optional.empty();  
+        private Optional<Long> streetNumber = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -276,7 +271,7 @@ public class DataSourceAddressResponseInternal {
             return this;
         }
 
-        public Builder addressScore(Optional<? extends Long> addressScore) {
+        public Builder addressScore(Optional<Long> addressScore) {
             Utils.checkNotNull(addressScore, "addressScore");
             this.addressScore = addressScore;
             return this;
@@ -288,7 +283,7 @@ public class DataSourceAddressResponseInternal {
             return this;
         }
 
-        public Builder city(Optional<? extends Boolean> city) {
+        public Builder city(Optional<Boolean> city) {
             Utils.checkNotNull(city, "city");
             this.city = city;
             return this;
@@ -300,7 +295,7 @@ public class DataSourceAddressResponseInternal {
             return this;
         }
 
-        public Builder distance(Optional<? extends Double> distance) {
+        public Builder distance(Optional<Double> distance) {
             Utils.checkNotNull(distance, "distance");
             this.distance = distance;
             return this;
@@ -312,7 +307,7 @@ public class DataSourceAddressResponseInternal {
             return this;
         }
 
-        public Builder postalCode(Optional<? extends Boolean> postalCode) {
+        public Builder postalCode(Optional<Boolean> postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
             this.postalCode = postalCode;
             return this;
@@ -324,7 +319,7 @@ public class DataSourceAddressResponseInternal {
             return this;
         }
 
-        public Builder region(Optional<? extends Boolean> region) {
+        public Builder region(Optional<Boolean> region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
@@ -336,7 +331,7 @@ public class DataSourceAddressResponseInternal {
             return this;
         }
 
-        public Builder street(Optional<? extends Boolean> street) {
+        public Builder street(Optional<Boolean> street) {
             Utils.checkNotNull(street, "street");
             this.street = street;
             return this;
@@ -348,7 +343,7 @@ public class DataSourceAddressResponseInternal {
             return this;
         }
 
-        public Builder streetNumber(Optional<? extends Long> streetNumber) {
+        public Builder streetNumber(Optional<Long> streetNumber) {
             Utils.checkNotNull(streetNumber, "streetNumber");
             this.streetNumber = streetNumber;
             return this;

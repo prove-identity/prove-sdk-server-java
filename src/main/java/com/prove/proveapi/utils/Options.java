@@ -6,8 +6,6 @@ package com.prove.proveapi.utils;
 
 import java.util.Optional;
 import java.util.List;
-import com.prove.proveapi.utils.Utils;
-
 
 public class Options {
 

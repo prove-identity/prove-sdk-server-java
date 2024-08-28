@@ -4,19 +4,21 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3CompleteResponse {
 
@@ -32,7 +34,7 @@ public class V3CompleteResponse {
      * Next contains the next set of allowed calls in the same flow.
      */
     @JsonProperty("next")
-    private java.util.Map<String, String> next;
+    private Map<String, String> next;
 
     /**
      * Success returns true if the individual was verified successfully.
@@ -44,7 +46,7 @@ public class V3CompleteResponse {
     public V3CompleteResponse(
             @JsonProperty("idv") Optional<? extends IDVDataInternal> idv,
             @JsonProperty("kyc") Optional<? extends KYCInternal> kyc,
-            @JsonProperty("next") java.util.Map<String, String> next,
+            @JsonProperty("next") Map<String, String> next,
             @JsonProperty("success") boolean success) {
         Utils.checkNotNull(idv, "idv");
         Utils.checkNotNull(kyc, "kyc");
@@ -57,7 +59,7 @@ public class V3CompleteResponse {
     }
     
     public V3CompleteResponse(
-            java.util.Map<String, String> next,
+            Map<String, String> next,
             boolean success) {
         this(Optional.empty(), Optional.empty(), next, success);
     }
@@ -78,7 +80,7 @@ public class V3CompleteResponse {
      * Next contains the next set of allowed calls in the same flow.
      */
     @JsonIgnore
-    public java.util.Map<String, String> next() {
+    public Map<String, String> next() {
         return next;
     }
 
@@ -121,7 +123,7 @@ public class V3CompleteResponse {
     /**
      * Next contains the next set of allowed calls in the same flow.
      */
-    public V3CompleteResponse withNext(java.util.Map<String, String> next) {
+    public V3CompleteResponse withNext(Map<String, String> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -146,15 +148,15 @@ public class V3CompleteResponse {
         }
         V3CompleteResponse other = (V3CompleteResponse) o;
         return 
-            java.util.Objects.deepEquals(this.idv, other.idv) &&
-            java.util.Objects.deepEquals(this.kyc, other.kyc) &&
-            java.util.Objects.deepEquals(this.next, other.next) &&
-            java.util.Objects.deepEquals(this.success, other.success);
+            Objects.deepEquals(this.idv, other.idv) &&
+            Objects.deepEquals(this.kyc, other.kyc) &&
+            Objects.deepEquals(this.next, other.next) &&
+            Objects.deepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             idv,
             kyc,
             next,
@@ -176,7 +178,7 @@ public class V3CompleteResponse {
  
         private Optional<? extends KYCInternal> kyc = Optional.empty();
  
-        private java.util.Map<String, String> next;
+        private Map<String, String> next;
  
         private Boolean success;  
         
@@ -211,7 +213,7 @@ public class V3CompleteResponse {
         /**
          * Next contains the next set of allowed calls in the same flow.
          */
-        public Builder next(java.util.Map<String, String> next) {
+        public Builder next(Map<String, String> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;

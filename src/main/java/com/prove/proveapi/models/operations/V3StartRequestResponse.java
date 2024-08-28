@@ -4,19 +4,23 @@
 
 package com.prove.proveapi.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.prove.proveapi.models.components.V3StartResponse;
+import com.prove.proveapi.utils.Response;
 import com.prove.proveapi.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class V3StartRequestResponse implements com.prove.proveapi.utils.Response {
+
+public class V3StartRequestResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class V3StartRequestResponse implements com.prove.proveapi.utils.Response
     /**
      * Successful request.
      */
-    private Optional<? extends com.prove.proveapi.models.components.V3StartResponse> v3StartResponse;
+    private Optional<? extends V3StartResponse> v3StartResponse;
 
     @JsonCreator
     public V3StartRequestResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.prove.proveapi.models.components.V3StartResponse> v3StartResponse) {
+            Optional<? extends V3StartResponse> v3StartResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class V3StartRequestResponse implements com.prove.proveapi.utils.Response
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.prove.proveapi.models.components.V3StartResponse> v3StartResponse() {
-        return (Optional<com.prove.proveapi.models.components.V3StartResponse>) v3StartResponse;
+    public Optional<V3StartResponse> v3StartResponse() {
+        return (Optional<V3StartResponse>) v3StartResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class V3StartRequestResponse implements com.prove.proveapi.utils.Response
     /**
      * Successful request.
      */
-    public V3StartRequestResponse withV3StartResponse(com.prove.proveapi.models.components.V3StartResponse v3StartResponse) {
+    public V3StartRequestResponse withV3StartResponse(V3StartResponse v3StartResponse) {
         Utils.checkNotNull(v3StartResponse, "v3StartResponse");
         this.v3StartResponse = Optional.ofNullable(v3StartResponse);
         return this;
@@ -137,7 +141,7 @@ public class V3StartRequestResponse implements com.prove.proveapi.utils.Response
     /**
      * Successful request.
      */
-    public V3StartRequestResponse withV3StartResponse(Optional<? extends com.prove.proveapi.models.components.V3StartResponse> v3StartResponse) {
+    public V3StartRequestResponse withV3StartResponse(Optional<? extends V3StartResponse> v3StartResponse) {
         Utils.checkNotNull(v3StartResponse, "v3StartResponse");
         this.v3StartResponse = v3StartResponse;
         return this;
@@ -153,15 +157,15 @@ public class V3StartRequestResponse implements com.prove.proveapi.utils.Response
         }
         V3StartRequestResponse other = (V3StartRequestResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v3StartResponse, other.v3StartResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.v3StartResponse, other.v3StartResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class V3StartRequestResponse implements com.prove.proveapi.utils.Response
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.prove.proveapi.models.components.V3StartResponse> v3StartResponse = Optional.empty();  
+        private Optional<? extends V3StartResponse> v3StartResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class V3StartRequestResponse implements com.prove.proveapi.utils.Response
         /**
          * Successful request.
          */
-        public Builder v3StartResponse(com.prove.proveapi.models.components.V3StartResponse v3StartResponse) {
+        public Builder v3StartResponse(V3StartResponse v3StartResponse) {
             Utils.checkNotNull(v3StartResponse, "v3StartResponse");
             this.v3StartResponse = Optional.ofNullable(v3StartResponse);
             return this;
@@ -230,7 +234,7 @@ public class V3StartRequestResponse implements com.prove.proveapi.utils.Response
         /**
          * Successful request.
          */
-        public Builder v3StartResponse(Optional<? extends com.prove.proveapi.models.components.V3StartResponse> v3StartResponse) {
+        public Builder v3StartResponse(Optional<? extends V3StartResponse> v3StartResponse) {
             Utils.checkNotNull(v3StartResponse, "v3StartResponse");
             this.v3StartResponse = v3StartResponse;
             return this;

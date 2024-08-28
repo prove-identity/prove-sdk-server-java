@@ -5,18 +5,14 @@
 package com.prove.proveapi.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.http.HttpResponse;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -29,7 +25,7 @@ public class Error extends RuntimeException {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
-    private Optional<? extends Long> code;
+    private Optional<Long> code;
 
     /**
      * Message is an error message describing the problem with the request.
@@ -39,7 +35,7 @@ public class Error extends RuntimeException {
 
     @JsonCreator
     public Error(
-            @JsonProperty("code") Optional<? extends Long> code,
+            @JsonProperty("code") Optional<Long> code,
             @JsonProperty("message") String message) {
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(message, "message");
@@ -55,7 +51,7 @@ public class Error extends RuntimeException {
     /**
      * Code is an internal error code that describes the problem category of the request.
      */
-    public Optional<? extends Long> code(){
+    public Optional<Long> code(){
         return code;
     }
 
@@ -82,7 +78,7 @@ public class Error extends RuntimeException {
     /**
      * Code is an internal error code that describes the problem category of the request.
      */
-    public Error withCode(Optional<? extends Long> code) {
+    public Error withCode(Optional<Long> code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
         return this;
@@ -107,8 +103,8 @@ public class Error extends RuntimeException {
         }
         Error other = (Error) o;
         return
-            java.util.Objects.deepEquals(this.code, other.code) &&
-            java.util.Objects.deepEquals(this.message, other.message);
+            Objects.deepEquals(this.code, other.code) &&
+            Objects.deepEquals(this.message, other.message);
     }
 
     @Override
@@ -127,7 +123,7 @@ public class Error extends RuntimeException {
 
     public final static class Builder {
 
-        private Optional<? extends Long> code = Optional.empty();
+        private Optional<Long> code = Optional.empty();
 
         private String message;
 
@@ -147,7 +143,7 @@ public class Error extends RuntimeException {
         /**
          * Code is an internal error code that describes the problem category of the request.
          */
-        public Builder code(Optional<? extends Long> code) {
+        public Builder code(Optional<Long> code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
             return this;

@@ -4,24 +4,14 @@
 
 package com.prove.proveapi;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.models.operations.SDKMethodInterfaces.*;
 import com.prove.proveapi.utils.HTTPClient;
-import com.prove.proveapi.utils.Hook.AfterErrorContextImpl;
-import com.prove.proveapi.utils.Hook.AfterSuccessContextImpl;
-import com.prove.proveapi.utils.Hook.BeforeRequestContextImpl;
-import com.prove.proveapi.utils.Retries.NonRetryableException;
 import com.prove.proveapi.utils.RetryConfig;
 import com.prove.proveapi.utils.SpeakeasyHTTPClient;
-import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.http.HttpRequest;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Prove APIs: This specification describes the Prove API.
@@ -58,7 +48,7 @@ public class Proveapi {
     /**
      * SERVERS contains the list of server urls available to the SDK.
      */
-    public static final java.util.Map<AvailableServers, String> SERVERS = new java.util.HashMap<>() {{
+    public static final Map<AvailableServers, String> SERVERS = new HashMap<>() { {
     put(AvailableServers.UAT_US, "https://platform.uat.proveapis.com");
     put(AvailableServers.PROD_US, "https://platform.proveapis.com");
     }};
@@ -131,7 +121,7 @@ public class Proveapi {
          * @param params The parameters to use when templating the URL.
          * @return The builder instance.
          */
-        public Builder serverURL(String serverUrl, java.util.Map<String, String> params) {
+        public Builder serverURL(String serverUrl, Map<String, String> params) {
             this.sdkConfiguration.serverUrl = com.prove.proveapi.utils.Utils.templateUrl(serverUrl, params);
             return this;
         }

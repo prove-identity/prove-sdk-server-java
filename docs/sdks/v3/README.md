@@ -1,6 +1,8 @@
 # V3
 (*v3()*)
 
+## Overview
+
 ### Available Operations
 
 * [v3TokenRequest](#v3tokenrequest) - Request OAuth token.
@@ -19,17 +21,10 @@ Send this request to request the OAuth token.
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.operations.*;
-import com.prove.proveapi.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.prove.proveapi.models.components.V3TokenRequest;
+import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.operations.V3TokenRequestResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -54,7 +49,7 @@ public class Application {
         } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -68,20 +63,21 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [com.prove.proveapi.models.components.V3TokenRequest](../../models/shared/V3TokenRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `request`                                               | [V3TokenRequest](../../models/shared/V3TokenRequest.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
 
 ### Response
 
-**[com.prove.proveapi.models.operations.V3TokenRequestResponse](../../models/operations/V3TokenRequestResponse.md)**
+**[V3TokenRequestResponse](../../models/operations/V3TokenRequestResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## v3ChallengeRequest
 
@@ -93,17 +89,11 @@ Send this request to submit challenge information. Either a DOB or last 4 of SSN
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.operations.*;
-import com.prove.proveapi.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3ChallengeRequest;
+import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.operations.V3ChallengeRequestResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -118,8 +108,8 @@ public class Application {
 
             V3ChallengeRequest req = V3ChallengeRequest.builder()
                 .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
-                .dob("2024-05-02T00:00:00Z")
-                .ssn("1234")
+                .dob("1981-01")
+                .ssn("0596")
                 .build();
 
             V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
@@ -132,7 +122,7 @@ public class Application {
         } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -146,14 +136,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `request`                                                                                            | [com.prove.proveapi.models.components.V3ChallengeRequest](../../models/shared/V3ChallengeRequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [V3ChallengeRequest](../../models/shared/V3ChallengeRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 ### Response
 
-**[com.prove.proveapi.models.operations.V3ChallengeRequestResponse](../../models/operations/V3ChallengeRequestResponse.md)**
+**[V3ChallengeRequestResponse](../../models/operations/V3ChallengeRequestResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -161,9 +151,10 @@ public class Application {
 | models/errors/Error    | 400,500                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
+
 ## v3CompleteRequest
 
-Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify an individual.
+Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify ownership.
 
 ### Example Usage
 
@@ -171,17 +162,14 @@ Send this request to verify the user and complete the flow. It will return a cor
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.operations.*;
-import com.prove.proveapi.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3CompleteAddressEntryRequest;
+import com.prove.proveapi.models.components.V3CompleteIndividualRequest;
+import com.prove.proveapi.models.components.V3CompleteRequest;
+import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
+import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -197,7 +185,7 @@ public class Application {
             V3CompleteRequest req = V3CompleteRequest.builder()
                 .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
                 .individual(V3CompleteIndividualRequest.builder()
-                        .addresses(java.util.List.of(
+                        .addresses(List.of(
                             V3CompleteAddressEntryRequest.builder()
                                 .address("39 South Trail")
                                 .city("San Antonio")
@@ -213,7 +201,7 @@ public class Application {
                                 .region("TX")
                                 .build()))
                         .dob("2024-05-02T00:00:00Z")
-                        .emailAddresses(java.util.List.of(
+                        .emailAddresses(List.of(
                             "jdoe@example.com",
                             "dsmith@example.com"))
                         .firstName("Tod")
@@ -233,7 +221,7 @@ public class Application {
         } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -247,20 +235,21 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `request`                                                                                          | [com.prove.proveapi.models.components.V3CompleteRequest](../../models/shared/V3CompleteRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [V3CompleteRequest](../../models/shared/V3CompleteRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 ### Response
 
-**[com.prove.proveapi.models.operations.V3CompleteRequestResponse](../../models/operations/V3CompleteRequestResponse.md)**
+**[V3CompleteRequestResponse](../../models/operations/V3CompleteRequestResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## v3StartRequest
 
@@ -272,17 +261,11 @@ Send this request to start a Prove flow. It will return a correlation ID and an 
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.operations.*;
-import com.prove.proveapi.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3StartRequest;
+import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.operations.V3StartRequestResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -297,12 +280,12 @@ public class Application {
 
             V3StartRequest req = V3StartRequest.builder()
                 .flowType("mobile")
-                .dob("2024-05-02T00:00:00Z")
-                .emailAddress("jdoe@example.com")
+                .dob("1981-01")
+                .emailAddress("mpinsonm@dyndns.org")
                 .finalTargetUrl("https://www.example.com/landing-page")
                 .ipAddress("10.0.0.1")
-                .phoneNumber("2001001686")
-                .ssn("1234")
+                .phoneNumber("2001001695")
+                .ssn("0596")
                 .build();
 
             V3StartRequestResponse res = sdk.v3().v3StartRequest()
@@ -315,7 +298,7 @@ public class Application {
         } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -329,20 +312,21 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [com.prove.proveapi.models.components.V3StartRequest](../../models/shared/V3StartRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `request`                                               | [V3StartRequest](../../models/shared/V3StartRequest.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
 
 ### Response
 
-**[com.prove.proveapi.models.operations.V3StartRequestResponse](../../models/operations/V3StartRequestResponse.md)**
+**[V3StartRequestResponse](../../models/operations/V3StartRequestResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 400,500                | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
 
 ## v3ValidateRequest
 
@@ -354,17 +338,11 @@ Send this request to check the phone number entered/discovered earlier in the fl
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.operations.*;
-import com.prove.proveapi.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3ValidateRequest;
+import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.operations.V3ValidateRequestResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -391,7 +369,7 @@ public class Application {
         } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -405,14 +383,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `request`                                                                                          | [com.prove.proveapi.models.components.V3ValidateRequest](../../models/shared/V3ValidateRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [V3ValidateRequest](../../models/shared/V3ValidateRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 ### Response
 
-**[com.prove.proveapi.models.operations.V3ValidateRequestResponse](../../models/operations/V3ValidateRequestResponse.md)**
+**[V3ValidateRequestResponse](../../models/operations/V3ValidateRequestResponse.md)**
+
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

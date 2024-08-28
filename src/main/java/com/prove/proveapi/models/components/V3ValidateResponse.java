@@ -4,19 +4,20 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ValidateResponse {
 
@@ -30,14 +31,14 @@ public class V3ValidateResponse {
      * Next contains the next set of allowed calls in the same flow.
      */
     @JsonProperty("next")
-    private java.util.Map<String, String> next;
+    private Map<String, String> next;
 
     /**
      * PhoneNumber is the number of the mobile phone for which validation was performed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
-    private Optional<? extends String> phoneNumber;
+    private Optional<String> phoneNumber;
 
     /**
      * Success returns true if the phone number was validated.
@@ -48,8 +49,8 @@ public class V3ValidateResponse {
     @JsonCreator
     public V3ValidateResponse(
             @JsonProperty("challengeMissing") boolean challengeMissing,
-            @JsonProperty("next") java.util.Map<String, String> next,
-            @JsonProperty("phoneNumber") Optional<? extends String> phoneNumber,
+            @JsonProperty("next") Map<String, String> next,
+            @JsonProperty("phoneNumber") Optional<String> phoneNumber,
             @JsonProperty("success") boolean success) {
         Utils.checkNotNull(challengeMissing, "challengeMissing");
         next = Utils.emptyMapIfNull(next);
@@ -63,7 +64,7 @@ public class V3ValidateResponse {
     
     public V3ValidateResponse(
             boolean challengeMissing,
-            java.util.Map<String, String> next,
+            Map<String, String> next,
             boolean success) {
         this(challengeMissing, next, Optional.empty(), success);
     }
@@ -80,17 +81,16 @@ public class V3ValidateResponse {
      * Next contains the next set of allowed calls in the same flow.
      */
     @JsonIgnore
-    public java.util.Map<String, String> next() {
+    public Map<String, String> next() {
         return next;
     }
 
     /**
      * PhoneNumber is the number of the mobile phone for which validation was performed.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> phoneNumber() {
-        return (Optional<String>) phoneNumber;
+        return phoneNumber;
     }
 
     /**
@@ -117,7 +117,7 @@ public class V3ValidateResponse {
     /**
      * Next contains the next set of allowed calls in the same flow.
      */
-    public V3ValidateResponse withNext(java.util.Map<String, String> next) {
+    public V3ValidateResponse withNext(Map<String, String> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -135,7 +135,7 @@ public class V3ValidateResponse {
     /**
      * PhoneNumber is the number of the mobile phone for which validation was performed.
      */
-    public V3ValidateResponse withPhoneNumber(Optional<? extends String> phoneNumber) {
+    public V3ValidateResponse withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
         return this;
@@ -160,15 +160,15 @@ public class V3ValidateResponse {
         }
         V3ValidateResponse other = (V3ValidateResponse) o;
         return 
-            java.util.Objects.deepEquals(this.challengeMissing, other.challengeMissing) &&
-            java.util.Objects.deepEquals(this.next, other.next) &&
-            java.util.Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            java.util.Objects.deepEquals(this.success, other.success);
+            Objects.deepEquals(this.challengeMissing, other.challengeMissing) &&
+            Objects.deepEquals(this.next, other.next) &&
+            Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
+            Objects.deepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             challengeMissing,
             next,
             phoneNumber,
@@ -188,9 +188,9 @@ public class V3ValidateResponse {
  
         private Boolean challengeMissing;
  
-        private java.util.Map<String, String> next;
+        private Map<String, String> next;
  
-        private Optional<? extends String> phoneNumber = Optional.empty();
+        private Optional<String> phoneNumber = Optional.empty();
  
         private Boolean success;  
         
@@ -210,7 +210,7 @@ public class V3ValidateResponse {
         /**
          * Next contains the next set of allowed calls in the same flow.
          */
-        public Builder next(java.util.Map<String, String> next) {
+        public Builder next(Map<String, String> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -228,7 +228,7 @@ public class V3ValidateResponse {
         /**
          * PhoneNumber is the number of the mobile phone for which validation was performed.
          */
-        public Builder phoneNumber(Optional<? extends String> phoneNumber) {
+        public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
             this.phoneNumber = phoneNumber;
             return this;

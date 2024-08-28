@@ -4,17 +4,15 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.SpeakeasyMetadata;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class V3TokenRequest {
 
@@ -114,14 +112,14 @@ public class V3TokenRequest {
         }
         V3TokenRequest other = (V3TokenRequest) o;
         return 
-            java.util.Objects.deepEquals(this.clientId, other.clientId) &&
-            java.util.Objects.deepEquals(this.clientSecret, other.clientSecret) &&
-            java.util.Objects.deepEquals(this.grantType, other.grantType);
+            Objects.deepEquals(this.clientId, other.clientId) &&
+            Objects.deepEquals(this.clientSecret, other.clientSecret) &&
+            Objects.deepEquals(this.grantType, other.grantType);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             clientId,
             clientSecret,
             grantType);

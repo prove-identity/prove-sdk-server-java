@@ -4,19 +4,23 @@
 
 package com.prove.proveapi.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.prove.proveapi.models.components.V3CompleteResponse;
+import com.prove.proveapi.utils.Response;
 import com.prove.proveapi.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class V3CompleteRequestResponse implements com.prove.proveapi.utils.Response {
+
+public class V3CompleteRequestResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class V3CompleteRequestResponse implements com.prove.proveapi.utils.Respo
     /**
      * Successful request.
      */
-    private Optional<? extends com.prove.proveapi.models.components.V3CompleteResponse> v3CompleteResponse;
+    private Optional<? extends V3CompleteResponse> v3CompleteResponse;
 
     @JsonCreator
     public V3CompleteRequestResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.prove.proveapi.models.components.V3CompleteResponse> v3CompleteResponse) {
+            Optional<? extends V3CompleteResponse> v3CompleteResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class V3CompleteRequestResponse implements com.prove.proveapi.utils.Respo
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.prove.proveapi.models.components.V3CompleteResponse> v3CompleteResponse() {
-        return (Optional<com.prove.proveapi.models.components.V3CompleteResponse>) v3CompleteResponse;
+    public Optional<V3CompleteResponse> v3CompleteResponse() {
+        return (Optional<V3CompleteResponse>) v3CompleteResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class V3CompleteRequestResponse implements com.prove.proveapi.utils.Respo
     /**
      * Successful request.
      */
-    public V3CompleteRequestResponse withV3CompleteResponse(com.prove.proveapi.models.components.V3CompleteResponse v3CompleteResponse) {
+    public V3CompleteRequestResponse withV3CompleteResponse(V3CompleteResponse v3CompleteResponse) {
         Utils.checkNotNull(v3CompleteResponse, "v3CompleteResponse");
         this.v3CompleteResponse = Optional.ofNullable(v3CompleteResponse);
         return this;
@@ -137,7 +141,7 @@ public class V3CompleteRequestResponse implements com.prove.proveapi.utils.Respo
     /**
      * Successful request.
      */
-    public V3CompleteRequestResponse withV3CompleteResponse(Optional<? extends com.prove.proveapi.models.components.V3CompleteResponse> v3CompleteResponse) {
+    public V3CompleteRequestResponse withV3CompleteResponse(Optional<? extends V3CompleteResponse> v3CompleteResponse) {
         Utils.checkNotNull(v3CompleteResponse, "v3CompleteResponse");
         this.v3CompleteResponse = v3CompleteResponse;
         return this;
@@ -153,15 +157,15 @@ public class V3CompleteRequestResponse implements com.prove.proveapi.utils.Respo
         }
         V3CompleteRequestResponse other = (V3CompleteRequestResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v3CompleteResponse, other.v3CompleteResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.v3CompleteResponse, other.v3CompleteResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class V3CompleteRequestResponse implements com.prove.proveapi.utils.Respo
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.prove.proveapi.models.components.V3CompleteResponse> v3CompleteResponse = Optional.empty();  
+        private Optional<? extends V3CompleteResponse> v3CompleteResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class V3CompleteRequestResponse implements com.prove.proveapi.utils.Respo
         /**
          * Successful request.
          */
-        public Builder v3CompleteResponse(com.prove.proveapi.models.components.V3CompleteResponse v3CompleteResponse) {
+        public Builder v3CompleteResponse(V3CompleteResponse v3CompleteResponse) {
             Utils.checkNotNull(v3CompleteResponse, "v3CompleteResponse");
             this.v3CompleteResponse = Optional.ofNullable(v3CompleteResponse);
             return this;
@@ -230,7 +234,7 @@ public class V3CompleteRequestResponse implements com.prove.proveapi.utils.Respo
         /**
          * Successful request.
          */
-        public Builder v3CompleteResponse(Optional<? extends com.prove.proveapi.models.components.V3CompleteResponse> v3CompleteResponse) {
+        public Builder v3CompleteResponse(Optional<? extends V3CompleteResponse> v3CompleteResponse) {
             Utils.checkNotNull(v3CompleteResponse, "v3CompleteResponse");
             this.v3CompleteResponse = v3CompleteResponse;
             return this;

@@ -15,7 +15,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.8.0'
+implementation 'com.prove:proveapi:0.9.0'
 ```
 
 Maven:
@@ -23,7 +23,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.8.0</version>
+    <version>0.9.0</version>
 </dependency>
 ```
 
@@ -51,17 +51,11 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.operations.*;
-import com.prove.proveapi.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3StartRequest;
+import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.operations.V3StartRequestResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -76,12 +70,12 @@ public class Application {
 
             V3StartRequest req = V3StartRequest.builder()
                 .flowType("mobile")
-                .dob("2024-05-02T00:00:00Z")
-                .emailAddress("jdoe@example.com")
+                .dob("1981-01")
+                .emailAddress("mpinsonm@dyndns.org")
                 .finalTargetUrl("https://www.example.com/landing-page")
                 .ipAddress("10.0.0.1")
-                .phoneNumber("2001001686")
-                .ssn("1234")
+                .phoneNumber("2001001695")
+                .ssn("0596")
                 .build();
 
             V3StartRequestResponse res = sdk.v3().v3StartRequest()
@@ -94,7 +88,7 @@ public class Application {
         } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -135,17 +129,10 @@ Handling errors in this SDK should largely match your expectations.  All operati
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.operations.*;
-import com.prove.proveapi.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.prove.proveapi.models.components.V3TokenRequest;
+import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.operations.V3TokenRequestResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -170,7 +157,7 @@ public class Application {
         } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -201,17 +188,10 @@ You can override the default server globally by passing a server name to the `se
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.operations.*;
-import com.prove.proveapi.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.prove.proveapi.models.components.V3TokenRequest;
+import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.operations.V3TokenRequestResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -237,7 +217,7 @@ public class Application {
         } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -257,17 +237,10 @@ The default server can also be overridden globally by passing a URL to the `serv
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.operations.*;
-import com.prove.proveapi.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.prove.proveapi.models.components.V3TokenRequest;
+import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.operations.V3TokenRequestResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -293,7 +266,7 @@ public class Application {
         } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -322,17 +295,11 @@ You can set the security parameters through the `security` builder method when i
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.operations.*;
-import com.prove.proveapi.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3TokenRequest;
+import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.operations.V3TokenRequestResponse;
+import java.lang.Exception;
 
 public class Application {
 
@@ -361,7 +328,7 @@ public class Application {
         } catch (com.prove.proveapi.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.prove.proveapi.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {

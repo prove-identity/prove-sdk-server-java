@@ -4,19 +4,20 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ChallengeIndividualRequest {
 
@@ -25,51 +26,51 @@ public class V3ChallengeIndividualRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends java.util.List<V3ChallengeAddressEntryRequest>> addresses;
+    private Optional<? extends List<V3ChallengeAddressEntryRequest>> addresses;
 
     /**
      * DOB is the date of birth of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dob")
-    private Optional<? extends String> dob;
+    private Optional<String> dob;
 
     /**
      * Email addresses that belong to the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emailAddresses")
-    private Optional<? extends java.util.List<String>> emailAddresses;
+    private Optional<? extends List<String>> emailAddresses;
 
     /**
      * First name of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("firstName")
-    private Optional<? extends String> firstName;
+    private Optional<String> firstName;
 
     /**
      * Last name of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastName")
-    private Optional<? extends String> lastName;
+    private Optional<String> lastName;
 
     /**
      * SSN is the social security number of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ssn")
-    private Optional<? extends String> ssn;
+    private Optional<String> ssn;
 
     @JsonCreator
     public V3ChallengeIndividualRequest(
-            @JsonProperty("addresses") Optional<? extends java.util.List<V3ChallengeAddressEntryRequest>> addresses,
-            @JsonProperty("dob") Optional<? extends String> dob,
-            @JsonProperty("emailAddresses") Optional<? extends java.util.List<String>> emailAddresses,
-            @JsonProperty("firstName") Optional<? extends String> firstName,
-            @JsonProperty("lastName") Optional<? extends String> lastName,
-            @JsonProperty("ssn") Optional<? extends String> ssn) {
+            @JsonProperty("addresses") Optional<? extends List<V3ChallengeAddressEntryRequest>> addresses,
+            @JsonProperty("dob") Optional<String> dob,
+            @JsonProperty("emailAddresses") Optional<? extends List<String>> emailAddresses,
+            @JsonProperty("firstName") Optional<String> firstName,
+            @JsonProperty("lastName") Optional<String> lastName,
+            @JsonProperty("ssn") Optional<String> ssn) {
         Utils.checkNotNull(addresses, "addresses");
         Utils.checkNotNull(dob, "dob");
         Utils.checkNotNull(emailAddresses, "emailAddresses");
@@ -93,17 +94,16 @@ public class V3ChallengeIndividualRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<V3ChallengeAddressEntryRequest>> addresses() {
-        return (Optional<java.util.List<V3ChallengeAddressEntryRequest>>) addresses;
+    public Optional<List<V3ChallengeAddressEntryRequest>> addresses() {
+        return (Optional<List<V3ChallengeAddressEntryRequest>>) addresses;
     }
 
     /**
      * DOB is the date of birth of the individual.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> dob() {
-        return (Optional<String>) dob;
+        return dob;
     }
 
     /**
@@ -111,35 +111,32 @@ public class V3ChallengeIndividualRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<String>> emailAddresses() {
-        return (Optional<java.util.List<String>>) emailAddresses;
+    public Optional<List<String>> emailAddresses() {
+        return (Optional<List<String>>) emailAddresses;
     }
 
     /**
      * First name of the individual.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> firstName() {
-        return (Optional<String>) firstName;
+        return firstName;
     }
 
     /**
      * Last name of the individual.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> lastName() {
-        return (Optional<String>) lastName;
+        return lastName;
     }
 
     /**
      * SSN is the social security number of the individual.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> ssn() {
-        return (Optional<String>) ssn;
+        return ssn;
     }
 
     public final static Builder builder() {
@@ -149,7 +146,7 @@ public class V3ChallengeIndividualRequest {
     /**
      * Addresses that belong to the individual.
      */
-    public V3ChallengeIndividualRequest withAddresses(java.util.List<V3ChallengeAddressEntryRequest> addresses) {
+    public V3ChallengeIndividualRequest withAddresses(List<V3ChallengeAddressEntryRequest> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = Optional.ofNullable(addresses);
         return this;
@@ -158,7 +155,7 @@ public class V3ChallengeIndividualRequest {
     /**
      * Addresses that belong to the individual.
      */
-    public V3ChallengeIndividualRequest withAddresses(Optional<? extends java.util.List<V3ChallengeAddressEntryRequest>> addresses) {
+    public V3ChallengeIndividualRequest withAddresses(Optional<? extends List<V3ChallengeAddressEntryRequest>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = addresses;
         return this;
@@ -176,7 +173,7 @@ public class V3ChallengeIndividualRequest {
     /**
      * DOB is the date of birth of the individual.
      */
-    public V3ChallengeIndividualRequest withDob(Optional<? extends String> dob) {
+    public V3ChallengeIndividualRequest withDob(Optional<String> dob) {
         Utils.checkNotNull(dob, "dob");
         this.dob = dob;
         return this;
@@ -185,7 +182,7 @@ public class V3ChallengeIndividualRequest {
     /**
      * Email addresses that belong to the individual.
      */
-    public V3ChallengeIndividualRequest withEmailAddresses(java.util.List<String> emailAddresses) {
+    public V3ChallengeIndividualRequest withEmailAddresses(List<String> emailAddresses) {
         Utils.checkNotNull(emailAddresses, "emailAddresses");
         this.emailAddresses = Optional.ofNullable(emailAddresses);
         return this;
@@ -194,7 +191,7 @@ public class V3ChallengeIndividualRequest {
     /**
      * Email addresses that belong to the individual.
      */
-    public V3ChallengeIndividualRequest withEmailAddresses(Optional<? extends java.util.List<String>> emailAddresses) {
+    public V3ChallengeIndividualRequest withEmailAddresses(Optional<? extends List<String>> emailAddresses) {
         Utils.checkNotNull(emailAddresses, "emailAddresses");
         this.emailAddresses = emailAddresses;
         return this;
@@ -212,7 +209,7 @@ public class V3ChallengeIndividualRequest {
     /**
      * First name of the individual.
      */
-    public V3ChallengeIndividualRequest withFirstName(Optional<? extends String> firstName) {
+    public V3ChallengeIndividualRequest withFirstName(Optional<String> firstName) {
         Utils.checkNotNull(firstName, "firstName");
         this.firstName = firstName;
         return this;
@@ -230,7 +227,7 @@ public class V3ChallengeIndividualRequest {
     /**
      * Last name of the individual.
      */
-    public V3ChallengeIndividualRequest withLastName(Optional<? extends String> lastName) {
+    public V3ChallengeIndividualRequest withLastName(Optional<String> lastName) {
         Utils.checkNotNull(lastName, "lastName");
         this.lastName = lastName;
         return this;
@@ -248,7 +245,7 @@ public class V3ChallengeIndividualRequest {
     /**
      * SSN is the social security number of the individual.
      */
-    public V3ChallengeIndividualRequest withSsn(Optional<? extends String> ssn) {
+    public V3ChallengeIndividualRequest withSsn(Optional<String> ssn) {
         Utils.checkNotNull(ssn, "ssn");
         this.ssn = ssn;
         return this;
@@ -264,17 +261,17 @@ public class V3ChallengeIndividualRequest {
         }
         V3ChallengeIndividualRequest other = (V3ChallengeIndividualRequest) o;
         return 
-            java.util.Objects.deepEquals(this.addresses, other.addresses) &&
-            java.util.Objects.deepEquals(this.dob, other.dob) &&
-            java.util.Objects.deepEquals(this.emailAddresses, other.emailAddresses) &&
-            java.util.Objects.deepEquals(this.firstName, other.firstName) &&
-            java.util.Objects.deepEquals(this.lastName, other.lastName) &&
-            java.util.Objects.deepEquals(this.ssn, other.ssn);
+            Objects.deepEquals(this.addresses, other.addresses) &&
+            Objects.deepEquals(this.dob, other.dob) &&
+            Objects.deepEquals(this.emailAddresses, other.emailAddresses) &&
+            Objects.deepEquals(this.firstName, other.firstName) &&
+            Objects.deepEquals(this.lastName, other.lastName) &&
+            Objects.deepEquals(this.ssn, other.ssn);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             addresses,
             dob,
             emailAddresses,
@@ -296,17 +293,17 @@ public class V3ChallengeIndividualRequest {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.List<V3ChallengeAddressEntryRequest>> addresses = Optional.empty();
+        private Optional<? extends List<V3ChallengeAddressEntryRequest>> addresses = Optional.empty();
  
-        private Optional<? extends String> dob = Optional.empty();
+        private Optional<String> dob = Optional.empty();
  
-        private Optional<? extends java.util.List<String>> emailAddresses = Optional.empty();
+        private Optional<? extends List<String>> emailAddresses = Optional.empty();
  
-        private Optional<? extends String> firstName = Optional.empty();
+        private Optional<String> firstName = Optional.empty();
  
-        private Optional<? extends String> lastName = Optional.empty();
+        private Optional<String> lastName = Optional.empty();
  
-        private Optional<? extends String> ssn = Optional.empty();  
+        private Optional<String> ssn = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -315,7 +312,7 @@ public class V3ChallengeIndividualRequest {
         /**
          * Addresses that belong to the individual.
          */
-        public Builder addresses(java.util.List<V3ChallengeAddressEntryRequest> addresses) {
+        public Builder addresses(List<V3ChallengeAddressEntryRequest> addresses) {
             Utils.checkNotNull(addresses, "addresses");
             this.addresses = Optional.ofNullable(addresses);
             return this;
@@ -324,7 +321,7 @@ public class V3ChallengeIndividualRequest {
         /**
          * Addresses that belong to the individual.
          */
-        public Builder addresses(Optional<? extends java.util.List<V3ChallengeAddressEntryRequest>> addresses) {
+        public Builder addresses(Optional<? extends List<V3ChallengeAddressEntryRequest>> addresses) {
             Utils.checkNotNull(addresses, "addresses");
             this.addresses = addresses;
             return this;
@@ -342,7 +339,7 @@ public class V3ChallengeIndividualRequest {
         /**
          * DOB is the date of birth of the individual.
          */
-        public Builder dob(Optional<? extends String> dob) {
+        public Builder dob(Optional<String> dob) {
             Utils.checkNotNull(dob, "dob");
             this.dob = dob;
             return this;
@@ -351,7 +348,7 @@ public class V3ChallengeIndividualRequest {
         /**
          * Email addresses that belong to the individual.
          */
-        public Builder emailAddresses(java.util.List<String> emailAddresses) {
+        public Builder emailAddresses(List<String> emailAddresses) {
             Utils.checkNotNull(emailAddresses, "emailAddresses");
             this.emailAddresses = Optional.ofNullable(emailAddresses);
             return this;
@@ -360,7 +357,7 @@ public class V3ChallengeIndividualRequest {
         /**
          * Email addresses that belong to the individual.
          */
-        public Builder emailAddresses(Optional<? extends java.util.List<String>> emailAddresses) {
+        public Builder emailAddresses(Optional<? extends List<String>> emailAddresses) {
             Utils.checkNotNull(emailAddresses, "emailAddresses");
             this.emailAddresses = emailAddresses;
             return this;
@@ -378,7 +375,7 @@ public class V3ChallengeIndividualRequest {
         /**
          * First name of the individual.
          */
-        public Builder firstName(Optional<? extends String> firstName) {
+        public Builder firstName(Optional<String> firstName) {
             Utils.checkNotNull(firstName, "firstName");
             this.firstName = firstName;
             return this;
@@ -396,7 +393,7 @@ public class V3ChallengeIndividualRequest {
         /**
          * Last name of the individual.
          */
-        public Builder lastName(Optional<? extends String> lastName) {
+        public Builder lastName(Optional<String> lastName) {
             Utils.checkNotNull(lastName, "lastName");
             this.lastName = lastName;
             return this;
@@ -414,7 +411,7 @@ public class V3ChallengeIndividualRequest {
         /**
          * SSN is the social security number of the individual.
          */
-        public Builder ssn(Optional<? extends String> ssn) {
+        public Builder ssn(Optional<String> ssn) {
             Utils.checkNotNull(ssn, "ssn");
             this.ssn = ssn;
             return this;

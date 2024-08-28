@@ -4,19 +4,18 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3StartRequest {
 
@@ -25,21 +24,21 @@ public class V3StartRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dob")
-    private Optional<? extends String> dob;
+    private Optional<String> dob;
 
     /**
      * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emailAddress")
-    private Optional<? extends String> emailAddress;
+    private Optional<String> emailAddress;
 
     /**
      * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("finalTargetUrl")
-    private Optional<? extends String> finalTargetUrl;
+    private Optional<String> finalTargetUrl;
 
     /**
      * Flow type is based on the method used - either 'desktop' if using desktop or 'mobile' for iOS/Android native apps and mobile web. Acceptable options are: 'desktop' or 'mobile'.
@@ -52,31 +51,31 @@ public class V3StartRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ipAddress")
-    private Optional<? extends String> ipAddress;
+    private Optional<String> ipAddress;
 
     /**
      * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. In Production, you will likely pass the phone number via the Prove Link client SDK instead of within the Start call depending on how your user experience is implemented. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
-    private Optional<? extends String> phoneNumber;
+    private Optional<String> phoneNumber;
 
     /**
      * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ssn")
-    private Optional<? extends String> ssn;
+    private Optional<String> ssn;
 
     @JsonCreator
     public V3StartRequest(
-            @JsonProperty("dob") Optional<? extends String> dob,
-            @JsonProperty("emailAddress") Optional<? extends String> emailAddress,
-            @JsonProperty("finalTargetUrl") Optional<? extends String> finalTargetUrl,
+            @JsonProperty("dob") Optional<String> dob,
+            @JsonProperty("emailAddress") Optional<String> emailAddress,
+            @JsonProperty("finalTargetUrl") Optional<String> finalTargetUrl,
             @JsonProperty("flowType") String flowType,
-            @JsonProperty("ipAddress") Optional<? extends String> ipAddress,
-            @JsonProperty("phoneNumber") Optional<? extends String> phoneNumber,
-            @JsonProperty("ssn") Optional<? extends String> ssn) {
+            @JsonProperty("ipAddress") Optional<String> ipAddress,
+            @JsonProperty("phoneNumber") Optional<String> phoneNumber,
+            @JsonProperty("ssn") Optional<String> ssn) {
         Utils.checkNotNull(dob, "dob");
         Utils.checkNotNull(emailAddress, "emailAddress");
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -101,28 +100,25 @@ public class V3StartRequest {
     /**
      * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> dob() {
-        return (Optional<String>) dob;
+        return dob;
     }
 
     /**
      * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> emailAddress() {
-        return (Optional<String>) emailAddress;
+        return emailAddress;
     }
 
     /**
      * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> finalTargetUrl() {
-        return (Optional<String>) finalTargetUrl;
+        return finalTargetUrl;
     }
 
     /**
@@ -136,28 +132,25 @@ public class V3StartRequest {
     /**
      * IP address is the IP address of the device of the customer. Acceptable characters are: numeric with symbols ':.'.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> ipAddress() {
-        return (Optional<String>) ipAddress;
+        return ipAddress;
     }
 
     /**
      * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. In Production, you will likely pass the phone number via the Prove Link client SDK instead of within the Start call depending on how your user experience is implemented. Acceptable characters are: alphanumeric with symbols '+'.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> phoneNumber() {
-        return (Optional<String>) phoneNumber;
+        return phoneNumber;
     }
 
     /**
      * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> ssn() {
-        return (Optional<String>) ssn;
+        return ssn;
     }
 
     public final static Builder builder() {
@@ -176,7 +169,7 @@ public class V3StartRequest {
     /**
      * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
-    public V3StartRequest withDob(Optional<? extends String> dob) {
+    public V3StartRequest withDob(Optional<String> dob) {
         Utils.checkNotNull(dob, "dob");
         this.dob = dob;
         return this;
@@ -194,7 +187,7 @@ public class V3StartRequest {
     /**
      * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
-    public V3StartRequest withEmailAddress(Optional<? extends String> emailAddress) {
+    public V3StartRequest withEmailAddress(Optional<String> emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = emailAddress;
         return this;
@@ -212,7 +205,7 @@ public class V3StartRequest {
     /**
      * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
-    public V3StartRequest withFinalTargetUrl(Optional<? extends String> finalTargetUrl) {
+    public V3StartRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
         this.finalTargetUrl = finalTargetUrl;
         return this;
@@ -239,7 +232,7 @@ public class V3StartRequest {
     /**
      * IP address is the IP address of the device of the customer. Acceptable characters are: numeric with symbols ':.'.
      */
-    public V3StartRequest withIpAddress(Optional<? extends String> ipAddress) {
+    public V3StartRequest withIpAddress(Optional<String> ipAddress) {
         Utils.checkNotNull(ipAddress, "ipAddress");
         this.ipAddress = ipAddress;
         return this;
@@ -257,7 +250,7 @@ public class V3StartRequest {
     /**
      * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. In Production, you will likely pass the phone number via the Prove Link client SDK instead of within the Start call depending on how your user experience is implemented. Acceptable characters are: alphanumeric with symbols '+'.
      */
-    public V3StartRequest withPhoneNumber(Optional<? extends String> phoneNumber) {
+    public V3StartRequest withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
         return this;
@@ -275,7 +268,7 @@ public class V3StartRequest {
     /**
      * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
      */
-    public V3StartRequest withSsn(Optional<? extends String> ssn) {
+    public V3StartRequest withSsn(Optional<String> ssn) {
         Utils.checkNotNull(ssn, "ssn");
         this.ssn = ssn;
         return this;
@@ -291,18 +284,18 @@ public class V3StartRequest {
         }
         V3StartRequest other = (V3StartRequest) o;
         return 
-            java.util.Objects.deepEquals(this.dob, other.dob) &&
-            java.util.Objects.deepEquals(this.emailAddress, other.emailAddress) &&
-            java.util.Objects.deepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
-            java.util.Objects.deepEquals(this.flowType, other.flowType) &&
-            java.util.Objects.deepEquals(this.ipAddress, other.ipAddress) &&
-            java.util.Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            java.util.Objects.deepEquals(this.ssn, other.ssn);
+            Objects.deepEquals(this.dob, other.dob) &&
+            Objects.deepEquals(this.emailAddress, other.emailAddress) &&
+            Objects.deepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
+            Objects.deepEquals(this.flowType, other.flowType) &&
+            Objects.deepEquals(this.ipAddress, other.ipAddress) &&
+            Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
+            Objects.deepEquals(this.ssn, other.ssn);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             dob,
             emailAddress,
             finalTargetUrl,
@@ -326,19 +319,19 @@ public class V3StartRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> dob = Optional.empty();
+        private Optional<String> dob = Optional.empty();
  
-        private Optional<? extends String> emailAddress = Optional.empty();
+        private Optional<String> emailAddress = Optional.empty();
  
-        private Optional<? extends String> finalTargetUrl = Optional.empty();
+        private Optional<String> finalTargetUrl = Optional.empty();
  
         private String flowType;
  
-        private Optional<? extends String> ipAddress = Optional.empty();
+        private Optional<String> ipAddress = Optional.empty();
  
-        private Optional<? extends String> phoneNumber = Optional.empty();
+        private Optional<String> phoneNumber = Optional.empty();
  
-        private Optional<? extends String> ssn = Optional.empty();  
+        private Optional<String> ssn = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -356,7 +349,7 @@ public class V3StartRequest {
         /**
          * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
          */
-        public Builder dob(Optional<? extends String> dob) {
+        public Builder dob(Optional<String> dob) {
             Utils.checkNotNull(dob, "dob");
             this.dob = dob;
             return this;
@@ -374,7 +367,7 @@ public class V3StartRequest {
         /**
          * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
          */
-        public Builder emailAddress(Optional<? extends String> emailAddress) {
+        public Builder emailAddress(Optional<String> emailAddress) {
             Utils.checkNotNull(emailAddress, "emailAddress");
             this.emailAddress = emailAddress;
             return this;
@@ -392,7 +385,7 @@ public class V3StartRequest {
         /**
          * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
-        public Builder finalTargetUrl(Optional<? extends String> finalTargetUrl) {
+        public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
             this.finalTargetUrl = finalTargetUrl;
             return this;
@@ -419,7 +412,7 @@ public class V3StartRequest {
         /**
          * IP address is the IP address of the device of the customer. Acceptable characters are: numeric with symbols ':.'.
          */
-        public Builder ipAddress(Optional<? extends String> ipAddress) {
+        public Builder ipAddress(Optional<String> ipAddress) {
             Utils.checkNotNull(ipAddress, "ipAddress");
             this.ipAddress = ipAddress;
             return this;
@@ -437,7 +430,7 @@ public class V3StartRequest {
         /**
          * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. In Production, you will likely pass the phone number via the Prove Link client SDK instead of within the Start call depending on how your user experience is implemented. Acceptable characters are: alphanumeric with symbols '+'.
          */
-        public Builder phoneNumber(Optional<? extends String> phoneNumber) {
+        public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
             this.phoneNumber = phoneNumber;
             return this;
@@ -455,7 +448,7 @@ public class V3StartRequest {
         /**
          * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
          */
-        public Builder ssn(Optional<? extends String> ssn) {
+        public Builder ssn(Optional<String> ssn) {
             Utils.checkNotNull(ssn, "ssn");
             this.ssn = ssn;
             return this;
