@@ -4,19 +4,20 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class DataSourceInternal {
 
@@ -26,7 +27,7 @@ public class DataSourceInternal {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cipConfidence")
-    private Optional<? extends String> cipConfidence;
+    private Optional<String> cipConfidence;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
@@ -42,39 +43,32 @@ public class DataSourceInternal {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reasonCodes")
-    private Optional<? extends java.util.List<String>> reasonCodes;
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("verified")
-    private Optional<? extends Boolean> verified;
+    private Optional<? extends List<String>> reasonCodes;
 
     @JsonCreator
     public DataSourceInternal(
             @JsonProperty("address") Optional<? extends DataSourceAddressResponseInternal> address,
-            @JsonProperty("cipConfidence") Optional<? extends String> cipConfidence,
+            @JsonProperty("cipConfidence") Optional<String> cipConfidence,
             @JsonProperty("email") Optional<? extends DataSourceEmailAddressResponseInternal> email,
             @JsonProperty("identifiers") Optional<? extends DataSourceIdentifiersResponseInternal> identifiers,
             @JsonProperty("name") Optional<? extends DataSourceNameResponseInternal> name,
-            @JsonProperty("reasonCodes") Optional<? extends java.util.List<String>> reasonCodes,
-            @JsonProperty("verified") Optional<? extends Boolean> verified) {
+            @JsonProperty("reasonCodes") Optional<? extends List<String>> reasonCodes) {
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(cipConfidence, "cipConfidence");
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(identifiers, "identifiers");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(reasonCodes, "reasonCodes");
-        Utils.checkNotNull(verified, "verified");
         this.address = address;
         this.cipConfidence = cipConfidence;
         this.email = email;
         this.identifiers = identifiers;
         this.name = name;
         this.reasonCodes = reasonCodes;
-        this.verified = verified;
     }
     
     public DataSourceInternal() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -83,10 +77,9 @@ public class DataSourceInternal {
         return (Optional<DataSourceAddressResponseInternal>) address;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cipConfidence() {
-        return (Optional<String>) cipConfidence;
+        return cipConfidence;
     }
 
     @SuppressWarnings("unchecked")
@@ -109,14 +102,8 @@ public class DataSourceInternal {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<String>> reasonCodes() {
-        return (Optional<java.util.List<String>>) reasonCodes;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Boolean> verified() {
-        return (Optional<Boolean>) verified;
+    public Optional<List<String>> reasonCodes() {
+        return (Optional<List<String>>) reasonCodes;
     }
 
     public final static Builder builder() {
@@ -141,7 +128,7 @@ public class DataSourceInternal {
         return this;
     }
 
-    public DataSourceInternal withCipConfidence(Optional<? extends String> cipConfidence) {
+    public DataSourceInternal withCipConfidence(Optional<String> cipConfidence) {
         Utils.checkNotNull(cipConfidence, "cipConfidence");
         this.cipConfidence = cipConfidence;
         return this;
@@ -183,27 +170,15 @@ public class DataSourceInternal {
         return this;
     }
 
-    public DataSourceInternal withReasonCodes(java.util.List<String> reasonCodes) {
+    public DataSourceInternal withReasonCodes(List<String> reasonCodes) {
         Utils.checkNotNull(reasonCodes, "reasonCodes");
         this.reasonCodes = Optional.ofNullable(reasonCodes);
         return this;
     }
 
-    public DataSourceInternal withReasonCodes(Optional<? extends java.util.List<String>> reasonCodes) {
+    public DataSourceInternal withReasonCodes(Optional<? extends List<String>> reasonCodes) {
         Utils.checkNotNull(reasonCodes, "reasonCodes");
         this.reasonCodes = reasonCodes;
-        return this;
-    }
-
-    public DataSourceInternal withVerified(boolean verified) {
-        Utils.checkNotNull(verified, "verified");
-        this.verified = Optional.ofNullable(verified);
-        return this;
-    }
-
-    public DataSourceInternal withVerified(Optional<? extends Boolean> verified) {
-        Utils.checkNotNull(verified, "verified");
-        this.verified = verified;
         return this;
     }
     
@@ -217,25 +192,23 @@ public class DataSourceInternal {
         }
         DataSourceInternal other = (DataSourceInternal) o;
         return 
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.cipConfidence, other.cipConfidence) &&
-            java.util.Objects.deepEquals(this.email, other.email) &&
-            java.util.Objects.deepEquals(this.identifiers, other.identifiers) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.reasonCodes, other.reasonCodes) &&
-            java.util.Objects.deepEquals(this.verified, other.verified);
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.cipConfidence, other.cipConfidence) &&
+            Objects.deepEquals(this.email, other.email) &&
+            Objects.deepEquals(this.identifiers, other.identifiers) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.reasonCodes, other.reasonCodes);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             address,
             cipConfidence,
             email,
             identifiers,
             name,
-            reasonCodes,
-            verified);
+            reasonCodes);
     }
     
     @Override
@@ -246,15 +219,14 @@ public class DataSourceInternal {
                 "email", email,
                 "identifiers", identifiers,
                 "name", name,
-                "reasonCodes", reasonCodes,
-                "verified", verified);
+                "reasonCodes", reasonCodes);
     }
     
     public final static class Builder {
  
         private Optional<? extends DataSourceAddressResponseInternal> address = Optional.empty();
  
-        private Optional<? extends String> cipConfidence = Optional.empty();
+        private Optional<String> cipConfidence = Optional.empty();
  
         private Optional<? extends DataSourceEmailAddressResponseInternal> email = Optional.empty();
  
@@ -262,9 +234,7 @@ public class DataSourceInternal {
  
         private Optional<? extends DataSourceNameResponseInternal> name = Optional.empty();
  
-        private Optional<? extends java.util.List<String>> reasonCodes = Optional.empty();
- 
-        private Optional<? extends Boolean> verified = Optional.empty();  
+        private Optional<? extends List<String>> reasonCodes = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -288,7 +258,7 @@ public class DataSourceInternal {
             return this;
         }
 
-        public Builder cipConfidence(Optional<? extends String> cipConfidence) {
+        public Builder cipConfidence(Optional<String> cipConfidence) {
             Utils.checkNotNull(cipConfidence, "cipConfidence");
             this.cipConfidence = cipConfidence;
             return this;
@@ -330,27 +300,15 @@ public class DataSourceInternal {
             return this;
         }
 
-        public Builder reasonCodes(java.util.List<String> reasonCodes) {
+        public Builder reasonCodes(List<String> reasonCodes) {
             Utils.checkNotNull(reasonCodes, "reasonCodes");
             this.reasonCodes = Optional.ofNullable(reasonCodes);
             return this;
         }
 
-        public Builder reasonCodes(Optional<? extends java.util.List<String>> reasonCodes) {
+        public Builder reasonCodes(Optional<? extends List<String>> reasonCodes) {
             Utils.checkNotNull(reasonCodes, "reasonCodes");
             this.reasonCodes = reasonCodes;
-            return this;
-        }
-
-        public Builder verified(boolean verified) {
-            Utils.checkNotNull(verified, "verified");
-            this.verified = Optional.ofNullable(verified);
-            return this;
-        }
-
-        public Builder verified(Optional<? extends Boolean> verified) {
-            Utils.checkNotNull(verified, "verified");
-            this.verified = verified;
             return this;
         }
         
@@ -361,8 +319,7 @@ public class DataSourceInternal {
                 email,
                 identifiers,
                 name,
-                reasonCodes,
-                verified);
+                reasonCodes);
         }
     }
 }

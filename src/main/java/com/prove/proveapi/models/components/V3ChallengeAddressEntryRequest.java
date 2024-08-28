@@ -4,19 +4,18 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ChallengeAddressEntryRequest {
 
@@ -25,43 +24,43 @@ public class V3ChallengeAddressEntryRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
-    private Optional<? extends String> address;
+    private Optional<String> address;
 
     /**
      * City of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("city")
-    private Optional<? extends String> city;
+    private Optional<String> city;
 
     /**
      * Extended address is the apartment number or other extended address information.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("extendedAddress")
-    private Optional<? extends String> extendedAddress;
+    private Optional<String> extendedAddress;
 
     /**
      * Postal code is the zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postalCode")
-    private Optional<? extends String> postalCode;
+    private Optional<String> postalCode;
 
     /**
      * Region is the state or locality of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("region")
-    private Optional<? extends String> region;
+    private Optional<String> region;
 
     @JsonCreator
     public V3ChallengeAddressEntryRequest(
-            @JsonProperty("address") Optional<? extends String> address,
-            @JsonProperty("city") Optional<? extends String> city,
-            @JsonProperty("extendedAddress") Optional<? extends String> extendedAddress,
-            @JsonProperty("postalCode") Optional<? extends String> postalCode,
-            @JsonProperty("region") Optional<? extends String> region) {
+            @JsonProperty("address") Optional<String> address,
+            @JsonProperty("city") Optional<String> city,
+            @JsonProperty("extendedAddress") Optional<String> extendedAddress,
+            @JsonProperty("postalCode") Optional<String> postalCode,
+            @JsonProperty("region") Optional<String> region) {
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(city, "city");
         Utils.checkNotNull(extendedAddress, "extendedAddress");
@@ -81,46 +80,41 @@ public class V3ChallengeAddressEntryRequest {
     /**
      * Address is the street address of the individual.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> address() {
-        return (Optional<String>) address;
+        return address;
     }
 
     /**
      * City of the individual.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> city() {
-        return (Optional<String>) city;
+        return city;
     }
 
     /**
      * Extended address is the apartment number or other extended address information.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> extendedAddress() {
-        return (Optional<String>) extendedAddress;
+        return extendedAddress;
     }
 
     /**
      * Postal code is the zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> postalCode() {
-        return (Optional<String>) postalCode;
+        return postalCode;
     }
 
     /**
      * Region is the state or locality of the individual.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> region() {
-        return (Optional<String>) region;
+        return region;
     }
 
     public final static Builder builder() {
@@ -139,7 +133,7 @@ public class V3ChallengeAddressEntryRequest {
     /**
      * Address is the street address of the individual.
      */
-    public V3ChallengeAddressEntryRequest withAddress(Optional<? extends String> address) {
+    public V3ChallengeAddressEntryRequest withAddress(Optional<String> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -157,7 +151,7 @@ public class V3ChallengeAddressEntryRequest {
     /**
      * City of the individual.
      */
-    public V3ChallengeAddressEntryRequest withCity(Optional<? extends String> city) {
+    public V3ChallengeAddressEntryRequest withCity(Optional<String> city) {
         Utils.checkNotNull(city, "city");
         this.city = city;
         return this;
@@ -175,7 +169,7 @@ public class V3ChallengeAddressEntryRequest {
     /**
      * Extended address is the apartment number or other extended address information.
      */
-    public V3ChallengeAddressEntryRequest withExtendedAddress(Optional<? extends String> extendedAddress) {
+    public V3ChallengeAddressEntryRequest withExtendedAddress(Optional<String> extendedAddress) {
         Utils.checkNotNull(extendedAddress, "extendedAddress");
         this.extendedAddress = extendedAddress;
         return this;
@@ -193,7 +187,7 @@ public class V3ChallengeAddressEntryRequest {
     /**
      * Postal code is the zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
      */
-    public V3ChallengeAddressEntryRequest withPostalCode(Optional<? extends String> postalCode) {
+    public V3ChallengeAddressEntryRequest withPostalCode(Optional<String> postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
         this.postalCode = postalCode;
         return this;
@@ -211,7 +205,7 @@ public class V3ChallengeAddressEntryRequest {
     /**
      * Region is the state or locality of the individual.
      */
-    public V3ChallengeAddressEntryRequest withRegion(Optional<? extends String> region) {
+    public V3ChallengeAddressEntryRequest withRegion(Optional<String> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
@@ -227,16 +221,16 @@ public class V3ChallengeAddressEntryRequest {
         }
         V3ChallengeAddressEntryRequest other = (V3ChallengeAddressEntryRequest) o;
         return 
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.city, other.city) &&
-            java.util.Objects.deepEquals(this.extendedAddress, other.extendedAddress) &&
-            java.util.Objects.deepEquals(this.postalCode, other.postalCode) &&
-            java.util.Objects.deepEquals(this.region, other.region);
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.city, other.city) &&
+            Objects.deepEquals(this.extendedAddress, other.extendedAddress) &&
+            Objects.deepEquals(this.postalCode, other.postalCode) &&
+            Objects.deepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             address,
             city,
             extendedAddress,
@@ -256,15 +250,15 @@ public class V3ChallengeAddressEntryRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> address = Optional.empty();
+        private Optional<String> address = Optional.empty();
  
-        private Optional<? extends String> city = Optional.empty();
+        private Optional<String> city = Optional.empty();
  
-        private Optional<? extends String> extendedAddress = Optional.empty();
+        private Optional<String> extendedAddress = Optional.empty();
  
-        private Optional<? extends String> postalCode = Optional.empty();
+        private Optional<String> postalCode = Optional.empty();
  
-        private Optional<? extends String> region = Optional.empty();  
+        private Optional<String> region = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -282,7 +276,7 @@ public class V3ChallengeAddressEntryRequest {
         /**
          * Address is the street address of the individual.
          */
-        public Builder address(Optional<? extends String> address) {
+        public Builder address(Optional<String> address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
@@ -300,7 +294,7 @@ public class V3ChallengeAddressEntryRequest {
         /**
          * City of the individual.
          */
-        public Builder city(Optional<? extends String> city) {
+        public Builder city(Optional<String> city) {
             Utils.checkNotNull(city, "city");
             this.city = city;
             return this;
@@ -318,7 +312,7 @@ public class V3ChallengeAddressEntryRequest {
         /**
          * Extended address is the apartment number or other extended address information.
          */
-        public Builder extendedAddress(Optional<? extends String> extendedAddress) {
+        public Builder extendedAddress(Optional<String> extendedAddress) {
             Utils.checkNotNull(extendedAddress, "extendedAddress");
             this.extendedAddress = extendedAddress;
             return this;
@@ -336,7 +330,7 @@ public class V3ChallengeAddressEntryRequest {
         /**
          * Postal code is the zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
          */
-        public Builder postalCode(Optional<? extends String> postalCode) {
+        public Builder postalCode(Optional<String> postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
             this.postalCode = postalCode;
             return this;
@@ -354,7 +348,7 @@ public class V3ChallengeAddressEntryRequest {
         /**
          * Region is the state or locality of the individual.
          */
-        public Builder region(Optional<? extends String> region) {
+        public Builder region(Optional<String> region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;

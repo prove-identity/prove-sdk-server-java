@@ -5,26 +5,45 @@
 package com.prove.proveapi;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.prove.proveapi.models.components.V3ChallengeRequest;
+import com.prove.proveapi.models.components.V3ChallengeResponse;
+import com.prove.proveapi.models.components.V3CompleteRequest;
+import com.prove.proveapi.models.components.V3CompleteResponse;
+import com.prove.proveapi.models.components.V3StartRequest;
+import com.prove.proveapi.models.components.V3StartResponse;
+import com.prove.proveapi.models.components.V3TokenRequest;
+import com.prove.proveapi.models.components.V3TokenResponse;
+import com.prove.proveapi.models.components.V3ValidateRequest;
+import com.prove.proveapi.models.components.V3ValidateResponse;
+import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.errors.SDKError;
 import com.prove.proveapi.models.operations.SDKMethodInterfaces.*;
+import com.prove.proveapi.models.operations.V3ChallengeRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3ChallengeRequestResponse;
+import com.prove.proveapi.models.operations.V3CompleteRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
+import com.prove.proveapi.models.operations.V3StartRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3StartRequestResponse;
+import com.prove.proveapi.models.operations.V3TokenRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3TokenRequestResponse;
+import com.prove.proveapi.models.operations.V3ValidateRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3ValidateRequestResponse;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.HTTPRequest;
 import com.prove.proveapi.utils.Hook.AfterErrorContextImpl;
 import com.prove.proveapi.utils.Hook.AfterSuccessContextImpl;
 import com.prove.proveapi.utils.Hook.BeforeRequestContextImpl;
-import com.prove.proveapi.utils.JSON;
-import com.prove.proveapi.utils.Retries.NonRetryableException;
 import com.prove.proveapi.utils.SerializedBody;
+import com.prove.proveapi.utils.Utils.JsonShape;
 import com.prove.proveapi.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class V3 implements
             MethodCallV3TokenRequest,
@@ -45,8 +64,8 @@ public class V3 implements
      * Send this request to request the OAuth token.
      * @return The call builder
      */
-    public com.prove.proveapi.models.operations.V3TokenRequestRequestBuilder v3TokenRequest() {
-        return new com.prove.proveapi.models.operations.V3TokenRequestRequestBuilder(this);
+    public V3TokenRequestRequestBuilder v3TokenRequest() {
+        return new V3TokenRequestRequestBuilder(this);
     }
 
     /**
@@ -55,9 +74,10 @@ public class V3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.prove.proveapi.models.operations.V3TokenRequestResponse v3TokenRequestDirect() throws Exception {
+    public V3TokenRequestResponse v3TokenRequestDirect() throws Exception {
         return v3TokenRequest(Optional.empty());
     }
+    
     /**
      * Request OAuth token.
      * Send this request to request the OAuth token.
@@ -65,18 +85,23 @@ public class V3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.prove.proveapi.models.operations.V3TokenRequestResponse v3TokenRequest(
-            Optional<? extends com.prove.proveapi.models.components.V3TokenRequest> request) throws Exception {
+    public V3TokenRequestResponse v3TokenRequest(
+            Optional<? extends V3TokenRequest> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/token");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3TokenRequest>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V3TokenRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "form", false);
+                _convertedRequest, 
+                "request",
+                "form",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -86,7 +111,10 @@ public class V3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("V3TokenRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "V3TokenRequest", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -94,18 +122,28 @@ public class V3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("V3TokenRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "V3TokenRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("V3TokenRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "V3TokenRequest",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("V3TokenRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3TokenRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -113,42 +151,42 @@ public class V3 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.prove.proveapi.models.operations.V3TokenRequestResponse.Builder _resBuilder = 
-            com.prove.proveapi.models.operations.V3TokenRequestResponse
+        V3TokenRequestResponse.Builder _resBuilder = 
+            V3TokenRequestResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.prove.proveapi.models.operations.V3TokenRequestResponse _res = _resBuilder.build();
+        V3TokenRequestResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.prove.proveapi.models.components.V3TokenResponse _out = Utils.mapper().readValue(
+                V3TokenResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.prove.proveapi.models.components.V3TokenResponse>() {});
-                _res.withV3TokenResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V3TokenResponse>() {});
+                _res.withV3TokenResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.prove.proveapi.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.prove.proveapi.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -157,13 +195,13 @@ public class V3 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -173,8 +211,8 @@ public class V3 implements
      * Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Prove Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
      * @return The call builder
      */
-    public com.prove.proveapi.models.operations.V3ChallengeRequestRequestBuilder v3ChallengeRequest() {
-        return new com.prove.proveapi.models.operations.V3ChallengeRequestRequestBuilder(this);
+    public V3ChallengeRequestRequestBuilder v3ChallengeRequest() {
+        return new V3ChallengeRequestRequestBuilder(this);
     }
 
     /**
@@ -183,9 +221,10 @@ public class V3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.prove.proveapi.models.operations.V3ChallengeRequestResponse v3ChallengeRequestDirect() throws Exception {
+    public V3ChallengeRequestResponse v3ChallengeRequestDirect() throws Exception {
         return v3ChallengeRequest(Optional.empty());
     }
+    
     /**
      * Submit challenge.
      * Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Prove Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
@@ -193,18 +232,23 @@ public class V3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.prove.proveapi.models.operations.V3ChallengeRequestResponse v3ChallengeRequest(
-            Optional<? extends com.prove.proveapi.models.components.V3ChallengeRequest> request) throws Exception {
+    public V3ChallengeRequestResponse v3ChallengeRequest(
+            Optional<? extends V3ChallengeRequest> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/challenge");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3ChallengeRequest>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V3ChallengeRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -217,7 +261,10 @@ public class V3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("V3ChallengeRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "V3ChallengeRequest", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -225,18 +272,28 @@ public class V3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("V3ChallengeRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "V3ChallengeRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("V3ChallengeRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "V3ChallengeRequest",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("V3ChallengeRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3ChallengeRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -244,42 +301,42 @@ public class V3 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.prove.proveapi.models.operations.V3ChallengeRequestResponse.Builder _resBuilder = 
-            com.prove.proveapi.models.operations.V3ChallengeRequestResponse
+        V3ChallengeRequestResponse.Builder _resBuilder = 
+            V3ChallengeRequestResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.prove.proveapi.models.operations.V3ChallengeRequestResponse _res = _resBuilder.build();
+        V3ChallengeRequestResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.prove.proveapi.models.components.V3ChallengeResponse _out = Utils.mapper().readValue(
+                V3ChallengeResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.prove.proveapi.models.components.V3ChallengeResponse>() {});
-                _res.withV3ChallengeResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V3ChallengeResponse>() {});
+                _res.withV3ChallengeResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.prove.proveapi.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.prove.proveapi.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -288,54 +345,60 @@ public class V3 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
     /**
      * Complete flow.
-     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify an individual.
+     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify ownership.
      * @return The call builder
      */
-    public com.prove.proveapi.models.operations.V3CompleteRequestRequestBuilder v3CompleteRequest() {
-        return new com.prove.proveapi.models.operations.V3CompleteRequestRequestBuilder(this);
+    public V3CompleteRequestRequestBuilder v3CompleteRequest() {
+        return new V3CompleteRequestRequestBuilder(this);
     }
 
     /**
      * Complete flow.
-     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify an individual.
+     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify ownership.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.prove.proveapi.models.operations.V3CompleteRequestResponse v3CompleteRequestDirect() throws Exception {
+    public V3CompleteRequestResponse v3CompleteRequestDirect() throws Exception {
         return v3CompleteRequest(Optional.empty());
     }
+    
     /**
      * Complete flow.
-     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify an individual.
+     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify ownership.
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.prove.proveapi.models.operations.V3CompleteRequestResponse v3CompleteRequest(
-            Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest> request) throws Exception {
+    public V3CompleteRequestResponse v3CompleteRequest(
+            Optional<? extends V3CompleteRequest> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/complete");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V3CompleteRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -348,7 +411,10 @@ public class V3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("V3CompleteRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "V3CompleteRequest", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -356,18 +422,28 @@ public class V3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("V3CompleteRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "V3CompleteRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("V3CompleteRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "V3CompleteRequest",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("V3CompleteRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3CompleteRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -375,42 +451,42 @@ public class V3 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.prove.proveapi.models.operations.V3CompleteRequestResponse.Builder _resBuilder = 
-            com.prove.proveapi.models.operations.V3CompleteRequestResponse
+        V3CompleteRequestResponse.Builder _resBuilder = 
+            V3CompleteRequestResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.prove.proveapi.models.operations.V3CompleteRequestResponse _res = _resBuilder.build();
+        V3CompleteRequestResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.prove.proveapi.models.components.V3CompleteResponse _out = Utils.mapper().readValue(
+                V3CompleteResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.prove.proveapi.models.components.V3CompleteResponse>() {});
-                _res.withV3CompleteResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V3CompleteResponse>() {});
+                _res.withV3CompleteResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.prove.proveapi.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.prove.proveapi.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -419,13 +495,13 @@ public class V3 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -435,8 +511,8 @@ public class V3 implements
      * Send this request to start a Prove flow. It will return a correlation ID and an authToken for the client SDK.
      * @return The call builder
      */
-    public com.prove.proveapi.models.operations.V3StartRequestRequestBuilder v3StartRequest() {
-        return new com.prove.proveapi.models.operations.V3StartRequestRequestBuilder(this);
+    public V3StartRequestRequestBuilder v3StartRequest() {
+        return new V3StartRequestRequestBuilder(this);
     }
 
     /**
@@ -445,9 +521,10 @@ public class V3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.prove.proveapi.models.operations.V3StartRequestResponse v3StartRequestDirect() throws Exception {
+    public V3StartRequestResponse v3StartRequestDirect() throws Exception {
         return v3StartRequest(Optional.empty());
     }
+    
     /**
      * Start flow.
      * Send this request to start a Prove flow. It will return a correlation ID and an authToken for the client SDK.
@@ -455,18 +532,23 @@ public class V3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.prove.proveapi.models.operations.V3StartRequestResponse v3StartRequest(
-            Optional<? extends com.prove.proveapi.models.components.V3StartRequest> request) throws Exception {
+    public V3StartRequestResponse v3StartRequest(
+            Optional<? extends V3StartRequest> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/start");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3StartRequest>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V3StartRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -479,7 +561,10 @@ public class V3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("V3StartRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "V3StartRequest", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -487,18 +572,28 @@ public class V3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("V3StartRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "V3StartRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("V3StartRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "V3StartRequest",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("V3StartRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3StartRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -506,42 +601,42 @@ public class V3 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.prove.proveapi.models.operations.V3StartRequestResponse.Builder _resBuilder = 
-            com.prove.proveapi.models.operations.V3StartRequestResponse
+        V3StartRequestResponse.Builder _resBuilder = 
+            V3StartRequestResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.prove.proveapi.models.operations.V3StartRequestResponse _res = _resBuilder.build();
+        V3StartRequestResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.prove.proveapi.models.components.V3StartResponse _out = Utils.mapper().readValue(
+                V3StartResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.prove.proveapi.models.components.V3StartResponse>() {});
-                _res.withV3StartResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V3StartResponse>() {});
+                _res.withV3StartResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.prove.proveapi.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.prove.proveapi.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -550,13 +645,13 @@ public class V3 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -566,8 +661,8 @@ public class V3 implements
      * Send this request to check the phone number entered/discovered earlier in the flow is validated. It will return a correlation ID and the next step.
      * @return The call builder
      */
-    public com.prove.proveapi.models.operations.V3ValidateRequestRequestBuilder v3ValidateRequest() {
-        return new com.prove.proveapi.models.operations.V3ValidateRequestRequestBuilder(this);
+    public V3ValidateRequestRequestBuilder v3ValidateRequest() {
+        return new V3ValidateRequestRequestBuilder(this);
     }
 
     /**
@@ -576,9 +671,10 @@ public class V3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.prove.proveapi.models.operations.V3ValidateRequestResponse v3ValidateRequestDirect() throws Exception {
+    public V3ValidateRequestResponse v3ValidateRequestDirect() throws Exception {
         return v3ValidateRequest(Optional.empty());
     }
+    
     /**
      * Validate phone number.
      * Send this request to check the phone number entered/discovered earlier in the flow is validated. It will return a correlation ID and the next step.
@@ -586,18 +682,23 @@ public class V3 implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.prove.proveapi.models.operations.V3ValidateRequestResponse v3ValidateRequest(
-            Optional<? extends com.prove.proveapi.models.components.V3ValidateRequest> request) throws Exception {
+    public V3ValidateRequestResponse v3ValidateRequest(
+            Optional<? extends V3ValidateRequest> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/validate");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3ValidateRequest>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V3ValidateRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -610,7 +711,10 @@ public class V3 implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("V3ValidateRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "V3ValidateRequest", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -618,18 +722,28 @@ public class V3 implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("V3ValidateRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "V3ValidateRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("V3ValidateRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "V3ValidateRequest",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("V3ValidateRequest", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3ValidateRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -637,42 +751,42 @@ public class V3 implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.prove.proveapi.models.operations.V3ValidateRequestResponse.Builder _resBuilder = 
-            com.prove.proveapi.models.operations.V3ValidateRequestResponse
+        V3ValidateRequestResponse.Builder _resBuilder = 
+            V3ValidateRequestResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.prove.proveapi.models.operations.V3ValidateRequestResponse _res = _resBuilder.build();
+        V3ValidateRequestResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.prove.proveapi.models.components.V3ValidateResponse _out = Utils.mapper().readValue(
+                V3ValidateResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.prove.proveapi.models.components.V3ValidateResponse>() {});
-                _res.withV3ValidateResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V3ValidateResponse>() {});
+                _res.withV3ValidateResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.prove.proveapi.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.prove.proveapi.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -681,13 +795,13 @@ public class V3 implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

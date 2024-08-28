@@ -4,43 +4,44 @@
 
 package com.prove.proveapi.models.operations;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import com.prove.proveapi.models.components.V3ChallengeRequest;
+import com.prove.proveapi.models.components.V3CompleteRequest;
+import com.prove.proveapi.models.components.V3StartRequest;
+import com.prove.proveapi.models.components.V3TokenRequest;
+import com.prove.proveapi.models.components.V3ValidateRequest;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class SDKMethodInterfaces {
 
+
     public interface MethodCallV3TokenRequest {
         com.prove.proveapi.models.operations.V3TokenRequestResponse v3TokenRequest(
-            Optional<? extends com.prove.proveapi.models.components.V3TokenRequest> request) throws Exception;
+            Optional<? extends V3TokenRequest> request) throws Exception;
     }
 
 
     public interface MethodCallV3ChallengeRequest {
         com.prove.proveapi.models.operations.V3ChallengeRequestResponse v3ChallengeRequest(
-            Optional<? extends com.prove.proveapi.models.components.V3ChallengeRequest> request) throws Exception;
+            Optional<? extends V3ChallengeRequest> request) throws Exception;
     }
 
 
     public interface MethodCallV3CompleteRequest {
         com.prove.proveapi.models.operations.V3CompleteRequestResponse v3CompleteRequest(
-            Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest> request) throws Exception;
+            Optional<? extends V3CompleteRequest> request) throws Exception;
     }
 
 
     public interface MethodCallV3StartRequest {
         com.prove.proveapi.models.operations.V3StartRequestResponse v3StartRequest(
-            Optional<? extends com.prove.proveapi.models.components.V3StartRequest> request) throws Exception;
+            Optional<? extends V3StartRequest> request) throws Exception;
     }
 
 
     public interface MethodCallV3ValidateRequest {
         com.prove.proveapi.models.operations.V3ValidateRequestResponse v3ValidateRequest(
-            Optional<? extends com.prove.proveapi.models.components.V3ValidateRequest> request) throws Exception;
+            Optional<? extends V3ValidateRequest> request) throws Exception;
     }
+
 
 }

@@ -4,39 +4,39 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class DataSourceNameResponseInternal {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("firstName")
-    private Optional<? extends Long> firstName;
+    private Optional<Long> firstName;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastName")
-    private Optional<? extends Long> lastName;
+    private Optional<Long> lastName;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nameScore")
-    private Optional<? extends Long> nameScore;
+    private Optional<Long> nameScore;
 
     @JsonCreator
     public DataSourceNameResponseInternal(
-            @JsonProperty("firstName") Optional<? extends Long> firstName,
-            @JsonProperty("lastName") Optional<? extends Long> lastName,
-            @JsonProperty("nameScore") Optional<? extends Long> nameScore) {
+            @JsonProperty("firstName") Optional<Long> firstName,
+            @JsonProperty("lastName") Optional<Long> lastName,
+            @JsonProperty("nameScore") Optional<Long> nameScore) {
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(nameScore, "nameScore");
@@ -49,22 +49,19 @@ public class DataSourceNameResponseInternal {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> firstName() {
-        return (Optional<Long>) firstName;
+        return firstName;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> lastName() {
-        return (Optional<Long>) lastName;
+        return lastName;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> nameScore() {
-        return (Optional<Long>) nameScore;
+        return nameScore;
     }
 
     public final static Builder builder() {
@@ -77,7 +74,7 @@ public class DataSourceNameResponseInternal {
         return this;
     }
 
-    public DataSourceNameResponseInternal withFirstName(Optional<? extends Long> firstName) {
+    public DataSourceNameResponseInternal withFirstName(Optional<Long> firstName) {
         Utils.checkNotNull(firstName, "firstName");
         this.firstName = firstName;
         return this;
@@ -89,7 +86,7 @@ public class DataSourceNameResponseInternal {
         return this;
     }
 
-    public DataSourceNameResponseInternal withLastName(Optional<? extends Long> lastName) {
+    public DataSourceNameResponseInternal withLastName(Optional<Long> lastName) {
         Utils.checkNotNull(lastName, "lastName");
         this.lastName = lastName;
         return this;
@@ -101,7 +98,7 @@ public class DataSourceNameResponseInternal {
         return this;
     }
 
-    public DataSourceNameResponseInternal withNameScore(Optional<? extends Long> nameScore) {
+    public DataSourceNameResponseInternal withNameScore(Optional<Long> nameScore) {
         Utils.checkNotNull(nameScore, "nameScore");
         this.nameScore = nameScore;
         return this;
@@ -117,14 +114,14 @@ public class DataSourceNameResponseInternal {
         }
         DataSourceNameResponseInternal other = (DataSourceNameResponseInternal) o;
         return 
-            java.util.Objects.deepEquals(this.firstName, other.firstName) &&
-            java.util.Objects.deepEquals(this.lastName, other.lastName) &&
-            java.util.Objects.deepEquals(this.nameScore, other.nameScore);
+            Objects.deepEquals(this.firstName, other.firstName) &&
+            Objects.deepEquals(this.lastName, other.lastName) &&
+            Objects.deepEquals(this.nameScore, other.nameScore);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             firstName,
             lastName,
             nameScore);
@@ -140,11 +137,11 @@ public class DataSourceNameResponseInternal {
     
     public final static class Builder {
  
-        private Optional<? extends Long> firstName = Optional.empty();
+        private Optional<Long> firstName = Optional.empty();
  
-        private Optional<? extends Long> lastName = Optional.empty();
+        private Optional<Long> lastName = Optional.empty();
  
-        private Optional<? extends Long> nameScore = Optional.empty();  
+        private Optional<Long> nameScore = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -156,7 +153,7 @@ public class DataSourceNameResponseInternal {
             return this;
         }
 
-        public Builder firstName(Optional<? extends Long> firstName) {
+        public Builder firstName(Optional<Long> firstName) {
             Utils.checkNotNull(firstName, "firstName");
             this.firstName = firstName;
             return this;
@@ -168,7 +165,7 @@ public class DataSourceNameResponseInternal {
             return this;
         }
 
-        public Builder lastName(Optional<? extends Long> lastName) {
+        public Builder lastName(Optional<Long> lastName) {
             Utils.checkNotNull(lastName, "lastName");
             this.lastName = lastName;
             return this;
@@ -180,7 +177,7 @@ public class DataSourceNameResponseInternal {
             return this;
         }
 
-        public Builder nameScore(Optional<? extends Long> nameScore) {
+        public Builder nameScore(Optional<Long> nameScore) {
             Utils.checkNotNull(nameScore, "nameScore");
             this.nameScore = nameScore;
             return this;

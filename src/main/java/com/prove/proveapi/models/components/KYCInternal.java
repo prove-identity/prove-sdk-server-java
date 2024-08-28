@@ -4,117 +4,68 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class KYCInternal {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("adverseMediaList")
-    private Optional<? extends java.util.List<AdverseMediaResponseInternal>> adverseMediaList;
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("aliasList")
-    private Optional<? extends java.util.List<String>> aliasList;
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amlTypeLists")
-    private Optional<? extends java.util.List<AmlTypeListResponseInternal>> amlTypeLists;
+    private Optional<? extends List<AmlTypeListResponseInternal>> amlTypeLists;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totalHits")
-    private Optional<? extends Long> totalHits;
+    private Optional<Long> totalHits;
 
     @JsonCreator
     public KYCInternal(
-            @JsonProperty("adverseMediaList") Optional<? extends java.util.List<AdverseMediaResponseInternal>> adverseMediaList,
-            @JsonProperty("aliasList") Optional<? extends java.util.List<String>> aliasList,
-            @JsonProperty("amlTypeLists") Optional<? extends java.util.List<AmlTypeListResponseInternal>> amlTypeLists,
-            @JsonProperty("totalHits") Optional<? extends Long> totalHits) {
-        Utils.checkNotNull(adverseMediaList, "adverseMediaList");
-        Utils.checkNotNull(aliasList, "aliasList");
+            @JsonProperty("amlTypeLists") Optional<? extends List<AmlTypeListResponseInternal>> amlTypeLists,
+            @JsonProperty("totalHits") Optional<Long> totalHits) {
         Utils.checkNotNull(amlTypeLists, "amlTypeLists");
         Utils.checkNotNull(totalHits, "totalHits");
-        this.adverseMediaList = adverseMediaList;
-        this.aliasList = aliasList;
         this.amlTypeLists = amlTypeLists;
         this.totalHits = totalHits;
     }
     
     public KYCInternal() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<AdverseMediaResponseInternal>> adverseMediaList() {
-        return (Optional<java.util.List<AdverseMediaResponseInternal>>) adverseMediaList;
+    public Optional<List<AmlTypeListResponseInternal>> amlTypeLists() {
+        return (Optional<List<AmlTypeListResponseInternal>>) amlTypeLists;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<java.util.List<String>> aliasList() {
-        return (Optional<java.util.List<String>>) aliasList;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<java.util.List<AmlTypeListResponseInternal>> amlTypeLists() {
-        return (Optional<java.util.List<AmlTypeListResponseInternal>>) amlTypeLists;
-    }
-
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> totalHits() {
-        return (Optional<Long>) totalHits;
+        return totalHits;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public KYCInternal withAdverseMediaList(java.util.List<AdverseMediaResponseInternal> adverseMediaList) {
-        Utils.checkNotNull(adverseMediaList, "adverseMediaList");
-        this.adverseMediaList = Optional.ofNullable(adverseMediaList);
-        return this;
-    }
-
-    public KYCInternal withAdverseMediaList(Optional<? extends java.util.List<AdverseMediaResponseInternal>> adverseMediaList) {
-        Utils.checkNotNull(adverseMediaList, "adverseMediaList");
-        this.adverseMediaList = adverseMediaList;
-        return this;
-    }
-
-    public KYCInternal withAliasList(java.util.List<String> aliasList) {
-        Utils.checkNotNull(aliasList, "aliasList");
-        this.aliasList = Optional.ofNullable(aliasList);
-        return this;
-    }
-
-    public KYCInternal withAliasList(Optional<? extends java.util.List<String>> aliasList) {
-        Utils.checkNotNull(aliasList, "aliasList");
-        this.aliasList = aliasList;
-        return this;
-    }
-
-    public KYCInternal withAmlTypeLists(java.util.List<AmlTypeListResponseInternal> amlTypeLists) {
+    public KYCInternal withAmlTypeLists(List<AmlTypeListResponseInternal> amlTypeLists) {
         Utils.checkNotNull(amlTypeLists, "amlTypeLists");
         this.amlTypeLists = Optional.ofNullable(amlTypeLists);
         return this;
     }
 
-    public KYCInternal withAmlTypeLists(Optional<? extends java.util.List<AmlTypeListResponseInternal>> amlTypeLists) {
+    public KYCInternal withAmlTypeLists(Optional<? extends List<AmlTypeListResponseInternal>> amlTypeLists) {
         Utils.checkNotNull(amlTypeLists, "amlTypeLists");
         this.amlTypeLists = amlTypeLists;
         return this;
@@ -126,7 +77,7 @@ public class KYCInternal {
         return this;
     }
 
-    public KYCInternal withTotalHits(Optional<? extends Long> totalHits) {
+    public KYCInternal withTotalHits(Optional<Long> totalHits) {
         Utils.checkNotNull(totalHits, "totalHits");
         this.totalHits = totalHits;
         return this;
@@ -142,17 +93,13 @@ public class KYCInternal {
         }
         KYCInternal other = (KYCInternal) o;
         return 
-            java.util.Objects.deepEquals(this.adverseMediaList, other.adverseMediaList) &&
-            java.util.Objects.deepEquals(this.aliasList, other.aliasList) &&
-            java.util.Objects.deepEquals(this.amlTypeLists, other.amlTypeLists) &&
-            java.util.Objects.deepEquals(this.totalHits, other.totalHits);
+            Objects.deepEquals(this.amlTypeLists, other.amlTypeLists) &&
+            Objects.deepEquals(this.totalHits, other.totalHits);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
-            adverseMediaList,
-            aliasList,
+        return Objects.hash(
             amlTypeLists,
             totalHits);
     }
@@ -160,57 +107,27 @@ public class KYCInternal {
     @Override
     public String toString() {
         return Utils.toString(KYCInternal.class,
-                "adverseMediaList", adverseMediaList,
-                "aliasList", aliasList,
                 "amlTypeLists", amlTypeLists,
                 "totalHits", totalHits);
     }
     
     public final static class Builder {
  
-        private Optional<? extends java.util.List<AdverseMediaResponseInternal>> adverseMediaList = Optional.empty();
+        private Optional<? extends List<AmlTypeListResponseInternal>> amlTypeLists = Optional.empty();
  
-        private Optional<? extends java.util.List<String>> aliasList = Optional.empty();
- 
-        private Optional<? extends java.util.List<AmlTypeListResponseInternal>> amlTypeLists = Optional.empty();
- 
-        private Optional<? extends Long> totalHits = Optional.empty();  
+        private Optional<Long> totalHits = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder adverseMediaList(java.util.List<AdverseMediaResponseInternal> adverseMediaList) {
-            Utils.checkNotNull(adverseMediaList, "adverseMediaList");
-            this.adverseMediaList = Optional.ofNullable(adverseMediaList);
-            return this;
-        }
-
-        public Builder adverseMediaList(Optional<? extends java.util.List<AdverseMediaResponseInternal>> adverseMediaList) {
-            Utils.checkNotNull(adverseMediaList, "adverseMediaList");
-            this.adverseMediaList = adverseMediaList;
-            return this;
-        }
-
-        public Builder aliasList(java.util.List<String> aliasList) {
-            Utils.checkNotNull(aliasList, "aliasList");
-            this.aliasList = Optional.ofNullable(aliasList);
-            return this;
-        }
-
-        public Builder aliasList(Optional<? extends java.util.List<String>> aliasList) {
-            Utils.checkNotNull(aliasList, "aliasList");
-            this.aliasList = aliasList;
-            return this;
-        }
-
-        public Builder amlTypeLists(java.util.List<AmlTypeListResponseInternal> amlTypeLists) {
+        public Builder amlTypeLists(List<AmlTypeListResponseInternal> amlTypeLists) {
             Utils.checkNotNull(amlTypeLists, "amlTypeLists");
             this.amlTypeLists = Optional.ofNullable(amlTypeLists);
             return this;
         }
 
-        public Builder amlTypeLists(Optional<? extends java.util.List<AmlTypeListResponseInternal>> amlTypeLists) {
+        public Builder amlTypeLists(Optional<? extends List<AmlTypeListResponseInternal>> amlTypeLists) {
             Utils.checkNotNull(amlTypeLists, "amlTypeLists");
             this.amlTypeLists = amlTypeLists;
             return this;
@@ -222,7 +139,7 @@ public class KYCInternal {
             return this;
         }
 
-        public Builder totalHits(Optional<? extends Long> totalHits) {
+        public Builder totalHits(Optional<Long> totalHits) {
             Utils.checkNotNull(totalHits, "totalHits");
             this.totalHits = totalHits;
             return this;
@@ -230,8 +147,6 @@ public class KYCInternal {
         
         public KYCInternal build() {
             return new KYCInternal(
-                adverseMediaList,
-                aliasList,
                 amlTypeLists,
                 totalHits);
         }

@@ -4,39 +4,41 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class AmlTypeListResponseInternal {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amlType")
-    private Optional<? extends String> amlType;
+    private Optional<String> amlType;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fields")
-    private Optional<? extends java.util.List<KYCFieldTypeResponseInternal>> fields;
+    private Optional<? extends List<KYCFieldTypeResponseInternal>> fields;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("listHits")
-    private Optional<? extends Long> listHits;
+    private Optional<Long> listHits;
 
     @JsonCreator
     public AmlTypeListResponseInternal(
-            @JsonProperty("amlType") Optional<? extends String> amlType,
-            @JsonProperty("fields") Optional<? extends java.util.List<KYCFieldTypeResponseInternal>> fields,
-            @JsonProperty("listHits") Optional<? extends Long> listHits) {
+            @JsonProperty("amlType") Optional<String> amlType,
+            @JsonProperty("fields") Optional<? extends List<KYCFieldTypeResponseInternal>> fields,
+            @JsonProperty("listHits") Optional<Long> listHits) {
         Utils.checkNotNull(amlType, "amlType");
         Utils.checkNotNull(fields, "fields");
         Utils.checkNotNull(listHits, "listHits");
@@ -49,22 +51,20 @@ public class AmlTypeListResponseInternal {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> amlType() {
-        return (Optional<String>) amlType;
+        return amlType;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<KYCFieldTypeResponseInternal>> fields() {
-        return (Optional<java.util.List<KYCFieldTypeResponseInternal>>) fields;
+    public Optional<List<KYCFieldTypeResponseInternal>> fields() {
+        return (Optional<List<KYCFieldTypeResponseInternal>>) fields;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> listHits() {
-        return (Optional<Long>) listHits;
+        return listHits;
     }
 
     public final static Builder builder() {
@@ -77,19 +77,19 @@ public class AmlTypeListResponseInternal {
         return this;
     }
 
-    public AmlTypeListResponseInternal withAmlType(Optional<? extends String> amlType) {
+    public AmlTypeListResponseInternal withAmlType(Optional<String> amlType) {
         Utils.checkNotNull(amlType, "amlType");
         this.amlType = amlType;
         return this;
     }
 
-    public AmlTypeListResponseInternal withFields(java.util.List<KYCFieldTypeResponseInternal> fields) {
+    public AmlTypeListResponseInternal withFields(List<KYCFieldTypeResponseInternal> fields) {
         Utils.checkNotNull(fields, "fields");
         this.fields = Optional.ofNullable(fields);
         return this;
     }
 
-    public AmlTypeListResponseInternal withFields(Optional<? extends java.util.List<KYCFieldTypeResponseInternal>> fields) {
+    public AmlTypeListResponseInternal withFields(Optional<? extends List<KYCFieldTypeResponseInternal>> fields) {
         Utils.checkNotNull(fields, "fields");
         this.fields = fields;
         return this;
@@ -101,7 +101,7 @@ public class AmlTypeListResponseInternal {
         return this;
     }
 
-    public AmlTypeListResponseInternal withListHits(Optional<? extends Long> listHits) {
+    public AmlTypeListResponseInternal withListHits(Optional<Long> listHits) {
         Utils.checkNotNull(listHits, "listHits");
         this.listHits = listHits;
         return this;
@@ -117,14 +117,14 @@ public class AmlTypeListResponseInternal {
         }
         AmlTypeListResponseInternal other = (AmlTypeListResponseInternal) o;
         return 
-            java.util.Objects.deepEquals(this.amlType, other.amlType) &&
-            java.util.Objects.deepEquals(this.fields, other.fields) &&
-            java.util.Objects.deepEquals(this.listHits, other.listHits);
+            Objects.deepEquals(this.amlType, other.amlType) &&
+            Objects.deepEquals(this.fields, other.fields) &&
+            Objects.deepEquals(this.listHits, other.listHits);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amlType,
             fields,
             listHits);
@@ -140,11 +140,11 @@ public class AmlTypeListResponseInternal {
     
     public final static class Builder {
  
-        private Optional<? extends String> amlType = Optional.empty();
+        private Optional<String> amlType = Optional.empty();
  
-        private Optional<? extends java.util.List<KYCFieldTypeResponseInternal>> fields = Optional.empty();
+        private Optional<? extends List<KYCFieldTypeResponseInternal>> fields = Optional.empty();
  
-        private Optional<? extends Long> listHits = Optional.empty();  
+        private Optional<Long> listHits = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -156,19 +156,19 @@ public class AmlTypeListResponseInternal {
             return this;
         }
 
-        public Builder amlType(Optional<? extends String> amlType) {
+        public Builder amlType(Optional<String> amlType) {
             Utils.checkNotNull(amlType, "amlType");
             this.amlType = amlType;
             return this;
         }
 
-        public Builder fields(java.util.List<KYCFieldTypeResponseInternal> fields) {
+        public Builder fields(List<KYCFieldTypeResponseInternal> fields) {
             Utils.checkNotNull(fields, "fields");
             this.fields = Optional.ofNullable(fields);
             return this;
         }
 
-        public Builder fields(Optional<? extends java.util.List<KYCFieldTypeResponseInternal>> fields) {
+        public Builder fields(Optional<? extends List<KYCFieldTypeResponseInternal>> fields) {
             Utils.checkNotNull(fields, "fields");
             this.fields = fields;
             return this;
@@ -180,7 +180,7 @@ public class AmlTypeListResponseInternal {
             return this;
         }
 
-        public Builder listHits(Optional<? extends Long> listHits) {
+        public Builder listHits(Optional<Long> listHits) {
             Utils.checkNotNull(listHits, "listHits");
             this.listHits = listHits;
             return this;

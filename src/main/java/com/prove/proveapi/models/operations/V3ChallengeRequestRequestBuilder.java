@@ -4,22 +4,13 @@
 
 package com.prove.proveapi.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.prove.proveapi.models.errors.SDKError;
-import com.prove.proveapi.utils.LazySingletonValue;
+import com.prove.proveapi.models.components.V3ChallengeRequest;
 import com.prove.proveapi.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class V3ChallengeRequestRequestBuilder {
 
-    private Optional<? extends com.prove.proveapi.models.components.V3ChallengeRequest> request = Optional.empty();
+    private Optional<? extends V3ChallengeRequest> request = Optional.empty();
     private final SDKMethodInterfaces.MethodCallV3ChallengeRequest sdk;
 
     public V3ChallengeRequestRequestBuilder(SDKMethodInterfaces.MethodCallV3ChallengeRequest sdk) {
@@ -32,7 +23,7 @@ public class V3ChallengeRequestRequestBuilder {
         return this;
     }
 
-    public V3ChallengeRequestRequestBuilder request(Optional<? extends com.prove.proveapi.models.components.V3ChallengeRequest> request) {
+    public V3ChallengeRequestRequestBuilder request(java.util.Optional<? extends com.prove.proveapi.models.components.V3ChallengeRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

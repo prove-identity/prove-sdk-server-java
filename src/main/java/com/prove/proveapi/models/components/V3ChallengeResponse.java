@@ -4,19 +4,21 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ChallengeResponse {
 
@@ -28,7 +30,7 @@ public class V3ChallengeResponse {
      * Next contains the next set of allowed calls in the same flow.
      */
     @JsonProperty("next")
-    private java.util.Map<String, String> next;
+    private Map<String, String> next;
 
     /**
      * Success returns true if the challenge was accepted and user info retrieved.
@@ -39,7 +41,7 @@ public class V3ChallengeResponse {
     @JsonCreator
     public V3ChallengeResponse(
             @JsonProperty("individual") Optional<? extends V3ChallengeIndividualRequest> individual,
-            @JsonProperty("next") java.util.Map<String, String> next,
+            @JsonProperty("next") Map<String, String> next,
             @JsonProperty("success") boolean success) {
         Utils.checkNotNull(individual, "individual");
         next = Utils.emptyMapIfNull(next);
@@ -50,7 +52,7 @@ public class V3ChallengeResponse {
     }
     
     public V3ChallengeResponse(
-            java.util.Map<String, String> next,
+            Map<String, String> next,
             boolean success) {
         this(Optional.empty(), next, success);
     }
@@ -65,7 +67,7 @@ public class V3ChallengeResponse {
      * Next contains the next set of allowed calls in the same flow.
      */
     @JsonIgnore
-    public java.util.Map<String, String> next() {
+    public Map<String, String> next() {
         return next;
     }
 
@@ -96,7 +98,7 @@ public class V3ChallengeResponse {
     /**
      * Next contains the next set of allowed calls in the same flow.
      */
-    public V3ChallengeResponse withNext(java.util.Map<String, String> next) {
+    public V3ChallengeResponse withNext(Map<String, String> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -121,14 +123,14 @@ public class V3ChallengeResponse {
         }
         V3ChallengeResponse other = (V3ChallengeResponse) o;
         return 
-            java.util.Objects.deepEquals(this.individual, other.individual) &&
-            java.util.Objects.deepEquals(this.next, other.next) &&
-            java.util.Objects.deepEquals(this.success, other.success);
+            Objects.deepEquals(this.individual, other.individual) &&
+            Objects.deepEquals(this.next, other.next) &&
+            Objects.deepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             individual,
             next,
             success);
@@ -146,7 +148,7 @@ public class V3ChallengeResponse {
  
         private Optional<? extends V3ChallengeIndividualRequest> individual = Optional.empty();
  
-        private java.util.Map<String, String> next;
+        private Map<String, String> next;
  
         private Boolean success;  
         
@@ -169,7 +171,7 @@ public class V3ChallengeResponse {
         /**
          * Next contains the next set of allowed calls in the same flow.
          */
-        public Builder next(java.util.Map<String, String> next) {
+        public Builder next(Map<String, String> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;

@@ -4,16 +4,16 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class V3StartResponse {
 
@@ -33,13 +33,13 @@ public class V3StartResponse {
      * Next contains the next set of allowed calls in the same flow.
      */
     @JsonProperty("next")
-    private java.util.Map<String, String> next;
+    private Map<String, String> next;
 
     @JsonCreator
     public V3StartResponse(
             @JsonProperty("authToken") String authToken,
             @JsonProperty("correlationId") String correlationId,
-            @JsonProperty("next") java.util.Map<String, String> next) {
+            @JsonProperty("next") Map<String, String> next) {
         Utils.checkNotNull(authToken, "authToken");
         Utils.checkNotNull(correlationId, "correlationId");
         next = Utils.emptyMapIfNull(next);
@@ -68,7 +68,7 @@ public class V3StartResponse {
      * Next contains the next set of allowed calls in the same flow.
      */
     @JsonIgnore
-    public java.util.Map<String, String> next() {
+    public Map<String, String> next() {
         return next;
     }
 
@@ -97,7 +97,7 @@ public class V3StartResponse {
     /**
      * Next contains the next set of allowed calls in the same flow.
      */
-    public V3StartResponse withNext(java.util.Map<String, String> next) {
+    public V3StartResponse withNext(Map<String, String> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -113,14 +113,14 @@ public class V3StartResponse {
         }
         V3StartResponse other = (V3StartResponse) o;
         return 
-            java.util.Objects.deepEquals(this.authToken, other.authToken) &&
-            java.util.Objects.deepEquals(this.correlationId, other.correlationId) &&
-            java.util.Objects.deepEquals(this.next, other.next);
+            Objects.deepEquals(this.authToken, other.authToken) &&
+            Objects.deepEquals(this.correlationId, other.correlationId) &&
+            Objects.deepEquals(this.next, other.next);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             authToken,
             correlationId,
             next);
@@ -140,7 +140,7 @@ public class V3StartResponse {
  
         private String correlationId;
  
-        private java.util.Map<String, String> next;  
+        private Map<String, String> next;  
         
         private Builder() {
           // force use of static builder() method
@@ -167,7 +167,7 @@ public class V3StartResponse {
         /**
          * Next contains the next set of allowed calls in the same flow.
          */
-        public Builder next(java.util.Map<String, String> next) {
+        public Builder next(Map<String, String> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;

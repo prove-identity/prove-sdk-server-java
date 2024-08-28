@@ -4,29 +4,29 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class DataSourceEmailAddressResponseInternal {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emailAddress")
-    private Optional<? extends Boolean> emailAddress;
+    private Optional<Boolean> emailAddress;
 
     @JsonCreator
     public DataSourceEmailAddressResponseInternal(
-            @JsonProperty("emailAddress") Optional<? extends Boolean> emailAddress) {
+            @JsonProperty("emailAddress") Optional<Boolean> emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = emailAddress;
     }
@@ -35,10 +35,9 @@ public class DataSourceEmailAddressResponseInternal {
         this(Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> emailAddress() {
-        return (Optional<Boolean>) emailAddress;
+        return emailAddress;
     }
 
     public final static Builder builder() {
@@ -51,7 +50,7 @@ public class DataSourceEmailAddressResponseInternal {
         return this;
     }
 
-    public DataSourceEmailAddressResponseInternal withEmailAddress(Optional<? extends Boolean> emailAddress) {
+    public DataSourceEmailAddressResponseInternal withEmailAddress(Optional<Boolean> emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = emailAddress;
         return this;
@@ -67,12 +66,12 @@ public class DataSourceEmailAddressResponseInternal {
         }
         DataSourceEmailAddressResponseInternal other = (DataSourceEmailAddressResponseInternal) o;
         return 
-            java.util.Objects.deepEquals(this.emailAddress, other.emailAddress);
+            Objects.deepEquals(this.emailAddress, other.emailAddress);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             emailAddress);
     }
     
@@ -84,7 +83,7 @@ public class DataSourceEmailAddressResponseInternal {
     
     public final static class Builder {
  
-        private Optional<? extends Boolean> emailAddress = Optional.empty();  
+        private Optional<Boolean> emailAddress = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -96,7 +95,7 @@ public class DataSourceEmailAddressResponseInternal {
             return this;
         }
 
-        public Builder emailAddress(Optional<? extends Boolean> emailAddress) {
+        public Builder emailAddress(Optional<Boolean> emailAddress) {
             Utils.checkNotNull(emailAddress, "emailAddress");
             this.emailAddress = emailAddress;
             return this;

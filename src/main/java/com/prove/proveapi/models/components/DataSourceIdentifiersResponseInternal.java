@@ -4,93 +4,64 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class DataSourceIdentifiersResponseInternal {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dob")
-    private Optional<? extends Boolean> dob;
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("driversLicenseNumber")
-    private Optional<? extends Boolean> driversLicenseNumber;
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("driversLicenseState")
-    private Optional<? extends Boolean> driversLicenseState;
+    private Optional<Boolean> dob;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("last4")
-    private Optional<? extends Boolean> last4;
+    private Optional<Boolean> last4;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ssn")
-    private Optional<? extends Boolean> ssn;
+    private Optional<Boolean> ssn;
 
     @JsonCreator
     public DataSourceIdentifiersResponseInternal(
-            @JsonProperty("dob") Optional<? extends Boolean> dob,
-            @JsonProperty("driversLicenseNumber") Optional<? extends Boolean> driversLicenseNumber,
-            @JsonProperty("driversLicenseState") Optional<? extends Boolean> driversLicenseState,
-            @JsonProperty("last4") Optional<? extends Boolean> last4,
-            @JsonProperty("ssn") Optional<? extends Boolean> ssn) {
+            @JsonProperty("dob") Optional<Boolean> dob,
+            @JsonProperty("last4") Optional<Boolean> last4,
+            @JsonProperty("ssn") Optional<Boolean> ssn) {
         Utils.checkNotNull(dob, "dob");
-        Utils.checkNotNull(driversLicenseNumber, "driversLicenseNumber");
-        Utils.checkNotNull(driversLicenseState, "driversLicenseState");
         Utils.checkNotNull(last4, "last4");
         Utils.checkNotNull(ssn, "ssn");
         this.dob = dob;
-        this.driversLicenseNumber = driversLicenseNumber;
-        this.driversLicenseState = driversLicenseState;
         this.last4 = last4;
         this.ssn = ssn;
     }
     
     public DataSourceIdentifiersResponseInternal() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> dob() {
-        return (Optional<Boolean>) dob;
+        return dob;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Boolean> driversLicenseNumber() {
-        return (Optional<Boolean>) driversLicenseNumber;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Boolean> driversLicenseState() {
-        return (Optional<Boolean>) driversLicenseState;
-    }
-
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> last4() {
-        return (Optional<Boolean>) last4;
+        return last4;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> ssn() {
-        return (Optional<Boolean>) ssn;
+        return ssn;
     }
 
     public final static Builder builder() {
@@ -103,33 +74,9 @@ public class DataSourceIdentifiersResponseInternal {
         return this;
     }
 
-    public DataSourceIdentifiersResponseInternal withDob(Optional<? extends Boolean> dob) {
+    public DataSourceIdentifiersResponseInternal withDob(Optional<Boolean> dob) {
         Utils.checkNotNull(dob, "dob");
         this.dob = dob;
-        return this;
-    }
-
-    public DataSourceIdentifiersResponseInternal withDriversLicenseNumber(boolean driversLicenseNumber) {
-        Utils.checkNotNull(driversLicenseNumber, "driversLicenseNumber");
-        this.driversLicenseNumber = Optional.ofNullable(driversLicenseNumber);
-        return this;
-    }
-
-    public DataSourceIdentifiersResponseInternal withDriversLicenseNumber(Optional<? extends Boolean> driversLicenseNumber) {
-        Utils.checkNotNull(driversLicenseNumber, "driversLicenseNumber");
-        this.driversLicenseNumber = driversLicenseNumber;
-        return this;
-    }
-
-    public DataSourceIdentifiersResponseInternal withDriversLicenseState(boolean driversLicenseState) {
-        Utils.checkNotNull(driversLicenseState, "driversLicenseState");
-        this.driversLicenseState = Optional.ofNullable(driversLicenseState);
-        return this;
-    }
-
-    public DataSourceIdentifiersResponseInternal withDriversLicenseState(Optional<? extends Boolean> driversLicenseState) {
-        Utils.checkNotNull(driversLicenseState, "driversLicenseState");
-        this.driversLicenseState = driversLicenseState;
         return this;
     }
 
@@ -139,7 +86,7 @@ public class DataSourceIdentifiersResponseInternal {
         return this;
     }
 
-    public DataSourceIdentifiersResponseInternal withLast4(Optional<? extends Boolean> last4) {
+    public DataSourceIdentifiersResponseInternal withLast4(Optional<Boolean> last4) {
         Utils.checkNotNull(last4, "last4");
         this.last4 = last4;
         return this;
@@ -151,7 +98,7 @@ public class DataSourceIdentifiersResponseInternal {
         return this;
     }
 
-    public DataSourceIdentifiersResponseInternal withSsn(Optional<? extends Boolean> ssn) {
+    public DataSourceIdentifiersResponseInternal withSsn(Optional<Boolean> ssn) {
         Utils.checkNotNull(ssn, "ssn");
         this.ssn = ssn;
         return this;
@@ -167,19 +114,15 @@ public class DataSourceIdentifiersResponseInternal {
         }
         DataSourceIdentifiersResponseInternal other = (DataSourceIdentifiersResponseInternal) o;
         return 
-            java.util.Objects.deepEquals(this.dob, other.dob) &&
-            java.util.Objects.deepEquals(this.driversLicenseNumber, other.driversLicenseNumber) &&
-            java.util.Objects.deepEquals(this.driversLicenseState, other.driversLicenseState) &&
-            java.util.Objects.deepEquals(this.last4, other.last4) &&
-            java.util.Objects.deepEquals(this.ssn, other.ssn);
+            Objects.deepEquals(this.dob, other.dob) &&
+            Objects.deepEquals(this.last4, other.last4) &&
+            Objects.deepEquals(this.ssn, other.ssn);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             dob,
-            driversLicenseNumber,
-            driversLicenseState,
             last4,
             ssn);
     }
@@ -188,23 +131,17 @@ public class DataSourceIdentifiersResponseInternal {
     public String toString() {
         return Utils.toString(DataSourceIdentifiersResponseInternal.class,
                 "dob", dob,
-                "driversLicenseNumber", driversLicenseNumber,
-                "driversLicenseState", driversLicenseState,
                 "last4", last4,
                 "ssn", ssn);
     }
     
     public final static class Builder {
  
-        private Optional<? extends Boolean> dob = Optional.empty();
+        private Optional<Boolean> dob = Optional.empty();
  
-        private Optional<? extends Boolean> driversLicenseNumber = Optional.empty();
+        private Optional<Boolean> last4 = Optional.empty();
  
-        private Optional<? extends Boolean> driversLicenseState = Optional.empty();
- 
-        private Optional<? extends Boolean> last4 = Optional.empty();
- 
-        private Optional<? extends Boolean> ssn = Optional.empty();  
+        private Optional<Boolean> ssn = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -216,33 +153,9 @@ public class DataSourceIdentifiersResponseInternal {
             return this;
         }
 
-        public Builder dob(Optional<? extends Boolean> dob) {
+        public Builder dob(Optional<Boolean> dob) {
             Utils.checkNotNull(dob, "dob");
             this.dob = dob;
-            return this;
-        }
-
-        public Builder driversLicenseNumber(boolean driversLicenseNumber) {
-            Utils.checkNotNull(driversLicenseNumber, "driversLicenseNumber");
-            this.driversLicenseNumber = Optional.ofNullable(driversLicenseNumber);
-            return this;
-        }
-
-        public Builder driversLicenseNumber(Optional<? extends Boolean> driversLicenseNumber) {
-            Utils.checkNotNull(driversLicenseNumber, "driversLicenseNumber");
-            this.driversLicenseNumber = driversLicenseNumber;
-            return this;
-        }
-
-        public Builder driversLicenseState(boolean driversLicenseState) {
-            Utils.checkNotNull(driversLicenseState, "driversLicenseState");
-            this.driversLicenseState = Optional.ofNullable(driversLicenseState);
-            return this;
-        }
-
-        public Builder driversLicenseState(Optional<? extends Boolean> driversLicenseState) {
-            Utils.checkNotNull(driversLicenseState, "driversLicenseState");
-            this.driversLicenseState = driversLicenseState;
             return this;
         }
 
@@ -252,7 +165,7 @@ public class DataSourceIdentifiersResponseInternal {
             return this;
         }
 
-        public Builder last4(Optional<? extends Boolean> last4) {
+        public Builder last4(Optional<Boolean> last4) {
             Utils.checkNotNull(last4, "last4");
             this.last4 = last4;
             return this;
@@ -264,7 +177,7 @@ public class DataSourceIdentifiersResponseInternal {
             return this;
         }
 
-        public Builder ssn(Optional<? extends Boolean> ssn) {
+        public Builder ssn(Optional<Boolean> ssn) {
             Utils.checkNotNull(ssn, "ssn");
             this.ssn = ssn;
             return this;
@@ -273,8 +186,6 @@ public class DataSourceIdentifiersResponseInternal {
         public DataSourceIdentifiersResponseInternal build() {
             return new DataSourceIdentifiersResponseInternal(
                 dob,
-                driversLicenseNumber,
-                driversLicenseState,
                 last4,
                 ssn);
         }

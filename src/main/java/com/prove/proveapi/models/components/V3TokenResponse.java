@@ -4,16 +4,19 @@
 
 package com.prove.proveapi.models.components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
+
 
 public class V3TokenResponse {
 
@@ -30,16 +33,18 @@ public class V3TokenResponse {
     private long expiresIn;
 
     /**
-     * RefreshExpiresIn returns the lifetime of the token in seconds.
+     * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refresh_expires_in")
-    private long refreshExpiresIn;
+    private Optional<Long> refreshExpiresIn;
 
     /**
-     * RefreshToken returns the refresh token as a string.
+     * RefreshToken returns the refresh token as a string. Not currently supported.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refresh_token")
-    private String refreshToken;
+    private Optional<String> refreshToken;
 
     /**
      * TokenType returns the type of token.
@@ -51,8 +56,8 @@ public class V3TokenResponse {
     public V3TokenResponse(
             @JsonProperty("access_token") String accessToken,
             @JsonProperty("expires_in") long expiresIn,
-            @JsonProperty("refresh_expires_in") long refreshExpiresIn,
-            @JsonProperty("refresh_token") String refreshToken,
+            @JsonProperty("refresh_expires_in") Optional<Long> refreshExpiresIn,
+            @JsonProperty("refresh_token") Optional<String> refreshToken,
             @JsonProperty("token_type") String tokenType) {
         Utils.checkNotNull(accessToken, "accessToken");
         Utils.checkNotNull(expiresIn, "expiresIn");
@@ -64,6 +69,13 @@ public class V3TokenResponse {
         this.refreshExpiresIn = refreshExpiresIn;
         this.refreshToken = refreshToken;
         this.tokenType = tokenType;
+    }
+    
+    public V3TokenResponse(
+            String accessToken,
+            long expiresIn,
+            String tokenType) {
+        this(accessToken, expiresIn, Optional.empty(), Optional.empty(), tokenType);
     }
 
     /**
@@ -83,18 +95,18 @@ public class V3TokenResponse {
     }
 
     /**
-     * RefreshExpiresIn returns the lifetime of the token in seconds.
+     * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
      */
     @JsonIgnore
-    public long refreshExpiresIn() {
+    public Optional<Long> refreshExpiresIn() {
         return refreshExpiresIn;
     }
 
     /**
-     * RefreshToken returns the refresh token as a string.
+     * RefreshToken returns the refresh token as a string. Not currently supported.
      */
     @JsonIgnore
-    public String refreshToken() {
+    public Optional<String> refreshToken() {
         return refreshToken;
     }
 
@@ -129,18 +141,36 @@ public class V3TokenResponse {
     }
 
     /**
-     * RefreshExpiresIn returns the lifetime of the token in seconds.
+     * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
      */
     public V3TokenResponse withRefreshExpiresIn(long refreshExpiresIn) {
+        Utils.checkNotNull(refreshExpiresIn, "refreshExpiresIn");
+        this.refreshExpiresIn = Optional.ofNullable(refreshExpiresIn);
+        return this;
+    }
+
+    /**
+     * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
+     */
+    public V3TokenResponse withRefreshExpiresIn(Optional<Long> refreshExpiresIn) {
         Utils.checkNotNull(refreshExpiresIn, "refreshExpiresIn");
         this.refreshExpiresIn = refreshExpiresIn;
         return this;
     }
 
     /**
-     * RefreshToken returns the refresh token as a string.
+     * RefreshToken returns the refresh token as a string. Not currently supported.
      */
     public V3TokenResponse withRefreshToken(String refreshToken) {
+        Utils.checkNotNull(refreshToken, "refreshToken");
+        this.refreshToken = Optional.ofNullable(refreshToken);
+        return this;
+    }
+
+    /**
+     * RefreshToken returns the refresh token as a string. Not currently supported.
+     */
+    public V3TokenResponse withRefreshToken(Optional<String> refreshToken) {
         Utils.checkNotNull(refreshToken, "refreshToken");
         this.refreshToken = refreshToken;
         return this;
@@ -165,16 +195,16 @@ public class V3TokenResponse {
         }
         V3TokenResponse other = (V3TokenResponse) o;
         return 
-            java.util.Objects.deepEquals(this.accessToken, other.accessToken) &&
-            java.util.Objects.deepEquals(this.expiresIn, other.expiresIn) &&
-            java.util.Objects.deepEquals(this.refreshExpiresIn, other.refreshExpiresIn) &&
-            java.util.Objects.deepEquals(this.refreshToken, other.refreshToken) &&
-            java.util.Objects.deepEquals(this.tokenType, other.tokenType);
+            Objects.deepEquals(this.accessToken, other.accessToken) &&
+            Objects.deepEquals(this.expiresIn, other.expiresIn) &&
+            Objects.deepEquals(this.refreshExpiresIn, other.refreshExpiresIn) &&
+            Objects.deepEquals(this.refreshToken, other.refreshToken) &&
+            Objects.deepEquals(this.tokenType, other.tokenType);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accessToken,
             expiresIn,
             refreshExpiresIn,
@@ -198,9 +228,9 @@ public class V3TokenResponse {
  
         private Long expiresIn;
  
-        private Long refreshExpiresIn;
+        private Optional<Long> refreshExpiresIn = Optional.empty();
  
-        private String refreshToken;
+        private Optional<String> refreshToken = Optional.empty();
  
         private String tokenType;  
         
@@ -227,18 +257,36 @@ public class V3TokenResponse {
         }
 
         /**
-         * RefreshExpiresIn returns the lifetime of the token in seconds.
+         * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
          */
         public Builder refreshExpiresIn(long refreshExpiresIn) {
+            Utils.checkNotNull(refreshExpiresIn, "refreshExpiresIn");
+            this.refreshExpiresIn = Optional.ofNullable(refreshExpiresIn);
+            return this;
+        }
+
+        /**
+         * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
+         */
+        public Builder refreshExpiresIn(Optional<Long> refreshExpiresIn) {
             Utils.checkNotNull(refreshExpiresIn, "refreshExpiresIn");
             this.refreshExpiresIn = refreshExpiresIn;
             return this;
         }
 
         /**
-         * RefreshToken returns the refresh token as a string.
+         * RefreshToken returns the refresh token as a string. Not currently supported.
          */
         public Builder refreshToken(String refreshToken) {
+            Utils.checkNotNull(refreshToken, "refreshToken");
+            this.refreshToken = Optional.ofNullable(refreshToken);
+            return this;
+        }
+
+        /**
+         * RefreshToken returns the refresh token as a string. Not currently supported.
+         */
+        public Builder refreshToken(Optional<String> refreshToken) {
             Utils.checkNotNull(refreshToken, "refreshToken");
             this.refreshToken = refreshToken;
             return this;
