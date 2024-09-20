@@ -17,13 +17,13 @@ public class V3ChallengeRequestRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public V3ChallengeRequestRequestBuilder request(com.prove.proveapi.models.components.V3ChallengeRequest request) {
+    public V3ChallengeRequestRequestBuilder request(V3ChallengeRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public V3ChallengeRequestRequestBuilder request(java.util.Optional<? extends com.prove.proveapi.models.components.V3ChallengeRequest> request) {
+    public V3ChallengeRequestRequestBuilder request(Optional<? extends V3ChallengeRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

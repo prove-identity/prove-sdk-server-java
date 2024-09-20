@@ -61,6 +61,18 @@ public class V3StartRequest {
     private Optional<String> phoneNumber;
 
     /**
+     * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
+     * If not provided, the following default messages will be used:
+     * For Instant Link: "Complete your verification. If you did not make this request, do not click link. ####"
+     * For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
+     * Max length is 160 characters. Only ASCII characters are allowed.
+     * The template must include the '####' placeholder, which will be replaced with the actual URL or OTP.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("smsMessage")
+    private Optional<String> smsMessage;
+
+    /**
      * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -75,6 +87,7 @@ public class V3StartRequest {
             @JsonProperty("flowType") String flowType,
             @JsonProperty("ipAddress") Optional<String> ipAddress,
             @JsonProperty("phoneNumber") Optional<String> phoneNumber,
+            @JsonProperty("smsMessage") Optional<String> smsMessage,
             @JsonProperty("ssn") Optional<String> ssn) {
         Utils.checkNotNull(dob, "dob");
         Utils.checkNotNull(emailAddress, "emailAddress");
@@ -82,6 +95,7 @@ public class V3StartRequest {
         Utils.checkNotNull(flowType, "flowType");
         Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(smsMessage, "smsMessage");
         Utils.checkNotNull(ssn, "ssn");
         this.dob = dob;
         this.emailAddress = emailAddress;
@@ -89,12 +103,13 @@ public class V3StartRequest {
         this.flowType = flowType;
         this.ipAddress = ipAddress;
         this.phoneNumber = phoneNumber;
+        this.smsMessage = smsMessage;
         this.ssn = ssn;
     }
     
     public V3StartRequest(
             String flowType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), flowType, Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), flowType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -143,6 +158,19 @@ public class V3StartRequest {
     @JsonIgnore
     public Optional<String> phoneNumber() {
         return phoneNumber;
+    }
+
+    /**
+     * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
+     * If not provided, the following default messages will be used:
+     * For Instant Link: "Complete your verification. If you did not make this request, do not click link. ####"
+     * For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
+     * Max length is 160 characters. Only ASCII characters are allowed.
+     * The template must include the '####' placeholder, which will be replaced with the actual URL or OTP.
+     */
+    @JsonIgnore
+    public Optional<String> smsMessage() {
+        return smsMessage;
     }
 
     /**
@@ -257,6 +285,34 @@ public class V3StartRequest {
     }
 
     /**
+     * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
+     * If not provided, the following default messages will be used:
+     * For Instant Link: "Complete your verification. If you did not make this request, do not click link. ####"
+     * For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
+     * Max length is 160 characters. Only ASCII characters are allowed.
+     * The template must include the '####' placeholder, which will be replaced with the actual URL or OTP.
+     */
+    public V3StartRequest withSmsMessage(String smsMessage) {
+        Utils.checkNotNull(smsMessage, "smsMessage");
+        this.smsMessage = Optional.ofNullable(smsMessage);
+        return this;
+    }
+
+    /**
+     * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
+     * If not provided, the following default messages will be used:
+     * For Instant Link: "Complete your verification. If you did not make this request, do not click link. ####"
+     * For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
+     * Max length is 160 characters. Only ASCII characters are allowed.
+     * The template must include the '####' placeholder, which will be replaced with the actual URL or OTP.
+     */
+    public V3StartRequest withSmsMessage(Optional<String> smsMessage) {
+        Utils.checkNotNull(smsMessage, "smsMessage");
+        this.smsMessage = smsMessage;
+        return this;
+    }
+
+    /**
      * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
      */
     public V3StartRequest withSsn(String ssn) {
@@ -290,6 +346,7 @@ public class V3StartRequest {
             Objects.deepEquals(this.flowType, other.flowType) &&
             Objects.deepEquals(this.ipAddress, other.ipAddress) &&
             Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
+            Objects.deepEquals(this.smsMessage, other.smsMessage) &&
             Objects.deepEquals(this.ssn, other.ssn);
     }
     
@@ -302,6 +359,7 @@ public class V3StartRequest {
             flowType,
             ipAddress,
             phoneNumber,
+            smsMessage,
             ssn);
     }
     
@@ -314,6 +372,7 @@ public class V3StartRequest {
                 "flowType", flowType,
                 "ipAddress", ipAddress,
                 "phoneNumber", phoneNumber,
+                "smsMessage", smsMessage,
                 "ssn", ssn);
     }
     
@@ -330,6 +389,8 @@ public class V3StartRequest {
         private Optional<String> ipAddress = Optional.empty();
  
         private Optional<String> phoneNumber = Optional.empty();
+ 
+        private Optional<String> smsMessage = Optional.empty();
  
         private Optional<String> ssn = Optional.empty();  
         
@@ -437,6 +498,34 @@ public class V3StartRequest {
         }
 
         /**
+         * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
+         * If not provided, the following default messages will be used:
+         * For Instant Link: "Complete your verification. If you did not make this request, do not click link. ####"
+         * For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
+         * Max length is 160 characters. Only ASCII characters are allowed.
+         * The template must include the '####' placeholder, which will be replaced with the actual URL or OTP.
+         */
+        public Builder smsMessage(String smsMessage) {
+            Utils.checkNotNull(smsMessage, "smsMessage");
+            this.smsMessage = Optional.ofNullable(smsMessage);
+            return this;
+        }
+
+        /**
+         * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
+         * If not provided, the following default messages will be used:
+         * For Instant Link: "Complete your verification. If you did not make this request, do not click link. ####"
+         * For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
+         * Max length is 160 characters. Only ASCII characters are allowed.
+         * The template must include the '####' placeholder, which will be replaced with the actual URL or OTP.
+         */
+        public Builder smsMessage(Optional<String> smsMessage) {
+            Utils.checkNotNull(smsMessage, "smsMessage");
+            this.smsMessage = smsMessage;
+            return this;
+        }
+
+        /**
          * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
          */
         public Builder ssn(String ssn) {
@@ -462,6 +551,7 @@ public class V3StartRequest {
                 flowType,
                 ipAddress,
                 phoneNumber,
+                smsMessage,
                 ssn);
         }
     }

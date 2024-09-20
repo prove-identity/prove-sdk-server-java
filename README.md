@@ -4,6 +4,25 @@
     <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
 </div>
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Prove APIs: This specification describes the Prove API.
+
+OpenAPI Spec - generated.
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Authentication](#authentication)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
@@ -15,7 +34,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.9.0'
+implementation 'com.prove:proveapi:0.10.0'
 ```
 
 Maven:
@@ -23,7 +42,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.9.0</version>
+    <version>0.10.0</version>
 </dependency>
 ```
 
@@ -53,49 +72,40 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3StartRequest;
-import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3StartRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            Proveapi sdk = Proveapi.builder()
+    public static void main(String[] args) throws Error400, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V3StartRequest req = V3StartRequest.builder()
+        V3StartRequest req = V3StartRequest.builder()
                 .flowType("mobile")
                 .dob("1981-01")
                 .emailAddress("mpinsonm@dyndns.org")
                 .finalTargetUrl("https://www.example.com/landing-page")
                 .ipAddress("10.0.0.1")
                 .phoneNumber("2001001695")
+                .smsMessage("\"Your code is: ####.\"")
                 .ssn("0596")
                 .build();
 
-            V3StartRequestResponse res = sdk.v3().v3StartRequest()
+        V3StartRequestResponse res = sdk.v3().v3StartRequest()
                 .request(req)
                 .call();
 
-            if (res.v3StartResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.prove.proveapi.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v3StartResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -104,6 +114,10 @@ public class Application {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+
 ### [v3()](docs/sdks/v3/README.md)
 
 * [v3TokenRequest](docs/sdks/v3/README.md#v3tokenrequest) - Request OAuth token.
@@ -111,6 +125,8 @@ public class Application {
 * [v3CompleteRequest](docs/sdks/v3/README.md#v3completerequest) - Complete flow.
 * [v3StartRequest](docs/sdks/v3/README.md#v3startrequest) - Start flow.
 * [v3ValidateRequest](docs/sdks/v3/README.md#v3validaterequest) - Validate phone number.
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -120,7 +136,8 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400,500                | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ### Example
@@ -130,41 +147,31 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            Proveapi sdk = Proveapi.builder()
-                .build();
+    public static void main(String[] args) throws Error400, Error, Exception {
 
-            V3TokenRequest req = V3TokenRequest.builder()
+        Proveapi sdk = Proveapi.builder()
+            .build();
+
+        V3TokenRequest req = V3TokenRequest.builder()
                 .clientId("customer_id")
                 .clientSecret("secret")
                 .grantType("client_credentials")
                 .build();
 
-            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
+        V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3TokenResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.prove.proveapi.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v3TokenResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -189,42 +196,32 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            Proveapi sdk = Proveapi.builder()
-                .server(Proveapi.AvailableServers.PROD_US)
-                .build();
+    public static void main(String[] args) throws Error400, Error, Exception {
 
-            V3TokenRequest req = V3TokenRequest.builder()
+        Proveapi sdk = Proveapi.builder()
+                .serverIndex(1)
+            .build();
+
+        V3TokenRequest req = V3TokenRequest.builder()
                 .clientId("customer_id")
                 .clientSecret("secret")
                 .grantType("client_credentials")
                 .build();
 
-            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
+        V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3TokenResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.prove.proveapi.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v3TokenResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -238,42 +235,32 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            Proveapi sdk = Proveapi.builder()
-                .serverURL("https://platform.uat.proveapis.com")
-                .build();
+    public static void main(String[] args) throws Error400, Error, Exception {
 
-            V3TokenRequest req = V3TokenRequest.builder()
+        Proveapi sdk = Proveapi.builder()
+                .serverURL("https://platform.uat.proveapis.com")
+            .build();
+
+        V3TokenRequest req = V3TokenRequest.builder()
                 .clientId("customer_id")
                 .clientSecret("secret")
                 .grantType("client_credentials")
                 .build();
 
-            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
+        V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3TokenResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.prove.proveapi.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v3TokenResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -297,45 +284,35 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.SDKError;
+import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            Proveapi sdk = Proveapi.builder()
+    public static void main(String[] args) throws Error400, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V3TokenRequest req = V3TokenRequest.builder()
+        V3TokenRequest req = V3TokenRequest.builder()
                 .clientId("customer_id")
                 .clientSecret("secret")
                 .grantType("client_credentials")
                 .build();
 
-            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
+        V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
                 .request(req)
                 .call();
 
-            if (res.v3TokenResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.prove.proveapi.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v3TokenResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

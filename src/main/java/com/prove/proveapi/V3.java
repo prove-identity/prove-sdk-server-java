@@ -15,6 +15,7 @@ import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.components.V3TokenResponse;
 import com.prove.proveapi.models.components.V3ValidateRequest;
 import com.prove.proveapi.models.components.V3ValidateResponse;
+import com.prove.proveapi.models.errors.Error400;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.errors.SDKError;
 import com.prove.proveapi.models.operations.SDKMethodInterfaces.*;
@@ -105,7 +106,7 @@ public class V3 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
@@ -175,7 +176,21 @@ public class V3 implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "500")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error400 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
@@ -208,7 +223,7 @@ public class V3 implements
 
     /**
      * Submit challenge.
-     * Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Prove Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
+     * Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
      * @return The call builder
      */
     public V3ChallengeRequestRequestBuilder v3ChallengeRequest() {
@@ -217,7 +232,7 @@ public class V3 implements
 
     /**
      * Submit challenge.
-     * Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Prove Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
+     * Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -227,7 +242,7 @@ public class V3 implements
     
     /**
      * Submit challenge.
-     * Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Prove Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
+     * Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -252,7 +267,7 @@ public class V3 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -325,7 +340,21 @@ public class V3 implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "500")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error400 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
@@ -358,7 +387,7 @@ public class V3 implements
 
     /**
      * Complete flow.
-     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify ownership.
+     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. There is a validation check that requires at least first + last name or SSN passed in, else an HTTP 400 is returned. Additionally, specific to the Pre-Fill® or Prove Identity® with KYC use case, you need to pass in first name, last name, DOB and SSN (or address) to ensure you receive back the KYC elements and correct CIP values.
      * @return The call builder
      */
     public V3CompleteRequestRequestBuilder v3CompleteRequest() {
@@ -367,7 +396,7 @@ public class V3 implements
 
     /**
      * Complete flow.
-     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify ownership.
+     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. There is a validation check that requires at least first + last name or SSN passed in, else an HTTP 400 is returned. Additionally, specific to the Pre-Fill® or Prove Identity® with KYC use case, you need to pass in first name, last name, DOB and SSN (or address) to ensure you receive back the KYC elements and correct CIP values.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -377,7 +406,7 @@ public class V3 implements
     
     /**
      * Complete flow.
-     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. At least a first name, last name, or SSN is required to verify ownership.
+     * Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. There is a validation check that requires at least first + last name or SSN passed in, else an HTTP 400 is returned. Additionally, specific to the Pre-Fill® or Prove Identity® with KYC use case, you need to pass in first name, last name, DOB and SSN (or address) to ensure you receive back the KYC elements and correct CIP values.
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -402,7 +431,7 @@ public class V3 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -475,7 +504,21 @@ public class V3 implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "500")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error400 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
@@ -552,7 +595,7 @@ public class V3 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -625,7 +668,21 @@ public class V3 implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "500")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error400 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
@@ -702,7 +759,7 @@ public class V3 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -775,7 +832,21 @@ public class V3 implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "500")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error400 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),

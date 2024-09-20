@@ -9,37 +9,38 @@ import com.prove.proveapi.models.components.V3CompleteRequest;
 import com.prove.proveapi.models.components.V3StartRequest;
 import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.components.V3ValidateRequest;
+import java.lang.Exception;
 import java.util.Optional;
 
 public class SDKMethodInterfaces {
 
 
     public interface MethodCallV3TokenRequest {
-        com.prove.proveapi.models.operations.V3TokenRequestResponse v3TokenRequest(
+        V3TokenRequestResponse v3TokenRequest(
             Optional<? extends V3TokenRequest> request) throws Exception;
     }
 
 
     public interface MethodCallV3ChallengeRequest {
-        com.prove.proveapi.models.operations.V3ChallengeRequestResponse v3ChallengeRequest(
+        V3ChallengeRequestResponse v3ChallengeRequest(
             Optional<? extends V3ChallengeRequest> request) throws Exception;
     }
 
 
     public interface MethodCallV3CompleteRequest {
-        com.prove.proveapi.models.operations.V3CompleteRequestResponse v3CompleteRequest(
+        V3CompleteRequestResponse v3CompleteRequest(
             Optional<? extends V3CompleteRequest> request) throws Exception;
     }
 
 
     public interface MethodCallV3StartRequest {
-        com.prove.proveapi.models.operations.V3StartRequestResponse v3StartRequest(
+        V3StartRequestResponse v3StartRequest(
             Optional<? extends V3StartRequest> request) throws Exception;
     }
 
 
     public interface MethodCallV3ValidateRequest {
-        com.prove.proveapi.models.operations.V3ValidateRequestResponse v3ValidateRequest(
+        V3ValidateRequestResponse v3ValidateRequest(
             Optional<? extends V3ValidateRequest> request) throws Exception;
     }
 

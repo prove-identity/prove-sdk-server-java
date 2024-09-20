@@ -17,13 +17,13 @@ public class V3CompleteRequestRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public V3CompleteRequestRequestBuilder request(com.prove.proveapi.models.components.V3CompleteRequest request) {
+    public V3CompleteRequestRequestBuilder request(V3CompleteRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public V3CompleteRequestRequestBuilder request(java.util.Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest> request) {
+    public V3CompleteRequestRequestBuilder request(Optional<? extends V3CompleteRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

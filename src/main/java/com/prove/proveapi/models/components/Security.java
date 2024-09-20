@@ -181,8 +181,7 @@ public class Security {
         public Security build() {
             if (tokenURL == null) {
                 tokenURL = _SINGLETON_VALUE_TokenURL.value();
-            }
-            return new Security(
+            }            return new Security(
                 clientID,
                 clientSecret,
                 tokenURL);

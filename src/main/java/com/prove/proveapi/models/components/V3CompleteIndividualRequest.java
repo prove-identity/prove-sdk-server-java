@@ -50,13 +50,6 @@ public class V3CompleteIndividualRequest {
     private Optional<String> firstName;
 
     /**
-     * Last4SSN is last 4 digits of SSN.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("last4SSN")
-    private Optional<String> last4SSN;
-
-    /**
      * Last name of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -76,27 +69,24 @@ public class V3CompleteIndividualRequest {
             @JsonProperty("dob") Optional<String> dob,
             @JsonProperty("emailAddresses") Optional<? extends List<String>> emailAddresses,
             @JsonProperty("firstName") Optional<String> firstName,
-            @JsonProperty("last4SSN") Optional<String> last4SSN,
             @JsonProperty("lastName") Optional<String> lastName,
             @JsonProperty("ssn") Optional<String> ssn) {
         Utils.checkNotNull(addresses, "addresses");
         Utils.checkNotNull(dob, "dob");
         Utils.checkNotNull(emailAddresses, "emailAddresses");
         Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(last4SSN, "last4SSN");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(ssn, "ssn");
         this.addresses = addresses;
         this.dob = dob;
         this.emailAddresses = emailAddresses;
         this.firstName = firstName;
-        this.last4SSN = last4SSN;
         this.lastName = lastName;
         this.ssn = ssn;
     }
     
     public V3CompleteIndividualRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -131,14 +121,6 @@ public class V3CompleteIndividualRequest {
     @JsonIgnore
     public Optional<String> firstName() {
         return firstName;
-    }
-
-    /**
-     * Last4SSN is last 4 digits of SSN.
-     */
-    @JsonIgnore
-    public Optional<String> last4SSN() {
-        return last4SSN;
     }
 
     /**
@@ -234,24 +216,6 @@ public class V3CompleteIndividualRequest {
     }
 
     /**
-     * Last4SSN is last 4 digits of SSN.
-     */
-    public V3CompleteIndividualRequest withLast4SSN(String last4SSN) {
-        Utils.checkNotNull(last4SSN, "last4SSN");
-        this.last4SSN = Optional.ofNullable(last4SSN);
-        return this;
-    }
-
-    /**
-     * Last4SSN is last 4 digits of SSN.
-     */
-    public V3CompleteIndividualRequest withLast4SSN(Optional<String> last4SSN) {
-        Utils.checkNotNull(last4SSN, "last4SSN");
-        this.last4SSN = last4SSN;
-        return this;
-    }
-
-    /**
      * Last name of the individual.
      */
     public V3CompleteIndividualRequest withLastName(String lastName) {
@@ -301,7 +265,6 @@ public class V3CompleteIndividualRequest {
             Objects.deepEquals(this.dob, other.dob) &&
             Objects.deepEquals(this.emailAddresses, other.emailAddresses) &&
             Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.last4SSN, other.last4SSN) &&
             Objects.deepEquals(this.lastName, other.lastName) &&
             Objects.deepEquals(this.ssn, other.ssn);
     }
@@ -313,7 +276,6 @@ public class V3CompleteIndividualRequest {
             dob,
             emailAddresses,
             firstName,
-            last4SSN,
             lastName,
             ssn);
     }
@@ -325,7 +287,6 @@ public class V3CompleteIndividualRequest {
                 "dob", dob,
                 "emailAddresses", emailAddresses,
                 "firstName", firstName,
-                "last4SSN", last4SSN,
                 "lastName", lastName,
                 "ssn", ssn);
     }
@@ -339,8 +300,6 @@ public class V3CompleteIndividualRequest {
         private Optional<? extends List<String>> emailAddresses = Optional.empty();
  
         private Optional<String> firstName = Optional.empty();
- 
-        private Optional<String> last4SSN = Optional.empty();
  
         private Optional<String> lastName = Optional.empty();
  
@@ -423,24 +382,6 @@ public class V3CompleteIndividualRequest {
         }
 
         /**
-         * Last4SSN is last 4 digits of SSN.
-         */
-        public Builder last4SSN(String last4SSN) {
-            Utils.checkNotNull(last4SSN, "last4SSN");
-            this.last4SSN = Optional.ofNullable(last4SSN);
-            return this;
-        }
-
-        /**
-         * Last4SSN is last 4 digits of SSN.
-         */
-        public Builder last4SSN(Optional<String> last4SSN) {
-            Utils.checkNotNull(last4SSN, "last4SSN");
-            this.last4SSN = last4SSN;
-            return this;
-        }
-
-        /**
          * Last name of the individual.
          */
         public Builder lastName(String lastName) {
@@ -482,7 +423,6 @@ public class V3CompleteIndividualRequest {
                 dob,
                 emailAddresses,
                 firstName,
-                last4SSN,
                 lastName,
                 ssn);
         }
