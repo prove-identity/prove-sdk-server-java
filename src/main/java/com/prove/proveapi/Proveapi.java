@@ -8,6 +8,7 @@ import com.prove.proveapi.models.operations.SDKMethodInterfaces.*;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.RetryConfig;
 import com.prove.proveapi.utils.SpeakeasyHTTPClient;
+import com.prove.proveapi.utils.Utils;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -122,7 +123,7 @@ public class Proveapi {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl, Map<String, String> params) {
-            this.sdkConfiguration.serverUrl = com.prove.proveapi.utils.Utils.templateUrl(serverUrl, params);
+            this.sdkConfiguration.serverUrl = Utils.templateUrl(serverUrl, params);
             return this;
         }
         

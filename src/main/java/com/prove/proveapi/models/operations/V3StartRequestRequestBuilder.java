@@ -17,13 +17,13 @@ public class V3StartRequestRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public V3StartRequestRequestBuilder request(com.prove.proveapi.models.components.V3StartRequest request) {
+    public V3StartRequestRequestBuilder request(V3StartRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public V3StartRequestRequestBuilder request(java.util.Optional<? extends com.prove.proveapi.models.components.V3StartRequest> request) {
+    public V3StartRequestRequestBuilder request(Optional<? extends V3StartRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

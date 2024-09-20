@@ -17,13 +17,13 @@ public class V3TokenRequestRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public V3TokenRequestRequestBuilder request(com.prove.proveapi.models.components.V3TokenRequest request) {
+    public V3TokenRequestRequestBuilder request(V3TokenRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public V3TokenRequestRequestBuilder request(java.util.Optional<? extends com.prove.proveapi.models.components.V3TokenRequest> request) {
+    public V3TokenRequestRequestBuilder request(Optional<? extends V3TokenRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
