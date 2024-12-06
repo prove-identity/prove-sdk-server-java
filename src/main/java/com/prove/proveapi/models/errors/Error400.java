@@ -12,12 +12,11 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * Error400 - Bad Request. The server cannot process the request due to a client error.
- */
+@SuppressWarnings("serial")
 public class Error400 extends RuntimeException {
 
     /**
@@ -37,6 +36,7 @@ public class Error400 extends RuntimeException {
     public Error400(
             @JsonProperty("code") Optional<Long> code,
             @JsonProperty("message") String message) {
+        super(message);
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(message, "message");
         this.code = code;

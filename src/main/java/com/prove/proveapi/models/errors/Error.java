@@ -12,12 +12,11 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * Error - Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.
- */
+@SuppressWarnings("serial")
 public class Error extends RuntimeException {
 
     /**
@@ -37,6 +36,7 @@ public class Error extends RuntimeException {
     public Error(
             @JsonProperty("code") Optional<Long> code,
             @JsonProperty("message") String message) {
+        super(message);
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(message, "message");
         this.code = code;

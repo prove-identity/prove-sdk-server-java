@@ -1,18 +1,21 @@
-speakeasyVersion: 1.400.1
+speakeasyVersion: 1.453.0
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:f6ecc506bab6fff5b0f160cc8261782eaac61eacb16b0efa5cfe0a83043a1d4e
-        sourceBlobDigest: sha256:78198f61b4c90135d77a06304846504205dc5a5703c494568aa83d41610c7127
+        sourceRevisionDigest: sha256:2f0aabbbb173d13653ef29b3e91d6826db6a415e0dd3f444aa242875a4db50e9
+        sourceBlobDigest: sha256:276897f8c496f567178546e9626effaea0eb6a90ca7fa6c713702a14c303e454
         tags:
             - latest
-            - main
+            - speakeasy-sdk-regen-1727487680
+            - 1.0.0
 targets:
     my-first-target:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:f6ecc506bab6fff5b0f160cc8261782eaac61eacb16b0efa5cfe0a83043a1d4e
-        sourceBlobDigest: sha256:78198f61b4c90135d77a06304846504205dc5a5703c494568aa83d41610c7127
+        sourceRevisionDigest: sha256:2f0aabbbb173d13653ef29b3e91d6826db6a415e0dd3f444aa242875a4db50e9
+        sourceBlobDigest: sha256:276897f8c496f567178546e9626effaea0eb6a90ca7fa6c713702a14c303e454
+        codeSamplesNamespace: my-source-java-code-samples
+        codeSamplesRevisionDigest: sha256:16c40ac2fb87252b5fa2e91dd891d4039afa9abeb60e15b389048ff98bb08abc
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -34,3 +37,7 @@ workflow:
                     ossrhPassword: $ossrh_password
                     gpgSecretKey: $gpg_secret_key
                     gpgPassPhrase: $gpg_passphrase
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/prove/prove-dev/my-source-java-code-samples
+                blocking: false

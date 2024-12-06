@@ -11,8 +11,9 @@ generation:
     requestResponseComponentNamesFeb2024: true
   auth:
     oAuth2ClientCredentialsEnabled: true
+    oAuth2PasswordEnabled: false
 java:
-  version: 0.10.0
+  version: 0.11.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: proveapi
@@ -20,6 +21,7 @@ java:
   companyEmail: info@prove.com
   companyName: Prove Identity
   companyURL: https://www.prove.com
+  defaultErrorName: SDKError
   flattenGlobalSecurity: true
   githubURL: github.com/prove-identity/prove-sdk-server-java
   groupID: com.prove

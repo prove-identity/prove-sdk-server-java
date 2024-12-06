@@ -15,6 +15,10 @@ import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.components.V3TokenResponse;
 import com.prove.proveapi.models.components.V3ValidateRequest;
 import com.prove.proveapi.models.components.V3ValidateResponse;
+import com.prove.proveapi.models.components.V3VerifyRequest;
+import com.prove.proveapi.models.components.V3VerifyResponse;
+import com.prove.proveapi.models.components.V3VerifyStatusRequest;
+import com.prove.proveapi.models.components.V3VerifyStatusResponse;
 import com.prove.proveapi.models.errors.Error400;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.errors.SDKError;
@@ -29,6 +33,10 @@ import com.prove.proveapi.models.operations.V3TokenRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import com.prove.proveapi.models.operations.V3ValidateRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3ValidateRequestResponse;
+import com.prove.proveapi.models.operations.V3VerifyRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3VerifyRequestResponse;
+import com.prove.proveapi.models.operations.V3VerifyStatusRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3VerifyStatusRequestResponse;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.HTTPRequest;
 import com.prove.proveapi.utils.Hook.AfterErrorContextImpl;
@@ -51,7 +59,9 @@ public class V3 implements
             MethodCallV3ChallengeRequest,
             MethodCallV3CompleteRequest,
             MethodCallV3StartRequest,
-            MethodCallV3ValidateRequest {
+            MethodCallV3ValidateRequest,
+            MethodCallV3VerifyRequest,
+            MethodCallV3VerifyStatusRequest {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -823,6 +833,335 @@ public class V3 implements
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<V3ValidateResponse>() {});
                 _res.withV3ValidateResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error400 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Initiate verified users session.
+     * Send this request to initiate a Verified Users session. It will return a correlation ID, authToken for the client SDK, and the results of the possession and verify checks (usually pending from this API).
+     * @return The call builder
+     */
+    public V3VerifyRequestRequestBuilder v3VerifyRequest() {
+        return new V3VerifyRequestRequestBuilder(this);
+    }
+
+    /**
+     * Initiate verified users session.
+     * Send this request to initiate a Verified Users session. It will return a correlation ID, authToken for the client SDK, and the results of the possession and verify checks (usually pending from this API).
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3VerifyRequestResponse v3VerifyRequestDirect() throws Exception {
+        return v3VerifyRequest(Optional.empty());
+    }
+    
+    /**
+     * Initiate verified users session.
+     * Send this request to initiate a Verified Users session. It will return a correlation ID, authToken for the client SDK, and the results of the possession and verify checks (usually pending from this API).
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3VerifyRequestResponse v3VerifyRequest(
+            Optional<? extends V3VerifyRequest> request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/v3/verify");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V3VerifyRequest>>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "V3VerifyRequest", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3VerifyRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "V3VerifyRequest",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3VerifyRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        V3VerifyRequestResponse.Builder _resBuilder = 
+            V3VerifyRequestResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        V3VerifyRequestResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3VerifyResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3VerifyResponse>() {});
+                _res.withV3VerifyResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error400 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Perform checks for verified users session.
+     * Send this request to perform the necessary checks for a Verified Users session. It will return the results of the possession and verify checks, as well as the overall success.
+     * @return The call builder
+     */
+    public V3VerifyStatusRequestRequestBuilder v3VerifyStatusRequest() {
+        return new V3VerifyStatusRequestRequestBuilder(this);
+    }
+
+    /**
+     * Perform checks for verified users session.
+     * Send this request to perform the necessary checks for a Verified Users session. It will return the results of the possession and verify checks, as well as the overall success.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3VerifyStatusRequestResponse v3VerifyStatusRequestDirect() throws Exception {
+        return v3VerifyStatusRequest(Optional.empty());
+    }
+    
+    /**
+     * Perform checks for verified users session.
+     * Send this request to perform the necessary checks for a Verified Users session. It will return the results of the possession and verify checks, as well as the overall success.
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3VerifyStatusRequestResponse v3VerifyStatusRequest(
+            Optional<? extends V3VerifyStatusRequest> request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/v3/verify-status");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V3VerifyStatusRequest>>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "V3VerifyStatusRequest", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3VerifyStatusRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "V3VerifyStatusRequest",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3VerifyStatusRequest",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        V3VerifyStatusRequestResponse.Builder _resBuilder = 
+            V3VerifyStatusRequestResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        V3VerifyStatusRequestResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            _res.withHeaders(_httpRes.headers().map());
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3VerifyStatusResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3VerifyStatusResponse>() {});
+                _res.withV3VerifyStatusResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(

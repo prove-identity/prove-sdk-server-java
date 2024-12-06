@@ -18,3 +18,7 @@ targets:
                 ossrhPassword: $ossrh_password
                 gpgSecretKey: $gpg_secret_key
                 gpgPassPhrase: $gpg_passphrase
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/prove/prove-dev/my-source-java-code-samples
+            blocking: false

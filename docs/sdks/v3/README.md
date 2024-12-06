@@ -10,6 +10,8 @@
 * [v3CompleteRequest](#v3completerequest) - Complete flow.
 * [v3StartRequest](#v3startrequest) - Start flow.
 * [v3ValidateRequest](#v3validaterequest) - Validate phone number.
+* [v3VerifyRequest](#v3verifyrequest) - Initiate verified users session.
+* [v3VerifyStatusRequest](#v3verifystatusrequest) - Perform checks for verified users session.
 
 ## v3TokenRequest
 
@@ -63,12 +65,11 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## v3ChallengeRequest
 
@@ -127,12 +128,11 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## v3CompleteRequest
 
@@ -183,7 +183,7 @@ public class Application {
                             .postalCode("02208")
                             .region("MS")
                             .build()))
-                    .dob("1981-01-17")
+                    .dob("1981-01")
                     .emailAddresses(List.of(
                         "jdoe@example.com",
                         "dsmith@example.com"))
@@ -216,12 +216,11 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## v3StartRequest
 
@@ -258,7 +257,7 @@ public class Application {
                 .finalTargetUrl("https://www.example.com/landing-page")
                 .ipAddress("10.0.0.1")
                 .phoneNumber("2001001695")
-                .smsMessage("\"Your code is: ####.\"")
+                .smsMessage("#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone.")
                 .ssn("0596")
                 .build();
 
@@ -285,12 +284,11 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## v3ValidateRequest
 
@@ -347,8 +345,139 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## v3VerifyRequest
+
+Send this request to initiate a Verified Users session. It will return a correlation ID, authToken for the client SDK, and the results of the possession and verify checks (usually pending from this API).
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3VerifyRequest;
+import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3VerifyRequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .build())
+            .build();
+
+        V3VerifyRequest req = V3VerifyRequest.builder()
+                .firstName("Sheilakathryn")
+                .lastName("Butrimovich")
+                .phoneNumber("2001004011")
+                .possessionType("mobile")
+                .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
+                .emailAddress("sbutrimovichb@who.int")
+                .finalTargetUrl("https://www.example.com/landing-page")
+                .smsMessage("#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone.")
+                .build();
+
+        V3VerifyRequestResponse res = sdk.v3().v3VerifyRequest()
+                .request(req)
+                .call();
+
+        if (res.v3VerifyResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `request`                                                 | [V3VerifyRequest](../../models/shared/V3VerifyRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+
+### Response
+
+**[V3VerifyRequestResponse](../../models/operations/V3VerifyRequestResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## v3VerifyStatusRequest
+
+Send this request to perform the necessary checks for a Verified Users session. It will return the results of the possession and verify checks, as well as the overall success.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3VerifyStatusRequest;
+import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3VerifyStatusRequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .build())
+            .build();
+
+        V3VerifyStatusRequest req = V3VerifyStatusRequest.builder()
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .build();
+
+        V3VerifyStatusRequestResponse res = sdk.v3().v3VerifyStatusRequest()
+                .request(req)
+                .call();
+
+        if (res.v3VerifyStatusResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [V3VerifyStatusRequest](../../models/shared/V3VerifyStatusRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+
+### Response
+
+**[V3VerifyStatusRequestResponse](../../models/operations/V3VerifyStatusRequestResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

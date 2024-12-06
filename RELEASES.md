@@ -131,3 +131,13 @@ Based on:
 - [java v0.10.0] .
 ### Releases
 - [Maven Central v0.10.0] https://central.sonatype.com/artifact/com.prove/proveapi/0.10.0 - .
+
+## 2024-12-06 01:51:01
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.453.0 (2.472.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v0.11.0] .
+### Releases
+- [Maven Central v0.11.0] https://central.sonatype.com/artifact/com.prove/proveapi/0.11.0 - .
