@@ -16,15 +16,25 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V3VerifyRequest - Request body for the V3 Verify API
+ */
 
-public class V3StartRequest {
+public class V3VerifyRequest {
 
     /**
-     * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("dob")
-    private Optional<String> dob;
+    @JsonProperty("clientCustomerId")
+    private Optional<String> clientCustomerId;
+
+    /**
+     * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientRequestId")
+    private Optional<String> clientRequestId;
 
     /**
      * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
@@ -41,24 +51,28 @@ public class V3StartRequest {
     private Optional<String> finalTargetUrl;
 
     /**
-     * Flow type is based on the method used - either 'desktop' if using desktop or 'mobile' for iOS/Android native apps and mobile web. Acceptable options are: 'desktop' or 'mobile'.
+     * First name of the individual.
      */
-    @JsonProperty("flowType")
-    private String flowType;
+    @JsonProperty("firstName")
+    private String firstName;
 
     /**
-     * IP address is the IP address of the device of the customer. Acceptable characters are: numeric with symbols ':.'.
+     * Last name of the individual.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("ipAddress")
-    private Optional<String> ipAddress;
+    @JsonProperty("lastName")
+    private String lastName;
 
     /**
      * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. In Production, you will likely pass the phone number via the Prove Link client SDK instead of within the Start call depending on how your user experience is implemented. Acceptable characters are: alphanumeric with symbols '+'.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
-    private Optional<String> phoneNumber;
+    private String phoneNumber;
+
+    /**
+     * Possession type is based on the method used - either 'desktop' if using desktop, 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+     */
+    @JsonProperty("possessionType")
+    private String possessionType;
 
     /**
      * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
@@ -75,52 +89,59 @@ public class V3StartRequest {
     @JsonProperty("smsMessage")
     private Optional<String> smsMessage;
 
-    /**
-     * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("ssn")
-    private Optional<String> ssn;
-
     @JsonCreator
-    public V3StartRequest(
-            @JsonProperty("dob") Optional<String> dob,
+    public V3VerifyRequest(
+            @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
+            @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("emailAddress") Optional<String> emailAddress,
             @JsonProperty("finalTargetUrl") Optional<String> finalTargetUrl,
-            @JsonProperty("flowType") String flowType,
-            @JsonProperty("ipAddress") Optional<String> ipAddress,
-            @JsonProperty("phoneNumber") Optional<String> phoneNumber,
-            @JsonProperty("smsMessage") Optional<String> smsMessage,
-            @JsonProperty("ssn") Optional<String> ssn) {
-        Utils.checkNotNull(dob, "dob");
+            @JsonProperty("firstName") String firstName,
+            @JsonProperty("lastName") String lastName,
+            @JsonProperty("phoneNumber") String phoneNumber,
+            @JsonProperty("possessionType") String possessionType,
+            @JsonProperty("smsMessage") Optional<String> smsMessage) {
+        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(emailAddress, "emailAddress");
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
-        Utils.checkNotNull(flowType, "flowType");
-        Utils.checkNotNull(ipAddress, "ipAddress");
+        Utils.checkNotNull(firstName, "firstName");
+        Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(possessionType, "possessionType");
         Utils.checkNotNull(smsMessage, "smsMessage");
-        Utils.checkNotNull(ssn, "ssn");
-        this.dob = dob;
+        this.clientCustomerId = clientCustomerId;
+        this.clientRequestId = clientRequestId;
         this.emailAddress = emailAddress;
         this.finalTargetUrl = finalTargetUrl;
-        this.flowType = flowType;
-        this.ipAddress = ipAddress;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.possessionType = possessionType;
         this.smsMessage = smsMessage;
-        this.ssn = ssn;
     }
     
-    public V3StartRequest(
-            String flowType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), flowType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    public V3VerifyRequest(
+            String firstName,
+            String lastName,
+            String phoneNumber,
+            String possessionType) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), firstName, lastName, phoneNumber, possessionType, Optional.empty());
     }
 
     /**
-     * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
-    public Optional<String> dob() {
-        return dob;
+    public Optional<String> clientCustomerId() {
+        return clientCustomerId;
+    }
+
+    /**
+     * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     */
+    @JsonIgnore
+    public Optional<String> clientRequestId() {
+        return clientRequestId;
     }
 
     /**
@@ -140,27 +161,35 @@ public class V3StartRequest {
     }
 
     /**
-     * Flow type is based on the method used - either 'desktop' if using desktop or 'mobile' for iOS/Android native apps and mobile web. Acceptable options are: 'desktop' or 'mobile'.
+     * First name of the individual.
      */
     @JsonIgnore
-    public String flowType() {
-        return flowType;
+    public String firstName() {
+        return firstName;
     }
 
     /**
-     * IP address is the IP address of the device of the customer. Acceptable characters are: numeric with symbols ':.'.
+     * Last name of the individual.
      */
     @JsonIgnore
-    public Optional<String> ipAddress() {
-        return ipAddress;
+    public String lastName() {
+        return lastName;
     }
 
     /**
      * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. In Production, you will likely pass the phone number via the Prove Link client SDK instead of within the Start call depending on how your user experience is implemented. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonIgnore
-    public Optional<String> phoneNumber() {
+    public String phoneNumber() {
         return phoneNumber;
+    }
+
+    /**
+     * Possession type is based on the method used - either 'desktop' if using desktop, 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+     */
+    @JsonIgnore
+    public String possessionType() {
+        return possessionType;
     }
 
     /**
@@ -179,40 +208,50 @@ public class V3StartRequest {
         return smsMessage;
     }
 
-    /**
-     * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
-     */
-    @JsonIgnore
-    public Optional<String> ssn() {
-        return ssn;
-    }
-
     public final static Builder builder() {
         return new Builder();
     }
 
     /**
-     * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
      */
-    public V3StartRequest withDob(String dob) {
-        Utils.checkNotNull(dob, "dob");
-        this.dob = Optional.ofNullable(dob);
+    public V3VerifyRequest withClientCustomerId(String clientCustomerId) {
+        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        this.clientCustomerId = Optional.ofNullable(clientCustomerId);
         return this;
     }
 
     /**
-     * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
      */
-    public V3StartRequest withDob(Optional<String> dob) {
-        Utils.checkNotNull(dob, "dob");
-        this.dob = dob;
+    public V3VerifyRequest withClientCustomerId(Optional<String> clientCustomerId) {
+        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        this.clientCustomerId = clientCustomerId;
+        return this;
+    }
+
+    /**
+     * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     */
+    public V3VerifyRequest withClientRequestId(String clientRequestId) {
+        Utils.checkNotNull(clientRequestId, "clientRequestId");
+        this.clientRequestId = Optional.ofNullable(clientRequestId);
+        return this;
+    }
+
+    /**
+     * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     */
+    public V3VerifyRequest withClientRequestId(Optional<String> clientRequestId) {
+        Utils.checkNotNull(clientRequestId, "clientRequestId");
+        this.clientRequestId = clientRequestId;
         return this;
     }
 
     /**
      * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
-    public V3StartRequest withEmailAddress(String emailAddress) {
+    public V3VerifyRequest withEmailAddress(String emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = Optional.ofNullable(emailAddress);
         return this;
@@ -221,7 +260,7 @@ public class V3StartRequest {
     /**
      * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
-    public V3StartRequest withEmailAddress(Optional<String> emailAddress) {
+    public V3VerifyRequest withEmailAddress(Optional<String> emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = emailAddress;
         return this;
@@ -230,7 +269,7 @@ public class V3StartRequest {
     /**
      * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
-    public V3StartRequest withFinalTargetUrl(String finalTargetUrl) {
+    public V3VerifyRequest withFinalTargetUrl(String finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
         this.finalTargetUrl = Optional.ofNullable(finalTargetUrl);
         return this;
@@ -239,54 +278,45 @@ public class V3StartRequest {
     /**
      * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
-    public V3StartRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
+    public V3VerifyRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
         this.finalTargetUrl = finalTargetUrl;
         return this;
     }
 
     /**
-     * Flow type is based on the method used - either 'desktop' if using desktop or 'mobile' for iOS/Android native apps and mobile web. Acceptable options are: 'desktop' or 'mobile'.
+     * First name of the individual.
      */
-    public V3StartRequest withFlowType(String flowType) {
-        Utils.checkNotNull(flowType, "flowType");
-        this.flowType = flowType;
+    public V3VerifyRequest withFirstName(String firstName) {
+        Utils.checkNotNull(firstName, "firstName");
+        this.firstName = firstName;
         return this;
     }
 
     /**
-     * IP address is the IP address of the device of the customer. Acceptable characters are: numeric with symbols ':.'.
+     * Last name of the individual.
      */
-    public V3StartRequest withIpAddress(String ipAddress) {
-        Utils.checkNotNull(ipAddress, "ipAddress");
-        this.ipAddress = Optional.ofNullable(ipAddress);
-        return this;
-    }
-
-    /**
-     * IP address is the IP address of the device of the customer. Acceptable characters are: numeric with symbols ':.'.
-     */
-    public V3StartRequest withIpAddress(Optional<String> ipAddress) {
-        Utils.checkNotNull(ipAddress, "ipAddress");
-        this.ipAddress = ipAddress;
+    public V3VerifyRequest withLastName(String lastName) {
+        Utils.checkNotNull(lastName, "lastName");
+        this.lastName = lastName;
         return this;
     }
 
     /**
      * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. In Production, you will likely pass the phone number via the Prove Link client SDK instead of within the Start call depending on how your user experience is implemented. Acceptable characters are: alphanumeric with symbols '+'.
      */
-    public V3StartRequest withPhoneNumber(String phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        this.phoneNumber = Optional.ofNullable(phoneNumber);
-        return this;
-    }
-
-    /**
-     * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. In Production, you will likely pass the phone number via the Prove Link client SDK instead of within the Start call depending on how your user experience is implemented. Acceptable characters are: alphanumeric with symbols '+'.
-     */
-    public V3StartRequest withPhoneNumber(Optional<String> phoneNumber) {
+    public V3VerifyRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    /**
+     * Possession type is based on the method used - either 'desktop' if using desktop, 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+     */
+    public V3VerifyRequest withPossessionType(String possessionType) {
+        Utils.checkNotNull(possessionType, "possessionType");
+        this.possessionType = possessionType;
         return this;
     }
 
@@ -301,7 +331,7 @@ public class V3StartRequest {
      * 1. For OTP (mobile flow): Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
      * 2. For Instant Link (desktop flow): Must use exactly #### which will be replaced with the verification URL.
      */
-    public V3StartRequest withSmsMessage(String smsMessage) {
+    public V3VerifyRequest withSmsMessage(String smsMessage) {
         Utils.checkNotNull(smsMessage, "smsMessage");
         this.smsMessage = Optional.ofNullable(smsMessage);
         return this;
@@ -318,27 +348,9 @@ public class V3StartRequest {
      * 1. For OTP (mobile flow): Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
      * 2. For Instant Link (desktop flow): Must use exactly #### which will be replaced with the verification URL.
      */
-    public V3StartRequest withSmsMessage(Optional<String> smsMessage) {
+    public V3VerifyRequest withSmsMessage(Optional<String> smsMessage) {
         Utils.checkNotNull(smsMessage, "smsMessage");
         this.smsMessage = smsMessage;
-        return this;
-    }
-
-    /**
-     * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
-     */
-    public V3StartRequest withSsn(String ssn) {
-        Utils.checkNotNull(ssn, "ssn");
-        this.ssn = Optional.ofNullable(ssn);
-        return this;
-    }
-
-    /**
-     * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
-     */
-    public V3StartRequest withSsn(Optional<String> ssn) {
-        Utils.checkNotNull(ssn, "ssn");
-        this.ssn = ssn;
         return this;
     }
     
@@ -350,81 +362,104 @@ public class V3StartRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        V3StartRequest other = (V3StartRequest) o;
+        V3VerifyRequest other = (V3VerifyRequest) o;
         return 
-            Objects.deepEquals(this.dob, other.dob) &&
+            Objects.deepEquals(this.clientCustomerId, other.clientCustomerId) &&
+            Objects.deepEquals(this.clientRequestId, other.clientRequestId) &&
             Objects.deepEquals(this.emailAddress, other.emailAddress) &&
             Objects.deepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
-            Objects.deepEquals(this.flowType, other.flowType) &&
-            Objects.deepEquals(this.ipAddress, other.ipAddress) &&
+            Objects.deepEquals(this.firstName, other.firstName) &&
+            Objects.deepEquals(this.lastName, other.lastName) &&
             Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            Objects.deepEquals(this.smsMessage, other.smsMessage) &&
-            Objects.deepEquals(this.ssn, other.ssn);
+            Objects.deepEquals(this.possessionType, other.possessionType) &&
+            Objects.deepEquals(this.smsMessage, other.smsMessage);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            dob,
+            clientCustomerId,
+            clientRequestId,
             emailAddress,
             finalTargetUrl,
-            flowType,
-            ipAddress,
+            firstName,
+            lastName,
             phoneNumber,
-            smsMessage,
-            ssn);
+            possessionType,
+            smsMessage);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(V3StartRequest.class,
-                "dob", dob,
+        return Utils.toString(V3VerifyRequest.class,
+                "clientCustomerId", clientCustomerId,
+                "clientRequestId", clientRequestId,
                 "emailAddress", emailAddress,
                 "finalTargetUrl", finalTargetUrl,
-                "flowType", flowType,
-                "ipAddress", ipAddress,
+                "firstName", firstName,
+                "lastName", lastName,
                 "phoneNumber", phoneNumber,
-                "smsMessage", smsMessage,
-                "ssn", ssn);
+                "possessionType", possessionType,
+                "smsMessage", smsMessage);
     }
     
     public final static class Builder {
  
-        private Optional<String> dob = Optional.empty();
+        private Optional<String> clientCustomerId = Optional.empty();
+ 
+        private Optional<String> clientRequestId = Optional.empty();
  
         private Optional<String> emailAddress = Optional.empty();
  
         private Optional<String> finalTargetUrl = Optional.empty();
  
-        private String flowType;
+        private String firstName;
  
-        private Optional<String> ipAddress = Optional.empty();
+        private String lastName;
  
-        private Optional<String> phoneNumber = Optional.empty();
+        private String phoneNumber;
  
-        private Optional<String> smsMessage = Optional.empty();
+        private String possessionType;
  
-        private Optional<String> ssn = Optional.empty();  
+        private Optional<String> smsMessage = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
         /**
-         * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
          */
-        public Builder dob(String dob) {
-            Utils.checkNotNull(dob, "dob");
-            this.dob = Optional.ofNullable(dob);
+        public Builder clientCustomerId(String clientCustomerId) {
+            Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+            this.clientCustomerId = Optional.ofNullable(clientCustomerId);
             return this;
         }
 
         /**
-         * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
          */
-        public Builder dob(Optional<String> dob) {
-            Utils.checkNotNull(dob, "dob");
-            this.dob = dob;
+        public Builder clientCustomerId(Optional<String> clientCustomerId) {
+            Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+            this.clientCustomerId = clientCustomerId;
+            return this;
+        }
+
+        /**
+         * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+         */
+        public Builder clientRequestId(String clientRequestId) {
+            Utils.checkNotNull(clientRequestId, "clientRequestId");
+            this.clientRequestId = Optional.ofNullable(clientRequestId);
+            return this;
+        }
+
+        /**
+         * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+         */
+        public Builder clientRequestId(Optional<String> clientRequestId) {
+            Utils.checkNotNull(clientRequestId, "clientRequestId");
+            this.clientRequestId = clientRequestId;
             return this;
         }
 
@@ -465,29 +500,20 @@ public class V3StartRequest {
         }
 
         /**
-         * Flow type is based on the method used - either 'desktop' if using desktop or 'mobile' for iOS/Android native apps and mobile web. Acceptable options are: 'desktop' or 'mobile'.
+         * First name of the individual.
          */
-        public Builder flowType(String flowType) {
-            Utils.checkNotNull(flowType, "flowType");
-            this.flowType = flowType;
+        public Builder firstName(String firstName) {
+            Utils.checkNotNull(firstName, "firstName");
+            this.firstName = firstName;
             return this;
         }
 
         /**
-         * IP address is the IP address of the device of the customer. Acceptable characters are: numeric with symbols ':.'.
+         * Last name of the individual.
          */
-        public Builder ipAddress(String ipAddress) {
-            Utils.checkNotNull(ipAddress, "ipAddress");
-            this.ipAddress = Optional.ofNullable(ipAddress);
-            return this;
-        }
-
-        /**
-         * IP address is the IP address of the device of the customer. Acceptable characters are: numeric with symbols ':.'.
-         */
-        public Builder ipAddress(Optional<String> ipAddress) {
-            Utils.checkNotNull(ipAddress, "ipAddress");
-            this.ipAddress = ipAddress;
+        public Builder lastName(String lastName) {
+            Utils.checkNotNull(lastName, "lastName");
+            this.lastName = lastName;
             return this;
         }
 
@@ -496,16 +522,16 @@ public class V3StartRequest {
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
-            this.phoneNumber = Optional.ofNullable(phoneNumber);
+            this.phoneNumber = phoneNumber;
             return this;
         }
 
         /**
-         * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. In Production, you will likely pass the phone number via the Prove Link client SDK instead of within the Start call depending on how your user experience is implemented. Acceptable characters are: alphanumeric with symbols '+'.
+         * Possession type is based on the method used - either 'desktop' if using desktop, 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
          */
-        public Builder phoneNumber(Optional<String> phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
-            this.phoneNumber = phoneNumber;
+        public Builder possessionType(String possessionType) {
+            Utils.checkNotNull(possessionType, "possessionType");
+            this.possessionType = possessionType;
             return this;
         }
 
@@ -542,35 +568,18 @@ public class V3StartRequest {
             this.smsMessage = smsMessage;
             return this;
         }
-
-        /**
-         * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
-         */
-        public Builder ssn(String ssn) {
-            Utils.checkNotNull(ssn, "ssn");
-            this.ssn = Optional.ofNullable(ssn);
-            return this;
-        }
-
-        /**
-         * SSN, an optional challenge, is either the full or last 4 digits of the social security number. Acceptable characters are: numeric.
-         */
-        public Builder ssn(Optional<String> ssn) {
-            Utils.checkNotNull(ssn, "ssn");
-            this.ssn = ssn;
-            return this;
-        }
         
-        public V3StartRequest build() {
-            return new V3StartRequest(
-                dob,
+        public V3VerifyRequest build() {
+            return new V3VerifyRequest(
+                clientCustomerId,
+                clientRequestId,
                 emailAddress,
                 finalTargetUrl,
-                flowType,
-                ipAddress,
+                firstName,
+                lastName,
                 phoneNumber,
-                smsMessage,
-                ssn);
+                possessionType,
+                smsMessage);
         }
     }
 }

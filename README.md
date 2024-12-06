@@ -14,13 +14,15 @@ OpenAPI Spec - generated.
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [openapi](#openapi)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Authentication](#authentication)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Authentication](#authentication)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -34,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.10.0'
+implementation 'com.prove:proveapi:0.11.0'
 ```
 
 Maven:
@@ -42,7 +44,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.10.0</version>
+    <version>0.11.0</version>
 </dependency>
 ```
 
@@ -95,7 +97,7 @@ public class Application {
                 .finalTargetUrl("https://www.example.com/landing-page")
                 .ipAddress("10.0.0.1")
                 .phoneNumber("2001001695")
-                .smsMessage("\"Your code is: ####.\"")
+                .smsMessage("#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone.")
                 .ssn("0596")
                 .build();
 
@@ -125,6 +127,8 @@ public class Application {
 * [v3CompleteRequest](docs/sdks/v3/README.md#v3completerequest) - Complete flow.
 * [v3StartRequest](docs/sdks/v3/README.md#v3startrequest) - Start flow.
 * [v3ValidateRequest](docs/sdks/v3/README.md#v3validaterequest) - Validate phone number.
+* [v3VerifyRequest](docs/sdks/v3/README.md#v3verifyrequest) - Initiate verified users session.
+* [v3VerifyStatusRequest](docs/sdks/v3/README.md#v3verifystatusrequest) - Perform checks for verified users session.
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -132,13 +136,15 @@ public class Application {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Exception type.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
-| models/errors/Error    | 500                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `v3TokenRequest` method throws the following exceptions:
+
+| Error Type             | Status Code | Content Type     |
+| ---------------------- | ----------- | ---------------- |
+| models/errors/Error400 | 400         | application/json |
+| models/errors/Error    | 500         | application/json |
+| models/errors/SDKError | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -182,12 +188,12 @@ public class Application {
 
 ### Select Server by Name
 
-You can override the default server globally by passing a server name to the `server` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+You can override the default server globally using the `.server(AvailableServers server)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| Name | Server | Variables |
-| ----- | ------ | --------- |
-| `uat-us` | `https://platform.uat.proveapis.com` | None |
-| `prod-us` | `https://platform.proveapis.com` | None |
+| Name      | Server                               |
+| --------- | ------------------------------------ |
+| `uat-us`  | `https://platform.uat.proveapis.com` |
+| `prod-us` | `https://platform.proveapis.com`     |
 
 #### Example
 
@@ -226,10 +232,9 @@ public class Application {
 }
 ```
 
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` builder method when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `.serverURL(String serverUrl)` builder method when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
@@ -273,9 +278,9 @@ public class Application {
 
 This SDK supports the following security scheme globally:
 
-| Name                           | Type                           | Scheme                         |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| `clientID` `clientSecret`      | oauth2                         | OAuth2 Client Credentials Flow |
+| Name                          | Type   | Scheme                         |
+| ----------------------------- | ------ | ------------------------------ |
+| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow |
 
 You can set the security parameters through the `security` builder method when initializing the SDK client instance. For example:
 ```java

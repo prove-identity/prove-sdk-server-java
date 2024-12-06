@@ -9,6 +9,8 @@ import com.prove.proveapi.models.components.V3CompleteRequest;
 import com.prove.proveapi.models.components.V3StartRequest;
 import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.components.V3ValidateRequest;
+import com.prove.proveapi.models.components.V3VerifyRequest;
+import com.prove.proveapi.models.components.V3VerifyStatusRequest;
 import java.lang.Exception;
 import java.util.Optional;
 
@@ -42,6 +44,18 @@ public class SDKMethodInterfaces {
     public interface MethodCallV3ValidateRequest {
         V3ValidateRequestResponse v3ValidateRequest(
             Optional<? extends V3ValidateRequest> request) throws Exception;
+    }
+
+
+    public interface MethodCallV3VerifyRequest {
+        V3VerifyRequestResponse v3VerifyRequest(
+            Optional<? extends V3VerifyRequest> request) throws Exception;
+    }
+
+
+    public interface MethodCallV3VerifyStatusRequest {
+        V3VerifyStatusRequestResponse v3VerifyStatusRequest(
+            Optional<? extends V3VerifyStatusRequest> request) throws Exception;
     }
 
 
