@@ -1,20 +1,20 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: 428ace181e239a8e3bc815d988aa1fc6
+  docChecksum: 07cf61315270e441180ccf1dd51f1466
   docVersion: 1.0.0
-  speakeasyVersion: 1.453.0
-  generationVersion: 2.472.1
-  releaseVersion: 0.11.0
-  configChecksum: c3058744b1af456ccfc8cb542ad55c23
+  speakeasyVersion: 1.494.0
+  generationVersion: 2.515.0
+  releaseVersion: 0.12.0
+  configChecksum: c4a1b9c59bca501666b12d15d5c29b58
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.32.2
-    examples: 2.81.3
-    globalSecurity: 2.82.7
+    core: 3.34.0
+    examples: 2.81.5
+    globalSecurity: 2.82.8
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
     oauth2ClientCredentials: 0.1.1
@@ -22,7 +22,6 @@ features:
     serverIDs: 2.81.1
 generatedFiles:
   - .gitattributes
-  - CONTRIBUTING.md
   - USAGE.md
   - build.gradle
   - docs/models/components/AmlTypeListResponseInternal.md
@@ -43,6 +42,10 @@ generatedFiles:
   - docs/models/components/V3CompleteIndividualRequest.md
   - docs/models/components/V3CompleteRequest.md
   - docs/models/components/V3CompleteResponse.md
+  - docs/models/components/V3MFARequest.md
+  - docs/models/components/V3MFAResponse.md
+  - docs/models/components/V3MFAStatusRequest.md
+  - docs/models/components/V3MFAStatusResponse.md
   - docs/models/components/V3StartRequest.md
   - docs/models/components/V3StartResponse.md
   - docs/models/components/V3TokenRequest.md
@@ -57,6 +60,8 @@ generatedFiles:
   - docs/models/errors/Error400.md
   - docs/models/operations/V3ChallengeRequestResponse.md
   - docs/models/operations/V3CompleteRequestResponse.md
+  - docs/models/operations/V3MFARequestResponse.md
+  - docs/models/operations/V3MFAStatusRequestResponse.md
   - docs/models/operations/V3StartRequestResponse.md
   - docs/models/operations/V3TokenRequestResponse.md
   - docs/models/operations/V3ValidateRequestResponse.md
@@ -92,6 +97,10 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/V3CompleteIndividualRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3MFARequest.java
+  - src/main/java/com/prove/proveapi/models/components/V3MFAResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3MFAStatusRequest.java
+  - src/main/java/com/prove/proveapi/models/components/V3MFAStatusResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3StartRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3StartResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3TokenRequest.java
@@ -111,6 +120,10 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/operations/V3ChallengeRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3CompleteRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3CompleteRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3MFARequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3MFARequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3MFAStatusRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3MFAStatusRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3StartRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3StartRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3TokenRequestRequestBuilder.java
@@ -139,13 +152,17 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/utils/JSON.java
   - src/main/java/com/prove/proveapi/utils/LazySingletonValue.java
   - src/main/java/com/prove/proveapi/utils/Metadata.java
+  - src/main/java/com/prove/proveapi/utils/Multipart.java
   - src/main/java/com/prove/proveapi/utils/MultipartFormMetadata.java
+  - src/main/java/com/prove/proveapi/utils/NameValue.java
   - src/main/java/com/prove/proveapi/utils/OneOfDeserializer.java
   - src/main/java/com/prove/proveapi/utils/Options.java
   - src/main/java/com/prove/proveapi/utils/PathParamsMetadata.java
+  - src/main/java/com/prove/proveapi/utils/QueryEncoding.java
   - src/main/java/com/prove/proveapi/utils/QueryParameter.java
   - src/main/java/com/prove/proveapi/utils/QueryParameters.java
   - src/main/java/com/prove/proveapi/utils/QueryParamsMetadata.java
+  - src/main/java/com/prove/proveapi/utils/RecordingClient.java
   - src/main/java/com/prove/proveapi/utils/RequestBody.java
   - src/main/java/com/prove/proveapi/utils/RequestMetadata.java
   - src/main/java/com/prove/proveapi/utils/Response.java
@@ -154,6 +171,7 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/utils/Security.java
   - src/main/java/com/prove/proveapi/utils/SecurityMetadata.java
   - src/main/java/com/prove/proveapi/utils/SerializedBody.java
+  - src/main/java/com/prove/proveapi/utils/SessionManager.java
   - src/main/java/com/prove/proveapi/utils/SpeakeasyHTTPClient.java
   - src/main/java/com/prove/proveapi/utils/SpeakeasyMetadata.java
   - src/main/java/com/prove/proveapi/utils/TypedObject.java
@@ -189,31 +207,53 @@ examples:
         application/json: {"correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "individual": {"addresses": [{"address": "39 South Trail", "city": "San Antonio", "extendedAddress": "Apt 23", "postalCode": "78285", "region": "TX"}, {"address": "4861 Jay Junction", "city": "Boston", "extendedAddress": "Apt 78", "postalCode": "02208", "region": "MS"}], "dob": "1981-01", "emailAddresses": ["jdoe@example.com", "dsmith@example.com"], "firstName": "Tod", "lastName": "Weedall", "ssn": "265228370"}}
       responses:
         "200":
-          application/json: {"idv": {"dataSource1": {"address": {"addressScore": 0, "city": true, "distance": 6.027456183070403, "postalCode": true, "region": true, "street": true, "streetNumber": 1}, "cipConfidence": "cipConfidence", "email": {"emailAddress": true}, "identifiers": {"dob": true, "last4": true, "ssn": true}, "name": {"firstName": 5, "lastName": 5, "nameScore": 2}, "reasonCodes": ["reasonCodes", "reasonCodes"]}, "dataSource2": {"address": {"addressScore": 0, "city": true, "distance": 6.027456183070403, "postalCode": true, "region": true, "street": true, "streetNumber": 1}, "cipConfidence": "cipConfidence", "email": {"emailAddress": true}, "identifiers": {"dob": true, "last4": true, "ssn": true}, "name": {"firstName": 5, "lastName": 5, "nameScore": 2}, "reasonCodes": ["reasonCodes", "reasonCodes"]}, "multiCIPConfidence": "multiCIPConfidence"}, "kyc": {"amlTypeLists": [{"amlType": "amlType", "fields": [{"name": "name", "source": "source", "value": "value"}, {"name": "name", "source": "source", "value": "value"}], "listHits": 7}, {"amlType": "amlType", "fields": [{"name": "name", "source": "source", "value": "value"}, {"name": "name", "source": "source", "value": "value"}], "listHits": 7}], "totalHits": 9}, "next": {"done": "done"}, "success": true}
+          application/json: {"next": {"done": "done"}, "success": true}
     Example2:
       requestBody:
         application/json: {"correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "individual": {"addresses": [{"address": "39 South Trail", "city": "San Antonio", "extendedAddress": "Apt 23", "postalCode": "78285", "region": "TX"}, {"address": "4861 Jay Junction", "city": "Boston", "extendedAddress": "Apt 78", "postalCode": "02208", "region": "MS"}], "dob": "1981-01", "emailAddresses": ["jdoe@example.com", "dsmith@example.com"], "firstName": "Tod", "lastName": "Weedall", "ssn": "265228370"}}
       responses:
         "200":
-          application/json: {"idv": {"dataSource1": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "high", "email": {"emailAddress": true}, "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "dataSource2": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "high", "email": {"emailAddress": true}, "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "multiCIPConfidence": "high"}, "kyc": {"amlTypeLists": [{"amlType": "pep-class-1", "fields": [{"name": "Country", "source": "complyAdvantage", "value": "shire"}, {"name": "Political Position", "source": "complyAdvantage", "value": "President"}, {"name": "Gender", "source": "complyAdvantage", "value": "male"}], "listHits": 1}], "totalHits": 4}, "next": {"done": "done"}, "success": true}
+          application/json: {"idv": {"dataSource1": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "high", "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "dataSource2": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "high", "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "multiCIPConfidence": "high"}, "kyc": {"amlTypeLists": [{"amlType": "pep-class-1", "fields": [{"name": "Country", "source": "complyAdvantage", "value": "shire"}, {"name": "Political Position", "source": "complyAdvantage", "value": "President"}, {"name": "Gender", "source": "complyAdvantage", "value": "male"}], "listHits": 1}], "totalHits": 4}, "next": {"done": "done"}, "success": true}
     Example3:
       requestBody:
         application/json: {"correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "individual": {"addresses": [{"address": "39 South Trail", "city": "San Antonio", "extendedAddress": "Apt 23", "postalCode": "78285", "region": "TX"}, {"address": "4861 Jay Junction", "city": "Boston", "extendedAddress": "Apt 78", "postalCode": "02208", "region": "MS"}], "dob": "1981-01", "emailAddresses": ["jdoe@example.com", "dsmith@example.com"], "firstName": "Tod", "lastName": "Weedall", "ssn": "265228370"}}
       responses:
         "200":
-          application/json: {"idv": {"dataSource1": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "low", "email": {"emailAddress": true}, "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}, "reasonCodes": ["DI"]}, "dataSource2": {"address": {"addressScore": 33, "city": true, "distance": 0, "postalCode": true, "region": true, "street": false, "streetNumber": 100}, "cipConfidence": "low", "email": {"emailAddress": true}, "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "multiCIPConfidence": "low"}, "kyc": {"amlTypeLists": [{"amlType": "amlType", "fields": [{"name": "name", "source": "source", "value": "value"}, {"name": "name", "source": "source", "value": "value"}], "listHits": 7}], "totalHits": 0}, "next": {"done": "done"}, "success": false}
+          application/json: {"idv": {"dataSource1": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "low", "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}, "reasonCodes": ["DI"]}, "dataSource2": {"address": {"addressScore": 33, "city": true, "distance": 0, "postalCode": true, "region": true, "street": false, "streetNumber": 100}, "cipConfidence": "low", "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "multiCIPConfidence": "low"}, "kyc": {"totalHits": 0}, "next": {"done": "done"}, "success": false}
     Example4:
       requestBody:
         application/json: {"correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "individual": {"addresses": [{"address": "39 South Trail", "city": "San Antonio", "extendedAddress": "Apt 23", "postalCode": "78285", "region": "TX"}, {"address": "4861 Jay Junction", "city": "Boston", "extendedAddress": "Apt 78", "postalCode": "02208", "region": "MS"}], "dob": "1981-01", "emailAddresses": ["jdoe@example.com", "dsmith@example.com"], "firstName": "Tod", "lastName": "Weedall", "ssn": "265228370"}}
       responses:
         "200":
-          application/json: {"idv": {"dataSource1": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "low", "email": {"emailAddress": true}, "identifiers": {"dob": true, "ssn": false}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}, "reasonCodes": ["DI"]}, "dataSource2": {"address": {"addressScore": 33, "city": true, "distance": 0, "postalCode": true, "region": true, "street": false, "streetNumber": 100}, "cipConfidence": "low", "email": {"emailAddress": true}, "identifiers": {"dob": true, "ssn": false}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "multiCIPConfidence": "low"}, "kyc": {"amlTypeLists": [{"amlType": "amlType", "fields": [{"name": "name", "source": "source", "value": "value"}, {"name": "name", "source": "source", "value": "value"}], "listHits": 7}], "totalHits": 0}, "next": {"done": "done"}, "success": false}
+          application/json: {"idv": {"dataSource1": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "low", "identifiers": {"dob": true, "ssn": false}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}, "reasonCodes": ["DI"]}, "dataSource2": {"address": {"addressScore": 33, "city": true, "distance": 0, "postalCode": true, "region": true, "street": false, "streetNumber": 100}, "cipConfidence": "low", "identifiers": {"dob": true, "ssn": false}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "multiCIPConfidence": "low"}, "kyc": {"totalHits": 0}, "next": {"done": "done"}, "success": false}
     Example5:
       requestBody:
         application/json: {"correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "individual": {"addresses": [{"address": "39 South Trail", "city": "San Antonio", "extendedAddress": "Apt 23", "postalCode": "78285", "region": "TX"}, {"address": "4861 Jay Junction", "city": "Boston", "extendedAddress": "Apt 78", "postalCode": "02208", "region": "MS"}], "dob": "1981-01", "emailAddresses": ["jdoe@example.com", "dsmith@example.com"], "firstName": "Tod", "lastName": "Weedall", "ssn": "265228370"}}
       responses:
         "200":
-          application/json: {"idv": {"dataSource1": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "high", "email": {"emailAddress": true}, "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "dataSource2": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "high", "email": {"emailAddress": true}, "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "multiCIPConfidence": "high"}, "kyc": {"amlTypeLists": [{"amlType": "amlType", "fields": [{"name": "name", "source": "source", "value": "value"}, {"name": "name", "source": "source", "value": "value"}], "listHits": 7}], "totalHits": 0}, "next": {"done": "done"}, "success": true}
+          application/json: {"idv": {"dataSource1": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "high", "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "dataSource2": {"address": {"addressScore": 100, "city": true, "distance": 0, "postalCode": true, "region": true, "street": true, "streetNumber": 100}, "cipConfidence": "high", "identifiers": {"dob": true, "ssn": true}, "name": {"firstName": 100, "lastName": 100, "nameScore": 100}}, "multiCIPConfidence": "high"}, "kyc": {"totalHits": 0}, "next": {"done": "done"}, "success": true}
+  V3MFARequest:
+    speakeasy-default-v3-MFA-request:
+      requestBody:
+        application/json: {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "emailAddress": "user@example.com", "finalTargetUrl": "https://www.example.com/landing-page", "ipAddress": "192.168.1.1", "phoneNumber": "2001004011", "possessionType": "mobile", "smsMessage": "#### is your verification code"}
+      responses:
+        "200":
+          application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "success": "success"}
+        "400":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3MFAStatusRequest:
+    speakeasy-default-v3-MFA-status-request:
+      requestBody:
+        application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "phoneNumber": "2001004011"}
+      responses:
+        "200":
+          application/json: {"phoneNumber": "2001004011", "success": "success"}
+        "400":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
   V3StartRequest:
     speakeasy-default-v3-start-request:
       requestBody:
@@ -258,4 +298,5 @@ examples:
           application/json: {"code": 8002, "message": "not authorized"}
         "500":
           application/json: {"code": 8000, "message": "error at prove, try again later"}
+examplesVersion: 1.0.0
 generatedTests: {}

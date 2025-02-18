@@ -4,15 +4,16 @@
 
 package com.prove.proveapi;
 
-import com.prove.proveapi.models.operations.SDKMethodInterfaces.*;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.RetryConfig;
 import com.prove.proveapi.utils.SpeakeasyHTTPClient;
 import com.prove.proveapi.utils.Utils;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 /**
  * Prove APIs: This specification describes the Prove API.
@@ -49,6 +50,7 @@ public class Proveapi {
     /**
      * SERVERS contains the list of server urls available to the SDK.
      */
+    @SuppressWarnings("serial")
     public static final Map<AvailableServers, String> SERVERS = new HashMap<>() { {
     put(AvailableServers.UAT_US, "https://platform.uat.proveapis.com");
     put(AvailableServers.PROD_US, "https://platform.proveapis.com");
@@ -134,7 +136,7 @@ public class Proveapi {
          * @return The builder instance.
          */
         public Builder server(AvailableServers server) {
-            this.sdkConfiguration.server = server.toString();
+            this.sdkConfiguration.server = server.server();
             this.sdkConfiguration.serverUrl = SERVERS.get(server);
             return this;
         }
@@ -149,9 +151,16 @@ public class Proveapi {
             this.sdkConfiguration.retryConfig = Optional.of(retryConfig);
             return this;
         }
-        // Visible for testing, will be accessed via reflection
-        void _hooks(com.prove.proveapi.utils.Hooks hooks) {
-            sdkConfiguration.setHooks(hooks);    
+        // Visible for testing, may be accessed via reflection in tests
+        Builder _hooks(com.prove.proveapi.utils.Hooks hooks) {
+            sdkConfiguration.setHooks(hooks);  
+            return this;  
+        }
+        
+        // Visible for testing, may be accessed via reflection in tests
+        Builder _hooks(Consumer<? super com.prove.proveapi.utils.Hooks> consumer) {
+            consumer.accept(sdkConfiguration.hooks());
+            return this;    
         }
         
         /**
@@ -167,7 +176,7 @@ public class Proveapi {
 	        }
             if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
                 sdkConfiguration.serverUrl = SERVERS.get(AvailableServers.UAT_US);
-                sdkConfiguration.server = AvailableServers.UAT_US.toString();
+                sdkConfiguration.server = AvailableServers.UAT_US.server();
             }
             if (sdkConfiguration.serverUrl.endsWith("/")) {
                 sdkConfiguration.serverUrl = sdkConfiguration.serverUrl.substring(0, sdkConfiguration.serverUrl.length() - 1);

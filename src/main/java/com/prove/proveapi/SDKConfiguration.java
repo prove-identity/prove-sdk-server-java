@@ -19,13 +19,19 @@ class SDKConfiguration {
     public Optional<SecuritySource> securitySource() {
         return Optional.ofNullable(securitySource);
     }
+    
     public HTTPClient defaultClient;
+    
     public String serverUrl;
+    
+    public String resolvedServerUrl() {
+        return serverUrl;
+    }
     public String server;
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "0.11.0";
-    public static final String GEN_VERSION = "2.472.1";
+    public static final String SDK_VERSION = "0.12.0";
+    public static final String GEN_VERSION = "2.515.0";
     private static final String BASE_PACKAGE = "com.prove.proveapi";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s", 
@@ -35,11 +41,12 @@ class SDKConfiguration {
 
     private static Hooks createHooks() {
         Hooks hooks = new Hooks();
-        // register client credentials hooks
-        ClientCredentialsHook h = new ClientCredentialsHook();
-        hooks.registerSdkInit(h);
-        hooks.registerBeforeRequest(h);
-        hooks.registerAfterError(h);
+        {
+            ClientCredentialsHook h = new ClientCredentialsHook();
+            hooks.registerSdkInit(h);
+            hooks.registerBeforeRequest(h);
+            hooks.registerAfterError(h);
+        }
         return hooks;
     }
     
@@ -57,7 +64,7 @@ class SDKConfiguration {
     public void initialize() {
         SDKHooks.initialize(_hooks);
         // apply the sdk init hook immediately
-        SdkInitData data = _hooks.sdkInit(new SdkInitData(serverUrl, defaultClient));
+        SdkInitData data = _hooks.sdkInit(new SdkInitData(resolvedServerUrl(), defaultClient));
         this.serverUrl = data.baseUrl();
         this.defaultClient = data.client();
     }

@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.11.0'
+implementation 'com.prove:proveapi:0.12.0'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.11.0</version>
+    <version>0.12.0</version>
 </dependency>
 ```
 
@@ -125,6 +125,8 @@ public class Application {
 * [v3TokenRequest](docs/sdks/v3/README.md#v3tokenrequest) - Request OAuth token.
 * [v3ChallengeRequest](docs/sdks/v3/README.md#v3challengerequest) - Submit challenge.
 * [v3CompleteRequest](docs/sdks/v3/README.md#v3completerequest) - Complete flow.
+* [v3MFARequest](docs/sdks/v3/README.md#v3mfarequest) - Initiate possession check.
+* [v3MFAStatusRequest](docs/sdks/v3/README.md#v3mfastatusrequest) - Check status of MFA session.
 * [v3StartRequest](docs/sdks/v3/README.md#v3startrequest) - Start flow.
 * [v3ValidateRequest](docs/sdks/v3/README.md#v3validaterequest) - Validate phone number.
 * [v3VerifyRequest](docs/sdks/v3/README.md#v3verifyrequest) - Initiate verified users session.
@@ -190,10 +192,10 @@ public class Application {
 
 You can override the default server globally using the `.server(AvailableServers server)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| Name      | Server                               |
-| --------- | ------------------------------------ |
-| `uat-us`  | `https://platform.uat.proveapis.com` |
-| `prod-us` | `https://platform.proveapis.com`     |
+| Name      | Server                               | Description        |
+| --------- | ------------------------------------ | ------------------ |
+| `uat-us`  | `https://platform.uat.proveapis.com` | UAT for US Region  |
+| `prod-us` | `https://platform.proveapis.com`     | Prod for US Region |
 
 #### Example
 
@@ -212,7 +214,7 @@ public class Application {
     public static void main(String[] args) throws Error400, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
-                .serverIndex(1)
+                .server(Proveapi.AvailableServers.PROD_US)
             .build();
 
         V3TokenRequest req = V3TokenRequest.builder()
