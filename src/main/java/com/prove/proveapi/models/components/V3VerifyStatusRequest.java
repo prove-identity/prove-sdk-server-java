@@ -30,7 +30,7 @@ public class V3VerifyStatusRequest {
     private Optional<String> clientRequestId;
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("correlationId")
@@ -59,7 +59,7 @@ public class V3VerifyStatusRequest {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
      */
     @JsonIgnore
     public Optional<String> correlationId() {
@@ -89,7 +89,7 @@ public class V3VerifyStatusRequest {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
      */
     public V3VerifyStatusRequest withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -98,7 +98,7 @@ public class V3VerifyStatusRequest {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
      */
     public V3VerifyStatusRequest withCorrelationId(Optional<String> correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -163,7 +163,7 @@ public class V3VerifyStatusRequest {
         }
 
         /**
-         * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+         * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");
@@ -172,7 +172,7 @@ public class V3VerifyStatusRequest {
         }
 
         /**
-         * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+         * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
          */
         public Builder correlationId(Optional<String> correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");

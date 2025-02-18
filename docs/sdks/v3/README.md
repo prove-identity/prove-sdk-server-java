@@ -8,6 +8,8 @@
 * [v3TokenRequest](#v3tokenrequest) - Request OAuth token.
 * [v3ChallengeRequest](#v3challengerequest) - Submit challenge.
 * [v3CompleteRequest](#v3completerequest) - Complete flow.
+* [v3MFARequest](#v3mfarequest) - Initiate possession check.
+* [v3MFAStatusRequest](#v3mfastatusrequest) - Check status of MFA session.
 * [v3StartRequest](#v3startrequest) - Start flow.
 * [v3ValidateRequest](#v3validaterequest) - Validate phone number.
 * [v3VerifyRequest](#v3verifyrequest) - Initiate verified users session.
@@ -213,6 +215,138 @@ public class Application {
 ### Response
 
 **[V3CompleteRequestResponse](../../models/operations/V3CompleteRequestResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## v3MFARequest
+
+Send this request to initiate a possession check. It will return a correlation ID
+and authToken for the client SDK.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3MFARequest;
+import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3MFARequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .build())
+            .build();
+
+        V3MFARequest req = V3MFARequest.builder()
+                .possessionType("mobile")
+                .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
+                .emailAddress("user@example.com")
+                .finalTargetUrl("https://www.example.com/landing-page")
+                .ipAddress("192.168.1.1")
+                .phoneNumber("2001004011")
+                .smsMessage("#### is your verification code")
+                .build();
+
+        V3MFARequestResponse res = sdk.v3().v3MFARequest()
+                .request(req)
+                .call();
+
+        if (res.v3MFAResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                           | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `request`                                           | [V3MFARequest](../../models/shared/V3MFARequest.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
+
+### Response
+
+**[V3MFARequestResponse](../../models/operations/V3MFARequestResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## v3MFAStatusRequest
+
+Send this request to check the status of an MFA session and get the possession result.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3MFAStatusRequest;
+import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3MFAStatusRequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .build())
+            .build();
+
+        V3MFAStatusRequest req = V3MFAStatusRequest.builder()
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .phoneNumber("2001004011")
+                .build();
+
+        V3MFAStatusRequestResponse res = sdk.v3().v3MFAStatusRequest()
+                .request(req)
+                .call();
+
+        if (res.v3MFAStatusResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [V3MFAStatusRequest](../../models/shared/V3MFAStatusRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+
+### Response
+
+**[V3MFAStatusRequestResponse](../../models/operations/V3MFAStatusRequestResponse.md)**
 
 ### Errors
 
