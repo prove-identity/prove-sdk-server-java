@@ -9,6 +9,8 @@ import com.prove.proveapi.models.components.V3ChallengeRequest;
 import com.prove.proveapi.models.components.V3ChallengeResponse;
 import com.prove.proveapi.models.components.V3CompleteRequest;
 import com.prove.proveapi.models.components.V3CompleteResponse;
+import com.prove.proveapi.models.components.V3MFABindRequest;
+import com.prove.proveapi.models.components.V3MFABindResponse;
 import com.prove.proveapi.models.components.V3MFARequest;
 import com.prove.proveapi.models.components.V3MFAResponse;
 import com.prove.proveapi.models.components.V3MFAStatusRequest;
@@ -24,6 +26,8 @@ import com.prove.proveapi.models.components.V3VerifyResponse;
 import com.prove.proveapi.models.components.V3VerifyStatusRequest;
 import com.prove.proveapi.models.components.V3VerifyStatusResponse;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.errors.SDKError;
 import com.prove.proveapi.models.operations.SDKMethodInterfaces.*;
@@ -31,6 +35,8 @@ import com.prove.proveapi.models.operations.V3ChallengeRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3ChallengeRequestResponse;
 import com.prove.proveapi.models.operations.V3CompleteRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
+import com.prove.proveapi.models.operations.V3MFABindRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3MFABindRequestResponse;
 import com.prove.proveapi.models.operations.V3MFARequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3MFARequestResponse;
 import com.prove.proveapi.models.operations.V3MFAStatusRequestRequestBuilder;
@@ -67,6 +73,7 @@ public class V3 implements
             MethodCallV3ChallengeRequest,
             MethodCallV3CompleteRequest,
             MethodCallV3MFARequest,
+            MethodCallV3MFABindRequest,
             MethodCallV3MFAStatusRequest,
             MethodCallV3StartRequest,
             MethodCallV3ValidateRequest,
@@ -140,7 +147,7 @@ public class V3 implements
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
@@ -201,6 +208,20 @@ public class V3 implements
                 Error400 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -312,7 +333,7 @@ public class V3 implements
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
@@ -373,6 +394,34 @@ public class V3 implements
                 Error400 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error403 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error403>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -484,7 +533,7 @@ public class V3 implements
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
@@ -545,6 +594,34 @@ public class V3 implements
                 Error400 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error403 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error403>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -659,7 +736,7 @@ public class V3 implements
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
@@ -720,6 +797,235 @@ public class V3 implements
                 Error400 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error403 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error403>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Check status of MFA session.
+     * Send this request to bind Prove Key to a phone nuymber of an MFA session and get the possession result.
+     * @return The call builder
+     */
+    public V3MFABindRequestRequestBuilder v3MFABindRequest() {
+        return new V3MFABindRequestRequestBuilder(this);
+    }
+
+    /**
+     * Check status of MFA session.
+     * Send this request to bind Prove Key to a phone nuymber of an MFA session and get the possession result.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3MFABindRequestResponse v3MFABindRequestDirect() throws Exception {
+        return v3MFABindRequest(Optional.empty());
+    }
+    
+    /**
+     * Check status of MFA session.
+     * Send this request to bind Prove Key to a phone nuymber of an MFA session and get the possession result.
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3MFABindRequestResponse v3MFABindRequest(
+            Optional<? extends V3MFABindRequest> request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/v3/mfa-bind");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V3MFABindRequest>>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "V3MFABindRequest", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3MFABindRequest",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "V3MFABindRequest",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "V3MFABindRequest",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        V3MFABindRequestResponse.Builder _resBuilder = 
+            V3MFABindRequestResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        V3MFABindRequestResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            _res.withHeaders(_httpRes.headers().map());
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3MFABindResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3MFABindResponse>() {});
+                _res.withV3MFABindResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error400 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error403 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error403>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -831,7 +1137,7 @@ public class V3 implements
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
@@ -893,6 +1199,34 @@ public class V3 implements
                 Error400 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error403 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error403>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -1004,7 +1338,7 @@ public class V3 implements
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
@@ -1065,6 +1399,34 @@ public class V3 implements
                 Error400 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error403 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error403>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -1176,7 +1538,7 @@ public class V3 implements
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
@@ -1237,6 +1599,34 @@ public class V3 implements
                 Error400 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error403 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error403>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -1348,7 +1738,7 @@ public class V3 implements
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
@@ -1409,6 +1799,34 @@ public class V3 implements
                 Error400 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error403 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error403>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -1520,7 +1938,7 @@ public class V3 implements
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "4XX", "500", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
@@ -1582,6 +2000,34 @@ public class V3 implements
                 Error400 _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<Error400>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error403 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error403>() {});
                 throw _out;
             } else {
                 throw new SDKError(
