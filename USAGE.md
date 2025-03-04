@@ -6,13 +6,15 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3StartRequest;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3StartRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()

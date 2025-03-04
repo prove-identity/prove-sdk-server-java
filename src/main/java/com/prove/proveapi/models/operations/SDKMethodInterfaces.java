@@ -6,6 +6,7 @@ package com.prove.proveapi.models.operations;
 
 import com.prove.proveapi.models.components.V3ChallengeRequest;
 import com.prove.proveapi.models.components.V3CompleteRequest;
+import com.prove.proveapi.models.components.V3MFABindRequest;
 import com.prove.proveapi.models.components.V3MFARequest;
 import com.prove.proveapi.models.components.V3MFAStatusRequest;
 import com.prove.proveapi.models.components.V3StartRequest;
@@ -40,6 +41,12 @@ public class SDKMethodInterfaces {
     public interface MethodCallV3MFARequest {
         V3MFARequestResponse v3MFARequest(
             Optional<? extends V3MFARequest> request) throws Exception;
+    }
+
+
+    public interface MethodCallV3MFABindRequest {
+        V3MFABindRequestResponse v3MFABindRequest(
+            Optional<? extends V3MFABindRequest> request) throws Exception;
     }
 
 

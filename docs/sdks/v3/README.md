@@ -9,6 +9,7 @@
 * [v3ChallengeRequest](#v3challengerequest) - Submit challenge.
 * [v3CompleteRequest](#v3completerequest) - Complete flow.
 * [v3MFARequest](#v3mfarequest) - Initiate possession check.
+* [v3MFABindRequest](#v3mfabindrequest) - Check status of MFA session.
 * [v3MFAStatusRequest](#v3mfastatusrequest) - Check status of MFA session.
 * [v3StartRequest](#v3startrequest) - Start flow.
 * [v3ValidateRequest](#v3validaterequest) - Validate phone number.
@@ -27,13 +28,14 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
             .build();
@@ -70,6 +72,7 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
@@ -86,13 +89,15 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3ChallengeRequest;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3ChallengeRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -133,6 +138,8 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
@@ -151,6 +158,8 @@ import com.prove.proveapi.models.components.V3CompleteAddressEntryRequest;
 import com.prove.proveapi.models.components.V3CompleteIndividualRequest;
 import com.prove.proveapi.models.components.V3CompleteRequest;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
 import java.lang.Exception;
@@ -158,7 +167,7 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -221,6 +230,8 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
@@ -238,13 +249,15 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3MFARequest;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3MFARequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -290,6 +303,75 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
+| models/errors/Error    | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## v3MFABindRequest
+
+Send this request to bind Prove Key to a phone nuymber of an MFA session and get the possession result.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3MFABindRequest;
+import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3MFABindRequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .build())
+            .build();
+
+        V3MFABindRequest req = V3MFABindRequest.builder()
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .phoneNumber("2001004011")
+                .build();
+
+        V3MFABindRequestResponse res = sdk.v3().v3MFABindRequest()
+                .request(req)
+                .call();
+
+        if (res.v3MFABindResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [V3MFABindRequest](../../models/shared/V3MFABindRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+
+### Response
+
+**[V3MFABindRequestResponse](../../models/operations/V3MFABindRequestResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
@@ -306,13 +388,15 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3MFAStatusRequest;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3MFAStatusRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -353,6 +437,8 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
@@ -369,13 +455,15 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3StartRequest;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3StartRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -421,6 +509,8 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
@@ -437,13 +527,15 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3ValidateRequest;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3ValidateRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -482,6 +574,8 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
@@ -498,13 +592,15 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3VerifyRequest;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3VerifyRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -551,6 +647,8 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
@@ -567,13 +665,15 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3VerifyStatusRequest;
 import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3VerifyStatusRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -613,5 +713,7 @@ public class Application {
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

@@ -34,7 +34,15 @@ public class Proveapi {
         /**
          * PROD_US - Prod for US Region
          */
-      PROD_US("prod-us");
+      PROD_US("prod-us"),
+        /**
+         * UAT_EU - UAT for EU Region
+         */
+      UAT_EU("uat-eu"),
+        /**
+         * PROD_EU - Prod for EU Region
+         */
+      PROD_EU("prod-eu");
 
         private final String server;
 
@@ -54,6 +62,8 @@ public class Proveapi {
     public static final Map<AvailableServers, String> SERVERS = new HashMap<>() { {
     put(AvailableServers.UAT_US, "https://platform.uat.proveapis.com");
     put(AvailableServers.PROD_US, "https://platform.proveapis.com");
+    put(AvailableServers.UAT_EU, "https://platform.uat.eu.proveapis.com");
+    put(AvailableServers.PROD_EU, "https://platform.eu.proveapis.com");
     }};
 
     private final V3 v3;
