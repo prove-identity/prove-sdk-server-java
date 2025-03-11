@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.12.1'
+implementation 'com.prove:proveapi:0.12.2'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.12.1</version>
+    <version>0.12.2</version>
 </dependency>
 ```
 
@@ -75,7 +75,6 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3StartRequest;
 import com.prove.proveapi.models.errors.Error400;
-import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3StartRequestResponse;
@@ -83,7 +82,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -148,7 +147,6 @@ By default, an API error will throw a `models/errors/SDKError` exception. When c
 | Error Type             | Status Code | Content Type     |
 | ---------------------- | ----------- | ---------------- |
 | models/errors/Error400 | 400         | application/json |
-| models/errors/Error401 | 401         | application/json |
 | models/errors/Error    | 500         | application/json |
 | models/errors/SDKError | 4XX, 5XX    | \*/\*            |
 
@@ -160,14 +158,13 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.errors.Error400;
-import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error400, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
             .build();
@@ -212,14 +209,13 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.errors.Error400;
-import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error400, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .server(Proveapi.AvailableServers.PROD_EU)
@@ -251,14 +247,13 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.errors.Error400;
-import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error400, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .serverURL("https://platform.uat.proveapis.com")
@@ -301,14 +296,13 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.errors.Error400;
-import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error400, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()

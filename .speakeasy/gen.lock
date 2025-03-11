@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: d5bbb169bf2c011781c85f6b3d368f15
+  docChecksum: f30b340e2369f7f6435ebf9a6145a3cf
   docVersion: 1.0.0
-  speakeasyVersion: 1.509.1
-  generationVersion: 2.539.1
-  releaseVersion: 0.12.1
-  configChecksum: de5a312efda442cc7b9e24e3c33386df
+  speakeasyVersion: 1.514.1
+  generationVersion: 2.546.3
+  releaseVersion: 0.12.2
+  configChecksum: aebf7bfab49f93ee13178550cee3bbee
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
@@ -66,7 +66,6 @@ generatedFiles:
   - docs/models/components/VerifyResult.md
   - docs/models/errors/Error.md
   - docs/models/errors/Error400.md
-  - docs/models/errors/Error401.md
   - docs/models/errors/Error403.md
   - docs/models/operations/V3ChallengeRequestResponse.md
   - docs/models/operations/V3CompleteRequestResponse.md
@@ -133,7 +132,6 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/errors/AuthException.java
   - src/main/java/com/prove/proveapi/models/errors/Error.java
   - src/main/java/com/prove/proveapi/models/errors/Error400.java
-  - src/main/java/com/prove/proveapi/models/errors/Error401.java
   - src/main/java/com/prove/proveapi/models/errors/Error403.java
   - src/main/java/com/prove/proveapi/models/errors/SDKError.java
   - src/main/java/com/prove/proveapi/models/operations/SDKMethodInterfaces.java
