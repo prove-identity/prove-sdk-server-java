@@ -63,7 +63,7 @@ tasks.withType(Javadoc) {
 }
 
 group = "com.prove"
-version = "0.12.2"
+version = "0.12.3"
 
 sourcesJar {
     archiveBaseName = "proveapi"
@@ -101,7 +101,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.prove'
             artifactId = 'proveapi'
-            version = '0.12.2'
+            version = '0.12.3'
 
             from components.java
 

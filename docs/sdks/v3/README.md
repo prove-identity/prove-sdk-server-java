@@ -263,9 +263,7 @@ public class Application {
                 .possessionType("mobile")
                 .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
-                .emailAddress("user@example.com")
                 .finalTargetUrl("https://www.example.com/landing-page")
-                .ipAddress("192.168.1.1")
                 .phoneNumber("2001004011")
                 .smsMessage("#### is your verification code")
                 .build();

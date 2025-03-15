@@ -35,13 +35,6 @@ public class V3MFARequest {
     private Optional<String> clientRequestId;
 
     /**
-     * Email is the email address of the customer.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("emailAddress")
-    private Optional<String> emailAddress;
-
-    /**
      * Final target URL is only required when possessionType=desktop. The final target
      * URL is where the end user will be redirected at the end of Instant Link flow.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
@@ -49,13 +42,6 @@ public class V3MFARequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("finalTargetUrl")
     private Optional<String> finalTargetUrl;
-
-    /**
-     * IP Address of the customer.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("ipAddress")
-    private Optional<String> ipAddress;
 
     /**
      * Phone number is the number of the mobile phone. Optional in US, required in EU.
@@ -86,25 +72,19 @@ public class V3MFARequest {
     public V3MFARequest(
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
-            @JsonProperty("emailAddress") Optional<String> emailAddress,
             @JsonProperty("finalTargetUrl") Optional<String> finalTargetUrl,
-            @JsonProperty("ipAddress") Optional<String> ipAddress,
             @JsonProperty("phoneNumber") Optional<String> phoneNumber,
             @JsonProperty("possessionType") String possessionType,
             @JsonProperty("smsMessage") Optional<String> smsMessage) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
-        Utils.checkNotNull(emailAddress, "emailAddress");
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
-        Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(possessionType, "possessionType");
         Utils.checkNotNull(smsMessage, "smsMessage");
         this.clientCustomerId = clientCustomerId;
         this.clientRequestId = clientRequestId;
-        this.emailAddress = emailAddress;
         this.finalTargetUrl = finalTargetUrl;
-        this.ipAddress = ipAddress;
         this.phoneNumber = phoneNumber;
         this.possessionType = possessionType;
         this.smsMessage = smsMessage;
@@ -112,7 +92,7 @@ public class V3MFARequest {
     
     public V3MFARequest(
             String possessionType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), possessionType, Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), possessionType, Optional.empty());
     }
 
     /**
@@ -132,14 +112,6 @@ public class V3MFARequest {
     }
 
     /**
-     * Email is the email address of the customer.
-     */
-    @JsonIgnore
-    public Optional<String> emailAddress() {
-        return emailAddress;
-    }
-
-    /**
      * Final target URL is only required when possessionType=desktop. The final target
      * URL is where the end user will be redirected at the end of Instant Link flow.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
@@ -147,14 +119,6 @@ public class V3MFARequest {
     @JsonIgnore
     public Optional<String> finalTargetUrl() {
         return finalTargetUrl;
-    }
-
-    /**
-     * IP Address of the customer.
-     */
-    @JsonIgnore
-    public Optional<String> ipAddress() {
-        return ipAddress;
     }
 
     /**
@@ -227,24 +191,6 @@ public class V3MFARequest {
     }
 
     /**
-     * Email is the email address of the customer.
-     */
-    public V3MFARequest withEmailAddress(String emailAddress) {
-        Utils.checkNotNull(emailAddress, "emailAddress");
-        this.emailAddress = Optional.ofNullable(emailAddress);
-        return this;
-    }
-
-    /**
-     * Email is the email address of the customer.
-     */
-    public V3MFARequest withEmailAddress(Optional<String> emailAddress) {
-        Utils.checkNotNull(emailAddress, "emailAddress");
-        this.emailAddress = emailAddress;
-        return this;
-    }
-
-    /**
      * Final target URL is only required when possessionType=desktop. The final target
      * URL is where the end user will be redirected at the end of Instant Link flow.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
@@ -263,24 +209,6 @@ public class V3MFARequest {
     public V3MFARequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
         this.finalTargetUrl = finalTargetUrl;
-        return this;
-    }
-
-    /**
-     * IP Address of the customer.
-     */
-    public V3MFARequest withIpAddress(String ipAddress) {
-        Utils.checkNotNull(ipAddress, "ipAddress");
-        this.ipAddress = Optional.ofNullable(ipAddress);
-        return this;
-    }
-
-    /**
-     * IP Address of the customer.
-     */
-    public V3MFARequest withIpAddress(Optional<String> ipAddress) {
-        Utils.checkNotNull(ipAddress, "ipAddress");
-        this.ipAddress = ipAddress;
         return this;
     }
 
@@ -349,9 +277,7 @@ public class V3MFARequest {
         return 
             Objects.deepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Objects.deepEquals(this.clientRequestId, other.clientRequestId) &&
-            Objects.deepEquals(this.emailAddress, other.emailAddress) &&
             Objects.deepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
-            Objects.deepEquals(this.ipAddress, other.ipAddress) &&
             Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
             Objects.deepEquals(this.possessionType, other.possessionType) &&
             Objects.deepEquals(this.smsMessage, other.smsMessage);
@@ -362,9 +288,7 @@ public class V3MFARequest {
         return Objects.hash(
             clientCustomerId,
             clientRequestId,
-            emailAddress,
             finalTargetUrl,
-            ipAddress,
             phoneNumber,
             possessionType,
             smsMessage);
@@ -375,9 +299,7 @@ public class V3MFARequest {
         return Utils.toString(V3MFARequest.class,
                 "clientCustomerId", clientCustomerId,
                 "clientRequestId", clientRequestId,
-                "emailAddress", emailAddress,
                 "finalTargetUrl", finalTargetUrl,
-                "ipAddress", ipAddress,
                 "phoneNumber", phoneNumber,
                 "possessionType", possessionType,
                 "smsMessage", smsMessage);
@@ -389,11 +311,7 @@ public class V3MFARequest {
  
         private Optional<String> clientRequestId = Optional.empty();
  
-        private Optional<String> emailAddress = Optional.empty();
- 
         private Optional<String> finalTargetUrl = Optional.empty();
- 
-        private Optional<String> ipAddress = Optional.empty();
  
         private Optional<String> phoneNumber = Optional.empty();
  
@@ -442,24 +360,6 @@ public class V3MFARequest {
         }
 
         /**
-         * Email is the email address of the customer.
-         */
-        public Builder emailAddress(String emailAddress) {
-            Utils.checkNotNull(emailAddress, "emailAddress");
-            this.emailAddress = Optional.ofNullable(emailAddress);
-            return this;
-        }
-
-        /**
-         * Email is the email address of the customer.
-         */
-        public Builder emailAddress(Optional<String> emailAddress) {
-            Utils.checkNotNull(emailAddress, "emailAddress");
-            this.emailAddress = emailAddress;
-            return this;
-        }
-
-        /**
          * Final target URL is only required when possessionType=desktop. The final target
          * URL is where the end user will be redirected at the end of Instant Link flow.
          * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
@@ -478,24 +378,6 @@ public class V3MFARequest {
         public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
             this.finalTargetUrl = finalTargetUrl;
-            return this;
-        }
-
-        /**
-         * IP Address of the customer.
-         */
-        public Builder ipAddress(String ipAddress) {
-            Utils.checkNotNull(ipAddress, "ipAddress");
-            this.ipAddress = Optional.ofNullable(ipAddress);
-            return this;
-        }
-
-        /**
-         * IP Address of the customer.
-         */
-        public Builder ipAddress(Optional<String> ipAddress) {
-            Utils.checkNotNull(ipAddress, "ipAddress");
-            this.ipAddress = ipAddress;
             return this;
         }
 
@@ -556,9 +438,7 @@ public class V3MFARequest {
             return new V3MFARequest(
                 clientCustomerId,
                 clientRequestId,
-                emailAddress,
                 finalTargetUrl,
-                ipAddress,
                 phoneNumber,
                 possessionType,
                 smsMessage);
