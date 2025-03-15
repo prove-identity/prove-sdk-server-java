@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: f30b340e2369f7f6435ebf9a6145a3cf
+  docChecksum: ac3c9b926eae6ccea4d94c557178a307
   docVersion: 1.0.0
-  speakeasyVersion: 1.514.1
-  generationVersion: 2.546.3
-  releaseVersion: 0.12.2
-  configChecksum: aebf7bfab49f93ee13178550cee3bbee
+  speakeasyVersion: 1.517.3
+  generationVersion: 2.548.6
+  releaseVersion: 0.12.3
+  configChecksum: d7ecd42975021361ef95dfb5bdeb3fbf
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
@@ -292,7 +292,7 @@ examples:
   V3MFARequest:
     speakeasy-default-v3-MFA-request:
       requestBody:
-        application/json: {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "emailAddress": "user@example.com", "finalTargetUrl": "https://www.example.com/landing-page", "ipAddress": "192.168.1.1", "phoneNumber": "2001004011", "possessionType": "mobile", "smsMessage": "#### is your verification code"}
+        application/json: {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "finalTargetUrl": "https://www.example.com/landing-page", "phoneNumber": "2001004011", "possessionType": "mobile", "smsMessage": "#### is your verification code"}
       responses:
         "200":
           application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "success": "success"}
