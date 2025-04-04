@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @SuppressWarnings("serial")
-public class Error extends RuntimeException {
+public class Error401 extends RuntimeException {
 
     /**
      * Code is an internal error code that describes the problem category of the request.
@@ -34,7 +34,7 @@ public class Error extends RuntimeException {
     private String message;
 
     @JsonCreator
-    public Error(
+    public Error401(
             @JsonProperty("code") Optional<Long> code,
             @JsonProperty("message") String message) {
         super(message);
@@ -44,7 +44,7 @@ public class Error extends RuntimeException {
         this.message = message;
     }
     
-    public Error(
+    public Error401(
             String message) {
         this(Optional.empty(), message);
     }
@@ -78,7 +78,7 @@ public class Error extends RuntimeException {
     /**
      * Code is an internal error code that describes the problem category of the request.
      */
-    public Error withCode(long code) {
+    public Error401 withCode(long code) {
         Utils.checkNotNull(code, "code");
         this.code = Optional.ofNullable(code);
         return this;
@@ -87,7 +87,7 @@ public class Error extends RuntimeException {
     /**
      * Code is an internal error code that describes the problem category of the request.
      */
-    public Error withCode(Optional<Long> code) {
+    public Error401 withCode(Optional<Long> code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
         return this;
@@ -96,7 +96,7 @@ public class Error extends RuntimeException {
     /**
      * Message is an error message describing the problem with the request.
      */
-    public Error withMessage(String message) {
+    public Error401 withMessage(String message) {
         Utils.checkNotNull(message, "message");
         this.message = message;
         return this;
@@ -111,7 +111,7 @@ public class Error extends RuntimeException {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Error other = (Error) o;
+        Error401 other = (Error401) o;
         return 
             Objects.deepEquals(this.code, other.code) &&
             Objects.deepEquals(this.message, other.message);
@@ -126,7 +126,7 @@ public class Error extends RuntimeException {
     
     @Override
     public String toString() {
-        return Utils.toString(Error.class,
+        return Utils.toString(Error401.class,
                 "code", code,
                 "message", message);
     }
@@ -168,8 +168,8 @@ public class Error extends RuntimeException {
             return this;
         }
         
-        public Error build() {
-            return new Error(
+        public Error401 build() {
+            return new Error401(
                 code,
                 message);
         }

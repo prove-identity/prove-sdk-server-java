@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.12.2'
+implementation 'com.prove:proveapi:0.13.0'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.12.2</version>
+    <version>0.13.0</version>
 </dependency>
 ```
 
@@ -74,15 +74,14 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3StartRequest;
-import com.prove.proveapi.models.errors.Error400;
-import com.prove.proveapi.models.errors.Error403;
+import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3StartRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -126,10 +125,10 @@ public class Application {
 * [v3TokenRequest](docs/sdks/v3/README.md#v3tokenrequest) - Request OAuth token.
 * [v3ChallengeRequest](docs/sdks/v3/README.md#v3challengerequest) - Submit challenge.
 * [v3CompleteRequest](docs/sdks/v3/README.md#v3completerequest) - Complete flow.
-* [v3MFARequest](docs/sdks/v3/README.md#v3mfarequest) - Initiate possession check.
-* [v3MFABindRequest](docs/sdks/v3/README.md#v3mfabindrequest) - Check status of MFA session.
-* [v3MFAStatusRequest](docs/sdks/v3/README.md#v3mfastatusrequest) - Check status of MFA session.
 * [v3StartRequest](docs/sdks/v3/README.md#v3startrequest) - Start flow.
+* [v3UnifyRequest](docs/sdks/v3/README.md#v3unifyrequest) - Initiate possession check.
+* [v3UnifyBindRequest](docs/sdks/v3/README.md#v3unifybindrequest) - Check status of Unify session.
+* [v3UnifyStatusRequest](docs/sdks/v3/README.md#v3unifystatusrequest) - Check status of Unify session.
 * [v3ValidateRequest](docs/sdks/v3/README.md#v3validaterequest) - Validate phone number.
 * [v3VerifyRequest](docs/sdks/v3/README.md#v3verifyrequest) - Initiate verified users session.
 * [v3VerifyStatusRequest](docs/sdks/v3/README.md#v3verifystatusrequest) - Perform checks for verified users session.
@@ -147,6 +146,7 @@ By default, an API error will throw a `models/errors/SDKError` exception. When c
 | Error Type             | Status Code | Content Type     |
 | ---------------------- | ----------- | ---------------- |
 | models/errors/Error400 | 400         | application/json |
+| models/errors/Error401 | 401         | application/json |
 | models/errors/Error    | 500         | application/json |
 | models/errors/SDKError | 4XX, 5XX    | \*/\*            |
 
@@ -157,14 +157,14 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
             .build();
@@ -208,14 +208,14 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .server(Proveapi.AvailableServers.PROD_EU)
@@ -246,14 +246,14 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .serverURL("https://platform.uat.proveapis.com")
@@ -295,14 +295,14 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.Error400;
+import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
