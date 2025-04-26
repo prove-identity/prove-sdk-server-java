@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.13.0'
+implementation 'com.prove:proveapi:0.14.0'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.13.0</version>
+    <version>0.14.0</version>
 </dependency>
 ```
 
@@ -61,6 +61,29 @@ On Windows:
 ```bash
 gradlew.bat publishToMavenLocal -Pskip.signing
 ```
+
+### Logging
+A logging framework/facade has not yet been adopted but is under consideration.
+
+For request and response logging (especially json bodies) use:
+```java
+SpeakeasyHTTPClient.setDebugLogging(true); // experimental API only (may change without warning)
+```
+Example output:
+```
+Sending request: http://localhost:35123/bearer#global GET
+Request headers: {Accept=[application/json], Authorization=[******], Client-Level-Header=[added by client], Idempotency-Key=[some-key], x-speakeasy-user-agent=[speakeasy-sdk/java 0.0.1 internal 0.1.0 org.openapis.openapi]}
+Received response: (GET http://localhost:35123/bearer#global) 200
+Response headers: {access-control-allow-credentials=[true], access-control-allow-origin=[*], connection=[keep-alive], content-length=[50], content-type=[application/json], date=[Wed, 09 Apr 2025 01:43:29 GMT], server=[gunicorn/19.9.0]}
+Response body:
+{
+  "authenticated": true, 
+  "token": "global"
+}
+```
+WARNING: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+
+Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End SDK Installation [installation] -->
 
 <!-- Start SDK Example Usage [usage] -->
@@ -126,9 +149,9 @@ public class Application {
 * [v3ChallengeRequest](docs/sdks/v3/README.md#v3challengerequest) - Submit challenge.
 * [v3CompleteRequest](docs/sdks/v3/README.md#v3completerequest) - Complete flow.
 * [v3StartRequest](docs/sdks/v3/README.md#v3startrequest) - Start flow.
-* [v3UnifyRequest](docs/sdks/v3/README.md#v3unifyrequest) - Initiate possession check.
-* [v3UnifyBindRequest](docs/sdks/v3/README.md#v3unifybindrequest) - Check status of Unify session.
-* [v3UnifyStatusRequest](docs/sdks/v3/README.md#v3unifystatusrequest) - Check status of Unify session.
+* [v3UnifyRequest](docs/sdks/v3/README.md#v3unifyrequest) - Initiate Possession Check
+* [v3UnifyBindRequest](docs/sdks/v3/README.md#v3unifybindrequest) - Bind Prove Key
+* [v3UnifyStatusRequest](docs/sdks/v3/README.md#v3unifystatusrequest) - Check Status of Unify Session
 * [v3ValidateRequest](docs/sdks/v3/README.md#v3validaterequest) - Validate phone number.
 * [v3VerifyRequest](docs/sdks/v3/README.md#v3verifyrequest) - Initiate verified users session.
 * [v3VerifyStatusRequest](docs/sdks/v3/README.md#v3verifystatusrequest) - Perform checks for verified users session.

@@ -9,9 +9,9 @@
 * [v3ChallengeRequest](#v3challengerequest) - Submit challenge.
 * [v3CompleteRequest](#v3completerequest) - Complete flow.
 * [v3StartRequest](#v3startrequest) - Start flow.
-* [v3UnifyRequest](#v3unifyrequest) - Initiate possession check.
-* [v3UnifyBindRequest](#v3unifybindrequest) - Check status of Unify session.
-* [v3UnifyStatusRequest](#v3unifystatusrequest) - Check status of Unify session.
+* [v3UnifyRequest](#v3unifyrequest) - Initiate Possession Check
+* [v3UnifyBindRequest](#v3unifybindrequest) - Bind Prove Key
+* [v3UnifyStatusRequest](#v3unifystatusrequest) - Check Status of Unify Session
 * [v3ValidateRequest](#v3validaterequest) - Validate phone number.
 * [v3VerifyRequest](#v3verifyrequest) - Initiate verified users session.
 * [v3VerifyStatusRequest](#v3verifystatusrequest) - Perform checks for verified users session.
@@ -299,8 +299,7 @@ public class Application {
 
 ## v3UnifyRequest
 
-Send this request to initiate a possession check. It will return a correlation ID
-and authToken for the client SDK.
+This endpoint allows you to initiate the possession check.
 
 ### Example Usage
 
@@ -368,7 +367,7 @@ public class Application {
 
 ## v3UnifyBindRequest
 
-Send this request to bind Prove Key to a phone nuymber of an Unify session and get the possession result.
+This endpoint allows you to bind a Prove Key to a phone number of a Unify session and get the possession result.
 
 ### Example Usage
 
@@ -433,7 +432,7 @@ public class Application {
 
 ## v3UnifyStatusRequest
 
-Send this request to check the status of an Unify session and get the possession result.
+This endpoint allows you to check the status of a Unify session and get the possession result.
 
 ### Example Usage
 

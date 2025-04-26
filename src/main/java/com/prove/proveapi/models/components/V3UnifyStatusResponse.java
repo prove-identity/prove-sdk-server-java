@@ -11,15 +11,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 
-/**
- * V3UnifyStatusResponse
- * 
- * <p>Response body for the V3 Unify Status API
- */
 public class V3UnifyStatusResponse {
 
     /**
-     * Phone number that may have been discovered via Mobile Auth during the process.
+     * The number of the mobile phone used during the process.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
@@ -38,7 +33,7 @@ public class V3UnifyStatusResponse {
     }
 
     /**
-     * Phone number that may have been discovered via Mobile Auth during the process.
+     * The number of the mobile phone used during the process.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -55,7 +50,7 @@ public class V3UnifyStatusResponse {
     }    
 
     /**
-     * Phone number that may have been discovered via Mobile Auth during the process.
+     * The number of the mobile phone used during the process.
      */
     public V3UnifyStatusResponse withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -109,7 +104,7 @@ public class V3UnifyStatusResponse {
         }
 
         /**
-         * Phone number that may have been discovered via Mobile Auth during the process.
+         * The number of the mobile phone used during the process.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
