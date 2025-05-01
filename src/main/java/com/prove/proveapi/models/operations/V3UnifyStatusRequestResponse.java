@@ -37,7 +37,7 @@ public class V3UnifyStatusRequestResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * Successful Request
+     * Successful Request.
      */
     private Optional<? extends V3UnifyStatusResponse> v3UnifyStatusResponse;
 
@@ -95,7 +95,7 @@ public class V3UnifyStatusRequestResponse implements Response {
     }
 
     /**
-     * Successful Request
+     * Successful Request.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -140,7 +140,7 @@ public class V3UnifyStatusRequestResponse implements Response {
     }
 
     /**
-     * Successful Request
+     * Successful Request.
      */
     public V3UnifyStatusRequestResponse withV3UnifyStatusResponse(V3UnifyStatusResponse v3UnifyStatusResponse) {
         Utils.checkNotNull(v3UnifyStatusResponse, "v3UnifyStatusResponse");
@@ -149,7 +149,7 @@ public class V3UnifyStatusRequestResponse implements Response {
     }
 
     /**
-     * Successful Request
+     * Successful Request.
      */
     public V3UnifyStatusRequestResponse withV3UnifyStatusResponse(Optional<? extends V3UnifyStatusResponse> v3UnifyStatusResponse) {
         Utils.checkNotNull(v3UnifyStatusResponse, "v3UnifyStatusResponse");
@@ -245,7 +245,7 @@ public class V3UnifyStatusRequestResponse implements Response {
         }
 
         /**
-         * Successful Request
+         * Successful Request.
          */
         public Builder v3UnifyStatusResponse(V3UnifyStatusResponse v3UnifyStatusResponse) {
             Utils.checkNotNull(v3UnifyStatusResponse, "v3UnifyStatusResponse");
@@ -254,7 +254,7 @@ public class V3UnifyStatusRequestResponse implements Response {
         }
 
         /**
-         * Successful Request
+         * Successful Request.
          */
         public Builder v3UnifyStatusResponse(Optional<? extends V3UnifyStatusResponse> v3UnifyStatusResponse) {
             Utils.checkNotNull(v3UnifyStatusResponse, "v3UnifyStatusResponse");

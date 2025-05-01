@@ -14,23 +14,17 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * V3UnifyResponse
- * 
- * <p>Response body for the V3 Unify API
- */
 public class V3UnifyResponse {
 
     /**
-     * AuthToken is a one-time use JWT for client side possession SDK
-     * authentication/authorization.
+     * The one-time use JWT for the client-side SDK.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authToken")
     private Optional<String> authToken;
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow.
+     * The unique ID that Prove generates for the flow.
      */
     @JsonProperty("correlationId")
     private String correlationId;
@@ -58,8 +52,7 @@ public class V3UnifyResponse {
     }
 
     /**
-     * AuthToken is a one-time use JWT for client side possession SDK
-     * authentication/authorization.
+     * The one-time use JWT for the client-side SDK.
      */
     @JsonIgnore
     public Optional<String> authToken() {
@@ -67,7 +60,7 @@ public class V3UnifyResponse {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow.
+     * The unique ID that Prove generates for the flow.
      */
     @JsonIgnore
     public String correlationId() {
@@ -84,8 +77,7 @@ public class V3UnifyResponse {
     }    
 
     /**
-     * AuthToken is a one-time use JWT for client side possession SDK
-     * authentication/authorization.
+     * The one-time use JWT for the client-side SDK.
      */
     public V3UnifyResponse withAuthToken(String authToken) {
         Utils.checkNotNull(authToken, "authToken");
@@ -94,8 +86,7 @@ public class V3UnifyResponse {
     }
 
     /**
-     * AuthToken is a one-time use JWT for client side possession SDK
-     * authentication/authorization.
+     * The one-time use JWT for the client-side SDK.
      */
     public V3UnifyResponse withAuthToken(Optional<String> authToken) {
         Utils.checkNotNull(authToken, "authToken");
@@ -104,7 +95,7 @@ public class V3UnifyResponse {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow.
+     * The unique ID that Prove generates for the flow.
      */
     public V3UnifyResponse withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -163,8 +154,7 @@ public class V3UnifyResponse {
         }
 
         /**
-         * AuthToken is a one-time use JWT for client side possession SDK
-         * authentication/authorization.
+         * The one-time use JWT for the client-side SDK.
          */
         public Builder authToken(String authToken) {
             Utils.checkNotNull(authToken, "authToken");
@@ -173,8 +163,7 @@ public class V3UnifyResponse {
         }
 
         /**
-         * AuthToken is a one-time use JWT for client side possession SDK
-         * authentication/authorization.
+         * The one-time use JWT for the client-side SDK.
          */
         public Builder authToken(Optional<String> authToken) {
             Utils.checkNotNull(authToken, "authToken");
@@ -183,7 +172,7 @@ public class V3UnifyResponse {
         }
 
         /**
-         * Correlation ID is the unique ID that Prove generates for the flow.
+         * The unique ID that Prove generates for the flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");

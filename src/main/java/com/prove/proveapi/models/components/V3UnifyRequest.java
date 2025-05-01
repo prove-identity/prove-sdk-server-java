@@ -14,30 +14,24 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * V3UnifyRequest
- * 
- * <p>Request body for the V3 Unify API
- */
 public class V3UnifyRequest {
 
     /**
-     * Client Customer ID is a client-generated unique ID for a specific customer.
+     * A client-generated unique ID for a specific customer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientCustomerId")
     private Optional<String> clientCustomerId;
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific session.
+     * A client-generated unique ID for a specific session.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
 
     /**
-     * Final target URL is only required when possessionType=desktop. The final target
-     * URL is where the end user will be redirected at the end of Instant Link flow.
+     * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -45,8 +39,8 @@ public class V3UnifyRequest {
     private Optional<String> finalTargetUrl;
 
     /**
-     * Phone number is the number of the mobile phone. Optional in US, required in EU.
-     * Not allowed when possessionType is 'none'. Acceptable characters are:
+     * The number of the mobile phone. Optional in US, required in EU.
+     * Not allowed when possessionType is `none`. Acceptable characters are:
      * alphanumeric with symbols '+'.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -54,16 +48,16 @@ public class V3UnifyRequest {
     private Optional<String> phoneNumber;
 
     /**
-     * Possession type is based on the method used - either 'desktop' if using desktop,
-     * 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession
-     * check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+     * The type of device being used - either `desktop` if using a desktop,
+     * `mobile` for iOS/Android native apps and mobile web, or `none` if no possession
+     * check is required.
      */
     @JsonProperty("possessionType")
     private String possessionType;
 
     /**
-     * SMSMessage is an optional field to customize the message body sent in the
-     * Instant Link (possessionType=desktop) or OTP (on mobile) SMS message.
+     * The message body sent in the
+     * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("smsMessage")
@@ -97,7 +91,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Client Customer ID is a client-generated unique ID for a specific customer.
+     * A client-generated unique ID for a specific customer.
      */
     @JsonIgnore
     public Optional<String> clientCustomerId() {
@@ -105,7 +99,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific session.
+     * A client-generated unique ID for a specific session.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -113,8 +107,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Final target URL is only required when possessionType=desktop. The final target
-     * URL is where the end user will be redirected at the end of Instant Link flow.
+     * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @JsonIgnore
@@ -123,8 +116,8 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Phone number is the number of the mobile phone. Optional in US, required in EU.
-     * Not allowed when possessionType is 'none'. Acceptable characters are:
+     * The number of the mobile phone. Optional in US, required in EU.
+     * Not allowed when possessionType is `none`. Acceptable characters are:
      * alphanumeric with symbols '+'.
      */
     @JsonIgnore
@@ -133,9 +126,9 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Possession type is based on the method used - either 'desktop' if using desktop,
-     * 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession
-     * check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+     * The type of device being used - either `desktop` if using a desktop,
+     * `mobile` for iOS/Android native apps and mobile web, or `none` if no possession
+     * check is required.
      */
     @JsonIgnore
     public String possessionType() {
@@ -143,8 +136,8 @@ public class V3UnifyRequest {
     }
 
     /**
-     * SMSMessage is an optional field to customize the message body sent in the
-     * Instant Link (possessionType=desktop) or OTP (on mobile) SMS message.
+     * The message body sent in the
+     * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
      */
     @JsonIgnore
     public Optional<String> smsMessage() {
@@ -156,7 +149,7 @@ public class V3UnifyRequest {
     }    
 
     /**
-     * Client Customer ID is a client-generated unique ID for a specific customer.
+     * A client-generated unique ID for a specific customer.
      */
     public V3UnifyRequest withClientCustomerId(String clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -165,7 +158,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Client Customer ID is a client-generated unique ID for a specific customer.
+     * A client-generated unique ID for a specific customer.
      */
     public V3UnifyRequest withClientCustomerId(Optional<String> clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -174,7 +167,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific session.
+     * A client-generated unique ID for a specific session.
      */
     public V3UnifyRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -183,7 +176,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific session.
+     * A client-generated unique ID for a specific session.
      */
     public V3UnifyRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -192,8 +185,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Final target URL is only required when possessionType=desktop. The final target
-     * URL is where the end user will be redirected at the end of Instant Link flow.
+     * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     public V3UnifyRequest withFinalTargetUrl(String finalTargetUrl) {
@@ -203,8 +195,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Final target URL is only required when possessionType=desktop. The final target
-     * URL is where the end user will be redirected at the end of Instant Link flow.
+     * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     public V3UnifyRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
@@ -214,8 +205,8 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Phone number is the number of the mobile phone. Optional in US, required in EU.
-     * Not allowed when possessionType is 'none'. Acceptable characters are:
+     * The number of the mobile phone. Optional in US, required in EU.
+     * Not allowed when possessionType is `none`. Acceptable characters are:
      * alphanumeric with symbols '+'.
      */
     public V3UnifyRequest withPhoneNumber(String phoneNumber) {
@@ -225,8 +216,8 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Phone number is the number of the mobile phone. Optional in US, required in EU.
-     * Not allowed when possessionType is 'none'. Acceptable characters are:
+     * The number of the mobile phone. Optional in US, required in EU.
+     * Not allowed when possessionType is `none`. Acceptable characters are:
      * alphanumeric with symbols '+'.
      */
     public V3UnifyRequest withPhoneNumber(Optional<String> phoneNumber) {
@@ -236,9 +227,9 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Possession type is based on the method used - either 'desktop' if using desktop,
-     * 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession
-     * check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+     * The type of device being used - either `desktop` if using a desktop,
+     * `mobile` for iOS/Android native apps and mobile web, or `none` if no possession
+     * check is required.
      */
     public V3UnifyRequest withPossessionType(String possessionType) {
         Utils.checkNotNull(possessionType, "possessionType");
@@ -247,8 +238,8 @@ public class V3UnifyRequest {
     }
 
     /**
-     * SMSMessage is an optional field to customize the message body sent in the
-     * Instant Link (possessionType=desktop) or OTP (on mobile) SMS message.
+     * The message body sent in the
+     * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
      */
     public V3UnifyRequest withSmsMessage(String smsMessage) {
         Utils.checkNotNull(smsMessage, "smsMessage");
@@ -257,8 +248,8 @@ public class V3UnifyRequest {
     }
 
     /**
-     * SMSMessage is an optional field to customize the message body sent in the
-     * Instant Link (possessionType=desktop) or OTP (on mobile) SMS message.
+     * The message body sent in the
+     * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
      */
     public V3UnifyRequest withSmsMessage(Optional<String> smsMessage) {
         Utils.checkNotNull(smsMessage, "smsMessage");
@@ -326,7 +317,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Client Customer ID is a client-generated unique ID for a specific customer.
+         * A client-generated unique ID for a specific customer.
          */
         public Builder clientCustomerId(String clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -335,7 +326,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Client Customer ID is a client-generated unique ID for a specific customer.
+         * A client-generated unique ID for a specific customer.
          */
         public Builder clientCustomerId(Optional<String> clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -344,7 +335,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Client Request ID is a client-generated unique ID for a specific session.
+         * A client-generated unique ID for a specific session.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -353,7 +344,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Client Request ID is a client-generated unique ID for a specific session.
+         * A client-generated unique ID for a specific session.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -362,8 +353,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Final target URL is only required when possessionType=desktop. The final target
-         * URL is where the end user will be redirected at the end of Instant Link flow.
+         * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
          * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
         public Builder finalTargetUrl(String finalTargetUrl) {
@@ -373,8 +363,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Final target URL is only required when possessionType=desktop. The final target
-         * URL is where the end user will be redirected at the end of Instant Link flow.
+         * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
          * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
         public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
@@ -384,8 +373,8 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Phone number is the number of the mobile phone. Optional in US, required in EU.
-         * Not allowed when possessionType is 'none'. Acceptable characters are:
+         * The number of the mobile phone. Optional in US, required in EU.
+         * Not allowed when possessionType is `none`. Acceptable characters are:
          * alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
@@ -395,8 +384,8 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Phone number is the number of the mobile phone. Optional in US, required in EU.
-         * Not allowed when possessionType is 'none'. Acceptable characters are:
+         * The number of the mobile phone. Optional in US, required in EU.
+         * Not allowed when possessionType is `none`. Acceptable characters are:
          * alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(Optional<String> phoneNumber) {
@@ -406,9 +395,9 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Possession type is based on the method used - either 'desktop' if using desktop,
-         * 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession
-         * check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+         * The type of device being used - either `desktop` if using a desktop,
+         * `mobile` for iOS/Android native apps and mobile web, or `none` if no possession
+         * check is required.
          */
         public Builder possessionType(String possessionType) {
             Utils.checkNotNull(possessionType, "possessionType");
@@ -417,8 +406,8 @@ public class V3UnifyRequest {
         }
 
         /**
-         * SMSMessage is an optional field to customize the message body sent in the
-         * Instant Link (possessionType=desktop) or OTP (on mobile) SMS message.
+         * The message body sent in the
+         * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
          */
         public Builder smsMessage(String smsMessage) {
             Utils.checkNotNull(smsMessage, "smsMessage");
@@ -427,8 +416,8 @@ public class V3UnifyRequest {
         }
 
         /**
-         * SMSMessage is an optional field to customize the message body sent in the
-         * Instant Link (possessionType=desktop) or OTP (on mobile) SMS message.
+         * The message body sent in the
+         * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
          */
         public Builder smsMessage(Optional<String> smsMessage) {
             Utils.checkNotNull(smsMessage, "smsMessage");
