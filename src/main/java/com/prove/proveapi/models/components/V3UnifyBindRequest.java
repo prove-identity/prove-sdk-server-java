@@ -14,25 +14,17 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * V3UnifyBindRequest
- * 
- * <p>Request body for the V3 Unify Bind API
- */
 public class V3UnifyBindRequest {
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific request.
-     * This can be used by clients to identify specific requests made to Prove Link.
-     * The format of this ID is defined by the client - Prove recommends using a GUID,
-     * but any format can be accepted.
+     * A client-generated unique ID for a specific request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned
+     * The unique ID that Prove generates for the flow. It is returned
      * from the v3/unify endpoint and cannot be reused outside of a single flow.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -40,8 +32,7 @@ public class V3UnifyBindRequest {
     private Optional<String> correlationId;
 
     /**
-     * Phone number is only allowed when possessionType=none from the initial Unify request.
-     * Required for BYO Possession flow on the third call.
+     * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
@@ -65,10 +56,7 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific request.
-     * This can be used by clients to identify specific requests made to Prove Link.
-     * The format of this ID is defined by the client - Prove recommends using a GUID,
-     * but any format can be accepted.
+     * A client-generated unique ID for a specific request.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -76,7 +64,7 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned
+     * The unique ID that Prove generates for the flow. It is returned
      * from the v3/unify endpoint and cannot be reused outside of a single flow.
      */
     @JsonIgnore
@@ -85,8 +73,7 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * Phone number is only allowed when possessionType=none from the initial Unify request.
-     * Required for BYO Possession flow on the third call.
+     * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
      */
     @JsonIgnore
     public Optional<String> phoneNumber() {
@@ -98,10 +85,7 @@ public class V3UnifyBindRequest {
     }    
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific request.
-     * This can be used by clients to identify specific requests made to Prove Link.
-     * The format of this ID is defined by the client - Prove recommends using a GUID,
-     * but any format can be accepted.
+     * A client-generated unique ID for a specific request.
      */
     public V3UnifyBindRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -110,10 +94,7 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific request.
-     * This can be used by clients to identify specific requests made to Prove Link.
-     * The format of this ID is defined by the client - Prove recommends using a GUID,
-     * but any format can be accepted.
+     * A client-generated unique ID for a specific request.
      */
     public V3UnifyBindRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -122,7 +103,7 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned
+     * The unique ID that Prove generates for the flow. It is returned
      * from the v3/unify endpoint and cannot be reused outside of a single flow.
      */
     public V3UnifyBindRequest withCorrelationId(String correlationId) {
@@ -132,7 +113,7 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned
+     * The unique ID that Prove generates for the flow. It is returned
      * from the v3/unify endpoint and cannot be reused outside of a single flow.
      */
     public V3UnifyBindRequest withCorrelationId(Optional<String> correlationId) {
@@ -142,8 +123,7 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * Phone number is only allowed when possessionType=none from the initial Unify request.
-     * Required for BYO Possession flow on the third call.
+     * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
      */
     public V3UnifyBindRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -152,8 +132,7 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * Phone number is only allowed when possessionType=none from the initial Unify request.
-     * Required for BYO Possession flow on the third call.
+     * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
      */
     public V3UnifyBindRequest withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -206,10 +185,7 @@ public class V3UnifyBindRequest {
         }
 
         /**
-         * Client Request ID is a client-generated unique ID for a specific request.
-         * This can be used by clients to identify specific requests made to Prove Link.
-         * The format of this ID is defined by the client - Prove recommends using a GUID,
-         * but any format can be accepted.
+         * A client-generated unique ID for a specific request.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -218,10 +194,7 @@ public class V3UnifyBindRequest {
         }
 
         /**
-         * Client Request ID is a client-generated unique ID for a specific request.
-         * This can be used by clients to identify specific requests made to Prove Link.
-         * The format of this ID is defined by the client - Prove recommends using a GUID,
-         * but any format can be accepted.
+         * A client-generated unique ID for a specific request.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -230,7 +203,7 @@ public class V3UnifyBindRequest {
         }
 
         /**
-         * Correlation ID is the unique ID that Prove generates for the flow. It is returned
+         * The unique ID that Prove generates for the flow. It is returned
          * from the v3/unify endpoint and cannot be reused outside of a single flow.
          */
         public Builder correlationId(String correlationId) {
@@ -240,7 +213,7 @@ public class V3UnifyBindRequest {
         }
 
         /**
-         * Correlation ID is the unique ID that Prove generates for the flow. It is returned
+         * The unique ID that Prove generates for the flow. It is returned
          * from the v3/unify endpoint and cannot be reused outside of a single flow.
          */
         public Builder correlationId(Optional<String> correlationId) {
@@ -250,8 +223,7 @@ public class V3UnifyBindRequest {
         }
 
         /**
-         * Phone number is only allowed when possessionType=none from the initial Unify request.
-         * Required for BYO Possession flow on the third call.
+         * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -260,8 +232,7 @@ public class V3UnifyBindRequest {
         }
 
         /**
-         * Phone number is only allowed when possessionType=none from the initial Unify request.
-         * Required for BYO Possession flow on the third call.
+         * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
          */
         public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

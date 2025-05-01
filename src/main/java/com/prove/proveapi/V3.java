@@ -910,10 +910,9 @@ public class V3 implements
 
 
     /**
-     * Initiate possession check.
+     * Initiate Possession Check
      * 
-     * <p>Send this request to initiate a possession check. It will return a correlation ID
-     * and authToken for the client SDK.
+     * <p>This endpoint allows you to initiate the possession check.
      * 
      * @return The call builder
      */
@@ -922,10 +921,9 @@ public class V3 implements
     }
 
     /**
-     * Initiate possession check.
+     * Initiate Possession Check
      * 
-     * <p>Send this request to initiate a possession check. It will return a correlation ID
-     * and authToken for the client SDK.
+     * <p>This endpoint allows you to initiate the possession check.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -935,10 +933,9 @@ public class V3 implements
     }
     
     /**
-     * Initiate possession check.
+     * Initiate Possession Check
      * 
-     * <p>Send this request to initiate a possession check. It will return a correlation ID
-     * and authToken for the client SDK.
+     * <p>This endpoint allows you to initiate the possession check.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -1123,9 +1120,9 @@ public class V3 implements
 
 
     /**
-     * Check status of Unify session.
+     * Bind Prove Key
      * 
-     * <p>Send this request to bind Prove Key to a phone nuymber of an Unify session and get the possession result.
+     * <p>This endpoint allows you to bind a Prove Key to a phone number of a Unify session and get the possession result.
      * 
      * @return The call builder
      */
@@ -1134,9 +1131,9 @@ public class V3 implements
     }
 
     /**
-     * Check status of Unify session.
+     * Bind Prove Key
      * 
-     * <p>Send this request to bind Prove Key to a phone nuymber of an Unify session and get the possession result.
+     * <p>This endpoint allows you to bind a Prove Key to a phone number of a Unify session and get the possession result.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1146,9 +1143,9 @@ public class V3 implements
     }
     
     /**
-     * Check status of Unify session.
+     * Bind Prove Key
      * 
-     * <p>Send this request to bind Prove Key to a phone nuymber of an Unify session and get the possession result.
+     * <p>This endpoint allows you to bind a Prove Key to a phone number of a Unify session and get the possession result.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -1334,9 +1331,9 @@ public class V3 implements
 
 
     /**
-     * Check status of Unify session.
+     * Check Status of Unify Session
      * 
-     * <p>Send this request to check the status of an Unify session and get the possession result.
+     * <p>This endpoint allows you to check the status of a Unify session and get the possession result.
      * 
      * @return The call builder
      */
@@ -1345,9 +1342,9 @@ public class V3 implements
     }
 
     /**
-     * Check status of Unify session.
+     * Check Status of Unify Session
      * 
-     * <p>Send this request to check the status of an Unify session and get the possession result.
+     * <p>This endpoint allows you to check the status of a Unify session and get the possession result.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1357,9 +1354,9 @@ public class V3 implements
     }
     
     /**
-     * Check status of Unify session.
+     * Check Status of Unify Session
      * 
-     * <p>Send this request to check the status of an Unify session and get the possession result.
+     * <p>This endpoint allows you to check the status of a Unify session and get the possession result.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call

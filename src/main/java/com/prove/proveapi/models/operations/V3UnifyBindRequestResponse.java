@@ -37,7 +37,7 @@ public class V3UnifyBindRequestResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * Successful Request
+     * Successful Request.
      */
     private Optional<? extends V3UnifyBindResponse> v3UnifyBindResponse;
 
@@ -95,7 +95,7 @@ public class V3UnifyBindRequestResponse implements Response {
     }
 
     /**
-     * Successful Request
+     * Successful Request.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -140,7 +140,7 @@ public class V3UnifyBindRequestResponse implements Response {
     }
 
     /**
-     * Successful Request
+     * Successful Request.
      */
     public V3UnifyBindRequestResponse withV3UnifyBindResponse(V3UnifyBindResponse v3UnifyBindResponse) {
         Utils.checkNotNull(v3UnifyBindResponse, "v3UnifyBindResponse");
@@ -149,7 +149,7 @@ public class V3UnifyBindRequestResponse implements Response {
     }
 
     /**
-     * Successful Request
+     * Successful Request.
      */
     public V3UnifyBindRequestResponse withV3UnifyBindResponse(Optional<? extends V3UnifyBindResponse> v3UnifyBindResponse) {
         Utils.checkNotNull(v3UnifyBindResponse, "v3UnifyBindResponse");
@@ -245,7 +245,7 @@ public class V3UnifyBindRequestResponse implements Response {
         }
 
         /**
-         * Successful Request
+         * Successful Request.
          */
         public Builder v3UnifyBindResponse(V3UnifyBindResponse v3UnifyBindResponse) {
             Utils.checkNotNull(v3UnifyBindResponse, "v3UnifyBindResponse");
@@ -254,7 +254,7 @@ public class V3UnifyBindRequestResponse implements Response {
         }
 
         /**
-         * Successful Request
+         * Successful Request.
          */
         public Builder v3UnifyBindResponse(Optional<? extends V3UnifyBindResponse> v3UnifyBindResponse) {
             Utils.checkNotNull(v3UnifyBindResponse, "v3UnifyBindResponse");
