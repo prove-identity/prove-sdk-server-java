@@ -21,14 +21,14 @@ import java.util.Optional;
 public class Error403 extends RuntimeException {
 
     /**
-     * An internal error code that identifies the specific authorization issue.
+     * An error code that identifies the specific authorization issue.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
     private Optional<Long> code;
 
     /**
-     * An error message describing why access is forbidden.
+     * The error message describing why access is forbidden.
      */
     @JsonProperty("message")
     private String message;
@@ -50,7 +50,7 @@ public class Error403 extends RuntimeException {
     }
 
     /**
-     * An internal error code that identifies the specific authorization issue.
+     * An error code that identifies the specific authorization issue.
      */
     @JsonIgnore
     public Optional<Long> code() {
@@ -58,7 +58,7 @@ public class Error403 extends RuntimeException {
     }
 
     /**
-     * An error message describing why access is forbidden.
+     * The error message describing why access is forbidden.
      */
     @JsonIgnore
     public String message() {
@@ -76,7 +76,7 @@ public class Error403 extends RuntimeException {
     }    
 
     /**
-     * An internal error code that identifies the specific authorization issue.
+     * An error code that identifies the specific authorization issue.
      */
     public Error403 withCode(long code) {
         Utils.checkNotNull(code, "code");
@@ -85,7 +85,7 @@ public class Error403 extends RuntimeException {
     }
 
     /**
-     * An internal error code that identifies the specific authorization issue.
+     * An error code that identifies the specific authorization issue.
      */
     public Error403 withCode(Optional<Long> code) {
         Utils.checkNotNull(code, "code");
@@ -94,7 +94,7 @@ public class Error403 extends RuntimeException {
     }
 
     /**
-     * An error message describing why access is forbidden.
+     * The error message describing why access is forbidden.
      */
     public Error403 withMessage(String message) {
         Utils.checkNotNull(message, "message");
@@ -142,7 +142,7 @@ public class Error403 extends RuntimeException {
         }
 
         /**
-         * An internal error code that identifies the specific authorization issue.
+         * An error code that identifies the specific authorization issue.
          */
         public Builder code(long code) {
             Utils.checkNotNull(code, "code");
@@ -151,7 +151,7 @@ public class Error403 extends RuntimeException {
         }
 
         /**
-         * An internal error code that identifies the specific authorization issue.
+         * An error code that identifies the specific authorization issue.
          */
         public Builder code(Optional<Long> code) {
             Utils.checkNotNull(code, "code");
@@ -160,7 +160,7 @@ public class Error403 extends RuntimeException {
         }
 
         /**
-         * An error message describing why access is forbidden.
+         * The error message describing why access is forbidden.
          */
         public Builder message(String message) {
             Utils.checkNotNull(message, "message");

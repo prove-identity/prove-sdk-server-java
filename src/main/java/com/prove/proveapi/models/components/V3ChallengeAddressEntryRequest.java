@@ -17,35 +17,35 @@ import java.util.Optional;
 public class V3ChallengeAddressEntryRequest {
 
     /**
-     * Address is the street address of the individual.
+     * The street address of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
     private Optional<String> address;
 
     /**
-     * City of the individual.
+     * The city of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("city")
     private Optional<String> city;
 
     /**
-     * Extended address is the apartment number or other extended address information.
+     * The apartment number or other extended address information.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("extendedAddress")
     private Optional<String> extendedAddress;
 
     /**
-     * Postal code is the zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
+     * The zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postalCode")
     private Optional<String> postalCode;
 
     /**
-     * Region is the state or locality of the individual.
+     * The state or locality of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("region")
@@ -75,7 +75,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Address is the street address of the individual.
+     * The street address of the individual.
      */
     @JsonIgnore
     public Optional<String> address() {
@@ -83,7 +83,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * City of the individual.
+     * The city of the individual.
      */
     @JsonIgnore
     public Optional<String> city() {
@@ -91,7 +91,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Extended address is the apartment number or other extended address information.
+     * The apartment number or other extended address information.
      */
     @JsonIgnore
     public Optional<String> extendedAddress() {
@@ -99,7 +99,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Postal code is the zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
+     * The zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
      */
     @JsonIgnore
     public Optional<String> postalCode() {
@@ -107,7 +107,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Region is the state or locality of the individual.
+     * The state or locality of the individual.
      */
     @JsonIgnore
     public Optional<String> region() {
@@ -119,7 +119,7 @@ public class V3ChallengeAddressEntryRequest {
     }    
 
     /**
-     * Address is the street address of the individual.
+     * The street address of the individual.
      */
     public V3ChallengeAddressEntryRequest withAddress(String address) {
         Utils.checkNotNull(address, "address");
@@ -128,7 +128,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Address is the street address of the individual.
+     * The street address of the individual.
      */
     public V3ChallengeAddressEntryRequest withAddress(Optional<String> address) {
         Utils.checkNotNull(address, "address");
@@ -137,7 +137,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * City of the individual.
+     * The city of the individual.
      */
     public V3ChallengeAddressEntryRequest withCity(String city) {
         Utils.checkNotNull(city, "city");
@@ -146,7 +146,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * City of the individual.
+     * The city of the individual.
      */
     public V3ChallengeAddressEntryRequest withCity(Optional<String> city) {
         Utils.checkNotNull(city, "city");
@@ -155,7 +155,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Extended address is the apartment number or other extended address information.
+     * The apartment number or other extended address information.
      */
     public V3ChallengeAddressEntryRequest withExtendedAddress(String extendedAddress) {
         Utils.checkNotNull(extendedAddress, "extendedAddress");
@@ -164,7 +164,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Extended address is the apartment number or other extended address information.
+     * The apartment number or other extended address information.
      */
     public V3ChallengeAddressEntryRequest withExtendedAddress(Optional<String> extendedAddress) {
         Utils.checkNotNull(extendedAddress, "extendedAddress");
@@ -173,7 +173,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Postal code is the zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
+     * The zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
      */
     public V3ChallengeAddressEntryRequest withPostalCode(String postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
@@ -182,7 +182,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Postal code is the zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
+     * The zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
      */
     public V3ChallengeAddressEntryRequest withPostalCode(Optional<String> postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
@@ -191,7 +191,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Region is the state or locality of the individual.
+     * The state or locality of the individual.
      */
     public V3ChallengeAddressEntryRequest withRegion(String region) {
         Utils.checkNotNull(region, "region");
@@ -200,7 +200,7 @@ public class V3ChallengeAddressEntryRequest {
     }
 
     /**
-     * Region is the state or locality of the individual.
+     * The state or locality of the individual.
      */
     public V3ChallengeAddressEntryRequest withRegion(Optional<String> region) {
         Utils.checkNotNull(region, "region");
@@ -263,7 +263,7 @@ public class V3ChallengeAddressEntryRequest {
         }
 
         /**
-         * Address is the street address of the individual.
+         * The street address of the individual.
          */
         public Builder address(String address) {
             Utils.checkNotNull(address, "address");
@@ -272,7 +272,7 @@ public class V3ChallengeAddressEntryRequest {
         }
 
         /**
-         * Address is the street address of the individual.
+         * The street address of the individual.
          */
         public Builder address(Optional<String> address) {
             Utils.checkNotNull(address, "address");
@@ -281,7 +281,7 @@ public class V3ChallengeAddressEntryRequest {
         }
 
         /**
-         * City of the individual.
+         * The city of the individual.
          */
         public Builder city(String city) {
             Utils.checkNotNull(city, "city");
@@ -290,7 +290,7 @@ public class V3ChallengeAddressEntryRequest {
         }
 
         /**
-         * City of the individual.
+         * The city of the individual.
          */
         public Builder city(Optional<String> city) {
             Utils.checkNotNull(city, "city");
@@ -299,7 +299,7 @@ public class V3ChallengeAddressEntryRequest {
         }
 
         /**
-         * Extended address is the apartment number or other extended address information.
+         * The apartment number or other extended address information.
          */
         public Builder extendedAddress(String extendedAddress) {
             Utils.checkNotNull(extendedAddress, "extendedAddress");
@@ -308,7 +308,7 @@ public class V3ChallengeAddressEntryRequest {
         }
 
         /**
-         * Extended address is the apartment number or other extended address information.
+         * The apartment number or other extended address information.
          */
         public Builder extendedAddress(Optional<String> extendedAddress) {
             Utils.checkNotNull(extendedAddress, "extendedAddress");
@@ -317,7 +317,7 @@ public class V3ChallengeAddressEntryRequest {
         }
 
         /**
-         * Postal code is the zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
+         * The zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
          */
         public Builder postalCode(String postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
@@ -326,7 +326,7 @@ public class V3ChallengeAddressEntryRequest {
         }
 
         /**
-         * Postal code is the zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
+         * The zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
          */
         public Builder postalCode(Optional<String> postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
@@ -335,7 +335,7 @@ public class V3ChallengeAddressEntryRequest {
         }
 
         /**
-         * Region is the state or locality of the individual.
+         * The state or locality of the individual.
          */
         public Builder region(String region) {
             Utils.checkNotNull(region, "region");
@@ -344,7 +344,7 @@ public class V3ChallengeAddressEntryRequest {
         }
 
         /**
-         * Region is the state or locality of the individual.
+         * The state or locality of the individual.
          */
         public Builder region(Optional<String> region) {
             Utils.checkNotNull(region, "region");

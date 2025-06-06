@@ -14,19 +14,19 @@ import java.util.Objects;
 public class V3TokenRequest {
 
     /**
-     * ClientID is the optional client ID.
+     * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
     @SpeakeasyMetadata("form:name=client_id")
     private String clientId;
 
     /**
-     * ClientSecret is the client secret ID provided to the customer during onboarding.
+     * The client secret retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
     @SpeakeasyMetadata("form:name=client_secret")
     private String clientSecret;
 
     /**
-     * GrantType only allows option: `client_credentials`.
+     * The grant type. This field only accepts `client_credentials`.
      */
     @SpeakeasyMetadata("form:name=grant_type")
     private String grantType;
@@ -45,7 +45,7 @@ public class V3TokenRequest {
     }
 
     /**
-     * ClientID is the optional client ID.
+     * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
     @JsonIgnore
     public String clientId() {
@@ -53,7 +53,7 @@ public class V3TokenRequest {
     }
 
     /**
-     * ClientSecret is the client secret ID provided to the customer during onboarding.
+     * The client secret retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
     @JsonIgnore
     public String clientSecret() {
@@ -61,7 +61,7 @@ public class V3TokenRequest {
     }
 
     /**
-     * GrantType only allows option: `client_credentials`.
+     * The grant type. This field only accepts `client_credentials`.
      */
     @JsonIgnore
     public String grantType() {
@@ -73,7 +73,7 @@ public class V3TokenRequest {
     }    
 
     /**
-     * ClientID is the optional client ID.
+     * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
     public V3TokenRequest withClientId(String clientId) {
         Utils.checkNotNull(clientId, "clientId");
@@ -82,7 +82,7 @@ public class V3TokenRequest {
     }
 
     /**
-     * ClientSecret is the client secret ID provided to the customer during onboarding.
+     * The client secret retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
     public V3TokenRequest withClientSecret(String clientSecret) {
         Utils.checkNotNull(clientSecret, "clientSecret");
@@ -91,7 +91,7 @@ public class V3TokenRequest {
     }
 
     /**
-     * GrantType only allows option: `client_credentials`.
+     * The grant type. This field only accepts `client_credentials`.
      */
     public V3TokenRequest withGrantType(String grantType) {
         Utils.checkNotNull(grantType, "grantType");
@@ -144,7 +144,7 @@ public class V3TokenRequest {
         }
 
         /**
-         * ClientID is the optional client ID.
+         * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
          */
         public Builder clientId(String clientId) {
             Utils.checkNotNull(clientId, "clientId");
@@ -153,7 +153,7 @@ public class V3TokenRequest {
         }
 
         /**
-         * ClientSecret is the client secret ID provided to the customer during onboarding.
+         * The client secret retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
          */
         public Builder clientSecret(String clientSecret) {
             Utils.checkNotNull(clientSecret, "clientSecret");
@@ -162,7 +162,7 @@ public class V3TokenRequest {
         }
 
         /**
-         * GrantType only allows option: `client_credentials`.
+         * The grant type. This field only accepts `client_credentials`.
          */
         public Builder grantType(String grantType) {
             Utils.checkNotNull(grantType, "grantType");

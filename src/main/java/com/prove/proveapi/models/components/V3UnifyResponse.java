@@ -24,19 +24,22 @@ public class V3UnifyResponse {
     private Optional<String> authToken;
 
     /**
-     * The unique ID that Prove generates for the flow.
+     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
      */
     @JsonProperty("correlationId")
     private String correlationId;
 
+    /**
+     * The status of the Unify request.
+     */
     @JsonProperty("success")
-    private String success;
+    private Success success;
 
     @JsonCreator
     public V3UnifyResponse(
             @JsonProperty("authToken") Optional<String> authToken,
             @JsonProperty("correlationId") String correlationId,
-            @JsonProperty("success") String success) {
+            @JsonProperty("success") Success success) {
         Utils.checkNotNull(authToken, "authToken");
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(success, "success");
@@ -47,7 +50,7 @@ public class V3UnifyResponse {
     
     public V3UnifyResponse(
             String correlationId,
-            String success) {
+            Success success) {
         this(Optional.empty(), correlationId, success);
     }
 
@@ -60,15 +63,18 @@ public class V3UnifyResponse {
     }
 
     /**
-     * The unique ID that Prove generates for the flow.
+     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
      */
     @JsonIgnore
     public String correlationId() {
         return correlationId;
     }
 
+    /**
+     * The status of the Unify request.
+     */
     @JsonIgnore
-    public String success() {
+    public Success success() {
         return success;
     }
 
@@ -95,7 +101,7 @@ public class V3UnifyResponse {
     }
 
     /**
-     * The unique ID that Prove generates for the flow.
+     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
      */
     public V3UnifyResponse withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -103,7 +109,10 @@ public class V3UnifyResponse {
         return this;
     }
 
-    public V3UnifyResponse withSuccess(String success) {
+    /**
+     * The status of the Unify request.
+     */
+    public V3UnifyResponse withSuccess(Success success) {
         Utils.checkNotNull(success, "success");
         this.success = success;
         return this;
@@ -147,7 +156,7 @@ public class V3UnifyResponse {
  
         private String correlationId;
  
-        private String success;
+        private Success success;
         
         private Builder() {
           // force use of static builder() method
@@ -172,7 +181,7 @@ public class V3UnifyResponse {
         }
 
         /**
-         * The unique ID that Prove generates for the flow.
+         * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");
@@ -180,7 +189,10 @@ public class V3UnifyResponse {
             return this;
         }
 
-        public Builder success(String success) {
+        /**
+         * The status of the Unify request.
+         */
+        public Builder success(Success success) {
             Utils.checkNotNull(success, "success");
             this.success = success;
             return this;

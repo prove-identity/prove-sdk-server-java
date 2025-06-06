@@ -24,7 +24,6 @@ import com.prove.proveapi.models.components.V3VerifyRequest;
 import com.prove.proveapi.models.components.V3VerifyResponse;
 import com.prove.proveapi.models.components.V3VerifyStatusRequest;
 import com.prove.proveapi.models.components.V3VerifyStatusResponse;
-import com.prove.proveapi.models.errors.Error400;
 import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
@@ -87,9 +86,9 @@ public class V3 implements
 
 
     /**
-     * Request OAuth token.
+     * Request OAuth Token
      * 
-     * <p>Send this request to request the OAuth token.
+     * <p>This endpoint allows you to request an OAuth token.
      * 
      * @return The call builder
      */
@@ -98,9 +97,9 @@ public class V3 implements
     }
 
     /**
-     * Request OAuth token.
+     * Request OAuth Token
      * 
-     * <p>Send this request to request the OAuth token.
+     * <p>This endpoint allows you to request an OAuth token.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -110,9 +109,9 @@ public class V3 implements
     }
     
     /**
-     * Request OAuth token.
+     * Request OAuth Token
      * 
-     * <p>Send this request to request the OAuth token.
+     * <p>This endpoint allows you to request an OAuth token.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -120,7 +119,7 @@ public class V3 implements
      */
     public V3TokenRequestResponse v3TokenRequest(
             Optional<? extends V3TokenRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/token");
@@ -140,11 +139,12 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         Optional<SecuritySource> _hookSecuritySource = Optional.empty();
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "V3TokenRequest", 
                       Optional.of(List.of()), 
@@ -157,6 +157,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3TokenRequest",
                             Optional.of(List.of()),
@@ -167,6 +168,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3TokenRequest",
                             Optional.of(List.of()), 
@@ -177,6 +179,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3TokenRequest",
                             Optional.of(List.of()),
@@ -214,9 +217,9 @@ public class V3 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error400 _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error400>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -280,9 +283,9 @@ public class V3 implements
 
 
     /**
-     * Submit challenge.
+     * Submit Challenge
      * 
-     * <p>Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
+     * <p>This endpoint allows you to submit challenge information.
      * 
      * @return The call builder
      */
@@ -291,9 +294,9 @@ public class V3 implements
     }
 
     /**
-     * Submit challenge.
+     * Submit Challenge
      * 
-     * <p>Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
+     * <p>This endpoint allows you to submit challenge information.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -303,9 +306,9 @@ public class V3 implements
     }
     
     /**
-     * Submit challenge.
+     * Submit Challenge
      * 
-     * <p>Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
+     * <p>This endpoint allows you to submit challenge information.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -313,7 +316,7 @@ public class V3 implements
      */
     public V3ChallengeRequestResponse v3ChallengeRequest(
             Optional<? extends V3ChallengeRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/challenge");
@@ -333,14 +336,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "V3ChallengeRequest", 
                       Optional.of(List.of()), 
@@ -353,6 +357,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3ChallengeRequest",
                             Optional.of(List.of()),
@@ -363,6 +368,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3ChallengeRequest",
                             Optional.of(List.of()), 
@@ -373,6 +379,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3ChallengeRequest",
                             Optional.of(List.of()),
@@ -410,9 +417,9 @@ public class V3 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error400 _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error400>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -490,9 +497,9 @@ public class V3 implements
 
 
     /**
-     * Complete flow.
+     * Complete Flow
      * 
-     * <p>Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. There is a validation check that requires at least first + last name or SSN passed in, else an HTTP 400 is returned. Additionally, specific to the Pre-Fill® or Prove Identity® with KYC use case, you need to pass in first name, last name, DOB and SSN (or address) to ensure you receive back the KYC elements and correct CIP values.
+     * <p>This endpoint allows you to verify the user and complete the flow.
      * 
      * @return The call builder
      */
@@ -501,9 +508,9 @@ public class V3 implements
     }
 
     /**
-     * Complete flow.
+     * Complete Flow
      * 
-     * <p>Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. There is a validation check that requires at least first + last name or SSN passed in, else an HTTP 400 is returned. Additionally, specific to the Pre-Fill® or Prove Identity® with KYC use case, you need to pass in first name, last name, DOB and SSN (or address) to ensure you receive back the KYC elements and correct CIP values.
+     * <p>This endpoint allows you to verify the user and complete the flow.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -513,9 +520,9 @@ public class V3 implements
     }
     
     /**
-     * Complete flow.
+     * Complete Flow
      * 
-     * <p>Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. There is a validation check that requires at least first + last name or SSN passed in, else an HTTP 400 is returned. Additionally, specific to the Pre-Fill® or Prove Identity® with KYC use case, you need to pass in first name, last name, DOB and SSN (or address) to ensure you receive back the KYC elements and correct CIP values.
+     * <p>This endpoint allows you to verify the user and complete the flow.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -523,7 +530,7 @@ public class V3 implements
      */
     public V3CompleteRequestResponse v3CompleteRequest(
             Optional<? extends V3CompleteRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/complete");
@@ -543,14 +550,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "V3CompleteRequest", 
                       Optional.of(List.of()), 
@@ -563,6 +571,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3CompleteRequest",
                             Optional.of(List.of()),
@@ -573,6 +582,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3CompleteRequest",
                             Optional.of(List.of()), 
@@ -583,6 +593,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3CompleteRequest",
                             Optional.of(List.of()),
@@ -620,9 +631,9 @@ public class V3 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error400 _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error400>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -700,9 +711,9 @@ public class V3 implements
 
 
     /**
-     * Start flow.
+     * Start Flow
      * 
-     * <p>Send this request to start a Prove flow. It will return a correlation ID and an authToken for the client SDK.
+     * <p>This endpoint allows you to start the solution flow.
      * 
      * @return The call builder
      */
@@ -711,9 +722,9 @@ public class V3 implements
     }
 
     /**
-     * Start flow.
+     * Start Flow
      * 
-     * <p>Send this request to start a Prove flow. It will return a correlation ID and an authToken for the client SDK.
+     * <p>This endpoint allows you to start the solution flow.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -723,9 +734,9 @@ public class V3 implements
     }
     
     /**
-     * Start flow.
+     * Start Flow
      * 
-     * <p>Send this request to start a Prove flow. It will return a correlation ID and an authToken for the client SDK.
+     * <p>This endpoint allows you to start the solution flow.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -733,7 +744,7 @@ public class V3 implements
      */
     public V3StartRequestResponse v3StartRequest(
             Optional<? extends V3StartRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/start");
@@ -753,14 +764,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "V3StartRequest", 
                       Optional.of(List.of()), 
@@ -773,6 +785,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3StartRequest",
                             Optional.of(List.of()),
@@ -783,6 +796,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3StartRequest",
                             Optional.of(List.of()), 
@@ -793,6 +807,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3StartRequest",
                             Optional.of(List.of()),
@@ -830,9 +845,9 @@ public class V3 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error400 _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error400>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -943,7 +958,7 @@ public class V3 implements
      */
     public V3UnifyRequestResponse v3UnifyRequest(
             Optional<? extends V3UnifyRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/unify");
@@ -963,14 +978,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "V3UnifyRequest", 
                       Optional.of(List.of()), 
@@ -983,6 +999,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3UnifyRequest",
                             Optional.of(List.of()),
@@ -993,6 +1010,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3UnifyRequest",
                             Optional.of(List.of()), 
@@ -1003,6 +1021,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3UnifyRequest",
                             Optional.of(List.of()),
@@ -1040,9 +1059,9 @@ public class V3 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error400 _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error400>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -1153,7 +1172,7 @@ public class V3 implements
      */
     public V3UnifyBindRequestResponse v3UnifyBindRequest(
             Optional<? extends V3UnifyBindRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/unify-bind");
@@ -1173,14 +1192,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "V3UnifyBindRequest", 
                       Optional.of(List.of()), 
@@ -1193,6 +1213,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3UnifyBindRequest",
                             Optional.of(List.of()),
@@ -1203,6 +1224,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3UnifyBindRequest",
                             Optional.of(List.of()), 
@@ -1213,6 +1235,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3UnifyBindRequest",
                             Optional.of(List.of()),
@@ -1251,9 +1274,9 @@ public class V3 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error400 _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error400>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -1331,7 +1354,7 @@ public class V3 implements
 
 
     /**
-     * Check Status of Unify Session
+     * Check Status
      * 
      * <p>This endpoint allows you to check the status of a Unify session and get the possession result.
      * 
@@ -1342,7 +1365,7 @@ public class V3 implements
     }
 
     /**
-     * Check Status of Unify Session
+     * Check Status
      * 
      * <p>This endpoint allows you to check the status of a Unify session and get the possession result.
      * 
@@ -1354,7 +1377,7 @@ public class V3 implements
     }
     
     /**
-     * Check Status of Unify Session
+     * Check Status
      * 
      * <p>This endpoint allows you to check the status of a Unify session and get the possession result.
      * 
@@ -1364,7 +1387,7 @@ public class V3 implements
      */
     public V3UnifyStatusRequestResponse v3UnifyStatusRequest(
             Optional<? extends V3UnifyStatusRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/unify-status");
@@ -1384,14 +1407,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "V3UnifyStatusRequest", 
                       Optional.of(List.of()), 
@@ -1404,6 +1428,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3UnifyStatusRequest",
                             Optional.of(List.of()),
@@ -1414,6 +1439,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3UnifyStatusRequest",
                             Optional.of(List.of()), 
@@ -1424,6 +1450,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3UnifyStatusRequest",
                             Optional.of(List.of()),
@@ -1462,9 +1489,9 @@ public class V3 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error400 _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error400>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -1542,9 +1569,9 @@ public class V3 implements
 
 
     /**
-     * Validate phone number.
+     * Validate Phone Number
      * 
-     * <p>Send this request to check the phone number entered/discovered earlier in the flow is validated. It will return a correlation ID and the next step.
+     * <p>This endpoint allows you to check if the phone number entered/discovered earlier in the flow is validated.
      * 
      * @return The call builder
      */
@@ -1553,9 +1580,9 @@ public class V3 implements
     }
 
     /**
-     * Validate phone number.
+     * Validate Phone Number
      * 
-     * <p>Send this request to check the phone number entered/discovered earlier in the flow is validated. It will return a correlation ID and the next step.
+     * <p>This endpoint allows you to check if the phone number entered/discovered earlier in the flow is validated.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1565,9 +1592,9 @@ public class V3 implements
     }
     
     /**
-     * Validate phone number.
+     * Validate Phone Number
      * 
-     * <p>Send this request to check the phone number entered/discovered earlier in the flow is validated. It will return a correlation ID and the next step.
+     * <p>This endpoint allows you to check if the phone number entered/discovered earlier in the flow is validated.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -1575,7 +1602,7 @@ public class V3 implements
      */
     public V3ValidateRequestResponse v3ValidateRequest(
             Optional<? extends V3ValidateRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/validate");
@@ -1595,14 +1622,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "V3ValidateRequest", 
                       Optional.of(List.of()), 
@@ -1615,6 +1643,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3ValidateRequest",
                             Optional.of(List.of()),
@@ -1625,6 +1654,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3ValidateRequest",
                             Optional.of(List.of()), 
@@ -1635,6 +1665,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3ValidateRequest",
                             Optional.of(List.of()),
@@ -1672,9 +1703,9 @@ public class V3 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error400 _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error400>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -1752,9 +1783,9 @@ public class V3 implements
 
 
     /**
-     * Initiate verified users session.
+     * Initiate Verified Users Session
      * 
-     * <p>Send this request to initiate a Verified Users session. It will return a correlation ID, authToken for the client SDK, and the results of the possession and verify checks (usually pending from this API).
+     * <p>This endpoint allows you to initiate a Verified Users session.
      * 
      * @return The call builder
      */
@@ -1763,9 +1794,9 @@ public class V3 implements
     }
 
     /**
-     * Initiate verified users session.
+     * Initiate Verified Users Session
      * 
-     * <p>Send this request to initiate a Verified Users session. It will return a correlation ID, authToken for the client SDK, and the results of the possession and verify checks (usually pending from this API).
+     * <p>This endpoint allows you to initiate a Verified Users session.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1775,9 +1806,9 @@ public class V3 implements
     }
     
     /**
-     * Initiate verified users session.
+     * Initiate Verified Users Session
      * 
-     * <p>Send this request to initiate a Verified Users session. It will return a correlation ID, authToken for the client SDK, and the results of the possession and verify checks (usually pending from this API).
+     * <p>This endpoint allows you to initiate a Verified Users session.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -1785,7 +1816,7 @@ public class V3 implements
      */
     public V3VerifyRequestResponse v3VerifyRequest(
             Optional<? extends V3VerifyRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/verify");
@@ -1805,14 +1836,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "V3VerifyRequest", 
                       Optional.of(List.of()), 
@@ -1825,6 +1857,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3VerifyRequest",
                             Optional.of(List.of()),
@@ -1835,6 +1868,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3VerifyRequest",
                             Optional.of(List.of()), 
@@ -1845,6 +1879,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3VerifyRequest",
                             Optional.of(List.of()),
@@ -1882,9 +1917,9 @@ public class V3 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error400 _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error400>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
@@ -1962,9 +1997,9 @@ public class V3 implements
 
 
     /**
-     * Perform checks for verified users session.
+     * Perform Checks for Verified Users Session
      * 
-     * <p>Send this request to perform the necessary checks for a Verified Users session. It will return the results of the possession and verify checks, as well as the overall success.
+     * <p>This endpoint allows you to perform the necessary checks for a Verified Users session.
      * 
      * @return The call builder
      */
@@ -1973,9 +2008,9 @@ public class V3 implements
     }
 
     /**
-     * Perform checks for verified users session.
+     * Perform Checks for Verified Users Session
      * 
-     * <p>Send this request to perform the necessary checks for a Verified Users session. It will return the results of the possession and verify checks, as well as the overall success.
+     * <p>This endpoint allows you to perform the necessary checks for a Verified Users session.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1985,9 +2020,9 @@ public class V3 implements
     }
     
     /**
-     * Perform checks for verified users session.
+     * Perform Checks for Verified Users Session
      * 
-     * <p>Send this request to perform the necessary checks for a Verified Users session. It will return the results of the possession and verify checks, as well as the overall success.
+     * <p>This endpoint allows you to perform the necessary checks for a Verified Users session.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -1995,7 +2030,7 @@ public class V3 implements
      */
     public V3VerifyStatusRequestResponse v3VerifyStatusRequest(
             Optional<? extends V3VerifyStatusRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/v3/verify-status");
@@ -2015,14 +2050,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "V3VerifyStatusRequest", 
                       Optional.of(List.of()), 
@@ -2035,6 +2071,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3VerifyStatusRequest",
                             Optional.of(List.of()),
@@ -2045,6 +2082,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3VerifyStatusRequest",
                             Optional.of(List.of()), 
@@ -2055,6 +2093,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "V3VerifyStatusRequest",
                             Optional.of(List.of()),
@@ -2093,9 +2132,9 @@ public class V3 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error400 _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error400>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(

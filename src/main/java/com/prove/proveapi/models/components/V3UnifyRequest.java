@@ -9,12 +9,20 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
 public class V3UnifyRequest {
+
+    /**
+     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("allowOTPRetry")
+    private Optional<Boolean> allowOTPRetry;
 
     /**
      * A client-generated unique ID for a specific customer.
@@ -39,9 +47,8 @@ public class V3UnifyRequest {
     private Optional<String> finalTargetUrl;
 
     /**
-     * The number of the mobile phone. Optional in US, required in EU.
-     * Not allowed when possessionType is `none`. Acceptable characters are:
-     * alphanumeric with symbols '+'.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
+     * Required unless Mobile Auth is enabled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
@@ -56,8 +63,18 @@ public class V3UnifyRequest {
     private String possessionType;
 
     /**
-     * The message body sent in the
-     * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
+     * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
+     * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("rebind")
+    private Optional<Boolean> rebind;
+
+    /**
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("smsMessage")
@@ -65,29 +82,43 @@ public class V3UnifyRequest {
 
     @JsonCreator
     public V3UnifyRequest(
+            @JsonProperty("allowOTPRetry") Optional<Boolean> allowOTPRetry,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("finalTargetUrl") Optional<String> finalTargetUrl,
             @JsonProperty("phoneNumber") Optional<String> phoneNumber,
             @JsonProperty("possessionType") String possessionType,
+            @JsonProperty("rebind") Optional<Boolean> rebind,
             @JsonProperty("smsMessage") Optional<String> smsMessage) {
+        Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(possessionType, "possessionType");
+        Utils.checkNotNull(rebind, "rebind");
         Utils.checkNotNull(smsMessage, "smsMessage");
+        this.allowOTPRetry = allowOTPRetry;
         this.clientCustomerId = clientCustomerId;
         this.clientRequestId = clientRequestId;
         this.finalTargetUrl = finalTargetUrl;
         this.phoneNumber = phoneNumber;
         this.possessionType = possessionType;
+        this.rebind = rebind;
         this.smsMessage = smsMessage;
     }
     
     public V3UnifyRequest(
             String possessionType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), possessionType, Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), possessionType, Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     */
+    @JsonIgnore
+    public Optional<Boolean> allowOTPRetry() {
+        return allowOTPRetry;
     }
 
     /**
@@ -116,9 +147,8 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The number of the mobile phone. Optional in US, required in EU.
-     * Not allowed when possessionType is `none`. Acceptable characters are:
-     * alphanumeric with symbols '+'.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
+     * Required unless Mobile Auth is enabled.
      */
     @JsonIgnore
     public Optional<String> phoneNumber() {
@@ -136,8 +166,19 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The message body sent in the
-     * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
+     * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
+     * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+     */
+    @JsonIgnore
+    public Optional<Boolean> rebind() {
+        return rebind;
+    }
+
+    /**
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     @JsonIgnore
     public Optional<String> smsMessage() {
@@ -147,6 +188,24 @@ public class V3UnifyRequest {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    /**
+     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     */
+    public V3UnifyRequest withAllowOTPRetry(boolean allowOTPRetry) {
+        Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
+        this.allowOTPRetry = Optional.ofNullable(allowOTPRetry);
+        return this;
+    }
+
+    /**
+     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     */
+    public V3UnifyRequest withAllowOTPRetry(Optional<Boolean> allowOTPRetry) {
+        Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
+        this.allowOTPRetry = allowOTPRetry;
+        return this;
+    }
 
     /**
      * A client-generated unique ID for a specific customer.
@@ -205,9 +264,8 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The number of the mobile phone. Optional in US, required in EU.
-     * Not allowed when possessionType is `none`. Acceptable characters are:
-     * alphanumeric with symbols '+'.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
+     * Required unless Mobile Auth is enabled.
      */
     public V3UnifyRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -216,9 +274,8 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The number of the mobile phone. Optional in US, required in EU.
-     * Not allowed when possessionType is `none`. Acceptable characters are:
-     * alphanumeric with symbols '+'.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
+     * Required unless Mobile Auth is enabled.
      */
     public V3UnifyRequest withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -238,8 +295,30 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The message body sent in the
-     * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
+     * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
+     * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+     */
+    public V3UnifyRequest withRebind(boolean rebind) {
+        Utils.checkNotNull(rebind, "rebind");
+        this.rebind = Optional.ofNullable(rebind);
+        return this;
+    }
+
+    /**
+     * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
+     * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+     */
+    public V3UnifyRequest withRebind(Optional<Boolean> rebind) {
+        Utils.checkNotNull(rebind, "rebind");
+        this.rebind = rebind;
+        return this;
+    }
+
+    /**
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     public V3UnifyRequest withSmsMessage(String smsMessage) {
         Utils.checkNotNull(smsMessage, "smsMessage");
@@ -248,8 +327,10 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The message body sent in the
-     * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     public V3UnifyRequest withSmsMessage(Optional<String> smsMessage) {
         Utils.checkNotNull(smsMessage, "smsMessage");
@@ -268,37 +349,45 @@ public class V3UnifyRequest {
         }
         V3UnifyRequest other = (V3UnifyRequest) o;
         return 
+            Objects.deepEquals(this.allowOTPRetry, other.allowOTPRetry) &&
             Objects.deepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Objects.deepEquals(this.clientRequestId, other.clientRequestId) &&
             Objects.deepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
             Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
             Objects.deepEquals(this.possessionType, other.possessionType) &&
+            Objects.deepEquals(this.rebind, other.rebind) &&
             Objects.deepEquals(this.smsMessage, other.smsMessage);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
+            allowOTPRetry,
             clientCustomerId,
             clientRequestId,
             finalTargetUrl,
             phoneNumber,
             possessionType,
+            rebind,
             smsMessage);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3UnifyRequest.class,
+                "allowOTPRetry", allowOTPRetry,
                 "clientCustomerId", clientCustomerId,
                 "clientRequestId", clientRequestId,
                 "finalTargetUrl", finalTargetUrl,
                 "phoneNumber", phoneNumber,
                 "possessionType", possessionType,
+                "rebind", rebind,
                 "smsMessage", smsMessage);
     }
     
     public final static class Builder {
+ 
+        private Optional<Boolean> allowOTPRetry = Optional.empty();
  
         private Optional<String> clientCustomerId = Optional.empty();
  
@@ -310,10 +399,30 @@ public class V3UnifyRequest {
  
         private String possessionType;
  
+        private Optional<Boolean> rebind = Optional.empty();
+ 
         private Optional<String> smsMessage = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * If true, the customer can request additional OTP codes if the initial code verification failed.
+         */
+        public Builder allowOTPRetry(boolean allowOTPRetry) {
+            Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
+            this.allowOTPRetry = Optional.ofNullable(allowOTPRetry);
+            return this;
+        }
+
+        /**
+         * If true, the customer can request additional OTP codes if the initial code verification failed.
+         */
+        public Builder allowOTPRetry(Optional<Boolean> allowOTPRetry) {
+            Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
+            this.allowOTPRetry = allowOTPRetry;
+            return this;
         }
 
         /**
@@ -373,9 +482,8 @@ public class V3UnifyRequest {
         }
 
         /**
-         * The number of the mobile phone. Optional in US, required in EU.
-         * Not allowed when possessionType is `none`. Acceptable characters are:
-         * alphanumeric with symbols '+'.
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
+         * Required unless Mobile Auth is enabled.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -384,9 +492,8 @@ public class V3UnifyRequest {
         }
 
         /**
-         * The number of the mobile phone. Optional in US, required in EU.
-         * Not allowed when possessionType is `none`. Acceptable characters are:
-         * alphanumeric with symbols '+'.
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
+         * Required unless Mobile Auth is enabled.
          */
         public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -406,8 +513,30 @@ public class V3UnifyRequest {
         }
 
         /**
-         * The message body sent in the
-         * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
+         * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
+         * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+         */
+        public Builder rebind(boolean rebind) {
+            Utils.checkNotNull(rebind, "rebind");
+            this.rebind = Optional.ofNullable(rebind);
+            return this;
+        }
+
+        /**
+         * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
+         * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+         */
+        public Builder rebind(Optional<Boolean> rebind) {
+            Utils.checkNotNull(rebind, "rebind");
+            this.rebind = rebind;
+            return this;
+        }
+
+        /**
+         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+         * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+         * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+         * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
          */
         public Builder smsMessage(String smsMessage) {
             Utils.checkNotNull(smsMessage, "smsMessage");
@@ -416,8 +545,10 @@ public class V3UnifyRequest {
         }
 
         /**
-         * The message body sent in the
-         * Instant Link (`possessionType=desktop`) or OTP (`possessionType=mobile`) SMS message.
+         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+         * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+         * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+         * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
          */
         public Builder smsMessage(Optional<String> smsMessage) {
             Utils.checkNotNull(smsMessage, "smsMessage");
@@ -427,11 +558,13 @@ public class V3UnifyRequest {
         
         public V3UnifyRequest build() {
             return new V3UnifyRequest(
+                allowOTPRetry,
                 clientCustomerId,
                 clientRequestId,
                 finalTargetUrl,
                 phoneNumber,
                 possessionType,
+                rebind,
                 smsMessage);
         }
     }

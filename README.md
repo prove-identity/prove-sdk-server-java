@@ -36,7 +36,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.14.0'
+implementation 'com.prove:proveapi:0.15.0'
 ```
 
 Maven:
@@ -44,7 +44,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.14.0</version>
+    <version>0.15.0</version>
 </dependency>
 ```
 
@@ -104,7 +104,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -115,6 +115,7 @@ public class Application {
 
         V3StartRequest req = V3StartRequest.builder()
                 .flowType("mobile")
+                .allowOTPRetry(true)
                 .dob("1981-01")
                 .emailAddress("mpinsonm@dyndns.org")
                 .finalTargetUrl("https://www.example.com/landing-page")
@@ -145,16 +146,16 @@ public class Application {
 
 ### [v3()](docs/sdks/v3/README.md)
 
-* [v3TokenRequest](docs/sdks/v3/README.md#v3tokenrequest) - Request OAuth token.
-* [v3ChallengeRequest](docs/sdks/v3/README.md#v3challengerequest) - Submit challenge.
-* [v3CompleteRequest](docs/sdks/v3/README.md#v3completerequest) - Complete flow.
-* [v3StartRequest](docs/sdks/v3/README.md#v3startrequest) - Start flow.
+* [v3TokenRequest](docs/sdks/v3/README.md#v3tokenrequest) - Request OAuth Token
+* [v3ChallengeRequest](docs/sdks/v3/README.md#v3challengerequest) - Submit Challenge
+* [v3CompleteRequest](docs/sdks/v3/README.md#v3completerequest) - Complete Flow
+* [v3StartRequest](docs/sdks/v3/README.md#v3startrequest) - Start Flow
 * [v3UnifyRequest](docs/sdks/v3/README.md#v3unifyrequest) - Initiate Possession Check
 * [v3UnifyBindRequest](docs/sdks/v3/README.md#v3unifybindrequest) - Bind Prove Key
-* [v3UnifyStatusRequest](docs/sdks/v3/README.md#v3unifystatusrequest) - Check Status of Unify Session
-* [v3ValidateRequest](docs/sdks/v3/README.md#v3validaterequest) - Validate phone number.
-* [v3VerifyRequest](docs/sdks/v3/README.md#v3verifyrequest) - Initiate verified users session.
-* [v3VerifyStatusRequest](docs/sdks/v3/README.md#v3verifystatusrequest) - Perform checks for verified users session.
+* [v3UnifyStatusRequest](docs/sdks/v3/README.md#v3unifystatusrequest) - Check Status
+* [v3ValidateRequest](docs/sdks/v3/README.md#v3validaterequest) - Validate Phone Number
+* [v3VerifyRequest](docs/sdks/v3/README.md#v3verifyrequest) - Initiate Verified Users Session
+* [v3VerifyStatusRequest](docs/sdks/v3/README.md#v3verifystatusrequest) - Perform Checks for Verified Users Session
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -168,7 +169,7 @@ By default, an API error will throw a `models/errors/SDKError` exception. When c
 
 | Error Type             | Status Code | Content Type     |
 | ---------------------- | ----------- | ---------------- |
-| models/errors/Error400 | 400         | application/json |
+| models/errors/Error    | 400         | application/json |
 | models/errors/Error401 | 401         | application/json |
 | models/errors/Error    | 500         | application/json |
 | models/errors/SDKError | 4XX, 5XX    | \*/\*            |
@@ -180,14 +181,14 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
             .build();
@@ -231,14 +232,14 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .server(Proveapi.AvailableServers.PROD_EU)
@@ -269,14 +270,14 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .serverURL("https://platform.uat.proveapis.com")
@@ -318,14 +319,14 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()

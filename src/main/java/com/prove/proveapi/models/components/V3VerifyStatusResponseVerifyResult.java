@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * V3VerifyStatusResponseVerifyResult
  * 
- * <p>Verify Result represents the result of the Verify process. Possible values are "success", "pending", "failed", and "not applicable".
+ * <p>The result of the Verify process. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
  */
 public class V3VerifyStatusResponseVerifyResult {
 

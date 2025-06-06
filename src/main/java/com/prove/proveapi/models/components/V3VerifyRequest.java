@@ -9,80 +9,78 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * V3VerifyRequest
- * 
- * <p>Request body for the V3 Verify API
- */
 public class V3VerifyRequest {
 
     /**
-     * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("allowOTPRetry")
+    private Optional<Boolean> allowOTPRetry;
+
+    /**
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientCustomerId")
     private Optional<String> clientCustomerId;
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
 
     /**
-     * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+     * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emailAddress")
     private Optional<String> emailAddress;
 
     /**
-     * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("finalTargetUrl")
     private Optional<String> finalTargetUrl;
 
     /**
-     * First name of the individual.
+     * The first name of the individual.
      */
     @JsonProperty("firstName")
     private String firstName;
 
     /**
-     * Last name of the individual.
+     * The last name of the individual.
      */
     @JsonProperty("lastName")
     private String lastName;
 
     /**
-     * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. US phone numbers can be passed in with or without a leading `+1`. Acceptable characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
     /**
-     * Possession type is based on the method used - either 'desktop' if using desktop, 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+     * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native apps and mobile web.
      */
     @JsonProperty("possessionType")
     private String possessionType;
 
     /**
-     * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
-     * If not provided, the following default messages will be used:
-     * 1. For Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####"
-     * 2. For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
-     * Max length is 160 characters. Only ASCII characters are allowed.
-     * 
-     * <p>The placeholder format varies by flow type:
-     * 1. For OTP (mobile flow): Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-     * 2. For Instant Link (desktop flow): Must use exactly #### which will be replaced with the verification URL.
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("smsMessage")
@@ -90,6 +88,7 @@ public class V3VerifyRequest {
 
     @JsonCreator
     public V3VerifyRequest(
+            @JsonProperty("allowOTPRetry") Optional<Boolean> allowOTPRetry,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("emailAddress") Optional<String> emailAddress,
@@ -99,6 +98,7 @@ public class V3VerifyRequest {
             @JsonProperty("phoneNumber") String phoneNumber,
             @JsonProperty("possessionType") String possessionType,
             @JsonProperty("smsMessage") Optional<String> smsMessage) {
+        Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(emailAddress, "emailAddress");
@@ -108,6 +108,7 @@ public class V3VerifyRequest {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(possessionType, "possessionType");
         Utils.checkNotNull(smsMessage, "smsMessage");
+        this.allowOTPRetry = allowOTPRetry;
         this.clientCustomerId = clientCustomerId;
         this.clientRequestId = clientRequestId;
         this.emailAddress = emailAddress;
@@ -124,11 +125,19 @@ public class V3VerifyRequest {
             String lastName,
             String phoneNumber,
             String possessionType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), firstName, lastName, phoneNumber, possessionType, Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), firstName, lastName, phoneNumber, possessionType, Optional.empty());
     }
 
     /**
-     * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     */
+    @JsonIgnore
+    public Optional<Boolean> allowOTPRetry() {
+        return allowOTPRetry;
+    }
+
+    /**
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientCustomerId() {
@@ -136,7 +145,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -144,7 +153,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+     * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
     @JsonIgnore
     public Optional<String> emailAddress() {
@@ -152,7 +161,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @JsonIgnore
     public Optional<String> finalTargetUrl() {
@@ -160,7 +169,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * First name of the individual.
+     * The first name of the individual.
      */
     @JsonIgnore
     public String firstName() {
@@ -168,7 +177,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Last name of the individual.
+     * The last name of the individual.
      */
     @JsonIgnore
     public String lastName() {
@@ -176,7 +185,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. US phone numbers can be passed in with or without a leading `+1`. Acceptable characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -184,7 +193,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Possession type is based on the method used - either 'desktop' if using desktop, 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+     * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native apps and mobile web.
      */
     @JsonIgnore
     public String possessionType() {
@@ -192,15 +201,10 @@ public class V3VerifyRequest {
     }
 
     /**
-     * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
-     * If not provided, the following default messages will be used:
-     * 1. For Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####"
-     * 2. For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
-     * Max length is 160 characters. Only ASCII characters are allowed.
-     * 
-     * <p>The placeholder format varies by flow type:
-     * 1. For OTP (mobile flow): Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-     * 2. For Instant Link (desktop flow): Must use exactly #### which will be replaced with the verification URL.
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     @JsonIgnore
     public Optional<String> smsMessage() {
@@ -212,7 +216,25 @@ public class V3VerifyRequest {
     }    
 
     /**
-     * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     */
+    public V3VerifyRequest withAllowOTPRetry(boolean allowOTPRetry) {
+        Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
+        this.allowOTPRetry = Optional.ofNullable(allowOTPRetry);
+        return this;
+    }
+
+    /**
+     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     */
+    public V3VerifyRequest withAllowOTPRetry(Optional<Boolean> allowOTPRetry) {
+        Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
+        this.allowOTPRetry = allowOTPRetry;
+        return this;
+    }
+
+    /**
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
      */
     public V3VerifyRequest withClientCustomerId(String clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -221,7 +243,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
      */
     public V3VerifyRequest withClientCustomerId(Optional<String> clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -230,7 +252,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
      */
     public V3VerifyRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -239,7 +261,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
      */
     public V3VerifyRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -248,7 +270,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+     * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
     public V3VerifyRequest withEmailAddress(String emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
@@ -257,7 +279,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+     * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
     public V3VerifyRequest withEmailAddress(Optional<String> emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
@@ -266,7 +288,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     public V3VerifyRequest withFinalTargetUrl(String finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -275,7 +297,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     public V3VerifyRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -284,7 +306,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * First name of the individual.
+     * The first name of the individual.
      */
     public V3VerifyRequest withFirstName(String firstName) {
         Utils.checkNotNull(firstName, "firstName");
@@ -293,7 +315,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Last name of the individual.
+     * The last name of the individual.
      */
     public V3VerifyRequest withLastName(String lastName) {
         Utils.checkNotNull(lastName, "lastName");
@@ -302,7 +324,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. US phone numbers can be passed in with or without a leading `+1`. Acceptable characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
      */
     public V3VerifyRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -311,7 +333,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * Possession type is based on the method used - either 'desktop' if using desktop, 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+     * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native apps and mobile web.
      */
     public V3VerifyRequest withPossessionType(String possessionType) {
         Utils.checkNotNull(possessionType, "possessionType");
@@ -320,15 +342,10 @@ public class V3VerifyRequest {
     }
 
     /**
-     * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
-     * If not provided, the following default messages will be used:
-     * 1. For Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####"
-     * 2. For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
-     * Max length is 160 characters. Only ASCII characters are allowed.
-     * 
-     * <p>The placeholder format varies by flow type:
-     * 1. For OTP (mobile flow): Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-     * 2. For Instant Link (desktop flow): Must use exactly #### which will be replaced with the verification URL.
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     public V3VerifyRequest withSmsMessage(String smsMessage) {
         Utils.checkNotNull(smsMessage, "smsMessage");
@@ -337,15 +354,10 @@ public class V3VerifyRequest {
     }
 
     /**
-     * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
-     * If not provided, the following default messages will be used:
-     * 1. For Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####"
-     * 2. For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
-     * Max length is 160 characters. Only ASCII characters are allowed.
-     * 
-     * <p>The placeholder format varies by flow type:
-     * 1. For OTP (mobile flow): Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-     * 2. For Instant Link (desktop flow): Must use exactly #### which will be replaced with the verification URL.
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     public V3VerifyRequest withSmsMessage(Optional<String> smsMessage) {
         Utils.checkNotNull(smsMessage, "smsMessage");
@@ -364,6 +376,7 @@ public class V3VerifyRequest {
         }
         V3VerifyRequest other = (V3VerifyRequest) o;
         return 
+            Objects.deepEquals(this.allowOTPRetry, other.allowOTPRetry) &&
             Objects.deepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Objects.deepEquals(this.clientRequestId, other.clientRequestId) &&
             Objects.deepEquals(this.emailAddress, other.emailAddress) &&
@@ -378,6 +391,7 @@ public class V3VerifyRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
+            allowOTPRetry,
             clientCustomerId,
             clientRequestId,
             emailAddress,
@@ -392,6 +406,7 @@ public class V3VerifyRequest {
     @Override
     public String toString() {
         return Utils.toString(V3VerifyRequest.class,
+                "allowOTPRetry", allowOTPRetry,
                 "clientCustomerId", clientCustomerId,
                 "clientRequestId", clientRequestId,
                 "emailAddress", emailAddress,
@@ -404,6 +419,8 @@ public class V3VerifyRequest {
     }
     
     public final static class Builder {
+ 
+        private Optional<Boolean> allowOTPRetry = Optional.empty();
  
         private Optional<String> clientCustomerId = Optional.empty();
  
@@ -428,7 +445,25 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+         * If true, the customer can request additional OTP codes if the initial code verification failed.
+         */
+        public Builder allowOTPRetry(boolean allowOTPRetry) {
+            Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
+            this.allowOTPRetry = Optional.ofNullable(allowOTPRetry);
+            return this;
+        }
+
+        /**
+         * If true, the customer can request additional OTP codes if the initial code verification failed.
+         */
+        public Builder allowOTPRetry(Optional<Boolean> allowOTPRetry) {
+            Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
+            this.allowOTPRetry = allowOTPRetry;
+            return this;
+        }
+
+        /**
+         * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
          */
         public Builder clientCustomerId(String clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -437,7 +472,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Client Customer ID is a client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
          */
         public Builder clientCustomerId(Optional<String> clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -446,7 +481,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -455,7 +490,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Client Request ID is a client-generated unique ID for a specific session. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -464,7 +499,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+         * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
          */
         public Builder emailAddress(String emailAddress) {
             Utils.checkNotNull(emailAddress, "emailAddress");
@@ -473,7 +508,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Email is the email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+         * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
          */
         public Builder emailAddress(Optional<String> emailAddress) {
             Utils.checkNotNull(emailAddress, "emailAddress");
@@ -482,7 +517,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
         public Builder finalTargetUrl(String finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -491,7 +526,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Final target URL is only required for when flowType=desktop. The final target URL is where the end user will be redirected at the end of Instant Link flow. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
         public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -500,7 +535,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * First name of the individual.
+         * The first name of the individual.
          */
         public Builder firstName(String firstName) {
             Utils.checkNotNull(firstName, "firstName");
@@ -509,7 +544,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Last name of the individual.
+         * The last name of the individual.
          */
         public Builder lastName(String lastName) {
             Utils.checkNotNull(lastName, "lastName");
@@ -518,7 +553,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Phone number is the number of the mobile phone. The field is required in the Sandbox environment. US phone numbers can be passed in with or without a leading `+1`. Acceptable characters are: alphanumeric with symbols '+'.
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -527,7 +562,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * Possession type is based on the method used - either 'desktop' if using desktop, 'mobile' for iOS/Android native apps and mobile web, or 'none' if no possession check is required. Acceptable options are: 'desktop', 'mobile', and 'none'.
+         * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native apps and mobile web.
          */
         public Builder possessionType(String possessionType) {
             Utils.checkNotNull(possessionType, "possessionType");
@@ -536,15 +571,10 @@ public class V3VerifyRequest {
         }
 
         /**
-         * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
-         * If not provided, the following default messages will be used:
-         * 1. For Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####"
-         * 2. For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
-         * Max length is 160 characters. Only ASCII characters are allowed.
-         * 
-         * <p>The placeholder format varies by flow type:
-         * 1. For OTP (mobile flow): Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-         * 2. For Instant Link (desktop flow): Must use exactly #### which will be replaced with the verification URL.
+         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+         * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+         * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+         * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
          */
         public Builder smsMessage(String smsMessage) {
             Utils.checkNotNull(smsMessage, "smsMessage");
@@ -553,15 +583,10 @@ public class V3VerifyRequest {
         }
 
         /**
-         * SMSMessage is an optional field to customize the message body sent in the Instant Link (flowType=desktop) or OTP (on mobile) SMS message.
-         * If not provided, the following default messages will be used:
-         * 1. For Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####"
-         * 2. For OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."
-         * Max length is 160 characters. Only ASCII characters are allowed.
-         * 
-         * <p>The placeholder format varies by flow type:
-         * 1. For OTP (mobile flow): Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-         * 2. For Instant Link (desktop flow): Must use exactly #### which will be replaced with the verification URL.
+         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+         * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
+         * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+         * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
          */
         public Builder smsMessage(Optional<String> smsMessage) {
             Utils.checkNotNull(smsMessage, "smsMessage");
@@ -571,6 +596,7 @@ public class V3VerifyRequest {
         
         public V3VerifyRequest build() {
             return new V3VerifyRequest(
+                allowOTPRetry,
                 clientCustomerId,
                 clientRequestId,
                 emailAddress,

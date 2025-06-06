@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * V3VerifyStatusResponseSuccess
  * 
- * <p>Success is the result of the combination of Verify Result and Possession Result. Possible values are "true", "pending", and "false". The success value will be "pending" until the results of both Verify and Possession are returned or one of them fails, blocking the other.
+ * <p>The result of the combination of Verify Result and Possession Result. Possible values are `true`, `pending`, and `false`. The success value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
  */
 public class V3VerifyStatusResponseSuccess {
 

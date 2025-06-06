@@ -4,8 +4,8 @@
 package com.prove.proveapi;
 
 import com.prove.proveapi.utils.HTTPClient;
+import com.prove.proveapi.utils.Hook.SdkInitData;
 import com.prove.proveapi.utils.RetryConfig;
-import com.prove.proveapi.utils.SpeakeasyHTTPClient;
 import com.prove.proveapi.utils.Utils;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -79,7 +79,7 @@ public class Proveapi {
         return v3;
     }
 
-    private final SDKConfiguration sdkConfiguration;
+    private SDKConfiguration sdkConfiguration;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -87,6 +87,9 @@ public class Proveapi {
     public static class Builder {
 
         private final SDKConfiguration sdkConfiguration = new SDKConfiguration();
+        private String serverUrl;
+        private String server;
+        
 
         private Builder() {
         }
@@ -98,18 +101,18 @@ public class Proveapi {
          * @return The builder instance.
          */
         public Builder client(HTTPClient client) {
-            this.sdkConfiguration.defaultClient = client;
+            this.sdkConfiguration.setClient(client);
             return this;
         }
         
         /**
          * Configures the SDK to use the provided security details.
          *
-         * @param security The security details to use for all requests.
+         * @param security The security details to use for all requests. Can be {@code null}.
          * @return The builder instance.
          */
         public Builder security(com.prove.proveapi.models.components.Security security) {
-            this.sdkConfiguration.securitySource = SecuritySource.of(security);
+            this.sdkConfiguration.setSecuritySource(SecuritySource.of(security));
             return this;
         }
 
@@ -120,7 +123,8 @@ public class Proveapi {
          * @return The builder instance.
          */
         public Builder securitySource(SecuritySource securitySource) {
-            this.sdkConfiguration.securitySource = securitySource;
+            Utils.checkNotNull(securitySource, "securitySource");
+            this.sdkConfiguration.setSecuritySource(securitySource);
             return this;
         }
         
@@ -131,7 +135,7 @@ public class Proveapi {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl) {
-            this.sdkConfiguration.serverUrl = serverUrl;
+            this.serverUrl = serverUrl;
             return this;
         }
 
@@ -143,7 +147,7 @@ public class Proveapi {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl, Map<String, String> params) {
-            this.sdkConfiguration.serverUrl = Utils.templateUrl(serverUrl, params);
+            this.serverUrl = Utils.templateUrl(serverUrl, params);
             return this;
         }
         
@@ -154,8 +158,8 @@ public class Proveapi {
          * @return The builder instance.
          */
         public Builder server(AvailableServers server) {
-            this.sdkConfiguration.server = server.server();
-            this.sdkConfiguration.serverUrl = SERVERS.get(server);
+            this.server = server.server();
+            this.serverUrl = SERVERS.get(server);
             return this;
         }
         
@@ -166,7 +170,7 @@ public class Proveapi {
          * @return The builder instance.
          */
         public Builder retryConfig(RetryConfig retryConfig) {
-            this.sdkConfiguration.retryConfig = Optional.of(retryConfig);
+            this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
         // Visible for testing, may be accessed via reflection in tests
@@ -187,18 +191,13 @@ public class Proveapi {
          * @return The SDK instance.
          */
         public Proveapi build() {
-            if (sdkConfiguration.defaultClient == null) {
-                sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
+            if (serverUrl == null || serverUrl.isBlank()) {
+                serverUrl = SERVERS.get(AvailableServers.UAT_US);
+                server = AvailableServers.UAT_US.server();
             }
-	        if (sdkConfiguration.securitySource == null) {
-	    	    sdkConfiguration.securitySource = SecuritySource.of(null);
-	        }
-            if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
-                sdkConfiguration.serverUrl = SERVERS.get(AvailableServers.UAT_US);
-                sdkConfiguration.server = AvailableServers.UAT_US.server();
-            }
-            if (sdkConfiguration.serverUrl.endsWith("/")) {
-                sdkConfiguration.serverUrl = sdkConfiguration.serverUrl.substring(0, sdkConfiguration.serverUrl.length() - 1);
+            sdkConfiguration.setServerUrl(serverUrl);
+            if (server != null) {
+                sdkConfiguration.setServer(server);
             }
             return new Proveapi(sdkConfiguration);
         }
@@ -215,7 +214,11 @@ public class Proveapi {
 
     private Proveapi(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.v3 = new V3(sdkConfiguration);
         this.sdkConfiguration.initialize();
+        this.v3 = new V3(sdkConfiguration);
+        
+        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(new SdkInitData(this.sdkConfiguration.resolvedServerUrl(), this.sdkConfiguration.client()));
+        this.sdkConfiguration.setServerUrl(data.baseUrl());
+        this.sdkConfiguration.setClient(data.client());
     }
 }

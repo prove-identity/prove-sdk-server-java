@@ -19,26 +19,26 @@ import java.util.Optional;
 public class V3ValidateResponse {
 
     /**
-     * Challenge missing returns true if a DOB or SSN needs to be passed in on the next step.
+     * True if a DOB or SSN needs to be passed in on the next step.
      */
     @JsonProperty("challengeMissing")
     private boolean challengeMissing;
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed calls in the same flow.
      */
     @JsonProperty("next")
     private Map<String, String> next;
 
     /**
-     * PhoneNumber is the number of the mobile phone for which validation was performed.
+     * The number of the mobile phone for which validation was performed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
     private Optional<String> phoneNumber;
 
     /**
-     * Success returns true if the phone number was validated.
+     * True if the phone number was validated.
      */
     @JsonProperty("success")
     private boolean success;
@@ -67,7 +67,7 @@ public class V3ValidateResponse {
     }
 
     /**
-     * Challenge missing returns true if a DOB or SSN needs to be passed in on the next step.
+     * True if a DOB or SSN needs to be passed in on the next step.
      */
     @JsonIgnore
     public boolean challengeMissing() {
@@ -75,7 +75,7 @@ public class V3ValidateResponse {
     }
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed calls in the same flow.
      */
     @JsonIgnore
     public Map<String, String> next() {
@@ -83,7 +83,7 @@ public class V3ValidateResponse {
     }
 
     /**
-     * PhoneNumber is the number of the mobile phone for which validation was performed.
+     * The number of the mobile phone for which validation was performed.
      */
     @JsonIgnore
     public Optional<String> phoneNumber() {
@@ -91,7 +91,7 @@ public class V3ValidateResponse {
     }
 
     /**
-     * Success returns true if the phone number was validated.
+     * True if the phone number was validated.
      */
     @JsonIgnore
     public boolean success() {
@@ -103,7 +103,7 @@ public class V3ValidateResponse {
     }    
 
     /**
-     * Challenge missing returns true if a DOB or SSN needs to be passed in on the next step.
+     * True if a DOB or SSN needs to be passed in on the next step.
      */
     public V3ValidateResponse withChallengeMissing(boolean challengeMissing) {
         Utils.checkNotNull(challengeMissing, "challengeMissing");
@@ -112,7 +112,7 @@ public class V3ValidateResponse {
     }
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed calls in the same flow.
      */
     public V3ValidateResponse withNext(Map<String, String> next) {
         Utils.checkNotNull(next, "next");
@@ -121,7 +121,7 @@ public class V3ValidateResponse {
     }
 
     /**
-     * PhoneNumber is the number of the mobile phone for which validation was performed.
+     * The number of the mobile phone for which validation was performed.
      */
     public V3ValidateResponse withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -130,7 +130,7 @@ public class V3ValidateResponse {
     }
 
     /**
-     * PhoneNumber is the number of the mobile phone for which validation was performed.
+     * The number of the mobile phone for which validation was performed.
      */
     public V3ValidateResponse withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -139,7 +139,7 @@ public class V3ValidateResponse {
     }
 
     /**
-     * Success returns true if the phone number was validated.
+     * True if the phone number was validated.
      */
     public V3ValidateResponse withSuccess(boolean success) {
         Utils.checkNotNull(success, "success");
@@ -197,7 +197,7 @@ public class V3ValidateResponse {
         }
 
         /**
-         * Challenge missing returns true if a DOB or SSN needs to be passed in on the next step.
+         * True if a DOB or SSN needs to be passed in on the next step.
          */
         public Builder challengeMissing(boolean challengeMissing) {
             Utils.checkNotNull(challengeMissing, "challengeMissing");
@@ -206,7 +206,7 @@ public class V3ValidateResponse {
         }
 
         /**
-         * Next contains the next set of allowed calls in the same flow.
+         * The next set of allowed calls in the same flow.
          */
         public Builder next(Map<String, String> next) {
             Utils.checkNotNull(next, "next");
@@ -215,7 +215,7 @@ public class V3ValidateResponse {
         }
 
         /**
-         * PhoneNumber is the number of the mobile phone for which validation was performed.
+         * The number of the mobile phone for which validation was performed.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -224,7 +224,7 @@ public class V3ValidateResponse {
         }
 
         /**
-         * PhoneNumber is the number of the mobile phone for which validation was performed.
+         * The number of the mobile phone for which validation was performed.
          */
         public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -233,7 +233,7 @@ public class V3ValidateResponse {
         }
 
         /**
-         * Success returns true if the phone number was validated.
+         * True if the phone number was validated.
          */
         public Builder success(boolean success) {
             Utils.checkNotNull(success, "success");

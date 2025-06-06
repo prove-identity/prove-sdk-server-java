@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * VerifyResult
  * 
- * <p>Verify Result represents the result of the Verify process. Possible values are "success", "pending", and "failed". If the Verify result is pending, clients will need to call the Verify Status API to get a result.
+ * <p>The result of the Verify process. Possible values are `success`, `pending`, and `failed`. If the Verify result is `pending`, clients will need to call the Verify Status API to get a result.
  */
 public class VerifyResult {
 

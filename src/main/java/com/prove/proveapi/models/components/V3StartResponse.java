@@ -15,19 +15,19 @@ import java.util.Objects;
 public class V3StartResponse {
 
     /**
-     * AuthToken is a bearer token for use by the Prove Client SDK.
+     * A bearer token used by the client-side SDK.
      */
     @JsonProperty("authToken")
     private String authToken;
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
      */
     @JsonProperty("correlationId")
     private String correlationId;
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed API calls in the same flow.
      */
     @JsonProperty("next")
     private Map<String, String> next;
@@ -46,7 +46,7 @@ public class V3StartResponse {
     }
 
     /**
-     * AuthToken is a bearer token for use by the Prove Client SDK.
+     * A bearer token used by the client-side SDK.
      */
     @JsonIgnore
     public String authToken() {
@@ -54,7 +54,7 @@ public class V3StartResponse {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
      */
     @JsonIgnore
     public String correlationId() {
@@ -62,7 +62,7 @@ public class V3StartResponse {
     }
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed API calls in the same flow.
      */
     @JsonIgnore
     public Map<String, String> next() {
@@ -74,7 +74,7 @@ public class V3StartResponse {
     }    
 
     /**
-     * AuthToken is a bearer token for use by the Prove Client SDK.
+     * A bearer token used by the client-side SDK.
      */
     public V3StartResponse withAuthToken(String authToken) {
         Utils.checkNotNull(authToken, "authToken");
@@ -83,7 +83,7 @@ public class V3StartResponse {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
      */
     public V3StartResponse withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -92,7 +92,7 @@ public class V3StartResponse {
     }
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed API calls in the same flow.
      */
     public V3StartResponse withNext(Map<String, String> next) {
         Utils.checkNotNull(next, "next");
@@ -145,7 +145,7 @@ public class V3StartResponse {
         }
 
         /**
-         * AuthToken is a bearer token for use by the Prove Client SDK.
+         * A bearer token used by the client-side SDK.
          */
         public Builder authToken(String authToken) {
             Utils.checkNotNull(authToken, "authToken");
@@ -154,7 +154,7 @@ public class V3StartResponse {
         }
 
         /**
-         * Correlation ID is the unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
+         * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");
@@ -163,7 +163,7 @@ public class V3StartResponse {
         }
 
         /**
-         * Next contains the next set of allowed calls in the same flow.
+         * The next set of allowed API calls in the same flow.
          */
         public Builder next(Map<String, String> next) {
             Utils.checkNotNull(next, "next");

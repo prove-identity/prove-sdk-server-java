@@ -17,20 +17,20 @@ import java.util.Optional;
 public class V3ChallengeRequest {
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
      */
     @JsonProperty("correlationId")
     private String correlationId;
 
     /**
-     * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dob")
     private Optional<String> dob;
 
     /**
-     * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
+     * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ssn")
@@ -55,7 +55,7 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
      */
     @JsonIgnore
     public String correlationId() {
@@ -63,7 +63,7 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     @JsonIgnore
     public Optional<String> dob() {
@@ -71,7 +71,7 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
+     * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
     @JsonIgnore
     public Optional<String> ssn() {
@@ -83,7 +83,7 @@ public class V3ChallengeRequest {
     }    
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
      */
     public V3ChallengeRequest withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -92,7 +92,7 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     public V3ChallengeRequest withDob(String dob) {
         Utils.checkNotNull(dob, "dob");
@@ -101,7 +101,7 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
     public V3ChallengeRequest withDob(Optional<String> dob) {
         Utils.checkNotNull(dob, "dob");
@@ -110,7 +110,7 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
+     * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
     public V3ChallengeRequest withSsn(String ssn) {
         Utils.checkNotNull(ssn, "ssn");
@@ -119,7 +119,7 @@ public class V3ChallengeRequest {
     }
 
     /**
-     * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
+     * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
     public V3ChallengeRequest withSsn(Optional<String> ssn) {
         Utils.checkNotNull(ssn, "ssn");
@@ -172,7 +172,7 @@ public class V3ChallengeRequest {
         }
 
         /**
-         * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+         * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");
@@ -181,7 +181,7 @@ public class V3ChallengeRequest {
         }
 
         /**
-         * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
          */
         public Builder dob(String dob) {
             Utils.checkNotNull(dob, "dob");
@@ -190,7 +190,7 @@ public class V3ChallengeRequest {
         }
 
         /**
-         * DOB, an optional challenge, is the date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
          */
         public Builder dob(Optional<String> dob) {
             Utils.checkNotNull(dob, "dob");
@@ -199,7 +199,7 @@ public class V3ChallengeRequest {
         }
 
         /**
-         * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
+         * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
          */
         public Builder ssn(String ssn) {
             Utils.checkNotNull(ssn, "ssn");
@@ -208,7 +208,7 @@ public class V3ChallengeRequest {
         }
 
         /**
-         * SSN is either the full or last 4 numbers of the social security number. Acceptable characters are: numeric.
+         * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
          */
         public Builder ssn(Optional<String> ssn) {
             Utils.checkNotNull(ssn, "ssn");
