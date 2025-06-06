@@ -19,13 +19,17 @@ public class V3UnifyBindResponse {
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
+    /**
+     * The result of the possession check.
+     * Possible values are `true`, `false`, `pending`, and `possession_required`.
+     */
     @JsonProperty("success")
-    private String success;
+    private V3UnifyBindResponseSuccess success;
 
     @JsonCreator
     public V3UnifyBindResponse(
             @JsonProperty("phoneNumber") String phoneNumber,
-            @JsonProperty("success") String success) {
+            @JsonProperty("success") V3UnifyBindResponseSuccess success) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(success, "success");
         this.phoneNumber = phoneNumber;
@@ -40,8 +44,12 @@ public class V3UnifyBindResponse {
         return phoneNumber;
     }
 
+    /**
+     * The result of the possession check.
+     * Possible values are `true`, `false`, `pending`, and `possession_required`.
+     */
     @JsonIgnore
-    public String success() {
+    public V3UnifyBindResponseSuccess success() {
         return success;
     }
 
@@ -58,7 +66,11 @@ public class V3UnifyBindResponse {
         return this;
     }
 
-    public V3UnifyBindResponse withSuccess(String success) {
+    /**
+     * The result of the possession check.
+     * Possible values are `true`, `false`, `pending`, and `possession_required`.
+     */
+    public V3UnifyBindResponse withSuccess(V3UnifyBindResponseSuccess success) {
         Utils.checkNotNull(success, "success");
         this.success = success;
         return this;
@@ -97,7 +109,7 @@ public class V3UnifyBindResponse {
  
         private String phoneNumber;
  
-        private String success;
+        private V3UnifyBindResponseSuccess success;
         
         private Builder() {
           // force use of static builder() method
@@ -112,7 +124,11 @@ public class V3UnifyBindResponse {
             return this;
         }
 
-        public Builder success(String success) {
+        /**
+         * The result of the possession check.
+         * Possible values are `true`, `false`, `pending`, and `possession_required`.
+         */
+        public Builder success(V3UnifyBindResponseSuccess success) {
             Utils.checkNotNull(success, "success");
             this.success = success;
             return this;

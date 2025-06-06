@@ -5,20 +5,20 @@
 
 ### Available Operations
 
-* [v3TokenRequest](#v3tokenrequest) - Request OAuth token.
-* [v3ChallengeRequest](#v3challengerequest) - Submit challenge.
-* [v3CompleteRequest](#v3completerequest) - Complete flow.
-* [v3StartRequest](#v3startrequest) - Start flow.
+* [v3TokenRequest](#v3tokenrequest) - Request OAuth Token
+* [v3ChallengeRequest](#v3challengerequest) - Submit Challenge
+* [v3CompleteRequest](#v3completerequest) - Complete Flow
+* [v3StartRequest](#v3startrequest) - Start Flow
 * [v3UnifyRequest](#v3unifyrequest) - Initiate Possession Check
 * [v3UnifyBindRequest](#v3unifybindrequest) - Bind Prove Key
-* [v3UnifyStatusRequest](#v3unifystatusrequest) - Check Status of Unify Session
-* [v3ValidateRequest](#v3validaterequest) - Validate phone number.
-* [v3VerifyRequest](#v3verifyrequest) - Initiate verified users session.
-* [v3VerifyStatusRequest](#v3verifystatusrequest) - Perform checks for verified users session.
+* [v3UnifyStatusRequest](#v3unifystatusrequest) - Check Status
+* [v3ValidateRequest](#v3validaterequest) - Validate Phone Number
+* [v3VerifyRequest](#v3verifyrequest) - Initiate Verified Users Session
+* [v3VerifyStatusRequest](#v3verifystatusrequest) - Perform Checks for Verified Users Session
 
 ## v3TokenRequest
 
-Send this request to request the OAuth token.
+This endpoint allows you to request an OAuth token.
 
 ### Example Usage
 
@@ -27,14 +27,14 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
             .build();
@@ -70,14 +70,14 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## v3ChallengeRequest
 
-Send this request to submit challenge information. Either a DOB or last 4 of SSN needs to be submitted if neither was submitted to the /start endpoint (challenge fields submitted to this endpoint will overwrite the /start endpoint fields submitted). It will return a correlation ID, user information, and the next step to call in the flow. This capability is only available in Pre-Fill®, it's not available in Prove Identity®. You'll notice that when using Prove Identity®, if /validate is successful, it will then return `v3-complete` as one of the keys in the `Next` field map instead of `v3-challenge`.
+This endpoint allows you to submit challenge information.
 
 ### Example Usage
 
@@ -94,7 +94,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -134,7 +134,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -142,7 +142,7 @@ public class Application {
 
 ## v3CompleteRequest
 
-Send this request to verify the user and complete the flow. It will return a correlation ID, user information, and the next step to call in the flow. There is a validation check that requires at least first + last name or SSN passed in, else an HTTP 400 is returned. Additionally, specific to the Pre-Fill® or Prove Identity® with KYC use case, you need to pass in first name, last name, DOB and SSN (or address) to ensure you receive back the KYC elements and correct CIP values.
+This endpoint allows you to verify the user and complete the flow.
 
 ### Example Usage
 
@@ -159,7 +159,7 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -178,18 +178,10 @@ public class Application {
                             .extendedAddress("Apt 23")
                             .postalCode("78285")
                             .region("TX")
-                            .build(),
-                        V3CompleteAddressEntryRequest.builder()
-                            .address("4861 Jay Junction")
-                            .city("Boston")
-                            .extendedAddress("Apt 78")
-                            .postalCode("02208")
-                            .region("MS")
                             .build()))
                     .dob("1981-01")
                     .emailAddresses(List.of(
-                        "jdoe@example.com",
-                        "dsmith@example.com"))
+                        "jdoe@example.com"))
                     .firstName("Tod")
                     .lastName("Weedall")
                     .ssn("265228370")
@@ -221,7 +213,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -229,7 +221,7 @@ public class Application {
 
 ## v3StartRequest
 
-Send this request to start a Prove flow. It will return a correlation ID and an authToken for the client SDK.
+This endpoint allows you to start the solution flow.
 
 ### Example Usage
 
@@ -246,7 +238,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -257,6 +249,7 @@ public class Application {
 
         V3StartRequest req = V3StartRequest.builder()
                 .flowType("mobile")
+                .allowOTPRetry(true)
                 .dob("1981-01")
                 .emailAddress("mpinsonm@dyndns.org")
                 .finalTargetUrl("https://www.example.com/landing-page")
@@ -291,7 +284,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -316,7 +309,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -327,11 +320,13 @@ public class Application {
 
         V3UnifyRequest req = V3UnifyRequest.builder()
                 .possessionType("mobile")
+                .allowOTPRetry(true)
                 .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .finalTargetUrl("https://www.example.com/landing-page")
                 .phoneNumber("2001004011")
-                .smsMessage("#### is your verification code")
+                .rebind(true)
+                .smsMessage("#### is your verification code.")
                 .build();
 
         V3UnifyRequestResponse res = sdk.v3().v3UnifyRequest()
@@ -359,7 +354,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -384,7 +379,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -424,7 +419,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -449,7 +444,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -489,7 +484,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -497,7 +492,7 @@ public class Application {
 
 ## v3ValidateRequest
 
-Send this request to check the phone number entered/discovered earlier in the flow is validated. It will return a correlation ID and the next step.
+This endpoint allows you to check if the phone number entered/discovered earlier in the flow is validated.
 
 ### Example Usage
 
@@ -514,7 +509,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -552,7 +547,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -560,7 +555,7 @@ public class Application {
 
 ## v3VerifyRequest
 
-Send this request to initiate a Verified Users session. It will return a correlation ID, authToken for the client SDK, and the results of the possession and verify checks (usually pending from this API).
+This endpoint allows you to initiate a Verified Users session.
 
 ### Example Usage
 
@@ -577,7 +572,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -591,6 +586,7 @@ public class Application {
                 .lastName("Butrimovich")
                 .phoneNumber("2001004011")
                 .possessionType("mobile")
+                .allowOTPRetry(true)
                 .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .emailAddress("sbutrimovichb@who.int")
@@ -623,7 +619,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -631,7 +627,7 @@ public class Application {
 
 ## v3VerifyStatusRequest
 
-Send this request to perform the necessary checks for a Verified Users session. It will return the results of the possession and verify checks, as well as the overall success.
+This endpoint allows you to perform the necessary checks for a Verified Users session.
 
 ### Example Usage
 
@@ -648,7 +644,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -687,7 +683,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |

@@ -6,36 +6,84 @@ package com.prove.proveapi;
 import com.prove.proveapi.hooks.ClientCredentialsHook;
 import com.prove.proveapi.hooks.SDKHooks;
 import com.prove.proveapi.utils.HTTPClient;
-import com.prove.proveapi.utils.Hook.SdkInitData;
 import com.prove.proveapi.utils.Hooks;
 import com.prove.proveapi.utils.RetryConfig;
+import com.prove.proveapi.utils.SpeakeasyHTTPClient;
+import com.prove.proveapi.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
 
-class SDKConfiguration {
-    public SecuritySource securitySource;
-    
-    public Optional<SecuritySource> securitySource() {
-        return Optional.ofNullable(securitySource);
-    }
-    
-    public HTTPClient defaultClient;
-    
-    public String serverUrl;
-    
-    public String resolvedServerUrl() {
-        return serverUrl;
-    }
-    public String server;
+public class SDKConfiguration {
+
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "0.14.0";
-    public static final String GEN_VERSION = "2.595.4";
+    public static final String SDK_VERSION = "0.15.0";
+    public static final String GEN_VERSION = "2.621.3";
     private static final String BASE_PACKAGE = "com.prove.proveapi";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
                 LANGUAGE, SDK_VERSION, GEN_VERSION, OPENAPI_DOC_VERSION, BASE_PACKAGE);
 
+    private SecuritySource securitySource = SecuritySource.of(null);
+    
+    public SecuritySource securitySource() {
+        return securitySource;
+    }
+    
+    public void setSecuritySource(SecuritySource securitySource) {
+        Utils.checkNotNull(securitySource, "securitySource");
+        this.securitySource = securitySource;
+    }
+    
+    private HTTPClient client = new SpeakeasyHTTPClient();
+    
+    public HTTPClient client() {
+        return client;
+    }
+    
+    public void setClient(HTTPClient client) {
+        Utils.checkNotNull(client, "client");
+        this.client = client;
+    }
+    
+    private String serverUrl;
+    
+    public String serverUrl() {
+        return serverUrl;
+    }
+    
+    public void setServerUrl(String serverUrl) {
+        Utils.checkNotNull(serverUrl, "serverUrl");
+        this.serverUrl = trimFinalSlash(serverUrl);
+    }
+    
+    private static String trimFinalSlash(String url) {
+        if (url == null) {
+            return null;
+        } else if (url.endsWith("/")) {
+            return url.substring(0, url.length() - 1);
+        } else  {
+            return url;
+        }
+    }
+    
+    public String resolvedServerUrl() {
+        return serverUrl;
+    }
+    
+    // the name of the server to use from the server map
+    private String server;
+    
+    public void setServer(String server) {
+        Utils.checkNotNull(server, "server");
+        this.server = server;
+    }
+    
+    public String server() {
+        return server;
+    }
+    
+    
     private Hooks _hooks = createHooks();
 
     private static Hooks createHooks() {
@@ -62,13 +110,18 @@ class SDKConfiguration {
      **/
     public void initialize() {
         SDKHooks.initialize(_hooks);
-        // apply the sdk init hook immediately
-        SdkInitData data = _hooks.sdkInit(new SdkInitData(resolvedServerUrl(), defaultClient));
-        this.serverUrl = data.baseUrl();
-        this.defaultClient = data.client();
     }
 
     
     
-    public Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
+    
+    public Optional<RetryConfig> retryConfig() {
+        return retryConfig;
+    }
+    
+    public void setRetryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+    }
 }

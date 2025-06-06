@@ -12,7 +12,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -23,6 +23,7 @@ public class Application {
 
         V3StartRequest req = V3StartRequest.builder()
                 .flowType("mobile")
+                .allowOTPRetry(true)
                 .dob("1981-01")
                 .emailAddress("mpinsonm@dyndns.org")
                 .finalTargetUrl("https://www.example.com/landing-page")

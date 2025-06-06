@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * PossessionResult
  * 
- * <p>Possession Result represents the result of the Possession check. Possible values are "pending" and "not_applicable", based on the Possession Type passed in the input. Clients will have to call the Verify Status API to get a result if Possession Result is pending.
+ * <p>The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
  */
 public class PossessionResult {
 

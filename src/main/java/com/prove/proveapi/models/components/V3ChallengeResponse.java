@@ -24,13 +24,13 @@ public class V3ChallengeResponse {
     private Optional<? extends V3ChallengeIndividualRequest> individual;
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed calls in the same flow.
      */
     @JsonProperty("next")
     private Map<String, String> next;
 
     /**
-     * Success returns true if the challenge was accepted and user info retrieved.
+     * True if the challenge was accepted and user info retrieved.
      */
     @JsonProperty("success")
     private boolean success;
@@ -61,7 +61,7 @@ public class V3ChallengeResponse {
     }
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed calls in the same flow.
      */
     @JsonIgnore
     public Map<String, String> next() {
@@ -69,7 +69,7 @@ public class V3ChallengeResponse {
     }
 
     /**
-     * Success returns true if the challenge was accepted and user info retrieved.
+     * True if the challenge was accepted and user info retrieved.
      */
     @JsonIgnore
     public boolean success() {
@@ -93,7 +93,7 @@ public class V3ChallengeResponse {
     }
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed calls in the same flow.
      */
     public V3ChallengeResponse withNext(Map<String, String> next) {
         Utils.checkNotNull(next, "next");
@@ -102,7 +102,7 @@ public class V3ChallengeResponse {
     }
 
     /**
-     * Success returns true if the challenge was accepted and user info retrieved.
+     * True if the challenge was accepted and user info retrieved.
      */
     public V3ChallengeResponse withSuccess(boolean success) {
         Utils.checkNotNull(success, "success");
@@ -167,7 +167,7 @@ public class V3ChallengeResponse {
         }
 
         /**
-         * Next contains the next set of allowed calls in the same flow.
+         * The next set of allowed calls in the same flow.
          */
         public Builder next(Map<String, String> next) {
             Utils.checkNotNull(next, "next");
@@ -176,7 +176,7 @@ public class V3ChallengeResponse {
         }
 
         /**
-         * Success returns true if the challenge was accepted and user info retrieved.
+         * True if the challenge was accepted and user info retrieved.
          */
         public Builder success(boolean success) {
             Utils.checkNotNull(success, "success");

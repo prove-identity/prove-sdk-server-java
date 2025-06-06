@@ -10,14 +10,14 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * V3VerifyStatusResponsePossessionResult
+ * V3VerifyResponseSuccess
  * 
- * <p>The result of the possession check. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
+ * <p>The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`, `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
  */
-public class V3VerifyStatusResponsePossessionResult {
+public class V3VerifyResponseSuccess {
 
     @JsonCreator
-    public V3VerifyStatusResponsePossessionResult() {
+    public V3VerifyResponseSuccess() {
         
         
     }
@@ -46,7 +46,7 @@ public class V3VerifyStatusResponsePossessionResult {
     
     @Override
     public String toString() {
-        return Utils.toString(V3VerifyStatusResponsePossessionResult.class);
+        return Utils.toString(V3VerifyResponseSuccess.class);
     }
     
     public final static class Builder {
@@ -55,8 +55,8 @@ public class V3VerifyStatusResponsePossessionResult {
           // force use of static builder() method
         }
         
-        public V3VerifyStatusResponsePossessionResult build() {
-            return new V3VerifyStatusResponsePossessionResult(
+        public V3VerifyResponseSuccess build() {
+            return new V3VerifyResponseSuccess(
                 );
         }
     }

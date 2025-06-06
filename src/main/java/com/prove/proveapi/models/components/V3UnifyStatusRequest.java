@@ -32,7 +32,7 @@ public class V3UnifyStatusRequest {
     private Optional<String> correlationId;
 
     /**
-     * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
@@ -73,7 +73,7 @@ public class V3UnifyStatusRequest {
     }
 
     /**
-     * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
      */
     @JsonIgnore
     public Optional<String> phoneNumber() {
@@ -123,7 +123,7 @@ public class V3UnifyStatusRequest {
     }
 
     /**
-     * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
      */
     public V3UnifyStatusRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -132,7 +132,7 @@ public class V3UnifyStatusRequest {
     }
 
     /**
-     * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
      */
     public V3UnifyStatusRequest withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -223,7 +223,7 @@ public class V3UnifyStatusRequest {
         }
 
         /**
-         * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -232,7 +232,7 @@ public class V3UnifyStatusRequest {
         }
 
         /**
-         * The number of the mobile phone. Required when `possessionType=none` in the initial Unify request.
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
          */
         public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

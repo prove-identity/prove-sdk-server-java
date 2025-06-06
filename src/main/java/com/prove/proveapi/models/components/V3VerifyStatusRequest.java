@@ -14,22 +14,17 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * V3VerifyStatusRequest
- * 
- * <p>Request body for the V3 Verify Status API
- */
 public class V3VerifyStatusRequest {
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific request. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific request. This can be used by clients to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("correlationId")
@@ -50,7 +45,7 @@ public class V3VerifyStatusRequest {
     }
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific request. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific request. This can be used by clients to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -58,7 +53,7 @@ public class V3VerifyStatusRequest {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
      */
     @JsonIgnore
     public Optional<String> correlationId() {
@@ -70,7 +65,7 @@ public class V3VerifyStatusRequest {
     }    
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific request. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific request. This can be used by clients to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
      */
     public V3VerifyStatusRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -79,7 +74,7 @@ public class V3VerifyStatusRequest {
     }
 
     /**
-     * Client Request ID is a client-generated unique ID for a specific request. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific request. This can be used by clients to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
      */
     public V3VerifyStatusRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -88,7 +83,7 @@ public class V3VerifyStatusRequest {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
      */
     public V3VerifyStatusRequest withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -97,7 +92,7 @@ public class V3VerifyStatusRequest {
     }
 
     /**
-     * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
      */
     public V3VerifyStatusRequest withCorrelationId(Optional<String> correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -145,7 +140,7 @@ public class V3VerifyStatusRequest {
         }
 
         /**
-         * Client Request ID is a client-generated unique ID for a specific request. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific request. This can be used by clients to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -154,7 +149,7 @@ public class V3VerifyStatusRequest {
         }
 
         /**
-         * Client Request ID is a client-generated unique ID for a specific request. This can be used by clients to identify specific requests made to Prove Link. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID at this time, and this is expected to be added in a future release. NOTE: Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific request. This can be used by clients to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -163,7 +158,7 @@ public class V3VerifyStatusRequest {
         }
 
         /**
-         * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
+         * The unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");
@@ -172,7 +167,7 @@ public class V3VerifyStatusRequest {
         }
 
         /**
-         * Correlation ID is the unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
+         * The unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
          */
         public Builder correlationId(Optional<String> correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");

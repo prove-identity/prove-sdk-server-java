@@ -21,14 +21,14 @@ import java.util.Optional;
 public class Error401 extends RuntimeException {
 
     /**
-     * An internal error code that describes the problem category of the request.
+     * An error code that describes the problem category of the request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
     private Optional<Long> code;
 
     /**
-     * An error message describing the problem with the request.
+     * The error message describing the problem with the request.
      */
     @JsonProperty("message")
     private String message;
@@ -50,7 +50,7 @@ public class Error401 extends RuntimeException {
     }
 
     /**
-     * An internal error code that describes the problem category of the request.
+     * An error code that describes the problem category of the request.
      */
     @JsonIgnore
     public Optional<Long> code() {
@@ -58,7 +58,7 @@ public class Error401 extends RuntimeException {
     }
 
     /**
-     * An error message describing the problem with the request.
+     * The error message describing the problem with the request.
      */
     @JsonIgnore
     public String message() {
@@ -76,7 +76,7 @@ public class Error401 extends RuntimeException {
     }    
 
     /**
-     * An internal error code that describes the problem category of the request.
+     * An error code that describes the problem category of the request.
      */
     public Error401 withCode(long code) {
         Utils.checkNotNull(code, "code");
@@ -85,7 +85,7 @@ public class Error401 extends RuntimeException {
     }
 
     /**
-     * An internal error code that describes the problem category of the request.
+     * An error code that describes the problem category of the request.
      */
     public Error401 withCode(Optional<Long> code) {
         Utils.checkNotNull(code, "code");
@@ -94,7 +94,7 @@ public class Error401 extends RuntimeException {
     }
 
     /**
-     * An error message describing the problem with the request.
+     * The error message describing the problem with the request.
      */
     public Error401 withMessage(String message) {
         Utils.checkNotNull(message, "message");
@@ -142,7 +142,7 @@ public class Error401 extends RuntimeException {
         }
 
         /**
-         * An internal error code that describes the problem category of the request.
+         * An error code that describes the problem category of the request.
          */
         public Builder code(long code) {
             Utils.checkNotNull(code, "code");
@@ -151,7 +151,7 @@ public class Error401 extends RuntimeException {
         }
 
         /**
-         * An internal error code that describes the problem category of the request.
+         * An error code that describes the problem category of the request.
          */
         public Builder code(Optional<Long> code) {
             Utils.checkNotNull(code, "code");
@@ -160,7 +160,7 @@ public class Error401 extends RuntimeException {
         }
 
         /**
-         * An error message describing the problem with the request.
+         * The error message describing the problem with the request.
          */
         public Builder message(String message) {
             Utils.checkNotNull(message, "message");

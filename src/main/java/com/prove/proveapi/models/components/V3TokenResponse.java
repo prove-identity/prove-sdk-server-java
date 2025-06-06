@@ -18,33 +18,33 @@ import java.util.Optional;
 public class V3TokenResponse {
 
     /**
-     * AccessToken returns the access token as a string.
+     * The access token used to authenticate API calls.
      */
     @JsonProperty("access_token")
     private String accessToken;
 
     /**
-     * ExpiresIn returns the lifetime of the token in seconds.
+     * The lifetime of the token in seconds.
      */
     @JsonProperty("expires_in")
     private long expiresIn;
 
     /**
-     * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
+     * The lifetime of the refresh token in seconds. Not currently supported.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refresh_expires_in")
     private Optional<Long> refreshExpiresIn;
 
     /**
-     * RefreshToken returns the refresh token as a string. Not currently supported.
+     * The token used to refresh the expiration time. Not currently supported.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refresh_token")
     private Optional<String> refreshToken;
 
     /**
-     * TokenType returns the type of token.
+     * The type of token.
      */
     @JsonProperty("token_type")
     private String tokenType;
@@ -76,7 +76,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * AccessToken returns the access token as a string.
+     * The access token used to authenticate API calls.
      */
     @JsonIgnore
     public String accessToken() {
@@ -84,7 +84,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * ExpiresIn returns the lifetime of the token in seconds.
+     * The lifetime of the token in seconds.
      */
     @JsonIgnore
     public long expiresIn() {
@@ -92,7 +92,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
+     * The lifetime of the refresh token in seconds. Not currently supported.
      */
     @JsonIgnore
     public Optional<Long> refreshExpiresIn() {
@@ -100,7 +100,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * RefreshToken returns the refresh token as a string. Not currently supported.
+     * The token used to refresh the expiration time. Not currently supported.
      */
     @JsonIgnore
     public Optional<String> refreshToken() {
@@ -108,7 +108,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * TokenType returns the type of token.
+     * The type of token.
      */
     @JsonIgnore
     public String tokenType() {
@@ -120,7 +120,7 @@ public class V3TokenResponse {
     }    
 
     /**
-     * AccessToken returns the access token as a string.
+     * The access token used to authenticate API calls.
      */
     public V3TokenResponse withAccessToken(String accessToken) {
         Utils.checkNotNull(accessToken, "accessToken");
@@ -129,7 +129,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * ExpiresIn returns the lifetime of the token in seconds.
+     * The lifetime of the token in seconds.
      */
     public V3TokenResponse withExpiresIn(long expiresIn) {
         Utils.checkNotNull(expiresIn, "expiresIn");
@@ -138,7 +138,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
+     * The lifetime of the refresh token in seconds. Not currently supported.
      */
     public V3TokenResponse withRefreshExpiresIn(long refreshExpiresIn) {
         Utils.checkNotNull(refreshExpiresIn, "refreshExpiresIn");
@@ -147,7 +147,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
+     * The lifetime of the refresh token in seconds. Not currently supported.
      */
     public V3TokenResponse withRefreshExpiresIn(Optional<Long> refreshExpiresIn) {
         Utils.checkNotNull(refreshExpiresIn, "refreshExpiresIn");
@@ -156,7 +156,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * RefreshToken returns the refresh token as a string. Not currently supported.
+     * The token used to refresh the expiration time. Not currently supported.
      */
     public V3TokenResponse withRefreshToken(String refreshToken) {
         Utils.checkNotNull(refreshToken, "refreshToken");
@@ -165,7 +165,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * RefreshToken returns the refresh token as a string. Not currently supported.
+     * The token used to refresh the expiration time. Not currently supported.
      */
     public V3TokenResponse withRefreshToken(Optional<String> refreshToken) {
         Utils.checkNotNull(refreshToken, "refreshToken");
@@ -174,7 +174,7 @@ public class V3TokenResponse {
     }
 
     /**
-     * TokenType returns the type of token.
+     * The type of token.
      */
     public V3TokenResponse withTokenType(String tokenType) {
         Utils.checkNotNull(tokenType, "tokenType");
@@ -237,7 +237,7 @@ public class V3TokenResponse {
         }
 
         /**
-         * AccessToken returns the access token as a string.
+         * The access token used to authenticate API calls.
          */
         public Builder accessToken(String accessToken) {
             Utils.checkNotNull(accessToken, "accessToken");
@@ -246,7 +246,7 @@ public class V3TokenResponse {
         }
 
         /**
-         * ExpiresIn returns the lifetime of the token in seconds.
+         * The lifetime of the token in seconds.
          */
         public Builder expiresIn(long expiresIn) {
             Utils.checkNotNull(expiresIn, "expiresIn");
@@ -255,7 +255,7 @@ public class V3TokenResponse {
         }
 
         /**
-         * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
+         * The lifetime of the refresh token in seconds. Not currently supported.
          */
         public Builder refreshExpiresIn(long refreshExpiresIn) {
             Utils.checkNotNull(refreshExpiresIn, "refreshExpiresIn");
@@ -264,7 +264,7 @@ public class V3TokenResponse {
         }
 
         /**
-         * RefreshExpiresIn returns the lifetime of the token in seconds. Not currently supported.
+         * The lifetime of the refresh token in seconds. Not currently supported.
          */
         public Builder refreshExpiresIn(Optional<Long> refreshExpiresIn) {
             Utils.checkNotNull(refreshExpiresIn, "refreshExpiresIn");
@@ -273,7 +273,7 @@ public class V3TokenResponse {
         }
 
         /**
-         * RefreshToken returns the refresh token as a string. Not currently supported.
+         * The token used to refresh the expiration time. Not currently supported.
          */
         public Builder refreshToken(String refreshToken) {
             Utils.checkNotNull(refreshToken, "refreshToken");
@@ -282,7 +282,7 @@ public class V3TokenResponse {
         }
 
         /**
-         * RefreshToken returns the refresh token as a string. Not currently supported.
+         * The token used to refresh the expiration time. Not currently supported.
          */
         public Builder refreshToken(Optional<String> refreshToken) {
             Utils.checkNotNull(refreshToken, "refreshToken");
@@ -291,7 +291,7 @@ public class V3TokenResponse {
         }
 
         /**
-         * TokenType returns the type of token.
+         * The type of token.
          */
         public Builder tokenType(String tokenType) {
             Utils.checkNotNull(tokenType, "tokenType");

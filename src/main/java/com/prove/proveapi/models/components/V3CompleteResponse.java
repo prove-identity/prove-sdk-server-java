@@ -28,13 +28,13 @@ public class V3CompleteResponse {
     private Optional<? extends KYCInternal> kyc;
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed calls in the same flow.
      */
     @JsonProperty("next")
     private Map<String, String> next;
 
     /**
-     * Success returns true if the individual was verified successfully.
+     * True if the individual was verified successfully.
      */
     @JsonProperty("success")
     private boolean success;
@@ -74,7 +74,7 @@ public class V3CompleteResponse {
     }
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed calls in the same flow.
      */
     @JsonIgnore
     public Map<String, String> next() {
@@ -82,7 +82,7 @@ public class V3CompleteResponse {
     }
 
     /**
-     * Success returns true if the individual was verified successfully.
+     * True if the individual was verified successfully.
      */
     @JsonIgnore
     public boolean success() {
@@ -118,7 +118,7 @@ public class V3CompleteResponse {
     }
 
     /**
-     * Next contains the next set of allowed calls in the same flow.
+     * The next set of allowed calls in the same flow.
      */
     public V3CompleteResponse withNext(Map<String, String> next) {
         Utils.checkNotNull(next, "next");
@@ -127,7 +127,7 @@ public class V3CompleteResponse {
     }
 
     /**
-     * Success returns true if the individual was verified successfully.
+     * True if the individual was verified successfully.
      */
     public V3CompleteResponse withSuccess(boolean success) {
         Utils.checkNotNull(success, "success");
@@ -209,7 +209,7 @@ public class V3CompleteResponse {
         }
 
         /**
-         * Next contains the next set of allowed calls in the same flow.
+         * The next set of allowed calls in the same flow.
          */
         public Builder next(Map<String, String> next) {
             Utils.checkNotNull(next, "next");
@@ -218,7 +218,7 @@ public class V3CompleteResponse {
         }
 
         /**
-         * Success returns true if the individual was verified successfully.
+         * True if the individual was verified successfully.
          */
         public Builder success(boolean success) {
             Utils.checkNotNull(success, "success");
