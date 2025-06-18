@@ -33,27 +33,27 @@ public class V3VerifyResponse {
      * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
      */
     @JsonProperty("possessionResult")
-    private PossessionResult possessionResult;
+    private String possessionResult;
 
     /**
      * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`, `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
      */
     @JsonProperty("success")
-    private V3VerifyResponseSuccess success;
+    private String success;
 
     /**
      * The result of the Verify process. Possible values are `success`, `pending`, and `failed`. If the Verify result is `pending`, clients will need to call the Verify Status API to get a result.
      */
     @JsonProperty("verifyResult")
-    private VerifyResult verifyResult;
+    private String verifyResult;
 
     @JsonCreator
     public V3VerifyResponse(
             @JsonProperty("authToken") Optional<String> authToken,
             @JsonProperty("correlationId") String correlationId,
-            @JsonProperty("possessionResult") PossessionResult possessionResult,
-            @JsonProperty("success") V3VerifyResponseSuccess success,
-            @JsonProperty("verifyResult") VerifyResult verifyResult) {
+            @JsonProperty("possessionResult") String possessionResult,
+            @JsonProperty("success") String success,
+            @JsonProperty("verifyResult") String verifyResult) {
         Utils.checkNotNull(authToken, "authToken");
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(possessionResult, "possessionResult");
@@ -68,9 +68,9 @@ public class V3VerifyResponse {
     
     public V3VerifyResponse(
             String correlationId,
-            PossessionResult possessionResult,
-            V3VerifyResponseSuccess success,
-            VerifyResult verifyResult) {
+            String possessionResult,
+            String success,
+            String verifyResult) {
         this(Optional.empty(), correlationId, possessionResult, success, verifyResult);
     }
 
@@ -94,7 +94,7 @@ public class V3VerifyResponse {
      * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
      */
     @JsonIgnore
-    public PossessionResult possessionResult() {
+    public String possessionResult() {
         return possessionResult;
     }
 
@@ -102,7 +102,7 @@ public class V3VerifyResponse {
      * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`, `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
      */
     @JsonIgnore
-    public V3VerifyResponseSuccess success() {
+    public String success() {
         return success;
     }
 
@@ -110,7 +110,7 @@ public class V3VerifyResponse {
      * The result of the Verify process. Possible values are `success`, `pending`, and `failed`. If the Verify result is `pending`, clients will need to call the Verify Status API to get a result.
      */
     @JsonIgnore
-    public VerifyResult verifyResult() {
+    public String verifyResult() {
         return verifyResult;
     }
 
@@ -148,7 +148,7 @@ public class V3VerifyResponse {
     /**
      * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
      */
-    public V3VerifyResponse withPossessionResult(PossessionResult possessionResult) {
+    public V3VerifyResponse withPossessionResult(String possessionResult) {
         Utils.checkNotNull(possessionResult, "possessionResult");
         this.possessionResult = possessionResult;
         return this;
@@ -157,7 +157,7 @@ public class V3VerifyResponse {
     /**
      * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`, `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
      */
-    public V3VerifyResponse withSuccess(V3VerifyResponseSuccess success) {
+    public V3VerifyResponse withSuccess(String success) {
         Utils.checkNotNull(success, "success");
         this.success = success;
         return this;
@@ -166,7 +166,7 @@ public class V3VerifyResponse {
     /**
      * The result of the Verify process. Possible values are `success`, `pending`, and `failed`. If the Verify result is `pending`, clients will need to call the Verify Status API to get a result.
      */
-    public V3VerifyResponse withVerifyResult(VerifyResult verifyResult) {
+    public V3VerifyResponse withVerifyResult(String verifyResult) {
         Utils.checkNotNull(verifyResult, "verifyResult");
         this.verifyResult = verifyResult;
         return this;
@@ -216,11 +216,11 @@ public class V3VerifyResponse {
  
         private String correlationId;
  
-        private PossessionResult possessionResult;
+        private String possessionResult;
  
-        private V3VerifyResponseSuccess success;
+        private String success;
  
-        private VerifyResult verifyResult;
+        private String verifyResult;
         
         private Builder() {
           // force use of static builder() method
@@ -256,7 +256,7 @@ public class V3VerifyResponse {
         /**
          * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
          */
-        public Builder possessionResult(PossessionResult possessionResult) {
+        public Builder possessionResult(String possessionResult) {
             Utils.checkNotNull(possessionResult, "possessionResult");
             this.possessionResult = possessionResult;
             return this;
@@ -265,7 +265,7 @@ public class V3VerifyResponse {
         /**
          * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`, `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
          */
-        public Builder success(V3VerifyResponseSuccess success) {
+        public Builder success(String success) {
             Utils.checkNotNull(success, "success");
             this.success = success;
             return this;
@@ -274,7 +274,7 @@ public class V3VerifyResponse {
         /**
          * The result of the Verify process. Possible values are `success`, `pending`, and `failed`. If the Verify result is `pending`, clients will need to call the Verify Status API to get a result.
          */
-        public Builder verifyResult(VerifyResult verifyResult) {
+        public Builder verifyResult(String verifyResult) {
             Utils.checkNotNull(verifyResult, "verifyResult");
             this.verifyResult = verifyResult;
             return this;

@@ -24,12 +24,12 @@ public class V3UnifyBindResponse {
      * Possible values are `true`, `false`, `pending`, and `possession_required`.
      */
     @JsonProperty("success")
-    private V3UnifyBindResponseSuccess success;
+    private String success;
 
     @JsonCreator
     public V3UnifyBindResponse(
             @JsonProperty("phoneNumber") String phoneNumber,
-            @JsonProperty("success") V3UnifyBindResponseSuccess success) {
+            @JsonProperty("success") String success) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(success, "success");
         this.phoneNumber = phoneNumber;
@@ -49,7 +49,7 @@ public class V3UnifyBindResponse {
      * Possible values are `true`, `false`, `pending`, and `possession_required`.
      */
     @JsonIgnore
-    public V3UnifyBindResponseSuccess success() {
+    public String success() {
         return success;
     }
 
@@ -70,7 +70,7 @@ public class V3UnifyBindResponse {
      * The result of the possession check.
      * Possible values are `true`, `false`, `pending`, and `possession_required`.
      */
-    public V3UnifyBindResponse withSuccess(V3UnifyBindResponseSuccess success) {
+    public V3UnifyBindResponse withSuccess(String success) {
         Utils.checkNotNull(success, "success");
         this.success = success;
         return this;
@@ -109,7 +109,7 @@ public class V3UnifyBindResponse {
  
         private String phoneNumber;
  
-        private V3UnifyBindResponseSuccess success;
+        private String success;
         
         private Builder() {
           // force use of static builder() method
@@ -128,7 +128,7 @@ public class V3UnifyBindResponse {
          * The result of the possession check.
          * Possible values are `true`, `false`, `pending`, and `possession_required`.
          */
-        public Builder success(V3UnifyBindResponseSuccess success) {
+        public Builder success(String success) {
             Utils.checkNotNull(success, "success");
             this.success = success;
             return this;

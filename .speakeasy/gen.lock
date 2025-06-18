@@ -1,19 +1,20 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: bba93633e3456439de4fa119d96d8cf1
+  docChecksum: c1826e3fe102d83e0ada290519069596
   docVersion: 1.0.0
-  speakeasyVersion: 1.556.2
-  generationVersion: 2.621.3
-  releaseVersion: 0.15.0
-  configChecksum: b8ee5772f9c4c704bf7ba59da8b19360
+  speakeasyVersion: 1.567.0
+  generationVersion: 2.632.0
+  releaseVersion: 0.16.0
+  configChecksum: 80a6d3f77c06dd09ab8b6e6bb9bf24ab
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.37.4
+    core: 3.39.0
     examples: 2.81.5
+    flattening: 2.81.1
     globalSecurity: 2.82.8
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
@@ -30,12 +31,19 @@ generatedFiles:
   - docs/models/components/DataSourceIdentifiersResponseInternal.md
   - docs/models/components/DataSourceInternal.md
   - docs/models/components/DataSourceNameResponseInternal.md
+  - docs/models/components/GetBatchIdentityItem.md
   - docs/models/components/IDVDataInternal.md
+  - docs/models/components/IdentityItem.md
   - docs/models/components/KYCFieldTypeResponseInternal.md
   - docs/models/components/KYCInternal.md
-  - docs/models/components/PossessionResult.md
+  - docs/models/components/LookupIdentityItem.md
+  - docs/models/components/PostBatchResultItem.md
   - docs/models/components/Security.md
-  - docs/models/components/Success.md
+  - docs/models/components/V3ActivateIdentityRequest.md
+  - docs/models/components/V3ActivateIdentityResponse.md
+  - docs/models/components/V3BatchEnrollIdentitiesRequest.md
+  - docs/models/components/V3BatchEnrollIdentitiesResponse.md
+  - docs/models/components/V3BatchGetIdentitiesResponse.md
   - docs/models/components/V3ChallengeAddressEntryRequest.md
   - docs/models/components/V3ChallengeIndividualRequest.md
   - docs/models/components/V3ChallengeRequest.md
@@ -44,34 +52,48 @@ generatedFiles:
   - docs/models/components/V3CompleteIndividualRequest.md
   - docs/models/components/V3CompleteRequest.md
   - docs/models/components/V3CompleteResponse.md
+  - docs/models/components/V3DeactivateIdentityResponse.md
+  - docs/models/components/V3DisenrollIdentityResponse.md
+  - docs/models/components/V3EnrollIdentityRequest.md
+  - docs/models/components/V3EnrollIdentityResponse.md
+  - docs/models/components/V3GetIdentitiesByPhoneNumberResponse.md
+  - docs/models/components/V3GetIdentityResponse.md
+  - docs/models/components/V3IdentityDeactivateRequest.md
   - docs/models/components/V3StartRequest.md
   - docs/models/components/V3StartResponse.md
   - docs/models/components/V3TokenRequest.md
   - docs/models/components/V3TokenResponse.md
   - docs/models/components/V3UnifyBindRequest.md
   - docs/models/components/V3UnifyBindResponse.md
-  - docs/models/components/V3UnifyBindResponseSuccess.md
   - docs/models/components/V3UnifyRequest.md
   - docs/models/components/V3UnifyResponse.md
   - docs/models/components/V3UnifyStatusRequest.md
   - docs/models/components/V3UnifyStatusResponse.md
-  - docs/models/components/V3UnifyStatusResponseSuccess.md
   - docs/models/components/V3ValidateRequest.md
   - docs/models/components/V3ValidateResponse.md
   - docs/models/components/V3VerifyRequest.md
   - docs/models/components/V3VerifyResponse.md
-  - docs/models/components/V3VerifyResponseSuccess.md
   - docs/models/components/V3VerifyStatusRequest.md
   - docs/models/components/V3VerifyStatusResponse.md
-  - docs/models/components/V3VerifyStatusResponsePossessionResult.md
-  - docs/models/components/V3VerifyStatusResponseSuccess.md
-  - docs/models/components/V3VerifyStatusResponseVerifyResult.md
-  - docs/models/components/VerifyResult.md
   - docs/models/errors/Error.md
   - docs/models/errors/Error401.md
   - docs/models/errors/Error403.md
+  - docs/models/operations/V3ActivateIdentityRequest.md
+  - docs/models/operations/V3ActivateIdentityResponse.md
+  - docs/models/operations/V3BatchEnrollIdentitiesResponse.md
+  - docs/models/operations/V3BatchGetIdentitiesRequest.md
+  - docs/models/operations/V3BatchGetIdentitiesResponse.md
   - docs/models/operations/V3ChallengeRequestResponse.md
   - docs/models/operations/V3CompleteRequestResponse.md
+  - docs/models/operations/V3DeactivateIdentityRequest.md
+  - docs/models/operations/V3DeactivateIdentityResponse.md
+  - docs/models/operations/V3DisenrollIdentityRequest.md
+  - docs/models/operations/V3DisenrollIdentityResponse.md
+  - docs/models/operations/V3EnrollIdentityResponse.md
+  - docs/models/operations/V3GetIdentitiesByPhoneNumberRequest.md
+  - docs/models/operations/V3GetIdentitiesByPhoneNumberResponse.md
+  - docs/models/operations/V3GetIdentityRequest.md
+  - docs/models/operations/V3GetIdentityResponse.md
   - docs/models/operations/V3StartRequestResponse.md
   - docs/models/operations/V3TokenRequestResponse.md
   - docs/models/operations/V3UnifyBindRequestResponse.md
@@ -80,6 +102,7 @@ generatedFiles:
   - docs/models/operations/V3ValidateRequestResponse.md
   - docs/models/operations/V3VerifyRequestResponse.md
   - docs/models/operations/V3VerifyStatusRequestResponse.md
+  - docs/sdks/identity/README.md
   - docs/sdks/proveapi/README.md
   - docs/sdks/v3/README.md
   - gradle.properties
@@ -88,6 +111,7 @@ generatedFiles:
   - gradlew
   - gradlew.bat
   - settings.gradle
+  - src/main/java/com/prove/proveapi/Identity.java
   - src/main/java/com/prove/proveapi/Proveapi.java
   - src/main/java/com/prove/proveapi/SDKConfiguration.java
   - src/main/java/com/prove/proveapi/SecuritySource.java
@@ -99,12 +123,19 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/DataSourceIdentifiersResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceInternal.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceNameResponseInternal.java
+  - src/main/java/com/prove/proveapi/models/components/GetBatchIdentityItem.java
   - src/main/java/com/prove/proveapi/models/components/IDVDataInternal.java
+  - src/main/java/com/prove/proveapi/models/components/IdentityItem.java
   - src/main/java/com/prove/proveapi/models/components/KYCFieldTypeResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/KYCInternal.java
-  - src/main/java/com/prove/proveapi/models/components/PossessionResult.java
+  - src/main/java/com/prove/proveapi/models/components/LookupIdentityItem.java
+  - src/main/java/com/prove/proveapi/models/components/PostBatchResultItem.java
   - src/main/java/com/prove/proveapi/models/components/Security.java
-  - src/main/java/com/prove/proveapi/models/components/Success.java
+  - src/main/java/com/prove/proveapi/models/components/V3ActivateIdentityRequest.java
+  - src/main/java/com/prove/proveapi/models/components/V3ActivateIdentityResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3BatchEnrollIdentitiesRequest.java
+  - src/main/java/com/prove/proveapi/models/components/V3BatchEnrollIdentitiesResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3BatchGetIdentitiesResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3ChallengeAddressEntryRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3ChallengeIndividualRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3ChallengeRequest.java
@@ -113,39 +144,61 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/V3CompleteIndividualRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3DeactivateIdentityResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3DisenrollIdentityResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3EnrollIdentityRequest.java
+  - src/main/java/com/prove/proveapi/models/components/V3EnrollIdentityResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3GetIdentitiesByPhoneNumberResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3GetIdentityResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3IdentityDeactivateRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3StartRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3StartResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3TokenRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3TokenResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3UnifyBindRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3UnifyBindResponse.java
-  - src/main/java/com/prove/proveapi/models/components/V3UnifyBindResponseSuccess.java
   - src/main/java/com/prove/proveapi/models/components/V3UnifyRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3UnifyResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3UnifyStatusRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3UnifyStatusResponse.java
-  - src/main/java/com/prove/proveapi/models/components/V3UnifyStatusResponseSuccess.java
   - src/main/java/com/prove/proveapi/models/components/V3ValidateRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3ValidateResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyResponse.java
-  - src/main/java/com/prove/proveapi/models/components/V3VerifyResponseSuccess.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyStatusRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyStatusResponse.java
-  - src/main/java/com/prove/proveapi/models/components/V3VerifyStatusResponsePossessionResult.java
-  - src/main/java/com/prove/proveapi/models/components/V3VerifyStatusResponseSuccess.java
-  - src/main/java/com/prove/proveapi/models/components/V3VerifyStatusResponseVerifyResult.java
-  - src/main/java/com/prove/proveapi/models/components/VerifyResult.java
   - src/main/java/com/prove/proveapi/models/errors/AuthException.java
   - src/main/java/com/prove/proveapi/models/errors/Error.java
   - src/main/java/com/prove/proveapi/models/errors/Error401.java
   - src/main/java/com/prove/proveapi/models/errors/Error403.java
   - src/main/java/com/prove/proveapi/models/errors/SDKError.java
   - src/main/java/com/prove/proveapi/models/operations/SDKMethodInterfaces.java
+  - src/main/java/com/prove/proveapi/models/operations/V3ActivateIdentityRequest.java
+  - src/main/java/com/prove/proveapi/models/operations/V3ActivateIdentityRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3ActivateIdentityResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3BatchEnrollIdentitiesRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3BatchEnrollIdentitiesResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3BatchGetIdentitiesRequest.java
+  - src/main/java/com/prove/proveapi/models/operations/V3BatchGetIdentitiesRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3BatchGetIdentitiesResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3ChallengeRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3ChallengeRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3CompleteRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3CompleteRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DeactivateIdentityRequest.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DeactivateIdentityRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DeactivateIdentityResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DisenrollIdentityRequest.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DisenrollIdentityRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DisenrollIdentityResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3EnrollIdentityRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3EnrollIdentityResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3GetIdentitiesByPhoneNumberRequest.java
+  - src/main/java/com/prove/proveapi/models/operations/V3GetIdentitiesByPhoneNumberRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3GetIdentitiesByPhoneNumberResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3GetIdentityRequest.java
+  - src/main/java/com/prove/proveapi/models/operations/V3GetIdentityRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3GetIdentityResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3StartRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3StartRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3TokenRequestRequestBuilder.java
@@ -289,7 +342,7 @@ examples:
         application/json: {"allowOTPRetry": true, "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "finalTargetUrl": "https://www.example.com/landing-page", "phoneNumber": "2001004011", "possessionType": "mobile", "rebind": true, "smsMessage": "#### is your verification code."}
       responses:
         "200":
-          application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "success": {}}
+          application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "success": "pending"}
         "400":
           application/json: {"code": 8000, "message": "error at prove, try again later"}
         "401":
@@ -304,7 +357,7 @@ examples:
         application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "phoneNumber": "2001004011"}
       responses:
         "200":
-          application/json: {"phoneNumber": "2001004011", "success": {}}
+          application/json: {"phoneNumber": "2001004011", "success": "true"}
         "400":
           application/json: {"code": 8000, "message": "error at prove, try again later"}
         "401":
@@ -319,7 +372,7 @@ examples:
         application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "phoneNumber": "2001004011"}
       responses:
         "200":
-          application/json: {"phoneNumber": "2001004011", "success": {}}
+          application/json: {"phoneNumber": "2001004011", "success": "true"}
         "400":
           application/json: {"code": 8000, "message": "error at prove, try again later"}
         "401":
@@ -349,7 +402,7 @@ examples:
         application/json: {"allowOTPRetry": true, "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "emailAddress": "sbutrimovichb@who.int", "finalTargetUrl": "https://www.example.com/landing-page", "firstName": "Sheilakathryn", "lastName": "Butrimovich", "phoneNumber": "2001004011", "possessionType": "mobile", "smsMessage": "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone."}
       responses:
         "200":
-          application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "possessionResult": {}, "success": {}, "verifyResult": {}}
+          application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "possessionResult": "pending", "success": "pending", "verifyResult": "pending"}
         "400":
           application/json: {"code": 8000, "message": "error at prove, try again later"}
         "401":
@@ -364,7 +417,134 @@ examples:
         application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd"}
       responses:
         "200":
-          application/json: {"identityId": "498ce2a7-a7c1-48aa-8bd3-77621f780919", "possessionResult": {}, "success": {}, "verifyResult": {}}
+          application/json: {"identityId": "498ce2a7-a7c1-48aa-8bd3-77621f780919", "possessionResult": "pending", "success": "pending", "verifyResult": "pending"}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3BatchGetIdentities:
+    speakeasy-default-v3-batch-get-identities:
+      responses:
+        "200":
+          application/json: {"lastKey": "fNqtI2wVPka+yAFC5qRtrQ==", "results": [{"identityId": "4a6317c1-4855-4900-b369-bed138f4ec00"}, {"identityId": "e53c0597-1cce-4d8f-bd1b-e0a10f875ac9"}]}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3EnrollIdentity:
+    speakeasy-default-v3-enroll-identity:
+      requestBody:
+        application/json: {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "phoneNumber": "2001001695"}
+      responses:
+        "200":
+          application/json: {"identityId": "863189q5-5555-4c15-89ba-15d08710aecz", "success": true}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3BatchEnrollIdentities:
+    speakeasy-default-v3-batch-enroll-identities:
+      requestBody:
+        application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "items": [{"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "phoneNumber": "2001001695"}, {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "phoneNumber": "2001001695"}]}
+      responses:
+        "200":
+          application/json: {"results": [{"identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc"}, {"error": "Invalid Phone Number"}]}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3DisenrollIdentity:
+    speakeasy-default-v3-disenroll-identity:
+      parameters:
+        path:
+          identityId: "<id>"
+      responses:
+        "200":
+          application/json: {"success": true}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3GetIdentity:
+    speakeasy-default-v3-get-identity:
+      parameters:
+        path:
+          identityId: "<id>"
+      responses:
+        "200":
+          application/json: {"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3ActivateIdentity:
+    speakeasy-default-v3-activate-identity:
+      parameters:
+        path:
+          identityId: "<id>"
+      requestBody:
+        application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81"}
+      responses:
+        "200":
+          application/json: {"success": true}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3DeactivateIdentity:
+    speakeasy-default-v3-deactivate-identity:
+      parameters:
+        path:
+          identityId: "<id>"
+      requestBody:
+        application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81"}
+      responses:
+        "200":
+          application/json: {"success": true}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3GetIdentitiesByPhoneNumber:
+    speakeasy-default-v3-get-identities-by-phone-number:
+      parameters:
+        path:
+          mobileNumber: "<value>"
+      responses:
+        "200":
+          application/json: {"items": [{"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}, {"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}]}
         "400":
           application/json: {"code": 8000, "message": "error at prove, try again later"}
         "401":

@@ -27,26 +27,26 @@ public class V3VerifyStatusResponse {
      * The result of the possession check. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
      */
     @JsonProperty("possessionResult")
-    private V3VerifyStatusResponsePossessionResult possessionResult;
+    private String possessionResult;
 
     /**
      * The result of the combination of Verify Result and Possession Result. Possible values are `true`, `pending`, and `false`. The success value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
      */
     @JsonProperty("success")
-    private V3VerifyStatusResponseSuccess success;
+    private String success;
 
     /**
      * The result of the Verify process. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
      */
     @JsonProperty("verifyResult")
-    private V3VerifyStatusResponseVerifyResult verifyResult;
+    private String verifyResult;
 
     @JsonCreator
     public V3VerifyStatusResponse(
             @JsonProperty("identityId") Optional<String> identityId,
-            @JsonProperty("possessionResult") V3VerifyStatusResponsePossessionResult possessionResult,
-            @JsonProperty("success") V3VerifyStatusResponseSuccess success,
-            @JsonProperty("verifyResult") V3VerifyStatusResponseVerifyResult verifyResult) {
+            @JsonProperty("possessionResult") String possessionResult,
+            @JsonProperty("success") String success,
+            @JsonProperty("verifyResult") String verifyResult) {
         Utils.checkNotNull(identityId, "identityId");
         Utils.checkNotNull(possessionResult, "possessionResult");
         Utils.checkNotNull(success, "success");
@@ -58,9 +58,9 @@ public class V3VerifyStatusResponse {
     }
     
     public V3VerifyStatusResponse(
-            V3VerifyStatusResponsePossessionResult possessionResult,
-            V3VerifyStatusResponseSuccess success,
-            V3VerifyStatusResponseVerifyResult verifyResult) {
+            String possessionResult,
+            String success,
+            String verifyResult) {
         this(Optional.empty(), possessionResult, success, verifyResult);
     }
 
@@ -76,7 +76,7 @@ public class V3VerifyStatusResponse {
      * The result of the possession check. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
      */
     @JsonIgnore
-    public V3VerifyStatusResponsePossessionResult possessionResult() {
+    public String possessionResult() {
         return possessionResult;
     }
 
@@ -84,7 +84,7 @@ public class V3VerifyStatusResponse {
      * The result of the combination of Verify Result and Possession Result. Possible values are `true`, `pending`, and `false`. The success value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
      */
     @JsonIgnore
-    public V3VerifyStatusResponseSuccess success() {
+    public String success() {
         return success;
     }
 
@@ -92,7 +92,7 @@ public class V3VerifyStatusResponse {
      * The result of the Verify process. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
      */
     @JsonIgnore
-    public V3VerifyStatusResponseVerifyResult verifyResult() {
+    public String verifyResult() {
         return verifyResult;
     }
 
@@ -121,7 +121,7 @@ public class V3VerifyStatusResponse {
     /**
      * The result of the possession check. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
      */
-    public V3VerifyStatusResponse withPossessionResult(V3VerifyStatusResponsePossessionResult possessionResult) {
+    public V3VerifyStatusResponse withPossessionResult(String possessionResult) {
         Utils.checkNotNull(possessionResult, "possessionResult");
         this.possessionResult = possessionResult;
         return this;
@@ -130,7 +130,7 @@ public class V3VerifyStatusResponse {
     /**
      * The result of the combination of Verify Result and Possession Result. Possible values are `true`, `pending`, and `false`. The success value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
      */
-    public V3VerifyStatusResponse withSuccess(V3VerifyStatusResponseSuccess success) {
+    public V3VerifyStatusResponse withSuccess(String success) {
         Utils.checkNotNull(success, "success");
         this.success = success;
         return this;
@@ -139,7 +139,7 @@ public class V3VerifyStatusResponse {
     /**
      * The result of the Verify process. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
      */
-    public V3VerifyStatusResponse withVerifyResult(V3VerifyStatusResponseVerifyResult verifyResult) {
+    public V3VerifyStatusResponse withVerifyResult(String verifyResult) {
         Utils.checkNotNull(verifyResult, "verifyResult");
         this.verifyResult = verifyResult;
         return this;
@@ -184,11 +184,11 @@ public class V3VerifyStatusResponse {
  
         private Optional<String> identityId = Optional.empty();
  
-        private V3VerifyStatusResponsePossessionResult possessionResult;
+        private String possessionResult;
  
-        private V3VerifyStatusResponseSuccess success;
+        private String success;
  
-        private V3VerifyStatusResponseVerifyResult verifyResult;
+        private String verifyResult;
         
         private Builder() {
           // force use of static builder() method
@@ -215,7 +215,7 @@ public class V3VerifyStatusResponse {
         /**
          * The result of the possession check. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
          */
-        public Builder possessionResult(V3VerifyStatusResponsePossessionResult possessionResult) {
+        public Builder possessionResult(String possessionResult) {
             Utils.checkNotNull(possessionResult, "possessionResult");
             this.possessionResult = possessionResult;
             return this;
@@ -224,7 +224,7 @@ public class V3VerifyStatusResponse {
         /**
          * The result of the combination of Verify Result and Possession Result. Possible values are `true`, `pending`, and `false`. The success value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
          */
-        public Builder success(V3VerifyStatusResponseSuccess success) {
+        public Builder success(String success) {
             Utils.checkNotNull(success, "success");
             this.success = success;
             return this;
@@ -233,7 +233,7 @@ public class V3VerifyStatusResponse {
         /**
          * The result of the Verify process. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
          */
-        public Builder verifyResult(V3VerifyStatusResponseVerifyResult verifyResult) {
+        public Builder verifyResult(String verifyResult) {
             Utils.checkNotNull(verifyResult, "verifyResult");
             this.verifyResult = verifyResult;
             return this;

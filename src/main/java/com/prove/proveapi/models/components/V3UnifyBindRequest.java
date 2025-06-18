@@ -17,7 +17,7 @@ import java.util.Optional;
 public class V3UnifyBindRequest {
 
     /**
-     * A client-generated unique ID for a specific request.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
@@ -56,7 +56,7 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific request.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -85,7 +85,7 @@ public class V3UnifyBindRequest {
     }    
 
     /**
-     * A client-generated unique ID for a specific request.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3UnifyBindRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -94,7 +94,7 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific request.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3UnifyBindRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -185,7 +185,7 @@ public class V3UnifyBindRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific request.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -194,7 +194,7 @@ public class V3UnifyBindRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific request.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");

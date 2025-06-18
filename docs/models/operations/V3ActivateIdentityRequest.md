@@ -1,0 +1,9 @@
+# V3ActivateIdentityRequest
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `identityId`                                                                                 | *String*                                                                                     | :heavy_check_mark:                                                                           | A Prove-generated unique ID for a specific identity.                                         |                                                                                              |
+| `v3ActivateIdentityRequest`                                                                  | [Optional\<V3ActivateIdentityRequest>](../../models/components/V3ActivateIdentityRequest.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          | {<br/>"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81"<br/>}                        |
