@@ -75,8 +75,14 @@ public class Proveapi {
 
     private final V3 v3;
 
+    private final Identity identity;
+
     public V3 v3() {
         return v3;
+    }
+
+    public Identity identity() {
+        return identity;
     }
 
     private SDKConfiguration sdkConfiguration;
@@ -216,6 +222,7 @@ public class Proveapi {
         this.sdkConfiguration = sdkConfiguration;
         this.sdkConfiguration.initialize();
         this.v3 = new V3(sdkConfiguration);
+        this.identity = new Identity(sdkConfiguration);
         
         SdkInitData data = this.sdkConfiguration.hooks().sdkInit(new SdkInitData(this.sdkConfiguration.resolvedServerUrl(), this.sdkConfiguration.client()));
         this.sdkConfiguration.setServerUrl(data.baseUrl());

@@ -84,7 +84,6 @@ public class V3 implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Request OAuth Token
      * 
@@ -279,7 +278,6 @@ public class V3 implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -495,7 +493,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Complete Flow
      * 
@@ -707,7 +704,6 @@ public class V3 implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -923,7 +919,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Initiate Possession Check
      * 
@@ -1135,7 +1130,6 @@ public class V3 implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1352,7 +1346,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Check Status
      * 
@@ -1565,7 +1558,6 @@ public class V3 implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1781,7 +1773,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Initiate Verified Users Session
      * 
@@ -1993,7 +1984,6 @@ public class V3 implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -33,13 +33,13 @@ public class V3UnifyResponse {
      * The status of the Unify request.
      */
     @JsonProperty("success")
-    private Success success;
+    private String success;
 
     @JsonCreator
     public V3UnifyResponse(
             @JsonProperty("authToken") Optional<String> authToken,
             @JsonProperty("correlationId") String correlationId,
-            @JsonProperty("success") Success success) {
+            @JsonProperty("success") String success) {
         Utils.checkNotNull(authToken, "authToken");
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(success, "success");
@@ -50,7 +50,7 @@ public class V3UnifyResponse {
     
     public V3UnifyResponse(
             String correlationId,
-            Success success) {
+            String success) {
         this(Optional.empty(), correlationId, success);
     }
 
@@ -74,7 +74,7 @@ public class V3UnifyResponse {
      * The status of the Unify request.
      */
     @JsonIgnore
-    public Success success() {
+    public String success() {
         return success;
     }
 
@@ -112,7 +112,7 @@ public class V3UnifyResponse {
     /**
      * The status of the Unify request.
      */
-    public V3UnifyResponse withSuccess(Success success) {
+    public V3UnifyResponse withSuccess(String success) {
         Utils.checkNotNull(success, "success");
         this.success = success;
         return this;
@@ -156,7 +156,7 @@ public class V3UnifyResponse {
  
         private String correlationId;
  
-        private Success success;
+        private String success;
         
         private Builder() {
           // force use of static builder() method
@@ -192,7 +192,7 @@ public class V3UnifyResponse {
         /**
          * The status of the Unify request.
          */
-        public Builder success(Success success) {
+        public Builder success(String success) {
             Utils.checkNotNull(success, "success");
             this.success = success;
             return this;

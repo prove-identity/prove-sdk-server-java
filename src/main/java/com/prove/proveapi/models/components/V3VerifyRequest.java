@@ -18,7 +18,7 @@ import java.util.Optional;
 public class V3VerifyRequest {
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowOTPRetry")
@@ -32,7 +32,7 @@ public class V3VerifyRequest {
     private Optional<String> clientCustomerId;
 
     /**
-     * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
@@ -129,7 +129,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     @JsonIgnore
     public Optional<Boolean> allowOTPRetry() {
@@ -145,7 +145,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -216,7 +216,7 @@ public class V3VerifyRequest {
     }    
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     public V3VerifyRequest withAllowOTPRetry(boolean allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -225,7 +225,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     public V3VerifyRequest withAllowOTPRetry(Optional<Boolean> allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -252,7 +252,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3VerifyRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -261,7 +261,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3VerifyRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -445,7 +445,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * If true, the customer can request additional OTP codes if the initial code verification failed.
+         * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(boolean allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -454,7 +454,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * If true, the customer can request additional OTP codes if the initial code verification failed.
+         * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(Optional<Boolean> allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -481,7 +481,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -490,7 +490,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used by clients to identify specific requests made. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Request ID. Do not include personally identifiable information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");

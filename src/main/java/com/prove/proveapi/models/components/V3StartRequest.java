@@ -18,7 +18,7 @@ import java.util.Optional;
 public class V3StartRequest {
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowOTPRetry")
@@ -122,7 +122,7 @@ public class V3StartRequest {
     }
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     @JsonIgnore
     public Optional<Boolean> allowOTPRetry() {
@@ -204,7 +204,7 @@ public class V3StartRequest {
     }    
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     public V3StartRequest withAllowOTPRetry(boolean allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -213,7 +213,7 @@ public class V3StartRequest {
     }
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     public V3StartRequest withAllowOTPRetry(Optional<Boolean> allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -443,7 +443,7 @@ public class V3StartRequest {
         }
 
         /**
-         * If true, the customer can request additional OTP codes if the initial code verification failed.
+         * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(boolean allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -452,7 +452,7 @@ public class V3StartRequest {
         }
 
         /**
-         * If true, the customer can request additional OTP codes if the initial code verification failed.
+         * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(Optional<Boolean> allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");

@@ -18,7 +18,7 @@ import java.util.Optional;
 public class V3UnifyRequest {
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowOTPRetry")
@@ -32,14 +32,14 @@ public class V3UnifyRequest {
     private Optional<String> clientCustomerId;
 
     /**
-     * A client-generated unique ID for a specific session.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
 
     /**
-     * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+     * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -63,8 +63,7 @@ public class V3UnifyRequest {
     private String possessionType;
 
     /**
-     * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
-     * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+     * If `true`, rebinds the Prove Key with the newly verified phone number.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rebind")
@@ -114,7 +113,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     @JsonIgnore
     public Optional<Boolean> allowOTPRetry() {
@@ -130,7 +129,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -138,7 +137,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+     * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     @JsonIgnore
@@ -166,8 +165,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
-     * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+     * If `true`, rebinds the Prove Key with the newly verified phone number.
      */
     @JsonIgnore
     public Optional<Boolean> rebind() {
@@ -190,7 +188,7 @@ public class V3UnifyRequest {
     }    
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     public V3UnifyRequest withAllowOTPRetry(boolean allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -199,7 +197,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * If true, the customer can request additional OTP codes if the initial code verification failed.
+     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     public V3UnifyRequest withAllowOTPRetry(Optional<Boolean> allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -226,7 +224,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3UnifyRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -235,7 +233,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3UnifyRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -244,7 +242,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+     * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     public V3UnifyRequest withFinalTargetUrl(String finalTargetUrl) {
@@ -254,7 +252,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+     * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      */
     public V3UnifyRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
@@ -295,8 +293,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
-     * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+     * If `true`, rebinds the Prove Key with the newly verified phone number.
      */
     public V3UnifyRequest withRebind(boolean rebind) {
         Utils.checkNotNull(rebind, "rebind");
@@ -305,8 +302,7 @@ public class V3UnifyRequest {
     }
 
     /**
-     * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
-     * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+     * If `true`, rebinds the Prove Key with the newly verified phone number.
      */
     public V3UnifyRequest withRebind(Optional<Boolean> rebind) {
         Utils.checkNotNull(rebind, "rebind");
@@ -408,7 +404,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * If true, the customer can request additional OTP codes if the initial code verification failed.
+         * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(boolean allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -417,7 +413,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * If true, the customer can request additional OTP codes if the initial code verification failed.
+         * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(Optional<Boolean> allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -444,7 +440,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific session.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -453,7 +449,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific session.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -462,7 +458,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+         * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
          * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
         public Builder finalTargetUrl(String finalTargetUrl) {
@@ -472,7 +468,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * The final target URL is where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+         * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
          * Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          */
         public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
@@ -513,8 +509,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
-         * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+         * If `true`, rebinds the Prove Key with the newly verified phone number.
          */
         public Builder rebind(boolean rebind) {
             Utils.checkNotNull(rebind, "rebind");
@@ -523,8 +518,7 @@ public class V3UnifyRequest {
         }
 
         /**
-         * Rebind should be set to `true` if the previous transaction failed with `success=false` because the Prove Key could not be validated.
-         * When `true`, it will re-associate the Prove Key with the newly verified phone number.
+         * If `true`, rebinds the Prove Key with the newly verified phone number.
          */
         public Builder rebind(Optional<Boolean> rebind) {
             Utils.checkNotNull(rebind, "rebind");

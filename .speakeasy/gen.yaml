@@ -17,15 +17,17 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 java:
-  version: 0.15.0
+  version: 0.16.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: proveapi
+  baseErrorName: ProveapiError
   clientServerStatusCodesAsErrors: true
   companyEmail: info@prove.com
   companyName: Prove Identity
   companyURL: https://www.prove.com
   defaultErrorName: SDKError
+  enableCustomCodeRegions: false
   flattenGlobalSecurity: true
   githubURL: github.com/prove-identity/prove-sdk-server-java
   groupID: com.prove

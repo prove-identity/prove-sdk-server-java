@@ -3,8 +3,12 @@
  */
 package com.prove.proveapi.models.operations;
 
+import com.prove.proveapi.models.components.V3ActivateIdentityRequest;
+import com.prove.proveapi.models.components.V3BatchEnrollIdentitiesRequest;
 import com.prove.proveapi.models.components.V3ChallengeRequest;
 import com.prove.proveapi.models.components.V3CompleteRequest;
+import com.prove.proveapi.models.components.V3EnrollIdentityRequest;
+import com.prove.proveapi.models.components.V3IdentityDeactivateRequest;
 import com.prove.proveapi.models.components.V3StartRequest;
 import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.components.V3UnifyBindRequest;
@@ -13,7 +17,10 @@ import com.prove.proveapi.models.components.V3UnifyStatusRequest;
 import com.prove.proveapi.models.components.V3ValidateRequest;
 import com.prove.proveapi.models.components.V3VerifyRequest;
 import com.prove.proveapi.models.components.V3VerifyStatusRequest;
+import java.lang.Boolean;
 import java.lang.Exception;
+import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
 
 public class SDKMethodInterfaces {
@@ -66,5 +73,53 @@ public class SDKMethodInterfaces {
     public interface MethodCallV3VerifyStatusRequest {
         V3VerifyStatusRequestResponse v3VerifyStatusRequest(
             Optional<? extends V3VerifyStatusRequest> request) throws Exception;
+    }
+
+    public interface MethodCallV3BatchGetIdentities {
+        V3BatchGetIdentitiesResponse v3BatchGetIdentities(
+            Optional<String> clientRequestId,
+            Optional<Long> limit,
+            Optional<String> startKey,
+            Optional<Boolean> showInactive) throws Exception;
+    }
+
+    public interface MethodCallV3EnrollIdentity {
+        V3EnrollIdentityResponse v3EnrollIdentity(
+            Optional<? extends V3EnrollIdentityRequest> request) throws Exception;
+    }
+
+    public interface MethodCallV3BatchEnrollIdentities {
+        V3BatchEnrollIdentitiesResponse v3BatchEnrollIdentities(
+            Optional<? extends V3BatchEnrollIdentitiesRequest> request) throws Exception;
+    }
+
+    public interface MethodCallV3DisenrollIdentity {
+        V3DisenrollIdentityResponse v3DisenrollIdentity(
+            String identityId,
+            Optional<String> clientRequestId) throws Exception;
+    }
+
+    public interface MethodCallV3GetIdentity {
+        V3GetIdentityResponse v3GetIdentity(
+            String identityId,
+            Optional<String> clientRequestId) throws Exception;
+    }
+
+    public interface MethodCallV3ActivateIdentity {
+        V3ActivateIdentityResponse v3ActivateIdentity(
+            String identityId,
+            Optional<? extends V3ActivateIdentityRequest> v3ActivateIdentityRequest) throws Exception;
+    }
+
+    public interface MethodCallV3DeactivateIdentity {
+        V3DeactivateIdentityResponse v3DeactivateIdentity(
+            String identityId,
+            Optional<? extends V3IdentityDeactivateRequest> v3IdentityDeactivateRequest) throws Exception;
+    }
+
+    public interface MethodCallV3GetIdentitiesByPhoneNumber {
+        V3GetIdentitiesByPhoneNumberResponse v3GetIdentitiesByPhoneNumber(
+            String mobileNumber,
+            Optional<String> clientRequestId) throws Exception;
     }
 }
