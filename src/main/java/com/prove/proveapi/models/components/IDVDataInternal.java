@@ -12,8 +12,8 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class IDVDataInternal {
 
@@ -21,9 +21,11 @@ public class IDVDataInternal {
     @JsonProperty("dataSource1")
     private Optional<? extends DataSourceInternal> dataSource1;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dataSource2")
     private Optional<? extends DataSourceInternal> dataSource2;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("multiCIPConfidence")
@@ -63,15 +65,17 @@ public class IDVDataInternal {
         return multiCIPConfidence;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public IDVDataInternal withDataSource1(DataSourceInternal dataSource1) {
         Utils.checkNotNull(dataSource1, "dataSource1");
         this.dataSource1 = Optional.ofNullable(dataSource1);
         return this;
     }
+
 
     public IDVDataInternal withDataSource1(Optional<? extends DataSourceInternal> dataSource1) {
         Utils.checkNotNull(dataSource1, "dataSource1");
@@ -85,6 +89,7 @@ public class IDVDataInternal {
         return this;
     }
 
+
     public IDVDataInternal withDataSource2(Optional<? extends DataSourceInternal> dataSource2) {
         Utils.checkNotNull(dataSource2, "dataSource2");
         this.dataSource2 = dataSource2;
@@ -97,13 +102,13 @@ public class IDVDataInternal {
         return this;
     }
 
+
     public IDVDataInternal withMultiCIPConfidence(Optional<String> multiCIPConfidence) {
         Utils.checkNotNull(multiCIPConfidence, "multiCIPConfidence");
         this.multiCIPConfidence = multiCIPConfidence;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,17 +119,15 @@ public class IDVDataInternal {
         }
         IDVDataInternal other = (IDVDataInternal) o;
         return 
-            Objects.deepEquals(this.dataSource1, other.dataSource1) &&
-            Objects.deepEquals(this.dataSource2, other.dataSource2) &&
-            Objects.deepEquals(this.multiCIPConfidence, other.multiCIPConfidence);
+            Utils.enhancedDeepEquals(this.dataSource1, other.dataSource1) &&
+            Utils.enhancedDeepEquals(this.dataSource2, other.dataSource2) &&
+            Utils.enhancedDeepEquals(this.multiCIPConfidence, other.multiCIPConfidence);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            dataSource1,
-            dataSource2,
-            multiCIPConfidence);
+        return Utils.enhancedHash(
+            dataSource1, dataSource2, multiCIPConfidence);
     }
     
     @Override
@@ -134,18 +137,20 @@ public class IDVDataInternal {
                 "dataSource2", dataSource2,
                 "multiCIPConfidence", multiCIPConfidence);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DataSourceInternal> dataSource1 = Optional.empty();
- 
+
         private Optional<? extends DataSourceInternal> dataSource2 = Optional.empty();
- 
+
         private Optional<String> multiCIPConfidence = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder dataSource1(DataSourceInternal dataSource1) {
             Utils.checkNotNull(dataSource1, "dataSource1");
@@ -159,6 +164,7 @@ public class IDVDataInternal {
             return this;
         }
 
+
         public Builder dataSource2(DataSourceInternal dataSource2) {
             Utils.checkNotNull(dataSource2, "dataSource2");
             this.dataSource2 = Optional.ofNullable(dataSource2);
@@ -171,6 +177,7 @@ public class IDVDataInternal {
             return this;
         }
 
+
         public Builder multiCIPConfidence(String multiCIPConfidence) {
             Utils.checkNotNull(multiCIPConfidence, "multiCIPConfidence");
             this.multiCIPConfidence = Optional.ofNullable(multiCIPConfidence);
@@ -182,12 +189,12 @@ public class IDVDataInternal {
             this.multiCIPConfidence = multiCIPConfidence;
             return this;
         }
-        
+
         public IDVDataInternal build() {
+
             return new IDVDataInternal(
-                dataSource1,
-                dataSource2,
-                multiCIPConfidence);
+                dataSource1, dataSource2, multiCIPConfidence);
         }
+
     }
 }

@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3CompleteIndividualRequest {
 
+public class V3CompleteIndividualRequest {
     /**
      * Address of the individual. Note that though this is an array, only the first address in the array will be processed.
      */
@@ -83,7 +82,8 @@ public class V3CompleteIndividualRequest {
     }
     
     public V3CompleteIndividualRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -136,9 +136,10 @@ public class V3CompleteIndividualRequest {
         return ssn;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Address of the individual. Note that though this is an array, only the first address in the array will be processed.
@@ -148,6 +149,7 @@ public class V3CompleteIndividualRequest {
         this.addresses = Optional.ofNullable(addresses);
         return this;
     }
+
 
     /**
      * Address of the individual. Note that though this is an array, only the first address in the array will be processed.
@@ -167,6 +169,7 @@ public class V3CompleteIndividualRequest {
         return this;
     }
 
+
     /**
      * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
@@ -184,6 +187,7 @@ public class V3CompleteIndividualRequest {
         this.emailAddresses = Optional.ofNullable(emailAddresses);
         return this;
     }
+
 
     /**
      * Email address of the individual. Note that though this is an array, only the first email address in the array will be processed.
@@ -203,6 +207,7 @@ public class V3CompleteIndividualRequest {
         return this;
     }
 
+
     /**
      * The first name of the individual.
      */
@@ -220,6 +225,7 @@ public class V3CompleteIndividualRequest {
         this.lastName = Optional.ofNullable(lastName);
         return this;
     }
+
 
     /**
      * The last name of the individual.
@@ -239,6 +245,7 @@ public class V3CompleteIndividualRequest {
         return this;
     }
 
+
     /**
      * The social security number of the individual.
      */
@@ -248,7 +255,6 @@ public class V3CompleteIndividualRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -259,23 +265,19 @@ public class V3CompleteIndividualRequest {
         }
         V3CompleteIndividualRequest other = (V3CompleteIndividualRequest) o;
         return 
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.dob, other.dob) &&
-            Objects.deepEquals(this.emailAddresses, other.emailAddresses) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.ssn, other.ssn);
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.dob, other.dob) &&
+            Utils.enhancedDeepEquals(this.emailAddresses, other.emailAddresses) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.ssn, other.ssn);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            addresses,
-            dob,
-            emailAddresses,
-            firstName,
-            lastName,
-            ssn);
+        return Utils.enhancedHash(
+            addresses, dob, emailAddresses,
+            firstName, lastName, ssn);
     }
     
     @Override
@@ -288,24 +290,26 @@ public class V3CompleteIndividualRequest {
                 "lastName", lastName,
                 "ssn", ssn);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<V3CompleteAddressEntryRequest>> addresses = Optional.empty();
- 
+
         private Optional<String> dob = Optional.empty();
- 
+
         private Optional<? extends List<String>> emailAddresses = Optional.empty();
- 
+
         private Optional<String> firstName = Optional.empty();
- 
+
         private Optional<String> lastName = Optional.empty();
- 
+
         private Optional<String> ssn = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Address of the individual. Note that though this is an array, only the first address in the array will be processed.
@@ -325,6 +329,7 @@ public class V3CompleteIndividualRequest {
             return this;
         }
 
+
         /**
          * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
          */
@@ -342,6 +347,7 @@ public class V3CompleteIndividualRequest {
             this.dob = dob;
             return this;
         }
+
 
         /**
          * Email address of the individual. Note that though this is an array, only the first email address in the array will be processed.
@@ -361,6 +367,7 @@ public class V3CompleteIndividualRequest {
             return this;
         }
 
+
         /**
          * The first name of the individual.
          */
@@ -378,6 +385,7 @@ public class V3CompleteIndividualRequest {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * The last name of the individual.
@@ -397,6 +405,7 @@ public class V3CompleteIndividualRequest {
             return this;
         }
 
+
         /**
          * The social security number of the individual.
          */
@@ -414,15 +423,13 @@ public class V3CompleteIndividualRequest {
             this.ssn = ssn;
             return this;
         }
-        
+
         public V3CompleteIndividualRequest build() {
+
             return new V3CompleteIndividualRequest(
-                addresses,
-                dob,
-                emailAddresses,
-                firstName,
-                lastName,
-                ssn);
+                addresses, dob, emailAddresses,
+                firstName, lastName, ssn);
         }
+
     }
 }

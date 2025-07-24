@@ -10,7 +10,6 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * V3DeactivateIdentityResponse
@@ -18,7 +17,6 @@ import java.util.Objects;
  * <p>Response body for the V3 Deactivate Identity API.
  */
 public class V3DeactivateIdentityResponse {
-
     /**
      * If true, the deactivate operation was successful.
      */
@@ -40,9 +38,10 @@ public class V3DeactivateIdentityResponse {
         return success;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * If true, the deactivate operation was successful.
@@ -53,7 +52,6 @@ public class V3DeactivateIdentityResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -64,12 +62,12 @@ public class V3DeactivateIdentityResponse {
         }
         V3DeactivateIdentityResponse other = (V3DeactivateIdentityResponse) o;
         return 
-            Objects.deepEquals(this.success, other.success);
+            Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             success);
     }
     
@@ -78,14 +76,16 @@ public class V3DeactivateIdentityResponse {
         return Utils.toString(V3DeactivateIdentityResponse.class,
                 "success", success);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Boolean success;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * If true, the deactivate operation was successful.
@@ -95,10 +95,12 @@ public class V3DeactivateIdentityResponse {
             this.success = success;
             return this;
         }
-        
+
         public V3DeactivateIdentityResponse build() {
+
             return new V3DeactivateIdentityResponse(
                 success);
         }
+
     }
 }

@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -22,7 +21,6 @@ import java.util.Optional;
  * <p>An Identity associated with the given phone number.
  */
 public class LookupIdentityItem {
-
     /**
      * If true, the identity is currently active.
      */
@@ -128,7 +126,10 @@ public class LookupIdentityItem {
     
     public LookupIdentityItem(
             String phoneNumber) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), phoneNumber);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            phoneNumber);
     }
 
     /**
@@ -211,9 +212,10 @@ public class LookupIdentityItem {
         return phoneNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * If true, the identity is currently active.
@@ -223,6 +225,7 @@ public class LookupIdentityItem {
         this.active = Optional.ofNullable(active);
         return this;
     }
+
 
     /**
      * If true, the identity is currently active.
@@ -242,6 +245,7 @@ public class LookupIdentityItem {
         return this;
     }
 
+
     /**
      * The carrier associated with this identity/mobile number.
      */
@@ -259,6 +263,7 @@ public class LookupIdentityItem {
         this.clientCustomerId = Optional.ofNullable(clientCustomerId);
         return this;
     }
+
 
     /**
      * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
@@ -278,6 +283,7 @@ public class LookupIdentityItem {
         return this;
     }
 
+
     /**
      * The country code associated with the customer/identity. This will be in the ISO 3166-1 A-2 format.
      */
@@ -295,6 +301,7 @@ public class LookupIdentityItem {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The time that this identity was created, in seconds since the Unix epoch.
@@ -314,6 +321,7 @@ public class LookupIdentityItem {
         return this;
     }
 
+
     /**
      * The time that this identity was created, in ISO 8601 format.
      */
@@ -331,6 +339,7 @@ public class LookupIdentityItem {
         this.deviceId = Optional.ofNullable(deviceId);
         return this;
     }
+
 
     /**
      * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
@@ -350,6 +359,7 @@ public class LookupIdentityItem {
         return this;
     }
 
+
     /**
      * A Prove-generated unique ID for a specific identity.
      */
@@ -367,6 +377,7 @@ public class LookupIdentityItem {
         this.lineType = Optional.ofNullable(lineType);
         return this;
     }
+
 
     /**
      * The type of line associated with this identity/mobile number.
@@ -386,7 +397,6 @@ public class LookupIdentityItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -397,30 +407,24 @@ public class LookupIdentityItem {
         }
         LookupIdentityItem other = (LookupIdentityItem) o;
         return 
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.carrier, other.carrier) &&
-            Objects.deepEquals(this.clientCustomerId, other.clientCustomerId) &&
-            Objects.deepEquals(this.countryCode, other.countryCode) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.creationString, other.creationString) &&
-            Objects.deepEquals(this.deviceId, other.deviceId) &&
-            Objects.deepEquals(this.identityId, other.identityId) &&
-            Objects.deepEquals(this.lineType, other.lineType) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.carrier, other.carrier) &&
+            Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
+            Utils.enhancedDeepEquals(this.countryCode, other.countryCode) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.creationString, other.creationString) &&
+            Utils.enhancedDeepEquals(this.deviceId, other.deviceId) &&
+            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
+            Utils.enhancedDeepEquals(this.lineType, other.lineType) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            active,
-            carrier,
-            clientCustomerId,
-            countryCode,
-            createdAt,
-            creationString,
-            deviceId,
-            identityId,
-            lineType,
+        return Utils.enhancedHash(
+            active, carrier, clientCustomerId,
+            countryCode, createdAt, creationString,
+            deviceId, identityId, lineType,
             phoneNumber);
     }
     
@@ -438,32 +442,34 @@ public class LookupIdentityItem {
                 "lineType", lineType,
                 "phoneNumber", phoneNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> active = Optional.empty();
- 
+
         private Optional<String> carrier = Optional.empty();
- 
+
         private Optional<String> clientCustomerId = Optional.empty();
- 
+
         private Optional<String> countryCode = Optional.empty();
- 
+
         private Optional<Long> createdAt = Optional.empty();
- 
+
         private Optional<String> creationString = Optional.empty();
- 
+
         private Optional<String> deviceId = Optional.empty();
- 
+
         private Optional<String> identityId = Optional.empty();
- 
+
         private Optional<String> lineType = Optional.empty();
- 
+
         private String phoneNumber;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * If true, the identity is currently active.
@@ -483,6 +489,7 @@ public class LookupIdentityItem {
             return this;
         }
 
+
         /**
          * The carrier associated with this identity/mobile number.
          */
@@ -500,6 +507,7 @@ public class LookupIdentityItem {
             this.carrier = carrier;
             return this;
         }
+
 
         /**
          * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
@@ -519,6 +527,7 @@ public class LookupIdentityItem {
             return this;
         }
 
+
         /**
          * The country code associated with the customer/identity. This will be in the ISO 3166-1 A-2 format.
          */
@@ -536,6 +545,7 @@ public class LookupIdentityItem {
             this.countryCode = countryCode;
             return this;
         }
+
 
         /**
          * The time that this identity was created, in seconds since the Unix epoch.
@@ -555,6 +565,7 @@ public class LookupIdentityItem {
             return this;
         }
 
+
         /**
          * The time that this identity was created, in ISO 8601 format.
          */
@@ -572,6 +583,7 @@ public class LookupIdentityItem {
             this.creationString = creationString;
             return this;
         }
+
 
         /**
          * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
@@ -591,6 +603,7 @@ public class LookupIdentityItem {
             return this;
         }
 
+
         /**
          * A Prove-generated unique ID for a specific identity.
          */
@@ -608,6 +621,7 @@ public class LookupIdentityItem {
             this.identityId = identityId;
             return this;
         }
+
 
         /**
          * The type of line associated with this identity/mobile number.
@@ -627,6 +641,7 @@ public class LookupIdentityItem {
             return this;
         }
 
+
         /**
          * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with Mobile Auth documentation for situations where this field is not required. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
          */
@@ -635,19 +650,15 @@ public class LookupIdentityItem {
             this.phoneNumber = phoneNumber;
             return this;
         }
-        
+
         public LookupIdentityItem build() {
+
             return new LookupIdentityItem(
-                active,
-                carrier,
-                clientCustomerId,
-                countryCode,
-                createdAt,
-                creationString,
-                deviceId,
-                identityId,
-                lineType,
+                active, carrier, clientCustomerId,
+                countryCode, createdAt, creationString,
+                deviceId, identityId, lineType,
                 phoneNumber);
         }
+
     }
 }

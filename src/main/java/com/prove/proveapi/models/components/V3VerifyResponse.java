@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3VerifyResponse {
 
+public class V3VerifyResponse {
     /**
      * A bearer token for use by the Prove client SDK.
      */
@@ -71,7 +70,8 @@ public class V3VerifyResponse {
             String possessionResult,
             String success,
             String verifyResult) {
-        this(Optional.empty(), correlationId, possessionResult, success, verifyResult);
+        this(Optional.empty(), correlationId, possessionResult,
+            success, verifyResult);
     }
 
     /**
@@ -114,9 +114,10 @@ public class V3VerifyResponse {
         return verifyResult;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A bearer token for use by the Prove client SDK.
@@ -126,6 +127,7 @@ public class V3VerifyResponse {
         this.authToken = Optional.ofNullable(authToken);
         return this;
     }
+
 
     /**
      * A bearer token for use by the Prove client SDK.
@@ -172,7 +174,6 @@ public class V3VerifyResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -183,21 +184,18 @@ public class V3VerifyResponse {
         }
         V3VerifyResponse other = (V3VerifyResponse) o;
         return 
-            Objects.deepEquals(this.authToken, other.authToken) &&
-            Objects.deepEquals(this.correlationId, other.correlationId) &&
-            Objects.deepEquals(this.possessionResult, other.possessionResult) &&
-            Objects.deepEquals(this.success, other.success) &&
-            Objects.deepEquals(this.verifyResult, other.verifyResult);
+            Utils.enhancedDeepEquals(this.authToken, other.authToken) &&
+            Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
+            Utils.enhancedDeepEquals(this.possessionResult, other.possessionResult) &&
+            Utils.enhancedDeepEquals(this.success, other.success) &&
+            Utils.enhancedDeepEquals(this.verifyResult, other.verifyResult);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            authToken,
-            correlationId,
-            possessionResult,
-            success,
-            verifyResult);
+        return Utils.enhancedHash(
+            authToken, correlationId, possessionResult,
+            success, verifyResult);
     }
     
     @Override
@@ -209,22 +207,24 @@ public class V3VerifyResponse {
                 "success", success,
                 "verifyResult", verifyResult);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> authToken = Optional.empty();
- 
+
         private String correlationId;
- 
+
         private String possessionResult;
- 
+
         private String success;
- 
+
         private String verifyResult;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A bearer token for use by the Prove client SDK.
@@ -244,6 +244,7 @@ public class V3VerifyResponse {
             return this;
         }
 
+
         /**
          * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
          */
@@ -252,6 +253,7 @@ public class V3VerifyResponse {
             this.correlationId = correlationId;
             return this;
         }
+
 
         /**
          * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
@@ -262,6 +264,7 @@ public class V3VerifyResponse {
             return this;
         }
 
+
         /**
          * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`, `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
          */
@@ -271,6 +274,7 @@ public class V3VerifyResponse {
             return this;
         }
 
+
         /**
          * The result of the Verify process. Possible values are `success`, `pending`, and `failed`. If the Verify result is `pending`, clients will need to call the Verify Status API to get a result.
          */
@@ -279,14 +283,13 @@ public class V3VerifyResponse {
             this.verifyResult = verifyResult;
             return this;
         }
-        
+
         public V3VerifyResponse build() {
+
             return new V3VerifyResponse(
-                authToken,
-                correlationId,
-                possessionResult,
-                success,
-                verifyResult);
+                authToken, correlationId, possessionResult,
+                success, verifyResult);
         }
+
     }
 }

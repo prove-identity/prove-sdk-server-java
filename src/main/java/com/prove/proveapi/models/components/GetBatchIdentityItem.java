@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class GetBatchIdentityItem {
 
+public class GetBatchIdentityItem {
     /**
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
      */
@@ -42,9 +41,10 @@ public class GetBatchIdentityItem {
         return identityId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
@@ -55,6 +55,7 @@ public class GetBatchIdentityItem {
         return this;
     }
 
+
     /**
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
      */
@@ -64,7 +65,6 @@ public class GetBatchIdentityItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,12 +75,12 @@ public class GetBatchIdentityItem {
         }
         GetBatchIdentityItem other = (GetBatchIdentityItem) o;
         return 
-            Objects.deepEquals(this.identityId, other.identityId);
+            Utils.enhancedDeepEquals(this.identityId, other.identityId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             identityId);
     }
     
@@ -89,14 +89,16 @@ public class GetBatchIdentityItem {
         return Utils.toString(GetBatchIdentityItem.class,
                 "identityId", identityId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> identityId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
@@ -115,10 +117,12 @@ public class GetBatchIdentityItem {
             this.identityId = identityId;
             return this;
         }
-        
+
         public GetBatchIdentityItem build() {
+
             return new GetBatchIdentityItem(
                 identityId);
         }
+
     }
 }

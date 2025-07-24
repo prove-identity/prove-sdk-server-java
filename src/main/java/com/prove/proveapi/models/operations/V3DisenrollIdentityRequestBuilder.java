@@ -3,6 +3,10 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
+import com.prove.proveapi.operations.V3DisenrollIdentityOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class V3DisenrollIdentityRequestBuilder {
 
     private String identityId;
     private Optional<String> clientRequestId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3DisenrollIdentity sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3DisenrollIdentityRequestBuilder(SDKMethodInterfaces.MethodCallV3DisenrollIdentity sdk) {
-        this.sdk = sdk;
+    public V3DisenrollIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3DisenrollIdentityRequestBuilder identityId(String identityId) {
@@ -36,10 +40,21 @@ public class V3DisenrollIdentityRequestBuilder {
         return this;
     }
 
-    public V3DisenrollIdentityResponse call() throws Exception {
 
-        return sdk.v3DisenrollIdentity(
-            identityId,
+    private V3DisenrollIdentityRequest buildRequest() {
+
+        V3DisenrollIdentityRequest request = new V3DisenrollIdentityRequest(identityId,
             clientRequestId);
+
+        return request;
+    }
+
+    public V3DisenrollIdentityResponse call() throws Exception {
+        
+        RequestOperation<V3DisenrollIdentityRequest, V3DisenrollIdentityResponse> operation
+              = new V3DisenrollIdentityOperation(sdkConfiguration);
+        V3DisenrollIdentityRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

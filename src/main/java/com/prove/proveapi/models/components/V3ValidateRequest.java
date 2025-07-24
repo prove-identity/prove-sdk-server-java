@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3ValidateRequest {
-
     /**
      * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
      */
@@ -34,9 +33,10 @@ public class V3ValidateRequest {
         return correlationId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
@@ -47,7 +47,6 @@ public class V3ValidateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3ValidateRequest {
         }
         V3ValidateRequest other = (V3ValidateRequest) o;
         return 
-            Objects.deepEquals(this.correlationId, other.correlationId);
+            Utils.enhancedDeepEquals(this.correlationId, other.correlationId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             correlationId);
     }
     
@@ -72,14 +71,16 @@ public class V3ValidateRequest {
         return Utils.toString(V3ValidateRequest.class,
                 "correlationId", correlationId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String correlationId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
@@ -89,10 +90,12 @@ public class V3ValidateRequest {
             this.correlationId = correlationId;
             return this;
         }
-        
+
         public V3ValidateRequest build() {
+
             return new V3ValidateRequest(
                 correlationId);
         }
+
     }
 }

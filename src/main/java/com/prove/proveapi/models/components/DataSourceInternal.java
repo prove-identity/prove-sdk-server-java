@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class DataSourceInternal {
 
@@ -22,21 +22,26 @@ public class DataSourceInternal {
     @JsonProperty("address")
     private Optional<? extends DataSourceAddressResponseInternal> address;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cipConfidence")
     private Optional<String> cipConfidence;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
     private Optional<? extends DataSourceEmailAddressResponseInternal> email;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("identifiers")
     private Optional<? extends DataSourceIdentifiersResponseInternal> identifiers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<? extends DataSourceNameResponseInternal> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reasonCodes")
@@ -65,7 +70,8 @@ public class DataSourceInternal {
     }
     
     public DataSourceInternal() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -103,15 +109,17 @@ public class DataSourceInternal {
         return (Optional<List<String>>) reasonCodes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DataSourceInternal withAddress(DataSourceAddressResponseInternal address) {
         Utils.checkNotNull(address, "address");
         this.address = Optional.ofNullable(address);
         return this;
     }
+
 
     public DataSourceInternal withAddress(Optional<? extends DataSourceAddressResponseInternal> address) {
         Utils.checkNotNull(address, "address");
@@ -125,6 +133,7 @@ public class DataSourceInternal {
         return this;
     }
 
+
     public DataSourceInternal withCipConfidence(Optional<String> cipConfidence) {
         Utils.checkNotNull(cipConfidence, "cipConfidence");
         this.cipConfidence = cipConfidence;
@@ -136,6 +145,7 @@ public class DataSourceInternal {
         this.email = Optional.ofNullable(email);
         return this;
     }
+
 
     public DataSourceInternal withEmail(Optional<? extends DataSourceEmailAddressResponseInternal> email) {
         Utils.checkNotNull(email, "email");
@@ -149,6 +159,7 @@ public class DataSourceInternal {
         return this;
     }
 
+
     public DataSourceInternal withIdentifiers(Optional<? extends DataSourceIdentifiersResponseInternal> identifiers) {
         Utils.checkNotNull(identifiers, "identifiers");
         this.identifiers = identifiers;
@@ -160,6 +171,7 @@ public class DataSourceInternal {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     public DataSourceInternal withName(Optional<? extends DataSourceNameResponseInternal> name) {
         Utils.checkNotNull(name, "name");
@@ -173,13 +185,13 @@ public class DataSourceInternal {
         return this;
     }
 
+
     public DataSourceInternal withReasonCodes(Optional<? extends List<String>> reasonCodes) {
         Utils.checkNotNull(reasonCodes, "reasonCodes");
         this.reasonCodes = reasonCodes;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -190,23 +202,19 @@ public class DataSourceInternal {
         }
         DataSourceInternal other = (DataSourceInternal) o;
         return 
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.cipConfidence, other.cipConfidence) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.identifiers, other.identifiers) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.reasonCodes, other.reasonCodes);
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.cipConfidence, other.cipConfidence) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.identifiers, other.identifiers) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.reasonCodes, other.reasonCodes);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            address,
-            cipConfidence,
-            email,
-            identifiers,
-            name,
-            reasonCodes);
+        return Utils.enhancedHash(
+            address, cipConfidence, email,
+            identifiers, name, reasonCodes);
     }
     
     @Override
@@ -219,24 +227,26 @@ public class DataSourceInternal {
                 "name", name,
                 "reasonCodes", reasonCodes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DataSourceAddressResponseInternal> address = Optional.empty();
- 
+
         private Optional<String> cipConfidence = Optional.empty();
- 
+
         private Optional<? extends DataSourceEmailAddressResponseInternal> email = Optional.empty();
- 
+
         private Optional<? extends DataSourceIdentifiersResponseInternal> identifiers = Optional.empty();
- 
+
         private Optional<? extends DataSourceNameResponseInternal> name = Optional.empty();
- 
+
         private Optional<? extends List<String>> reasonCodes = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder address(DataSourceAddressResponseInternal address) {
             Utils.checkNotNull(address, "address");
@@ -250,6 +260,7 @@ public class DataSourceInternal {
             return this;
         }
 
+
         public Builder cipConfidence(String cipConfidence) {
             Utils.checkNotNull(cipConfidence, "cipConfidence");
             this.cipConfidence = Optional.ofNullable(cipConfidence);
@@ -261,6 +272,7 @@ public class DataSourceInternal {
             this.cipConfidence = cipConfidence;
             return this;
         }
+
 
         public Builder email(DataSourceEmailAddressResponseInternal email) {
             Utils.checkNotNull(email, "email");
@@ -274,6 +286,7 @@ public class DataSourceInternal {
             return this;
         }
 
+
         public Builder identifiers(DataSourceIdentifiersResponseInternal identifiers) {
             Utils.checkNotNull(identifiers, "identifiers");
             this.identifiers = Optional.ofNullable(identifiers);
@@ -285,6 +298,7 @@ public class DataSourceInternal {
             this.identifiers = identifiers;
             return this;
         }
+
 
         public Builder name(DataSourceNameResponseInternal name) {
             Utils.checkNotNull(name, "name");
@@ -298,6 +312,7 @@ public class DataSourceInternal {
             return this;
         }
 
+
         public Builder reasonCodes(List<String> reasonCodes) {
             Utils.checkNotNull(reasonCodes, "reasonCodes");
             this.reasonCodes = Optional.ofNullable(reasonCodes);
@@ -309,15 +324,13 @@ public class DataSourceInternal {
             this.reasonCodes = reasonCodes;
             return this;
         }
-        
+
         public DataSourceInternal build() {
+
             return new DataSourceInternal(
-                address,
-                cipConfidence,
-                email,
-                identifiers,
-                name,
-                reasonCodes);
+                address, cipConfidence, email,
+                identifiers, name, reasonCodes);
         }
+
     }
 }

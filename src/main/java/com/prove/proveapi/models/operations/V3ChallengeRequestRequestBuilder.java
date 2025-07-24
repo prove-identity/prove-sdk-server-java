@@ -3,7 +3,11 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3ChallengeRequest;
+import com.prove.proveapi.operations.V3ChallengeRequestOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V3ChallengeRequestRequestBuilder {
 
     private Optional<? extends V3ChallengeRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3ChallengeRequest sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3ChallengeRequestRequestBuilder(SDKMethodInterfaces.MethodCallV3ChallengeRequest sdk) {
-        this.sdk = sdk;
+    public V3ChallengeRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3ChallengeRequestRequestBuilder request(V3ChallengeRequest request) {
@@ -30,8 +34,10 @@ public class V3ChallengeRequestRequestBuilder {
     }
 
     public V3ChallengeRequestResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V3ChallengeRequest>, V3ChallengeRequestResponse> operation
+              = new V3ChallengeRequestOperation(sdkConfiguration);
 
-        return sdk.v3ChallengeRequest(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

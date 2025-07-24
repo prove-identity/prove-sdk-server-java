@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3UnifyStatusResponse {
-
     /**
      * The number of the mobile phone used during the process.
      */
@@ -53,9 +52,10 @@ public class V3UnifyStatusResponse {
         return success;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The number of the mobile phone used during the process.
@@ -76,7 +76,6 @@ public class V3UnifyStatusResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -87,15 +86,14 @@ public class V3UnifyStatusResponse {
         }
         V3UnifyStatusResponse other = (V3UnifyStatusResponse) o;
         return 
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            Objects.deepEquals(this.success, other.success);
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            phoneNumber,
-            success);
+        return Utils.enhancedHash(
+            phoneNumber, success);
     }
     
     @Override
@@ -104,16 +102,18 @@ public class V3UnifyStatusResponse {
                 "phoneNumber", phoneNumber,
                 "success", success);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String phoneNumber;
- 
+
         private String success;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The number of the mobile phone used during the process.
@@ -124,6 +124,7 @@ public class V3UnifyStatusResponse {
             return this;
         }
 
+
         /**
          * The result of the possession check.
          * Possible values are `true`, `false`, `pending`, and `possession_required`.
@@ -133,11 +134,12 @@ public class V3UnifyStatusResponse {
             this.success = success;
             return this;
         }
-        
+
         public V3UnifyStatusResponse build() {
+
             return new V3UnifyStatusResponse(
-                phoneNumber,
-                success);
+                phoneNumber, success);
         }
+
     }
 }

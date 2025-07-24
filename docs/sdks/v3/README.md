@@ -14,7 +14,7 @@
 * [v3UnifyStatusRequest](#v3unifystatusrequest) - Check Status
 * [v3ValidateRequest](#v3validaterequest) - Validate Phone Number
 * [v3VerifyRequest](#v3verifyrequest) - Initiate Verified Users Session
-* [v3VerifyStatusRequest](#v3verifystatusrequest) - Perform Checks for Verified Users Session
+* [v3VerifyStatusRequest](#v3verifystatusrequest) - Check Verification Result
 
 ## v3TokenRequest
 
@@ -27,14 +27,14 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
             .build();
@@ -70,7 +70,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
@@ -94,12 +94,12 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -134,7 +134,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -159,12 +159,12 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -213,7 +213,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -238,12 +238,12 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -284,7 +284,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -309,12 +309,12 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -354,7 +354,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -379,12 +379,12 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -419,7 +419,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -444,12 +444,12 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -484,7 +484,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -509,12 +509,12 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -547,7 +547,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -572,12 +572,12 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -619,7 +619,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -644,12 +644,12 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -683,7 +683,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |

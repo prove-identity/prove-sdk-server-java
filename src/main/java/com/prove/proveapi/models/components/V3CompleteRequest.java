@@ -9,15 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3CompleteRequest {
-
     /**
      * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
      */
     @JsonProperty("correlationId")
     private String correlationId;
+
 
     @JsonProperty("individual")
     private V3CompleteIndividualRequest individual;
@@ -45,9 +45,10 @@ public class V3CompleteRequest {
         return individual;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
@@ -64,7 +65,6 @@ public class V3CompleteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,15 +75,14 @@ public class V3CompleteRequest {
         }
         V3CompleteRequest other = (V3CompleteRequest) o;
         return 
-            Objects.deepEquals(this.correlationId, other.correlationId) &&
-            Objects.deepEquals(this.individual, other.individual);
+            Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
+            Utils.enhancedDeepEquals(this.individual, other.individual);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            correlationId,
-            individual);
+        return Utils.enhancedHash(
+            correlationId, individual);
     }
     
     @Override
@@ -92,16 +91,18 @@ public class V3CompleteRequest {
                 "correlationId", correlationId,
                 "individual", individual);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String correlationId;
- 
+
         private V3CompleteIndividualRequest individual;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
@@ -112,16 +113,18 @@ public class V3CompleteRequest {
             return this;
         }
 
+
         public Builder individual(V3CompleteIndividualRequest individual) {
             Utils.checkNotNull(individual, "individual");
             this.individual = individual;
             return this;
         }
-        
+
         public V3CompleteRequest build() {
+
             return new V3CompleteRequest(
-                correlationId,
-                individual);
+                correlationId, individual);
         }
+
     }
 }

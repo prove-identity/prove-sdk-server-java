@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3ChallengeIndividualRequest {
 
+public class V3ChallengeIndividualRequest {
     /**
      * An array of addresses that belong to the individual.
      */
@@ -83,7 +82,8 @@ public class V3ChallengeIndividualRequest {
     }
     
     public V3ChallengeIndividualRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -136,9 +136,10 @@ public class V3ChallengeIndividualRequest {
         return ssn;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of addresses that belong to the individual.
@@ -148,6 +149,7 @@ public class V3ChallengeIndividualRequest {
         this.addresses = Optional.ofNullable(addresses);
         return this;
     }
+
 
     /**
      * An array of addresses that belong to the individual.
@@ -167,6 +169,7 @@ public class V3ChallengeIndividualRequest {
         return this;
     }
 
+
     /**
      * The date of birth of the individual.
      */
@@ -184,6 +187,7 @@ public class V3ChallengeIndividualRequest {
         this.emailAddresses = Optional.ofNullable(emailAddresses);
         return this;
     }
+
 
     /**
      * An array of email addresses that belong to the individual.
@@ -203,6 +207,7 @@ public class V3ChallengeIndividualRequest {
         return this;
     }
 
+
     /**
      * The first name of the individual.
      */
@@ -220,6 +225,7 @@ public class V3ChallengeIndividualRequest {
         this.lastName = Optional.ofNullable(lastName);
         return this;
     }
+
 
     /**
      * The last name of the individual.
@@ -239,6 +245,7 @@ public class V3ChallengeIndividualRequest {
         return this;
     }
 
+
     /**
      * The social security number of the individual.
      */
@@ -248,7 +255,6 @@ public class V3ChallengeIndividualRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -259,23 +265,19 @@ public class V3ChallengeIndividualRequest {
         }
         V3ChallengeIndividualRequest other = (V3ChallengeIndividualRequest) o;
         return 
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.dob, other.dob) &&
-            Objects.deepEquals(this.emailAddresses, other.emailAddresses) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.ssn, other.ssn);
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.dob, other.dob) &&
+            Utils.enhancedDeepEquals(this.emailAddresses, other.emailAddresses) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.ssn, other.ssn);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            addresses,
-            dob,
-            emailAddresses,
-            firstName,
-            lastName,
-            ssn);
+        return Utils.enhancedHash(
+            addresses, dob, emailAddresses,
+            firstName, lastName, ssn);
     }
     
     @Override
@@ -288,24 +290,26 @@ public class V3ChallengeIndividualRequest {
                 "lastName", lastName,
                 "ssn", ssn);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<V3ChallengeAddressEntryRequest>> addresses = Optional.empty();
- 
+
         private Optional<String> dob = Optional.empty();
- 
+
         private Optional<? extends List<String>> emailAddresses = Optional.empty();
- 
+
         private Optional<String> firstName = Optional.empty();
- 
+
         private Optional<String> lastName = Optional.empty();
- 
+
         private Optional<String> ssn = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of addresses that belong to the individual.
@@ -325,6 +329,7 @@ public class V3ChallengeIndividualRequest {
             return this;
         }
 
+
         /**
          * The date of birth of the individual.
          */
@@ -342,6 +347,7 @@ public class V3ChallengeIndividualRequest {
             this.dob = dob;
             return this;
         }
+
 
         /**
          * An array of email addresses that belong to the individual.
@@ -361,6 +367,7 @@ public class V3ChallengeIndividualRequest {
             return this;
         }
 
+
         /**
          * The first name of the individual.
          */
@@ -378,6 +385,7 @@ public class V3ChallengeIndividualRequest {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * The last name of the individual.
@@ -397,6 +405,7 @@ public class V3ChallengeIndividualRequest {
             return this;
         }
 
+
         /**
          * The social security number of the individual.
          */
@@ -414,15 +423,13 @@ public class V3ChallengeIndividualRequest {
             this.ssn = ssn;
             return this;
         }
-        
+
         public V3ChallengeIndividualRequest build() {
+
             return new V3ChallengeIndividualRequest(
-                addresses,
-                dob,
-                emailAddresses,
-                firstName,
-                lastName,
-                ssn);
+                addresses, dob, emailAddresses,
+                firstName, lastName, ssn);
         }
+
     }
 }

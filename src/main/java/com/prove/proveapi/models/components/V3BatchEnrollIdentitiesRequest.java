@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -22,13 +21,13 @@ import java.util.Optional;
  * <p>Request body for the V3 Batch Enroll Identities API.
  */
 public class V3BatchEnrollIdentitiesRequest {
-
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("items")
@@ -62,9 +61,10 @@ public class V3BatchEnrollIdentitiesRequest {
         return (Optional<List<IdentityItem>>) items;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -74,6 +74,7 @@ public class V3BatchEnrollIdentitiesRequest {
         this.clientRequestId = Optional.ofNullable(clientRequestId);
         return this;
     }
+
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -90,13 +91,13 @@ public class V3BatchEnrollIdentitiesRequest {
         return this;
     }
 
+
     public V3BatchEnrollIdentitiesRequest withItems(Optional<? extends List<IdentityItem>> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -107,15 +108,14 @@ public class V3BatchEnrollIdentitiesRequest {
         }
         V3BatchEnrollIdentitiesRequest other = (V3BatchEnrollIdentitiesRequest) o;
         return 
-            Objects.deepEquals(this.clientRequestId, other.clientRequestId) &&
-            Objects.deepEquals(this.items, other.items);
+            Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
+            Utils.enhancedDeepEquals(this.items, other.items);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            clientRequestId,
-            items);
+        return Utils.enhancedHash(
+            clientRequestId, items);
     }
     
     @Override
@@ -124,16 +124,18 @@ public class V3BatchEnrollIdentitiesRequest {
                 "clientRequestId", clientRequestId,
                 "items", items);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> clientRequestId = Optional.empty();
- 
+
         private Optional<? extends List<IdentityItem>> items = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -153,6 +155,7 @@ public class V3BatchEnrollIdentitiesRequest {
             return this;
         }
 
+
         public Builder items(List<IdentityItem> items) {
             Utils.checkNotNull(items, "items");
             this.items = Optional.ofNullable(items);
@@ -164,11 +167,12 @@ public class V3BatchEnrollIdentitiesRequest {
             this.items = items;
             return this;
         }
-        
+
         public V3BatchEnrollIdentitiesRequest build() {
+
             return new V3BatchEnrollIdentitiesRequest(
-                clientRequestId,
-                items);
+                clientRequestId, items);
         }
+
     }
 }

@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3UnifyResponse {
 
+public class V3UnifyResponse {
     /**
      * The one-time use JWT for the client-side SDK.
      */
@@ -78,9 +77,10 @@ public class V3UnifyResponse {
         return success;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The one-time use JWT for the client-side SDK.
@@ -90,6 +90,7 @@ public class V3UnifyResponse {
         this.authToken = Optional.ofNullable(authToken);
         return this;
     }
+
 
     /**
      * The one-time use JWT for the client-side SDK.
@@ -118,7 +119,6 @@ public class V3UnifyResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -129,17 +129,15 @@ public class V3UnifyResponse {
         }
         V3UnifyResponse other = (V3UnifyResponse) o;
         return 
-            Objects.deepEquals(this.authToken, other.authToken) &&
-            Objects.deepEquals(this.correlationId, other.correlationId) &&
-            Objects.deepEquals(this.success, other.success);
+            Utils.enhancedDeepEquals(this.authToken, other.authToken) &&
+            Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
+            Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            authToken,
-            correlationId,
-            success);
+        return Utils.enhancedHash(
+            authToken, correlationId, success);
     }
     
     @Override
@@ -149,18 +147,20 @@ public class V3UnifyResponse {
                 "correlationId", correlationId,
                 "success", success);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> authToken = Optional.empty();
- 
+
         private String correlationId;
- 
+
         private String success;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The one-time use JWT for the client-side SDK.
@@ -180,6 +180,7 @@ public class V3UnifyResponse {
             return this;
         }
 
+
         /**
          * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
          */
@@ -189,6 +190,7 @@ public class V3UnifyResponse {
             return this;
         }
 
+
         /**
          * The status of the Unify request.
          */
@@ -197,12 +199,12 @@ public class V3UnifyResponse {
             this.success = success;
             return this;
         }
-        
+
         public V3UnifyResponse build() {
+
             return new V3UnifyResponse(
-                authToken,
-                correlationId,
-                success);
+                authToken, correlationId, success);
         }
+
     }
 }

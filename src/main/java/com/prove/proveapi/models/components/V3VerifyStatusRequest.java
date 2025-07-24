@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3VerifyStatusRequest {
 
+public class V3VerifyStatusRequest {
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
@@ -60,9 +59,10 @@ public class V3VerifyStatusRequest {
         return correlationId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -72,6 +72,7 @@ public class V3VerifyStatusRequest {
         this.clientRequestId = Optional.ofNullable(clientRequestId);
         return this;
     }
+
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -91,6 +92,7 @@ public class V3VerifyStatusRequest {
         return this;
     }
 
+
     /**
      * The unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
      */
@@ -100,7 +102,6 @@ public class V3VerifyStatusRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,15 +112,14 @@ public class V3VerifyStatusRequest {
         }
         V3VerifyStatusRequest other = (V3VerifyStatusRequest) o;
         return 
-            Objects.deepEquals(this.clientRequestId, other.clientRequestId) &&
-            Objects.deepEquals(this.correlationId, other.correlationId);
+            Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
+            Utils.enhancedDeepEquals(this.correlationId, other.correlationId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            clientRequestId,
-            correlationId);
+        return Utils.enhancedHash(
+            clientRequestId, correlationId);
     }
     
     @Override
@@ -128,16 +128,18 @@ public class V3VerifyStatusRequest {
                 "clientRequestId", clientRequestId,
                 "correlationId", correlationId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> clientRequestId = Optional.empty();
- 
+
         private Optional<String> correlationId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -157,6 +159,7 @@ public class V3VerifyStatusRequest {
             return this;
         }
 
+
         /**
          * The unique ID that Prove generates for the flow. It is returned from the v3/verify endpoint and cannot be reused outside of a single flow.
          */
@@ -174,11 +177,12 @@ public class V3VerifyStatusRequest {
             this.correlationId = correlationId;
             return this;
         }
-        
+
         public V3VerifyStatusRequest build() {
+
             return new V3VerifyStatusRequest(
-                clientRequestId,
-                correlationId);
+                clientRequestId, correlationId);
         }
+
     }
 }

@@ -10,16 +10,16 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3ActivateIdentityRequest {
 
+public class V3ActivateIdentityRequest {
     /**
      * A Prove-generated unique ID for a specific identity.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=identityId")
     private String identityId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends com.prove.proveapi.models.components.V3ActivateIdentityRequest> v3ActivateIdentityRequest;
@@ -53,9 +53,10 @@ public class V3ActivateIdentityRequest {
         return (Optional<com.prove.proveapi.models.components.V3ActivateIdentityRequest>) v3ActivateIdentityRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A Prove-generated unique ID for a specific identity.
@@ -72,13 +73,13 @@ public class V3ActivateIdentityRequest {
         return this;
     }
 
+
     public V3ActivateIdentityRequest withV3ActivateIdentityRequest(Optional<? extends com.prove.proveapi.models.components.V3ActivateIdentityRequest> v3ActivateIdentityRequest) {
         Utils.checkNotNull(v3ActivateIdentityRequest, "v3ActivateIdentityRequest");
         this.v3ActivateIdentityRequest = v3ActivateIdentityRequest;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +90,14 @@ public class V3ActivateIdentityRequest {
         }
         V3ActivateIdentityRequest other = (V3ActivateIdentityRequest) o;
         return 
-            Objects.deepEquals(this.identityId, other.identityId) &&
-            Objects.deepEquals(this.v3ActivateIdentityRequest, other.v3ActivateIdentityRequest);
+            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
+            Utils.enhancedDeepEquals(this.v3ActivateIdentityRequest, other.v3ActivateIdentityRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            identityId,
-            v3ActivateIdentityRequest);
+        return Utils.enhancedHash(
+            identityId, v3ActivateIdentityRequest);
     }
     
     @Override
@@ -106,16 +106,18 @@ public class V3ActivateIdentityRequest {
                 "identityId", identityId,
                 "v3ActivateIdentityRequest", v3ActivateIdentityRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String identityId;
- 
+
         private Optional<? extends com.prove.proveapi.models.components.V3ActivateIdentityRequest> v3ActivateIdentityRequest = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A Prove-generated unique ID for a specific identity.
@@ -125,6 +127,7 @@ public class V3ActivateIdentityRequest {
             this.identityId = identityId;
             return this;
         }
+
 
         public Builder v3ActivateIdentityRequest(com.prove.proveapi.models.components.V3ActivateIdentityRequest v3ActivateIdentityRequest) {
             Utils.checkNotNull(v3ActivateIdentityRequest, "v3ActivateIdentityRequest");
@@ -137,11 +140,12 @@ public class V3ActivateIdentityRequest {
             this.v3ActivateIdentityRequest = v3ActivateIdentityRequest;
             return this;
         }
-        
+
         public V3ActivateIdentityRequest build() {
+
             return new V3ActivateIdentityRequest(
-                identityId,
-                v3ActivateIdentityRequest);
+                identityId, v3ActivateIdentityRequest);
         }
+
     }
 }

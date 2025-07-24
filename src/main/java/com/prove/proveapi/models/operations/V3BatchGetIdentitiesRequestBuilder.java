@@ -3,6 +3,10 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
+import com.prove.proveapi.operations.V3BatchGetIdentitiesOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -16,10 +20,10 @@ public class V3BatchGetIdentitiesRequestBuilder {
     private Optional<Long> limit = Optional.empty();
     private Optional<String> startKey = Optional.empty();
     private Optional<Boolean> showInactive = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3BatchGetIdentities sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3BatchGetIdentitiesRequestBuilder(SDKMethodInterfaces.MethodCallV3BatchGetIdentities sdk) {
-        this.sdk = sdk;
+    public V3BatchGetIdentitiesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3BatchGetIdentitiesRequestBuilder clientRequestId(String clientRequestId) {
@@ -70,12 +74,23 @@ public class V3BatchGetIdentitiesRequestBuilder {
         return this;
     }
 
-    public V3BatchGetIdentitiesResponse call() throws Exception {
 
-        return sdk.v3BatchGetIdentities(
-            clientRequestId,
+    private V3BatchGetIdentitiesRequest buildRequest() {
+
+        V3BatchGetIdentitiesRequest request = new V3BatchGetIdentitiesRequest(clientRequestId,
             limit,
             startKey,
             showInactive);
+
+        return request;
+    }
+
+    public V3BatchGetIdentitiesResponse call() throws Exception {
+        
+        RequestOperation<V3BatchGetIdentitiesRequest, V3BatchGetIdentitiesResponse> operation
+              = new V3BatchGetIdentitiesOperation(sdkConfiguration);
+        V3BatchGetIdentitiesRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

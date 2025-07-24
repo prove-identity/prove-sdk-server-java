@@ -3,7 +3,11 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3EnrollIdentityRequest;
+import com.prove.proveapi.operations.V3EnrollIdentityOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V3EnrollIdentityRequestBuilder {
 
     private Optional<? extends V3EnrollIdentityRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3EnrollIdentity sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3EnrollIdentityRequestBuilder(SDKMethodInterfaces.MethodCallV3EnrollIdentity sdk) {
-        this.sdk = sdk;
+    public V3EnrollIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3EnrollIdentityRequestBuilder request(V3EnrollIdentityRequest request) {
@@ -30,8 +34,10 @@ public class V3EnrollIdentityRequestBuilder {
     }
 
     public V3EnrollIdentityResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V3EnrollIdentityRequest>, V3EnrollIdentityResponse> operation
+              = new V3EnrollIdentityOperation(sdkConfiguration);
 
-        return sdk.v3EnrollIdentity(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

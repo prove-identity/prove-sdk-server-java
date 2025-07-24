@@ -6,6 +6,7 @@ package com.prove.proveapi;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.Hook.SdkInitData;
 import com.prove.proveapi.utils.RetryConfig;
+import com.prove.proveapi.utils.SpeakeasyHTTPClient;
 import com.prove.proveapi.utils.Utils;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -21,7 +22,6 @@ import java.util.function.Consumer;
  */
 public class Proveapi {
 
-  
     /**
      * AvailableServers contains identifiers for the servers available to the SDK.
      */
@@ -31,29 +31,29 @@ public class Proveapi {
          * 
          * <p>UAT for US Region
          */
-      UAT_US("uat-us"),
+        UAT_US("uat-us"),
         /**
          * PROD_US
          * 
          * <p>Prod for US Region
          */
-      PROD_US("prod-us"),
+        PROD_US("prod-us"),
         /**
          * UAT_EU
          * 
          * <p>UAT for EU Region
          */
-      UAT_EU("uat-eu"),
+        UAT_EU("uat-eu"),
         /**
          * PROD_EU
          * 
          * <p>Prod for EU Region
          */
-      PROD_EU("prod-eu");
+        PROD_EU("prod-eu");
 
         private final String server;
 
-        private AvailableServers(String server) {
+        AvailableServers(String server) {
             this.server = server;
         }
 
@@ -67,25 +67,29 @@ public class Proveapi {
      */
     @SuppressWarnings("serial")
     public static final Map<AvailableServers, String> SERVERS = new HashMap<>() { {
-    put(AvailableServers.UAT_US, "https://platform.uat.proveapis.com");
-    put(AvailableServers.PROD_US, "https://platform.proveapis.com");
-    put(AvailableServers.UAT_EU, "https://platform.uat.eu.proveapis.com");
-    put(AvailableServers.PROD_EU, "https://platform.eu.proveapis.com");
+        put(AvailableServers.UAT_US, "https://platform.uat.proveapis.com");
+        put(AvailableServers.PROD_US, "https://platform.proveapis.com");
+        put(AvailableServers.UAT_EU, "https://platform.uat.eu.proveapis.com");
+        put(AvailableServers.PROD_EU, "https://platform.eu.proveapis.com");
     }};
+
 
     private final V3 v3;
 
+
     private final Identity identity;
+
 
     public V3 v3() {
         return v3;
     }
 
+
     public Identity identity() {
         return identity;
     }
 
-    private SDKConfiguration sdkConfiguration;
+    private final SDKConfiguration sdkConfiguration;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -179,6 +183,23 @@ public class Proveapi {
             this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
+
+        /**
+         * Enables debug logging for HTTP requests and responses, including JSON body content.
+         * <p>
+         * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
+         * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
+         * it is up to the custom client to honor this setting.
+         * </p>
+         *
+         * @param enabled Whether to enable debug logging.
+         * @return The builder instance.
+         */
+        public Builder enableHTTPDebugLogging(boolean enabled) {
+            this.sdkConfiguration.client().enableDebugLogging(enabled);
+            return this;
+        }
+
         // Visible for testing, may be accessed via reflection in tests
         Builder _hooks(com.prove.proveapi.utils.Hooks hooks) {
             sdkConfiguration.setHooks(hooks);  
@@ -223,8 +244,10 @@ public class Proveapi {
         this.sdkConfiguration.initialize();
         this.v3 = new V3(sdkConfiguration);
         this.identity = new Identity(sdkConfiguration);
-        
-        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(new SdkInitData(this.sdkConfiguration.resolvedServerUrl(), this.sdkConfiguration.client()));
+        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(
+                new SdkInitData(
+                        this.sdkConfiguration.resolvedServerUrl(), 
+                        this.sdkConfiguration.client()));
         this.sdkConfiguration.setServerUrl(data.baseUrl());
         this.sdkConfiguration.setClient(data.client());
     }

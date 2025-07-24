@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 @SuppressWarnings("serial")
 public class Error401 extends RuntimeException {
-
     /**
      * An error code that describes the problem category of the request.
      */
@@ -37,7 +36,7 @@ public class Error401 extends RuntimeException {
     public Error401(
             @JsonProperty("code") Optional<Long> code,
             @JsonProperty("message") String message) {
-        super(message);
+        super("API error occurred");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(message, "message");
         this.code = code;
@@ -71,9 +70,10 @@ public class Error401 extends RuntimeException {
         return Utils.valueOrNull(message);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An error code that describes the problem category of the request.
@@ -83,6 +83,7 @@ public class Error401 extends RuntimeException {
         this.code = Optional.ofNullable(code);
         return this;
     }
+
 
     /**
      * An error code that describes the problem category of the request.
@@ -102,7 +103,6 @@ public class Error401 extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -113,15 +113,14 @@ public class Error401 extends RuntimeException {
         }
         Error401 other = (Error401) o;
         return 
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.message, other.message);
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.message, other.message);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            code,
-            message);
+        return Utils.enhancedHash(
+            code, message);
     }
     
     @Override
@@ -130,16 +129,18 @@ public class Error401 extends RuntimeException {
                 "code", code,
                 "message", message);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> code = Optional.empty();
- 
+
         private String message;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An error code that describes the problem category of the request.
@@ -159,6 +160,7 @@ public class Error401 extends RuntimeException {
             return this;
         }
 
+
         /**
          * The error message describing the problem with the request.
          */
@@ -167,12 +169,13 @@ public class Error401 extends RuntimeException {
             this.message = message;
             return this;
         }
-        
+
         public Error401 build() {
+
             return new Error401(
-                code,
-                message);
+                code, message);
         }
+
     }
 }
 

@@ -3,6 +3,10 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
+import com.prove.proveapi.operations.V3GetIdentitiesByPhoneNumberOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class V3GetIdentitiesByPhoneNumberRequestBuilder {
 
     private String mobileNumber;
     private Optional<String> clientRequestId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3GetIdentitiesByPhoneNumber sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3GetIdentitiesByPhoneNumberRequestBuilder(SDKMethodInterfaces.MethodCallV3GetIdentitiesByPhoneNumber sdk) {
-        this.sdk = sdk;
+    public V3GetIdentitiesByPhoneNumberRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3GetIdentitiesByPhoneNumberRequestBuilder mobileNumber(String mobileNumber) {
@@ -36,10 +40,21 @@ public class V3GetIdentitiesByPhoneNumberRequestBuilder {
         return this;
     }
 
-    public V3GetIdentitiesByPhoneNumberResponse call() throws Exception {
 
-        return sdk.v3GetIdentitiesByPhoneNumber(
-            mobileNumber,
+    private V3GetIdentitiesByPhoneNumberRequest buildRequest() {
+
+        V3GetIdentitiesByPhoneNumberRequest request = new V3GetIdentitiesByPhoneNumberRequest(mobileNumber,
             clientRequestId);
+
+        return request;
+    }
+
+    public V3GetIdentitiesByPhoneNumberResponse call() throws Exception {
+        
+        RequestOperation<V3GetIdentitiesByPhoneNumberRequest, V3GetIdentitiesByPhoneNumberResponse> operation
+              = new V3GetIdentitiesByPhoneNumberOperation(sdkConfiguration);
+        V3GetIdentitiesByPhoneNumberRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -20,7 +19,6 @@ import java.util.Optional;
  * <p>Request body for the V3 Activate Identity API.
  */
 public class V3ActivateIdentityRequest {
-
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
@@ -47,9 +45,10 @@ public class V3ActivateIdentityRequest {
         return clientRequestId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -60,6 +59,7 @@ public class V3ActivateIdentityRequest {
         return this;
     }
 
+
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
@@ -69,7 +69,6 @@ public class V3ActivateIdentityRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -80,12 +79,12 @@ public class V3ActivateIdentityRequest {
         }
         V3ActivateIdentityRequest other = (V3ActivateIdentityRequest) o;
         return 
-            Objects.deepEquals(this.clientRequestId, other.clientRequestId);
+            Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             clientRequestId);
     }
     
@@ -94,14 +93,16 @@ public class V3ActivateIdentityRequest {
         return Utils.toString(V3ActivateIdentityRequest.class,
                 "clientRequestId", clientRequestId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> clientRequestId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -120,10 +121,12 @@ public class V3ActivateIdentityRequest {
             this.clientRequestId = clientRequestId;
             return this;
         }
-        
+
         public V3ActivateIdentityRequest build() {
+
             return new V3ActivateIdentityRequest(
                 clientRequestId);
         }
+
     }
 }

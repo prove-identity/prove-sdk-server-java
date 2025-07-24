@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3ChallengeAddressEntryRequest {
 
+public class V3ChallengeAddressEntryRequest {
     /**
      * The street address of the individual.
      */
@@ -71,7 +70,8 @@ public class V3ChallengeAddressEntryRequest {
     }
     
     public V3ChallengeAddressEntryRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -114,9 +114,10 @@ public class V3ChallengeAddressEntryRequest {
         return region;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The street address of the individual.
@@ -126,6 +127,7 @@ public class V3ChallengeAddressEntryRequest {
         this.address = Optional.ofNullable(address);
         return this;
     }
+
 
     /**
      * The street address of the individual.
@@ -145,6 +147,7 @@ public class V3ChallengeAddressEntryRequest {
         return this;
     }
 
+
     /**
      * The city of the individual.
      */
@@ -162,6 +165,7 @@ public class V3ChallengeAddressEntryRequest {
         this.extendedAddress = Optional.ofNullable(extendedAddress);
         return this;
     }
+
 
     /**
      * The apartment number or other extended address information.
@@ -181,6 +185,7 @@ public class V3ChallengeAddressEntryRequest {
         return this;
     }
 
+
     /**
      * The zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
      */
@@ -199,6 +204,7 @@ public class V3ChallengeAddressEntryRequest {
         return this;
     }
 
+
     /**
      * The state or locality of the individual.
      */
@@ -208,7 +214,6 @@ public class V3ChallengeAddressEntryRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -219,21 +224,18 @@ public class V3ChallengeAddressEntryRequest {
         }
         V3ChallengeAddressEntryRequest other = (V3ChallengeAddressEntryRequest) o;
         return 
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.extendedAddress, other.extendedAddress) &&
-            Objects.deepEquals(this.postalCode, other.postalCode) &&
-            Objects.deepEquals(this.region, other.region);
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.extendedAddress, other.extendedAddress) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
+            Utils.enhancedDeepEquals(this.region, other.region);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            address,
-            city,
-            extendedAddress,
-            postalCode,
-            region);
+        return Utils.enhancedHash(
+            address, city, extendedAddress,
+            postalCode, region);
     }
     
     @Override
@@ -245,22 +247,24 @@ public class V3ChallengeAddressEntryRequest {
                 "postalCode", postalCode,
                 "region", region);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> address = Optional.empty();
- 
+
         private Optional<String> city = Optional.empty();
- 
+
         private Optional<String> extendedAddress = Optional.empty();
- 
+
         private Optional<String> postalCode = Optional.empty();
- 
+
         private Optional<String> region = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The street address of the individual.
@@ -280,6 +284,7 @@ public class V3ChallengeAddressEntryRequest {
             return this;
         }
 
+
         /**
          * The city of the individual.
          */
@@ -297,6 +302,7 @@ public class V3ChallengeAddressEntryRequest {
             this.city = city;
             return this;
         }
+
 
         /**
          * The apartment number or other extended address information.
@@ -316,6 +322,7 @@ public class V3ChallengeAddressEntryRequest {
             return this;
         }
 
+
         /**
          * The zip code of the individual. It can be either 5 digits (XXXXX) or ZIP+4 (XXXXX-XXXX).
          */
@@ -334,6 +341,7 @@ public class V3ChallengeAddressEntryRequest {
             return this;
         }
 
+
         /**
          * The state or locality of the individual.
          */
@@ -351,14 +359,13 @@ public class V3ChallengeAddressEntryRequest {
             this.region = region;
             return this;
         }
-        
+
         public V3ChallengeAddressEntryRequest build() {
+
             return new V3ChallengeAddressEntryRequest(
-                address,
-                city,
-                extendedAddress,
-                postalCode,
-                region);
+                address, city, extendedAddress,
+                postalCode, region);
         }
+
     }
 }

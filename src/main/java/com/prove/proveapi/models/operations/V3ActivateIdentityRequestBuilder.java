@@ -3,7 +3,11 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3ActivateIdentityRequest;
+import com.prove.proveapi.operations.V3ActivateIdentityOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class V3ActivateIdentityRequestBuilder {
 
     private String identityId;
     private Optional<? extends V3ActivateIdentityRequest> v3ActivateIdentityRequest = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3ActivateIdentity sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3ActivateIdentityRequestBuilder(SDKMethodInterfaces.MethodCallV3ActivateIdentity sdk) {
-        this.sdk = sdk;
+    public V3ActivateIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3ActivateIdentityRequestBuilder identityId(String identityId) {
@@ -37,10 +41,21 @@ public class V3ActivateIdentityRequestBuilder {
         return this;
     }
 
-    public V3ActivateIdentityResponse call() throws Exception {
 
-        return sdk.v3ActivateIdentity(
-            identityId,
+    private com.prove.proveapi.models.operations.V3ActivateIdentityRequest buildRequest() {
+
+        com.prove.proveapi.models.operations.V3ActivateIdentityRequest request = new com.prove.proveapi.models.operations.V3ActivateIdentityRequest(identityId,
             v3ActivateIdentityRequest);
+
+        return request;
+    }
+
+    public V3ActivateIdentityResponse call() throws Exception {
+        
+        RequestOperation<com.prove.proveapi.models.operations.V3ActivateIdentityRequest, V3ActivateIdentityResponse> operation
+              = new V3ActivateIdentityOperation(sdkConfiguration);
+        com.prove.proveapi.models.operations.V3ActivateIdentityRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,7 +3,11 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3TokenRequest;
+import com.prove.proveapi.operations.V3TokenRequestOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V3TokenRequestRequestBuilder {
 
     private Optional<? extends V3TokenRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3TokenRequest sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3TokenRequestRequestBuilder(SDKMethodInterfaces.MethodCallV3TokenRequest sdk) {
-        this.sdk = sdk;
+    public V3TokenRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3TokenRequestRequestBuilder request(V3TokenRequest request) {
@@ -30,8 +34,10 @@ public class V3TokenRequestRequestBuilder {
     }
 
     public V3TokenRequestResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V3TokenRequest>, V3TokenRequestResponse> operation
+              = new V3TokenRequestOperation(sdkConfiguration);
 
-        return sdk.v3TokenRequest(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

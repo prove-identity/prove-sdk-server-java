@@ -10,10 +10,9 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class V3StartResponse {
-
     /**
      * A bearer token used by the client-side SDK.
      */
@@ -40,6 +39,7 @@ public class V3StartResponse {
         Utils.checkNotNull(authToken, "authToken");
         Utils.checkNotNull(correlationId, "correlationId");
         next = Utils.emptyMapIfNull(next);
+        Utils.checkNotNull(next, "next");
         this.authToken = authToken;
         this.correlationId = correlationId;
         this.next = next;
@@ -69,9 +69,10 @@ public class V3StartResponse {
         return next;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A bearer token used by the client-side SDK.
@@ -100,7 +101,6 @@ public class V3StartResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,17 +111,15 @@ public class V3StartResponse {
         }
         V3StartResponse other = (V3StartResponse) o;
         return 
-            Objects.deepEquals(this.authToken, other.authToken) &&
-            Objects.deepEquals(this.correlationId, other.correlationId) &&
-            Objects.deepEquals(this.next, other.next);
+            Utils.enhancedDeepEquals(this.authToken, other.authToken) &&
+            Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
+            Utils.enhancedDeepEquals(this.next, other.next);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            authToken,
-            correlationId,
-            next);
+        return Utils.enhancedHash(
+            authToken, correlationId, next);
     }
     
     @Override
@@ -131,18 +129,20 @@ public class V3StartResponse {
                 "correlationId", correlationId,
                 "next", next);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String authToken;
- 
+
         private String correlationId;
- 
+
         private Map<String, String> next;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A bearer token used by the client-side SDK.
@@ -153,6 +153,7 @@ public class V3StartResponse {
             return this;
         }
 
+
         /**
          * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
          */
@@ -162,6 +163,7 @@ public class V3StartResponse {
             return this;
         }
 
+
         /**
          * The next set of allowed API calls in the same flow.
          */
@@ -170,12 +172,12 @@ public class V3StartResponse {
             this.next = next;
             return this;
         }
-        
+
         public V3StartResponse build() {
+
             return new V3StartResponse(
-                authToken,
-                correlationId,
-                next);
+                authToken, correlationId, next);
         }
+
     }
 }

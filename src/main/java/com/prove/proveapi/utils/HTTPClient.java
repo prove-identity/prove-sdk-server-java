@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.http.HttpResponse;
 import java.net.http.HttpRequest;
+import java.util.concurrent.CompletableFuture;
 
 public interface HTTPClient {
 
@@ -28,4 +29,25 @@ public interface HTTPClient {
      */    
     HttpResponse<InputStream> send(HttpRequest request)
             throws IOException, InterruptedException, URISyntaxException;
+
+    /**
+     * Controls the debug flag that can be used by clients to perform conditional
+     * debugging actions like logging HTTP requests and responses.
+     * This is currently implemented in SpeakeasyHTTPClient but custom client
+     * implementations are free to use this method similarly if they wish.
+     *
+     * @param enabled Whether to enable debug flag
+     */
+    default void enableDebugLogging(boolean enabled) {
+        // do nothing
+    }
+
+    /**
+     * Returns whether debug logging is enabled.
+     *
+     * @return Whether debug logging is enabled
+     */
+    default boolean isDebugLoggingEnabled() {
+        return false;
+    }
 }
