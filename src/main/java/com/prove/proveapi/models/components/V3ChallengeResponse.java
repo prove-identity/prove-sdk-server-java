@@ -14,10 +14,17 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
+
 public class V3ChallengeResponse {
+    /**
+     * The evaluation result for the policy
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("evaluation")
+    private Optional<? extends Map<String, Evaluation>> evaluation;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("individual")
@@ -37,12 +44,16 @@ public class V3ChallengeResponse {
 
     @JsonCreator
     public V3ChallengeResponse(
+            @JsonProperty("evaluation") Optional<? extends Map<String, Evaluation>> evaluation,
             @JsonProperty("individual") Optional<? extends V3ChallengeIndividualRequest> individual,
             @JsonProperty("next") Map<String, String> next,
             @JsonProperty("success") boolean success) {
+        Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(individual, "individual");
         next = Utils.emptyMapIfNull(next);
+        Utils.checkNotNull(next, "next");
         Utils.checkNotNull(success, "success");
+        this.evaluation = evaluation;
         this.individual = individual;
         this.next = next;
         this.success = success;
@@ -51,7 +62,17 @@ public class V3ChallengeResponse {
     public V3ChallengeResponse(
             Map<String, String> next,
             boolean success) {
-        this(Optional.empty(), next, success);
+        this(Optional.empty(), Optional.empty(), next,
+            success);
+    }
+
+    /**
+     * The evaluation result for the policy
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Evaluation>> evaluation() {
+        return (Optional<Map<String, Evaluation>>) evaluation;
     }
 
     @SuppressWarnings("unchecked")
@@ -76,15 +97,36 @@ public class V3ChallengeResponse {
         return success;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3ChallengeResponse withEvaluation(Map<String, Evaluation> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = Optional.ofNullable(evaluation);
+        return this;
+    }
+
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3ChallengeResponse withEvaluation(Optional<? extends Map<String, Evaluation>> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = evaluation;
+        return this;
+    }
 
     public V3ChallengeResponse withIndividual(V3ChallengeIndividualRequest individual) {
         Utils.checkNotNull(individual, "individual");
         this.individual = Optional.ofNullable(individual);
         return this;
     }
+
 
     public V3ChallengeResponse withIndividual(Optional<? extends V3ChallengeIndividualRequest> individual) {
         Utils.checkNotNull(individual, "individual");
@@ -110,7 +152,6 @@ public class V3ChallengeResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,38 +162,62 @@ public class V3ChallengeResponse {
         }
         V3ChallengeResponse other = (V3ChallengeResponse) o;
         return 
-            Objects.deepEquals(this.individual, other.individual) &&
-            Objects.deepEquals(this.next, other.next) &&
-            Objects.deepEquals(this.success, other.success);
+            Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
+            Utils.enhancedDeepEquals(this.individual, other.individual) &&
+            Utils.enhancedDeepEquals(this.next, other.next) &&
+            Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            individual,
-            next,
+        return Utils.enhancedHash(
+            evaluation, individual, next,
             success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3ChallengeResponse.class,
+                "evaluation", evaluation,
                 "individual", individual,
                 "next", next,
                 "success", success);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
+        private Optional<? extends Map<String, Evaluation>> evaluation = Optional.empty();
+
         private Optional<? extends V3ChallengeIndividualRequest> individual = Optional.empty();
- 
+
         private Map<String, String> next;
- 
+
         private Boolean success;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Map<String, Evaluation> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = Optional.ofNullable(evaluation);
+            return this;
+        }
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Optional<? extends Map<String, Evaluation>> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = evaluation;
+            return this;
+        }
+
 
         public Builder individual(V3ChallengeIndividualRequest individual) {
             Utils.checkNotNull(individual, "individual");
@@ -166,6 +231,7 @@ public class V3ChallengeResponse {
             return this;
         }
 
+
         /**
          * The next set of allowed calls in the same flow.
          */
@@ -175,6 +241,7 @@ public class V3ChallengeResponse {
             return this;
         }
 
+
         /**
          * True if the challenge was accepted and user info retrieved.
          */
@@ -183,12 +250,13 @@ public class V3ChallengeResponse {
             this.success = success;
             return this;
         }
-        
+
         public V3ChallengeResponse build() {
+
             return new V3ChallengeResponse(
-                individual,
-                next,
+                evaluation, individual, next,
                 success);
         }
+
     }
 }

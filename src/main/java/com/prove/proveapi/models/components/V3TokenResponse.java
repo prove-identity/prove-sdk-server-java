@@ -12,11 +12,10 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3TokenResponse {
 
+public class V3TokenResponse {
     /**
      * The access token used to authenticate API calls.
      */
@@ -72,7 +71,8 @@ public class V3TokenResponse {
             String accessToken,
             long expiresIn,
             String tokenType) {
-        this(accessToken, expiresIn, Optional.empty(), Optional.empty(), tokenType);
+        this(accessToken, expiresIn, Optional.empty(),
+            Optional.empty(), tokenType);
     }
 
     /**
@@ -115,9 +115,10 @@ public class V3TokenResponse {
         return tokenType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The access token used to authenticate API calls.
@@ -146,6 +147,7 @@ public class V3TokenResponse {
         return this;
     }
 
+
     /**
      * The lifetime of the refresh token in seconds. Not currently supported.
      */
@@ -163,6 +165,7 @@ public class V3TokenResponse {
         this.refreshToken = Optional.ofNullable(refreshToken);
         return this;
     }
+
 
     /**
      * The token used to refresh the expiration time. Not currently supported.
@@ -182,7 +185,6 @@ public class V3TokenResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -193,21 +195,18 @@ public class V3TokenResponse {
         }
         V3TokenResponse other = (V3TokenResponse) o;
         return 
-            Objects.deepEquals(this.accessToken, other.accessToken) &&
-            Objects.deepEquals(this.expiresIn, other.expiresIn) &&
-            Objects.deepEquals(this.refreshExpiresIn, other.refreshExpiresIn) &&
-            Objects.deepEquals(this.refreshToken, other.refreshToken) &&
-            Objects.deepEquals(this.tokenType, other.tokenType);
+            Utils.enhancedDeepEquals(this.accessToken, other.accessToken) &&
+            Utils.enhancedDeepEquals(this.expiresIn, other.expiresIn) &&
+            Utils.enhancedDeepEquals(this.refreshExpiresIn, other.refreshExpiresIn) &&
+            Utils.enhancedDeepEquals(this.refreshToken, other.refreshToken) &&
+            Utils.enhancedDeepEquals(this.tokenType, other.tokenType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accessToken,
-            expiresIn,
-            refreshExpiresIn,
-            refreshToken,
-            tokenType);
+        return Utils.enhancedHash(
+            accessToken, expiresIn, refreshExpiresIn,
+            refreshToken, tokenType);
     }
     
     @Override
@@ -219,22 +218,24 @@ public class V3TokenResponse {
                 "refreshToken", refreshToken,
                 "tokenType", tokenType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accessToken;
- 
+
         private Long expiresIn;
- 
+
         private Optional<Long> refreshExpiresIn = Optional.empty();
- 
+
         private Optional<String> refreshToken = Optional.empty();
- 
+
         private String tokenType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The access token used to authenticate API calls.
@@ -245,6 +246,7 @@ public class V3TokenResponse {
             return this;
         }
 
+
         /**
          * The lifetime of the token in seconds.
          */
@@ -253,6 +255,7 @@ public class V3TokenResponse {
             this.expiresIn = expiresIn;
             return this;
         }
+
 
         /**
          * The lifetime of the refresh token in seconds. Not currently supported.
@@ -272,6 +275,7 @@ public class V3TokenResponse {
             return this;
         }
 
+
         /**
          * The token used to refresh the expiration time. Not currently supported.
          */
@@ -290,6 +294,7 @@ public class V3TokenResponse {
             return this;
         }
 
+
         /**
          * The type of token.
          */
@@ -298,14 +303,13 @@ public class V3TokenResponse {
             this.tokenType = tokenType;
             return this;
         }
-        
+
         public V3TokenResponse build() {
+
             return new V3TokenResponse(
-                accessToken,
-                expiresIn,
-                refreshExpiresIn,
-                refreshToken,
-                tokenType);
+                accessToken, expiresIn, refreshExpiresIn,
+                refreshToken, tokenType);
         }
+
     }
 }

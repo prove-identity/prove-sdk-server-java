@@ -9,11 +9,10 @@ import com.prove.proveapi.utils.SpeakeasyMetadata;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3GetIdentitiesByPhoneNumberRequest {
 
+public class V3GetIdentitiesByPhoneNumberRequest {
     /**
      * The phone number to find identities for. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
      */
@@ -57,9 +56,10 @@ public class V3GetIdentitiesByPhoneNumberRequest {
         return clientRequestId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The phone number to find identities for. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
@@ -79,6 +79,7 @@ public class V3GetIdentitiesByPhoneNumberRequest {
         return this;
     }
 
+
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
@@ -88,7 +89,6 @@ public class V3GetIdentitiesByPhoneNumberRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,15 +99,14 @@ public class V3GetIdentitiesByPhoneNumberRequest {
         }
         V3GetIdentitiesByPhoneNumberRequest other = (V3GetIdentitiesByPhoneNumberRequest) o;
         return 
-            Objects.deepEquals(this.mobileNumber, other.mobileNumber) &&
-            Objects.deepEquals(this.clientRequestId, other.clientRequestId);
+            Utils.enhancedDeepEquals(this.mobileNumber, other.mobileNumber) &&
+            Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            mobileNumber,
-            clientRequestId);
+        return Utils.enhancedHash(
+            mobileNumber, clientRequestId);
     }
     
     @Override
@@ -116,16 +115,18 @@ public class V3GetIdentitiesByPhoneNumberRequest {
                 "mobileNumber", mobileNumber,
                 "clientRequestId", clientRequestId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String mobileNumber;
- 
+
         private Optional<String> clientRequestId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The phone number to find identities for. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
@@ -135,6 +136,7 @@ public class V3GetIdentitiesByPhoneNumberRequest {
             this.mobileNumber = mobileNumber;
             return this;
         }
+
 
         /**
          * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -153,11 +155,12 @@ public class V3GetIdentitiesByPhoneNumberRequest {
             this.clientRequestId = clientRequestId;
             return this;
         }
-        
+
         public V3GetIdentitiesByPhoneNumberRequest build() {
+
             return new V3GetIdentitiesByPhoneNumberRequest(
-                mobileNumber,
-                clientRequestId);
+                mobileNumber, clientRequestId);
         }
+
     }
 }

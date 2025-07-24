@@ -12,8 +12,8 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class DataSourceNameResponseInternal {
 
@@ -21,9 +21,11 @@ public class DataSourceNameResponseInternal {
     @JsonProperty("firstName")
     private Optional<Long> firstName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastName")
     private Optional<Long> lastName;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nameScore")
@@ -61,15 +63,17 @@ public class DataSourceNameResponseInternal {
         return nameScore;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DataSourceNameResponseInternal withFirstName(long firstName) {
         Utils.checkNotNull(firstName, "firstName");
         this.firstName = Optional.ofNullable(firstName);
         return this;
     }
+
 
     public DataSourceNameResponseInternal withFirstName(Optional<Long> firstName) {
         Utils.checkNotNull(firstName, "firstName");
@@ -83,6 +87,7 @@ public class DataSourceNameResponseInternal {
         return this;
     }
 
+
     public DataSourceNameResponseInternal withLastName(Optional<Long> lastName) {
         Utils.checkNotNull(lastName, "lastName");
         this.lastName = lastName;
@@ -95,13 +100,13 @@ public class DataSourceNameResponseInternal {
         return this;
     }
 
+
     public DataSourceNameResponseInternal withNameScore(Optional<Long> nameScore) {
         Utils.checkNotNull(nameScore, "nameScore");
         this.nameScore = nameScore;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,17 +117,15 @@ public class DataSourceNameResponseInternal {
         }
         DataSourceNameResponseInternal other = (DataSourceNameResponseInternal) o;
         return 
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.nameScore, other.nameScore);
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.nameScore, other.nameScore);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            firstName,
-            lastName,
-            nameScore);
+        return Utils.enhancedHash(
+            firstName, lastName, nameScore);
     }
     
     @Override
@@ -132,18 +135,20 @@ public class DataSourceNameResponseInternal {
                 "lastName", lastName,
                 "nameScore", nameScore);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> firstName = Optional.empty();
- 
+
         private Optional<Long> lastName = Optional.empty();
- 
+
         private Optional<Long> nameScore = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder firstName(long firstName) {
             Utils.checkNotNull(firstName, "firstName");
@@ -157,6 +162,7 @@ public class DataSourceNameResponseInternal {
             return this;
         }
 
+
         public Builder lastName(long lastName) {
             Utils.checkNotNull(lastName, "lastName");
             this.lastName = Optional.ofNullable(lastName);
@@ -169,6 +175,7 @@ public class DataSourceNameResponseInternal {
             return this;
         }
 
+
         public Builder nameScore(long nameScore) {
             Utils.checkNotNull(nameScore, "nameScore");
             this.nameScore = Optional.ofNullable(nameScore);
@@ -180,12 +187,12 @@ public class DataSourceNameResponseInternal {
             this.nameScore = nameScore;
             return this;
         }
-        
+
         public DataSourceNameResponseInternal build() {
+
             return new DataSourceNameResponseInternal(
-                firstName,
-                lastName,
-                nameScore);
+                firstName, lastName, nameScore);
         }
+
     }
 }

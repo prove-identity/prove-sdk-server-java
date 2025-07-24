@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -20,7 +19,6 @@ import java.util.Optional;
  * <p>Represents a single identity that you wish to enroll.
  */
 public class IdentityItem {
-
     /**
      * A client-generated unique ID for a specific customer. This ID links calls related to the same customer, across different requests or sessions. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
@@ -83,9 +81,10 @@ public class IdentityItem {
         return phoneNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A client-generated unique ID for a specific customer. This ID links calls related to the same customer, across different requests or sessions. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -95,6 +94,7 @@ public class IdentityItem {
         this.clientCustomerId = Optional.ofNullable(clientCustomerId);
         return this;
     }
+
 
     /**
      * A client-generated unique ID for a specific customer. This ID links calls related to the same customer, across different requests or sessions. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -114,6 +114,7 @@ public class IdentityItem {
         return this;
     }
 
+
     /**
      * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
      */
@@ -132,7 +133,6 @@ public class IdentityItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -143,17 +143,15 @@ public class IdentityItem {
         }
         IdentityItem other = (IdentityItem) o;
         return 
-            Objects.deepEquals(this.clientCustomerId, other.clientCustomerId) &&
-            Objects.deepEquals(this.deviceId, other.deviceId) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
+            Utils.enhancedDeepEquals(this.deviceId, other.deviceId) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            clientCustomerId,
-            deviceId,
-            phoneNumber);
+        return Utils.enhancedHash(
+            clientCustomerId, deviceId, phoneNumber);
     }
     
     @Override
@@ -163,18 +161,20 @@ public class IdentityItem {
                 "deviceId", deviceId,
                 "phoneNumber", phoneNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> clientCustomerId = Optional.empty();
- 
+
         private Optional<String> deviceId = Optional.empty();
- 
+
         private String phoneNumber;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A client-generated unique ID for a specific customer. This ID links calls related to the same customer, across different requests or sessions. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -194,6 +194,7 @@ public class IdentityItem {
             return this;
         }
 
+
         /**
          * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
          */
@@ -212,6 +213,7 @@ public class IdentityItem {
             return this;
         }
 
+
         /**
          * The number of the consumer being enrolled. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
          */
@@ -220,12 +222,12 @@ public class IdentityItem {
             this.phoneNumber = phoneNumber;
             return this;
         }
-        
+
         public IdentityItem build() {
+
             return new IdentityItem(
-                clientCustomerId,
-                deviceId,
-                phoneNumber);
+                clientCustomerId, deviceId, phoneNumber);
         }
+
     }
 }

@@ -12,17 +12,24 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3ValidateResponse {
 
+public class V3ValidateResponse {
     /**
      * True if a DOB or SSN needs to be passed in on the next step.
      */
     @JsonProperty("challengeMissing")
     private boolean challengeMissing;
+
+    /**
+     * The evaluation result for the policy
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("evaluation")
+    private Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation;
 
     /**
      * The next set of allowed calls in the same flow.
@@ -46,14 +53,18 @@ public class V3ValidateResponse {
     @JsonCreator
     public V3ValidateResponse(
             @JsonProperty("challengeMissing") boolean challengeMissing,
+            @JsonProperty("evaluation") Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation,
             @JsonProperty("next") Map<String, String> next,
             @JsonProperty("phoneNumber") Optional<String> phoneNumber,
             @JsonProperty("success") boolean success) {
         Utils.checkNotNull(challengeMissing, "challengeMissing");
+        Utils.checkNotNull(evaluation, "evaluation");
         next = Utils.emptyMapIfNull(next);
+        Utils.checkNotNull(next, "next");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(success, "success");
         this.challengeMissing = challengeMissing;
+        this.evaluation = evaluation;
         this.next = next;
         this.phoneNumber = phoneNumber;
         this.success = success;
@@ -63,7 +74,8 @@ public class V3ValidateResponse {
             boolean challengeMissing,
             Map<String, String> next,
             boolean success) {
-        this(challengeMissing, next, Optional.empty(), success);
+        this(challengeMissing, Optional.empty(), next,
+            Optional.empty(), success);
     }
 
     /**
@@ -72,6 +84,15 @@ public class V3ValidateResponse {
     @JsonIgnore
     public boolean challengeMissing() {
         return challengeMissing;
+    }
+
+    /**
+     * The evaluation result for the policy
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, V3ValidateResponseEvaluation>> evaluation() {
+        return (Optional<Map<String, V3ValidateResponseEvaluation>>) evaluation;
     }
 
     /**
@@ -98,9 +119,10 @@ public class V3ValidateResponse {
         return success;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * True if a DOB or SSN needs to be passed in on the next step.
@@ -108,6 +130,25 @@ public class V3ValidateResponse {
     public V3ValidateResponse withChallengeMissing(boolean challengeMissing) {
         Utils.checkNotNull(challengeMissing, "challengeMissing");
         this.challengeMissing = challengeMissing;
+        return this;
+    }
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3ValidateResponse withEvaluation(Map<String, V3ValidateResponseEvaluation> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = Optional.ofNullable(evaluation);
+        return this;
+    }
+
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3ValidateResponse withEvaluation(Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = evaluation;
         return this;
     }
 
@@ -129,6 +170,7 @@ public class V3ValidateResponse {
         return this;
     }
 
+
     /**
      * The number of the mobile phone for which validation was performed.
      */
@@ -147,7 +189,6 @@ public class V3ValidateResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -158,43 +199,47 @@ public class V3ValidateResponse {
         }
         V3ValidateResponse other = (V3ValidateResponse) o;
         return 
-            Objects.deepEquals(this.challengeMissing, other.challengeMissing) &&
-            Objects.deepEquals(this.next, other.next) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            Objects.deepEquals(this.success, other.success);
+            Utils.enhancedDeepEquals(this.challengeMissing, other.challengeMissing) &&
+            Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
+            Utils.enhancedDeepEquals(this.next, other.next) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            challengeMissing,
-            next,
-            phoneNumber,
-            success);
+        return Utils.enhancedHash(
+            challengeMissing, evaluation, next,
+            phoneNumber, success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3ValidateResponse.class,
                 "challengeMissing", challengeMissing,
+                "evaluation", evaluation,
                 "next", next,
                 "phoneNumber", phoneNumber,
                 "success", success);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Boolean challengeMissing;
- 
+
+        private Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation = Optional.empty();
+
         private Map<String, String> next;
- 
+
         private Optional<String> phoneNumber = Optional.empty();
- 
+
         private Boolean success;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * True if a DOB or SSN needs to be passed in on the next step.
@@ -205,6 +250,26 @@ public class V3ValidateResponse {
             return this;
         }
 
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Map<String, V3ValidateResponseEvaluation> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = Optional.ofNullable(evaluation);
+            return this;
+        }
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = evaluation;
+            return this;
+        }
+
+
         /**
          * The next set of allowed calls in the same flow.
          */
@@ -213,6 +278,7 @@ public class V3ValidateResponse {
             this.next = next;
             return this;
         }
+
 
         /**
          * The number of the mobile phone for which validation was performed.
@@ -232,6 +298,7 @@ public class V3ValidateResponse {
             return this;
         }
 
+
         /**
          * True if the phone number was validated.
          */
@@ -240,13 +307,13 @@ public class V3ValidateResponse {
             this.success = success;
             return this;
         }
-        
+
         public V3ValidateResponse build() {
+
             return new V3ValidateResponse(
-                challengeMissing,
-                next,
-                phoneNumber,
-                success);
+                challengeMissing, evaluation, next,
+                phoneNumber, success);
         }
+
     }
 }

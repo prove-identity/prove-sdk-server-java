@@ -9,11 +9,10 @@ import com.prove.proveapi.utils.SpeakeasyMetadata;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3DisenrollIdentityRequest {
 
+public class V3DisenrollIdentityRequest {
     /**
      * A Prove-generated unique ID for a specific identity.
      */
@@ -57,9 +56,10 @@ public class V3DisenrollIdentityRequest {
         return clientRequestId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A Prove-generated unique ID for a specific identity.
@@ -79,6 +79,7 @@ public class V3DisenrollIdentityRequest {
         return this;
     }
 
+
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
@@ -88,7 +89,6 @@ public class V3DisenrollIdentityRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,15 +99,14 @@ public class V3DisenrollIdentityRequest {
         }
         V3DisenrollIdentityRequest other = (V3DisenrollIdentityRequest) o;
         return 
-            Objects.deepEquals(this.identityId, other.identityId) &&
-            Objects.deepEquals(this.clientRequestId, other.clientRequestId);
+            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
+            Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            identityId,
-            clientRequestId);
+        return Utils.enhancedHash(
+            identityId, clientRequestId);
     }
     
     @Override
@@ -116,16 +115,18 @@ public class V3DisenrollIdentityRequest {
                 "identityId", identityId,
                 "clientRequestId", clientRequestId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String identityId;
- 
+
         private Optional<String> clientRequestId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A Prove-generated unique ID for a specific identity.
@@ -135,6 +136,7 @@ public class V3DisenrollIdentityRequest {
             this.identityId = identityId;
             return this;
         }
+
 
         /**
          * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -153,11 +155,12 @@ public class V3DisenrollIdentityRequest {
             this.clientRequestId = clientRequestId;
             return this;
         }
-        
+
         public V3DisenrollIdentityRequest build() {
+
             return new V3DisenrollIdentityRequest(
-                identityId,
-                clientRequestId);
+                identityId, clientRequestId);
         }
+
     }
 }

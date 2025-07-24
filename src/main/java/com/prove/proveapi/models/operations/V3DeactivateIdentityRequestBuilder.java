@@ -3,7 +3,11 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3IdentityDeactivateRequest;
+import com.prove.proveapi.operations.V3DeactivateIdentityOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class V3DeactivateIdentityRequestBuilder {
 
     private String identityId;
     private Optional<? extends V3IdentityDeactivateRequest> v3IdentityDeactivateRequest = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3DeactivateIdentity sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3DeactivateIdentityRequestBuilder(SDKMethodInterfaces.MethodCallV3DeactivateIdentity sdk) {
-        this.sdk = sdk;
+    public V3DeactivateIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3DeactivateIdentityRequestBuilder identityId(String identityId) {
@@ -37,10 +41,21 @@ public class V3DeactivateIdentityRequestBuilder {
         return this;
     }
 
-    public V3DeactivateIdentityResponse call() throws Exception {
 
-        return sdk.v3DeactivateIdentity(
-            identityId,
+    private V3DeactivateIdentityRequest buildRequest() {
+
+        V3DeactivateIdentityRequest request = new V3DeactivateIdentityRequest(identityId,
             v3IdentityDeactivateRequest);
+
+        return request;
+    }
+
+    public V3DeactivateIdentityResponse call() throws Exception {
+        
+        RequestOperation<V3DeactivateIdentityRequest, V3DeactivateIdentityResponse> operation
+              = new V3DeactivateIdentityOperation(sdkConfiguration);
+        V3DeactivateIdentityRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

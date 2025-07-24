@@ -10,7 +10,6 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * V3EnrollIdentityResponse
@@ -18,7 +17,6 @@ import java.util.Objects;
  * <p>Response body for the V3 Enroll Identity method.
  */
 public class V3EnrollIdentityResponse {
-
     /**
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
      */
@@ -57,9 +55,10 @@ public class V3EnrollIdentityResponse {
         return success;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
@@ -79,7 +78,6 @@ public class V3EnrollIdentityResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +88,14 @@ public class V3EnrollIdentityResponse {
         }
         V3EnrollIdentityResponse other = (V3EnrollIdentityResponse) o;
         return 
-            Objects.deepEquals(this.identityId, other.identityId) &&
-            Objects.deepEquals(this.success, other.success);
+            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
+            Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            identityId,
-            success);
+        return Utils.enhancedHash(
+            identityId, success);
     }
     
     @Override
@@ -107,16 +104,18 @@ public class V3EnrollIdentityResponse {
                 "identityId", identityId,
                 "success", success);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String identityId;
- 
+
         private Boolean success;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
@@ -127,6 +126,7 @@ public class V3EnrollIdentityResponse {
             return this;
         }
 
+
         /**
          * If true, the request was successful and the identity was created.
          */
@@ -135,11 +135,12 @@ public class V3EnrollIdentityResponse {
             this.success = success;
             return this;
         }
-        
+
         public V3EnrollIdentityResponse build() {
+
             return new V3EnrollIdentityResponse(
-                identityId,
-                success);
+                identityId, success);
         }
+
     }
 }

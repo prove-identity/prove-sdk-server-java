@@ -11,16 +11,16 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3DeactivateIdentityRequest {
 
+public class V3DeactivateIdentityRequest {
     /**
      * A Prove-generated unique ID for a specific identity.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=identityId")
     private String identityId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends V3IdentityDeactivateRequest> v3IdentityDeactivateRequest;
@@ -54,9 +54,10 @@ public class V3DeactivateIdentityRequest {
         return (Optional<V3IdentityDeactivateRequest>) v3IdentityDeactivateRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A Prove-generated unique ID for a specific identity.
@@ -73,13 +74,13 @@ public class V3DeactivateIdentityRequest {
         return this;
     }
 
+
     public V3DeactivateIdentityRequest withV3IdentityDeactivateRequest(Optional<? extends V3IdentityDeactivateRequest> v3IdentityDeactivateRequest) {
         Utils.checkNotNull(v3IdentityDeactivateRequest, "v3IdentityDeactivateRequest");
         this.v3IdentityDeactivateRequest = v3IdentityDeactivateRequest;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +91,14 @@ public class V3DeactivateIdentityRequest {
         }
         V3DeactivateIdentityRequest other = (V3DeactivateIdentityRequest) o;
         return 
-            Objects.deepEquals(this.identityId, other.identityId) &&
-            Objects.deepEquals(this.v3IdentityDeactivateRequest, other.v3IdentityDeactivateRequest);
+            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
+            Utils.enhancedDeepEquals(this.v3IdentityDeactivateRequest, other.v3IdentityDeactivateRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            identityId,
-            v3IdentityDeactivateRequest);
+        return Utils.enhancedHash(
+            identityId, v3IdentityDeactivateRequest);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class V3DeactivateIdentityRequest {
                 "identityId", identityId,
                 "v3IdentityDeactivateRequest", v3IdentityDeactivateRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String identityId;
- 
+
         private Optional<? extends V3IdentityDeactivateRequest> v3IdentityDeactivateRequest = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A Prove-generated unique ID for a specific identity.
@@ -126,6 +128,7 @@ public class V3DeactivateIdentityRequest {
             this.identityId = identityId;
             return this;
         }
+
 
         public Builder v3IdentityDeactivateRequest(V3IdentityDeactivateRequest v3IdentityDeactivateRequest) {
             Utils.checkNotNull(v3IdentityDeactivateRequest, "v3IdentityDeactivateRequest");
@@ -138,11 +141,12 @@ public class V3DeactivateIdentityRequest {
             this.v3IdentityDeactivateRequest = v3IdentityDeactivateRequest;
             return this;
         }
-        
+
         public V3DeactivateIdentityRequest build() {
+
             return new V3DeactivateIdentityRequest(
-                identityId,
-                v3IdentityDeactivateRequest);
+                identityId, v3IdentityDeactivateRequest);
         }
+
     }
 }

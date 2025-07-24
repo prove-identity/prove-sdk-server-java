@@ -12,8 +12,8 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class DataSourceEmailAddressResponseInternal {
 
@@ -37,9 +37,10 @@ public class DataSourceEmailAddressResponseInternal {
         return emailAddress;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DataSourceEmailAddressResponseInternal withEmailAddress(boolean emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
@@ -47,13 +48,13 @@ public class DataSourceEmailAddressResponseInternal {
         return this;
     }
 
+
     public DataSourceEmailAddressResponseInternal withEmailAddress(Optional<Boolean> emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = emailAddress;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -64,12 +65,12 @@ public class DataSourceEmailAddressResponseInternal {
         }
         DataSourceEmailAddressResponseInternal other = (DataSourceEmailAddressResponseInternal) o;
         return 
-            Objects.deepEquals(this.emailAddress, other.emailAddress);
+            Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             emailAddress);
     }
     
@@ -78,14 +79,16 @@ public class DataSourceEmailAddressResponseInternal {
         return Utils.toString(DataSourceEmailAddressResponseInternal.class,
                 "emailAddress", emailAddress);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> emailAddress = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder emailAddress(boolean emailAddress) {
             Utils.checkNotNull(emailAddress, "emailAddress");
@@ -98,10 +101,12 @@ public class DataSourceEmailAddressResponseInternal {
             this.emailAddress = emailAddress;
             return this;
         }
-        
+
         public DataSourceEmailAddressResponseInternal build() {
+
             return new DataSourceEmailAddressResponseInternal(
                 emailAddress);
         }
+
     }
 }

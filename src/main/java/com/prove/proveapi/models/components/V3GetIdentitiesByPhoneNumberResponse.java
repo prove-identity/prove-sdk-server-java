@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -44,9 +43,10 @@ public class V3GetIdentitiesByPhoneNumberResponse {
         return (Optional<List<LookupIdentityItem>>) items;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3GetIdentitiesByPhoneNumberResponse withItems(List<LookupIdentityItem> items) {
         Utils.checkNotNull(items, "items");
@@ -54,13 +54,13 @@ public class V3GetIdentitiesByPhoneNumberResponse {
         return this;
     }
 
+
     public V3GetIdentitiesByPhoneNumberResponse withItems(Optional<? extends List<LookupIdentityItem>> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,12 +71,12 @@ public class V3GetIdentitiesByPhoneNumberResponse {
         }
         V3GetIdentitiesByPhoneNumberResponse other = (V3GetIdentitiesByPhoneNumberResponse) o;
         return 
-            Objects.deepEquals(this.items, other.items);
+            Utils.enhancedDeepEquals(this.items, other.items);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             items);
     }
     
@@ -85,14 +85,16 @@ public class V3GetIdentitiesByPhoneNumberResponse {
         return Utils.toString(V3GetIdentitiesByPhoneNumberResponse.class,
                 "items", items);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<LookupIdentityItem>> items = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder items(List<LookupIdentityItem> items) {
             Utils.checkNotNull(items, "items");
@@ -105,10 +107,12 @@ public class V3GetIdentitiesByPhoneNumberResponse {
             this.items = items;
             return this;
         }
-        
+
         public V3GetIdentitiesByPhoneNumberResponse build() {
+
             return new V3GetIdentitiesByPhoneNumberResponse(
                 items);
         }
+
     }
 }

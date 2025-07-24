@@ -9,10 +9,9 @@ import com.prove.proveapi.utils.SpeakeasyMetadata;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3TokenRequest {
-
     /**
      * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
@@ -68,9 +67,10 @@ public class V3TokenRequest {
         return grantType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
@@ -99,7 +99,6 @@ public class V3TokenRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -110,17 +109,15 @@ public class V3TokenRequest {
         }
         V3TokenRequest other = (V3TokenRequest) o;
         return 
-            Objects.deepEquals(this.clientId, other.clientId) &&
-            Objects.deepEquals(this.clientSecret, other.clientSecret) &&
-            Objects.deepEquals(this.grantType, other.grantType);
+            Utils.enhancedDeepEquals(this.clientId, other.clientId) &&
+            Utils.enhancedDeepEquals(this.clientSecret, other.clientSecret) &&
+            Utils.enhancedDeepEquals(this.grantType, other.grantType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            clientId,
-            clientSecret,
-            grantType);
+        return Utils.enhancedHash(
+            clientId, clientSecret, grantType);
     }
     
     @Override
@@ -130,18 +127,20 @@ public class V3TokenRequest {
                 "clientSecret", clientSecret,
                 "grantType", grantType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String clientId;
- 
+
         private String clientSecret;
- 
+
         private String grantType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
@@ -152,6 +151,7 @@ public class V3TokenRequest {
             return this;
         }
 
+
         /**
          * The client secret retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
          */
@@ -161,6 +161,7 @@ public class V3TokenRequest {
             return this;
         }
 
+
         /**
          * The grant type. This field only accepts `client_credentials`.
          */
@@ -169,12 +170,12 @@ public class V3TokenRequest {
             this.grantType = grantType;
             return this;
         }
-        
+
         public V3TokenRequest build() {
+
             return new V3TokenRequest(
-                clientId,
-                clientSecret,
-                grantType);
+                clientId, clientSecret, grantType);
         }
+
     }
 }

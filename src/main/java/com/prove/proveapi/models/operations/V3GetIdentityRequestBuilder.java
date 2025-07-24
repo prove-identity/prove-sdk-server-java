@@ -3,6 +3,10 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
+import com.prove.proveapi.operations.V3GetIdentityOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class V3GetIdentityRequestBuilder {
 
     private String identityId;
     private Optional<String> clientRequestId = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3GetIdentity sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3GetIdentityRequestBuilder(SDKMethodInterfaces.MethodCallV3GetIdentity sdk) {
-        this.sdk = sdk;
+    public V3GetIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3GetIdentityRequestBuilder identityId(String identityId) {
@@ -36,10 +40,21 @@ public class V3GetIdentityRequestBuilder {
         return this;
     }
 
-    public V3GetIdentityResponse call() throws Exception {
 
-        return sdk.v3GetIdentity(
-            identityId,
+    private V3GetIdentityRequest buildRequest() {
+
+        V3GetIdentityRequest request = new V3GetIdentityRequest(identityId,
             clientRequestId);
+
+        return request;
+    }
+
+    public V3GetIdentityResponse call() throws Exception {
+        
+        RequestOperation<V3GetIdentityRequest, V3GetIdentityResponse> operation
+              = new V3GetIdentityOperation(sdkConfiguration);
+        V3GetIdentityRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

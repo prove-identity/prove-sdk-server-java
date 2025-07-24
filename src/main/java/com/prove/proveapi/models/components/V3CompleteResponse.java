@@ -14,14 +14,22 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
+
 public class V3CompleteResponse {
+    /**
+     * The evaluation result for the policy
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("evaluation")
+    private Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("idv")
     private Optional<? extends IDVDataInternal> idv;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("kyc")
@@ -41,14 +49,18 @@ public class V3CompleteResponse {
 
     @JsonCreator
     public V3CompleteResponse(
+            @JsonProperty("evaluation") Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation,
             @JsonProperty("idv") Optional<? extends IDVDataInternal> idv,
             @JsonProperty("kyc") Optional<? extends KYCInternal> kyc,
             @JsonProperty("next") Map<String, String> next,
             @JsonProperty("success") boolean success) {
+        Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(idv, "idv");
         Utils.checkNotNull(kyc, "kyc");
         next = Utils.emptyMapIfNull(next);
+        Utils.checkNotNull(next, "next");
         Utils.checkNotNull(success, "success");
+        this.evaluation = evaluation;
         this.idv = idv;
         this.kyc = kyc;
         this.next = next;
@@ -58,7 +70,17 @@ public class V3CompleteResponse {
     public V3CompleteResponse(
             Map<String, String> next,
             boolean success) {
-        this(Optional.empty(), Optional.empty(), next, success);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            next, success);
+    }
+
+    /**
+     * The evaluation result for the policy
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, V3CompleteResponseEvaluation>> evaluation() {
+        return (Optional<Map<String, V3CompleteResponseEvaluation>>) evaluation;
     }
 
     @SuppressWarnings("unchecked")
@@ -89,15 +111,36 @@ public class V3CompleteResponse {
         return success;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3CompleteResponse withEvaluation(Map<String, V3CompleteResponseEvaluation> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = Optional.ofNullable(evaluation);
+        return this;
+    }
+
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3CompleteResponse withEvaluation(Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = evaluation;
+        return this;
+    }
 
     public V3CompleteResponse withIdv(IDVDataInternal idv) {
         Utils.checkNotNull(idv, "idv");
         this.idv = Optional.ofNullable(idv);
         return this;
     }
+
 
     public V3CompleteResponse withIdv(Optional<? extends IDVDataInternal> idv) {
         Utils.checkNotNull(idv, "idv");
@@ -110,6 +153,7 @@ public class V3CompleteResponse {
         this.kyc = Optional.ofNullable(kyc);
         return this;
     }
+
 
     public V3CompleteResponse withKyc(Optional<? extends KYCInternal> kyc) {
         Utils.checkNotNull(kyc, "kyc");
@@ -135,7 +179,6 @@ public class V3CompleteResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -146,43 +189,66 @@ public class V3CompleteResponse {
         }
         V3CompleteResponse other = (V3CompleteResponse) o;
         return 
-            Objects.deepEquals(this.idv, other.idv) &&
-            Objects.deepEquals(this.kyc, other.kyc) &&
-            Objects.deepEquals(this.next, other.next) &&
-            Objects.deepEquals(this.success, other.success);
+            Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
+            Utils.enhancedDeepEquals(this.idv, other.idv) &&
+            Utils.enhancedDeepEquals(this.kyc, other.kyc) &&
+            Utils.enhancedDeepEquals(this.next, other.next) &&
+            Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            idv,
-            kyc,
-            next,
-            success);
+        return Utils.enhancedHash(
+            evaluation, idv, kyc,
+            next, success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3CompleteResponse.class,
+                "evaluation", evaluation,
                 "idv", idv,
                 "kyc", kyc,
                 "next", next,
                 "success", success);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
+        private Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation = Optional.empty();
+
         private Optional<? extends IDVDataInternal> idv = Optional.empty();
- 
+
         private Optional<? extends KYCInternal> kyc = Optional.empty();
- 
+
         private Map<String, String> next;
- 
+
         private Boolean success;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Map<String, V3CompleteResponseEvaluation> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = Optional.ofNullable(evaluation);
+            return this;
+        }
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = evaluation;
+            return this;
+        }
+
 
         public Builder idv(IDVDataInternal idv) {
             Utils.checkNotNull(idv, "idv");
@@ -196,6 +262,7 @@ public class V3CompleteResponse {
             return this;
         }
 
+
         public Builder kyc(KYCInternal kyc) {
             Utils.checkNotNull(kyc, "kyc");
             this.kyc = Optional.ofNullable(kyc);
@@ -208,6 +275,7 @@ public class V3CompleteResponse {
             return this;
         }
 
+
         /**
          * The next set of allowed calls in the same flow.
          */
@@ -217,6 +285,7 @@ public class V3CompleteResponse {
             return this;
         }
 
+
         /**
          * True if the individual was verified successfully.
          */
@@ -225,13 +294,13 @@ public class V3CompleteResponse {
             this.success = success;
             return this;
         }
-        
+
         public V3CompleteResponse build() {
+
             return new V3CompleteResponse(
-                idv,
-                kyc,
-                next,
-                success);
+                evaluation, idv, kyc,
+                next, success);
         }
+
     }
 }

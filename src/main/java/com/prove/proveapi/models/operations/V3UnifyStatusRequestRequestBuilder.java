@@ -3,7 +3,11 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3UnifyStatusRequest;
+import com.prove.proveapi.operations.V3UnifyStatusRequestOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V3UnifyStatusRequestRequestBuilder {
 
     private Optional<? extends V3UnifyStatusRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3UnifyStatusRequest sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3UnifyStatusRequestRequestBuilder(SDKMethodInterfaces.MethodCallV3UnifyStatusRequest sdk) {
-        this.sdk = sdk;
+    public V3UnifyStatusRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3UnifyStatusRequestRequestBuilder request(V3UnifyStatusRequest request) {
@@ -30,8 +34,10 @@ public class V3UnifyStatusRequestRequestBuilder {
     }
 
     public V3UnifyStatusRequestResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V3UnifyStatusRequest>, V3UnifyStatusRequestResponse> operation
+              = new V3UnifyStatusRequestOperation(sdkConfiguration);
 
-        return sdk.v3UnifyStatusRequest(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

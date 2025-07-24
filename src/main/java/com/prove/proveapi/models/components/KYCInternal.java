@@ -14,14 +14,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class KYCInternal {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amlTypeLists")
     private Optional<? extends List<AmlTypeListResponseInternal>> amlTypeLists;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totalHits")
@@ -52,15 +53,17 @@ public class KYCInternal {
         return totalHits;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public KYCInternal withAmlTypeLists(List<AmlTypeListResponseInternal> amlTypeLists) {
         Utils.checkNotNull(amlTypeLists, "amlTypeLists");
         this.amlTypeLists = Optional.ofNullable(amlTypeLists);
         return this;
     }
+
 
     public KYCInternal withAmlTypeLists(Optional<? extends List<AmlTypeListResponseInternal>> amlTypeLists) {
         Utils.checkNotNull(amlTypeLists, "amlTypeLists");
@@ -74,13 +77,13 @@ public class KYCInternal {
         return this;
     }
 
+
     public KYCInternal withTotalHits(Optional<Long> totalHits) {
         Utils.checkNotNull(totalHits, "totalHits");
         this.totalHits = totalHits;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,15 +94,14 @@ public class KYCInternal {
         }
         KYCInternal other = (KYCInternal) o;
         return 
-            Objects.deepEquals(this.amlTypeLists, other.amlTypeLists) &&
-            Objects.deepEquals(this.totalHits, other.totalHits);
+            Utils.enhancedDeepEquals(this.amlTypeLists, other.amlTypeLists) &&
+            Utils.enhancedDeepEquals(this.totalHits, other.totalHits);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amlTypeLists,
-            totalHits);
+        return Utils.enhancedHash(
+            amlTypeLists, totalHits);
     }
     
     @Override
@@ -108,16 +110,18 @@ public class KYCInternal {
                 "amlTypeLists", amlTypeLists,
                 "totalHits", totalHits);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<AmlTypeListResponseInternal>> amlTypeLists = Optional.empty();
- 
+
         private Optional<Long> totalHits = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amlTypeLists(List<AmlTypeListResponseInternal> amlTypeLists) {
             Utils.checkNotNull(amlTypeLists, "amlTypeLists");
@@ -131,6 +135,7 @@ public class KYCInternal {
             return this;
         }
 
+
         public Builder totalHits(long totalHits) {
             Utils.checkNotNull(totalHits, "totalHits");
             this.totalHits = Optional.ofNullable(totalHits);
@@ -142,11 +147,12 @@ public class KYCInternal {
             this.totalHits = totalHits;
             return this;
         }
-        
+
         public KYCInternal build() {
+
             return new KYCInternal(
-                amlTypeLists,
-                totalHits);
+                amlTypeLists, totalHits);
         }
+
     }
 }

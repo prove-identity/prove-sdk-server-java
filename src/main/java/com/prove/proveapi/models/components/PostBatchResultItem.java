@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -20,7 +19,6 @@ import java.util.Optional;
  * <p>Represents a single identity item in the response.
  */
 public class PostBatchResultItem {
-
     /**
      * An error message that is returned if the identity cannot be successfully enrolled.
      */
@@ -65,9 +63,10 @@ public class PostBatchResultItem {
         return identityId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An error message that is returned if the identity cannot be successfully enrolled.
@@ -77,6 +76,7 @@ public class PostBatchResultItem {
         this.error = Optional.ofNullable(error);
         return this;
     }
+
 
     /**
      * An error message that is returned if the identity cannot be successfully enrolled.
@@ -96,6 +96,7 @@ public class PostBatchResultItem {
         return this;
     }
 
+
     /**
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
      */
@@ -105,7 +106,6 @@ public class PostBatchResultItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -116,15 +116,14 @@ public class PostBatchResultItem {
         }
         PostBatchResultItem other = (PostBatchResultItem) o;
         return 
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.identityId, other.identityId);
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.identityId, other.identityId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            error,
-            identityId);
+        return Utils.enhancedHash(
+            error, identityId);
     }
     
     @Override
@@ -133,16 +132,18 @@ public class PostBatchResultItem {
                 "error", error,
                 "identityId", identityId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> error = Optional.empty();
- 
+
         private Optional<String> identityId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An error message that is returned if the identity cannot be successfully enrolled.
@@ -162,6 +163,7 @@ public class PostBatchResultItem {
             return this;
         }
 
+
         /**
          * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
          */
@@ -179,11 +181,12 @@ public class PostBatchResultItem {
             this.identityId = identityId;
             return this;
         }
-        
+
         public PostBatchResultItem build() {
+
             return new PostBatchResultItem(
-                error,
-                identityId);
+                error, identityId);
         }
+
     }
 }

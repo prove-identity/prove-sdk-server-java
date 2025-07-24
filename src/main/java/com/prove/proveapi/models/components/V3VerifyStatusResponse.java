@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3VerifyStatusResponse {
 
+public class V3VerifyStatusResponse {
     /**
      * A unique ID that Prove generates to refer to a specific identity.
      */
@@ -61,7 +60,8 @@ public class V3VerifyStatusResponse {
             String possessionResult,
             String success,
             String verifyResult) {
-        this(Optional.empty(), possessionResult, success, verifyResult);
+        this(Optional.empty(), possessionResult, success,
+            verifyResult);
     }
 
     /**
@@ -96,9 +96,10 @@ public class V3VerifyStatusResponse {
         return verifyResult;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique ID that Prove generates to refer to a specific identity.
@@ -108,6 +109,7 @@ public class V3VerifyStatusResponse {
         this.identityId = Optional.ofNullable(identityId);
         return this;
     }
+
 
     /**
      * A unique ID that Prove generates to refer to a specific identity.
@@ -145,7 +147,6 @@ public class V3VerifyStatusResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -156,18 +157,16 @@ public class V3VerifyStatusResponse {
         }
         V3VerifyStatusResponse other = (V3VerifyStatusResponse) o;
         return 
-            Objects.deepEquals(this.identityId, other.identityId) &&
-            Objects.deepEquals(this.possessionResult, other.possessionResult) &&
-            Objects.deepEquals(this.success, other.success) &&
-            Objects.deepEquals(this.verifyResult, other.verifyResult);
+            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
+            Utils.enhancedDeepEquals(this.possessionResult, other.possessionResult) &&
+            Utils.enhancedDeepEquals(this.success, other.success) &&
+            Utils.enhancedDeepEquals(this.verifyResult, other.verifyResult);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            identityId,
-            possessionResult,
-            success,
+        return Utils.enhancedHash(
+            identityId, possessionResult, success,
             verifyResult);
     }
     
@@ -179,20 +178,22 @@ public class V3VerifyStatusResponse {
                 "success", success,
                 "verifyResult", verifyResult);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> identityId = Optional.empty();
- 
+
         private String possessionResult;
- 
+
         private String success;
- 
+
         private String verifyResult;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique ID that Prove generates to refer to a specific identity.
@@ -212,6 +213,7 @@ public class V3VerifyStatusResponse {
             return this;
         }
 
+
         /**
          * The result of the possession check. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
          */
@@ -220,6 +222,7 @@ public class V3VerifyStatusResponse {
             this.possessionResult = possessionResult;
             return this;
         }
+
 
         /**
          * The result of the combination of Verify Result and Possession Result. Possible values are `true`, `pending`, and `false`. The success value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
@@ -230,6 +233,7 @@ public class V3VerifyStatusResponse {
             return this;
         }
 
+
         /**
          * The result of the Verify process. Possible values are `success`, `pending`, `failed`, and `not_applicable`.
          */
@@ -238,13 +242,13 @@ public class V3VerifyStatusResponse {
             this.verifyResult = verifyResult;
             return this;
         }
-        
+
         public V3VerifyStatusResponse build() {
+
             return new V3VerifyStatusResponse(
-                identityId,
-                possessionResult,
-                success,
+                identityId, possessionResult, success,
                 verifyResult);
         }
+
     }
 }

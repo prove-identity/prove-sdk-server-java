@@ -12,8 +12,8 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class DataSourceIdentifiersResponseInternal {
 
@@ -21,9 +21,11 @@ public class DataSourceIdentifiersResponseInternal {
     @JsonProperty("dob")
     private Optional<Boolean> dob;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("last4")
     private Optional<Boolean> last4;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ssn")
@@ -61,15 +63,17 @@ public class DataSourceIdentifiersResponseInternal {
         return ssn;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DataSourceIdentifiersResponseInternal withDob(boolean dob) {
         Utils.checkNotNull(dob, "dob");
         this.dob = Optional.ofNullable(dob);
         return this;
     }
+
 
     public DataSourceIdentifiersResponseInternal withDob(Optional<Boolean> dob) {
         Utils.checkNotNull(dob, "dob");
@@ -83,6 +87,7 @@ public class DataSourceIdentifiersResponseInternal {
         return this;
     }
 
+
     public DataSourceIdentifiersResponseInternal withLast4(Optional<Boolean> last4) {
         Utils.checkNotNull(last4, "last4");
         this.last4 = last4;
@@ -95,13 +100,13 @@ public class DataSourceIdentifiersResponseInternal {
         return this;
     }
 
+
     public DataSourceIdentifiersResponseInternal withSsn(Optional<Boolean> ssn) {
         Utils.checkNotNull(ssn, "ssn");
         this.ssn = ssn;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,17 +117,15 @@ public class DataSourceIdentifiersResponseInternal {
         }
         DataSourceIdentifiersResponseInternal other = (DataSourceIdentifiersResponseInternal) o;
         return 
-            Objects.deepEquals(this.dob, other.dob) &&
-            Objects.deepEquals(this.last4, other.last4) &&
-            Objects.deepEquals(this.ssn, other.ssn);
+            Utils.enhancedDeepEquals(this.dob, other.dob) &&
+            Utils.enhancedDeepEquals(this.last4, other.last4) &&
+            Utils.enhancedDeepEquals(this.ssn, other.ssn);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            dob,
-            last4,
-            ssn);
+        return Utils.enhancedHash(
+            dob, last4, ssn);
     }
     
     @Override
@@ -132,18 +135,20 @@ public class DataSourceIdentifiersResponseInternal {
                 "last4", last4,
                 "ssn", ssn);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> dob = Optional.empty();
- 
+
         private Optional<Boolean> last4 = Optional.empty();
- 
+
         private Optional<Boolean> ssn = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder dob(boolean dob) {
             Utils.checkNotNull(dob, "dob");
@@ -157,6 +162,7 @@ public class DataSourceIdentifiersResponseInternal {
             return this;
         }
 
+
         public Builder last4(boolean last4) {
             Utils.checkNotNull(last4, "last4");
             this.last4 = Optional.ofNullable(last4);
@@ -169,6 +175,7 @@ public class DataSourceIdentifiersResponseInternal {
             return this;
         }
 
+
         public Builder ssn(boolean ssn) {
             Utils.checkNotNull(ssn, "ssn");
             this.ssn = Optional.ofNullable(ssn);
@@ -180,12 +187,12 @@ public class DataSourceIdentifiersResponseInternal {
             this.ssn = ssn;
             return this;
         }
-        
+
         public DataSourceIdentifiersResponseInternal build() {
+
             return new DataSourceIdentifiersResponseInternal(
-                dob,
-                last4,
-                ssn);
+                dob, last4, ssn);
         }
+
     }
 }

@@ -3,7 +3,11 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3BatchEnrollIdentitiesRequest;
+import com.prove.proveapi.operations.V3BatchEnrollIdentitiesOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V3BatchEnrollIdentitiesRequestBuilder {
 
     private Optional<? extends V3BatchEnrollIdentitiesRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3BatchEnrollIdentities sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3BatchEnrollIdentitiesRequestBuilder(SDKMethodInterfaces.MethodCallV3BatchEnrollIdentities sdk) {
-        this.sdk = sdk;
+    public V3BatchEnrollIdentitiesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3BatchEnrollIdentitiesRequestBuilder request(V3BatchEnrollIdentitiesRequest request) {
@@ -30,8 +34,10 @@ public class V3BatchEnrollIdentitiesRequestBuilder {
     }
 
     public V3BatchEnrollIdentitiesResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V3BatchEnrollIdentitiesRequest>, V3BatchEnrollIdentitiesResponse> operation
+              = new V3BatchEnrollIdentitiesOperation(sdkConfiguration);
 
-        return sdk.v3BatchEnrollIdentities(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

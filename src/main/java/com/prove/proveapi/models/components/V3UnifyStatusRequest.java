@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3UnifyStatusRequest {
 
+public class V3UnifyStatusRequest {
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
@@ -80,9 +79,10 @@ public class V3UnifyStatusRequest {
         return phoneNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -92,6 +92,7 @@ public class V3UnifyStatusRequest {
         this.clientRequestId = Optional.ofNullable(clientRequestId);
         return this;
     }
+
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -112,6 +113,7 @@ public class V3UnifyStatusRequest {
         return this;
     }
 
+
     /**
      * The unique ID that Prove generates for the flow. It is returned
      * from the v3/unify endpoint and cannot be reused outside of a single flow.
@@ -131,6 +133,7 @@ public class V3UnifyStatusRequest {
         return this;
     }
 
+
     /**
      * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
      */
@@ -140,7 +143,6 @@ public class V3UnifyStatusRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -151,17 +153,15 @@ public class V3UnifyStatusRequest {
         }
         V3UnifyStatusRequest other = (V3UnifyStatusRequest) o;
         return 
-            Objects.deepEquals(this.clientRequestId, other.clientRequestId) &&
-            Objects.deepEquals(this.correlationId, other.correlationId) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
+            Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            clientRequestId,
-            correlationId,
-            phoneNumber);
+        return Utils.enhancedHash(
+            clientRequestId, correlationId, phoneNumber);
     }
     
     @Override
@@ -171,18 +171,20 @@ public class V3UnifyStatusRequest {
                 "correlationId", correlationId,
                 "phoneNumber", phoneNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> clientRequestId = Optional.empty();
- 
+
         private Optional<String> correlationId = Optional.empty();
- 
+
         private Optional<String> phoneNumber = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -201,6 +203,7 @@ public class V3UnifyStatusRequest {
             this.clientRequestId = clientRequestId;
             return this;
         }
+
 
         /**
          * The unique ID that Prove generates for the flow. It is returned
@@ -222,6 +225,7 @@ public class V3UnifyStatusRequest {
             return this;
         }
 
+
         /**
          * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
          */
@@ -239,12 +243,12 @@ public class V3UnifyStatusRequest {
             this.phoneNumber = phoneNumber;
             return this;
         }
-        
+
         public V3UnifyStatusRequest build() {
+
             return new V3UnifyStatusRequest(
-                clientRequestId,
-                correlationId,
-                phoneNumber);
+                clientRequestId, correlationId, phoneNumber);
         }
+
     }
 }

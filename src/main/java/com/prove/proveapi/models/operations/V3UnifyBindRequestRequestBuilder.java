@@ -3,7 +3,11 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3UnifyBindRequest;
+import com.prove.proveapi.operations.V3UnifyBindRequestOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V3UnifyBindRequestRequestBuilder {
 
     private Optional<? extends V3UnifyBindRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3UnifyBindRequest sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3UnifyBindRequestRequestBuilder(SDKMethodInterfaces.MethodCallV3UnifyBindRequest sdk) {
-        this.sdk = sdk;
+    public V3UnifyBindRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3UnifyBindRequestRequestBuilder request(V3UnifyBindRequest request) {
@@ -30,8 +34,10 @@ public class V3UnifyBindRequestRequestBuilder {
     }
 
     public V3UnifyBindRequestResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V3UnifyBindRequest>, V3UnifyBindRequestResponse> operation
+              = new V3UnifyBindRequestOperation(sdkConfiguration);
 
-        return sdk.v3UnifyBindRequest(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

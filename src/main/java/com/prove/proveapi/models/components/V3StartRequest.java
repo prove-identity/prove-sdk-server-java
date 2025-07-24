@@ -12,13 +12,12 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3StartRequest {
 
+public class V3StartRequest {
     /**
-     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowOTPRetry")
@@ -39,7 +38,7 @@ public class V3StartRequest {
     private Optional<String> emailAddress;
 
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("finalTargetUrl")
@@ -118,11 +117,13 @@ public class V3StartRequest {
     
     public V3StartRequest(
             String flowType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), flowType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), flowType, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
-     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     @JsonIgnore
     public Optional<Boolean> allowOTPRetry() {
@@ -146,7 +147,7 @@ public class V3StartRequest {
     }
 
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
      */
     @JsonIgnore
     public Optional<String> finalTargetUrl() {
@@ -199,12 +200,13 @@ public class V3StartRequest {
         return ssn;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
-     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     public V3StartRequest withAllowOTPRetry(boolean allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -212,8 +214,9 @@ public class V3StartRequest {
         return this;
     }
 
+
     /**
-     * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
      */
     public V3StartRequest withAllowOTPRetry(Optional<Boolean> allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -229,6 +232,7 @@ public class V3StartRequest {
         this.dob = Optional.ofNullable(dob);
         return this;
     }
+
 
     /**
      * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
@@ -248,6 +252,7 @@ public class V3StartRequest {
         return this;
     }
 
+
     /**
      * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
@@ -258,7 +263,7 @@ public class V3StartRequest {
     }
 
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
      */
     public V3StartRequest withFinalTargetUrl(String finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -266,8 +271,9 @@ public class V3StartRequest {
         return this;
     }
 
+
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
      */
     public V3StartRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -293,6 +299,7 @@ public class V3StartRequest {
         return this;
     }
 
+
     /**
      * The IP address of the mobile device. Acceptable characters are: numeric with symbols ':.'.
      */
@@ -310,6 +317,7 @@ public class V3StartRequest {
         this.phoneNumber = Optional.ofNullable(phoneNumber);
         return this;
     }
+
 
     /**
      * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill) and [Prove Identity Implementation guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity) for situations where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
@@ -335,6 +343,7 @@ public class V3StartRequest {
         return this;
     }
 
+
     /**
      * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
      * 
@@ -359,6 +368,7 @@ public class V3StartRequest {
         return this;
     }
 
+
     /**
      * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
      */
@@ -368,7 +378,6 @@ public class V3StartRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -379,29 +388,23 @@ public class V3StartRequest {
         }
         V3StartRequest other = (V3StartRequest) o;
         return 
-            Objects.deepEquals(this.allowOTPRetry, other.allowOTPRetry) &&
-            Objects.deepEquals(this.dob, other.dob) &&
-            Objects.deepEquals(this.emailAddress, other.emailAddress) &&
-            Objects.deepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
-            Objects.deepEquals(this.flowType, other.flowType) &&
-            Objects.deepEquals(this.ipAddress, other.ipAddress) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            Objects.deepEquals(this.smsMessage, other.smsMessage) &&
-            Objects.deepEquals(this.ssn, other.ssn);
+            Utils.enhancedDeepEquals(this.allowOTPRetry, other.allowOTPRetry) &&
+            Utils.enhancedDeepEquals(this.dob, other.dob) &&
+            Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
+            Utils.enhancedDeepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
+            Utils.enhancedDeepEquals(this.flowType, other.flowType) &&
+            Utils.enhancedDeepEquals(this.ipAddress, other.ipAddress) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.smsMessage, other.smsMessage) &&
+            Utils.enhancedDeepEquals(this.ssn, other.ssn);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            allowOTPRetry,
-            dob,
-            emailAddress,
-            finalTargetUrl,
-            flowType,
-            ipAddress,
-            phoneNumber,
-            smsMessage,
-            ssn);
+        return Utils.enhancedHash(
+            allowOTPRetry, dob, emailAddress,
+            finalTargetUrl, flowType, ipAddress,
+            phoneNumber, smsMessage, ssn);
     }
     
     @Override
@@ -417,33 +420,35 @@ public class V3StartRequest {
                 "smsMessage", smsMessage,
                 "ssn", ssn);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> allowOTPRetry = Optional.empty();
- 
+
         private Optional<String> dob = Optional.empty();
- 
+
         private Optional<String> emailAddress = Optional.empty();
- 
+
         private Optional<String> finalTargetUrl = Optional.empty();
- 
+
         private String flowType;
- 
+
         private Optional<String> ipAddress = Optional.empty();
- 
+
         private Optional<String> phoneNumber = Optional.empty();
- 
+
         private Optional<String> smsMessage = Optional.empty();
- 
+
         private Optional<String> ssn = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
 
+
         /**
-         * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
+         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(boolean allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -452,13 +457,14 @@ public class V3StartRequest {
         }
 
         /**
-         * If true, the customer can re-enter the OTP pin up to three times. Code must also be implemented. See client-side SDK guide for more details.
+         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(Optional<Boolean> allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
             this.allowOTPRetry = allowOTPRetry;
             return this;
         }
+
 
         /**
          * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
@@ -478,6 +484,7 @@ public class V3StartRequest {
             return this;
         }
 
+
         /**
          * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
          */
@@ -496,8 +503,9 @@ public class V3StartRequest {
             return this;
         }
 
+
         /**
-         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
          */
         public Builder finalTargetUrl(String finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -506,13 +514,14 @@ public class V3StartRequest {
         }
 
         /**
-         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
          */
         public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
             this.finalTargetUrl = finalTargetUrl;
             return this;
         }
+
 
         /**
          * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native apps and mobile web.
@@ -522,6 +531,7 @@ public class V3StartRequest {
             this.flowType = flowType;
             return this;
         }
+
 
         /**
          * The IP address of the mobile device. Acceptable characters are: numeric with symbols ':.'.
@@ -541,6 +551,7 @@ public class V3StartRequest {
             return this;
         }
 
+
         /**
          * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill) and [Prove Identity Implementation guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity) for situations where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
          */
@@ -558,6 +569,7 @@ public class V3StartRequest {
             this.phoneNumber = phoneNumber;
             return this;
         }
+
 
         /**
          * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
@@ -589,6 +601,7 @@ public class V3StartRequest {
             return this;
         }
 
+
         /**
          * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
          */
@@ -606,18 +619,14 @@ public class V3StartRequest {
             this.ssn = ssn;
             return this;
         }
-        
+
         public V3StartRequest build() {
+
             return new V3StartRequest(
-                allowOTPRetry,
-                dob,
-                emailAddress,
-                finalTargetUrl,
-                flowType,
-                ipAddress,
-                phoneNumber,
-                smsMessage,
-                ssn);
+                allowOTPRetry, dob, emailAddress,
+                finalTargetUrl, flowType, ipAddress,
+                phoneNumber, smsMessage, ssn);
         }
+
     }
 }

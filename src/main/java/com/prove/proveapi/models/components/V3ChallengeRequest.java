@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3ChallengeRequest {
 
+public class V3ChallengeRequest {
     /**
      * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
      */
@@ -78,9 +77,10 @@ public class V3ChallengeRequest {
         return ssn;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
@@ -100,6 +100,7 @@ public class V3ChallengeRequest {
         return this;
     }
 
+
     /**
      * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
      */
@@ -118,6 +119,7 @@ public class V3ChallengeRequest {
         return this;
     }
 
+
     /**
      * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
@@ -127,7 +129,6 @@ public class V3ChallengeRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,17 +139,15 @@ public class V3ChallengeRequest {
         }
         V3ChallengeRequest other = (V3ChallengeRequest) o;
         return 
-            Objects.deepEquals(this.correlationId, other.correlationId) &&
-            Objects.deepEquals(this.dob, other.dob) &&
-            Objects.deepEquals(this.ssn, other.ssn);
+            Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
+            Utils.enhancedDeepEquals(this.dob, other.dob) &&
+            Utils.enhancedDeepEquals(this.ssn, other.ssn);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            correlationId,
-            dob,
-            ssn);
+        return Utils.enhancedHash(
+            correlationId, dob, ssn);
     }
     
     @Override
@@ -158,18 +157,20 @@ public class V3ChallengeRequest {
                 "dob", dob,
                 "ssn", ssn);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String correlationId;
- 
+
         private Optional<String> dob = Optional.empty();
- 
+
         private Optional<String> ssn = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
@@ -179,6 +180,7 @@ public class V3ChallengeRequest {
             this.correlationId = correlationId;
             return this;
         }
+
 
         /**
          * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
@@ -198,6 +200,7 @@ public class V3ChallengeRequest {
             return this;
         }
 
+
         /**
          * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
          */
@@ -215,12 +218,12 @@ public class V3ChallengeRequest {
             this.ssn = ssn;
             return this;
         }
-        
+
         public V3ChallengeRequest build() {
+
             return new V3ChallengeRequest(
-                correlationId,
-                dob,
-                ssn);
+                correlationId, dob, ssn);
         }
+
     }
 }

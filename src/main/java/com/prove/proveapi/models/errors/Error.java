@@ -14,21 +14,20 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 @SuppressWarnings("serial")
 public class Error extends RuntimeException {
-
     /**
-     * Code is an internal error code that describes the problem category of the request.
+     * An error code that describes the problem category of the request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
     private Optional<Long> code;
 
     /**
-     * Message is an error message describing the problem with the request.
+     * The error message describing the problem with the request.
      */
     @JsonProperty("message")
     private String message;
@@ -37,7 +36,7 @@ public class Error extends RuntimeException {
     public Error(
             @JsonProperty("code") Optional<Long> code,
             @JsonProperty("message") String message) {
-        super(message);
+        super("API error occurred");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(message, "message");
         this.code = code;
@@ -50,7 +49,7 @@ public class Error extends RuntimeException {
     }
 
     /**
-     * Code is an internal error code that describes the problem category of the request.
+     * An error code that describes the problem category of the request.
      */
     @JsonIgnore
     public Optional<Long> code() {
@@ -58,7 +57,7 @@ public class Error extends RuntimeException {
     }
 
     /**
-     * Message is an error message describing the problem with the request.
+     * The error message describing the problem with the request.
      */
     @JsonIgnore
     public String message() {
@@ -71,12 +70,13 @@ public class Error extends RuntimeException {
         return Utils.valueOrNull(message);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
-     * Code is an internal error code that describes the problem category of the request.
+     * An error code that describes the problem category of the request.
      */
     public Error withCode(long code) {
         Utils.checkNotNull(code, "code");
@@ -84,8 +84,9 @@ public class Error extends RuntimeException {
         return this;
     }
 
+
     /**
-     * Code is an internal error code that describes the problem category of the request.
+     * An error code that describes the problem category of the request.
      */
     public Error withCode(Optional<Long> code) {
         Utils.checkNotNull(code, "code");
@@ -94,7 +95,7 @@ public class Error extends RuntimeException {
     }
 
     /**
-     * Message is an error message describing the problem with the request.
+     * The error message describing the problem with the request.
      */
     public Error withMessage(String message) {
         Utils.checkNotNull(message, "message");
@@ -102,7 +103,6 @@ public class Error extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -113,15 +113,14 @@ public class Error extends RuntimeException {
         }
         Error other = (Error) o;
         return 
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.message, other.message);
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.message, other.message);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            code,
-            message);
+        return Utils.enhancedHash(
+            code, message);
     }
     
     @Override
@@ -130,19 +129,21 @@ public class Error extends RuntimeException {
                 "code", code,
                 "message", message);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> code = Optional.empty();
- 
+
         private String message;
-        
+
         private Builder() {
           // force use of static builder() method
         }
 
+
         /**
-         * Code is an internal error code that describes the problem category of the request.
+         * An error code that describes the problem category of the request.
          */
         public Builder code(long code) {
             Utils.checkNotNull(code, "code");
@@ -151,7 +152,7 @@ public class Error extends RuntimeException {
         }
 
         /**
-         * Code is an internal error code that describes the problem category of the request.
+         * An error code that describes the problem category of the request.
          */
         public Builder code(Optional<Long> code) {
             Utils.checkNotNull(code, "code");
@@ -159,20 +160,22 @@ public class Error extends RuntimeException {
             return this;
         }
 
+
         /**
-         * Message is an error message describing the problem with the request.
+         * The error message describing the problem with the request.
          */
         public Builder message(String message) {
             Utils.checkNotNull(message, "message");
             this.message = message;
             return this;
         }
-        
+
         public Error build() {
+
             return new Error(
-                code,
-                message);
+                code, message);
         }
+
     }
 }
 

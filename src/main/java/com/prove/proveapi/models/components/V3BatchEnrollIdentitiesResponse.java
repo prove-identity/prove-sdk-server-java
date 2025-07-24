@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -44,9 +43,10 @@ public class V3BatchEnrollIdentitiesResponse {
         return (Optional<List<PostBatchResultItem>>) results;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3BatchEnrollIdentitiesResponse withResults(List<PostBatchResultItem> results) {
         Utils.checkNotNull(results, "results");
@@ -54,13 +54,13 @@ public class V3BatchEnrollIdentitiesResponse {
         return this;
     }
 
+
     public V3BatchEnrollIdentitiesResponse withResults(Optional<? extends List<PostBatchResultItem>> results) {
         Utils.checkNotNull(results, "results");
         this.results = results;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,12 +71,12 @@ public class V3BatchEnrollIdentitiesResponse {
         }
         V3BatchEnrollIdentitiesResponse other = (V3BatchEnrollIdentitiesResponse) o;
         return 
-            Objects.deepEquals(this.results, other.results);
+            Utils.enhancedDeepEquals(this.results, other.results);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             results);
     }
     
@@ -85,14 +85,16 @@ public class V3BatchEnrollIdentitiesResponse {
         return Utils.toString(V3BatchEnrollIdentitiesResponse.class,
                 "results", results);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<PostBatchResultItem>> results = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder results(List<PostBatchResultItem> results) {
             Utils.checkNotNull(results, "results");
@@ -105,10 +107,12 @@ public class V3BatchEnrollIdentitiesResponse {
             this.results = results;
             return this;
         }
-        
+
         public V3BatchEnrollIdentitiesResponse build() {
+
             return new V3BatchEnrollIdentitiesResponse(
                 results);
         }
+
     }
 }

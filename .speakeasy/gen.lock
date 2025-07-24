@@ -1,21 +1,21 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: cf1dd35d1f8117dbcb3ce13af5fce2c5
+  docChecksum: 610a749bf5a5ed321818c86cbc7d0664
   docVersion: 1.0.0
-  speakeasyVersion: 1.567.2
-  generationVersion: 2.632.1
-  releaseVersion: 0.16.2
-  configChecksum: 843d7d2c575099459f6b6e7d4886f276
+  speakeasyVersion: 1.588.1
+  generationVersion: 2.663.0
+  releaseVersion: 0.17.0
+  configChecksum: 7d6b658abcb662963334290c52d8c625
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.39.0
-    examples: 2.81.5
+    core: 3.45.1
+    examples: 2.81.6
     flattening: 2.81.1
-    globalSecurity: 2.82.8
+    globalSecurity: 2.83.0
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
     oauth2ClientCredentials: 0.3.2
@@ -31,6 +31,7 @@ generatedFiles:
   - docs/models/components/DataSourceIdentifiersResponseInternal.md
   - docs/models/components/DataSourceInternal.md
   - docs/models/components/DataSourceNameResponseInternal.md
+  - docs/models/components/Evaluation.md
   - docs/models/components/GetBatchIdentityItem.md
   - docs/models/components/IDVDataInternal.md
   - docs/models/components/IdentityItem.md
@@ -52,6 +53,7 @@ generatedFiles:
   - docs/models/components/V3CompleteIndividualRequest.md
   - docs/models/components/V3CompleteRequest.md
   - docs/models/components/V3CompleteResponse.md
+  - docs/models/components/V3CompleteResponseEvaluation.md
   - docs/models/components/V3DeactivateIdentityResponse.md
   - docs/models/components/V3DisenrollIdentityResponse.md
   - docs/models/components/V3EnrollIdentityRequest.md
@@ -71,11 +73,13 @@ generatedFiles:
   - docs/models/components/V3UnifyStatusResponse.md
   - docs/models/components/V3ValidateRequest.md
   - docs/models/components/V3ValidateResponse.md
+  - docs/models/components/V3ValidateResponseEvaluation.md
   - docs/models/components/V3VerifyRequest.md
   - docs/models/components/V3VerifyResponse.md
   - docs/models/components/V3VerifyStatusRequest.md
   - docs/models/components/V3VerifyStatusResponse.md
   - docs/models/errors/Error.md
+  - docs/models/errors/Error400.md
   - docs/models/errors/Error401.md
   - docs/models/errors/Error403.md
   - docs/models/operations/V3ActivateIdentityRequest.md
@@ -123,6 +127,7 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/DataSourceIdentifiersResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceInternal.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceNameResponseInternal.java
+  - src/main/java/com/prove/proveapi/models/components/Evaluation.java
   - src/main/java/com/prove/proveapi/models/components/GetBatchIdentityItem.java
   - src/main/java/com/prove/proveapi/models/components/IDVDataInternal.java
   - src/main/java/com/prove/proveapi/models/components/IdentityItem.java
@@ -144,6 +149,7 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/V3CompleteIndividualRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3CompleteResponseEvaluation.java
   - src/main/java/com/prove/proveapi/models/components/V3DeactivateIdentityResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3DisenrollIdentityResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3EnrollIdentityRequest.java
@@ -163,16 +169,17 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/V3UnifyStatusResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3ValidateRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3ValidateResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3ValidateResponseEvaluation.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyStatusRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyStatusResponse.java
   - src/main/java/com/prove/proveapi/models/errors/AuthException.java
   - src/main/java/com/prove/proveapi/models/errors/Error.java
+  - src/main/java/com/prove/proveapi/models/errors/Error400.java
   - src/main/java/com/prove/proveapi/models/errors/Error401.java
   - src/main/java/com/prove/proveapi/models/errors/Error403.java
   - src/main/java/com/prove/proveapi/models/errors/SDKError.java
-  - src/main/java/com/prove/proveapi/models/operations/SDKMethodInterfaces.java
   - src/main/java/com/prove/proveapi/models/operations/V3ActivateIdentityRequest.java
   - src/main/java/com/prove/proveapi/models/operations/V3ActivateIdentityRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3ActivateIdentityResponse.java
@@ -215,16 +222,38 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/operations/V3VerifyRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3VerifyStatusRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3VerifyStatusRequestResponse.java
+  - src/main/java/com/prove/proveapi/operations/Operations.java
+  - src/main/java/com/prove/proveapi/operations/V3ActivateIdentityOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3BatchEnrollIdentitiesOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3BatchGetIdentitiesOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3ChallengeRequestOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3CompleteRequestOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3DeactivateIdentityOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3DisenrollIdentityOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3EnrollIdentityOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3GetIdentitiesByPhoneNumberOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3GetIdentityOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3StartRequestOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3TokenRequestOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3UnifyBindRequestOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3UnifyRequestOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3UnifyStatusRequestOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3ValidateRequestOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3VerifyRequestOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3VerifyStatusRequestOperation.java
   - src/main/java/com/prove/proveapi/utils/BackoffStrategy.java
   - src/main/java/com/prove/proveapi/utils/BigDecimalString.java
   - src/main/java/com/prove/proveapi/utils/BigIntegerString.java
   - src/main/java/com/prove/proveapi/utils/Constants.java
+  - src/main/java/com/prove/proveapi/utils/CopiableInputStream.java
   - src/main/java/com/prove/proveapi/utils/Deserializers.java
   - src/main/java/com/prove/proveapi/utils/EventStream.java
   - src/main/java/com/prove/proveapi/utils/EventStreamLineReader.java
   - src/main/java/com/prove/proveapi/utils/EventStreamMessage.java
   - src/main/java/com/prove/proveapi/utils/EventStreamReader.java
+  - src/main/java/com/prove/proveapi/utils/Exceptions.java
   - src/main/java/com/prove/proveapi/utils/FormMetadata.java
+  - src/main/java/com/prove/proveapi/utils/Globals.java
   - src/main/java/com/prove/proveapi/utils/HTTPClient.java
   - src/main/java/com/prove/proveapi/utils/HTTPRequest.java
   - src/main/java/com/prove/proveapi/utils/HasSecurity.java
@@ -270,7 +299,7 @@ examples:
         "200":
           application/json: {"access_token": "eyJ...", "expires_in": 3600, "refresh_expires_in": 3600, "refresh_token": "eyJ...", "token_type": "Bearer"}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "500":
@@ -281,9 +310,9 @@ examples:
         application/json: {"correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "dob": "1981-01", "ssn": "0596"}
       responses:
         "200":
-          application/json: {"individual": {"addresses": [{"address": "39 South Trail", "city": "San Antonio", "extendedAddress": "Apt 23", "postalCode": "78285", "region": "TX"}, {"address": "4861 Jay Junction", "city": "Boston", "extendedAddress": "Apt 78", "postalCode": "02208", "region": "MS"}], "dob": "1981-01-17", "emailAddresses": ["jdoe@example.com", "dsmith@example.com"], "firstName": "Tod", "lastName": "Weedall", "ssn": "265228370"}, "next": {"v3-complete": "/v3/complete"}, "success": true}
+          application/json: {"evaluation": {"key": {}}, "individual": {"addresses": [{"address": "39 South Trail", "city": "San Antonio", "extendedAddress": "Apt 23", "postalCode": "78285", "region": "TX"}, {"address": "4861 Jay Junction", "city": "Boston", "extendedAddress": "Apt 78", "postalCode": "02208", "region": "MS"}], "dob": "1981-01-17", "emailAddresses": ["jdoe@example.com", "dsmith@example.com"], "firstName": "Tod", "lastName": "Weedall", "ssn": "265228370"}, "next": {"v3-complete": "/v3/complete"}, "success": true}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -329,7 +358,7 @@ examples:
         "200":
           application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "next": {"v3-validate": "/v3/validate"}}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -344,7 +373,7 @@ examples:
         "200":
           application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "success": "pending"}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -359,7 +388,7 @@ examples:
         "200":
           application/json: {"phoneNumber": "2001004011", "success": "true"}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -374,7 +403,7 @@ examples:
         "200":
           application/json: {"phoneNumber": "2001004011", "success": "true"}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -387,9 +416,9 @@ examples:
         application/json: {"correlationId": "713189b8-5555-4b08-83ba-75d08780aebd"}
       responses:
         "200":
-          application/json: {"challengeMissing": true, "next": {"v3-challenge": "/v3/challenge"}, "phoneNumber": "2001001686", "success": true}
+          application/json: {"challengeMissing": true, "evaluation": {"key": {}}, "next": {"v3-challenge": "/v3/challenge"}, "phoneNumber": "2001001686", "success": true}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -404,7 +433,7 @@ examples:
         "200":
           application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "possessionResult": "pending", "success": "pending", "verifyResult": "pending"}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -417,9 +446,9 @@ examples:
         application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd"}
       responses:
         "200":
-          application/json: {"identityId": "498ce2a7-a7c1-48aa-8bd3-77621f780919", "possessionResult": "pending", "success": "pending", "verifyResult": "pending"}
+          application/json: {"identityId": "498ce2a7-a7c1-48aa-8bd3-77621f780919", "possessionResult": "true", "success": "true", "verifyResult": "true"}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -432,7 +461,7 @@ examples:
         "200":
           application/json: {"lastKey": "fNqtI2wVPka+yAFC5qRtrQ==", "results": [{"identityId": "4a6317c1-4855-4900-b369-bed138f4ec00"}, {"identityId": "e53c0597-1cce-4d8f-bd1b-e0a10f875ac9"}]}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -447,7 +476,7 @@ examples:
         "200":
           application/json: {"identityId": "863189q5-5555-4c15-89ba-15d08710aecz", "success": true}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -462,7 +491,7 @@ examples:
         "200":
           application/json: {"results": [{"identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc"}, {"error": "Invalid Phone Number"}]}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -478,7 +507,7 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -494,7 +523,7 @@ examples:
         "200":
           application/json: {"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -512,7 +541,7 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -530,7 +559,7 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
@@ -546,7 +575,7 @@ examples:
         "200":
           application/json: {"items": [{"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}, {"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}]}
         "400":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 8002, "message": "not authorized"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":

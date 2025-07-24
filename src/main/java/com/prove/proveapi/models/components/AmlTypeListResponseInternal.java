@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class AmlTypeListResponseInternal {
 
@@ -23,9 +23,11 @@ public class AmlTypeListResponseInternal {
     @JsonProperty("amlType")
     private Optional<String> amlType;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fields")
     private Optional<? extends List<KYCFieldTypeResponseInternal>> fields;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("listHits")
@@ -64,15 +66,17 @@ public class AmlTypeListResponseInternal {
         return listHits;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AmlTypeListResponseInternal withAmlType(String amlType) {
         Utils.checkNotNull(amlType, "amlType");
         this.amlType = Optional.ofNullable(amlType);
         return this;
     }
+
 
     public AmlTypeListResponseInternal withAmlType(Optional<String> amlType) {
         Utils.checkNotNull(amlType, "amlType");
@@ -86,6 +90,7 @@ public class AmlTypeListResponseInternal {
         return this;
     }
 
+
     public AmlTypeListResponseInternal withFields(Optional<? extends List<KYCFieldTypeResponseInternal>> fields) {
         Utils.checkNotNull(fields, "fields");
         this.fields = fields;
@@ -98,13 +103,13 @@ public class AmlTypeListResponseInternal {
         return this;
     }
 
+
     public AmlTypeListResponseInternal withListHits(Optional<Long> listHits) {
         Utils.checkNotNull(listHits, "listHits");
         this.listHits = listHits;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,17 +120,15 @@ public class AmlTypeListResponseInternal {
         }
         AmlTypeListResponseInternal other = (AmlTypeListResponseInternal) o;
         return 
-            Objects.deepEquals(this.amlType, other.amlType) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.listHits, other.listHits);
+            Utils.enhancedDeepEquals(this.amlType, other.amlType) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.listHits, other.listHits);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amlType,
-            fields,
-            listHits);
+        return Utils.enhancedHash(
+            amlType, fields, listHits);
     }
     
     @Override
@@ -135,18 +138,20 @@ public class AmlTypeListResponseInternal {
                 "fields", fields,
                 "listHits", listHits);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> amlType = Optional.empty();
- 
+
         private Optional<? extends List<KYCFieldTypeResponseInternal>> fields = Optional.empty();
- 
+
         private Optional<Long> listHits = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amlType(String amlType) {
             Utils.checkNotNull(amlType, "amlType");
@@ -160,6 +165,7 @@ public class AmlTypeListResponseInternal {
             return this;
         }
 
+
         public Builder fields(List<KYCFieldTypeResponseInternal> fields) {
             Utils.checkNotNull(fields, "fields");
             this.fields = Optional.ofNullable(fields);
@@ -172,6 +178,7 @@ public class AmlTypeListResponseInternal {
             return this;
         }
 
+
         public Builder listHits(long listHits) {
             Utils.checkNotNull(listHits, "listHits");
             this.listHits = Optional.ofNullable(listHits);
@@ -183,12 +190,12 @@ public class AmlTypeListResponseInternal {
             this.listHits = listHits;
             return this;
         }
-        
+
         public AmlTypeListResponseInternal build() {
+
             return new AmlTypeListResponseInternal(
-                amlType,
-                fields,
-                listHits);
+                amlType, fields, listHits);
         }
+
     }
 }

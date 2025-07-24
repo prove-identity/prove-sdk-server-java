@@ -11,11 +11,10 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3BatchGetIdentitiesRequest {
 
+public class V3BatchGetIdentitiesRequest {
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      */
@@ -57,7 +56,8 @@ public class V3BatchGetIdentitiesRequest {
     }
     
     public V3BatchGetIdentitiesRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -92,9 +92,10 @@ public class V3BatchGetIdentitiesRequest {
         return showInactive;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -104,6 +105,7 @@ public class V3BatchGetIdentitiesRequest {
         this.clientRequestId = Optional.ofNullable(clientRequestId);
         return this;
     }
+
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -123,6 +125,7 @@ public class V3BatchGetIdentitiesRequest {
         return this;
     }
 
+
     /**
      * The maximum number of identities to return per call. Default value is 100.
      */
@@ -140,6 +143,7 @@ public class V3BatchGetIdentitiesRequest {
         this.startKey = Optional.ofNullable(startKey);
         return this;
     }
+
 
     /**
      * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity API response - pass it in directly as startKey to get the next page of results.
@@ -159,6 +163,7 @@ public class V3BatchGetIdentitiesRequest {
         return this;
     }
 
+
     /**
      * Whether to show identities associated with the current client that are currently marked as inactive. Default value is false.
      */
@@ -168,7 +173,6 @@ public class V3BatchGetIdentitiesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -179,18 +183,16 @@ public class V3BatchGetIdentitiesRequest {
         }
         V3BatchGetIdentitiesRequest other = (V3BatchGetIdentitiesRequest) o;
         return 
-            Objects.deepEquals(this.clientRequestId, other.clientRequestId) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.startKey, other.startKey) &&
-            Objects.deepEquals(this.showInactive, other.showInactive);
+            Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.startKey, other.startKey) &&
+            Utils.enhancedDeepEquals(this.showInactive, other.showInactive);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            clientRequestId,
-            limit,
-            startKey,
+        return Utils.enhancedHash(
+            clientRequestId, limit, startKey,
             showInactive);
     }
     
@@ -202,20 +204,22 @@ public class V3BatchGetIdentitiesRequest {
                 "startKey", startKey,
                 "showInactive", showInactive);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> clientRequestId = Optional.empty();
- 
+
         private Optional<Long> limit = Optional.empty();
- 
+
         private Optional<String> startKey = Optional.empty();
- 
+
         private Optional<Boolean> showInactive = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
@@ -235,6 +239,7 @@ public class V3BatchGetIdentitiesRequest {
             return this;
         }
 
+
         /**
          * The maximum number of identities to return per call. Default value is 100.
          */
@@ -252,6 +257,7 @@ public class V3BatchGetIdentitiesRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity API response - pass it in directly as startKey to get the next page of results.
@@ -271,6 +277,7 @@ public class V3BatchGetIdentitiesRequest {
             return this;
         }
 
+
         /**
          * Whether to show identities associated with the current client that are currently marked as inactive. Default value is false.
          */
@@ -288,13 +295,13 @@ public class V3BatchGetIdentitiesRequest {
             this.showInactive = showInactive;
             return this;
         }
-        
+
         public V3BatchGetIdentitiesRequest build() {
+
             return new V3BatchGetIdentitiesRequest(
-                clientRequestId,
-                limit,
-                startKey,
+                clientRequestId, limit, startKey,
                 showInactive);
         }
+
     }
 }

@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class KYCFieldTypeResponseInternal {
 
@@ -20,9 +20,11 @@ public class KYCFieldTypeResponseInternal {
     @JsonProperty("name")
     private Optional<String> name;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
     private Optional<String> source;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
@@ -60,15 +62,17 @@ public class KYCFieldTypeResponseInternal {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public KYCFieldTypeResponseInternal withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     public KYCFieldTypeResponseInternal withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -82,6 +86,7 @@ public class KYCFieldTypeResponseInternal {
         return this;
     }
 
+
     public KYCFieldTypeResponseInternal withSource(Optional<String> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
@@ -94,13 +99,13 @@ public class KYCFieldTypeResponseInternal {
         return this;
     }
 
+
     public KYCFieldTypeResponseInternal withValue(Optional<String> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,17 +116,15 @@ public class KYCFieldTypeResponseInternal {
         }
         KYCFieldTypeResponseInternal other = (KYCFieldTypeResponseInternal) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.source, other.source) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.source, other.source) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            source,
-            value);
+        return Utils.enhancedHash(
+            name, source, value);
     }
     
     @Override
@@ -131,18 +134,20 @@ public class KYCFieldTypeResponseInternal {
                 "source", source,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> source = Optional.empty();
- 
+
         private Optional<String> value = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -156,6 +161,7 @@ public class KYCFieldTypeResponseInternal {
             return this;
         }
 
+
         public Builder source(String source) {
             Utils.checkNotNull(source, "source");
             this.source = Optional.ofNullable(source);
@@ -168,6 +174,7 @@ public class KYCFieldTypeResponseInternal {
             return this;
         }
 
+
         public Builder value(String value) {
             Utils.checkNotNull(value, "value");
             this.value = Optional.ofNullable(value);
@@ -179,12 +186,12 @@ public class KYCFieldTypeResponseInternal {
             this.value = value;
             return this;
         }
-        
+
         public KYCFieldTypeResponseInternal build() {
+
             return new KYCFieldTypeResponseInternal(
-                name,
-                source,
-                value);
+                name, source, value);
         }
+
     }
 }

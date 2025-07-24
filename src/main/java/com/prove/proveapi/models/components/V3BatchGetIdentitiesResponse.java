@@ -12,7 +12,6 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -21,7 +20,6 @@ import java.util.Optional;
  * <p>Response body for the V3 Batch Get Identities API.
  */
 public class V3BatchGetIdentitiesResponse {
-
     /**
      * A pagination token for callers that have more identities left to return. Pass this back in directly to the Get Batch API with the startKey query parameter to get the next page of results.
      */
@@ -66,9 +64,10 @@ public class V3BatchGetIdentitiesResponse {
         return results;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A pagination token for callers that have more identities left to return. Pass this back in directly to the Get Batch API with the startKey query parameter to get the next page of results.
@@ -78,6 +77,7 @@ public class V3BatchGetIdentitiesResponse {
         this.lastKey = Optional.ofNullable(lastKey);
         return this;
     }
+
 
     /**
      * A pagination token for callers that have more identities left to return. Pass this back in directly to the Get Batch API with the startKey query parameter to get the next page of results.
@@ -97,7 +97,6 @@ public class V3BatchGetIdentitiesResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -108,15 +107,14 @@ public class V3BatchGetIdentitiesResponse {
         }
         V3BatchGetIdentitiesResponse other = (V3BatchGetIdentitiesResponse) o;
         return 
-            Objects.deepEquals(this.lastKey, other.lastKey) &&
-            Objects.deepEquals(this.results, other.results);
+            Utils.enhancedDeepEquals(this.lastKey, other.lastKey) &&
+            Utils.enhancedDeepEquals(this.results, other.results);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            lastKey,
-            results);
+        return Utils.enhancedHash(
+            lastKey, results);
     }
     
     @Override
@@ -125,16 +123,18 @@ public class V3BatchGetIdentitiesResponse {
                 "lastKey", lastKey,
                 "results", results);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> lastKey = Optional.empty();
- 
+
         private List<GetBatchIdentityItem> results;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A pagination token for callers that have more identities left to return. Pass this back in directly to the Get Batch API with the startKey query parameter to get the next page of results.
@@ -154,6 +154,7 @@ public class V3BatchGetIdentitiesResponse {
             return this;
         }
 
+
         /**
          * The list of identity IDs associated with the client.
          */
@@ -162,11 +163,12 @@ public class V3BatchGetIdentitiesResponse {
             this.results = results;
             return this;
         }
-        
+
         public V3BatchGetIdentitiesResponse build() {
+
             return new V3BatchGetIdentitiesResponse(
-                lastKey,
-                results);
+                lastKey, results);
         }
+
     }
 }

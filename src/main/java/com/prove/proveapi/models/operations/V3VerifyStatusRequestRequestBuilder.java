@@ -3,7 +3,11 @@
  */
 package com.prove.proveapi.models.operations;
 
+import static com.prove.proveapi.operations.Operations.RequestOperation;
+
+import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3VerifyStatusRequest;
+import com.prove.proveapi.operations.V3VerifyStatusRequestOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V3VerifyStatusRequestRequestBuilder {
 
     private Optional<? extends V3VerifyStatusRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3VerifyStatusRequest sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3VerifyStatusRequestRequestBuilder(SDKMethodInterfaces.MethodCallV3VerifyStatusRequest sdk) {
-        this.sdk = sdk;
+    public V3VerifyStatusRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3VerifyStatusRequestRequestBuilder request(V3VerifyStatusRequest request) {
@@ -30,8 +34,10 @@ public class V3VerifyStatusRequestRequestBuilder {
     }
 
     public V3VerifyStatusRequestResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V3VerifyStatusRequest>, V3VerifyStatusRequestResponse> operation
+              = new V3VerifyStatusRequestOperation(sdkConfiguration);
 
-        return sdk.v3VerifyStatusRequest(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }
