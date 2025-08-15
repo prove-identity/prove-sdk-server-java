@@ -7,7 +7,6 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3ChallengeRequest;
-import com.prove.proveapi.operations.V3ChallengeRequestOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -36,7 +35,7 @@ public class V3ChallengeRequestRequestBuilder {
     public V3ChallengeRequestResponse call() throws Exception {
         
         RequestOperation<Optional<? extends V3ChallengeRequest>, V3ChallengeRequestResponse> operation
-              = new V3ChallengeRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3ChallengeRequest.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

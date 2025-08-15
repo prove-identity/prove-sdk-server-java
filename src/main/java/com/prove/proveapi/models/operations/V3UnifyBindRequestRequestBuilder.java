@@ -7,7 +7,6 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3UnifyBindRequest;
-import com.prove.proveapi.operations.V3UnifyBindRequestOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -36,7 +35,7 @@ public class V3UnifyBindRequestRequestBuilder {
     public V3UnifyBindRequestResponse call() throws Exception {
         
         RequestOperation<Optional<? extends V3UnifyBindRequest>, V3UnifyBindRequestResponse> operation
-              = new V3UnifyBindRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3UnifyBindRequest.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

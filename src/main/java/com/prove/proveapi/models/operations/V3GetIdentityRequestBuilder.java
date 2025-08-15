@@ -6,7 +6,7 @@ package com.prove.proveapi.models.operations;
 import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
-import com.prove.proveapi.operations.V3GetIdentityOperation;
+import com.prove.proveapi.operations.V3GetIdentity;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -52,7 +52,7 @@ public class V3GetIdentityRequestBuilder {
     public V3GetIdentityResponse call() throws Exception {
         
         RequestOperation<V3GetIdentityRequest, V3GetIdentityResponse> operation
-              = new V3GetIdentityOperation(sdkConfiguration);
+              = new V3GetIdentity.Sync(sdkConfiguration);
         V3GetIdentityRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

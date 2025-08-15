@@ -1,23 +1,24 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: 610a749bf5a5ed321818c86cbc7d0664
+  docChecksum: 0365c0bab44b24154e1ca4f9a238f652
   docVersion: 1.0.0
-  speakeasyVersion: 1.588.1
-  generationVersion: 2.663.0
-  releaseVersion: 0.17.0
-  configChecksum: 7d6b658abcb662963334290c52d8c625
+  speakeasyVersion: 1.604.1
+  generationVersion: 2.683.1
+  releaseVersion: 0.18.0
+  configChecksum: ba3a2f711385a5494b12978d4e058e01
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.45.1
+    core: 3.45.3
     examples: 2.81.6
     flattening: 2.81.1
     globalSecurity: 2.83.0
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
+    nullables: 0.1.0
     oauth2ClientCredentials: 0.3.2
     sdkHooks: 1.1.0
     serverIDs: 2.81.1
@@ -223,24 +224,24 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/operations/V3VerifyStatusRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3VerifyStatusRequestResponse.java
   - src/main/java/com/prove/proveapi/operations/Operations.java
-  - src/main/java/com/prove/proveapi/operations/V3ActivateIdentityOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3BatchEnrollIdentitiesOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3BatchGetIdentitiesOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3ChallengeRequestOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3CompleteRequestOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3DeactivateIdentityOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3DisenrollIdentityOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3EnrollIdentityOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3GetIdentitiesByPhoneNumberOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3GetIdentityOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3StartRequestOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3TokenRequestOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3UnifyBindRequestOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3UnifyRequestOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3UnifyStatusRequestOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3ValidateRequestOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3VerifyRequestOperation.java
-  - src/main/java/com/prove/proveapi/operations/V3VerifyStatusRequestOperation.java
+  - src/main/java/com/prove/proveapi/operations/V3ActivateIdentity.java
+  - src/main/java/com/prove/proveapi/operations/V3BatchEnrollIdentities.java
+  - src/main/java/com/prove/proveapi/operations/V3BatchGetIdentities.java
+  - src/main/java/com/prove/proveapi/operations/V3ChallengeRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3CompleteRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3DeactivateIdentity.java
+  - src/main/java/com/prove/proveapi/operations/V3DisenrollIdentity.java
+  - src/main/java/com/prove/proveapi/operations/V3EnrollIdentity.java
+  - src/main/java/com/prove/proveapi/operations/V3GetIdentitiesByPhoneNumber.java
+  - src/main/java/com/prove/proveapi/operations/V3GetIdentity.java
+  - src/main/java/com/prove/proveapi/operations/V3StartRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3TokenRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3UnifyBindRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3UnifyRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3UnifyStatusRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3ValidateRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3VerifyRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3VerifyStatusRequest.java
   - src/main/java/com/prove/proveapi/utils/BackoffStrategy.java
   - src/main/java/com/prove/proveapi/utils/BigDecimalString.java
   - src/main/java/com/prove/proveapi/utils/BigIntegerString.java
@@ -278,6 +279,7 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/utils/RequestBody.java
   - src/main/java/com/prove/proveapi/utils/RequestMetadata.java
   - src/main/java/com/prove/proveapi/utils/Response.java
+  - src/main/java/com/prove/proveapi/utils/ResponseWithBody.java
   - src/main/java/com/prove/proveapi/utils/Retries.java
   - src/main/java/com/prove/proveapi/utils/RetryConfig.java
   - src/main/java/com/prove/proveapi/utils/Security.java

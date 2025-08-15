@@ -15,6 +15,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3ChallengeResponse {
@@ -23,7 +24,7 @@ public class V3ChallengeResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
-    private Optional<? extends Map<String, Evaluation>> evaluation;
+    private JsonNullable<? extends Map<String, Evaluation>> evaluation;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -44,7 +45,7 @@ public class V3ChallengeResponse {
 
     @JsonCreator
     public V3ChallengeResponse(
-            @JsonProperty("evaluation") Optional<? extends Map<String, Evaluation>> evaluation,
+            @JsonProperty("evaluation") JsonNullable<? extends Map<String, Evaluation>> evaluation,
             @JsonProperty("individual") Optional<? extends V3ChallengeIndividualRequest> individual,
             @JsonProperty("next") Map<String, String> next,
             @JsonProperty("success") boolean success) {
@@ -62,7 +63,7 @@ public class V3ChallengeResponse {
     public V3ChallengeResponse(
             Map<String, String> next,
             boolean success) {
-        this(Optional.empty(), Optional.empty(), next,
+        this(JsonNullable.undefined(), Optional.empty(), next,
             success);
     }
 
@@ -71,8 +72,8 @@ public class V3ChallengeResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Evaluation>> evaluation() {
-        return (Optional<Map<String, Evaluation>>) evaluation;
+    public JsonNullable<Map<String, Evaluation>> evaluation() {
+        return (JsonNullable<Map<String, Evaluation>>) evaluation;
     }
 
     @SuppressWarnings("unchecked")
@@ -107,15 +108,14 @@ public class V3ChallengeResponse {
      */
     public V3ChallengeResponse withEvaluation(Map<String, Evaluation> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
-        this.evaluation = Optional.ofNullable(evaluation);
+        this.evaluation = JsonNullable.of(evaluation);
         return this;
     }
-
 
     /**
      * The evaluation result for the policy
      */
-    public V3ChallengeResponse withEvaluation(Optional<? extends Map<String, Evaluation>> evaluation) {
+    public V3ChallengeResponse withEvaluation(JsonNullable<? extends Map<String, Evaluation>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = evaluation;
         return this;
@@ -187,7 +187,7 @@ public class V3ChallengeResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Map<String, Evaluation>> evaluation = Optional.empty();
+        private JsonNullable<? extends Map<String, Evaluation>> evaluation = JsonNullable.undefined();
 
         private Optional<? extends V3ChallengeIndividualRequest> individual = Optional.empty();
 
@@ -205,14 +205,14 @@ public class V3ChallengeResponse {
          */
         public Builder evaluation(Map<String, Evaluation> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
-            this.evaluation = Optional.ofNullable(evaluation);
+            this.evaluation = JsonNullable.of(evaluation);
             return this;
         }
 
         /**
          * The evaluation result for the policy
          */
-        public Builder evaluation(Optional<? extends Map<String, Evaluation>> evaluation) {
+        public Builder evaluation(JsonNullable<? extends Map<String, Evaluation>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = evaluation;
             return this;

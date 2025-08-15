@@ -17,8 +17,8 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "0.17.0";
-    public static final String GEN_VERSION = "2.663.0";
+    public static final String SDK_VERSION = "0.18.0";
+    public static final String GEN_VERSION = "2.683.1";
     private static final String BASE_PACKAGE = "com.prove.proveapi";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -105,7 +105,7 @@ public class SDKConfiguration {
         this._hooks = hooks;
     }
 
-    /** 
+    /**
      * Initializes state (for example hooks).
      **/
     public void initialize() {

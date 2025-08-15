@@ -15,6 +15,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3ValidateResponse {
@@ -29,7 +30,7 @@ public class V3ValidateResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
-    private Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation;
+    private JsonNullable<? extends Map<String, V3ValidateResponseEvaluation>> evaluation;
 
     /**
      * The next set of allowed calls in the same flow.
@@ -53,7 +54,7 @@ public class V3ValidateResponse {
     @JsonCreator
     public V3ValidateResponse(
             @JsonProperty("challengeMissing") boolean challengeMissing,
-            @JsonProperty("evaluation") Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation,
+            @JsonProperty("evaluation") JsonNullable<? extends Map<String, V3ValidateResponseEvaluation>> evaluation,
             @JsonProperty("next") Map<String, String> next,
             @JsonProperty("phoneNumber") Optional<String> phoneNumber,
             @JsonProperty("success") boolean success) {
@@ -74,7 +75,7 @@ public class V3ValidateResponse {
             boolean challengeMissing,
             Map<String, String> next,
             boolean success) {
-        this(challengeMissing, Optional.empty(), next,
+        this(challengeMissing, JsonNullable.undefined(), next,
             Optional.empty(), success);
     }
 
@@ -91,8 +92,8 @@ public class V3ValidateResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, V3ValidateResponseEvaluation>> evaluation() {
-        return (Optional<Map<String, V3ValidateResponseEvaluation>>) evaluation;
+    public JsonNullable<Map<String, V3ValidateResponseEvaluation>> evaluation() {
+        return (JsonNullable<Map<String, V3ValidateResponseEvaluation>>) evaluation;
     }
 
     /**
@@ -138,15 +139,14 @@ public class V3ValidateResponse {
      */
     public V3ValidateResponse withEvaluation(Map<String, V3ValidateResponseEvaluation> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
-        this.evaluation = Optional.ofNullable(evaluation);
+        this.evaluation = JsonNullable.of(evaluation);
         return this;
     }
-
 
     /**
      * The evaluation result for the policy
      */
-    public V3ValidateResponse withEvaluation(Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation) {
+    public V3ValidateResponse withEvaluation(JsonNullable<? extends Map<String, V3ValidateResponseEvaluation>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = evaluation;
         return this;
@@ -228,7 +228,7 @@ public class V3ValidateResponse {
 
         private Boolean challengeMissing;
 
-        private Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation = Optional.empty();
+        private JsonNullable<? extends Map<String, V3ValidateResponseEvaluation>> evaluation = JsonNullable.undefined();
 
         private Map<String, String> next;
 
@@ -256,14 +256,14 @@ public class V3ValidateResponse {
          */
         public Builder evaluation(Map<String, V3ValidateResponseEvaluation> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
-            this.evaluation = Optional.ofNullable(evaluation);
+            this.evaluation = JsonNullable.of(evaluation);
             return this;
         }
 
         /**
          * The evaluation result for the policy
          */
-        public Builder evaluation(Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation) {
+        public Builder evaluation(JsonNullable<? extends Map<String, V3ValidateResponseEvaluation>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = evaluation;
             return this;

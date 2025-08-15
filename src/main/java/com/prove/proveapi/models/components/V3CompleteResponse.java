@@ -15,6 +15,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3CompleteResponse {
@@ -23,7 +24,7 @@ public class V3CompleteResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
-    private Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation;
+    private JsonNullable<? extends Map<String, V3CompleteResponseEvaluation>> evaluation;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -49,7 +50,7 @@ public class V3CompleteResponse {
 
     @JsonCreator
     public V3CompleteResponse(
-            @JsonProperty("evaluation") Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation,
+            @JsonProperty("evaluation") JsonNullable<? extends Map<String, V3CompleteResponseEvaluation>> evaluation,
             @JsonProperty("idv") Optional<? extends IDVDataInternal> idv,
             @JsonProperty("kyc") Optional<? extends KYCInternal> kyc,
             @JsonProperty("next") Map<String, String> next,
@@ -70,7 +71,7 @@ public class V3CompleteResponse {
     public V3CompleteResponse(
             Map<String, String> next,
             boolean success) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
+        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             next, success);
     }
 
@@ -79,8 +80,8 @@ public class V3CompleteResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, V3CompleteResponseEvaluation>> evaluation() {
-        return (Optional<Map<String, V3CompleteResponseEvaluation>>) evaluation;
+    public JsonNullable<Map<String, V3CompleteResponseEvaluation>> evaluation() {
+        return (JsonNullable<Map<String, V3CompleteResponseEvaluation>>) evaluation;
     }
 
     @SuppressWarnings("unchecked")
@@ -121,15 +122,14 @@ public class V3CompleteResponse {
      */
     public V3CompleteResponse withEvaluation(Map<String, V3CompleteResponseEvaluation> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
-        this.evaluation = Optional.ofNullable(evaluation);
+        this.evaluation = JsonNullable.of(evaluation);
         return this;
     }
-
 
     /**
      * The evaluation result for the policy
      */
-    public V3CompleteResponse withEvaluation(Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation) {
+    public V3CompleteResponse withEvaluation(JsonNullable<? extends Map<String, V3CompleteResponseEvaluation>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = evaluation;
         return this;
@@ -216,7 +216,7 @@ public class V3CompleteResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation = Optional.empty();
+        private JsonNullable<? extends Map<String, V3CompleteResponseEvaluation>> evaluation = JsonNullable.undefined();
 
         private Optional<? extends IDVDataInternal> idv = Optional.empty();
 
@@ -236,14 +236,14 @@ public class V3CompleteResponse {
          */
         public Builder evaluation(Map<String, V3CompleteResponseEvaluation> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
-            this.evaluation = Optional.ofNullable(evaluation);
+            this.evaluation = JsonNullable.of(evaluation);
             return this;
         }
 
         /**
          * The evaluation result for the policy
          */
-        public Builder evaluation(Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation) {
+        public Builder evaluation(JsonNullable<? extends Map<String, V3CompleteResponseEvaluation>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = evaluation;
             return this;

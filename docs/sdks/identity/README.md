@@ -20,6 +20,7 @@ Return a list of all identities you have enrolled in Identity Manager.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3BatchGetIdentities" method="get" path="/v3/identity/" -->
 ```java
 package hello.world;
 
@@ -80,6 +81,7 @@ Enrolls a single customer for monitoring using their phone number and unique ide
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3EnrollIdentity" method="post" path="/v3/identity/" -->
 ```java
 package hello.world;
 
@@ -146,6 +148,7 @@ Enrolls multiple customers in a single request for efficient bulk operations (up
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3BatchEnrollIdentities" method="post" path="/v3/identity/batch" -->
 ```java
 package hello.world;
 
@@ -220,6 +223,7 @@ Disenrolls an identity from Identity Manager. If you wish to monitor in future, 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3DisenrollIdentity" method="delete" path="/v3/identity/{identityId}" -->
 ```java
 package hello.world;
 
@@ -279,6 +283,7 @@ Return details of an identity given the identity ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3GetIdentity" method="get" path="/v3/identity/{identityId}" -->
 ```java
 package hello.world;
 
@@ -338,6 +343,7 @@ Sets an identity as active for monitoring.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3ActivateIdentity" method="post" path="/v3/identity/{identityId}/activate" -->
 ```java
 package hello.world;
 
@@ -401,6 +407,7 @@ Stops webhook notifications without disenrolling the identity.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3DeactivateIdentity" method="post" path="/v3/identity/{identityId}/deactivate" -->
 ```java
 package hello.world;
 
@@ -464,6 +471,7 @@ Return list of all identities you have enrolled that are associated with this ph
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3GetIdentitiesByPhoneNumber" method="get" path="/v3/identity/{mobileNumber}/lookup" -->
 ```java
 package hello.world;
 
