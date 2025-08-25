@@ -7,7 +7,6 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3CompleteRequest;
-import com.prove.proveapi.operations.V3CompleteRequestOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -36,7 +35,7 @@ public class V3CompleteRequestRequestBuilder {
     public V3CompleteRequestResponse call() throws Exception {
         
         RequestOperation<Optional<? extends V3CompleteRequest>, V3CompleteRequestResponse> operation
-              = new V3CompleteRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3CompleteRequest.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

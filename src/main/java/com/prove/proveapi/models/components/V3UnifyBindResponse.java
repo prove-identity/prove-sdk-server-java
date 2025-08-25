@@ -5,13 +5,25 @@ package com.prove.proveapi.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Optional;
 
 
 public class V3UnifyBindResponse {
+    /**
+     * The evaluation result for the policy
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("evaluation")
+    private Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation;
+
     /**
      * The number of the mobile phone used during the process.
      */
@@ -27,12 +39,30 @@ public class V3UnifyBindResponse {
 
     @JsonCreator
     public V3UnifyBindResponse(
+            @JsonProperty("evaluation") Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation,
             @JsonProperty("phoneNumber") String phoneNumber,
             @JsonProperty("success") String success) {
+        Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(success, "success");
+        this.evaluation = evaluation;
         this.phoneNumber = phoneNumber;
         this.success = success;
+    }
+    
+    public V3UnifyBindResponse(
+            String phoneNumber,
+            String success) {
+        this(Optional.empty(), phoneNumber, success);
+    }
+
+    /**
+     * The evaluation result for the policy
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, V3UnifyBindResponseEvaluation>> evaluation() {
+        return (Optional<Map<String, V3UnifyBindResponseEvaluation>>) evaluation;
     }
 
     /**
@@ -56,6 +86,25 @@ public class V3UnifyBindResponse {
         return new Builder();
     }
 
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3UnifyBindResponse withEvaluation(Map<String, V3UnifyBindResponseEvaluation> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = Optional.ofNullable(evaluation);
+        return this;
+    }
+
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3UnifyBindResponse withEvaluation(Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = evaluation;
+        return this;
+    }
 
     /**
      * The number of the mobile phone used during the process.
@@ -86,6 +135,7 @@ public class V3UnifyBindResponse {
         }
         V3UnifyBindResponse other = (V3UnifyBindResponse) o;
         return 
+            Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
             Utils.enhancedDeepEquals(this.success, other.success);
     }
@@ -93,12 +143,13 @@ public class V3UnifyBindResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            phoneNumber, success);
+            evaluation, phoneNumber, success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3UnifyBindResponse.class,
+                "evaluation", evaluation,
                 "phoneNumber", phoneNumber,
                 "success", success);
     }
@@ -106,12 +157,33 @@ public class V3UnifyBindResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation = Optional.empty();
+
         private String phoneNumber;
 
         private String success;
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Map<String, V3UnifyBindResponseEvaluation> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = Optional.ofNullable(evaluation);
+            return this;
+        }
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = evaluation;
+            return this;
         }
 
 
@@ -138,7 +210,7 @@ public class V3UnifyBindResponse {
         public V3UnifyBindResponse build() {
 
             return new V3UnifyBindResponse(
-                phoneNumber, success);
+                evaluation, phoneNumber, success);
         }
 
     }

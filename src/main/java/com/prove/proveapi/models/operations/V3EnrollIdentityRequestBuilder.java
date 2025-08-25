@@ -7,7 +7,7 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3EnrollIdentityRequest;
-import com.prove.proveapi.operations.V3EnrollIdentityOperation;
+import com.prove.proveapi.operations.V3EnrollIdentity;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -36,7 +36,7 @@ public class V3EnrollIdentityRequestBuilder {
     public V3EnrollIdentityResponse call() throws Exception {
         
         RequestOperation<Optional<? extends V3EnrollIdentityRequest>, V3EnrollIdentityResponse> operation
-              = new V3EnrollIdentityOperation(sdkConfiguration);
+              = new V3EnrollIdentity.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -6,7 +6,7 @@ package com.prove.proveapi.models.operations;
 import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
-import com.prove.proveapi.operations.V3DisenrollIdentityOperation;
+import com.prove.proveapi.operations.V3DisenrollIdentity;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -52,7 +52,7 @@ public class V3DisenrollIdentityRequestBuilder {
     public V3DisenrollIdentityResponse call() throws Exception {
         
         RequestOperation<V3DisenrollIdentityRequest, V3DisenrollIdentityResponse> operation
-              = new V3DisenrollIdentityOperation(sdkConfiguration);
+              = new V3DisenrollIdentity.Sync(sdkConfiguration);
         V3DisenrollIdentityRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

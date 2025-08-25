@@ -12,7 +12,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()

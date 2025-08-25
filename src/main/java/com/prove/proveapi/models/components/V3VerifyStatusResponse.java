@@ -11,10 +11,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V3VerifyStatusResponse {
+    /**
+     * The evaluation result for the policy
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("evaluation")
+    private Optional<? extends Map<String, V3VerifyStatusResponseEvaluation>> evaluation;
+
     /**
      * A unique ID that Prove generates to refer to a specific identity.
      */
@@ -42,14 +51,17 @@ public class V3VerifyStatusResponse {
 
     @JsonCreator
     public V3VerifyStatusResponse(
+            @JsonProperty("evaluation") Optional<? extends Map<String, V3VerifyStatusResponseEvaluation>> evaluation,
             @JsonProperty("identityId") Optional<String> identityId,
             @JsonProperty("possessionResult") String possessionResult,
             @JsonProperty("success") String success,
             @JsonProperty("verifyResult") String verifyResult) {
+        Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(identityId, "identityId");
         Utils.checkNotNull(possessionResult, "possessionResult");
         Utils.checkNotNull(success, "success");
         Utils.checkNotNull(verifyResult, "verifyResult");
+        this.evaluation = evaluation;
         this.identityId = identityId;
         this.possessionResult = possessionResult;
         this.success = success;
@@ -60,8 +72,17 @@ public class V3VerifyStatusResponse {
             String possessionResult,
             String success,
             String verifyResult) {
-        this(Optional.empty(), possessionResult, success,
-            verifyResult);
+        this(Optional.empty(), Optional.empty(), possessionResult,
+            success, verifyResult);
+    }
+
+    /**
+     * The evaluation result for the policy
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, V3VerifyStatusResponseEvaluation>> evaluation() {
+        return (Optional<Map<String, V3VerifyStatusResponseEvaluation>>) evaluation;
     }
 
     /**
@@ -100,6 +121,25 @@ public class V3VerifyStatusResponse {
         return new Builder();
     }
 
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3VerifyStatusResponse withEvaluation(Map<String, V3VerifyStatusResponseEvaluation> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = Optional.ofNullable(evaluation);
+        return this;
+    }
+
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3VerifyStatusResponse withEvaluation(Optional<? extends Map<String, V3VerifyStatusResponseEvaluation>> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = evaluation;
+        return this;
+    }
 
     /**
      * A unique ID that Prove generates to refer to a specific identity.
@@ -157,6 +197,7 @@ public class V3VerifyStatusResponse {
         }
         V3VerifyStatusResponse other = (V3VerifyStatusResponse) o;
         return 
+            Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
             Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
             Utils.enhancedDeepEquals(this.possessionResult, other.possessionResult) &&
             Utils.enhancedDeepEquals(this.success, other.success) &&
@@ -166,13 +207,14 @@ public class V3VerifyStatusResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            identityId, possessionResult, success,
-            verifyResult);
+            evaluation, identityId, possessionResult,
+            success, verifyResult);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3VerifyStatusResponse.class,
+                "evaluation", evaluation,
                 "identityId", identityId,
                 "possessionResult", possessionResult,
                 "success", success,
@@ -181,6 +223,8 @@ public class V3VerifyStatusResponse {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<? extends Map<String, V3VerifyStatusResponseEvaluation>> evaluation = Optional.empty();
 
         private Optional<String> identityId = Optional.empty();
 
@@ -192,6 +236,25 @@ public class V3VerifyStatusResponse {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Map<String, V3VerifyStatusResponseEvaluation> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = Optional.ofNullable(evaluation);
+            return this;
+        }
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Optional<? extends Map<String, V3VerifyStatusResponseEvaluation>> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = evaluation;
+            return this;
         }
 
 
@@ -246,8 +309,8 @@ public class V3VerifyStatusResponse {
         public V3VerifyStatusResponse build() {
 
             return new V3VerifyStatusResponse(
-                identityId, possessionResult, success,
-                verifyResult);
+                evaluation, identityId, possessionResult,
+                success, verifyResult);
         }
 
     }

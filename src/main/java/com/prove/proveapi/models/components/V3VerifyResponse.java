@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -27,6 +29,13 @@ public class V3VerifyResponse {
      */
     @JsonProperty("correlationId")
     private String correlationId;
+
+    /**
+     * The evaluation result for the policy
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("evaluation")
+    private Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation;
 
     /**
      * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
@@ -50,16 +59,19 @@ public class V3VerifyResponse {
     public V3VerifyResponse(
             @JsonProperty("authToken") Optional<String> authToken,
             @JsonProperty("correlationId") String correlationId,
+            @JsonProperty("evaluation") Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation,
             @JsonProperty("possessionResult") String possessionResult,
             @JsonProperty("success") String success,
             @JsonProperty("verifyResult") String verifyResult) {
         Utils.checkNotNull(authToken, "authToken");
         Utils.checkNotNull(correlationId, "correlationId");
+        Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(possessionResult, "possessionResult");
         Utils.checkNotNull(success, "success");
         Utils.checkNotNull(verifyResult, "verifyResult");
         this.authToken = authToken;
         this.correlationId = correlationId;
+        this.evaluation = evaluation;
         this.possessionResult = possessionResult;
         this.success = success;
         this.verifyResult = verifyResult;
@@ -70,8 +82,8 @@ public class V3VerifyResponse {
             String possessionResult,
             String success,
             String verifyResult) {
-        this(Optional.empty(), correlationId, possessionResult,
-            success, verifyResult);
+        this(Optional.empty(), correlationId, Optional.empty(),
+            possessionResult, success, verifyResult);
     }
 
     /**
@@ -88,6 +100,15 @@ public class V3VerifyResponse {
     @JsonIgnore
     public String correlationId() {
         return correlationId;
+    }
+
+    /**
+     * The evaluation result for the policy
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, V3VerifyResponseEvaluation>> evaluation() {
+        return (Optional<Map<String, V3VerifyResponseEvaluation>>) evaluation;
     }
 
     /**
@@ -148,6 +169,25 @@ public class V3VerifyResponse {
     }
 
     /**
+     * The evaluation result for the policy
+     */
+    public V3VerifyResponse withEvaluation(Map<String, V3VerifyResponseEvaluation> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = Optional.ofNullable(evaluation);
+        return this;
+    }
+
+
+    /**
+     * The evaluation result for the policy
+     */
+    public V3VerifyResponse withEvaluation(Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation) {
+        Utils.checkNotNull(evaluation, "evaluation");
+        this.evaluation = evaluation;
+        return this;
+    }
+
+    /**
      * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
      */
     public V3VerifyResponse withPossessionResult(String possessionResult) {
@@ -186,6 +226,7 @@ public class V3VerifyResponse {
         return 
             Utils.enhancedDeepEquals(this.authToken, other.authToken) &&
             Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
+            Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
             Utils.enhancedDeepEquals(this.possessionResult, other.possessionResult) &&
             Utils.enhancedDeepEquals(this.success, other.success) &&
             Utils.enhancedDeepEquals(this.verifyResult, other.verifyResult);
@@ -194,8 +235,8 @@ public class V3VerifyResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            authToken, correlationId, possessionResult,
-            success, verifyResult);
+            authToken, correlationId, evaluation,
+            possessionResult, success, verifyResult);
     }
     
     @Override
@@ -203,6 +244,7 @@ public class V3VerifyResponse {
         return Utils.toString(V3VerifyResponse.class,
                 "authToken", authToken,
                 "correlationId", correlationId,
+                "evaluation", evaluation,
                 "possessionResult", possessionResult,
                 "success", success,
                 "verifyResult", verifyResult);
@@ -214,6 +256,8 @@ public class V3VerifyResponse {
         private Optional<String> authToken = Optional.empty();
 
         private String correlationId;
+
+        private Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation = Optional.empty();
 
         private String possessionResult;
 
@@ -256,6 +300,25 @@ public class V3VerifyResponse {
 
 
         /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Map<String, V3VerifyResponseEvaluation> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = Optional.ofNullable(evaluation);
+            return this;
+        }
+
+        /**
+         * The evaluation result for the policy
+         */
+        public Builder evaluation(Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation) {
+            Utils.checkNotNull(evaluation, "evaluation");
+            this.evaluation = evaluation;
+            return this;
+        }
+
+
+        /**
          * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
          */
         public Builder possessionResult(String possessionResult) {
@@ -287,8 +350,8 @@ public class V3VerifyResponse {
         public V3VerifyResponse build() {
 
             return new V3VerifyResponse(
-                authToken, correlationId, possessionResult,
-                success, verifyResult);
+                authToken, correlationId, evaluation,
+                possessionResult, success, verifyResult);
         }
 
     }

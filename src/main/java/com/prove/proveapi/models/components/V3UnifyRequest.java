@@ -24,6 +24,13 @@ public class V3UnifyRequest {
     private Optional<Boolean> allowOTPRetry;
 
     /**
+     * If true, TrustScore verification will be performed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("checkReputation")
+    private Optional<Boolean> checkReputation;
+
+    /**
      * A client-generated unique ID for a specific customer.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -81,6 +88,7 @@ public class V3UnifyRequest {
     @JsonCreator
     public V3UnifyRequest(
             @JsonProperty("allowOTPRetry") Optional<Boolean> allowOTPRetry,
+            @JsonProperty("checkReputation") Optional<Boolean> checkReputation,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("finalTargetUrl") Optional<String> finalTargetUrl,
@@ -89,6 +97,7 @@ public class V3UnifyRequest {
             @JsonProperty("rebind") Optional<Boolean> rebind,
             @JsonProperty("smsMessage") Optional<String> smsMessage) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
+        Utils.checkNotNull(checkReputation, "checkReputation");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -97,6 +106,7 @@ public class V3UnifyRequest {
         Utils.checkNotNull(rebind, "rebind");
         Utils.checkNotNull(smsMessage, "smsMessage");
         this.allowOTPRetry = allowOTPRetry;
+        this.checkReputation = checkReputation;
         this.clientCustomerId = clientCustomerId;
         this.clientRequestId = clientRequestId;
         this.finalTargetUrl = finalTargetUrl;
@@ -109,8 +119,8 @@ public class V3UnifyRequest {
     public V3UnifyRequest(
             String possessionType) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), possessionType,
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            possessionType, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -119,6 +129,14 @@ public class V3UnifyRequest {
     @JsonIgnore
     public Optional<Boolean> allowOTPRetry() {
         return allowOTPRetry;
+    }
+
+    /**
+     * If true, TrustScore verification will be performed.
+     */
+    @JsonIgnore
+    public Optional<Boolean> checkReputation() {
+        return checkReputation;
     }
 
     /**
@@ -205,6 +223,25 @@ public class V3UnifyRequest {
     public V3UnifyRequest withAllowOTPRetry(Optional<Boolean> allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
         this.allowOTPRetry = allowOTPRetry;
+        return this;
+    }
+
+    /**
+     * If true, TrustScore verification will be performed.
+     */
+    public V3UnifyRequest withCheckReputation(boolean checkReputation) {
+        Utils.checkNotNull(checkReputation, "checkReputation");
+        this.checkReputation = Optional.ofNullable(checkReputation);
+        return this;
+    }
+
+
+    /**
+     * If true, TrustScore verification will be performed.
+     */
+    public V3UnifyRequest withCheckReputation(Optional<Boolean> checkReputation) {
+        Utils.checkNotNull(checkReputation, "checkReputation");
+        this.checkReputation = checkReputation;
         return this;
     }
 
@@ -354,6 +391,7 @@ public class V3UnifyRequest {
         V3UnifyRequest other = (V3UnifyRequest) o;
         return 
             Utils.enhancedDeepEquals(this.allowOTPRetry, other.allowOTPRetry) &&
+            Utils.enhancedDeepEquals(this.checkReputation, other.checkReputation) &&
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
             Utils.enhancedDeepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
@@ -366,15 +404,16 @@ public class V3UnifyRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            allowOTPRetry, clientCustomerId, clientRequestId,
-            finalTargetUrl, phoneNumber, possessionType,
-            rebind, smsMessage);
+            allowOTPRetry, checkReputation, clientCustomerId,
+            clientRequestId, finalTargetUrl, phoneNumber,
+            possessionType, rebind, smsMessage);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3UnifyRequest.class,
                 "allowOTPRetry", allowOTPRetry,
+                "checkReputation", checkReputation,
                 "clientCustomerId", clientCustomerId,
                 "clientRequestId", clientRequestId,
                 "finalTargetUrl", finalTargetUrl,
@@ -388,6 +427,8 @@ public class V3UnifyRequest {
     public final static class Builder {
 
         private Optional<Boolean> allowOTPRetry = Optional.empty();
+
+        private Optional<Boolean> checkReputation = Optional.empty();
 
         private Optional<String> clientCustomerId = Optional.empty();
 
@@ -423,6 +464,25 @@ public class V3UnifyRequest {
         public Builder allowOTPRetry(Optional<Boolean> allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
             this.allowOTPRetry = allowOTPRetry;
+            return this;
+        }
+
+
+        /**
+         * If true, TrustScore verification will be performed.
+         */
+        public Builder checkReputation(boolean checkReputation) {
+            Utils.checkNotNull(checkReputation, "checkReputation");
+            this.checkReputation = Optional.ofNullable(checkReputation);
+            return this;
+        }
+
+        /**
+         * If true, TrustScore verification will be performed.
+         */
+        public Builder checkReputation(Optional<Boolean> checkReputation) {
+            Utils.checkNotNull(checkReputation, "checkReputation");
+            this.checkReputation = checkReputation;
             return this;
         }
 
@@ -565,9 +625,9 @@ public class V3UnifyRequest {
         public V3UnifyRequest build() {
 
             return new V3UnifyRequest(
-                allowOTPRetry, clientCustomerId, clientRequestId,
-                finalTargetUrl, phoneNumber, possessionType,
-                rebind, smsMessage);
+                allowOTPRetry, checkReputation, clientCustomerId,
+                clientRequestId, finalTargetUrl, phoneNumber,
+                possessionType, rebind, smsMessage);
         }
 
     }

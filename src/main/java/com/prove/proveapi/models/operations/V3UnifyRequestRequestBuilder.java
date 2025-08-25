@@ -7,7 +7,6 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3UnifyRequest;
-import com.prove.proveapi.operations.V3UnifyRequestOperation;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -36,7 +35,7 @@ public class V3UnifyRequestRequestBuilder {
     public V3UnifyRequestResponse call() throws Exception {
         
         RequestOperation<Optional<? extends V3UnifyRequest>, V3UnifyRequestResponse> operation
-              = new V3UnifyRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3UnifyRequest.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

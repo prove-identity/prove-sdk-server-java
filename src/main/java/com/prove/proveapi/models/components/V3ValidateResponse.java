@@ -19,7 +19,8 @@ import java.util.Optional;
 
 public class V3ValidateResponse {
     /**
-     * True if a DOB or SSN needs to be passed in on the next step.
+     * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If implementing Prove Identity ignore this field.
+     * It will always return false for this use case.
      */
     @JsonProperty("challengeMissing")
     private boolean challengeMissing;
@@ -79,7 +80,8 @@ public class V3ValidateResponse {
     }
 
     /**
-     * True if a DOB or SSN needs to be passed in on the next step.
+     * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If implementing Prove Identity ignore this field.
+     * It will always return false for this use case.
      */
     @JsonIgnore
     public boolean challengeMissing() {
@@ -125,7 +127,8 @@ public class V3ValidateResponse {
 
 
     /**
-     * True if a DOB or SSN needs to be passed in on the next step.
+     * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If implementing Prove Identity ignore this field.
+     * It will always return false for this use case.
      */
     public V3ValidateResponse withChallengeMissing(boolean challengeMissing) {
         Utils.checkNotNull(challengeMissing, "challengeMissing");
@@ -242,7 +245,8 @@ public class V3ValidateResponse {
 
 
         /**
-         * True if a DOB or SSN needs to be passed in on the next step.
+         * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If implementing Prove Identity ignore this field.
+         * It will always return false for this use case.
          */
         public Builder challengeMissing(boolean challengeMissing) {
             Utils.checkNotNull(challengeMissing, "challengeMissing");

@@ -35,16 +35,6 @@ import com.prove.proveapi.models.operations.V3VerifyRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3VerifyRequestResponse;
 import com.prove.proveapi.models.operations.V3VerifyStatusRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3VerifyStatusRequestResponse;
-import com.prove.proveapi.operations.V3ChallengeRequestOperation;
-import com.prove.proveapi.operations.V3CompleteRequestOperation;
-import com.prove.proveapi.operations.V3StartRequestOperation;
-import com.prove.proveapi.operations.V3TokenRequestOperation;
-import com.prove.proveapi.operations.V3UnifyBindRequestOperation;
-import com.prove.proveapi.operations.V3UnifyRequestOperation;
-import com.prove.proveapi.operations.V3UnifyStatusRequestOperation;
-import com.prove.proveapi.operations.V3ValidateRequestOperation;
-import com.prove.proveapi.operations.V3VerifyRequestOperation;
-import com.prove.proveapi.operations.V3VerifyStatusRequestOperation;
 import java.lang.Exception;
 import java.util.Optional;
 
@@ -90,7 +80,7 @@ public class V3 {
      */
     public V3TokenRequestResponse v3TokenRequest(Optional<? extends V3TokenRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3TokenRequest>, V3TokenRequestResponse> operation
-              = new V3TokenRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3TokenRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -128,7 +118,7 @@ public class V3 {
      */
     public V3ChallengeRequestResponse v3ChallengeRequest(Optional<? extends V3ChallengeRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3ChallengeRequest>, V3ChallengeRequestResponse> operation
-              = new V3ChallengeRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3ChallengeRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -166,7 +156,7 @@ public class V3 {
      */
     public V3CompleteRequestResponse v3CompleteRequest(Optional<? extends V3CompleteRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3CompleteRequest>, V3CompleteRequestResponse> operation
-              = new V3CompleteRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3CompleteRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +194,7 @@ public class V3 {
      */
     public V3StartRequestResponse v3StartRequest(Optional<? extends V3StartRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3StartRequest>, V3StartRequestResponse> operation
-              = new V3StartRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3StartRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -242,7 +232,7 @@ public class V3 {
      */
     public V3UnifyRequestResponse v3UnifyRequest(Optional<? extends V3UnifyRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3UnifyRequest>, V3UnifyRequestResponse> operation
-              = new V3UnifyRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3UnifyRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -280,7 +270,7 @@ public class V3 {
      */
     public V3UnifyBindRequestResponse v3UnifyBindRequest(Optional<? extends V3UnifyBindRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3UnifyBindRequest>, V3UnifyBindRequestResponse> operation
-              = new V3UnifyBindRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3UnifyBindRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -318,7 +308,7 @@ public class V3 {
      */
     public V3UnifyStatusRequestResponse v3UnifyStatusRequest(Optional<? extends V3UnifyStatusRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3UnifyStatusRequest>, V3UnifyStatusRequestResponse> operation
-              = new V3UnifyStatusRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3UnifyStatusRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -356,7 +346,7 @@ public class V3 {
      */
     public V3ValidateRequestResponse v3ValidateRequest(Optional<? extends V3ValidateRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3ValidateRequest>, V3ValidateRequestResponse> operation
-              = new V3ValidateRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3ValidateRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -394,7 +384,7 @@ public class V3 {
      */
     public V3VerifyRequestResponse v3VerifyRequest(Optional<? extends V3VerifyRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3VerifyRequest>, V3VerifyRequestResponse> operation
-              = new V3VerifyRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3VerifyRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -432,7 +422,7 @@ public class V3 {
      */
     public V3VerifyStatusRequestResponse v3VerifyStatusRequest(Optional<? extends V3VerifyStatusRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3VerifyStatusRequest>, V3VerifyStatusRequestResponse> operation
-              = new V3VerifyStatusRequestOperation(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3VerifyStatusRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

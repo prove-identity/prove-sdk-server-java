@@ -30,14 +30,14 @@ import com.prove.proveapi.models.operations.V3GetIdentitiesByPhoneNumberResponse
 import com.prove.proveapi.models.operations.V3GetIdentityRequest;
 import com.prove.proveapi.models.operations.V3GetIdentityRequestBuilder;
 import com.prove.proveapi.models.operations.V3GetIdentityResponse;
-import com.prove.proveapi.operations.V3ActivateIdentityOperation;
-import com.prove.proveapi.operations.V3BatchEnrollIdentitiesOperation;
-import com.prove.proveapi.operations.V3BatchGetIdentitiesOperation;
-import com.prove.proveapi.operations.V3DeactivateIdentityOperation;
-import com.prove.proveapi.operations.V3DisenrollIdentityOperation;
-import com.prove.proveapi.operations.V3EnrollIdentityOperation;
-import com.prove.proveapi.operations.V3GetIdentitiesByPhoneNumberOperation;
-import com.prove.proveapi.operations.V3GetIdentityOperation;
+import com.prove.proveapi.operations.V3ActivateIdentity;
+import com.prove.proveapi.operations.V3BatchEnrollIdentities;
+import com.prove.proveapi.operations.V3BatchGetIdentities;
+import com.prove.proveapi.operations.V3DeactivateIdentity;
+import com.prove.proveapi.operations.V3DisenrollIdentity;
+import com.prove.proveapi.operations.V3EnrollIdentity;
+import com.prove.proveapi.operations.V3GetIdentitiesByPhoneNumber;
+import com.prove.proveapi.operations.V3GetIdentity;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
@@ -100,7 +100,7 @@ public class Identity {
                 .showInactive(showInactive)
                 .build();
         RequestOperation<V3BatchGetIdentitiesRequest, V3BatchGetIdentitiesResponse> operation
-              = new V3BatchGetIdentitiesOperation(sdkConfiguration);
+              = new V3BatchGetIdentities.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -138,7 +138,7 @@ public class Identity {
      */
     public V3EnrollIdentityResponse v3EnrollIdentity(Optional<? extends V3EnrollIdentityRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3EnrollIdentityRequest>, V3EnrollIdentityResponse> operation
-              = new V3EnrollIdentityOperation(sdkConfiguration);
+              = new V3EnrollIdentity.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -176,7 +176,7 @@ public class Identity {
      */
     public V3BatchEnrollIdentitiesResponse v3BatchEnrollIdentities(Optional<? extends V3BatchEnrollIdentitiesRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3BatchEnrollIdentitiesRequest>, V3BatchEnrollIdentitiesResponse> operation
-              = new V3BatchEnrollIdentitiesOperation(sdkConfiguration);
+              = new V3BatchEnrollIdentities.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -222,7 +222,7 @@ public class Identity {
                 .clientRequestId(clientRequestId)
                 .build();
         RequestOperation<V3DisenrollIdentityRequest, V3DisenrollIdentityResponse> operation
-              = new V3DisenrollIdentityOperation(sdkConfiguration);
+              = new V3DisenrollIdentity.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -268,7 +268,7 @@ public class Identity {
                 .clientRequestId(clientRequestId)
                 .build();
         RequestOperation<V3GetIdentityRequest, V3GetIdentityResponse> operation
-              = new V3GetIdentityOperation(sdkConfiguration);
+              = new V3GetIdentity.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -314,7 +314,7 @@ public class Identity {
                 .v3ActivateIdentityRequest(v3ActivateIdentityRequest)
                 .build();
         RequestOperation<com.prove.proveapi.models.operations.V3ActivateIdentityRequest, V3ActivateIdentityResponse> operation
-              = new V3ActivateIdentityOperation(sdkConfiguration);
+              = new V3ActivateIdentity.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -360,7 +360,7 @@ public class Identity {
                 .v3IdentityDeactivateRequest(v3IdentityDeactivateRequest)
                 .build();
         RequestOperation<V3DeactivateIdentityRequest, V3DeactivateIdentityResponse> operation
-              = new V3DeactivateIdentityOperation(sdkConfiguration);
+              = new V3DeactivateIdentity.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -406,7 +406,7 @@ public class Identity {
                 .clientRequestId(clientRequestId)
                 .build();
         RequestOperation<V3GetIdentitiesByPhoneNumberRequest, V3GetIdentitiesByPhoneNumberResponse> operation
-              = new V3GetIdentitiesByPhoneNumberOperation(sdkConfiguration);
+              = new V3GetIdentitiesByPhoneNumber.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
