@@ -7,7 +7,7 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3ActivateIdentityRequest;
-import com.prove.proveapi.operations.V3ActivateIdentityOperation;
+import com.prove.proveapi.operations.V3ActivateIdentity;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -53,7 +53,7 @@ public class V3ActivateIdentityRequestBuilder {
     public V3ActivateIdentityResponse call() throws Exception {
         
         RequestOperation<com.prove.proveapi.models.operations.V3ActivateIdentityRequest, V3ActivateIdentityResponse> operation
-              = new V3ActivateIdentityOperation(sdkConfiguration);
+              = new V3ActivateIdentity.Sync(sdkConfiguration);
         com.prove.proveapi.models.operations.V3ActivateIdentityRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

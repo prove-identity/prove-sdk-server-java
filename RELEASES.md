@@ -241,3 +241,13 @@ Based on:
 - [java v0.17.0] .
 ### Releases
 - [Maven Central v0.17.0] https://central.sonatype.com/artifact/com.prove/proveapi/0.17.0 - .
+
+## 2025-08-25 00:46:47
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.606.3 (2.687.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v0.17.1] .
+### Releases
+- [Maven Central v0.17.1] https://central.sonatype.com/artifact/com.prove/proveapi/0.17.1 - .

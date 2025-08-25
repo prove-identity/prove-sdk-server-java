@@ -6,7 +6,7 @@ package com.prove.proveapi.models.operations;
 import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
-import com.prove.proveapi.operations.V3BatchGetIdentitiesOperation;
+import com.prove.proveapi.operations.V3BatchGetIdentities;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -88,7 +88,7 @@ public class V3BatchGetIdentitiesRequestBuilder {
     public V3BatchGetIdentitiesResponse call() throws Exception {
         
         RequestOperation<V3BatchGetIdentitiesRequest, V3BatchGetIdentitiesResponse> operation
-              = new V3BatchGetIdentitiesOperation(sdkConfiguration);
+              = new V3BatchGetIdentities.Sync(sdkConfiguration);
         V3BatchGetIdentitiesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

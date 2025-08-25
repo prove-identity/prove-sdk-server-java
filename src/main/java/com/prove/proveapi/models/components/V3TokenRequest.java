@@ -15,30 +15,30 @@ public class V3TokenRequest {
     /**
      * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
-    @SpeakeasyMetadata("form:name=client_id")
-    private String clientId;
+    @SpeakeasyMetadata("form:name=ClientID")
+    private String clientID;
 
     /**
      * The client secret retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
-    @SpeakeasyMetadata("form:name=client_secret")
+    @SpeakeasyMetadata("form:name=ClientSecret")
     private String clientSecret;
 
     /**
      * The grant type. This field only accepts `client_credentials`.
      */
-    @SpeakeasyMetadata("form:name=grant_type")
+    @SpeakeasyMetadata("form:name=GrantType")
     private String grantType;
 
     @JsonCreator
     public V3TokenRequest(
-            String clientId,
+            String clientID,
             String clientSecret,
             String grantType) {
-        Utils.checkNotNull(clientId, "clientId");
+        Utils.checkNotNull(clientID, "clientID");
         Utils.checkNotNull(clientSecret, "clientSecret");
         Utils.checkNotNull(grantType, "grantType");
-        this.clientId = clientId;
+        this.clientID = clientID;
         this.clientSecret = clientSecret;
         this.grantType = grantType;
     }
@@ -47,8 +47,8 @@ public class V3TokenRequest {
      * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
     @JsonIgnore
-    public String clientId() {
-        return clientId;
+    public String clientID() {
+        return clientID;
     }
 
     /**
@@ -75,9 +75,9 @@ public class V3TokenRequest {
     /**
      * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
      */
-    public V3TokenRequest withClientId(String clientId) {
-        Utils.checkNotNull(clientId, "clientId");
-        this.clientId = clientId;
+    public V3TokenRequest withClientID(String clientID) {
+        Utils.checkNotNull(clientID, "clientID");
+        this.clientID = clientID;
         return this;
     }
 
@@ -109,7 +109,7 @@ public class V3TokenRequest {
         }
         V3TokenRequest other = (V3TokenRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.clientId, other.clientId) &&
+            Utils.enhancedDeepEquals(this.clientID, other.clientID) &&
             Utils.enhancedDeepEquals(this.clientSecret, other.clientSecret) &&
             Utils.enhancedDeepEquals(this.grantType, other.grantType);
     }
@@ -117,13 +117,13 @@ public class V3TokenRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            clientId, clientSecret, grantType);
+            clientID, clientSecret, grantType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3TokenRequest.class,
-                "clientId", clientId,
+                "clientID", clientID,
                 "clientSecret", clientSecret,
                 "grantType", grantType);
     }
@@ -131,7 +131,7 @@ public class V3TokenRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String clientId;
+        private String clientID;
 
         private String clientSecret;
 
@@ -145,9 +145,9 @@ public class V3TokenRequest {
         /**
          * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
          */
-        public Builder clientId(String clientId) {
-            Utils.checkNotNull(clientId, "clientId");
-            this.clientId = clientId;
+        public Builder clientID(String clientID) {
+            Utils.checkNotNull(clientID, "clientID");
+            this.clientID = clientID;
             return this;
         }
 
@@ -174,7 +174,7 @@ public class V3TokenRequest {
         public V3TokenRequest build() {
 
             return new V3TokenRequest(
-                clientId, clientSecret, grantType);
+                clientID, clientSecret, grantType);
         }
 
     }

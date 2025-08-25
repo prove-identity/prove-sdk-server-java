@@ -20,14 +20,14 @@ import java.util.Optional;
 @SuppressWarnings("serial")
 public class Error extends RuntimeException {
     /**
-     * An error code that describes the problem category of the request.
+     * Code is an internal error code that describes the problem category of the request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
     private Optional<Long> code;
 
     /**
-     * The error message describing the problem with the request.
+     * Message is an error message describing the problem with the request.
      */
     @JsonProperty("message")
     private String message;
@@ -49,7 +49,7 @@ public class Error extends RuntimeException {
     }
 
     /**
-     * An error code that describes the problem category of the request.
+     * Code is an internal error code that describes the problem category of the request.
      */
     @JsonIgnore
     public Optional<Long> code() {
@@ -57,7 +57,7 @@ public class Error extends RuntimeException {
     }
 
     /**
-     * The error message describing the problem with the request.
+     * Message is an error message describing the problem with the request.
      */
     @JsonIgnore
     public String message() {
@@ -76,7 +76,7 @@ public class Error extends RuntimeException {
 
 
     /**
-     * An error code that describes the problem category of the request.
+     * Code is an internal error code that describes the problem category of the request.
      */
     public Error withCode(long code) {
         Utils.checkNotNull(code, "code");
@@ -86,7 +86,7 @@ public class Error extends RuntimeException {
 
 
     /**
-     * An error code that describes the problem category of the request.
+     * Code is an internal error code that describes the problem category of the request.
      */
     public Error withCode(Optional<Long> code) {
         Utils.checkNotNull(code, "code");
@@ -95,7 +95,7 @@ public class Error extends RuntimeException {
     }
 
     /**
-     * The error message describing the problem with the request.
+     * Message is an error message describing the problem with the request.
      */
     public Error withMessage(String message) {
         Utils.checkNotNull(message, "message");
@@ -143,7 +143,7 @@ public class Error extends RuntimeException {
 
 
         /**
-         * An error code that describes the problem category of the request.
+         * Code is an internal error code that describes the problem category of the request.
          */
         public Builder code(long code) {
             Utils.checkNotNull(code, "code");
@@ -152,7 +152,7 @@ public class Error extends RuntimeException {
         }
 
         /**
-         * An error code that describes the problem category of the request.
+         * Code is an internal error code that describes the problem category of the request.
          */
         public Builder code(Optional<Long> code) {
             Utils.checkNotNull(code, "code");
@@ -162,7 +162,7 @@ public class Error extends RuntimeException {
 
 
         /**
-         * The error message describing the problem with the request.
+         * Message is an error message describing the problem with the request.
          */
         public Builder message(String message) {
             Utils.checkNotNull(message, "message");

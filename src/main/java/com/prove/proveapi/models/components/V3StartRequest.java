@@ -25,6 +25,8 @@ public class V3StartRequest {
 
     /**
      * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * 
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dob")
@@ -79,6 +81,8 @@ public class V3StartRequest {
 
     /**
      * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
+     * 
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ssn")
@@ -132,6 +136,8 @@ public class V3StartRequest {
 
     /**
      * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * 
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
      */
     @JsonIgnore
     public Optional<String> dob() {
@@ -194,6 +200,8 @@ public class V3StartRequest {
 
     /**
      * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
+     * 
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
      */
     @JsonIgnore
     public Optional<String> ssn() {
@@ -226,6 +234,8 @@ public class V3StartRequest {
 
     /**
      * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * 
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
      */
     public V3StartRequest withDob(String dob) {
         Utils.checkNotNull(dob, "dob");
@@ -236,6 +246,8 @@ public class V3StartRequest {
 
     /**
      * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * 
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
      */
     public V3StartRequest withDob(Optional<String> dob) {
         Utils.checkNotNull(dob, "dob");
@@ -361,6 +373,8 @@ public class V3StartRequest {
 
     /**
      * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
+     * 
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
      */
     public V3StartRequest withSsn(String ssn) {
         Utils.checkNotNull(ssn, "ssn");
@@ -371,6 +385,8 @@ public class V3StartRequest {
 
     /**
      * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
+     * 
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
      */
     public V3StartRequest withSsn(Optional<String> ssn) {
         Utils.checkNotNull(ssn, "ssn");
@@ -468,6 +484,8 @@ public class V3StartRequest {
 
         /**
          * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * 
+         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
          */
         public Builder dob(String dob) {
             Utils.checkNotNull(dob, "dob");
@@ -477,6 +495,8 @@ public class V3StartRequest {
 
         /**
          * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * 
+         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
          */
         public Builder dob(Optional<String> dob) {
             Utils.checkNotNull(dob, "dob");
@@ -604,6 +624,8 @@ public class V3StartRequest {
 
         /**
          * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
+         * 
+         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
          */
         public Builder ssn(String ssn) {
             Utils.checkNotNull(ssn, "ssn");
@@ -613,6 +635,8 @@ public class V3StartRequest {
 
         /**
          * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
+         * 
+         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
          */
         public Builder ssn(Optional<String> ssn) {
             Utils.checkNotNull(ssn, "ssn");

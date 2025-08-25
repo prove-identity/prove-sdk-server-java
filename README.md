@@ -37,7 +37,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.17.0'
+implementation 'com.prove:proveapi:0.17.1'
 ```
 
 Maven:
@@ -45,7 +45,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.17.0</version>
+    <version>0.17.1</version>
 </dependency>
 ```
 
@@ -82,7 +82,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -121,6 +121,13 @@ public class Application {
 <details open>
 <summary>Available methods</summary>
 
+### [domain()](docs/sdks/domain/README.md)
+
+* [v3DomainID](docs/sdks/domain/README.md#v3domainid) - Get Domain Details
+* [v3DomainLink](docs/sdks/domain/README.md#v3domainlink) - # Create a request to connect the requested domain to the domain the request is made from.
+* [v3DomainLinked](docs/sdks/domain/README.md#v3domainlinked) - Get the list of domains that are linked to this domain.
+* [v3DomainUnlink](docs/sdks/domain/README.md#v3domainunlink) - # Remove a domain link or request.
+
 ### [identity()](docs/sdks/identity/README.md)
 
 * [v3BatchGetIdentities](docs/sdks/identity/README.md#v3batchgetidentities) - Batch Get Identities
@@ -158,7 +165,7 @@ By default, an API error will throw a `models/errors/SDKError` exception. When c
 
 | Error Type             | Status Code | Content Type     |
 | ---------------------- | ----------- | ---------------- |
-| models/errors/Error400 | 400         | application/json |
+| models/errors/Error    | 400         | application/json |
 | models/errors/Error401 | 401         | application/json |
 | models/errors/Error    | 500         | application/json |
 | models/errors/SDKError | 4XX, 5XX    | \*/\*            |
@@ -170,20 +177,20 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
             .build();
 
         V3TokenRequest req = V3TokenRequest.builder()
-                .clientId("customer_id")
+                .clientID("customer_id")
                 .clientSecret("secret")
                 .grantType("client_credentials")
                 .build();
@@ -221,21 +228,21 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .server(Proveapi.AvailableServers.PROD_EU)
             .build();
 
         V3TokenRequest req = V3TokenRequest.builder()
-                .clientId("customer_id")
+                .clientID("customer_id")
                 .clientSecret("secret")
                 .grantType("client_credentials")
                 .build();
@@ -259,21 +266,21 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .serverURL("https://platform.uat.proveapis.com")
             .build();
 
         V3TokenRequest req = V3TokenRequest.builder()
-                .clientId("customer_id")
+                .clientID("customer_id")
                 .clientSecret("secret")
                 .grantType("client_credentials")
                 .build();
@@ -308,14 +315,14 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -325,7 +332,7 @@ public class Application {
             .build();
 
         V3TokenRequest req = V3TokenRequest.builder()
-                .clientId("customer_id")
+                .clientID("customer_id")
                 .clientSecret("secret")
                 .grantType("client_credentials")
                 .build();

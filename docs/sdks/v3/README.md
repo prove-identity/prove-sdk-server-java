@@ -22,25 +22,26 @@ This endpoint allows you to request an OAuth token.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3TokenRequest" method="post" path="/token" -->
 ```java
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
             .build();
 
         V3TokenRequest req = V3TokenRequest.builder()
-                .clientId("customer_id")
+                .clientID("customer_id")
                 .clientSecret("secret")
                 .grantType("client_credentials")
                 .build();
@@ -70,7 +71,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
@@ -81,6 +82,7 @@ This endpoint allows you to submit challenge information.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3ChallengeRequest" method="post" path="/v3/challenge" -->
 ```java
 package hello.world;
 
@@ -94,7 +96,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -134,7 +136,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -146,6 +148,7 @@ This endpoint allows you to verify the user and complete the flow.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3CompleteRequest" method="post" path="/v3/complete" -->
 ```java
 package hello.world;
 
@@ -159,7 +162,7 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -213,7 +216,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -225,6 +228,7 @@ This endpoint allows you to start the solution flow.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3StartRequest" method="post" path="/v3/start" -->
 ```java
 package hello.world;
 
@@ -238,7 +242,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -284,7 +288,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -296,6 +300,7 @@ This endpoint allows you to initiate the possession check.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3UnifyRequest" method="post" path="/v3/unify" -->
 ```java
 package hello.world;
 
@@ -309,7 +314,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -321,6 +326,7 @@ public class Application {
         V3UnifyRequest req = V3UnifyRequest.builder()
                 .possessionType("mobile")
                 .allowOTPRetry(true)
+                .checkReputation(true)
                 .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .finalTargetUrl("https://www.example.com/landing-page")
@@ -354,7 +360,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -366,6 +372,7 @@ This endpoint allows you to bind a Prove Key to a phone number of a Unify sessio
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3UnifyBindRequest" method="post" path="/v3/unify-bind" -->
 ```java
 package hello.world;
 
@@ -379,7 +386,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -419,7 +426,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -431,6 +438,7 @@ This endpoint allows you to check the status of a Unify session and get the poss
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3UnifyStatusRequest" method="post" path="/v3/unify-status" -->
 ```java
 package hello.world;
 
@@ -444,7 +452,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -484,7 +492,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -496,6 +504,7 @@ This endpoint allows you to check if the phone number entered/discovered earlier
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3ValidateRequest" method="post" path="/v3/validate" -->
 ```java
 package hello.world;
 
@@ -509,7 +518,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -547,7 +556,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -559,6 +568,7 @@ This endpoint allows you to initiate a Verified Users session.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3VerifyRequest" method="post" path="/v3/verify" -->
 ```java
 package hello.world;
 
@@ -572,7 +582,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -619,7 +629,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
@@ -631,6 +641,7 @@ This endpoint allows you to perform the necessary checks for a Verified Users se
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="V3VerifyStatusRequest" method="post" path="/v3/verify-status" -->
 ```java
 package hello.world;
 
@@ -644,7 +655,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -683,7 +694,7 @@ public class Application {
 
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error    | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
