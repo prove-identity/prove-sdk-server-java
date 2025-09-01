@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: 6e2a2fa27a0836ffe8b60528019008dc
+  docChecksum: d7f1c6ac326977f2bda0cc8381e1abca
   docVersion: 1.0.0
-  speakeasyVersion: 1.606.3
-  generationVersion: 2.687.1
-  releaseVersion: 0.17.1
-  configChecksum: c9b02d48d8237fd63df20819d7282443
+  speakeasyVersion: 1.606.9
+  generationVersion: 2.687.13
+  releaseVersion: 0.18.0
+  configChecksum: ba3a2f711385a5494b12978d4e058e01
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.45.4
+    core: 3.46.0
     examples: 2.81.6
     flattening: 2.81.1
     globalSecurity: 2.83.0
@@ -58,8 +58,12 @@ generatedFiles:
   - docs/models/components/V3CompleteRequest.md
   - docs/models/components/V3CompleteResponse.md
   - docs/models/components/V3CompleteResponseEvaluation.md
+  - docs/models/components/V3CrossDomainIdentityRequest.md
+  - docs/models/components/V3CrossDomainIdentityResponse.md
   - docs/models/components/V3DeactivateIdentityResponse.md
   - docs/models/components/V3DisenrollIdentityResponse.md
+  - docs/models/components/V3DomainConfirmLinkRequest.md
+  - docs/models/components/V3DomainConfirmLinkResponse.md
   - docs/models/components/V3DomainIDResponse.md
   - docs/models/components/V3DomainLinkRequest.md
   - docs/models/components/V3DomainLinkResponse.md
@@ -102,14 +106,17 @@ generatedFiles:
   - docs/models/operations/V3BatchGetIdentitiesResponse.md
   - docs/models/operations/V3ChallengeRequestResponse.md
   - docs/models/operations/V3CompleteRequestResponse.md
+  - docs/models/operations/V3CrossDomainIdentityRequest.md
+  - docs/models/operations/V3CrossDomainIdentityResponse.md
   - docs/models/operations/V3DeactivateIdentityRequest.md
   - docs/models/operations/V3DeactivateIdentityResponse.md
   - docs/models/operations/V3DisenrollIdentityRequest.md
   - docs/models/operations/V3DisenrollIdentityResponse.md
-  - docs/models/operations/V3DomainIDResponse.md
-  - docs/models/operations/V3DomainLinkResponse.md
-  - docs/models/operations/V3DomainLinkedResponse.md
-  - docs/models/operations/V3DomainUnlinkResponse.md
+  - docs/models/operations/V3DomainConfirmLinkRequestResponse.md
+  - docs/models/operations/V3DomainIDRequestResponse.md
+  - docs/models/operations/V3DomainLinkRequestResponse.md
+  - docs/models/operations/V3DomainLinkedRequestResponse.md
+  - docs/models/operations/V3DomainUnlinkRequestResponse.md
   - docs/models/operations/V3EnrollIdentityResponse.md
   - docs/models/operations/V3GetIdentitiesByPhoneNumberRequest.md
   - docs/models/operations/V3GetIdentitiesByPhoneNumberResponse.md
@@ -173,8 +180,12 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/V3CompleteRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3CompleteResponseEvaluation.java
+  - src/main/java/com/prove/proveapi/models/components/V3CrossDomainIdentityRequest.java
+  - src/main/java/com/prove/proveapi/models/components/V3CrossDomainIdentityResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3DeactivateIdentityResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3DisenrollIdentityResponse.java
+  - src/main/java/com/prove/proveapi/models/components/V3DomainConfirmLinkRequest.java
+  - src/main/java/com/prove/proveapi/models/components/V3DomainConfirmLinkResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3DomainIDResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3DomainLinkRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3DomainLinkResponse.java
@@ -224,20 +235,25 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/operations/V3ChallengeRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3CompleteRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3CompleteRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3CrossDomainIdentityRequest.java
+  - src/main/java/com/prove/proveapi/models/operations/V3CrossDomainIdentityRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3CrossDomainIdentityResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3DeactivateIdentityRequest.java
   - src/main/java/com/prove/proveapi/models/operations/V3DeactivateIdentityRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3DeactivateIdentityResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3DisenrollIdentityRequest.java
   - src/main/java/com/prove/proveapi/models/operations/V3DisenrollIdentityRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3DisenrollIdentityResponse.java
-  - src/main/java/com/prove/proveapi/models/operations/V3DomainIDRequestBuilder.java
-  - src/main/java/com/prove/proveapi/models/operations/V3DomainIDResponse.java
-  - src/main/java/com/prove/proveapi/models/operations/V3DomainLinkRequestBuilder.java
-  - src/main/java/com/prove/proveapi/models/operations/V3DomainLinkResponse.java
-  - src/main/java/com/prove/proveapi/models/operations/V3DomainLinkedRequestBuilder.java
-  - src/main/java/com/prove/proveapi/models/operations/V3DomainLinkedResponse.java
-  - src/main/java/com/prove/proveapi/models/operations/V3DomainUnlinkRequestBuilder.java
-  - src/main/java/com/prove/proveapi/models/operations/V3DomainUnlinkResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DomainConfirmLinkRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DomainConfirmLinkRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DomainIDRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DomainIDRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DomainLinkRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DomainLinkRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DomainLinkedRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DomainLinkedRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DomainUnlinkRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/V3DomainUnlinkRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3EnrollIdentityRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3EnrollIdentityResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3GetIdentitiesByPhoneNumberRequest.java
@@ -268,12 +284,14 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/operations/V3BatchGetIdentities.java
   - src/main/java/com/prove/proveapi/operations/V3ChallengeRequest.java
   - src/main/java/com/prove/proveapi/operations/V3CompleteRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3CrossDomainIdentity.java
   - src/main/java/com/prove/proveapi/operations/V3DeactivateIdentity.java
   - src/main/java/com/prove/proveapi/operations/V3DisenrollIdentity.java
-  - src/main/java/com/prove/proveapi/operations/V3DomainID.java
-  - src/main/java/com/prove/proveapi/operations/V3DomainLink.java
-  - src/main/java/com/prove/proveapi/operations/V3DomainLinked.java
-  - src/main/java/com/prove/proveapi/operations/V3DomainUnlink.java
+  - src/main/java/com/prove/proveapi/operations/V3DomainConfirmLinkRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3DomainIDRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3DomainLinkRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3DomainLinkedRequest.java
+  - src/main/java/com/prove/proveapi/operations/V3DomainUnlinkRequest.java
   - src/main/java/com/prove/proveapi/operations/V3EnrollIdentity.java
   - src/main/java/com/prove/proveapi/operations/V3GetIdentitiesByPhoneNumber.java
   - src/main/java/com/prove/proveapi/operations/V3GetIdentity.java
@@ -318,6 +336,7 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/utils/QueryParameters.java
   - src/main/java/com/prove/proveapi/utils/QueryParamsMetadata.java
   - src/main/java/com/prove/proveapi/utils/RecordingClient.java
+  - src/main/java/com/prove/proveapi/utils/Reflections.java
   - src/main/java/com/prove/proveapi/utils/RequestBody.java
   - src/main/java/com/prove/proveapi/utils/RequestMetadata.java
   - src/main/java/com/prove/proveapi/utils/Response.java
@@ -339,7 +358,7 @@ examples:
   V3TokenRequest:
     speakeasy-default-v3-token-request:
       requestBody:
-        application/x-www-form-urlencoded: {"ClientID": "customer_id", "ClientSecret": "secret", "GrantType": "client_credentials"}
+        application/x-www-form-urlencoded: {"client_id": "customer_id", "client_secret": "secret", "grant_type": "client_credentials"}
       responses:
         "200":
           application/json: {"access_token": "eyJ...", "expires_in": 3600, "refresh_expires_in": 3600, "refresh_token": "eyJ...", "token_type": "Bearer"}
@@ -531,7 +550,7 @@ examples:
   V3BatchEnrollIdentities:
     speakeasy-default-v3-batch-enroll-identities:
       requestBody:
-        application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "items": [{"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "phoneNumber": "2001001695"}, {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "phoneNumber": "2001001695"}]}
+        application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "items": [{"clientName": "\"Client A\"", "identityId": "\"e0f78bc2-f748-4eda-9d29-d756844507fc\"", "pcid": "\"12345\""}, {"clientName": "\"Client A\"", "identityId": "\"e0f78bc2-f748-4eda-9d29-d756844507fc\"", "pcid": "\"12345\""}]}
       responses:
         "200":
           application/json: {"results": [{"identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc"}, {"error": "Invalid Phone Number"}]}
@@ -683,6 +702,95 @@ examples:
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
           application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3DomainConfirmLinkRequest:
+    speakeasy-default-v3-domain-confirm-link-request:
+      requestBody:
+        application/json: {"pcid": "pcid"}
+      responses:
+        "200":
+          application/json: {"success": true}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3DomainIDRequest:
+    speakeasy-default-v3-domain-ID-request:
+      responses:
+        "200":
+          application/json: {"name": "My Company", "pcid": "123456"}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3DomainLinkRequest:
+    speakeasy-default-v3-domain-link-request:
+      requestBody:
+        application/json: {"pcid": "pcid"}
+      responses:
+        "200":
+          application/json: {"success": true}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3DomainLinkedRequest:
+    speakeasy-default-v3-domain-linked-request:
+      responses:
+        "200":
+          application/json: {"linkedFrom": [{"acceptedAt": 0, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}, {"acceptedAt": 0, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}], "linkedTo": [{"acceptedAt": 6, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}, {"acceptedAt": 6, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}], "requestsFrom": [{"name": "name", "pcid": "pcid", "requestedAt": 1, "requestedString": "requestedString"}, {"name": "name", "pcid": "pcid", "requestedAt": 1, "requestedString": "requestedString"}], "requestsTo": [{"name": "name", "pcid": "pcid", "requestedAt": 5, "requestedString": "requestedString"}, {"name": "name", "pcid": "pcid", "requestedAt": 5, "requestedString": "requestedString"}]}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3DomainUnlinkRequest:
+    speakeasy-default-v3-domain-unlink-request:
+      requestBody:
+        application/json: {"pcidFrom": "pcidFrom", "pcidTo": "pcidTo"}
+      responses:
+        "200":
+          application/json: {"success": true}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+  V3CrossDomainIdentity:
+    speakeasy-default-v3-cross-domain-identity:
+      parameters:
+        path:
+          identityId: "<id>"
+      requestBody:
+        application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81"}
+      responses:
+        "200":
+          application/json: {"count": 5, "identites": [{"clientName": "Client A", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "pcid": "12345"}]}
+        "400":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 8000, "message": "error at prove, try again later"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## SDK Changes Detected:\n* `proveapi.v3.v3TokenRequest()`:  `request` **Changed** **Breaking** :warning:\n* `proveapi.domain.v3DomainId()`: **Added**\n* `proveapi.domain.v3DomainLink()`: **Added**\n* `proveapi.domain.v3DomainLinked()`: **Added**\n* `proveapi.domain.v3DomainUnlink()`: **Added**\n* `proveapi.v3.v3UnifyRequest()`: \n  *  `request.checkReputation` **Added**\n* `proveapi.v3.v3UnifyBindRequest()`:  `response.evaluation` **Added**\n* `proveapi.v3.v3UnifyStatusRequest()`:  `response.evaluation` **Added**\n* `proveapi.v3.v3VerifyRequest()`:  `response.evaluation` **Added**\n* `proveapi.v3.v3VerifyStatusRequest()`:  `response.evaluation` **Added**\n"
+releaseNotes: "## SDK Changes Detected:\n* `proveapi.v3.v3TokenRequest()`:  `request` **Changed** **Breaking** :warning:\n* `proveapi.identity.v3BatchEnrollIdentities()`: \n  *  `request.items.[]` **Changed** **Breaking** :warning:\n* `proveapi.domain.v3DomainConfirmLinkRequest()`: **Added**\n* `proveapi.domain.v3DomainIdRequest()`: **Added**\n* `proveapi.domain.v3DomainLinkRequest()`: **Added**\n* `proveapi.domain.v3DomainLinkedRequest()`: **Added**\n* `proveapi.domain.v3DomainUnlinkRequest()`: **Added**\n* `proveapi.identity.v3CrossDomainIdentity()`: **Added**\n* `proveapi.domain.v3DomainId()`: **Deleted** **Breaking** :warning:\n* `proveapi.domain.v3DomainLink()`: **Deleted** **Breaking** :warning:\n* `proveapi.domain.v3DomainLinked()`: **Deleted** **Breaking** :warning:\n* `proveapi.domain.v3DomainUnlink()`: **Deleted** **Breaking** :warning:\n"

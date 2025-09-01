@@ -5,80 +5,66 @@ package com.prove.proveapi.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
 
-/**
- * IdentityItem
- * 
- * <p>Represents a single identity that you wish to enroll.
- */
+
 public class IdentityItem {
     /**
-     * A client-generated unique ID for a specific customer. This ID links calls related to the same customer, across different requests or sessions. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * The name of the client associated with the identity.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("clientCustomerId")
-    private Optional<String> clientCustomerId;
+    @JsonProperty("clientName")
+    private String clientName;
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * The Prove-generated unique ID for the specific identity.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("deviceId")
-    private Optional<String> deviceId;
+    @JsonProperty("identityId")
+    private String identityId;
 
     /**
-     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The Prove Customer ID (PCID) associated with the identity.
      */
-    @JsonProperty("phoneNumber")
-    private String phoneNumber;
+    @JsonProperty("pcid")
+    private String pcid;
 
     @JsonCreator
     public IdentityItem(
-            @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
-            @JsonProperty("deviceId") Optional<String> deviceId,
-            @JsonProperty("phoneNumber") String phoneNumber) {
-        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
-        Utils.checkNotNull(deviceId, "deviceId");
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        this.clientCustomerId = clientCustomerId;
-        this.deviceId = deviceId;
-        this.phoneNumber = phoneNumber;
-    }
-    
-    public IdentityItem(
-            String phoneNumber) {
-        this(Optional.empty(), Optional.empty(), phoneNumber);
+            @JsonProperty("clientName") String clientName,
+            @JsonProperty("identityId") String identityId,
+            @JsonProperty("pcid") String pcid) {
+        Utils.checkNotNull(clientName, "clientName");
+        Utils.checkNotNull(identityId, "identityId");
+        Utils.checkNotNull(pcid, "pcid");
+        this.clientName = clientName;
+        this.identityId = identityId;
+        this.pcid = pcid;
     }
 
     /**
-     * A client-generated unique ID for a specific customer. This ID links calls related to the same customer, across different requests or sessions. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * The name of the client associated with the identity.
      */
     @JsonIgnore
-    public Optional<String> clientCustomerId() {
-        return clientCustomerId;
+    public String clientName() {
+        return clientName;
     }
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * The Prove-generated unique ID for the specific identity.
      */
     @JsonIgnore
-    public Optional<String> deviceId() {
-        return deviceId;
+    public String identityId() {
+        return identityId;
     }
 
     /**
-     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The Prove Customer ID (PCID) associated with the identity.
      */
     @JsonIgnore
-    public String phoneNumber() {
-        return phoneNumber;
+    public String pcid() {
+        return pcid;
     }
 
     public static Builder builder() {
@@ -87,49 +73,29 @@ public class IdentityItem {
 
 
     /**
-     * A client-generated unique ID for a specific customer. This ID links calls related to the same customer, across different requests or sessions. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * The name of the client associated with the identity.
      */
-    public IdentityItem withClientCustomerId(String clientCustomerId) {
-        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
-        this.clientCustomerId = Optional.ofNullable(clientCustomerId);
-        return this;
-    }
-
-
-    /**
-     * A client-generated unique ID for a specific customer. This ID links calls related to the same customer, across different requests or sessions. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
-     */
-    public IdentityItem withClientCustomerId(Optional<String> clientCustomerId) {
-        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
-        this.clientCustomerId = clientCustomerId;
+    public IdentityItem withClientName(String clientName) {
+        Utils.checkNotNull(clientName, "clientName");
+        this.clientName = clientName;
         return this;
     }
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * The Prove-generated unique ID for the specific identity.
      */
-    public IdentityItem withDeviceId(String deviceId) {
-        Utils.checkNotNull(deviceId, "deviceId");
-        this.deviceId = Optional.ofNullable(deviceId);
-        return this;
-    }
-
-
-    /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
-     */
-    public IdentityItem withDeviceId(Optional<String> deviceId) {
-        Utils.checkNotNull(deviceId, "deviceId");
-        this.deviceId = deviceId;
+    public IdentityItem withIdentityId(String identityId) {
+        Utils.checkNotNull(identityId, "identityId");
+        this.identityId = identityId;
         return this;
     }
 
     /**
-     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The Prove Customer ID (PCID) associated with the identity.
      */
-    public IdentityItem withPhoneNumber(String phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        this.phoneNumber = phoneNumber;
+    public IdentityItem withPcid(String pcid) {
+        Utils.checkNotNull(pcid, "pcid");
+        this.pcid = pcid;
         return this;
     }
 
@@ -143,33 +109,33 @@ public class IdentityItem {
         }
         IdentityItem other = (IdentityItem) o;
         return 
-            Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
-            Utils.enhancedDeepEquals(this.deviceId, other.deviceId) &&
-            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.clientName, other.clientName) &&
+            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
+            Utils.enhancedDeepEquals(this.pcid, other.pcid);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            clientCustomerId, deviceId, phoneNumber);
+            clientName, identityId, pcid);
     }
     
     @Override
     public String toString() {
         return Utils.toString(IdentityItem.class,
-                "clientCustomerId", clientCustomerId,
-                "deviceId", deviceId,
-                "phoneNumber", phoneNumber);
+                "clientName", clientName,
+                "identityId", identityId,
+                "pcid", pcid);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> clientCustomerId = Optional.empty();
+        private String clientName;
 
-        private Optional<String> deviceId = Optional.empty();
+        private String identityId;
 
-        private String phoneNumber;
+        private String pcid;
 
         private Builder() {
           // force use of static builder() method
@@ -177,56 +143,38 @@ public class IdentityItem {
 
 
         /**
-         * A client-generated unique ID for a specific customer. This ID links calls related to the same customer, across different requests or sessions. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * The name of the client associated with the identity.
          */
-        public Builder clientCustomerId(String clientCustomerId) {
-            Utils.checkNotNull(clientCustomerId, "clientCustomerId");
-            this.clientCustomerId = Optional.ofNullable(clientCustomerId);
-            return this;
-        }
-
-        /**
-         * A client-generated unique ID for a specific customer. This ID links calls related to the same customer, across different requests or sessions. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
-         */
-        public Builder clientCustomerId(Optional<String> clientCustomerId) {
-            Utils.checkNotNull(clientCustomerId, "clientCustomerId");
-            this.clientCustomerId = clientCustomerId;
+        public Builder clientName(String clientName) {
+            Utils.checkNotNull(clientName, "clientName");
+            this.clientName = clientName;
             return this;
         }
 
 
         /**
-         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+         * The Prove-generated unique ID for the specific identity.
          */
-        public Builder deviceId(String deviceId) {
-            Utils.checkNotNull(deviceId, "deviceId");
-            this.deviceId = Optional.ofNullable(deviceId);
-            return this;
-        }
-
-        /**
-         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
-         */
-        public Builder deviceId(Optional<String> deviceId) {
-            Utils.checkNotNull(deviceId, "deviceId");
-            this.deviceId = deviceId;
+        public Builder identityId(String identityId) {
+            Utils.checkNotNull(identityId, "identityId");
+            this.identityId = identityId;
             return this;
         }
 
 
         /**
-         * The number of the consumer being enrolled. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+         * The Prove Customer ID (PCID) associated with the identity.
          */
-        public Builder phoneNumber(String phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
-            this.phoneNumber = phoneNumber;
+        public Builder pcid(String pcid) {
+            Utils.checkNotNull(pcid, "pcid");
+            this.pcid = pcid;
             return this;
         }
 
         public IdentityItem build() {
 
             return new IdentityItem(
-                clientCustomerId, deviceId, phoneNumber);
+                clientName, identityId, pcid);
         }
 
     }

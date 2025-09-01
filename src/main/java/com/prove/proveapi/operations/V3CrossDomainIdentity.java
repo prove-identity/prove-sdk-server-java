@@ -8,12 +8,12 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.SecuritySource;
-import com.prove.proveapi.models.components.V3DomainUnlinkRequest;
 import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.errors.SDKError;
-import com.prove.proveapi.models.operations.V3DomainUnlinkResponse;
+import com.prove.proveapi.models.operations.V3CrossDomainIdentityRequest;
+import com.prove.proveapi.models.operations.V3CrossDomainIdentityResponse;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.HTTPRequest;
 import com.prove.proveapi.utils.Hook.AfterErrorContextImpl;
@@ -32,7 +32,7 @@ import java.util.Optional;
 
 
 
-public class V3DomainUnlink {
+public class V3CrossDomainIdentity {
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -55,7 +55,7 @@ public class V3DomainUnlink {
             return new BeforeRequestContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DomainUnlink",
+                    "V3CrossDomainIdentity",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
@@ -64,7 +64,7 @@ public class V3DomainUnlink {
             return new AfterSuccessContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DomainUnlink",
+                    "V3CrossDomainIdentity",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
@@ -73,24 +73,26 @@ public class V3DomainUnlink {
             return new AfterErrorContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DomainUnlink",
+                    "V3CrossDomainIdentity",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
 
-        HttpRequest buildRequest(Optional<? extends V3DomainUnlinkRequest> request) throws Exception {
+        HttpRequest buildRequest(V3CrossDomainIdentityRequest request) throws Exception {
             String url = Utils.generateURL(
+                    V3CrossDomainIdentityRequest.class,
                     this.baseUrl,
-                    "/v3/domain/unlink");
+                    "/v3/identity/{identityId}/cross-domain",
+                    request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Optional<? extends V3DomainUnlinkRequest>>() {
+                    new TypeReference<Object>() {
                     });
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "v3CrossDomainIdentityRequest",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
@@ -103,12 +105,12 @@ public class V3DomainUnlink {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends V3DomainUnlinkRequest>, V3DomainUnlinkResponse> {
+            implements RequestOperation<V3CrossDomainIdentityRequest, V3CrossDomainIdentityResponse> {
         public Sync(SDKConfiguration sdkConfiguration) {
             super(sdkConfiguration);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends V3DomainUnlinkRequest> request) throws Exception {
+        private HttpRequest onBuildRequest(V3CrossDomainIdentityRequest request) throws Exception {
             HttpRequest req = buildRequest(request);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
@@ -125,7 +127,7 @@ public class V3DomainUnlink {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends V3DomainUnlinkRequest> request) throws Exception {
+        public HttpResponse<InputStream> doRequest(V3CrossDomainIdentityRequest request) throws Exception {
             HttpRequest r = onBuildRequest(request);
             HttpResponse<InputStream> httpRes;
             try {
@@ -144,27 +146,27 @@ public class V3DomainUnlink {
 
 
         @Override
-        public V3DomainUnlinkResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V3CrossDomainIdentityResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
                     .orElse("application/octet-stream");
-            V3DomainUnlinkResponse.Builder resBuilder =
-                    V3DomainUnlinkResponse
+            V3CrossDomainIdentityResponse.Builder resBuilder =
+                    V3CrossDomainIdentityResponse
                             .builder()
                             .contentType(contentType)
                             .statusCode(response.statusCode())
                             .rawResponse(response);
 
-            V3DomainUnlinkResponse res = resBuilder.build();
+            V3CrossDomainIdentityResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    com.prove.proveapi.models.components.V3DomainUnlinkResponse out = Utils.mapper().readValue(
+                    com.prove.proveapi.models.components.V3CrossDomainIdentityResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                    res.withV3DomainUnlinkResponse(out);
+                    res.withV3CrossDomainIdentityResponse(out);
                     return res;
                 } else {
                     throw new SDKError(

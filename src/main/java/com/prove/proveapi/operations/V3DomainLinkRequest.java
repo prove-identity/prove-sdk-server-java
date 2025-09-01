@@ -3,24 +3,28 @@
  */
 package com.prove.proveapi.operations;
 
-import static com.prove.proveapi.operations.Operations.RequestlessOperation;
+import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.SecuritySource;
+import com.prove.proveapi.models.components.V3DomainLinkResponse;
 import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.errors.SDKError;
-import com.prove.proveapi.models.operations.V3DomainLinkedResponse;
+import com.prove.proveapi.models.operations.V3DomainLinkRequestResponse;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.HTTPRequest;
 import com.prove.proveapi.utils.Hook.AfterErrorContextImpl;
 import com.prove.proveapi.utils.Hook.AfterSuccessContextImpl;
 import com.prove.proveapi.utils.Hook.BeforeRequestContextImpl;
+import com.prove.proveapi.utils.SerializedBody;
+import com.prove.proveapi.utils.Utils.JsonShape;
 import com.prove.proveapi.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -28,7 +32,7 @@ import java.util.Optional;
 
 
 
-public class V3DomainLinked {
+public class V3DomainLinkRequest {
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -51,7 +55,7 @@ public class V3DomainLinked {
             return new BeforeRequestContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DomainLinked",
+                    "V3DomainLinkRequest",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
@@ -60,7 +64,7 @@ public class V3DomainLinked {
             return new AfterSuccessContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DomainLinked",
+                    "V3DomainLinkRequest",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
@@ -69,16 +73,27 @@ public class V3DomainLinked {
             return new AfterErrorContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DomainLinked",
+                    "V3DomainLinkRequest",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
 
-        HttpRequest buildRequest() throws Exception {
+        HttpRequest buildRequest(Optional<? extends com.prove.proveapi.models.components.V3DomainLinkRequest> request) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/v3/domain/linked");
-            HTTPRequest req = new HTTPRequest(url, "GET");
+                    "/v3/domain/link");
+            HTTPRequest req = new HTTPRequest(url, "POST");
+            Object convertedRequest = Utils.convertToShape(
+                    request,
+                    JsonShape.DEFAULT,
+                    new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3DomainLinkRequest>>() {
+                    });
+            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
+                    convertedRequest,
+                    "request",
+                    "json",
+                    false);
+            req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
@@ -88,13 +103,13 @@ public class V3DomainLinked {
     }
 
     public static class Sync extends Base
-            implements RequestlessOperation<V3DomainLinkedResponse> {
+            implements RequestOperation<Optional<? extends com.prove.proveapi.models.components.V3DomainLinkRequest>, V3DomainLinkRequestResponse> {
         public Sync(SDKConfiguration sdkConfiguration) {
             super(sdkConfiguration);
         }
 
-        private HttpRequest onBuildRequest() throws Exception {
-            HttpRequest req = buildRequest();
+        private HttpRequest onBuildRequest(Optional<? extends com.prove.proveapi.models.components.V3DomainLinkRequest> request) throws Exception {
+            HttpRequest req = buildRequest(request);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -110,8 +125,8 @@ public class V3DomainLinked {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest() throws Exception {
-            HttpRequest r = onBuildRequest();
+        public HttpResponse<InputStream> doRequest(Optional<? extends com.prove.proveapi.models.components.V3DomainLinkRequest> request) throws Exception {
+            HttpRequest r = onBuildRequest(request);
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -129,28 +144,27 @@ public class V3DomainLinked {
 
 
         @Override
-        public V3DomainLinkedResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V3DomainLinkRequestResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
                     .orElse("application/octet-stream");
-            V3DomainLinkedResponse.Builder resBuilder =
-                    V3DomainLinkedResponse
+            V3DomainLinkRequestResponse.Builder resBuilder =
+                    V3DomainLinkRequestResponse
                             .builder()
                             .contentType(contentType)
                             .statusCode(response.statusCode())
                             .rawResponse(response);
 
-            V3DomainLinkedResponse res = resBuilder.build();
+            V3DomainLinkRequestResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
-                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    com.prove.proveapi.models.components.V3DomainLinkedResponse out = Utils.mapper().readValue(
+                    V3DomainLinkResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                    res.withV3DomainLinkedResponse(out);
+                    res.withV3DomainLinkResponse(out);
                     return res;
                 } else {
                     throw new SDKError(

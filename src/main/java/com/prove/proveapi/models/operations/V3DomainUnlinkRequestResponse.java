@@ -5,6 +5,7 @@ package com.prove.proveapi.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.prove.proveapi.models.components.V3DomainUnlinkResponse;
 import com.prove.proveapi.utils.Response;
 import com.prove.proveapi.utils.Utils;
 import java.io.InputStream;
@@ -16,7 +17,7 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-public class V3DomainLinkResponse implements Response {
+public class V3DomainUnlinkRequestResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -33,27 +34,27 @@ public class V3DomainLinkResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * V3DomainLinkResponse
+     * V3DomainUnlinkResponse
      */
-    private Optional<? extends com.prove.proveapi.models.components.V3DomainLinkResponse> v3DomainLinkResponse;
+    private Optional<? extends V3DomainUnlinkResponse> v3DomainUnlinkResponse;
 
     @JsonCreator
-    public V3DomainLinkResponse(
+    public V3DomainUnlinkRequestResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.prove.proveapi.models.components.V3DomainLinkResponse> v3DomainLinkResponse) {
+            Optional<? extends V3DomainUnlinkResponse> v3DomainUnlinkResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(v3DomainLinkResponse, "v3DomainLinkResponse");
+        Utils.checkNotNull(v3DomainUnlinkResponse, "v3DomainUnlinkResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.v3DomainLinkResponse = v3DomainLinkResponse;
+        this.v3DomainUnlinkResponse = v3DomainUnlinkResponse;
     }
     
-    public V3DomainLinkResponse(
+    public V3DomainUnlinkRequestResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -86,12 +87,12 @@ public class V3DomainLinkResponse implements Response {
     }
 
     /**
-     * V3DomainLinkResponse
+     * V3DomainUnlinkResponse
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.prove.proveapi.models.components.V3DomainLinkResponse> v3DomainLinkResponse() {
-        return (Optional<com.prove.proveapi.models.components.V3DomainLinkResponse>) v3DomainLinkResponse;
+    public Optional<V3DomainUnlinkResponse> v3DomainUnlinkResponse() {
+        return (Optional<V3DomainUnlinkResponse>) v3DomainUnlinkResponse;
     }
 
     public static Builder builder() {
@@ -102,7 +103,7 @@ public class V3DomainLinkResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public V3DomainLinkResponse withContentType(String contentType) {
+    public V3DomainUnlinkRequestResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
@@ -111,7 +112,7 @@ public class V3DomainLinkResponse implements Response {
     /**
      * HTTP response status code for this operation
      */
-    public V3DomainLinkResponse withStatusCode(int statusCode) {
+    public V3DomainUnlinkRequestResponse withStatusCode(int statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
@@ -120,28 +121,28 @@ public class V3DomainLinkResponse implements Response {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public V3DomainLinkResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+    public V3DomainUnlinkRequestResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
     }
 
     /**
-     * V3DomainLinkResponse
+     * V3DomainUnlinkResponse
      */
-    public V3DomainLinkResponse withV3DomainLinkResponse(com.prove.proveapi.models.components.V3DomainLinkResponse v3DomainLinkResponse) {
-        Utils.checkNotNull(v3DomainLinkResponse, "v3DomainLinkResponse");
-        this.v3DomainLinkResponse = Optional.ofNullable(v3DomainLinkResponse);
+    public V3DomainUnlinkRequestResponse withV3DomainUnlinkResponse(V3DomainUnlinkResponse v3DomainUnlinkResponse) {
+        Utils.checkNotNull(v3DomainUnlinkResponse, "v3DomainUnlinkResponse");
+        this.v3DomainUnlinkResponse = Optional.ofNullable(v3DomainUnlinkResponse);
         return this;
     }
 
 
     /**
-     * V3DomainLinkResponse
+     * V3DomainUnlinkResponse
      */
-    public V3DomainLinkResponse withV3DomainLinkResponse(Optional<? extends com.prove.proveapi.models.components.V3DomainLinkResponse> v3DomainLinkResponse) {
-        Utils.checkNotNull(v3DomainLinkResponse, "v3DomainLinkResponse");
-        this.v3DomainLinkResponse = v3DomainLinkResponse;
+    public V3DomainUnlinkRequestResponse withV3DomainUnlinkResponse(Optional<? extends V3DomainUnlinkResponse> v3DomainUnlinkResponse) {
+        Utils.checkNotNull(v3DomainUnlinkResponse, "v3DomainUnlinkResponse");
+        this.v3DomainUnlinkResponse = v3DomainUnlinkResponse;
         return this;
     }
 
@@ -153,28 +154,28 @@ public class V3DomainLinkResponse implements Response {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        V3DomainLinkResponse other = (V3DomainLinkResponse) o;
+        V3DomainUnlinkRequestResponse other = (V3DomainUnlinkRequestResponse) o;
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.v3DomainLinkResponse, other.v3DomainLinkResponse);
+            Utils.enhancedDeepEquals(this.v3DomainUnlinkResponse, other.v3DomainUnlinkResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            v3DomainLinkResponse);
+            v3DomainUnlinkResponse);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(V3DomainLinkResponse.class,
+        return Utils.toString(V3DomainUnlinkRequestResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v3DomainLinkResponse", v3DomainLinkResponse);
+                "v3DomainUnlinkResponse", v3DomainUnlinkResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class V3DomainLinkResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.prove.proveapi.models.components.V3DomainLinkResponse> v3DomainLinkResponse = Optional.empty();
+        private Optional<? extends V3DomainUnlinkResponse> v3DomainUnlinkResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -224,28 +225,28 @@ public class V3DomainLinkResponse implements Response {
 
 
         /**
-         * V3DomainLinkResponse
+         * V3DomainUnlinkResponse
          */
-        public Builder v3DomainLinkResponse(com.prove.proveapi.models.components.V3DomainLinkResponse v3DomainLinkResponse) {
-            Utils.checkNotNull(v3DomainLinkResponse, "v3DomainLinkResponse");
-            this.v3DomainLinkResponse = Optional.ofNullable(v3DomainLinkResponse);
+        public Builder v3DomainUnlinkResponse(V3DomainUnlinkResponse v3DomainUnlinkResponse) {
+            Utils.checkNotNull(v3DomainUnlinkResponse, "v3DomainUnlinkResponse");
+            this.v3DomainUnlinkResponse = Optional.ofNullable(v3DomainUnlinkResponse);
             return this;
         }
 
         /**
-         * V3DomainLinkResponse
+         * V3DomainUnlinkResponse
          */
-        public Builder v3DomainLinkResponse(Optional<? extends com.prove.proveapi.models.components.V3DomainLinkResponse> v3DomainLinkResponse) {
-            Utils.checkNotNull(v3DomainLinkResponse, "v3DomainLinkResponse");
-            this.v3DomainLinkResponse = v3DomainLinkResponse;
+        public Builder v3DomainUnlinkResponse(Optional<? extends V3DomainUnlinkResponse> v3DomainUnlinkResponse) {
+            Utils.checkNotNull(v3DomainUnlinkResponse, "v3DomainUnlinkResponse");
+            this.v3DomainUnlinkResponse = v3DomainUnlinkResponse;
             return this;
         }
 
-        public V3DomainLinkResponse build() {
+        public V3DomainUnlinkRequestResponse build() {
 
-            return new V3DomainLinkResponse(
+            return new V3DomainUnlinkRequestResponse(
                 contentType, statusCode, rawResponse,
-                v3DomainLinkResponse);
+                v3DomainUnlinkResponse);
         }
 
     }

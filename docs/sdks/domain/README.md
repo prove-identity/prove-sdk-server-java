@@ -5,26 +5,28 @@
 
 ### Available Operations
 
-* [v3DomainID](#v3domainid) - Get Domain Details
-* [v3DomainLink](#v3domainlink) - # Create a request to connect the requested domain to the domain the request is made from.
-* [v3DomainLinked](#v3domainlinked) - Get the list of domains that are linked to this domain.
-* [v3DomainUnlink](#v3domainunlink) - # Remove a domain link or request.
+* [v3DomainConfirmLinkRequest](#v3domainconfirmlinkrequest) - Confirm a domain link request
+* [v3DomainIDRequest](#v3domainidrequest) - Get Domain Details
+* [v3DomainLinkRequest](#v3domainlinkrequest) - Request a domain link
+* [v3DomainLinkedRequest](#v3domainlinkedrequest) - Get the list of domains that are linked to this domain.
+* [v3DomainUnlinkRequest](#v3domainunlinkrequest) - Remove a domain link or request
 
-## v3DomainID
+## v3DomainConfirmLinkRequest
 
-Returns the domain details.
+Confirms a given domain link request by validating the PCID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="V3DomainID" method="post" path="/v3/domain/id" -->
+<!-- UsageSnippet language="java" operationID="V3DomainConfirmLinkRequest" method="post" path="/v3/domain/confirm-link" -->
 ```java
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3DomainConfirmLinkRequest;
 import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
-import com.prove.proveapi.models.operations.V3DomainIDResponse;
+import com.prove.proveapi.models.operations.V3DomainConfirmLinkRequestResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -38,10 +40,15 @@ public class Application {
                     .build())
             .build();
 
-        V3DomainIDResponse res = sdk.domain().v3DomainID()
+        V3DomainConfirmLinkRequest req = V3DomainConfirmLinkRequest.builder()
+                .pcid("pcid")
+                .build();
+
+        V3DomainConfirmLinkRequestResponse res = sdk.domain().v3DomainConfirmLinkRequest()
+                .request(req)
                 .call();
 
-        if (res.v3DomainIDResponse().isPresent()) {
+        if (res.v3DomainConfirmLinkResponse().isPresent()) {
             // handle response
         }
     }
@@ -50,13 +57,13 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                  | Type                                       | Required                                   | Description                                |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| `request`                                  | [String](../../models//.md)                | :heavy_check_mark:                         | The request object to use for the request. |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [V3DomainConfirmLinkRequest](../../models/shared/V3DomainConfirmLinkRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
 
 ### Response
 
-**[V3DomainIDResponse](../../models/operations/V3DomainIDResponse.md)**
+**[V3DomainConfirmLinkRequestResponse](../../models/operations/V3DomainConfirmLinkRequestResponse.md)**
 
 ### Errors
 
@@ -68,13 +75,65 @@ public class Application {
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
-## v3DomainLink
+## v3DomainIDRequest
 
-# Create a request to connect the requested domain to the domain the request is made from.
+Returns the domain details.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="V3DomainLink" method="post" path="/v3/domain/link" -->
+<!-- UsageSnippet language="java" operationID="V3DomainIDRequest" method="get" path="/v3/domain/id" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3DomainIDRequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3DomainIDRequestResponse res = sdk.domain().v3DomainIDRequest()
+                .call();
+
+        if (res.v3DomainIDResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Response
+
+**[V3DomainIDRequestResponse](../../models/operations/V3DomainIDRequestResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
+| models/errors/Error    | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## v3DomainLinkRequest
+
+Create a request to connect the requested domain to the domain the request is made from.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="V3DomainLinkRequest" method="post" path="/v3/domain/link" -->
 ```java
 package hello.world;
 
@@ -83,7 +142,7 @@ import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3DomainLinkRequest;
 import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
-import com.prove.proveapi.models.operations.V3DomainLinkResponse;
+import com.prove.proveapi.models.operations.V3DomainLinkRequestResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -101,7 +160,7 @@ public class Application {
                 .pcid("pcid")
                 .build();
 
-        V3DomainLinkResponse res = sdk.domain().v3DomainLink()
+        V3DomainLinkRequestResponse res = sdk.domain().v3DomainLinkRequest()
                 .request(req)
                 .call();
 
@@ -120,7 +179,7 @@ public class Application {
 
 ### Response
 
-**[V3DomainLinkResponse](../../models/operations/V3DomainLinkResponse.md)**
+**[V3DomainLinkRequestResponse](../../models/operations/V3DomainLinkRequestResponse.md)**
 
 ### Errors
 
@@ -132,13 +191,13 @@ public class Application {
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
-## v3DomainLinked
+## v3DomainLinkedRequest
 
 Returns the accepted and pending links for this domain.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="V3DomainLinked" method="get" path="/v3/domain/linked" -->
+<!-- UsageSnippet language="java" operationID="V3DomainLinkedRequest" method="get" path="/v3/domain/linked" -->
 ```java
 package hello.world;
 
@@ -146,7 +205,7 @@ import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
-import com.prove.proveapi.models.operations.V3DomainLinkedResponse;
+import com.prove.proveapi.models.operations.V3DomainLinkedRequestResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -160,7 +219,7 @@ public class Application {
                     .build())
             .build();
 
-        V3DomainLinkedResponse res = sdk.domain().v3DomainLinked()
+        V3DomainLinkedRequestResponse res = sdk.domain().v3DomainLinkedRequest()
                 .call();
 
         if (res.v3DomainLinkedResponse().isPresent()) {
@@ -172,7 +231,7 @@ public class Application {
 
 ### Response
 
-**[V3DomainLinkedResponse](../../models/operations/V3DomainLinkedResponse.md)**
+**[V3DomainLinkedRequestResponse](../../models/operations/V3DomainLinkedRequestResponse.md)**
 
 ### Errors
 
@@ -184,13 +243,13 @@ public class Application {
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
-## v3DomainUnlink
+## v3DomainUnlinkRequest
 
-# Remove a domain link or request.
+Remove a domain link or request between the requested domain and the domain the request is made from.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="V3DomainUnlink" method="post" path="/v3/domain/unlink" -->
+<!-- UsageSnippet language="java" operationID="V3DomainUnlinkRequest" method="post" path="/v3/domain/unlink" -->
 ```java
 package hello.world;
 
@@ -199,7 +258,7 @@ import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3DomainUnlinkRequest;
 import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
-import com.prove.proveapi.models.operations.V3DomainUnlinkResponse;
+import com.prove.proveapi.models.operations.V3DomainUnlinkRequestResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -218,7 +277,7 @@ public class Application {
                 .pcidTo("pcidTo")
                 .build();
 
-        V3DomainUnlinkResponse res = sdk.domain().v3DomainUnlink()
+        V3DomainUnlinkRequestResponse res = sdk.domain().v3DomainUnlinkRequest()
                 .request(req)
                 .call();
 
@@ -237,7 +296,7 @@ public class Application {
 
 ### Response
 
-**[V3DomainUnlinkResponse](../../models/operations/V3DomainUnlinkResponse.md)**
+**[V3DomainUnlinkRequestResponse](../../models/operations/V3DomainUnlinkRequestResponse.md)**
 
 ### Errors
 
