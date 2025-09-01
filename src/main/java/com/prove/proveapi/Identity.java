@@ -7,6 +7,7 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.models.components.V3ActivateIdentityRequest;
 import com.prove.proveapi.models.components.V3BatchEnrollIdentitiesRequest;
+import com.prove.proveapi.models.components.V3CrossDomainIdentityRequest;
 import com.prove.proveapi.models.components.V3EnrollIdentityRequest;
 import com.prove.proveapi.models.components.V3IdentityDeactivateRequest;
 import com.prove.proveapi.models.operations.V3ActivateIdentityRequestBuilder;
@@ -16,6 +17,8 @@ import com.prove.proveapi.models.operations.V3BatchEnrollIdentitiesResponse;
 import com.prove.proveapi.models.operations.V3BatchGetIdentitiesRequest;
 import com.prove.proveapi.models.operations.V3BatchGetIdentitiesRequestBuilder;
 import com.prove.proveapi.models.operations.V3BatchGetIdentitiesResponse;
+import com.prove.proveapi.models.operations.V3CrossDomainIdentityRequestBuilder;
+import com.prove.proveapi.models.operations.V3CrossDomainIdentityResponse;
 import com.prove.proveapi.models.operations.V3DeactivateIdentityRequest;
 import com.prove.proveapi.models.operations.V3DeactivateIdentityRequestBuilder;
 import com.prove.proveapi.models.operations.V3DeactivateIdentityResponse;
@@ -33,6 +36,7 @@ import com.prove.proveapi.models.operations.V3GetIdentityResponse;
 import com.prove.proveapi.operations.V3ActivateIdentity;
 import com.prove.proveapi.operations.V3BatchEnrollIdentities;
 import com.prove.proveapi.operations.V3BatchGetIdentities;
+import com.prove.proveapi.operations.V3CrossDomainIdentity;
 import com.prove.proveapi.operations.V3DeactivateIdentity;
 import com.prove.proveapi.operations.V3DisenrollIdentity;
 import com.prove.proveapi.operations.V3EnrollIdentity;
@@ -315,6 +319,52 @@ public class Identity {
                 .build();
         RequestOperation<com.prove.proveapi.models.operations.V3ActivateIdentityRequest, V3ActivateIdentityResponse> operation
               = new V3ActivateIdentity.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Cross Domain Identity
+     * 
+     * <p>Retreives the list of identities from other linked accounts.
+     * 
+     * @return The call builder
+     */
+    public V3CrossDomainIdentityRequestBuilder v3CrossDomainIdentity() {
+        return new V3CrossDomainIdentityRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Cross Domain Identity
+     * 
+     * <p>Retreives the list of identities from other linked accounts.
+     * 
+     * @param identityId A Prove-generated unique ID for a specific identity.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3CrossDomainIdentityResponse v3CrossDomainIdentity(String identityId) throws Exception {
+        return v3CrossDomainIdentity(identityId, Optional.empty());
+    }
+
+    /**
+     * Cross Domain Identity
+     * 
+     * <p>Retreives the list of identities from other linked accounts.
+     * 
+     * @param identityId A Prove-generated unique ID for a specific identity.
+     * @param v3CrossDomainIdentityRequest Request body for the V3 Identity Cross Domain API.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3CrossDomainIdentityResponse v3CrossDomainIdentity(String identityId, Optional<? extends V3CrossDomainIdentityRequest> v3CrossDomainIdentityRequest) throws Exception {
+        com.prove.proveapi.models.operations.V3CrossDomainIdentityRequest request =
+            com.prove.proveapi.models.operations.V3CrossDomainIdentityRequest
+                .builder()
+                .identityId(identityId)
+                .v3CrossDomainIdentityRequest(v3CrossDomainIdentityRequest)
+                .build();
+        RequestOperation<com.prove.proveapi.models.operations.V3CrossDomainIdentityRequest, V3CrossDomainIdentityResponse> operation
+              = new V3CrossDomainIdentity.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

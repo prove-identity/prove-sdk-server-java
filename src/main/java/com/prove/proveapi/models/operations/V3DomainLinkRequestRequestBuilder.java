@@ -6,37 +6,36 @@ package com.prove.proveapi.models.operations;
 import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
-import com.prove.proveapi.operations.V3DomainID;
+import com.prove.proveapi.models.components.V3DomainLinkRequest;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
 
-public class V3DomainIDRequestBuilder {
+public class V3DomainLinkRequestRequestBuilder {
 
-    private Optional<String> request = Optional.empty();
+    private Optional<? extends V3DomainLinkRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
-    public V3DomainIDRequestBuilder(SDKConfiguration sdkConfiguration) {
+    public V3DomainLinkRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public V3DomainIDRequestBuilder request(String request) {
+    public V3DomainLinkRequestRequestBuilder request(V3DomainLinkRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public V3DomainIDRequestBuilder request(Optional<String> request) {
+    public V3DomainLinkRequestRequestBuilder request(Optional<? extends V3DomainLinkRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
     }
 
-    public V3DomainIDResponse call() throws Exception {
+    public V3DomainLinkRequestResponse call() throws Exception {
         
-        RequestOperation<Optional<String>, V3DomainIDResponse> operation
-              = new V3DomainID.Sync(sdkConfiguration);
+        RequestOperation<Optional<? extends V3DomainLinkRequest>, V3DomainLinkRequestResponse> operation
+              = new com.prove.proveapi.operations.V3DomainLinkRequest.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

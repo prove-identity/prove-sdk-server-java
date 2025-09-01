@@ -41,7 +41,7 @@ public class Application {
             .build();
 
         V3TokenRequest req = V3TokenRequest.builder()
-                .clientID("customer_id")
+                .clientId("customer_id")
                 .clientSecret("secret")
                 .grantType("client_credentials")
                 .build();

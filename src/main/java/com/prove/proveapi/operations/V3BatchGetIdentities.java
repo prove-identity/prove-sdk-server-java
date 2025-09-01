@@ -78,7 +78,7 @@ public class V3BatchGetIdentities {
         HttpRequest buildRequest(V3BatchGetIdentitiesRequest request) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/v3/identity/");
+                    "/v3/identity");
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);

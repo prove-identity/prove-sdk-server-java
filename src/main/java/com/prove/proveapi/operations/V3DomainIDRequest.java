@@ -3,27 +3,25 @@
  */
 package com.prove.proveapi.operations;
 
-import static com.prove.proveapi.operations.Operations.RequestOperation;
+import static com.prove.proveapi.operations.Operations.RequestlessOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.SecuritySource;
+import com.prove.proveapi.models.components.V3DomainIDResponse;
 import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.errors.SDKError;
-import com.prove.proveapi.models.operations.V3DomainIDResponse;
+import com.prove.proveapi.models.operations.V3DomainIDRequestResponse;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.HTTPRequest;
 import com.prove.proveapi.utils.Hook.AfterErrorContextImpl;
 import com.prove.proveapi.utils.Hook.AfterSuccessContextImpl;
 import com.prove.proveapi.utils.Hook.BeforeRequestContextImpl;
-import com.prove.proveapi.utils.SerializedBody;
-import com.prove.proveapi.utils.Utils.JsonShape;
 import com.prove.proveapi.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -31,7 +29,7 @@ import java.util.Optional;
 
 
 
-public class V3DomainID {
+public class V3DomainIDRequest {
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -54,7 +52,7 @@ public class V3DomainID {
             return new BeforeRequestContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DomainID",
+                    "V3DomainIDRequest",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
@@ -63,7 +61,7 @@ public class V3DomainID {
             return new AfterSuccessContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DomainID",
+                    "V3DomainIDRequest",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
@@ -72,27 +70,16 @@ public class V3DomainID {
             return new AfterErrorContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DomainID",
+                    "V3DomainIDRequest",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
 
-        HttpRequest buildRequest(Optional<String> request) throws Exception {
+        HttpRequest buildRequest() throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/v3/domain/id");
-            HTTPRequest req = new HTTPRequest(url, "POST");
-            Object convertedRequest = Utils.convertToShape(
-                    request,
-                    JsonShape.DEFAULT,
-                    new TypeReference<Optional<String>>() {
-                    });
-            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
-                    convertedRequest,
-                    "request",
-                    "json",
-                    false);
-            req.setBody(Optional.ofNullable(serializedRequestBody));
+            HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
@@ -102,13 +89,13 @@ public class V3DomainID {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<String>, V3DomainIDResponse> {
+            implements RequestlessOperation<V3DomainIDRequestResponse> {
         public Sync(SDKConfiguration sdkConfiguration) {
             super(sdkConfiguration);
         }
 
-        private HttpRequest onBuildRequest(Optional<String> request) throws Exception {
-            HttpRequest req = buildRequest(request);
+        private HttpRequest onBuildRequest() throws Exception {
+            HttpRequest req = buildRequest();
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -124,8 +111,8 @@ public class V3DomainID {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<String> request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest() throws Exception {
+            HttpRequest r = onBuildRequest();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -143,23 +130,24 @@ public class V3DomainID {
 
 
         @Override
-        public V3DomainIDResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V3DomainIDRequestResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
                     .orElse("application/octet-stream");
-            V3DomainIDResponse.Builder resBuilder =
-                    V3DomainIDResponse
+            V3DomainIDRequestResponse.Builder resBuilder =
+                    V3DomainIDRequestResponse
                             .builder()
                             .contentType(contentType)
                             .statusCode(response.statusCode())
                             .rawResponse(response);
 
-            V3DomainIDResponse res = resBuilder.build();
+            V3DomainIDRequestResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    com.prove.proveapi.models.components.V3DomainIDResponse out = Utils.mapper().readValue(
+                    V3DomainIDResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });

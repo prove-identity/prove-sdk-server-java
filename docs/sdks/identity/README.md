@@ -11,6 +11,7 @@
 * [v3DisenrollIdentity](#v3disenrollidentity) - Disenroll Identity
 * [v3GetIdentity](#v3getidentity) - Get Identity
 * [v3ActivateIdentity](#v3activateidentity) - Activate Identity
+* [v3CrossDomainIdentity](#v3crossdomainidentity) - Cross Domain Identity
 * [v3DeactivateIdentity](#v3deactivateidentity) - Deactivate Identity
 * [v3GetIdentitiesByPhoneNumber](#v3getidentitiesbyphonenumber) - Get Identities By Phone Number
 
@@ -20,7 +21,7 @@ Return a list of all identities you have enrolled in Identity Manager.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="V3BatchGetIdentities" method="get" path="/v3/identity/" -->
+<!-- UsageSnippet language="java" operationID="V3BatchGetIdentities" method="get" path="/v3/identity" -->
 ```java
 package hello.world;
 
@@ -81,7 +82,7 @@ Enrolls a single customer for monitoring using their phone number and unique ide
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="V3EnrollIdentity" method="post" path="/v3/identity/" -->
+<!-- UsageSnippet language="java" operationID="V3EnrollIdentity" method="post" path="/v3/identity" -->
 ```java
 package hello.world;
 
@@ -175,14 +176,14 @@ public class Application {
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .items(List.of(
                     IdentityItem.builder()
-                        .phoneNumber("2001001695")
-                        .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
-                        .deviceId("bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc")
+                        .clientName("\"Client A\"")
+                        .identityId("\"e0f78bc2-f748-4eda-9d29-d756844507fc\"")
+                        .pcid("\"12345\"")
                         .build(),
                     IdentityItem.builder()
-                        .phoneNumber("2001001695")
-                        .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
-                        .deviceId("bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc")
+                        .clientName("\"Client A\"")
+                        .identityId("\"e0f78bc2-f748-4eda-9d29-d756844507fc\"")
+                        .pcid("\"12345\"")
                         .build()))
                 .build();
 
@@ -390,6 +391,70 @@ public class Application {
 ### Response
 
 **[V3ActivateIdentityResponse](../../models/operations/V3ActivateIdentityResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
+| models/errors/Error    | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## v3CrossDomainIdentity
+
+Retreives the list of identities from other linked accounts.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="V3CrossDomainIdentity" method="post" path="/v3/identity/{identityId}/cross-domain" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3CrossDomainIdentityRequest;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3CrossDomainIdentityResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3CrossDomainIdentityResponse res = sdk.identity().v3CrossDomainIdentity()
+                .identityId("<id>")
+                .v3CrossDomainIdentityRequest(V3CrossDomainIdentityRequest.builder()
+                    .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
+                    .build())
+                .call();
+
+        if (res.v3CrossDomainIdentityResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `identityId`                                                                                       | *String*                                                                                           | :heavy_check_mark:                                                                                 | A Prove-generated unique ID for a specific identity.                                               |                                                                                                    |
+| `v3CrossDomainIdentityRequest`                                                                     | [Optional\<V3CrossDomainIdentityRequest>](../../models/components/V3CrossDomainIdentityRequest.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                | {<br/>"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81"<br/>}                              |
+
+### Response
+
+**[V3CrossDomainIdentityResponse](../../models/operations/V3CrossDomainIdentityResponse.md)**
 
 ### Errors
 

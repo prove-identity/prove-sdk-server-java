@@ -5,6 +5,7 @@ package com.prove.proveapi.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.prove.proveapi.models.components.V3DomainIDResponse;
 import com.prove.proveapi.utils.Response;
 import com.prove.proveapi.utils.Utils;
 import java.io.InputStream;
@@ -13,10 +14,12 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
-public class V3DomainIDResponse implements Response {
+public class V3DomainIDRequestResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -32,33 +35,39 @@ public class V3DomainIDResponse implements Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * V3DomainIDResponse
-     */
-    private Optional<? extends com.prove.proveapi.models.components.V3DomainIDResponse> v3DomainIDResponse;
+
+    private Optional<? extends V3DomainIDResponse> v3DomainIDResponse;
+
+
+    private Map<String, List<String>> headers;
 
     @JsonCreator
-    public V3DomainIDResponse(
+    public V3DomainIDRequestResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.prove.proveapi.models.components.V3DomainIDResponse> v3DomainIDResponse) {
+            Optional<? extends V3DomainIDResponse> v3DomainIDResponse,
+            Map<String, List<String>> headers) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(v3DomainIDResponse, "v3DomainIDResponse");
+        headers = Utils.emptyMapIfNull(headers);
+        Utils.checkNotNull(headers, "headers");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.v3DomainIDResponse = v3DomainIDResponse;
+        this.headers = headers;
     }
     
-    public V3DomainIDResponse(
+    public V3DomainIDRequestResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            HttpResponse<InputStream> rawResponse,
+            Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty());
+            Optional.empty(), headers);
     }
 
     /**
@@ -85,13 +94,15 @@ public class V3DomainIDResponse implements Response {
         return rawResponse;
     }
 
-    /**
-     * V3DomainIDResponse
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.prove.proveapi.models.components.V3DomainIDResponse> v3DomainIDResponse() {
-        return (Optional<com.prove.proveapi.models.components.V3DomainIDResponse>) v3DomainIDResponse;
+    public Optional<V3DomainIDResponse> v3DomainIDResponse() {
+        return (Optional<V3DomainIDResponse>) v3DomainIDResponse;
+    }
+
+    @JsonIgnore
+    public Map<String, List<String>> headers() {
+        return headers;
     }
 
     public static Builder builder() {
@@ -102,7 +113,7 @@ public class V3DomainIDResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public V3DomainIDResponse withContentType(String contentType) {
+    public V3DomainIDRequestResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
@@ -111,7 +122,7 @@ public class V3DomainIDResponse implements Response {
     /**
      * HTTP response status code for this operation
      */
-    public V3DomainIDResponse withStatusCode(int statusCode) {
+    public V3DomainIDRequestResponse withStatusCode(int statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
@@ -120,28 +131,28 @@ public class V3DomainIDResponse implements Response {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public V3DomainIDResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+    public V3DomainIDRequestResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
     }
 
-    /**
-     * V3DomainIDResponse
-     */
-    public V3DomainIDResponse withV3DomainIDResponse(com.prove.proveapi.models.components.V3DomainIDResponse v3DomainIDResponse) {
+    public V3DomainIDRequestResponse withV3DomainIDResponse(V3DomainIDResponse v3DomainIDResponse) {
         Utils.checkNotNull(v3DomainIDResponse, "v3DomainIDResponse");
         this.v3DomainIDResponse = Optional.ofNullable(v3DomainIDResponse);
         return this;
     }
 
 
-    /**
-     * V3DomainIDResponse
-     */
-    public V3DomainIDResponse withV3DomainIDResponse(Optional<? extends com.prove.proveapi.models.components.V3DomainIDResponse> v3DomainIDResponse) {
+    public V3DomainIDRequestResponse withV3DomainIDResponse(Optional<? extends V3DomainIDResponse> v3DomainIDResponse) {
         Utils.checkNotNull(v3DomainIDResponse, "v3DomainIDResponse");
         this.v3DomainIDResponse = v3DomainIDResponse;
+        return this;
+    }
+
+    public V3DomainIDRequestResponse withHeaders(Map<String, List<String>> headers) {
+        Utils.checkNotNull(headers, "headers");
+        this.headers = headers;
         return this;
     }
 
@@ -153,28 +164,30 @@ public class V3DomainIDResponse implements Response {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        V3DomainIDResponse other = (V3DomainIDResponse) o;
+        V3DomainIDRequestResponse other = (V3DomainIDRequestResponse) o;
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.v3DomainIDResponse, other.v3DomainIDResponse);
+            Utils.enhancedDeepEquals(this.v3DomainIDResponse, other.v3DomainIDResponse) &&
+            Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            v3DomainIDResponse);
+            v3DomainIDResponse, headers);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(V3DomainIDResponse.class,
+        return Utils.toString(V3DomainIDRequestResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v3DomainIDResponse", v3DomainIDResponse);
+                "v3DomainIDResponse", v3DomainIDResponse,
+                "headers", headers);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +199,9 @@ public class V3DomainIDResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.prove.proveapi.models.components.V3DomainIDResponse> v3DomainIDResponse = Optional.empty();
+        private Optional<? extends V3DomainIDResponse> v3DomainIDResponse = Optional.empty();
+
+        private Map<String, List<String>> headers;
 
         private Builder() {
           // force use of static builder() method
@@ -223,29 +238,30 @@ public class V3DomainIDResponse implements Response {
         }
 
 
-        /**
-         * V3DomainIDResponse
-         */
-        public Builder v3DomainIDResponse(com.prove.proveapi.models.components.V3DomainIDResponse v3DomainIDResponse) {
+        public Builder v3DomainIDResponse(V3DomainIDResponse v3DomainIDResponse) {
             Utils.checkNotNull(v3DomainIDResponse, "v3DomainIDResponse");
             this.v3DomainIDResponse = Optional.ofNullable(v3DomainIDResponse);
             return this;
         }
 
-        /**
-         * V3DomainIDResponse
-         */
-        public Builder v3DomainIDResponse(Optional<? extends com.prove.proveapi.models.components.V3DomainIDResponse> v3DomainIDResponse) {
+        public Builder v3DomainIDResponse(Optional<? extends V3DomainIDResponse> v3DomainIDResponse) {
             Utils.checkNotNull(v3DomainIDResponse, "v3DomainIDResponse");
             this.v3DomainIDResponse = v3DomainIDResponse;
             return this;
         }
 
-        public V3DomainIDResponse build() {
 
-            return new V3DomainIDResponse(
+        public Builder headers(Map<String, List<String>> headers) {
+            Utils.checkNotNull(headers, "headers");
+            this.headers = headers;
+            return this;
+        }
+
+        public V3DomainIDRequestResponse build() {
+
+            return new V3DomainIDRequestResponse(
                 contentType, statusCode, rawResponse,
-                v3DomainIDResponse);
+                v3DomainIDResponse, headers);
         }
 
     }

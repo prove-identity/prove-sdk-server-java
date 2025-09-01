@@ -5,6 +5,7 @@ package com.prove.proveapi.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.prove.proveapi.models.components.V3DomainLinkResponse;
 import com.prove.proveapi.utils.Response;
 import com.prove.proveapi.utils.Utils;
 import java.io.InputStream;
@@ -13,12 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 
-public class V3DomainLinkedResponse implements Response {
+public class V3DomainLinkRequestResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -35,40 +34,32 @@ public class V3DomainLinkedResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * Successful request.
+     * V3DomainLinkResponse
      */
-    private Optional<? extends com.prove.proveapi.models.components.V3DomainLinkedResponse> v3DomainLinkedResponse;
-
-
-    private Map<String, List<String>> headers;
+    private Optional<? extends V3DomainLinkResponse> v3DomainLinkResponse;
 
     @JsonCreator
-    public V3DomainLinkedResponse(
+    public V3DomainLinkRequestResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.prove.proveapi.models.components.V3DomainLinkedResponse> v3DomainLinkedResponse,
-            Map<String, List<String>> headers) {
+            Optional<? extends V3DomainLinkResponse> v3DomainLinkResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(v3DomainLinkedResponse, "v3DomainLinkedResponse");
-        headers = Utils.emptyMapIfNull(headers);
-        Utils.checkNotNull(headers, "headers");
+        Utils.checkNotNull(v3DomainLinkResponse, "v3DomainLinkResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.v3DomainLinkedResponse = v3DomainLinkedResponse;
-        this.headers = headers;
+        this.v3DomainLinkResponse = v3DomainLinkResponse;
     }
     
-    public V3DomainLinkedResponse(
+    public V3DomainLinkRequestResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Map<String, List<String>> headers) {
+            HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), headers);
+            Optional.empty());
     }
 
     /**
@@ -96,17 +87,12 @@ public class V3DomainLinkedResponse implements Response {
     }
 
     /**
-     * Successful request.
+     * V3DomainLinkResponse
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.prove.proveapi.models.components.V3DomainLinkedResponse> v3DomainLinkedResponse() {
-        return (Optional<com.prove.proveapi.models.components.V3DomainLinkedResponse>) v3DomainLinkedResponse;
-    }
-
-    @JsonIgnore
-    public Map<String, List<String>> headers() {
-        return headers;
+    public Optional<V3DomainLinkResponse> v3DomainLinkResponse() {
+        return (Optional<V3DomainLinkResponse>) v3DomainLinkResponse;
     }
 
     public static Builder builder() {
@@ -117,7 +103,7 @@ public class V3DomainLinkedResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public V3DomainLinkedResponse withContentType(String contentType) {
+    public V3DomainLinkRequestResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
@@ -126,7 +112,7 @@ public class V3DomainLinkedResponse implements Response {
     /**
      * HTTP response status code for this operation
      */
-    public V3DomainLinkedResponse withStatusCode(int statusCode) {
+    public V3DomainLinkRequestResponse withStatusCode(int statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
@@ -135,34 +121,28 @@ public class V3DomainLinkedResponse implements Response {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public V3DomainLinkedResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+    public V3DomainLinkRequestResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
     }
 
     /**
-     * Successful request.
+     * V3DomainLinkResponse
      */
-    public V3DomainLinkedResponse withV3DomainLinkedResponse(com.prove.proveapi.models.components.V3DomainLinkedResponse v3DomainLinkedResponse) {
-        Utils.checkNotNull(v3DomainLinkedResponse, "v3DomainLinkedResponse");
-        this.v3DomainLinkedResponse = Optional.ofNullable(v3DomainLinkedResponse);
+    public V3DomainLinkRequestResponse withV3DomainLinkResponse(V3DomainLinkResponse v3DomainLinkResponse) {
+        Utils.checkNotNull(v3DomainLinkResponse, "v3DomainLinkResponse");
+        this.v3DomainLinkResponse = Optional.ofNullable(v3DomainLinkResponse);
         return this;
     }
 
 
     /**
-     * Successful request.
+     * V3DomainLinkResponse
      */
-    public V3DomainLinkedResponse withV3DomainLinkedResponse(Optional<? extends com.prove.proveapi.models.components.V3DomainLinkedResponse> v3DomainLinkedResponse) {
-        Utils.checkNotNull(v3DomainLinkedResponse, "v3DomainLinkedResponse");
-        this.v3DomainLinkedResponse = v3DomainLinkedResponse;
-        return this;
-    }
-
-    public V3DomainLinkedResponse withHeaders(Map<String, List<String>> headers) {
-        Utils.checkNotNull(headers, "headers");
-        this.headers = headers;
+    public V3DomainLinkRequestResponse withV3DomainLinkResponse(Optional<? extends V3DomainLinkResponse> v3DomainLinkResponse) {
+        Utils.checkNotNull(v3DomainLinkResponse, "v3DomainLinkResponse");
+        this.v3DomainLinkResponse = v3DomainLinkResponse;
         return this;
     }
 
@@ -174,30 +154,28 @@ public class V3DomainLinkedResponse implements Response {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        V3DomainLinkedResponse other = (V3DomainLinkedResponse) o;
+        V3DomainLinkRequestResponse other = (V3DomainLinkRequestResponse) o;
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.v3DomainLinkedResponse, other.v3DomainLinkedResponse) &&
-            Utils.enhancedDeepEquals(this.headers, other.headers);
+            Utils.enhancedDeepEquals(this.v3DomainLinkResponse, other.v3DomainLinkResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            v3DomainLinkedResponse, headers);
+            v3DomainLinkResponse);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(V3DomainLinkedResponse.class,
+        return Utils.toString(V3DomainLinkRequestResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v3DomainLinkedResponse", v3DomainLinkedResponse,
-                "headers", headers);
+                "v3DomainLinkResponse", v3DomainLinkResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -209,9 +187,7 @@ public class V3DomainLinkedResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.prove.proveapi.models.components.V3DomainLinkedResponse> v3DomainLinkedResponse = Optional.empty();
-
-        private Map<String, List<String>> headers;
+        private Optional<? extends V3DomainLinkResponse> v3DomainLinkResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -249,35 +225,28 @@ public class V3DomainLinkedResponse implements Response {
 
 
         /**
-         * Successful request.
+         * V3DomainLinkResponse
          */
-        public Builder v3DomainLinkedResponse(com.prove.proveapi.models.components.V3DomainLinkedResponse v3DomainLinkedResponse) {
-            Utils.checkNotNull(v3DomainLinkedResponse, "v3DomainLinkedResponse");
-            this.v3DomainLinkedResponse = Optional.ofNullable(v3DomainLinkedResponse);
+        public Builder v3DomainLinkResponse(V3DomainLinkResponse v3DomainLinkResponse) {
+            Utils.checkNotNull(v3DomainLinkResponse, "v3DomainLinkResponse");
+            this.v3DomainLinkResponse = Optional.ofNullable(v3DomainLinkResponse);
             return this;
         }
 
         /**
-         * Successful request.
+         * V3DomainLinkResponse
          */
-        public Builder v3DomainLinkedResponse(Optional<? extends com.prove.proveapi.models.components.V3DomainLinkedResponse> v3DomainLinkedResponse) {
-            Utils.checkNotNull(v3DomainLinkedResponse, "v3DomainLinkedResponse");
-            this.v3DomainLinkedResponse = v3DomainLinkedResponse;
+        public Builder v3DomainLinkResponse(Optional<? extends V3DomainLinkResponse> v3DomainLinkResponse) {
+            Utils.checkNotNull(v3DomainLinkResponse, "v3DomainLinkResponse");
+            this.v3DomainLinkResponse = v3DomainLinkResponse;
             return this;
         }
 
+        public V3DomainLinkRequestResponse build() {
 
-        public Builder headers(Map<String, List<String>> headers) {
-            Utils.checkNotNull(headers, "headers");
-            this.headers = headers;
-            return this;
-        }
-
-        public V3DomainLinkedResponse build() {
-
-            return new V3DomainLinkedResponse(
+            return new V3DomainLinkRequestResponse(
                 contentType, statusCode, rawResponse,
-                v3DomainLinkedResponse, headers);
+                v3DomainLinkResponse);
         }
 
     }

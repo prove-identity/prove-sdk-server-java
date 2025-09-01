@@ -6,22 +6,22 @@ package com.prove.proveapi;
 import static com.prove.proveapi.operations.Operations.RequestOperation;
 import static com.prove.proveapi.operations.Operations.RequestlessOperation;
 
+import com.prove.proveapi.models.components.V3DomainConfirmLinkRequest;
 import com.prove.proveapi.models.components.V3DomainLinkRequest;
 import com.prove.proveapi.models.components.V3DomainUnlinkRequest;
-import com.prove.proveapi.models.operations.V3DomainIDRequestBuilder;
-import com.prove.proveapi.models.operations.V3DomainIDResponse;
-import com.prove.proveapi.models.operations.V3DomainLinkRequestBuilder;
-import com.prove.proveapi.models.operations.V3DomainLinkResponse;
-import com.prove.proveapi.models.operations.V3DomainLinkedRequestBuilder;
-import com.prove.proveapi.models.operations.V3DomainLinkedResponse;
-import com.prove.proveapi.models.operations.V3DomainUnlinkRequestBuilder;
-import com.prove.proveapi.models.operations.V3DomainUnlinkResponse;
-import com.prove.proveapi.operations.V3DomainID;
-import com.prove.proveapi.operations.V3DomainLink;
-import com.prove.proveapi.operations.V3DomainLinked;
-import com.prove.proveapi.operations.V3DomainUnlink;
+import com.prove.proveapi.models.operations.V3DomainConfirmLinkRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3DomainConfirmLinkRequestResponse;
+import com.prove.proveapi.models.operations.V3DomainIDRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3DomainIDRequestResponse;
+import com.prove.proveapi.models.operations.V3DomainLinkRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3DomainLinkRequestResponse;
+import com.prove.proveapi.models.operations.V3DomainLinkedRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3DomainLinkedRequestResponse;
+import com.prove.proveapi.models.operations.V3DomainUnlinkRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3DomainUnlinkRequestResponse;
+import com.prove.proveapi.operations.V3DomainIDRequest;
+import com.prove.proveapi.operations.V3DomainLinkedRequest;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
 
 
@@ -33,129 +33,166 @@ public class Domain {
     }
 
     /**
-     * Get Domain Details
+     * Confirm a domain link request
      * 
-     * <p>Returns the domain details.
+     * <p>Confirms a given domain link request by validating the PCID.
      * 
      * @return The call builder
      */
-    public V3DomainIDRequestBuilder v3DomainID() {
-        return new V3DomainIDRequestBuilder(sdkConfiguration);
+    public V3DomainConfirmLinkRequestRequestBuilder v3DomainConfirmLinkRequest() {
+        return new V3DomainConfirmLinkRequestRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Get Domain Details
+     * Confirm a domain link request
      * 
-     * <p>Returns the domain details.
+     * <p>Confirms a given domain link request by validating the PCID.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public V3DomainIDResponse v3DomainIDDirect() throws Exception {
-        return v3DomainID(Optional.empty());
+    public V3DomainConfirmLinkRequestResponse v3DomainConfirmLinkRequestDirect() throws Exception {
+        return v3DomainConfirmLinkRequest(Optional.empty());
     }
 
     /**
-     * Get Domain Details
+     * Confirm a domain link request
      * 
-     * <p>Returns the domain details.
+     * <p>Confirms a given domain link request by validating the PCID.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public V3DomainIDResponse v3DomainID(Optional<String> request) throws Exception {
-        RequestOperation<Optional<String>, V3DomainIDResponse> operation
-              = new V3DomainID.Sync(sdkConfiguration);
+    public V3DomainConfirmLinkRequestResponse v3DomainConfirmLinkRequest(Optional<? extends V3DomainConfirmLinkRequest> request) throws Exception {
+        RequestOperation<Optional<? extends V3DomainConfirmLinkRequest>, V3DomainConfirmLinkRequestResponse> operation
+              = new com.prove.proveapi.operations.V3DomainConfirmLinkRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * # Create a request to connect the requested domain to the domain the request is made from.
+     * Get Domain Details
+     * 
+     * <p>Returns the domain details.
      * 
      * @return The call builder
      */
-    public V3DomainLinkRequestBuilder v3DomainLink() {
-        return new V3DomainLinkRequestBuilder(sdkConfiguration);
+    public V3DomainIDRequestRequestBuilder v3DomainIDRequest() {
+        return new V3DomainIDRequestRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * # Create a request to connect the requested domain to the domain the request is made from.
+     * Get Domain Details
+     * 
+     * <p>Returns the domain details.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public V3DomainLinkResponse v3DomainLinkDirect() throws Exception {
-        return v3DomainLink(Optional.empty());
-    }
-
-    /**
-     * # Create a request to connect the requested domain to the domain the request is made from.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public V3DomainLinkResponse v3DomainLink(Optional<? extends V3DomainLinkRequest> request) throws Exception {
-        RequestOperation<Optional<? extends V3DomainLinkRequest>, V3DomainLinkResponse> operation
-              = new V3DomainLink.Sync(sdkConfiguration);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Get the list of domains that are linked to this domain.
-     * 
-     * <p>Returns the accepted and pending links for this domain.
-     * 
-     * @return The call builder
-     */
-    public V3DomainLinkedRequestBuilder v3DomainLinked() {
-        return new V3DomainLinkedRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Get the list of domains that are linked to this domain.
-     * 
-     * <p>Returns the accepted and pending links for this domain.
-     * 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public V3DomainLinkedResponse v3DomainLinkedDirect() throws Exception {
-        RequestlessOperation<V3DomainLinkedResponse> operation
-            = new V3DomainLinked.Sync(sdkConfiguration);
+    public V3DomainIDRequestResponse v3DomainIDRequestDirect() throws Exception {
+        RequestlessOperation<V3DomainIDRequestResponse> operation
+            = new V3DomainIDRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest());
     }
 
     /**
-     * # Remove a domain link or request.
+     * Request a domain link
+     * 
+     * <p>Create a request to connect the requested domain to the domain the request is made from.
      * 
      * @return The call builder
      */
-    public V3DomainUnlinkRequestBuilder v3DomainUnlink() {
-        return new V3DomainUnlinkRequestBuilder(sdkConfiguration);
+    public V3DomainLinkRequestRequestBuilder v3DomainLinkRequest() {
+        return new V3DomainLinkRequestRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * # Remove a domain link or request.
+     * Request a domain link
+     * 
+     * <p>Create a request to connect the requested domain to the domain the request is made from.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public V3DomainUnlinkResponse v3DomainUnlinkDirect() throws Exception {
-        return v3DomainUnlink(Optional.empty());
+    public V3DomainLinkRequestResponse v3DomainLinkRequestDirect() throws Exception {
+        return v3DomainLinkRequest(Optional.empty());
     }
 
     /**
-     * # Remove a domain link or request.
+     * Request a domain link
+     * 
+     * <p>Create a request to connect the requested domain to the domain the request is made from.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public V3DomainUnlinkResponse v3DomainUnlink(Optional<? extends V3DomainUnlinkRequest> request) throws Exception {
-        RequestOperation<Optional<? extends V3DomainUnlinkRequest>, V3DomainUnlinkResponse> operation
-              = new V3DomainUnlink.Sync(sdkConfiguration);
+    public V3DomainLinkRequestResponse v3DomainLinkRequest(Optional<? extends V3DomainLinkRequest> request) throws Exception {
+        RequestOperation<Optional<? extends V3DomainLinkRequest>, V3DomainLinkRequestResponse> operation
+              = new com.prove.proveapi.operations.V3DomainLinkRequest.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get the list of domains that are linked to this domain.
+     * 
+     * <p>Returns the accepted and pending links for this domain.
+     * 
+     * @return The call builder
+     */
+    public V3DomainLinkedRequestRequestBuilder v3DomainLinkedRequest() {
+        return new V3DomainLinkedRequestRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get the list of domains that are linked to this domain.
+     * 
+     * <p>Returns the accepted and pending links for this domain.
+     * 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3DomainLinkedRequestResponse v3DomainLinkedRequestDirect() throws Exception {
+        RequestlessOperation<V3DomainLinkedRequestResponse> operation
+            = new V3DomainLinkedRequest.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest());
+    }
+
+    /**
+     * Remove a domain link or request
+     * 
+     * <p>Remove a domain link or request between the requested domain and the domain the request is made from.
+     * 
+     * @return The call builder
+     */
+    public V3DomainUnlinkRequestRequestBuilder v3DomainUnlinkRequest() {
+        return new V3DomainUnlinkRequestRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Remove a domain link or request
+     * 
+     * <p>Remove a domain link or request between the requested domain and the domain the request is made from.
+     * 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3DomainUnlinkRequestResponse v3DomainUnlinkRequestDirect() throws Exception {
+        return v3DomainUnlinkRequest(Optional.empty());
+    }
+
+    /**
+     * Remove a domain link or request
+     * 
+     * <p>Remove a domain link or request between the requested domain and the domain the request is made from.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3DomainUnlinkRequestResponse v3DomainUnlinkRequest(Optional<? extends V3DomainUnlinkRequest> request) throws Exception {
+        RequestOperation<Optional<? extends V3DomainUnlinkRequest>, V3DomainUnlinkRequestResponse> operation
+              = new com.prove.proveapi.operations.V3DomainUnlinkRequest.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

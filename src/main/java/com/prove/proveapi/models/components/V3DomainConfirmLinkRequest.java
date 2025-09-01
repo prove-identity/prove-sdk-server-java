@@ -11,13 +11,13 @@ import java.lang.Override;
 import java.lang.String;
 
 
-public class V3DomainLinkRequest {
+public class V3DomainConfirmLinkRequest {
 
     @JsonProperty("pcid")
     private String pcid;
 
     @JsonCreator
-    public V3DomainLinkRequest(
+    public V3DomainConfirmLinkRequest(
             @JsonProperty("pcid") String pcid) {
         Utils.checkNotNull(pcid, "pcid");
         this.pcid = pcid;
@@ -33,7 +33,7 @@ public class V3DomainLinkRequest {
     }
 
 
-    public V3DomainLinkRequest withPcid(String pcid) {
+    public V3DomainConfirmLinkRequest withPcid(String pcid) {
         Utils.checkNotNull(pcid, "pcid");
         this.pcid = pcid;
         return this;
@@ -47,7 +47,7 @@ public class V3DomainLinkRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        V3DomainLinkRequest other = (V3DomainLinkRequest) o;
+        V3DomainConfirmLinkRequest other = (V3DomainConfirmLinkRequest) o;
         return 
             Utils.enhancedDeepEquals(this.pcid, other.pcid);
     }
@@ -60,7 +60,7 @@ public class V3DomainLinkRequest {
     
     @Override
     public String toString() {
-        return Utils.toString(V3DomainLinkRequest.class,
+        return Utils.toString(V3DomainConfirmLinkRequest.class,
                 "pcid", pcid);
     }
 
@@ -80,9 +80,9 @@ public class V3DomainLinkRequest {
             return this;
         }
 
-        public V3DomainLinkRequest build() {
+        public V3DomainConfirmLinkRequest build() {
 
-            return new V3DomainLinkRequest(
+            return new V3DomainConfirmLinkRequest(
                 pcid);
         }
 

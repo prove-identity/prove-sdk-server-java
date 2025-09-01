@@ -6,37 +6,36 @@ package com.prove.proveapi.models.operations;
 import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
-import com.prove.proveapi.models.components.V3DomainLinkRequest;
-import com.prove.proveapi.operations.V3DomainLink;
+import com.prove.proveapi.models.components.V3DomainUnlinkRequest;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
 
-public class V3DomainLinkRequestBuilder {
+public class V3DomainUnlinkRequestRequestBuilder {
 
-    private Optional<? extends V3DomainLinkRequest> request = Optional.empty();
+    private Optional<? extends V3DomainUnlinkRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
-    public V3DomainLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
+    public V3DomainUnlinkRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public V3DomainLinkRequestBuilder request(V3DomainLinkRequest request) {
+    public V3DomainUnlinkRequestRequestBuilder request(V3DomainUnlinkRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public V3DomainLinkRequestBuilder request(Optional<? extends V3DomainLinkRequest> request) {
+    public V3DomainUnlinkRequestRequestBuilder request(Optional<? extends V3DomainUnlinkRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
     }
 
-    public V3DomainLinkResponse call() throws Exception {
+    public V3DomainUnlinkRequestResponse call() throws Exception {
         
-        RequestOperation<Optional<? extends V3DomainLinkRequest>, V3DomainLinkResponse> operation
-              = new V3DomainLink.Sync(sdkConfiguration);
+        RequestOperation<Optional<? extends V3DomainUnlinkRequest>, V3DomainUnlinkRequestResponse> operation
+              = new com.prove.proveapi.operations.V3DomainUnlinkRequest.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -6,21 +6,21 @@ package com.prove.proveapi.models.operations;
 import static com.prove.proveapi.operations.Operations.RequestlessOperation;
 
 import com.prove.proveapi.SDKConfiguration;
-import com.prove.proveapi.operations.V3DomainLinked;
+import com.prove.proveapi.operations.V3DomainIDRequest;
 import java.lang.Exception;
 
-public class V3DomainLinkedRequestBuilder {
+public class V3DomainIDRequestRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
 
-    public V3DomainLinkedRequestBuilder(SDKConfiguration sdkConfiguration) {
+    public V3DomainIDRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V3DomainLinkedResponse call() throws Exception {
+    public V3DomainIDRequestResponse call() throws Exception {
         
-        RequestlessOperation<V3DomainLinkedResponse> operation
-            = new V3DomainLinked.Sync(sdkConfiguration);
+        RequestlessOperation<V3DomainIDRequestResponse> operation
+            = new V3DomainIDRequest.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest());
     }
