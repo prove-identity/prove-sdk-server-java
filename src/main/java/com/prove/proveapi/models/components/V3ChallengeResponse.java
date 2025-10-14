@@ -19,7 +19,7 @@ import java.util.Optional;
 
 public class V3ChallengeResponse {
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
@@ -67,7 +67,7 @@ public class V3ChallengeResponse {
     }
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -103,7 +103,7 @@ public class V3ChallengeResponse {
 
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     public V3ChallengeResponse withEvaluation(Map<String, Evaluation> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -113,7 +113,7 @@ public class V3ChallengeResponse {
 
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     public V3ChallengeResponse withEvaluation(Optional<? extends Map<String, Evaluation>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -201,7 +201,7 @@ public class V3ChallengeResponse {
 
 
         /**
-         * The evaluation result for the policy
+         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
         public Builder evaluation(Map<String, Evaluation> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -210,7 +210,7 @@ public class V3ChallengeResponse {
         }
 
         /**
-         * The evaluation result for the policy
+         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
         public Builder evaluation(Optional<? extends Map<String, Evaluation>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");

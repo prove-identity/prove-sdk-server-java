@@ -7,6 +7,7 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3DomainConfirmLinkRequest;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -15,6 +16,7 @@ public class V3DomainConfirmLinkRequestRequestBuilder {
 
     private Optional<? extends V3DomainConfirmLinkRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3DomainConfirmLinkRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -35,7 +37,7 @@ public class V3DomainConfirmLinkRequestRequestBuilder {
     public V3DomainConfirmLinkRequestResponse call() throws Exception {
         
         RequestOperation<Optional<? extends V3DomainConfirmLinkRequest>, V3DomainConfirmLinkRequestResponse> operation
-              = new com.prove.proveapi.operations.V3DomainConfirmLinkRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3DomainConfirmLinkRequest.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

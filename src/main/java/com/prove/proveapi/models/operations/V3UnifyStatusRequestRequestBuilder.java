@@ -7,6 +7,7 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3UnifyStatusRequest;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -15,6 +16,7 @@ public class V3UnifyStatusRequestRequestBuilder {
 
     private Optional<? extends V3UnifyStatusRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3UnifyStatusRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -35,7 +37,7 @@ public class V3UnifyStatusRequestRequestBuilder {
     public V3UnifyStatusRequestResponse call() throws Exception {
         
         RequestOperation<Optional<? extends V3UnifyStatusRequest>, V3UnifyStatusRequestResponse> operation
-              = new com.prove.proveapi.operations.V3UnifyStatusRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3UnifyStatusRequest.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

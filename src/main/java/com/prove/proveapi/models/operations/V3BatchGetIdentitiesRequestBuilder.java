@@ -7,6 +7,7 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.operations.V3BatchGetIdentities;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -21,6 +22,7 @@ public class V3BatchGetIdentitiesRequestBuilder {
     private Optional<String> startKey = Optional.empty();
     private Optional<Boolean> showInactive = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3BatchGetIdentitiesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -88,7 +90,7 @@ public class V3BatchGetIdentitiesRequestBuilder {
     public V3BatchGetIdentitiesResponse call() throws Exception {
         
         RequestOperation<V3BatchGetIdentitiesRequest, V3BatchGetIdentitiesResponse> operation
-              = new V3BatchGetIdentities.Sync(sdkConfiguration);
+              = new V3BatchGetIdentities.Sync(sdkConfiguration, _headers);
         V3BatchGetIdentitiesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -13,13 +13,15 @@ import java.lang.String;
 
 public class V3TokenRequest {
     /**
-     * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
+     * The client ID retrieved from the [Developer
+     * Portal](https://developer.prove.com/reference/authentication).
      */
     @SpeakeasyMetadata("form:name=client_id")
     private String clientId;
 
     /**
-     * The client secret retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
+     * The client secret retrieved from the [Developer
+     * Portal](https://developer.prove.com/reference/authentication).
      */
     @SpeakeasyMetadata("form:name=client_secret")
     private String clientSecret;
@@ -44,7 +46,8 @@ public class V3TokenRequest {
     }
 
     /**
-     * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
+     * The client ID retrieved from the [Developer
+     * Portal](https://developer.prove.com/reference/authentication).
      */
     @JsonIgnore
     public String clientId() {
@@ -52,7 +55,8 @@ public class V3TokenRequest {
     }
 
     /**
-     * The client secret retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
+     * The client secret retrieved from the [Developer
+     * Portal](https://developer.prove.com/reference/authentication).
      */
     @JsonIgnore
     public String clientSecret() {
@@ -73,7 +77,8 @@ public class V3TokenRequest {
 
 
     /**
-     * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
+     * The client ID retrieved from the [Developer
+     * Portal](https://developer.prove.com/reference/authentication).
      */
     public V3TokenRequest withClientId(String clientId) {
         Utils.checkNotNull(clientId, "clientId");
@@ -82,7 +87,8 @@ public class V3TokenRequest {
     }
 
     /**
-     * The client secret retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
+     * The client secret retrieved from the [Developer
+     * Portal](https://developer.prove.com/reference/authentication).
      */
     public V3TokenRequest withClientSecret(String clientSecret) {
         Utils.checkNotNull(clientSecret, "clientSecret");
@@ -143,7 +149,8 @@ public class V3TokenRequest {
 
 
         /**
-         * The client ID retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
+         * The client ID retrieved from the [Developer
+         * Portal](https://developer.prove.com/reference/authentication).
          */
         public Builder clientId(String clientId) {
             Utils.checkNotNull(clientId, "clientId");
@@ -153,7 +160,8 @@ public class V3TokenRequest {
 
 
         /**
-         * The client secret retrieved from the [Developer Portal](https://developer.prove.com/reference/authentication).
+         * The client secret retrieved from the [Developer
+         * Portal](https://developer.prove.com/reference/authentication).
          */
         public Builder clientSecret(String clientSecret) {
             Utils.checkNotNull(clientSecret, "clientSecret");

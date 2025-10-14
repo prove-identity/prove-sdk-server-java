@@ -8,6 +8,7 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3CrossDomainIdentityRequest;
 import com.prove.proveapi.operations.V3CrossDomainIdentity;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class V3CrossDomainIdentityRequestBuilder {
     private String identityId;
     private Optional<? extends V3CrossDomainIdentityRequest> v3CrossDomainIdentityRequest = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3CrossDomainIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class V3CrossDomainIdentityRequestBuilder {
     public V3CrossDomainIdentityResponse call() throws Exception {
         
         RequestOperation<com.prove.proveapi.models.operations.V3CrossDomainIdentityRequest, V3CrossDomainIdentityResponse> operation
-              = new V3CrossDomainIdentity.Sync(sdkConfiguration);
+              = new V3CrossDomainIdentity.Sync(sdkConfiguration, _headers);
         com.prove.proveapi.models.operations.V3CrossDomainIdentityRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

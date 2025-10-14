@@ -8,6 +8,7 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3ActivateIdentityRequest;
 import com.prove.proveapi.operations.V3ActivateIdentity;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class V3ActivateIdentityRequestBuilder {
     private String identityId;
     private Optional<? extends V3ActivateIdentityRequest> v3ActivateIdentityRequest = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3ActivateIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class V3ActivateIdentityRequestBuilder {
     public V3ActivateIdentityResponse call() throws Exception {
         
         RequestOperation<com.prove.proveapi.models.operations.V3ActivateIdentityRequest, V3ActivateIdentityResponse> operation
-              = new V3ActivateIdentity.Sync(sdkConfiguration);
+              = new V3ActivateIdentity.Sync(sdkConfiguration, _headers);
         com.prove.proveapi.models.operations.V3ActivateIdentityRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

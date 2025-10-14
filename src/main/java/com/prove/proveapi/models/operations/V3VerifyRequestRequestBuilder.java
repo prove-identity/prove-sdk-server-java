@@ -7,6 +7,7 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3VerifyRequest;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -15,6 +16,7 @@ public class V3VerifyRequestRequestBuilder {
 
     private Optional<? extends V3VerifyRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3VerifyRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -35,7 +37,7 @@ public class V3VerifyRequestRequestBuilder {
     public V3VerifyRequestResponse call() throws Exception {
         
         RequestOperation<Optional<? extends V3VerifyRequest>, V3VerifyRequestResponse> operation
-              = new com.prove.proveapi.operations.V3VerifyRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3VerifyRequest.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

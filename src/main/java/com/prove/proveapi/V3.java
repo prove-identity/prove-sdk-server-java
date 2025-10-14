@@ -13,8 +13,8 @@ import com.prove.proveapi.models.components.V3UnifyBindRequest;
 import com.prove.proveapi.models.components.V3UnifyRequest;
 import com.prove.proveapi.models.components.V3UnifyStatusRequest;
 import com.prove.proveapi.models.components.V3ValidateRequest;
+import com.prove.proveapi.models.components.V3VerifyBatchRequest;
 import com.prove.proveapi.models.components.V3VerifyRequest;
-import com.prove.proveapi.models.components.V3VerifyStatusRequest;
 import com.prove.proveapi.models.operations.V3ChallengeRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3ChallengeRequestResponse;
 import com.prove.proveapi.models.operations.V3CompleteRequestRequestBuilder;
@@ -31,19 +31,32 @@ import com.prove.proveapi.models.operations.V3UnifyStatusRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3UnifyStatusRequestResponse;
 import com.prove.proveapi.models.operations.V3ValidateRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3ValidateRequestResponse;
+import com.prove.proveapi.models.operations.V3VerifyBatchRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3VerifyBatchRequestResponse;
 import com.prove.proveapi.models.operations.V3VerifyRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3VerifyRequestResponse;
-import com.prove.proveapi.models.operations.V3VerifyStatusRequestRequestBuilder;
-import com.prove.proveapi.models.operations.V3VerifyStatusRequestResponse;
+import com.prove.proveapi.utils.Headers;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class V3 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncV3 asyncSDK;
 
     V3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncV3(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncV3 async() {
+        return asyncSDK;
     }
 
     /**
@@ -80,7 +93,7 @@ public class V3 {
      */
     public V3TokenRequestResponse v3TokenRequest(Optional<? extends V3TokenRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3TokenRequest>, V3TokenRequestResponse> operation
-              = new com.prove.proveapi.operations.V3TokenRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3TokenRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -118,7 +131,7 @@ public class V3 {
      */
     public V3ChallengeRequestResponse v3ChallengeRequest(Optional<? extends V3ChallengeRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3ChallengeRequest>, V3ChallengeRequestResponse> operation
-              = new com.prove.proveapi.operations.V3ChallengeRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3ChallengeRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -156,7 +169,7 @@ public class V3 {
      */
     public V3CompleteRequestResponse v3CompleteRequest(Optional<? extends V3CompleteRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3CompleteRequest>, V3CompleteRequestResponse> operation
-              = new com.prove.proveapi.operations.V3CompleteRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3CompleteRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -194,7 +207,7 @@ public class V3 {
      */
     public V3StartRequestResponse v3StartRequest(Optional<? extends V3StartRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3StartRequest>, V3StartRequestResponse> operation
-              = new com.prove.proveapi.operations.V3StartRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3StartRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -232,14 +245,15 @@ public class V3 {
      */
     public V3UnifyRequestResponse v3UnifyRequest(Optional<? extends V3UnifyRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3UnifyRequest>, V3UnifyRequestResponse> operation
-              = new com.prove.proveapi.operations.V3UnifyRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3UnifyRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Bind Prove Key
      * 
-     * <p>This endpoint allows you to bind a Prove Key to a phone number of a Unify session and get the possession result.
+     * <p>This endpoint allows you to bind a Prove Key to a phone number of a Unify session and get the
+     * possession result.
      * 
      * @return The call builder
      */
@@ -250,7 +264,8 @@ public class V3 {
     /**
      * Bind Prove Key
      * 
-     * <p>This endpoint allows you to bind a Prove Key to a phone number of a Unify session and get the possession result.
+     * <p>This endpoint allows you to bind a Prove Key to a phone number of a Unify session and get the
+     * possession result.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -262,7 +277,8 @@ public class V3 {
     /**
      * Bind Prove Key
      * 
-     * <p>This endpoint allows you to bind a Prove Key to a phone number of a Unify session and get the possession result.
+     * <p>This endpoint allows you to bind a Prove Key to a phone number of a Unify session and get the
+     * possession result.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -270,7 +286,7 @@ public class V3 {
      */
     public V3UnifyBindRequestResponse v3UnifyBindRequest(Optional<? extends V3UnifyBindRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3UnifyBindRequest>, V3UnifyBindRequestResponse> operation
-              = new com.prove.proveapi.operations.V3UnifyBindRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3UnifyBindRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -308,14 +324,15 @@ public class V3 {
      */
     public V3UnifyStatusRequestResponse v3UnifyStatusRequest(Optional<? extends V3UnifyStatusRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3UnifyStatusRequest>, V3UnifyStatusRequestResponse> operation
-              = new com.prove.proveapi.operations.V3UnifyStatusRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3UnifyStatusRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Validate Phone Number
      * 
-     * <p>This endpoint allows you to check if the phone number entered/discovered earlier in the flow is validated.
+     * <p>This endpoint allows you to check if the phone number entered/discovered earlier in the flow is
+     * validated.
      * 
      * @return The call builder
      */
@@ -326,7 +343,8 @@ public class V3 {
     /**
      * Validate Phone Number
      * 
-     * <p>This endpoint allows you to check if the phone number entered/discovered earlier in the flow is validated.
+     * <p>This endpoint allows you to check if the phone number entered/discovered earlier in the flow is
+     * validated.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -338,7 +356,8 @@ public class V3 {
     /**
      * Validate Phone Number
      * 
-     * <p>This endpoint allows you to check if the phone number entered/discovered earlier in the flow is validated.
+     * <p>This endpoint allows you to check if the phone number entered/discovered earlier in the flow is
+     * validated.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -346,7 +365,7 @@ public class V3 {
      */
     public V3ValidateRequestResponse v3ValidateRequest(Optional<? extends V3ValidateRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3ValidateRequest>, V3ValidateRequestResponse> operation
-              = new com.prove.proveapi.operations.V3ValidateRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3ValidateRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -384,45 +403,45 @@ public class V3 {
      */
     public V3VerifyRequestResponse v3VerifyRequest(Optional<? extends V3VerifyRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3VerifyRequest>, V3VerifyRequestResponse> operation
-              = new com.prove.proveapi.operations.V3VerifyRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3VerifyRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Check Verification Result
+     * Batch Verify Users
      * 
-     * <p>This endpoint allows you to perform the necessary checks for a Verified Users session.
+     * <p>This endpoint allows you to batch verify and enroll users.
      * 
      * @return The call builder
      */
-    public V3VerifyStatusRequestRequestBuilder v3VerifyStatusRequest() {
-        return new V3VerifyStatusRequestRequestBuilder(sdkConfiguration);
+    public V3VerifyBatchRequestRequestBuilder v3VerifyBatchRequest() {
+        return new V3VerifyBatchRequestRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Check Verification Result
+     * Batch Verify Users
      * 
-     * <p>This endpoint allows you to perform the necessary checks for a Verified Users session.
+     * <p>This endpoint allows you to batch verify and enroll users.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public V3VerifyStatusRequestResponse v3VerifyStatusRequestDirect() throws Exception {
-        return v3VerifyStatusRequest(Optional.empty());
+    public V3VerifyBatchRequestResponse v3VerifyBatchRequestDirect() throws Exception {
+        return v3VerifyBatchRequest(Optional.empty());
     }
 
     /**
-     * Check Verification Result
+     * Batch Verify Users
      * 
-     * <p>This endpoint allows you to perform the necessary checks for a Verified Users session.
+     * <p>This endpoint allows you to batch verify and enroll users.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public V3VerifyStatusRequestResponse v3VerifyStatusRequest(Optional<? extends V3VerifyStatusRequest> request) throws Exception {
-        RequestOperation<Optional<? extends V3VerifyStatusRequest>, V3VerifyStatusRequestResponse> operation
-              = new com.prove.proveapi.operations.V3VerifyStatusRequest.Sync(sdkConfiguration);
+    public V3VerifyBatchRequestResponse v3VerifyBatchRequest(Optional<? extends V3VerifyBatchRequest> request) throws Exception {
+        RequestOperation<Optional<? extends V3VerifyBatchRequest>, V3VerifyBatchRequestResponse> operation
+              = new com.prove.proveapi.operations.V3VerifyBatchRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

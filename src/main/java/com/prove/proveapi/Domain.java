@@ -21,15 +21,28 @@ import com.prove.proveapi.models.operations.V3DomainUnlinkRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3DomainUnlinkRequestResponse;
 import com.prove.proveapi.operations.V3DomainIDRequest;
 import com.prove.proveapi.operations.V3DomainLinkedRequest;
+import com.prove.proveapi.utils.Headers;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Domain {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDomain asyncSDK;
 
     Domain(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDomain(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDomain async() {
+        return asyncSDK;
     }
 
     /**
@@ -66,7 +79,7 @@ public class Domain {
      */
     public V3DomainConfirmLinkRequestResponse v3DomainConfirmLinkRequest(Optional<? extends V3DomainConfirmLinkRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3DomainConfirmLinkRequest>, V3DomainConfirmLinkRequestResponse> operation
-              = new com.prove.proveapi.operations.V3DomainConfirmLinkRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3DomainConfirmLinkRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -91,7 +104,7 @@ public class Domain {
      */
     public V3DomainIDRequestResponse v3DomainIDRequestDirect() throws Exception {
         RequestlessOperation<V3DomainIDRequestResponse> operation
-            = new V3DomainIDRequest.Sync(sdkConfiguration);
+            = new V3DomainIDRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -129,7 +142,7 @@ public class Domain {
      */
     public V3DomainLinkRequestResponse v3DomainLinkRequest(Optional<? extends V3DomainLinkRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3DomainLinkRequest>, V3DomainLinkRequestResponse> operation
-              = new com.prove.proveapi.operations.V3DomainLinkRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3DomainLinkRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -154,14 +167,15 @@ public class Domain {
      */
     public V3DomainLinkedRequestResponse v3DomainLinkedRequestDirect() throws Exception {
         RequestlessOperation<V3DomainLinkedRequestResponse> operation
-            = new V3DomainLinkedRequest.Sync(sdkConfiguration);
+            = new V3DomainLinkedRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
     /**
      * Remove a domain link or request
      * 
-     * <p>Remove a domain link or request between the requested domain and the domain the request is made from.
+     * <p>Remove a domain link or request between the requested domain and the domain the request is made
+     * from.
      * 
      * @return The call builder
      */
@@ -172,7 +186,8 @@ public class Domain {
     /**
      * Remove a domain link or request
      * 
-     * <p>Remove a domain link or request between the requested domain and the domain the request is made from.
+     * <p>Remove a domain link or request between the requested domain and the domain the request is made
+     * from.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -184,7 +199,8 @@ public class Domain {
     /**
      * Remove a domain link or request
      * 
-     * <p>Remove a domain link or request between the requested domain and the domain the request is made from.
+     * <p>Remove a domain link or request between the requested domain and the domain the request is made
+     * from.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -192,7 +208,7 @@ public class Domain {
      */
     public V3DomainUnlinkRequestResponse v3DomainUnlinkRequest(Optional<? extends V3DomainUnlinkRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3DomainUnlinkRequest>, V3DomainUnlinkRequestResponse> operation
-              = new com.prove.proveapi.operations.V3DomainUnlinkRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3DomainUnlinkRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -14,7 +14,7 @@
 * [v3UnifyStatusRequest](#v3unifystatusrequest) - Check Status
 * [v3ValidateRequest](#v3validaterequest) - Validate Phone Number
 * [v3VerifyRequest](#v3verifyrequest) - Initiate Verified Users Session
-* [v3VerifyStatusRequest](#v3verifystatusrequest) - Check Verification Result
+* [v3VerifyBatchRequest](#v3verifybatchrequest) - Batch Verify Users
 
 ## v3TokenRequest
 
@@ -324,13 +324,18 @@ public class Application {
             .build();
 
         V3UnifyRequest req = V3UnifyRequest.builder()
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .possessionType("mobile")
                 .allowOTPRetry(true)
                 .checkReputation(true)
                 .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
-                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
+                .clientHumanId("7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e")
+                .deviceId("bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc")
+                .emailAddress("sbutrimovichb@who.int")
                 .finalTargetUrl("https://www.example.com/landing-page")
+                .ipAddress("192.168.0.1")
                 .phoneNumber("2001004011")
+                .proveId("a07b94ce-218c-461f-beda-d92480e40f61")
                 .rebind(true)
                 .smsMessage("#### is your verification code.")
                 .build();
@@ -592,16 +597,16 @@ public class Application {
             .build();
 
         V3VerifyRequest req = V3VerifyRequest.builder()
-                .firstName("Sheilakathryn")
-                .lastName("Butrimovich")
                 .phoneNumber("2001004011")
-                .possessionType("mobile")
-                .allowOTPRetry(true)
+                .verificationType("verificationType")
                 .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
+                .clientHumanId("aad25769-23bb-458c-80db-50296a82c91b")
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .emailAddress("sbutrimovichb@who.int")
-                .finalTargetUrl("https://www.example.com/landing-page")
-                .smsMessage("#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone.")
+                .firstName("Sheilakathryn")
+                .ipAddress("192.168.1.1")
+                .lastName("Butrimovich")
+                .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
                 .build();
 
         V3VerifyRequestResponse res = sdk.v3().v3VerifyRequest()
@@ -635,23 +640,23 @@ public class Application {
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
-## v3VerifyStatusRequest
+## v3VerifyBatchRequest
 
-This endpoint allows you to perform the necessary checks for a Verified Users session.
+This endpoint allows you to batch verify and enroll users.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="V3VerifyStatusRequest" method="post" path="/v3/verify-status" -->
+<!-- UsageSnippet language="java" operationID="V3VerifyBatchRequest" method="post" path="/v3/verify/batch" -->
 ```java
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.Security;
-import com.prove.proveapi.models.components.V3VerifyStatusRequest;
+import com.prove.proveapi.models.components.*;
 import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
-import com.prove.proveapi.models.operations.V3VerifyStatusRequestResponse;
+import com.prove.proveapi.models.operations.V3VerifyBatchRequestResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -664,16 +669,38 @@ public class Application {
                     .build())
             .build();
 
-        V3VerifyStatusRequest req = V3VerifyStatusRequest.builder()
-                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
-                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+        V3VerifyBatchRequest req = V3VerifyBatchRequest.builder()
+                .items(List.of(
+                    VerifyItem.builder()
+                        .firstName("Sheilakathryn")
+                        .lastName("Butrimovich")
+                        .phoneNumber("2001004011")
+                        .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
+                        .clientHumanId("clientHumanId")
+                        .emailAddress("sbutrimovichb@who.int")
+                        .ipAddress("192.168.1.1")
+                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
+                        .verificationType("verificationType")
+                        .build(),
+                    VerifyItem.builder()
+                        .firstName("Sheilakathryn")
+                        .lastName("Butrimovich")
+                        .phoneNumber("2001004011")
+                        .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
+                        .clientHumanId("clientHumanId")
+                        .emailAddress("sbutrimovichb@who.int")
+                        .ipAddress("192.168.1.1")
+                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
+                        .verificationType("verificationType")
+                        .build()))
+                .clientRequestId("clientRequestId")
                 .build();
 
-        V3VerifyStatusRequestResponse res = sdk.v3().v3VerifyStatusRequest()
+        V3VerifyBatchRequestResponse res = sdk.v3().v3VerifyBatchRequest()
                 .request(req)
                 .call();
 
-        if (res.v3VerifyStatusResponse().isPresent()) {
+        if (res.v3VerifyBatchResponse().isPresent()) {
             // handle response
         }
     }
@@ -682,13 +709,13 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `request`                                                             | [V3VerifyStatusRequest](../../models/shared/V3VerifyStatusRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [V3VerifyBatchRequest](../../models/shared/V3VerifyBatchRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 ### Response
 
-**[V3VerifyStatusRequestResponse](../../models/operations/V3VerifyStatusRequestResponse.md)**
+**[V3VerifyBatchRequestResponse](../../models/operations/V3VerifyBatchRequestResponse.md)**
 
 ### Errors
 

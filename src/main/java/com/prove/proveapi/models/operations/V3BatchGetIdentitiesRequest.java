@@ -16,7 +16,11 @@ import java.util.Optional;
 
 public class V3BatchGetIdentitiesRequest {
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=clientRequestId")
     private Optional<String> clientRequestId;
@@ -28,13 +32,16 @@ public class V3BatchGetIdentitiesRequest {
     private Optional<Long> limit;
 
     /**
-     * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity API response - pass it in directly as startKey to get the next page of results.
+     * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results
+     * after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity
+     * API response - pass it in directly as startKey to get the next page of results.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startKey")
     private Optional<String> startKey;
 
     /**
-     * Whether to show identities associated with the current client that are currently marked as inactive. Default value is false.
+     * Whether to show identities associated with the current client that are currently marked as inactive.
+     * Default value is false.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=showInactive")
     private Optional<Boolean> showInactive;
@@ -61,7 +68,11 @@ public class V3BatchGetIdentitiesRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -77,7 +88,9 @@ public class V3BatchGetIdentitiesRequest {
     }
 
     /**
-     * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity API response - pass it in directly as startKey to get the next page of results.
+     * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results
+     * after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity
+     * API response - pass it in directly as startKey to get the next page of results.
      */
     @JsonIgnore
     public Optional<String> startKey() {
@@ -85,7 +98,8 @@ public class V3BatchGetIdentitiesRequest {
     }
 
     /**
-     * Whether to show identities associated with the current client that are currently marked as inactive. Default value is false.
+     * Whether to show identities associated with the current client that are currently marked as inactive.
+     * Default value is false.
      */
     @JsonIgnore
     public Optional<Boolean> showInactive() {
@@ -98,7 +112,11 @@ public class V3BatchGetIdentitiesRequest {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3BatchGetIdentitiesRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -108,7 +126,11 @@ public class V3BatchGetIdentitiesRequest {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3BatchGetIdentitiesRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -136,7 +158,9 @@ public class V3BatchGetIdentitiesRequest {
     }
 
     /**
-     * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity API response - pass it in directly as startKey to get the next page of results.
+     * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results
+     * after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity
+     * API response - pass it in directly as startKey to get the next page of results.
      */
     public V3BatchGetIdentitiesRequest withStartKey(String startKey) {
         Utils.checkNotNull(startKey, "startKey");
@@ -146,7 +170,9 @@ public class V3BatchGetIdentitiesRequest {
 
 
     /**
-     * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity API response - pass it in directly as startKey to get the next page of results.
+     * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results
+     * after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity
+     * API response - pass it in directly as startKey to get the next page of results.
      */
     public V3BatchGetIdentitiesRequest withStartKey(Optional<String> startKey) {
         Utils.checkNotNull(startKey, "startKey");
@@ -155,7 +181,8 @@ public class V3BatchGetIdentitiesRequest {
     }
 
     /**
-     * Whether to show identities associated with the current client that are currently marked as inactive. Default value is false.
+     * Whether to show identities associated with the current client that are currently marked as inactive.
+     * Default value is false.
      */
     public V3BatchGetIdentitiesRequest withShowInactive(boolean showInactive) {
         Utils.checkNotNull(showInactive, "showInactive");
@@ -165,7 +192,8 @@ public class V3BatchGetIdentitiesRequest {
 
 
     /**
-     * Whether to show identities associated with the current client that are currently marked as inactive. Default value is false.
+     * Whether to show identities associated with the current client that are currently marked as inactive.
+     * Default value is false.
      */
     public V3BatchGetIdentitiesRequest withShowInactive(Optional<Boolean> showInactive) {
         Utils.checkNotNull(showInactive, "showInactive");
@@ -222,7 +250,11 @@ public class V3BatchGetIdentitiesRequest {
 
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -231,7 +263,11 @@ public class V3BatchGetIdentitiesRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -260,7 +296,9 @@ public class V3BatchGetIdentitiesRequest {
 
 
         /**
-         * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity API response - pass it in directly as startKey to get the next page of results.
+         * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results
+         * after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity
+         * API response - pass it in directly as startKey to get the next page of results.
          */
         public Builder startKey(String startKey) {
             Utils.checkNotNull(startKey, "startKey");
@@ -269,7 +307,9 @@ public class V3BatchGetIdentitiesRequest {
         }
 
         /**
-         * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity API response - pass it in directly as startKey to get the next page of results.
+         * The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results
+         * after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity
+         * API response - pass it in directly as startKey to get the next page of results.
          */
         public Builder startKey(Optional<String> startKey) {
             Utils.checkNotNull(startKey, "startKey");
@@ -279,7 +319,8 @@ public class V3BatchGetIdentitiesRequest {
 
 
         /**
-         * Whether to show identities associated with the current client that are currently marked as inactive. Default value is false.
+         * Whether to show identities associated with the current client that are currently marked as inactive.
+         * Default value is false.
          */
         public Builder showInactive(boolean showInactive) {
             Utils.checkNotNull(showInactive, "showInactive");
@@ -288,7 +329,8 @@ public class V3BatchGetIdentitiesRequest {
         }
 
         /**
-         * Whether to show identities associated with the current client that are currently marked as inactive. Default value is false.
+         * Whether to show identities associated with the current client that are currently marked as inactive.
+         * Default value is false.
          */
         public Builder showInactive(Optional<Boolean> showInactive) {
             Utils.checkNotNull(showInactive, "showInactive");
