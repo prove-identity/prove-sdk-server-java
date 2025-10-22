@@ -20,7 +20,11 @@ import java.util.Optional;
  */
 public class V3CrossDomainIdentityRequest {
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
@@ -38,7 +42,11 @@ public class V3CrossDomainIdentityRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -51,7 +59,11 @@ public class V3CrossDomainIdentityRequest {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3CrossDomainIdentityRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -61,7 +73,11 @@ public class V3CrossDomainIdentityRequest {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3CrossDomainIdentityRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -105,7 +121,11 @@ public class V3CrossDomainIdentityRequest {
 
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -114,7 +134,11 @@ public class V3CrossDomainIdentityRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");

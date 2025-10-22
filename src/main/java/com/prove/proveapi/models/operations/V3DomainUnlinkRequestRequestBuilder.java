@@ -7,14 +7,15 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3DomainUnlinkRequest;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class V3DomainUnlinkRequestRequestBuilder {
 
     private Optional<? extends V3DomainUnlinkRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3DomainUnlinkRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -32,10 +33,10 @@ public class V3DomainUnlinkRequestRequestBuilder {
         return this;
     }
 
-    public V3DomainUnlinkRequestResponse call() throws Exception {
+    public V3DomainUnlinkRequestResponse call() {
         
         RequestOperation<Optional<? extends V3DomainUnlinkRequest>, V3DomainUnlinkRequestResponse> operation
-              = new com.prove.proveapi.operations.V3DomainUnlinkRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3DomainUnlinkRequest.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

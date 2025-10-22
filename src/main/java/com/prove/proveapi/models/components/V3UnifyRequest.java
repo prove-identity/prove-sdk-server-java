@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public class V3UnifyRequest {
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+     * client-side SDK guide for more details.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowOTPRetry")
@@ -38,14 +39,38 @@ public class V3UnifyRequest {
     private Optional<String> clientCustomerId;
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID to identify a specific customer across business lines.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("clientRequestId")
-    private Optional<String> clientRequestId;
+    @JsonProperty("clientHumanId")
+    private Optional<String> clientHumanId;
 
     /**
-     * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
+     */
+    @JsonProperty("clientRequestId")
+    private String clientRequestId;
+
+    /**
+     * The unique identifier for the Prove Key on the device.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("deviceId")
+    private Optional<String> deviceId;
+
+    /**
+     * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("emailAddress")
+    private Optional<String> emailAddress;
+
+    /**
+     * The URL where the end user will be redirected at the end of Instant Link flow. Required when
+     * `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -53,8 +78,20 @@ public class V3UnifyRequest {
     private Optional<String> finalTargetUrl;
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
-     * Required unless Mobile Auth is enabled.
+     * The IP address of the customer. Acceptable characters are: Alphanumeric with '.:' symbols.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ipAddress")
+    private Optional<String> ipAddress;
+
+    /**
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
@@ -69,6 +106,16 @@ public class V3UnifyRequest {
     private String possessionType;
 
     /**
+     * A unique ID to identify a specific customer obtained from a previous successful authentication.
+     * 
+     * <p>Required if phoneNumber is not present and mobileAuth is not enabled in the US or phoneNumber is not
+     * present in the EU.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("proveId")
+    private Optional<String> proveId;
+
+    /**
      * If `true`, rebinds the Prove Key with the newly verified phone number.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -76,9 +123,13 @@ public class V3UnifyRequest {
     private Optional<Boolean> rebind;
 
     /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+     * message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+     * ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+     * share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes
+     * respectively.
      * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -90,41 +141,60 @@ public class V3UnifyRequest {
             @JsonProperty("allowOTPRetry") Optional<Boolean> allowOTPRetry,
             @JsonProperty("checkReputation") Optional<Boolean> checkReputation,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
-            @JsonProperty("clientRequestId") Optional<String> clientRequestId,
+            @JsonProperty("clientHumanId") Optional<String> clientHumanId,
+            @JsonProperty("clientRequestId") String clientRequestId,
+            @JsonProperty("deviceId") Optional<String> deviceId,
+            @JsonProperty("emailAddress") Optional<String> emailAddress,
             @JsonProperty("finalTargetUrl") Optional<String> finalTargetUrl,
+            @JsonProperty("ipAddress") Optional<String> ipAddress,
             @JsonProperty("phoneNumber") Optional<String> phoneNumber,
             @JsonProperty("possessionType") String possessionType,
+            @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("rebind") Optional<Boolean> rebind,
             @JsonProperty("smsMessage") Optional<String> smsMessage) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
         Utils.checkNotNull(checkReputation, "checkReputation");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
+        Utils.checkNotNull(deviceId, "deviceId");
+        Utils.checkNotNull(emailAddress, "emailAddress");
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
+        Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(possessionType, "possessionType");
+        Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(rebind, "rebind");
         Utils.checkNotNull(smsMessage, "smsMessage");
         this.allowOTPRetry = allowOTPRetry;
         this.checkReputation = checkReputation;
         this.clientCustomerId = clientCustomerId;
+        this.clientHumanId = clientHumanId;
         this.clientRequestId = clientRequestId;
+        this.deviceId = deviceId;
+        this.emailAddress = emailAddress;
         this.finalTargetUrl = finalTargetUrl;
+        this.ipAddress = ipAddress;
         this.phoneNumber = phoneNumber;
         this.possessionType = possessionType;
+        this.proveId = proveId;
         this.rebind = rebind;
         this.smsMessage = smsMessage;
     }
     
     public V3UnifyRequest(
+            String clientRequestId,
             String possessionType) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), clientRequestId, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            possessionType, Optional.empty(), Optional.empty());
+            Optional.empty(), possessionType, Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+     * client-side SDK guide for more details.
      */
     @JsonIgnore
     public Optional<Boolean> allowOTPRetry() {
@@ -148,15 +218,43 @@ public class V3UnifyRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID to identify a specific customer across business lines.
      */
     @JsonIgnore
-    public Optional<String> clientRequestId() {
+    public Optional<String> clientHumanId() {
+        return clientHumanId;
+    }
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
+     */
+    @JsonIgnore
+    public String clientRequestId() {
         return clientRequestId;
     }
 
     /**
-     * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+     * The unique identifier for the Prove Key on the device.
+     */
+    @JsonIgnore
+    public Optional<String> deviceId() {
+        return deviceId;
+    }
+
+    /**
+     * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+     */
+    @JsonIgnore
+    public Optional<String> emailAddress() {
+        return emailAddress;
+    }
+
+    /**
+     * The URL where the end user will be redirected at the end of Instant Link flow. Required when
+     * `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
      */
     @JsonIgnore
@@ -165,8 +263,21 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
-     * Required unless Mobile Auth is enabled.
+     * The IP address of the customer. Acceptable characters are: Alphanumeric with '.:' symbols.
+     */
+    @JsonIgnore
+    public Optional<String> ipAddress() {
+        return ipAddress;
+    }
+
+    /**
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     @JsonIgnore
     public Optional<String> phoneNumber() {
@@ -184,6 +295,17 @@ public class V3UnifyRequest {
     }
 
     /**
+     * A unique ID to identify a specific customer obtained from a previous successful authentication.
+     * 
+     * <p>Required if phoneNumber is not present and mobileAuth is not enabled in the US or phoneNumber is not
+     * present in the EU.
+     */
+    @JsonIgnore
+    public Optional<String> proveId() {
+        return proveId;
+    }
+
+    /**
      * If `true`, rebinds the Prove Key with the newly verified phone number.
      */
     @JsonIgnore
@@ -192,9 +314,13 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+     * message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+     * ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+     * share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes
+     * respectively.
      * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     @JsonIgnore
@@ -208,7 +334,8 @@ public class V3UnifyRequest {
 
 
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+     * client-side SDK guide for more details.
      */
     public V3UnifyRequest withAllowOTPRetry(boolean allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -218,7 +345,8 @@ public class V3UnifyRequest {
 
 
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+     * client-side SDK guide for more details.
      */
     public V3UnifyRequest withAllowOTPRetry(Optional<Boolean> allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -265,26 +393,77 @@ public class V3UnifyRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID to identify a specific customer across business lines.
      */
-    public V3UnifyRequest withClientRequestId(String clientRequestId) {
-        Utils.checkNotNull(clientRequestId, "clientRequestId");
-        this.clientRequestId = Optional.ofNullable(clientRequestId);
+    public V3UnifyRequest withClientHumanId(String clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = Optional.ofNullable(clientHumanId);
         return this;
     }
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID to identify a specific customer across business lines.
      */
-    public V3UnifyRequest withClientRequestId(Optional<String> clientRequestId) {
+    public V3UnifyRequest withClientHumanId(Optional<String> clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = clientHumanId;
+        return this;
+    }
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
+     */
+    public V3UnifyRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         this.clientRequestId = clientRequestId;
         return this;
     }
 
     /**
-     * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+     * The unique identifier for the Prove Key on the device.
+     */
+    public V3UnifyRequest withDeviceId(String deviceId) {
+        Utils.checkNotNull(deviceId, "deviceId");
+        this.deviceId = Optional.ofNullable(deviceId);
+        return this;
+    }
+
+
+    /**
+     * The unique identifier for the Prove Key on the device.
+     */
+    public V3UnifyRequest withDeviceId(Optional<String> deviceId) {
+        Utils.checkNotNull(deviceId, "deviceId");
+        this.deviceId = deviceId;
+        return this;
+    }
+
+    /**
+     * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+     */
+    public V3UnifyRequest withEmailAddress(String emailAddress) {
+        Utils.checkNotNull(emailAddress, "emailAddress");
+        this.emailAddress = Optional.ofNullable(emailAddress);
+        return this;
+    }
+
+
+    /**
+     * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+     */
+    public V3UnifyRequest withEmailAddress(Optional<String> emailAddress) {
+        Utils.checkNotNull(emailAddress, "emailAddress");
+        this.emailAddress = emailAddress;
+        return this;
+    }
+
+    /**
+     * The URL where the end user will be redirected at the end of Instant Link flow. Required when
+     * `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
      */
     public V3UnifyRequest withFinalTargetUrl(String finalTargetUrl) {
@@ -295,7 +474,8 @@ public class V3UnifyRequest {
 
 
     /**
-     * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+     * The URL where the end user will be redirected at the end of Instant Link flow. Required when
+     * `possessionType=desktop`.
      * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
      */
     public V3UnifyRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
@@ -305,8 +485,32 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
-     * Required unless Mobile Auth is enabled.
+     * The IP address of the customer. Acceptable characters are: Alphanumeric with '.:' symbols.
+     */
+    public V3UnifyRequest withIpAddress(String ipAddress) {
+        Utils.checkNotNull(ipAddress, "ipAddress");
+        this.ipAddress = Optional.ofNullable(ipAddress);
+        return this;
+    }
+
+
+    /**
+     * The IP address of the customer. Acceptable characters are: Alphanumeric with '.:' symbols.
+     */
+    public V3UnifyRequest withIpAddress(Optional<String> ipAddress) {
+        Utils.checkNotNull(ipAddress, "ipAddress");
+        this.ipAddress = ipAddress;
+        return this;
+    }
+
+    /**
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     public V3UnifyRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -316,8 +520,13 @@ public class V3UnifyRequest {
 
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
-     * Required unless Mobile Auth is enabled.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     public V3UnifyRequest withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -333,6 +542,31 @@ public class V3UnifyRequest {
     public V3UnifyRequest withPossessionType(String possessionType) {
         Utils.checkNotNull(possessionType, "possessionType");
         this.possessionType = possessionType;
+        return this;
+    }
+
+    /**
+     * A unique ID to identify a specific customer obtained from a previous successful authentication.
+     * 
+     * <p>Required if phoneNumber is not present and mobileAuth is not enabled in the US or phoneNumber is not
+     * present in the EU.
+     */
+    public V3UnifyRequest withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = Optional.ofNullable(proveId);
+        return this;
+    }
+
+
+    /**
+     * A unique ID to identify a specific customer obtained from a previous successful authentication.
+     * 
+     * <p>Required if phoneNumber is not present and mobileAuth is not enabled in the US or phoneNumber is not
+     * present in the EU.
+     */
+    public V3UnifyRequest withProveId(Optional<String> proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
 
@@ -356,9 +590,13 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+     * message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+     * ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+     * share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes
+     * respectively.
      * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     public V3UnifyRequest withSmsMessage(String smsMessage) {
@@ -369,9 +607,13 @@ public class V3UnifyRequest {
 
 
     /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+     * message. If not provided, the following default messages will be used:
+     * Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+     * ####" The verification URL replaces ####.
+     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+     * share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes
+     * respectively.
      * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
      */
     public V3UnifyRequest withSmsMessage(Optional<String> smsMessage) {
@@ -393,10 +635,15 @@ public class V3UnifyRequest {
             Utils.enhancedDeepEquals(this.allowOTPRetry, other.allowOTPRetry) &&
             Utils.enhancedDeepEquals(this.checkReputation, other.checkReputation) &&
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
+            Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
+            Utils.enhancedDeepEquals(this.deviceId, other.deviceId) &&
+            Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
             Utils.enhancedDeepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
+            Utils.enhancedDeepEquals(this.ipAddress, other.ipAddress) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
             Utils.enhancedDeepEquals(this.possessionType, other.possessionType) &&
+            Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.rebind, other.rebind) &&
             Utils.enhancedDeepEquals(this.smsMessage, other.smsMessage);
     }
@@ -405,8 +652,10 @@ public class V3UnifyRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             allowOTPRetry, checkReputation, clientCustomerId,
-            clientRequestId, finalTargetUrl, phoneNumber,
-            possessionType, rebind, smsMessage);
+            clientHumanId, clientRequestId, deviceId,
+            emailAddress, finalTargetUrl, ipAddress,
+            phoneNumber, possessionType, proveId,
+            rebind, smsMessage);
     }
     
     @Override
@@ -415,10 +664,15 @@ public class V3UnifyRequest {
                 "allowOTPRetry", allowOTPRetry,
                 "checkReputation", checkReputation,
                 "clientCustomerId", clientCustomerId,
+                "clientHumanId", clientHumanId,
                 "clientRequestId", clientRequestId,
+                "deviceId", deviceId,
+                "emailAddress", emailAddress,
                 "finalTargetUrl", finalTargetUrl,
+                "ipAddress", ipAddress,
                 "phoneNumber", phoneNumber,
                 "possessionType", possessionType,
+                "proveId", proveId,
                 "rebind", rebind,
                 "smsMessage", smsMessage);
     }
@@ -432,13 +686,23 @@ public class V3UnifyRequest {
 
         private Optional<String> clientCustomerId = Optional.empty();
 
-        private Optional<String> clientRequestId = Optional.empty();
+        private Optional<String> clientHumanId = Optional.empty();
+
+        private String clientRequestId;
+
+        private Optional<String> deviceId = Optional.empty();
+
+        private Optional<String> emailAddress = Optional.empty();
 
         private Optional<String> finalTargetUrl = Optional.empty();
+
+        private Optional<String> ipAddress = Optional.empty();
 
         private Optional<String> phoneNumber = Optional.empty();
 
         private String possessionType;
+
+        private Optional<String> proveId = Optional.empty();
 
         private Optional<Boolean> rebind = Optional.empty();
 
@@ -450,7 +714,8 @@ public class V3UnifyRequest {
 
 
         /**
-         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+         * client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(boolean allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -459,7 +724,8 @@ public class V3UnifyRequest {
         }
 
         /**
-         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+         * client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(Optional<Boolean> allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -507,18 +773,31 @@ public class V3UnifyRequest {
 
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID to identify a specific customer across business lines.
          */
-        public Builder clientRequestId(String clientRequestId) {
-            Utils.checkNotNull(clientRequestId, "clientRequestId");
-            this.clientRequestId = Optional.ofNullable(clientRequestId);
+        public Builder clientHumanId(String clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = Optional.ofNullable(clientHumanId);
             return this;
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID to identify a specific customer across business lines.
          */
-        public Builder clientRequestId(Optional<String> clientRequestId) {
+        public Builder clientHumanId(Optional<String> clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = clientHumanId;
+            return this;
+        }
+
+
+        /**
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * Do not include Personally Identifiable Information (PII) in this field.
+         */
+        public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
             this.clientRequestId = clientRequestId;
             return this;
@@ -526,7 +805,46 @@ public class V3UnifyRequest {
 
 
         /**
-         * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+         * The unique identifier for the Prove Key on the device.
+         */
+        public Builder deviceId(String deviceId) {
+            Utils.checkNotNull(deviceId, "deviceId");
+            this.deviceId = Optional.ofNullable(deviceId);
+            return this;
+        }
+
+        /**
+         * The unique identifier for the Prove Key on the device.
+         */
+        public Builder deviceId(Optional<String> deviceId) {
+            Utils.checkNotNull(deviceId, "deviceId");
+            this.deviceId = deviceId;
+            return this;
+        }
+
+
+        /**
+         * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+         */
+        public Builder emailAddress(String emailAddress) {
+            Utils.checkNotNull(emailAddress, "emailAddress");
+            this.emailAddress = Optional.ofNullable(emailAddress);
+            return this;
+        }
+
+        /**
+         * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
+         */
+        public Builder emailAddress(Optional<String> emailAddress) {
+            Utils.checkNotNull(emailAddress, "emailAddress");
+            this.emailAddress = emailAddress;
+            return this;
+        }
+
+
+        /**
+         * The URL where the end user will be redirected at the end of Instant Link flow. Required when
+         * `possessionType=desktop`.
          * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
          */
         public Builder finalTargetUrl(String finalTargetUrl) {
@@ -536,7 +854,8 @@ public class V3UnifyRequest {
         }
 
         /**
-         * The URL where the end user will be redirected at the end of Instant Link flow. Required when `possessionType=desktop`.
+         * The URL where the end user will be redirected at the end of Instant Link flow. Required when
+         * `possessionType=desktop`.
          * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
          */
         public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
@@ -547,8 +866,32 @@ public class V3UnifyRequest {
 
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
-         * Required unless Mobile Auth is enabled.
+         * The IP address of the customer. Acceptable characters are: Alphanumeric with '.:' symbols.
+         */
+        public Builder ipAddress(String ipAddress) {
+            Utils.checkNotNull(ipAddress, "ipAddress");
+            this.ipAddress = Optional.ofNullable(ipAddress);
+            return this;
+        }
+
+        /**
+         * The IP address of the customer. Acceptable characters are: Alphanumeric with '.:' symbols.
+         */
+        public Builder ipAddress(Optional<String> ipAddress) {
+            Utils.checkNotNull(ipAddress, "ipAddress");
+            this.ipAddress = ipAddress;
+            return this;
+        }
+
+
+        /**
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+         * International phone numbers require a leading `+1`.
+         * 
+         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+         * characters are: alphanumeric with symbols '+'.
+         * 
+         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -557,8 +900,13 @@ public class V3UnifyRequest {
         }
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
-         * Required unless Mobile Auth is enabled.
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+         * International phone numbers require a leading `+1`.
+         * 
+         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+         * characters are: alphanumeric with symbols '+'.
+         * 
+         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
          */
         public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -575,6 +923,31 @@ public class V3UnifyRequest {
         public Builder possessionType(String possessionType) {
             Utils.checkNotNull(possessionType, "possessionType");
             this.possessionType = possessionType;
+            return this;
+        }
+
+
+        /**
+         * A unique ID to identify a specific customer obtained from a previous successful authentication.
+         * 
+         * <p>Required if phoneNumber is not present and mobileAuth is not enabled in the US or phoneNumber is not
+         * present in the EU.
+         */
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = Optional.ofNullable(proveId);
+            return this;
+        }
+
+        /**
+         * A unique ID to identify a specific customer obtained from a previous successful authentication.
+         * 
+         * <p>Required if phoneNumber is not present and mobileAuth is not enabled in the US or phoneNumber is not
+         * present in the EU.
+         */
+        public Builder proveId(Optional<String> proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
             return this;
         }
 
@@ -599,9 +972,13 @@ public class V3UnifyRequest {
 
 
         /**
-         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-         * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-         * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+         * message. If not provided, the following default messages will be used:
+         * Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+         * ####" The verification URL replaces ####.
+         * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+         * share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes
+         * respectively.
          * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
          */
         public Builder smsMessage(String smsMessage) {
@@ -611,9 +988,13 @@ public class V3UnifyRequest {
         }
 
         /**
-         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-         * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-         * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
+         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+         * message. If not provided, the following default messages will be used:
+         * Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+         * ####" The verification URL replaces ####.
+         * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+         * share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes
+         * respectively.
          * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
          */
         public Builder smsMessage(Optional<String> smsMessage) {
@@ -626,8 +1007,10 @@ public class V3UnifyRequest {
 
             return new V3UnifyRequest(
                 allowOTPRetry, checkReputation, clientCustomerId,
-                clientRequestId, finalTargetUrl, phoneNumber,
-                possessionType, rebind, smsMessage);
+                clientHumanId, clientRequestId, deviceId,
+                emailAddress, finalTargetUrl, ipAddress,
+                phoneNumber, possessionType, proveId,
+                rebind, smsMessage);
         }
 
     }

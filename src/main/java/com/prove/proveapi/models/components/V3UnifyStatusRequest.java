@@ -16,7 +16,10 @@ import java.util.Optional;
 
 public class V3UnifyStatusRequest {
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
@@ -31,7 +34,14 @@ public class V3UnifyStatusRequest {
     private Optional<String> correlationId;
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
+     * Unify request.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
@@ -55,7 +65,10 @@ public class V3UnifyStatusRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -72,7 +85,14 @@ public class V3UnifyStatusRequest {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
+     * Unify request.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     @JsonIgnore
     public Optional<String> phoneNumber() {
@@ -85,7 +105,10 @@ public class V3UnifyStatusRequest {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3UnifyStatusRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -95,7 +118,10 @@ public class V3UnifyStatusRequest {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3UnifyStatusRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -125,7 +151,14 @@ public class V3UnifyStatusRequest {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
+     * Unify request.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     public V3UnifyStatusRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -135,7 +168,14 @@ public class V3UnifyStatusRequest {
 
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
+     * Unify request.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     public V3UnifyStatusRequest withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -187,7 +227,10 @@ public class V3UnifyStatusRequest {
 
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -196,7 +239,10 @@ public class V3UnifyStatusRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -227,7 +273,14 @@ public class V3UnifyStatusRequest {
 
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+         * International phone numbers require a leading `+1`.
+         * 
+         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+         * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
+         * Unify request.
+         * 
+         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -236,7 +289,14 @@ public class V3UnifyStatusRequest {
         }
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial Unify request.
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+         * International phone numbers require a leading `+1`.
+         * 
+         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+         * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
+         * Unify request.
+         * 
+         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
          */
         public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

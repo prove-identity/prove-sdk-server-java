@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,21 +16,34 @@ import java.util.Optional;
 
 public class V3VerifyRequest {
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("allowOTPRetry")
-    private Optional<Boolean> allowOTPRetry;
-
-    /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Prove does not offer any functionality around the Client Customer ID. Do not include personally
+     * identifiable information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientCustomerId")
     private Optional<String> clientCustomerId;
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+     * business lines. If the Enterprise customer has been able to identify a consumer across business
+     * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+     * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * Do not include personally identifiable information (PII) in this field.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientHumanId")
+    private Optional<String> clientHumanId;
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
@@ -45,101 +57,99 @@ public class V3VerifyRequest {
     private Optional<String> emailAddress;
 
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+     * The first name of the individual. (required IF verificationType=VerifiedUser)
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("finalTargetUrl")
-    private Optional<String> finalTargetUrl;
-
-    /**
-     * The first name of the individual.
-     */
     @JsonProperty("firstName")
-    private String firstName;
+    private Optional<String> firstName;
 
     /**
-     * The last name of the individual.
+     * The IP address of the customer.
      */
-    @JsonProperty("lastName")
-    private String lastName;
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ipAddress")
+    private Optional<String> ipAddress;
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
+     * The last name of the individual. (required IF verificationType=VerifiedUser)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lastName")
+    private Optional<String> lastName;
+
+    /**
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
     /**
-     * The type of device being used - either `desktop` if using a desktop, `mobile` for iOS/Android native apps and mobile web, or `none` if no possession check is required.
-     */
-    @JsonProperty("possessionType")
-    private String possessionType;
-
-    /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
+     * The User agent of the customer.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("smsMessage")
-    private Optional<String> smsMessage;
+    @JsonProperty("userAgent")
+    private Optional<String> userAgent;
+
+    /**
+     * The verification method based on the use case and authorization level.
+     */
+    @JsonProperty("verificationType")
+    private String verificationType;
 
     @JsonCreator
     public V3VerifyRequest(
-            @JsonProperty("allowOTPRetry") Optional<Boolean> allowOTPRetry,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
+            @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("emailAddress") Optional<String> emailAddress,
-            @JsonProperty("finalTargetUrl") Optional<String> finalTargetUrl,
-            @JsonProperty("firstName") String firstName,
-            @JsonProperty("lastName") String lastName,
+            @JsonProperty("firstName") Optional<String> firstName,
+            @JsonProperty("ipAddress") Optional<String> ipAddress,
+            @JsonProperty("lastName") Optional<String> lastName,
             @JsonProperty("phoneNumber") String phoneNumber,
-            @JsonProperty("possessionType") String possessionType,
-            @JsonProperty("smsMessage") Optional<String> smsMessage) {
-        Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
+            @JsonProperty("userAgent") Optional<String> userAgent,
+            @JsonProperty("verificationType") String verificationType) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(emailAddress, "emailAddress");
-        Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
         Utils.checkNotNull(firstName, "firstName");
+        Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
-        Utils.checkNotNull(possessionType, "possessionType");
-        Utils.checkNotNull(smsMessage, "smsMessage");
-        this.allowOTPRetry = allowOTPRetry;
+        Utils.checkNotNull(userAgent, "userAgent");
+        Utils.checkNotNull(verificationType, "verificationType");
         this.clientCustomerId = clientCustomerId;
+        this.clientHumanId = clientHumanId;
         this.clientRequestId = clientRequestId;
         this.emailAddress = emailAddress;
-        this.finalTargetUrl = finalTargetUrl;
         this.firstName = firstName;
+        this.ipAddress = ipAddress;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.possessionType = possessionType;
-        this.smsMessage = smsMessage;
+        this.userAgent = userAgent;
+        this.verificationType = verificationType;
     }
     
     public V3VerifyRequest(
-            String firstName,
-            String lastName,
             String phoneNumber,
-            String possessionType) {
+            String verificationType) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), firstName,
-            lastName, phoneNumber, possessionType,
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), phoneNumber, Optional.empty(),
+            verificationType);
     }
 
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
-     */
-    @JsonIgnore
-    public Optional<Boolean> allowOTPRetry() {
-        return allowOTPRetry;
-    }
-
-    /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Prove does not offer any functionality around the Client Customer ID. Do not include personally
+     * identifiable information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientCustomerId() {
@@ -147,7 +157,23 @@ public class V3VerifyRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+     * business lines. If the Enterprise customer has been able to identify a consumer across business
+     * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+     * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * Do not include personally identifiable information (PII) in this field.
+     */
+    @JsonIgnore
+    public Optional<String> clientHumanId() {
+        return clientHumanId;
+    }
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -163,31 +189,35 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+     * The first name of the individual. (required IF verificationType=VerifiedUser)
      */
     @JsonIgnore
-    public Optional<String> finalTargetUrl() {
-        return finalTargetUrl;
-    }
-
-    /**
-     * The first name of the individual.
-     */
-    @JsonIgnore
-    public String firstName() {
+    public Optional<String> firstName() {
         return firstName;
     }
 
     /**
-     * The last name of the individual.
+     * The IP address of the customer.
      */
     @JsonIgnore
-    public String lastName() {
+    public Optional<String> ipAddress() {
+        return ipAddress;
+    }
+
+    /**
+     * The last name of the individual. (required IF verificationType=VerifiedUser)
+     */
+    @JsonIgnore
+    public Optional<String> lastName() {
         return lastName;
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -195,22 +225,19 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The type of device being used - either `desktop` if using a desktop, `mobile` for iOS/Android native apps and mobile web, or `none` if no possession check is required.
+     * The User agent of the customer.
      */
     @JsonIgnore
-    public String possessionType() {
-        return possessionType;
+    public Optional<String> userAgent() {
+        return userAgent;
     }
 
     /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
+     * The verification method based on the use case and authorization level.
      */
     @JsonIgnore
-    public Optional<String> smsMessage() {
-        return smsMessage;
+    public String verificationType() {
+        return verificationType;
     }
 
     public static Builder builder() {
@@ -219,26 +246,12 @@ public class V3VerifyRequest {
 
 
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
-     */
-    public V3VerifyRequest withAllowOTPRetry(boolean allowOTPRetry) {
-        Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
-        this.allowOTPRetry = Optional.ofNullable(allowOTPRetry);
-        return this;
-    }
-
-
-    /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
-     */
-    public V3VerifyRequest withAllowOTPRetry(Optional<Boolean> allowOTPRetry) {
-        Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
-        this.allowOTPRetry = allowOTPRetry;
-        return this;
-    }
-
-    /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Prove does not offer any functionality around the Client Customer ID. Do not include personally
+     * identifiable information (PII) in this field.
      */
     public V3VerifyRequest withClientCustomerId(String clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -248,7 +261,12 @@ public class V3VerifyRequest {
 
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Prove does not offer any functionality around the Client Customer ID. Do not include personally
+     * identifiable information (PII) in this field.
      */
     public V3VerifyRequest withClientCustomerId(Optional<String> clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -257,7 +275,38 @@ public class V3VerifyRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+     * business lines. If the Enterprise customer has been able to identify a consumer across business
+     * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+     * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * Do not include personally identifiable information (PII) in this field.
+     */
+    public V3VerifyRequest withClientHumanId(String clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = Optional.ofNullable(clientHumanId);
+        return this;
+    }
+
+
+    /**
+     * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+     * business lines. If the Enterprise customer has been able to identify a consumer across business
+     * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+     * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * Do not include personally identifiable information (PII) in this field.
+     */
+    public V3VerifyRequest withClientHumanId(Optional<String> clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = clientHumanId;
+        return this;
+    }
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3VerifyRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -267,7 +316,11 @@ public class V3VerifyRequest {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3VerifyRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -295,44 +348,68 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
-     */
-    public V3VerifyRequest withFinalTargetUrl(String finalTargetUrl) {
-        Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
-        this.finalTargetUrl = Optional.ofNullable(finalTargetUrl);
-        return this;
-    }
-
-
-    /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
-     */
-    public V3VerifyRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
-        Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
-        this.finalTargetUrl = finalTargetUrl;
-        return this;
-    }
-
-    /**
-     * The first name of the individual.
+     * The first name of the individual. (required IF verificationType=VerifiedUser)
      */
     public V3VerifyRequest withFirstName(String firstName) {
+        Utils.checkNotNull(firstName, "firstName");
+        this.firstName = Optional.ofNullable(firstName);
+        return this;
+    }
+
+
+    /**
+     * The first name of the individual. (required IF verificationType=VerifiedUser)
+     */
+    public V3VerifyRequest withFirstName(Optional<String> firstName) {
         Utils.checkNotNull(firstName, "firstName");
         this.firstName = firstName;
         return this;
     }
 
     /**
-     * The last name of the individual.
+     * The IP address of the customer.
+     */
+    public V3VerifyRequest withIpAddress(String ipAddress) {
+        Utils.checkNotNull(ipAddress, "ipAddress");
+        this.ipAddress = Optional.ofNullable(ipAddress);
+        return this;
+    }
+
+
+    /**
+     * The IP address of the customer.
+     */
+    public V3VerifyRequest withIpAddress(Optional<String> ipAddress) {
+        Utils.checkNotNull(ipAddress, "ipAddress");
+        this.ipAddress = ipAddress;
+        return this;
+    }
+
+    /**
+     * The last name of the individual. (required IF verificationType=VerifiedUser)
      */
     public V3VerifyRequest withLastName(String lastName) {
+        Utils.checkNotNull(lastName, "lastName");
+        this.lastName = Optional.ofNullable(lastName);
+        return this;
+    }
+
+
+    /**
+     * The last name of the individual. (required IF verificationType=VerifiedUser)
+     */
+    public V3VerifyRequest withLastName(Optional<String> lastName) {
         Utils.checkNotNull(lastName, "lastName");
         this.lastName = lastName;
         return this;
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'.
      */
     public V3VerifyRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -341,36 +418,30 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The type of device being used - either `desktop` if using a desktop, `mobile` for iOS/Android native apps and mobile web, or `none` if no possession check is required.
+     * The User agent of the customer.
      */
-    public V3VerifyRequest withPossessionType(String possessionType) {
-        Utils.checkNotNull(possessionType, "possessionType");
-        this.possessionType = possessionType;
-        return this;
-    }
-
-    /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
-     */
-    public V3VerifyRequest withSmsMessage(String smsMessage) {
-        Utils.checkNotNull(smsMessage, "smsMessage");
-        this.smsMessage = Optional.ofNullable(smsMessage);
+    public V3VerifyRequest withUserAgent(String userAgent) {
+        Utils.checkNotNull(userAgent, "userAgent");
+        this.userAgent = Optional.ofNullable(userAgent);
         return this;
     }
 
 
     /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-     * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-     * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-     * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
+     * The User agent of the customer.
      */
-    public V3VerifyRequest withSmsMessage(Optional<String> smsMessage) {
-        Utils.checkNotNull(smsMessage, "smsMessage");
-        this.smsMessage = smsMessage;
+    public V3VerifyRequest withUserAgent(Optional<String> userAgent) {
+        Utils.checkNotNull(userAgent, "userAgent");
+        this.userAgent = userAgent;
+        return this;
+    }
+
+    /**
+     * The verification method based on the use case and authorization level.
+     */
+    public V3VerifyRequest withVerificationType(String verificationType) {
+        Utils.checkNotNull(verificationType, "verificationType");
+        this.verificationType = verificationType;
         return this;
     }
 
@@ -384,64 +455,64 @@ public class V3VerifyRequest {
         }
         V3VerifyRequest other = (V3VerifyRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.allowOTPRetry, other.allowOTPRetry) &&
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
+            Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
             Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
-            Utils.enhancedDeepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.ipAddress, other.ipAddress) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
-            Utils.enhancedDeepEquals(this.possessionType, other.possessionType) &&
-            Utils.enhancedDeepEquals(this.smsMessage, other.smsMessage);
+            Utils.enhancedDeepEquals(this.userAgent, other.userAgent) &&
+            Utils.enhancedDeepEquals(this.verificationType, other.verificationType);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            allowOTPRetry, clientCustomerId, clientRequestId,
-            emailAddress, finalTargetUrl, firstName,
-            lastName, phoneNumber, possessionType,
-            smsMessage);
+            clientCustomerId, clientHumanId, clientRequestId,
+            emailAddress, firstName, ipAddress,
+            lastName, phoneNumber, userAgent,
+            verificationType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3VerifyRequest.class,
-                "allowOTPRetry", allowOTPRetry,
                 "clientCustomerId", clientCustomerId,
+                "clientHumanId", clientHumanId,
                 "clientRequestId", clientRequestId,
                 "emailAddress", emailAddress,
-                "finalTargetUrl", finalTargetUrl,
                 "firstName", firstName,
+                "ipAddress", ipAddress,
                 "lastName", lastName,
                 "phoneNumber", phoneNumber,
-                "possessionType", possessionType,
-                "smsMessage", smsMessage);
+                "userAgent", userAgent,
+                "verificationType", verificationType);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Boolean> allowOTPRetry = Optional.empty();
-
         private Optional<String> clientCustomerId = Optional.empty();
+
+        private Optional<String> clientHumanId = Optional.empty();
 
         private Optional<String> clientRequestId = Optional.empty();
 
         private Optional<String> emailAddress = Optional.empty();
 
-        private Optional<String> finalTargetUrl = Optional.empty();
+        private Optional<String> firstName = Optional.empty();
 
-        private String firstName;
+        private Optional<String> ipAddress = Optional.empty();
 
-        private String lastName;
+        private Optional<String> lastName = Optional.empty();
 
         private String phoneNumber;
 
-        private String possessionType;
+        private Optional<String> userAgent = Optional.empty();
 
-        private Optional<String> smsMessage = Optional.empty();
+        private String verificationType;
 
         private Builder() {
           // force use of static builder() method
@@ -449,26 +520,12 @@ public class V3VerifyRequest {
 
 
         /**
-         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
-         */
-        public Builder allowOTPRetry(boolean allowOTPRetry) {
-            Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
-            this.allowOTPRetry = Optional.ofNullable(allowOTPRetry);
-            return this;
-        }
-
-        /**
-         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
-         */
-        public Builder allowOTPRetry(Optional<Boolean> allowOTPRetry) {
-            Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
-            this.allowOTPRetry = allowOTPRetry;
-            return this;
-        }
-
-
-        /**
-         * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
+         * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+         * related to the same customer, across different requests or sessions. The format of this ID is
+         * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * 
+         * <p>Prove does not offer any functionality around the Client Customer ID. Do not include personally
+         * identifiable information (PII) in this field.
          */
         public Builder clientCustomerId(String clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -477,7 +534,12 @@ public class V3VerifyRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Prove does not offer any functionality around the Client Customer ID. Do not include personally identifiable information (PII) in this field.
+         * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+         * related to the same customer, across different requests or sessions. The format of this ID is
+         * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * 
+         * <p>Prove does not offer any functionality around the Client Customer ID. Do not include personally
+         * identifiable information (PII) in this field.
          */
         public Builder clientCustomerId(Optional<String> clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -487,7 +549,38 @@ public class V3VerifyRequest {
 
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+         * business lines. If the Enterprise customer has been able to identify a consumer across business
+         * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+         * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * Do not include personally identifiable information (PII) in this field.
+         */
+        public Builder clientHumanId(String clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = Optional.ofNullable(clientHumanId);
+            return this;
+        }
+
+        /**
+         * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+         * business lines. If the Enterprise customer has been able to identify a consumer across business
+         * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+         * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * Do not include personally identifiable information (PII) in this field.
+         */
+        public Builder clientHumanId(Optional<String> clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = clientHumanId;
+            return this;
+        }
+
+
+        /**
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -496,7 +589,11 @@ public class V3VerifyRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -525,28 +622,18 @@ public class V3VerifyRequest {
 
 
         /**
-         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
-         */
-        public Builder finalTargetUrl(String finalTargetUrl) {
-            Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
-            this.finalTargetUrl = Optional.ofNullable(finalTargetUrl);
-            return this;
-        }
-
-        /**
-         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
-         */
-        public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
-            Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
-            this.finalTargetUrl = finalTargetUrl;
-            return this;
-        }
-
-
-        /**
-         * The first name of the individual.
+         * The first name of the individual. (required IF verificationType=VerifiedUser)
          */
         public Builder firstName(String firstName) {
+            Utils.checkNotNull(firstName, "firstName");
+            this.firstName = Optional.ofNullable(firstName);
+            return this;
+        }
+
+        /**
+         * The first name of the individual. (required IF verificationType=VerifiedUser)
+         */
+        public Builder firstName(Optional<String> firstName) {
             Utils.checkNotNull(firstName, "firstName");
             this.firstName = firstName;
             return this;
@@ -554,9 +641,37 @@ public class V3VerifyRequest {
 
 
         /**
-         * The last name of the individual.
+         * The IP address of the customer.
+         */
+        public Builder ipAddress(String ipAddress) {
+            Utils.checkNotNull(ipAddress, "ipAddress");
+            this.ipAddress = Optional.ofNullable(ipAddress);
+            return this;
+        }
+
+        /**
+         * The IP address of the customer.
+         */
+        public Builder ipAddress(Optional<String> ipAddress) {
+            Utils.checkNotNull(ipAddress, "ipAddress");
+            this.ipAddress = ipAddress;
+            return this;
+        }
+
+
+        /**
+         * The last name of the individual. (required IF verificationType=VerifiedUser)
          */
         public Builder lastName(String lastName) {
+            Utils.checkNotNull(lastName, "lastName");
+            this.lastName = Optional.ofNullable(lastName);
+            return this;
+        }
+
+        /**
+         * The last name of the individual. (required IF verificationType=VerifiedUser)
+         */
+        public Builder lastName(Optional<String> lastName) {
             Utils.checkNotNull(lastName, "lastName");
             this.lastName = lastName;
             return this;
@@ -564,7 +679,11 @@ public class V3VerifyRequest {
 
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`. International phone numbers require a leading `+1`. Use the appropriate endpoint URL based on the region the number originates from. Acceptable characters are: alphanumeric with symbols '+'.
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+         * International phone numbers require a leading `+1`.
+         * 
+         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+         * characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -574,46 +693,40 @@ public class V3VerifyRequest {
 
 
         /**
-         * The type of device being used - either `desktop` if using a desktop, `mobile` for iOS/Android native apps and mobile web, or `none` if no possession check is required.
+         * The User agent of the customer.
          */
-        public Builder possessionType(String possessionType) {
-            Utils.checkNotNull(possessionType, "possessionType");
-            this.possessionType = possessionType;
+        public Builder userAgent(String userAgent) {
+            Utils.checkNotNull(userAgent, "userAgent");
+            this.userAgent = Optional.ofNullable(userAgent);
+            return this;
+        }
+
+        /**
+         * The User agent of the customer.
+         */
+        public Builder userAgent(Optional<String> userAgent) {
+            Utils.checkNotNull(userAgent, "userAgent");
+            this.userAgent = userAgent;
             return this;
         }
 
 
         /**
-         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-         * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-         * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-         * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
+         * The verification method based on the use case and authorization level.
          */
-        public Builder smsMessage(String smsMessage) {
-            Utils.checkNotNull(smsMessage, "smsMessage");
-            this.smsMessage = Optional.ofNullable(smsMessage);
-            return this;
-        }
-
-        /**
-         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
-         * Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" The verification URL replaces ####.
-         * OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." Use ####, #####, or ###### to generate 4-6 digit verification codes respectively.
-         * Default language is English. Max length is 160 characters. Non-ASCII characters are allowed.
-         */
-        public Builder smsMessage(Optional<String> smsMessage) {
-            Utils.checkNotNull(smsMessage, "smsMessage");
-            this.smsMessage = smsMessage;
+        public Builder verificationType(String verificationType) {
+            Utils.checkNotNull(verificationType, "verificationType");
+            this.verificationType = verificationType;
             return this;
         }
 
         public V3VerifyRequest build() {
 
             return new V3VerifyRequest(
-                allowOTPRetry, clientCustomerId, clientRequestId,
-                emailAddress, finalTargetUrl, firstName,
-                lastName, phoneNumber, possessionType,
-                smsMessage);
+                clientCustomerId, clientHumanId, clientRequestId,
+                emailAddress, firstName, ipAddress,
+                lastName, phoneNumber, userAgent,
+                verificationType);
         }
 
     }

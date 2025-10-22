@@ -8,174 +8,258 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.prove.proveapi.utils.Blob;
 import com.prove.proveapi.utils.Utils;
+import jakarta.annotation.Nullable;
+import java.io.InputStream;
+import java.lang.Exception;
 import java.lang.Long;
 import java.lang.Override;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.lang.Throwable;
+import java.net.http.HttpResponse;
 import java.util.Optional;
-
+import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("serial")
-public class Error403 extends RuntimeException {
-    /**
-     * An error code that identifies the specific authorization issue.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("code")
-    private Optional<Long> code;
+public class Error403 extends ProveapiError {
 
-    /**
-     * The error message describing why access is forbidden.
-     */
-    @JsonProperty("message")
-    private String message;
+    @Nullable
+    private final Data data;
 
-    @JsonCreator
+    @Nullable
+    private final Throwable deserializationException;
+
     public Error403(
-            @JsonProperty("code") Optional<Long> code,
-            @JsonProperty("message") String message) {
-        super("API error occurred");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(message, "message");
-        this.code = code;
-        this.message = message;
-    }
-    
-    public Error403(
-            String message) {
-        this(Optional.empty(), message);
+                int code,
+                byte[] body,
+                HttpResponse<?> rawResponse,
+                @Nullable Data data,
+                @Nullable Throwable deserializationException) {
+        super("API error occurred", code, body, rawResponse, null);
+        this.data = data;
+        this.deserializationException = deserializationException;
     }
 
     /**
-     * An error code that identifies the specific authorization issue.
-     */
-    @JsonIgnore
-    public Optional<Long> code() {
-        return code;
-    }
-
-    /**
-     * The error message describing why access is forbidden.
-     */
-    @JsonIgnore
-    public String message() {
-        return message;
-    }
-
-    @JsonIgnore
-    @Override
-    public String getMessage() {
-        return Utils.valueOrNull(message);
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
-    /**
-     * An error code that identifies the specific authorization issue.
-     */
-    public Error403 withCode(long code) {
-        Utils.checkNotNull(code, "code");
-        this.code = Optional.ofNullable(code);
-        return this;
-    }
-
-
-    /**
-     * An error code that identifies the specific authorization issue.
-     */
-    public Error403 withCode(Optional<Long> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
-
-    /**
-     * The error message describing why access is forbidden.
-     */
-    public Error403 withMessage(String message) {
-        Utils.checkNotNull(message, "message");
-        this.message = message;
-        return this;
-    }
-
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
+    * Parse a response into an instance of Error403. If deserialization of the response body fails,
+    * the resulting Error403 instance will have a null data() value and a non-null deserializationException().
+    */
+    public static Error403 from(HttpResponse<InputStream> response) {
+        try {
+            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            Data data = Utils.mapper().readValue(bytes, Data.class);
+            return new Error403(response.statusCode(), bytes, response, data, null);
+        } catch (Exception e) {
+            return new Error403(response.statusCode(), null, response, null, e);
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Error403 other = (Error403) o;
-        return 
-            Utils.enhancedDeepEquals(this.code, other.code) &&
-            Utils.enhancedDeepEquals(this.message, other.message);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(
-            code, message);
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(Error403.class,
-                "code", code,
-                "message", message);
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
+    /**
+    * Parse a response into an instance of Error403 asynchronously. If deserialization of the response body fails,
+    * the resulting Error403 instance will have a null data() value and a non-null deserializationException().
+    */
+    public static CompletableFuture<Error403> fromAsync(HttpResponse<Blob> response) {
+        return response.body()
+                .toByteArray()
+                .handle((bytes, err) -> {
+                    // if a body read error occurs, we want to transform the exception
+                    if (err != null) {
+                        throw new AsyncSDKError(
+                                "Error reading response body: " + err.getMessage(),
+                                response.statusCode(),
+                                null,
+                                response,
+                                err);
+                    }
 
-        private Optional<Long> code = Optional.empty();
+                    try {
+                        return new Error403(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                Utils.mapper().readValue(
+                                        bytes,
+                                        new TypeReference<Data>() {
+                                        }),
+                                null);
+                    } catch (Exception e) {
+                        return new Error403(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                null,
+                                e);
+                    }
+                });
+    }
 
+    public Optional<Data> data() {
+        return Optional.ofNullable(data);
+    }
+
+    /**
+     * Returns the exception if an error occurs while deserializing the response body.
+     */
+    public Optional<Throwable> deserializationException() {
+        return Optional.ofNullable(deserializationException);
+    }
+
+    public static class Data {
+        /**
+         * An error code that identifies the specific authorization issue.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("code")
+        private Optional<Long> code;
+
+        /**
+         * The error message describing why access is forbidden.
+         */
+        @JsonProperty("message")
         private String message;
 
-        private Builder() {
-          // force use of static builder() method
+        @JsonCreator
+        public Data(
+                @JsonProperty("code") Optional<Long> code,
+                @JsonProperty("message") String message) {
+            Utils.checkNotNull(code, "code");
+            Utils.checkNotNull(message, "message");
+            this.code = code;
+            this.message = message;
+        }
+        
+        public Data(
+                String message) {
+            this(Optional.empty(), message);
+        }
+
+        /**
+         * An error code that identifies the specific authorization issue.
+         */
+        @JsonIgnore
+        public Optional<Long> code() {
+            return code;
+        }
+
+        /**
+         * The error message describing why access is forbidden.
+         */
+        @JsonIgnore
+        public String message() {
+            return message;
+        }
+
+        public static Builder builder() {
+            return new Builder();
         }
 
 
         /**
          * An error code that identifies the specific authorization issue.
          */
-        public Builder code(long code) {
+        public Data withCode(long code) {
             Utils.checkNotNull(code, "code");
             this.code = Optional.ofNullable(code);
             return this;
         }
 
+
         /**
          * An error code that identifies the specific authorization issue.
          */
-        public Builder code(Optional<Long> code) {
+        public Data withCode(Optional<Long> code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
             return this;
         }
 
-
         /**
          * The error message describing why access is forbidden.
          */
-        public Builder message(String message) {
+        public Data withMessage(String message) {
             Utils.checkNotNull(message, "message");
             this.message = message;
             return this;
         }
 
-        public Error403 build() {
-
-            return new Error403(
+        @Override
+        public boolean equals(java.lang.Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Data other = (Data) o;
+            return 
+                Utils.enhancedDeepEquals(this.code, other.code) &&
+                Utils.enhancedDeepEquals(this.message, other.message);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Utils.enhancedHash(
                 code, message);
         }
+        
+        @Override
+        public String toString() {
+            return Utils.toString(Data.class,
+                    "code", code,
+                    "message", message);
+        }
 
+        @SuppressWarnings("UnusedReturnValue")
+        public final static class Builder {
+
+            private Optional<Long> code = Optional.empty();
+
+            private String message;
+
+            private Builder() {
+              // force use of static builder() method
+            }
+
+
+            /**
+             * An error code that identifies the specific authorization issue.
+             */
+            public Builder code(long code) {
+                Utils.checkNotNull(code, "code");
+                this.code = Optional.ofNullable(code);
+                return this;
+            }
+
+            /**
+             * An error code that identifies the specific authorization issue.
+             */
+            public Builder code(Optional<Long> code) {
+                Utils.checkNotNull(code, "code");
+                this.code = code;
+                return this;
+            }
+
+
+            /**
+             * The error message describing why access is forbidden.
+             */
+            public Builder message(String message) {
+                Utils.checkNotNull(message, "message");
+                this.message = message;
+                return this;
+            }
+
+            public Data build() {
+
+                return new Data(
+                    code, message);
+            }
+
+        }
     }
+
 }
 

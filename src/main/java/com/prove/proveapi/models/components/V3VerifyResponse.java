@@ -12,90 +12,125 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 
 public class V3VerifyResponse {
     /**
-     * A bearer token for use by the Prove client SDK.
+     * (required IF verificationType=VerifiedUser)
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("authToken")
-    private Optional<String> authToken;
+    @JsonProperty("additionalIdentities")
+    private Optional<? extends List<AdditionalIdentity>> additionalIdentities;
 
     /**
-     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientRequestId")
+    private Optional<String> clientRequestId;
+
+    /**
+     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
+     * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
+     * flow.
      */
     @JsonProperty("correlationId")
     private String correlationId;
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
     private Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation;
 
-    /**
-     * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
-     */
-    @JsonProperty("possessionResult")
-    private String possessionResult;
+
+    @JsonProperty("identity")
+    private Identity identity;
 
     /**
-     * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`, `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'.
+     */
+    @JsonProperty("phoneNumber")
+    private String phoneNumber;
+
+    /**
+     * The result of verification
      */
     @JsonProperty("success")
     private String success;
 
-    /**
-     * The result of the Verify process. Possible values are `success`, `pending`, and `failed`. If the Verify result is `pending`, clients will need to call the Verify Status API to get a result.
-     */
-    @JsonProperty("verifyResult")
-    private String verifyResult;
-
     @JsonCreator
     public V3VerifyResponse(
-            @JsonProperty("authToken") Optional<String> authToken,
+            @JsonProperty("additionalIdentities") Optional<? extends List<AdditionalIdentity>> additionalIdentities,
+            @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("correlationId") String correlationId,
             @JsonProperty("evaluation") Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation,
-            @JsonProperty("possessionResult") String possessionResult,
-            @JsonProperty("success") String success,
-            @JsonProperty("verifyResult") String verifyResult) {
-        Utils.checkNotNull(authToken, "authToken");
+            @JsonProperty("identity") Identity identity,
+            @JsonProperty("phoneNumber") String phoneNumber,
+            @JsonProperty("success") String success) {
+        Utils.checkNotNull(additionalIdentities, "additionalIdentities");
+        Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(evaluation, "evaluation");
-        Utils.checkNotNull(possessionResult, "possessionResult");
+        Utils.checkNotNull(identity, "identity");
+        Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(success, "success");
-        Utils.checkNotNull(verifyResult, "verifyResult");
-        this.authToken = authToken;
+        this.additionalIdentities = additionalIdentities;
+        this.clientRequestId = clientRequestId;
         this.correlationId = correlationId;
         this.evaluation = evaluation;
-        this.possessionResult = possessionResult;
+        this.identity = identity;
+        this.phoneNumber = phoneNumber;
         this.success = success;
-        this.verifyResult = verifyResult;
     }
     
     public V3VerifyResponse(
             String correlationId,
-            String possessionResult,
-            String success,
-            String verifyResult) {
-        this(Optional.empty(), correlationId, Optional.empty(),
-            possessionResult, success, verifyResult);
+            Identity identity,
+            String phoneNumber,
+            String success) {
+        this(Optional.empty(), Optional.empty(), correlationId,
+            Optional.empty(), identity, phoneNumber,
+            success);
     }
 
     /**
-     * A bearer token for use by the Prove client SDK.
+     * (required IF verificationType=VerifiedUser)
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<AdditionalIdentity>> additionalIdentities() {
+        return (Optional<List<AdditionalIdentity>>) additionalIdentities;
+    }
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
-    public Optional<String> authToken() {
-        return authToken;
+    public Optional<String> clientRequestId() {
+        return clientRequestId;
     }
 
     /**
-     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
+     * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
+     * flow.
      */
     @JsonIgnore
     public String correlationId() {
@@ -103,7 +138,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -111,28 +146,29 @@ public class V3VerifyResponse {
         return (Optional<Map<String, V3VerifyResponseEvaluation>>) evaluation;
     }
 
-    /**
-     * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
-     */
     @JsonIgnore
-    public String possessionResult() {
-        return possessionResult;
+    public Identity identity() {
+        return identity;
     }
 
     /**
-     * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`, `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'.
+     */
+    @JsonIgnore
+    public String phoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * The result of verification
      */
     @JsonIgnore
     public String success() {
         return success;
-    }
-
-    /**
-     * The result of the Verify process. Possible values are `success`, `pending`, and `failed`. If the Verify result is `pending`, clients will need to call the Verify Status API to get a result.
-     */
-    @JsonIgnore
-    public String verifyResult() {
-        return verifyResult;
     }
 
     public static Builder builder() {
@@ -141,26 +177,55 @@ public class V3VerifyResponse {
 
 
     /**
-     * A bearer token for use by the Prove client SDK.
+     * (required IF verificationType=VerifiedUser)
      */
-    public V3VerifyResponse withAuthToken(String authToken) {
-        Utils.checkNotNull(authToken, "authToken");
-        this.authToken = Optional.ofNullable(authToken);
+    public V3VerifyResponse withAdditionalIdentities(List<AdditionalIdentity> additionalIdentities) {
+        Utils.checkNotNull(additionalIdentities, "additionalIdentities");
+        this.additionalIdentities = Optional.ofNullable(additionalIdentities);
         return this;
     }
 
 
     /**
-     * A bearer token for use by the Prove client SDK.
+     * (required IF verificationType=VerifiedUser)
      */
-    public V3VerifyResponse withAuthToken(Optional<String> authToken) {
-        Utils.checkNotNull(authToken, "authToken");
-        this.authToken = authToken;
+    public V3VerifyResponse withAdditionalIdentities(Optional<? extends List<AdditionalIdentity>> additionalIdentities) {
+        Utils.checkNotNull(additionalIdentities, "additionalIdentities");
+        this.additionalIdentities = additionalIdentities;
         return this;
     }
 
     /**
-     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     */
+    public V3VerifyResponse withClientRequestId(String clientRequestId) {
+        Utils.checkNotNull(clientRequestId, "clientRequestId");
+        this.clientRequestId = Optional.ofNullable(clientRequestId);
+        return this;
+    }
+
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     */
+    public V3VerifyResponse withClientRequestId(Optional<String> clientRequestId) {
+        Utils.checkNotNull(clientRequestId, "clientRequestId");
+        this.clientRequestId = clientRequestId;
+        return this;
+    }
+
+    /**
+     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
+     * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
+     * flow.
      */
     public V3VerifyResponse withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -169,7 +234,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     public V3VerifyResponse withEvaluation(Map<String, V3VerifyResponseEvaluation> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -179,7 +244,7 @@ public class V3VerifyResponse {
 
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     public V3VerifyResponse withEvaluation(Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -187,30 +252,31 @@ public class V3VerifyResponse {
         return this;
     }
 
-    /**
-     * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
-     */
-    public V3VerifyResponse withPossessionResult(String possessionResult) {
-        Utils.checkNotNull(possessionResult, "possessionResult");
-        this.possessionResult = possessionResult;
+    public V3VerifyResponse withIdentity(Identity identity) {
+        Utils.checkNotNull(identity, "identity");
+        this.identity = identity;
         return this;
     }
 
     /**
-     * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`, `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
+     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+1`.
+     * 
+     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+     * characters are: alphanumeric with symbols '+'.
+     */
+    public V3VerifyResponse withPhoneNumber(String phoneNumber) {
+        Utils.checkNotNull(phoneNumber, "phoneNumber");
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    /**
+     * The result of verification
      */
     public V3VerifyResponse withSuccess(String success) {
         Utils.checkNotNull(success, "success");
         this.success = success;
-        return this;
-    }
-
-    /**
-     * The result of the Verify process. Possible values are `success`, `pending`, and `failed`. If the Verify result is `pending`, clients will need to call the Verify Status API to get a result.
-     */
-    public V3VerifyResponse withVerifyResult(String verifyResult) {
-        Utils.checkNotNull(verifyResult, "verifyResult");
-        this.verifyResult = verifyResult;
         return this;
     }
 
@@ -224,46 +290,51 @@ public class V3VerifyResponse {
         }
         V3VerifyResponse other = (V3VerifyResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.authToken, other.authToken) &&
+            Utils.enhancedDeepEquals(this.additionalIdentities, other.additionalIdentities) &&
+            Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
             Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
             Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
-            Utils.enhancedDeepEquals(this.possessionResult, other.possessionResult) &&
-            Utils.enhancedDeepEquals(this.success, other.success) &&
-            Utils.enhancedDeepEquals(this.verifyResult, other.verifyResult);
+            Utils.enhancedDeepEquals(this.identity, other.identity) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            authToken, correlationId, evaluation,
-            possessionResult, success, verifyResult);
+            additionalIdentities, clientRequestId, correlationId,
+            evaluation, identity, phoneNumber,
+            success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3VerifyResponse.class,
-                "authToken", authToken,
+                "additionalIdentities", additionalIdentities,
+                "clientRequestId", clientRequestId,
                 "correlationId", correlationId,
                 "evaluation", evaluation,
-                "possessionResult", possessionResult,
-                "success", success,
-                "verifyResult", verifyResult);
+                "identity", identity,
+                "phoneNumber", phoneNumber,
+                "success", success);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> authToken = Optional.empty();
+        private Optional<? extends List<AdditionalIdentity>> additionalIdentities = Optional.empty();
+
+        private Optional<String> clientRequestId = Optional.empty();
 
         private String correlationId;
 
         private Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation = Optional.empty();
 
-        private String possessionResult;
+        private Identity identity;
+
+        private String phoneNumber;
 
         private String success;
-
-        private String verifyResult;
 
         private Builder() {
           // force use of static builder() method
@@ -271,26 +342,55 @@ public class V3VerifyResponse {
 
 
         /**
-         * A bearer token for use by the Prove client SDK.
+         * (required IF verificationType=VerifiedUser)
          */
-        public Builder authToken(String authToken) {
-            Utils.checkNotNull(authToken, "authToken");
-            this.authToken = Optional.ofNullable(authToken);
+        public Builder additionalIdentities(List<AdditionalIdentity> additionalIdentities) {
+            Utils.checkNotNull(additionalIdentities, "additionalIdentities");
+            this.additionalIdentities = Optional.ofNullable(additionalIdentities);
             return this;
         }
 
         /**
-         * A bearer token for use by the Prove client SDK.
+         * (required IF verificationType=VerifiedUser)
          */
-        public Builder authToken(Optional<String> authToken) {
-            Utils.checkNotNull(authToken, "authToken");
-            this.authToken = authToken;
+        public Builder additionalIdentities(Optional<? extends List<AdditionalIdentity>> additionalIdentities) {
+            Utils.checkNotNull(additionalIdentities, "additionalIdentities");
+            this.additionalIdentities = additionalIdentities;
             return this;
         }
 
 
         /**
-         * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used for each of the subsequent API calls in the same flow - it cannot be reused outside of a single flow.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
+         */
+        public Builder clientRequestId(String clientRequestId) {
+            Utils.checkNotNull(clientRequestId, "clientRequestId");
+            this.clientRequestId = Optional.ofNullable(clientRequestId);
+            return this;
+        }
+
+        /**
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
+         */
+        public Builder clientRequestId(Optional<String> clientRequestId) {
+            Utils.checkNotNull(clientRequestId, "clientRequestId");
+            this.clientRequestId = clientRequestId;
+            return this;
+        }
+
+
+        /**
+         * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
+         * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
+         * flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");
@@ -300,7 +400,7 @@ public class V3VerifyResponse {
 
 
         /**
-         * The evaluation result for the policy
+         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
         public Builder evaluation(Map<String, V3VerifyResponseEvaluation> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -309,7 +409,7 @@ public class V3VerifyResponse {
         }
 
         /**
-         * The evaluation result for the policy
+         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
         public Builder evaluation(Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -318,18 +418,29 @@ public class V3VerifyResponse {
         }
 
 
-        /**
-         * The result of the possession check. Possible values are `pending` and `not_applicable`, based on the `possessionType` passed in the input. Clients will have to call the Verify Status API to get a result if `possessionResult=pending`.
-         */
-        public Builder possessionResult(String possessionResult) {
-            Utils.checkNotNull(possessionResult, "possessionResult");
-            this.possessionResult = possessionResult;
+        public Builder identity(Identity identity) {
+            Utils.checkNotNull(identity, "identity");
+            this.identity = identity;
             return this;
         }
 
 
         /**
-         * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`, `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession are returned or one of them fails, blocking the other.
+         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
+         * International phone numbers require a leading `+1`.
+         * 
+         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
+         * characters are: alphanumeric with symbols '+'.
+         */
+        public Builder phoneNumber(String phoneNumber) {
+            Utils.checkNotNull(phoneNumber, "phoneNumber");
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+
+        /**
+         * The result of verification
          */
         public Builder success(String success) {
             Utils.checkNotNull(success, "success");
@@ -337,21 +448,12 @@ public class V3VerifyResponse {
             return this;
         }
 
-
-        /**
-         * The result of the Verify process. Possible values are `success`, `pending`, and `failed`. If the Verify result is `pending`, clients will need to call the Verify Status API to get a result.
-         */
-        public Builder verifyResult(String verifyResult) {
-            Utils.checkNotNull(verifyResult, "verifyResult");
-            this.verifyResult = verifyResult;
-            return this;
-        }
-
         public V3VerifyResponse build() {
 
             return new V3VerifyResponse(
-                authToken, correlationId, evaluation,
-                possessionResult, success, verifyResult);
+                additionalIdentities, clientRequestId, correlationId,
+                evaluation, identity, phoneNumber,
+                success);
         }
 
     }

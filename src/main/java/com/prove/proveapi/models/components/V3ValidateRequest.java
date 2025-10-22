@@ -13,7 +13,8 @@ import java.lang.String;
 
 public class V3ValidateRequest {
     /**
-     * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot
+     * be reused outside of a single flow.
      */
     @JsonProperty("correlationId")
     private String correlationId;
@@ -26,7 +27,8 @@ public class V3ValidateRequest {
     }
 
     /**
-     * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot
+     * be reused outside of a single flow.
      */
     @JsonIgnore
     public String correlationId() {
@@ -39,7 +41,8 @@ public class V3ValidateRequest {
 
 
     /**
-     * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+     * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot
+     * be reused outside of a single flow.
      */
     public V3ValidateRequest withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -83,7 +86,8 @@ public class V3ValidateRequest {
 
 
         /**
-         * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot be reused outside of a single flow.
+         * The unique ID that Prove generates for the flow. It is returned from the Start endpoint and cannot
+         * be reused outside of a single flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");

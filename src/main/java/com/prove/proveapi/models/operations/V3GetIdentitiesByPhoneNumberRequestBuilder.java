@@ -7,8 +7,8 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.operations.V3GetIdentitiesByPhoneNumber;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -17,6 +17,7 @@ public class V3GetIdentitiesByPhoneNumberRequestBuilder {
     private String mobileNumber;
     private Optional<String> clientRequestId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3GetIdentitiesByPhoneNumberRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,10 +50,10 @@ public class V3GetIdentitiesByPhoneNumberRequestBuilder {
         return request;
     }
 
-    public V3GetIdentitiesByPhoneNumberResponse call() throws Exception {
+    public V3GetIdentitiesByPhoneNumberResponse call() {
         
         RequestOperation<V3GetIdentitiesByPhoneNumberRequest, V3GetIdentitiesByPhoneNumberResponse> operation
-              = new V3GetIdentitiesByPhoneNumber.Sync(sdkConfiguration);
+              = new V3GetIdentitiesByPhoneNumber.Sync(sdkConfiguration, _headers);
         V3GetIdentitiesByPhoneNumberRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

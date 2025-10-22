@@ -21,7 +21,9 @@ OpenAPI Spec - generated.
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
+  * [Asynchronous Support](#asynchronous-support)
   * [Authentication](#authentication)
+  * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
 
 <!-- End Table of Contents [toc] -->
@@ -37,7 +39,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.18.0'
+implementation 'com.prove:proveapi:0.19.0'
 ```
 
 Maven:
@@ -45,7 +47,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.18.0</version>
+    <version>0.19.0</version>
 </dependency>
 ```
 
@@ -82,7 +84,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -113,6 +115,45 @@ public class Application {
     }
 }
 ```
+#### Asynchronous Call
+An asynchronous SDK client is also available that returns a [`CompletableFuture<T>`][comp-fut]. See [Asynchronous Support](#asynchronous-support) for more details on async benefits and reactive library integration.
+```java
+package hello.world;
+
+import com.prove.proveapi.AsyncProveapi;
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.V3TokenRequest;
+import com.prove.proveapi.models.operations.async.V3TokenRequestResponse;
+import java.util.concurrent.CompletableFuture;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        AsyncProveapi sdk = Proveapi.builder()
+            .build()
+            .async();
+
+        V3TokenRequest req = V3TokenRequest.builder()
+                .clientId("customer_id")
+                .clientSecret("secret")
+                .grantType("client_credentials")
+                .build();
+
+        CompletableFuture<V3TokenRequestResponse> resFut = sdk.v3().v3TokenRequest()
+                .request(req)
+                .call();
+
+        resFut.thenAccept(res -> {
+            if (res.v3TokenResponse().isPresent()) {
+            // handle response
+            }
+        });
+    }
+}
+```
+
+[comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
@@ -141,7 +182,6 @@ public class Application {
 * [v3DeactivateIdentity](docs/sdks/identity/README.md#v3deactivateidentity) - Deactivate Identity
 * [v3GetIdentitiesByPhoneNumber](docs/sdks/identity/README.md#v3getidentitiesbyphonenumber) - Get Identities By Phone Number
 
-
 ### [v3()](docs/sdks/v3/README.md)
 
 * [v3TokenRequest](docs/sdks/v3/README.md#v3tokenrequest) - Request OAuth Token
@@ -153,7 +193,7 @@ public class Application {
 * [v3UnifyStatusRequest](docs/sdks/v3/README.md#v3unifystatusrequest) - Check Status
 * [v3ValidateRequest](docs/sdks/v3/README.md#v3validaterequest) - Validate Phone Number
 * [v3VerifyRequest](docs/sdks/v3/README.md#v3verifyrequest) - Initiate Verified Users Session
-* [v3VerifyStatusRequest](docs/sdks/v3/README.md#v3verifystatusrequest) - Check Verification Result
+* [v3VerifyBatchRequest](docs/sdks/v3/README.md#v3verifybatchrequest) - Batch Verify Users
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -163,30 +203,32 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `v3TokenRequest` method throws the following exceptions:
 
-| Error Type             | Status Code | Content Type     |
-| ---------------------- | ----------- | ---------------- |
-| models/errors/Error    | 400         | application/json |
-| models/errors/Error401 | 401         | application/json |
-| models/errors/Error    | 500         | application/json |
-| models/errors/SDKError | 4XX, 5XX    | \*/\*            |
+[`ProveapiError`](./src/main/java/models/errors/ProveapiError.java) is the base class for all HTTP error responses. It has the following properties:
+
+| Method           | Type                        | Description                                                              |
+| ---------------- | --------------------------- | ------------------------------------------------------------------------ |
+| `message()`      | `String`                    | Error message                                                            |
+| `code()`         | `int`                       | HTTP response status code eg `404`                                       |
+| `headers`        | `Map<String, List<String>>` | HTTP response headers                                                    |
+| `body()`         | `byte[]`                    | HTTP body as a byte array. Can be empty array if no body is returned.    |
+| `bodyAsString()` | `String`                    | HTTP body as a UTF-8 string. Can be empty string if no body is returned. |
+| `rawResponse()`  | `HttpResponse<?>`           | Raw HTTP response (body already read and not available for re-read)      |
 
 ### Example
-
 ```java
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
             .build();
@@ -207,6 +249,30 @@ public class Application {
     }
 }
 ```
+
+### Error Classes
+**Primary errors:**
+* [`ProveapiError`](./src/main/java/models/errors/ProveapiError.java): The base class for HTTP error responses.
+  * [`com.prove.proveapi.models.errors.Error400`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error400.java): Bad Request. The server cannot process the request due to a client error. Status code `400`.
+  * [`com.prove.proveapi.models.errors.Error401`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error401.java): Unauthorized. Authentication is required and has failed or has not been provided. Status code `401`.
+  * [`com.prove.proveapi.models.errors.Error`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error.java): Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request. Status code `500`.
+  * [`com.prove.proveapi.models.errors.Error403`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error403.java): Forbidden. The server understood the request but refuses to authorize it. Status code `403`. *
+
+<details><summary>Less common errors (6)</summary>
+
+<br />
+
+**Network errors:**
+* `java.io.IOException` (always wrapped by `java.io.UncheckedIOException`). Commonly encountered subclasses of
+`IOException` include `java.net.ConnectException`, `java.net.SocketTimeoutException`, `EOFException` (there are
+many more subclasses in the JDK platform).
+
+**Inherit from [`ProveapiError`](./src/main/java/models/errors/ProveapiError.java)**:
+
+
+</details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -230,14 +296,14 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .server(Proveapi.AvailableServers.PROD_EU)
@@ -268,14 +334,14 @@ package hello.world;
 
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .serverURL("https://platform.uat.proveapis.com")
@@ -299,6 +365,72 @@ public class Application {
 ```
 <!-- End Server Selection [server] -->
 
+<!-- Start Asynchronous Support [async-support] -->
+## Asynchronous Support
+
+The SDK provides comprehensive asynchronous support using Java's [`CompletableFuture<T>`][comp-fut] and [Reactive Streams `Publisher<T>`][reactive-streams] APIs. This design makes no assumptions about your choice of reactive toolkit, allowing seamless integration with any reactive library.
+
+<details>
+<summary>Why Use Async?</summary>
+
+Asynchronous operations provide several key benefits:
+
+- **Non-blocking I/O**: Your threads stay free for other work while operations are in flight
+- **Better resource utilization**: Handle more concurrent operations with fewer threads
+- **Improved scalability**: Build highly responsive applications that can handle thousands of concurrent requests
+- **Reactive integration**: Works seamlessly with reactive streams and backpressure handling
+
+</details>
+
+<details>
+<summary>Reactive Library Integration</summary>
+
+The SDK returns [Reactive Streams `Publisher<T>`][reactive-streams] instances for operations dealing with streams involving multiple I/O interactions. We use Reactive Streams instead of JDK Flow API to provide broader compatibility with the reactive ecosystem, as most reactive libraries natively support Reactive Streams.
+
+**Why Reactive Streams over JDK Flow?**
+- **Broader ecosystem compatibility**: Most reactive libraries (Project Reactor, RxJava, Akka Streams, etc.) natively support Reactive Streams
+- **Industry standard**: Reactive Streams is the de facto standard for reactive programming in Java
+- **Better interoperability**: Seamless integration without additional adapters for most use cases
+
+**Integration with Popular Libraries:**
+- **Project Reactor**: Use `Flux.from(publisher)` to convert to Reactor types
+- **RxJava**: Use `Flowable.fromPublisher(publisher)` for RxJava integration
+- **Akka Streams**: Use `Source.fromPublisher(publisher)` for Akka Streams integration
+- **Vert.x**: Use `ReadStream.fromPublisher(vertx, publisher)` for Vert.x reactive streams
+- **Mutiny**: Use `Multi.createFrom().publisher(publisher)` for Quarkus Mutiny integration
+
+**For JDK Flow API Integration:**
+If you need JDK Flow API compatibility (e.g., for Quarkus/Mutiny 2), you can use adapters:
+```java
+// Convert Reactive Streams Publisher to Flow Publisher
+Flow.Publisher<T> flowPublisher = FlowAdapters.toFlowPublisher(reactiveStreamsPublisher);
+
+// Convert Flow Publisher to Reactive Streams Publisher
+Publisher<T> reactiveStreamsPublisher = FlowAdapters.toPublisher(flowPublisher);
+```
+
+For standard single-response operations, the SDK returns `CompletableFuture<T>` for straightforward async execution.
+
+</details>
+
+<details>
+<summary>Supported Operations</summary>
+
+Async support is available for:
+
+- **[Server-sent Events](#server-sent-event-streaming)**: Stream real-time events with Reactive Streams `Publisher<T>`
+- **[JSONL Streaming](#jsonl-streaming)**: Process streaming JSON lines asynchronously
+- **[Pagination](#pagination)**: Iterate through paginated results using `callAsPublisher()` and `callAsPublisherUnwrapped()`
+- **[File Uploads](#file-uploads)**: Upload files asynchronously with progress tracking
+- **[File Downloads](#file-downloads)**: Download files asynchronously with streaming support
+- **[Standard Operations](#example)**: All regular API calls return `CompletableFuture<T>` for async execution
+
+</details>
+
+[comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+[reactive-streams]: https://www.reactive-streams.org/
+<!-- End Asynchronous Support [async-support] -->
+
 <!-- Start Authentication [security] -->
 ## Authentication
 
@@ -306,9 +438,9 @@ public class Application {
 
 This SDK supports the following security scheme globally:
 
-| Name                          | Type   | Scheme                         |
-| ----------------------------- | ------ | ------------------------------ |
-| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow |
+| Name                                         | Type   | Scheme                         |
+| -------------------------------------------- | ------ | ------------------------------ |
+| `clientID`<br/>`clientSecret`<br/>`tokenURL` | oauth2 | OAuth2 Client Credentials Flow |
 
 You can set the security parameters through the `security` builder method when initializing the SDK client instance. For example:
 ```java
@@ -317,14 +449,14 @@ package hello.world;
 import com.prove.proveapi.Proveapi;
 import com.prove.proveapi.models.components.Security;
 import com.prove.proveapi.models.components.V3TokenRequest;
-import com.prove.proveapi.models.errors.Error401;
+import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Error401, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -350,6 +482,142 @@ public class Application {
 }
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
+
+The Java SDK makes API calls using an `HTTPClient` that wraps the native
+[HttpClient](https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html). This
+client provides the ability to attach hooks around the request lifecycle that can be used to modify the request or handle
+errors and response.
+
+The `HTTPClient` interface allows you to either use the default `SpeakeasyHTTPClient` that comes with the SDK,
+or provide your own custom implementation with customized configuration such as custom executors, SSL context,
+connection pools, and other HTTP client settings.
+
+The interface provides synchronous (`send`) methods and asynchronous (`sendAsync`) methods. The `sendAsync` method
+is used to power the async SDK methods and returns a `CompletableFuture<HttpResponse<Blob>>` for non-blocking operations.
+
+The following example shows how to add a custom header and handle errors:
+
+```java
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.utils.HTTPClient;
+import com.prove.proveapi.utils.SpeakeasyHTTPClient;
+import com.prove.proveapi.utils.Utils;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.io.InputStream;
+import java.time.Duration;
+
+public class Application {
+    public static void main(String[] args) {
+        // Create a custom HTTP client with hooks
+        HTTPClient httpClient = new HTTPClient() {
+            private final HTTPClient defaultClient = new SpeakeasyHTTPClient();
+            
+            @Override
+            public HttpResponse<InputStream> send(HttpRequest request) throws IOException, URISyntaxException, InterruptedException {
+                // Add custom header and timeout using Utils.copy()
+                HttpRequest modifiedRequest = Utils.copy(request)
+                    .header("x-custom-header", "custom value")
+                    .timeout(Duration.ofSeconds(30))
+                    .build();
+                    
+                try {
+                    HttpResponse<InputStream> response = defaultClient.send(modifiedRequest);
+                    // Log successful response
+                    System.out.println("Request successful: " + response.statusCode());
+                    return response;
+                } catch (Exception error) {
+                    // Log error
+                    System.err.println("Request failed: " + error.getMessage());
+                    throw error;
+                }
+            }
+        };
+
+        Proveapi sdk = Proveapi.builder()
+            .client(httpClient)
+            .build();
+    }
+}
+```
+
+<details>
+<summary>Custom HTTP Client Configuration</summary>
+
+You can also provide a completely custom HTTP client with your own configuration:
+
+```java
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.utils.HTTPClient;
+import com.prove.proveapi.utils.Blob;
+import com.prove.proveapi.utils.ResponseWithBody;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.io.InputStream;
+import java.time.Duration;
+import java.util.concurrent.Executors;
+import java.util.concurrent.CompletableFuture;
+
+public class Application {
+    public static void main(String[] args) {
+        // Custom HTTP client with custom configuration
+        HTTPClient customHttpClient = new HTTPClient() {
+            private final HttpClient client = HttpClient.newBuilder()
+                .executor(Executors.newFixedThreadPool(10))
+                .connectTimeout(Duration.ofSeconds(30))
+                // .sslContext(customSslContext) // Add custom SSL context if needed
+                .build();
+
+            @Override
+            public HttpResponse<InputStream> send(HttpRequest request) throws IOException, URISyntaxException, InterruptedException {
+                return client.send(request, HttpResponse.BodyHandlers.ofInputStream());
+            }
+
+            @Override
+            public CompletableFuture<HttpResponse<Blob>> sendAsync(HttpRequest request) {
+                // Convert response to HttpResponse<Blob> for async operations
+                return client.sendAsync(request, HttpResponse.BodyHandlers.ofPublisher())
+                    .thenApply(resp -> new ResponseWithBody<>(resp, Blob::from));
+            }
+        };
+
+        Proveapi sdk = Proveapi.builder()
+            .client(customHttpClient)
+            .build();
+    }
+}
+```
+
+</details>
+
+You can also enable debug logging on the default `SpeakeasyHTTPClient`:
+
+```java
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.utils.SpeakeasyHTTPClient;
+
+public class Application {
+    public static void main(String[] args) {
+        SpeakeasyHTTPClient httpClient = new SpeakeasyHTTPClient();
+        httpClient.enableDebugLogging(true);
+
+        Proveapi sdk = Proveapi.builder()
+            .client(httpClient)
+            .build();
+    }
+}
+```
+<!-- End Custom HTTP Client [http-client] -->
 
 <!-- Start Debugging [debug] -->
 ## Debugging

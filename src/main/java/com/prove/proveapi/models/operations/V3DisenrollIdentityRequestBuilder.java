@@ -7,8 +7,8 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.operations.V3DisenrollIdentity;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -17,6 +17,7 @@ public class V3DisenrollIdentityRequestBuilder {
     private String identityId;
     private Optional<String> clientRequestId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3DisenrollIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,10 +50,10 @@ public class V3DisenrollIdentityRequestBuilder {
         return request;
     }
 
-    public V3DisenrollIdentityResponse call() throws Exception {
+    public V3DisenrollIdentityResponse call() {
         
         RequestOperation<V3DisenrollIdentityRequest, V3DisenrollIdentityResponse> operation
-              = new V3DisenrollIdentity.Sync(sdkConfiguration);
+              = new V3DisenrollIdentity.Sync(sdkConfiguration, _headers);
         V3DisenrollIdentityRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

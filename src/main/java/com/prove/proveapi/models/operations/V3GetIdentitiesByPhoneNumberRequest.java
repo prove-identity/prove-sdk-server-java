@@ -14,13 +14,18 @@ import java.util.Optional;
 
 public class V3GetIdentitiesByPhoneNumberRequest {
     /**
-     * The phone number to find identities for. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The phone number to find identities for. US phone numbers can be passed in with or without a leading
+     * +1. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=mobileNumber")
     private String mobileNumber;
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=clientRequestId")
     private Optional<String> clientRequestId;
@@ -41,7 +46,8 @@ public class V3GetIdentitiesByPhoneNumberRequest {
     }
 
     /**
-     * The phone number to find identities for. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The phone number to find identities for. US phone numbers can be passed in with or without a leading
+     * +1. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonIgnore
     public String mobileNumber() {
@@ -49,7 +55,11 @@ public class V3GetIdentitiesByPhoneNumberRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -62,7 +72,8 @@ public class V3GetIdentitiesByPhoneNumberRequest {
 
 
     /**
-     * The phone number to find identities for. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The phone number to find identities for. US phone numbers can be passed in with or without a leading
+     * +1. Acceptable characters are: alphanumeric with symbols '+'.
      */
     public V3GetIdentitiesByPhoneNumberRequest withMobileNumber(String mobileNumber) {
         Utils.checkNotNull(mobileNumber, "mobileNumber");
@@ -71,7 +82,11 @@ public class V3GetIdentitiesByPhoneNumberRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3GetIdentitiesByPhoneNumberRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -81,7 +96,11 @@ public class V3GetIdentitiesByPhoneNumberRequest {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3GetIdentitiesByPhoneNumberRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -129,7 +148,8 @@ public class V3GetIdentitiesByPhoneNumberRequest {
 
 
         /**
-         * The phone number to find identities for. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+         * The phone number to find identities for. US phone numbers can be passed in with or without a leading
+         * +1. Acceptable characters are: alphanumeric with symbols '+'.
          */
         public Builder mobileNumber(String mobileNumber) {
             Utils.checkNotNull(mobileNumber, "mobileNumber");
@@ -139,7 +159,11 @@ public class V3GetIdentitiesByPhoneNumberRequest {
 
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -148,7 +172,11 @@ public class V3GetIdentitiesByPhoneNumberRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");

@@ -5,6 +5,7 @@ package com.prove.proveapi;
 
 import com.prove.proveapi.hooks.ClientCredentialsHook;
 import com.prove.proveapi.hooks.SDKHooks;
+import com.prove.proveapi.utils.AsyncHooks;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.Hooks;
 import com.prove.proveapi.utils.RetryConfig;
@@ -12,13 +13,15 @@ import com.prove.proveapi.utils.SpeakeasyHTTPClient;
 import com.prove.proveapi.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "0.18.0";
-    public static final String GEN_VERSION = "2.687.13";
+    public static final String SDK_VERSION = "0.19.0";
+    public static final String GEN_VERSION = "2.728.0";
     private static final String BASE_PACKAGE = "com.prove.proveapi";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -93,6 +96,7 @@ public class SDKConfiguration {
             hooks.registerSdkInit(h);
             hooks.registerBeforeRequest(h);
             hooks.registerAfterError(h);
+            // TODO: async client credentials hooks are yet to be supported
         }
         return hooks;
     }
@@ -110,6 +114,7 @@ public class SDKConfiguration {
      **/
     public void initialize() {
         SDKHooks.initialize(_hooks);
+        SDKHooks.initialize(_asyncHooks);
     }
 
     
@@ -123,5 +128,26 @@ public class SDKConfiguration {
     public void setRetryConfig(Optional<RetryConfig> retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = retryConfig;
+    }
+    private ScheduledExecutorService retryScheduler = Executors.newSingleThreadScheduledExecutor();
+    
+    public ScheduledExecutorService retryScheduler() {
+        return retryScheduler;
+    }
+
+    public void setAsyncRetryScheduler(ScheduledExecutorService retryScheduler) {
+        Utils.checkNotNull(retryScheduler, "retryScheduler");
+        this.retryScheduler = retryScheduler;
+    }
+
+    private AsyncHooks _asyncHooks = new AsyncHooks();
+
+    public AsyncHooks asyncHooks() {
+        return _asyncHooks;
+    }
+
+    public void setAsyncHooks(AsyncHooks asyncHooks) {
+        Utils.checkNotNull(asyncHooks, "asyncHooks");
+        this._asyncHooks = asyncHooks;
     }
 }

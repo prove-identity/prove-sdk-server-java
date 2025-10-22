@@ -7,20 +7,21 @@ import static com.prove.proveapi.operations.Operations.RequestlessOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.operations.V3DomainIDRequest;
-import java.lang.Exception;
+import com.prove.proveapi.utils.Headers;
 
 public class V3DomainIDRequestRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3DomainIDRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V3DomainIDRequestResponse call() throws Exception {
+    public V3DomainIDRequestResponse call() {
         
         RequestlessOperation<V3DomainIDRequestResponse> operation
-            = new V3DomainIDRequest.Sync(sdkConfiguration);
+            = new V3DomainIDRequest.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

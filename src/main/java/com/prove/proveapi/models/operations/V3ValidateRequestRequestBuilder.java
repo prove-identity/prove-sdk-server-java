@@ -7,14 +7,15 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.models.components.V3ValidateRequest;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class V3ValidateRequestRequestBuilder {
 
     private Optional<? extends V3ValidateRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3ValidateRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -32,10 +33,10 @@ public class V3ValidateRequestRequestBuilder {
         return this;
     }
 
-    public V3ValidateRequestResponse call() throws Exception {
+    public V3ValidateRequestResponse call() {
         
         RequestOperation<Optional<? extends V3ValidateRequest>, V3ValidateRequestResponse> operation
-              = new com.prove.proveapi.operations.V3ValidateRequest.Sync(sdkConfiguration);
+              = new com.prove.proveapi.operations.V3ValidateRequest.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

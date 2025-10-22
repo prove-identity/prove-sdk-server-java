@@ -17,16 +17,19 @@ import java.util.Optional;
 
 public class V3StartRequest {
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+     * client-side SDK guide for more details.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowOTPRetry")
     private Optional<Boolean> allowOTPRetry;
 
     /**
-     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are:
+     * numeric with symbol '-'.
      * 
-     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+     * data using phone number only.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dob")
@@ -40,14 +43,18 @@ public class V3StartRequest {
     private Optional<String> emailAddress;
 
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
+     * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * 
+     * <p>Max length is 128 characters.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("finalTargetUrl")
     private Optional<String> finalTargetUrl;
 
     /**
-     * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native apps and mobile web.
+     * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native
+     * apps and mobile web.
      */
     @JsonProperty("flowType")
     private String flowType;
@@ -60,18 +67,27 @@ public class V3StartRequest {
     private Optional<String> ipAddress;
 
     /**
-     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill) and [Prove Identity Implementation guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity) for situations where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+     * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
+     * and [Prove Identity Implementation
+     * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
+     * for situations where this field is not required. Acceptable characters are: alphanumeric with
+     * symbols '+'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
     private Optional<String> phoneNumber;
 
     /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+     * message. If not provided, the following default messages will be used:
      * 
-     * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" _The verification URL replaces ####._
+     * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+     * ####" _The verification URL replaces ####._
      * 
-     * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes respectively._
+     * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+     * share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes
+     * respectively._
      * 
      * <p>Max length is 160 characters. Non-ASCII characters are allowed.
      */
@@ -82,7 +98,8 @@ public class V3StartRequest {
     /**
      * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
      * 
-     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+     * data using phone number only.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ssn")
@@ -127,7 +144,8 @@ public class V3StartRequest {
     }
 
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+     * client-side SDK guide for more details.
      */
     @JsonIgnore
     public Optional<Boolean> allowOTPRetry() {
@@ -135,9 +153,11 @@ public class V3StartRequest {
     }
 
     /**
-     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are:
+     * numeric with symbol '-'.
      * 
-     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+     * data using phone number only.
      */
     @JsonIgnore
     public Optional<String> dob() {
@@ -153,7 +173,10 @@ public class V3StartRequest {
     }
 
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
+     * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * 
+     * <p>Max length is 128 characters.
      */
     @JsonIgnore
     public Optional<String> finalTargetUrl() {
@@ -161,7 +184,8 @@ public class V3StartRequest {
     }
 
     /**
-     * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native apps and mobile web.
+     * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native
+     * apps and mobile web.
      */
     @JsonIgnore
     public String flowType() {
@@ -177,7 +201,12 @@ public class V3StartRequest {
     }
 
     /**
-     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill) and [Prove Identity Implementation guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity) for situations where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+     * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
+     * and [Prove Identity Implementation
+     * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
+     * for situations where this field is not required. Acceptable characters are: alphanumeric with
+     * symbols '+'.
      */
     @JsonIgnore
     public Optional<String> phoneNumber() {
@@ -185,11 +214,15 @@ public class V3StartRequest {
     }
 
     /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+     * message. If not provided, the following default messages will be used:
      * 
-     * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" _The verification URL replaces ####._
+     * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+     * ####" _The verification URL replaces ####._
      * 
-     * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes respectively._
+     * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+     * share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes
+     * respectively._
      * 
      * <p>Max length is 160 characters. Non-ASCII characters are allowed.
      */
@@ -201,7 +234,8 @@ public class V3StartRequest {
     /**
      * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
      * 
-     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+     * data using phone number only.
      */
     @JsonIgnore
     public Optional<String> ssn() {
@@ -214,7 +248,8 @@ public class V3StartRequest {
 
 
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+     * client-side SDK guide for more details.
      */
     public V3StartRequest withAllowOTPRetry(boolean allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -224,7 +259,8 @@ public class V3StartRequest {
 
 
     /**
-     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+     * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+     * client-side SDK guide for more details.
      */
     public V3StartRequest withAllowOTPRetry(Optional<Boolean> allowOTPRetry) {
         Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -233,9 +269,11 @@ public class V3StartRequest {
     }
 
     /**
-     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are:
+     * numeric with symbol '-'.
      * 
-     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+     * data using phone number only.
      */
     public V3StartRequest withDob(String dob) {
         Utils.checkNotNull(dob, "dob");
@@ -245,9 +283,11 @@ public class V3StartRequest {
 
 
     /**
-     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are:
+     * numeric with symbol '-'.
      * 
-     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+     * data using phone number only.
      */
     public V3StartRequest withDob(Optional<String> dob) {
         Utils.checkNotNull(dob, "dob");
@@ -275,7 +315,10 @@ public class V3StartRequest {
     }
 
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
+     * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * 
+     * <p>Max length is 128 characters.
      */
     public V3StartRequest withFinalTargetUrl(String finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -285,7 +328,10 @@ public class V3StartRequest {
 
 
     /**
-     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+     * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
+     * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+     * 
+     * <p>Max length is 128 characters.
      */
     public V3StartRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -294,7 +340,8 @@ public class V3StartRequest {
     }
 
     /**
-     * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native apps and mobile web.
+     * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native
+     * apps and mobile web.
      */
     public V3StartRequest withFlowType(String flowType) {
         Utils.checkNotNull(flowType, "flowType");
@@ -322,7 +369,12 @@ public class V3StartRequest {
     }
 
     /**
-     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill) and [Prove Identity Implementation guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity) for situations where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+     * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
+     * and [Prove Identity Implementation
+     * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
+     * for situations where this field is not required. Acceptable characters are: alphanumeric with
+     * symbols '+'.
      */
     public V3StartRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -332,7 +384,12 @@ public class V3StartRequest {
 
 
     /**
-     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill) and [Prove Identity Implementation guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity) for situations where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+     * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
+     * and [Prove Identity Implementation
+     * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
+     * for situations where this field is not required. Acceptable characters are: alphanumeric with
+     * symbols '+'.
      */
     public V3StartRequest withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -341,11 +398,15 @@ public class V3StartRequest {
     }
 
     /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+     * message. If not provided, the following default messages will be used:
      * 
-     * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" _The verification URL replaces ####._
+     * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+     * ####" _The verification URL replaces ####._
      * 
-     * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes respectively._
+     * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+     * share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes
+     * respectively._
      * 
      * <p>Max length is 160 characters. Non-ASCII characters are allowed.
      */
@@ -357,11 +418,15 @@ public class V3StartRequest {
 
 
     /**
-     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+     * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+     * message. If not provided, the following default messages will be used:
      * 
-     * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" _The verification URL replaces ####._
+     * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+     * ####" _The verification URL replaces ####._
      * 
-     * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes respectively._
+     * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+     * share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes
+     * respectively._
      * 
      * <p>Max length is 160 characters. Non-ASCII characters are allowed.
      */
@@ -374,7 +439,8 @@ public class V3StartRequest {
     /**
      * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
      * 
-     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+     * data using phone number only.
      */
     public V3StartRequest withSsn(String ssn) {
         Utils.checkNotNull(ssn, "ssn");
@@ -386,7 +452,8 @@ public class V3StartRequest {
     /**
      * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
      * 
-     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+     * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+     * data using phone number only.
      */
     public V3StartRequest withSsn(Optional<String> ssn) {
         Utils.checkNotNull(ssn, "ssn");
@@ -464,7 +531,8 @@ public class V3StartRequest {
 
 
         /**
-         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+         * client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(boolean allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -473,7 +541,8 @@ public class V3StartRequest {
         }
 
         /**
-         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See client-side SDK guide for more details.
+         * If true, the customer can re-enter the OTP up to three times. Code must also be implemented. See
+         * client-side SDK guide for more details.
          */
         public Builder allowOTPRetry(Optional<Boolean> allowOTPRetry) {
             Utils.checkNotNull(allowOTPRetry, "allowOTPRetry");
@@ -483,9 +552,11 @@ public class V3StartRequest {
 
 
         /**
-         * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are:
+         * numeric with symbol '-'.
          * 
-         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+         * data using phone number only.
          */
         public Builder dob(String dob) {
             Utils.checkNotNull(dob, "dob");
@@ -494,9 +565,11 @@ public class V3StartRequest {
         }
 
         /**
-         * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * The date of birth in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are:
+         * numeric with symbol '-'.
          * 
-         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+         * data using phone number only.
          */
         public Builder dob(Optional<String> dob) {
             Utils.checkNotNull(dob, "dob");
@@ -525,7 +598,10 @@ public class V3StartRequest {
 
 
         /**
-         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
+         * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+         * 
+         * <p>Max length is 128 characters.
          */
         public Builder finalTargetUrl(String finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -534,7 +610,10 @@ public class V3StartRequest {
         }
 
         /**
-         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+         * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
+         * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
+         * 
+         * <p>Max length is 128 characters.
          */
         public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -544,7 +623,8 @@ public class V3StartRequest {
 
 
         /**
-         * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native apps and mobile web.
+         * The type of device being user - either `desktop` for desktop web or `mobile` for iOS/Android native
+         * apps and mobile web.
          */
         public Builder flowType(String flowType) {
             Utils.checkNotNull(flowType, "flowType");
@@ -573,7 +653,12 @@ public class V3StartRequest {
 
 
         /**
-         * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill) and [Prove Identity Implementation guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity) for situations where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
+         * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+         * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
+         * and [Prove Identity Implementation
+         * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
+         * for situations where this field is not required. Acceptable characters are: alphanumeric with
+         * symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -582,7 +667,12 @@ public class V3StartRequest {
         }
 
         /**
-         * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill) and [Prove Identity Implementation guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity) for situations where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
+         * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+         * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
+         * and [Prove Identity Implementation
+         * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
+         * for situations where this field is not required. Acceptable characters are: alphanumeric with
+         * symbols '+'.
          */
         public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -592,11 +682,15 @@ public class V3StartRequest {
 
 
         /**
-         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+         * message. If not provided, the following default messages will be used:
          * 
-         * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" _The verification URL replaces ####._
+         * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+         * ####" _The verification URL replaces ####._
          * 
-         * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes respectively._
+         * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+         * share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes
+         * respectively._
          * 
          * <p>Max length is 160 characters. Non-ASCII characters are allowed.
          */
@@ -607,11 +701,15 @@ public class V3StartRequest {
         }
 
         /**
-         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS message. If not provided, the following default messages will be used:
+         * The message body sent in the Instant Link (`flowType=desktop`) or OTP (`flowType=mobile`) SMS
+         * message. If not provided, the following default messages will be used:
          * 
-         * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link. ####" _The verification URL replaces ####._
+         * <p>Instant Link: "Complete your verification. If you did not make this request, do not click the link.
+         * ####" _The verification URL replaces ####._
          * 
-         * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes respectively._
+         * <p>OTP: "#### is your temporary code to continue your application. Caution: for your security, don't
+         * share this code with anyone." _Use ####, #####, or ###### to generate 4-6 digit verification codes
+         * respectively._
          * 
          * <p>Max length is 160 characters. Non-ASCII characters are allowed.
          */
@@ -625,7 +723,8 @@ public class V3StartRequest {
         /**
          * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
          * 
-         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+         * data using phone number only.
          */
         public Builder ssn(String ssn) {
             Utils.checkNotNull(ssn, "ssn");
@@ -636,7 +735,8 @@ public class V3StartRequest {
         /**
          * The full or last 4 digits of the social security number. Acceptable characters are: numeric.
          * 
-         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill data using phone number only.
+         * <p>It is recommended you do NOT pass this value into the Start step. Prove will attempt to pre-fill
+         * data using phone number only.
          */
         public Builder ssn(Optional<String> ssn) {
             Utils.checkNotNull(ssn, "ssn");

@@ -8,3 +8,14 @@
  */
 
 rootProject.name = 'proveapi'
+
+include 'proveapi-spring-boot-autoconfigure'
+include 'proveapi-spring-boot-starter'
+
+project(':proveapi-spring-boot-autoconfigure').projectDir = file('spring/proveapi-spring-boot-autoconfigure')
+project(':proveapi-spring-boot-starter').projectDir = file('spring/proveapi-spring-boot-starter')
+
+// Apply additional settings if the file exists
+if (file('settings-extra.gradle').exists()) {
+    apply from: 'settings-extra.gradle'
+}

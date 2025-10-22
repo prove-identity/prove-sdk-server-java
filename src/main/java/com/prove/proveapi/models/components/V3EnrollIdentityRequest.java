@@ -20,28 +20,38 @@ import java.util.Optional;
  */
 public class V3EnrollIdentityRequest {
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientCustomerId")
     private Optional<String> clientCustomerId;
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deviceId")
     private Optional<String> deviceId;
 
     /**
-     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a
+     * leading +1. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
@@ -69,7 +79,11 @@ public class V3EnrollIdentityRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientCustomerId() {
@@ -77,7 +91,11 @@ public class V3EnrollIdentityRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -85,7 +103,8 @@ public class V3EnrollIdentityRequest {
     }
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     @JsonIgnore
     public Optional<String> deviceId() {
@@ -93,7 +112,8 @@ public class V3EnrollIdentityRequest {
     }
 
     /**
-     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a
+     * leading +1. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -106,7 +126,11 @@ public class V3EnrollIdentityRequest {
 
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
      */
     public V3EnrollIdentityRequest withClientCustomerId(String clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -116,7 +140,11 @@ public class V3EnrollIdentityRequest {
 
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include personally identifiable information (PII) in this field.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
      */
     public V3EnrollIdentityRequest withClientCustomerId(Optional<String> clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -125,7 +153,11 @@ public class V3EnrollIdentityRequest {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3EnrollIdentityRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -135,7 +167,11 @@ public class V3EnrollIdentityRequest {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
     public V3EnrollIdentityRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -144,7 +180,8 @@ public class V3EnrollIdentityRequest {
     }
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     public V3EnrollIdentityRequest withDeviceId(String deviceId) {
         Utils.checkNotNull(deviceId, "deviceId");
@@ -154,7 +191,8 @@ public class V3EnrollIdentityRequest {
 
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     public V3EnrollIdentityRequest withDeviceId(Optional<String> deviceId) {
         Utils.checkNotNull(deviceId, "deviceId");
@@ -163,7 +201,8 @@ public class V3EnrollIdentityRequest {
     }
 
     /**
-     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a
+     * leading +1. Acceptable characters are: alphanumeric with symbols '+'.
      */
     public V3EnrollIdentityRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -220,7 +259,11 @@ public class V3EnrollIdentityRequest {
 
 
         /**
-         * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include personally identifiable information (PII) in this field.
+         * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+         * related to the same customer, across different requests or sessions. The format of this ID is
+         * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * 
+         * <p>Do not include personally identifiable information (PII) in this field.
          */
         public Builder clientCustomerId(String clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -229,7 +272,11 @@ public class V3EnrollIdentityRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include personally identifiable information (PII) in this field.
+         * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+         * related to the same customer, across different requests or sessions. The format of this ID is
+         * defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * 
+         * <p>Do not include personally identifiable information (PII) in this field.
          */
         public Builder clientCustomerId(Optional<String> clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -239,7 +286,11 @@ public class V3EnrollIdentityRequest {
 
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -248,7 +299,11 @@ public class V3EnrollIdentityRequest {
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -258,7 +313,8 @@ public class V3EnrollIdentityRequest {
 
 
         /**
-         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+         * leveraging Prove Unify.
          */
         public Builder deviceId(String deviceId) {
             Utils.checkNotNull(deviceId, "deviceId");
@@ -267,7 +323,8 @@ public class V3EnrollIdentityRequest {
         }
 
         /**
-         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+         * leveraging Prove Unify.
          */
         public Builder deviceId(Optional<String> deviceId) {
             Utils.checkNotNull(deviceId, "deviceId");
@@ -277,7 +334,8 @@ public class V3EnrollIdentityRequest {
 
 
         /**
-         * The number of the consumer being enrolled. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+         * The number of the consumer being enrolled. US phone numbers can be passed in with or without a
+         * leading +1. Acceptable characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

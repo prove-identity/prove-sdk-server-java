@@ -19,14 +19,15 @@ import java.util.Optional;
 
 public class V3ValidateResponse {
     /**
-     * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If implementing Prove Identity ignore this field.
+     * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If
+     * implementing Prove Identity ignore this field.
      * It will always return false for this use case.
      */
     @JsonProperty("challengeMissing")
     private boolean challengeMissing;
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
@@ -80,7 +81,8 @@ public class V3ValidateResponse {
     }
 
     /**
-     * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If implementing Prove Identity ignore this field.
+     * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If
+     * implementing Prove Identity ignore this field.
      * It will always return false for this use case.
      */
     @JsonIgnore
@@ -89,7 +91,7 @@ public class V3ValidateResponse {
     }
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +129,8 @@ public class V3ValidateResponse {
 
 
     /**
-     * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If implementing Prove Identity ignore this field.
+     * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If
+     * implementing Prove Identity ignore this field.
      * It will always return false for this use case.
      */
     public V3ValidateResponse withChallengeMissing(boolean challengeMissing) {
@@ -137,7 +140,7 @@ public class V3ValidateResponse {
     }
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     public V3ValidateResponse withEvaluation(Map<String, V3ValidateResponseEvaluation> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -147,7 +150,7 @@ public class V3ValidateResponse {
 
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     public V3ValidateResponse withEvaluation(Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -245,7 +248,8 @@ public class V3ValidateResponse {
 
 
         /**
-         * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If implementing Prove Identity ignore this field.
+         * True if a DOB or SSN needs to be passed in on the next step. Only applicable to Pre-Fill. If
+         * implementing Prove Identity ignore this field.
          * It will always return false for this use case.
          */
         public Builder challengeMissing(boolean challengeMissing) {
@@ -256,7 +260,7 @@ public class V3ValidateResponse {
 
 
         /**
-         * The evaluation result for the policy
+         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
         public Builder evaluation(Map<String, V3ValidateResponseEvaluation> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -265,7 +269,7 @@ public class V3ValidateResponse {
         }
 
         /**
-         * The evaluation result for the policy
+         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
         public Builder evaluation(Optional<? extends Map<String, V3ValidateResponseEvaluation>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
