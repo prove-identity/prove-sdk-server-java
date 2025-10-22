@@ -18,7 +18,35 @@ import java.util.Optional;
 
 public class V3UnifyBindResponse {
     /**
-     * The evaluation result for the policy
+     * A client-generated unique ID to identify a specific customer across business lines.
+     * 
+     * <p>Required if success=true.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientHumanId")
+    private Optional<String> clientHumanId;
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientRequestId")
+    private Optional<String> clientRequestId;
+
+    /**
+     * The unique identifier for the Prove Key on the device.
+     * 
+     * <p>Required if success=true.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("deviceId")
+    private Optional<String> deviceId;
+
+    /**
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
@@ -26,9 +54,23 @@ public class V3UnifyBindResponse {
 
     /**
      * The number of the mobile phone used during the process.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
-    private String phoneNumber;
+    private Optional<String> phoneNumber;
+
+    /**
+     * A unique ID to identify a specific customer obtained from a successful possession check.
+     * If an existing value is available (e.g. from a previous successful possession check) then it should
+     * be returned, otherwise a new value should be generated if success=true.
+     * 
+     * <p>Required if success=true.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("proveId")
+    private Optional<String> proveId;
 
     /**
      * The result of the possession check.
@@ -39,25 +81,69 @@ public class V3UnifyBindResponse {
 
     @JsonCreator
     public V3UnifyBindResponse(
+            @JsonProperty("clientHumanId") Optional<String> clientHumanId,
+            @JsonProperty("clientRequestId") Optional<String> clientRequestId,
+            @JsonProperty("deviceId") Optional<String> deviceId,
             @JsonProperty("evaluation") Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation,
-            @JsonProperty("phoneNumber") String phoneNumber,
+            @JsonProperty("phoneNumber") Optional<String> phoneNumber,
+            @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("success") String success) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        Utils.checkNotNull(clientRequestId, "clientRequestId");
+        Utils.checkNotNull(deviceId, "deviceId");
         Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(success, "success");
+        this.clientHumanId = clientHumanId;
+        this.clientRequestId = clientRequestId;
+        this.deviceId = deviceId;
         this.evaluation = evaluation;
         this.phoneNumber = phoneNumber;
+        this.proveId = proveId;
         this.success = success;
     }
     
     public V3UnifyBindResponse(
-            String phoneNumber,
             String success) {
-        this(Optional.empty(), phoneNumber, success);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            success);
     }
 
     /**
-     * The evaluation result for the policy
+     * A client-generated unique ID to identify a specific customer across business lines.
+     * 
+     * <p>Required if success=true.
+     */
+    @JsonIgnore
+    public Optional<String> clientHumanId() {
+        return clientHumanId;
+    }
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
+     */
+    @JsonIgnore
+    public Optional<String> clientRequestId() {
+        return clientRequestId;
+    }
+
+    /**
+     * The unique identifier for the Prove Key on the device.
+     * 
+     * <p>Required if success=true.
+     */
+    @JsonIgnore
+    public Optional<String> deviceId() {
+        return deviceId;
+    }
+
+    /**
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -67,10 +153,24 @@ public class V3UnifyBindResponse {
 
     /**
      * The number of the mobile phone used during the process.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     @JsonIgnore
-    public String phoneNumber() {
+    public Optional<String> phoneNumber() {
         return phoneNumber;
+    }
+
+    /**
+     * A unique ID to identify a specific customer obtained from a successful possession check.
+     * If an existing value is available (e.g. from a previous successful possession check) then it should
+     * be returned, otherwise a new value should be generated if success=true.
+     * 
+     * <p>Required if success=true.
+     */
+    @JsonIgnore
+    public Optional<String> proveId() {
+        return proveId;
     }
 
     /**
@@ -88,7 +188,78 @@ public class V3UnifyBindResponse {
 
 
     /**
-     * The evaluation result for the policy
+     * A client-generated unique ID to identify a specific customer across business lines.
+     * 
+     * <p>Required if success=true.
+     */
+    public V3UnifyBindResponse withClientHumanId(String clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = Optional.ofNullable(clientHumanId);
+        return this;
+    }
+
+
+    /**
+     * A client-generated unique ID to identify a specific customer across business lines.
+     * 
+     * <p>Required if success=true.
+     */
+    public V3UnifyBindResponse withClientHumanId(Optional<String> clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = clientHumanId;
+        return this;
+    }
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
+     */
+    public V3UnifyBindResponse withClientRequestId(String clientRequestId) {
+        Utils.checkNotNull(clientRequestId, "clientRequestId");
+        this.clientRequestId = Optional.ofNullable(clientRequestId);
+        return this;
+    }
+
+
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * Do not include Personally Identifiable Information (PII) in this field.
+     */
+    public V3UnifyBindResponse withClientRequestId(Optional<String> clientRequestId) {
+        Utils.checkNotNull(clientRequestId, "clientRequestId");
+        this.clientRequestId = clientRequestId;
+        return this;
+    }
+
+    /**
+     * The unique identifier for the Prove Key on the device.
+     * 
+     * <p>Required if success=true.
+     */
+    public V3UnifyBindResponse withDeviceId(String deviceId) {
+        Utils.checkNotNull(deviceId, "deviceId");
+        this.deviceId = Optional.ofNullable(deviceId);
+        return this;
+    }
+
+
+    /**
+     * The unique identifier for the Prove Key on the device.
+     * 
+     * <p>Required if success=true.
+     */
+    public V3UnifyBindResponse withDeviceId(Optional<String> deviceId) {
+        Utils.checkNotNull(deviceId, "deviceId");
+        this.deviceId = deviceId;
+        return this;
+    }
+
+    /**
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     public V3UnifyBindResponse withEvaluation(Map<String, V3UnifyBindResponseEvaluation> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -98,7 +269,7 @@ public class V3UnifyBindResponse {
 
 
     /**
-     * The evaluation result for the policy
+     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
     public V3UnifyBindResponse withEvaluation(Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -108,10 +279,51 @@ public class V3UnifyBindResponse {
 
     /**
      * The number of the mobile phone used during the process.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     public V3UnifyBindResponse withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        this.phoneNumber = Optional.ofNullable(phoneNumber);
+        return this;
+    }
+
+
+    /**
+     * The number of the mobile phone used during the process.
+     * 
+     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
+     */
+    public V3UnifyBindResponse withPhoneNumber(Optional<String> phoneNumber) {
+        Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    /**
+     * A unique ID to identify a specific customer obtained from a successful possession check.
+     * If an existing value is available (e.g. from a previous successful possession check) then it should
+     * be returned, otherwise a new value should be generated if success=true.
+     * 
+     * <p>Required if success=true.
+     */
+    public V3UnifyBindResponse withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = Optional.ofNullable(proveId);
+        return this;
+    }
+
+
+    /**
+     * A unique ID to identify a specific customer obtained from a successful possession check.
+     * If an existing value is available (e.g. from a previous successful possession check) then it should
+     * be returned, otherwise a new value should be generated if success=true.
+     * 
+     * <p>Required if success=true.
+     */
+    public V3UnifyBindResponse withProveId(Optional<String> proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
 
@@ -135,31 +347,49 @@ public class V3UnifyBindResponse {
         }
         V3UnifyBindResponse other = (V3UnifyBindResponse) o;
         return 
+            Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
+            Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
+            Utils.enhancedDeepEquals(this.deviceId, other.deviceId) &&
             Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            evaluation, phoneNumber, success);
+            clientHumanId, clientRequestId, deviceId,
+            evaluation, phoneNumber, proveId,
+            success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3UnifyBindResponse.class,
+                "clientHumanId", clientHumanId,
+                "clientRequestId", clientRequestId,
+                "deviceId", deviceId,
                 "evaluation", evaluation,
                 "phoneNumber", phoneNumber,
+                "proveId", proveId,
                 "success", success);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<String> clientHumanId = Optional.empty();
+
+        private Optional<String> clientRequestId = Optional.empty();
+
+        private Optional<String> deviceId = Optional.empty();
+
         private Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation = Optional.empty();
 
-        private String phoneNumber;
+        private Optional<String> phoneNumber = Optional.empty();
+
+        private Optional<String> proveId = Optional.empty();
 
         private String success;
 
@@ -169,7 +399,78 @@ public class V3UnifyBindResponse {
 
 
         /**
-         * The evaluation result for the policy
+         * A client-generated unique ID to identify a specific customer across business lines.
+         * 
+         * <p>Required if success=true.
+         */
+        public Builder clientHumanId(String clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = Optional.ofNullable(clientHumanId);
+            return this;
+        }
+
+        /**
+         * A client-generated unique ID to identify a specific customer across business lines.
+         * 
+         * <p>Required if success=true.
+         */
+        public Builder clientHumanId(Optional<String> clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = clientHumanId;
+            return this;
+        }
+
+
+        /**
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * Do not include Personally Identifiable Information (PII) in this field.
+         */
+        public Builder clientRequestId(String clientRequestId) {
+            Utils.checkNotNull(clientRequestId, "clientRequestId");
+            this.clientRequestId = Optional.ofNullable(clientRequestId);
+            return this;
+        }
+
+        /**
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * Do not include Personally Identifiable Information (PII) in this field.
+         */
+        public Builder clientRequestId(Optional<String> clientRequestId) {
+            Utils.checkNotNull(clientRequestId, "clientRequestId");
+            this.clientRequestId = clientRequestId;
+            return this;
+        }
+
+
+        /**
+         * The unique identifier for the Prove Key on the device.
+         * 
+         * <p>Required if success=true.
+         */
+        public Builder deviceId(String deviceId) {
+            Utils.checkNotNull(deviceId, "deviceId");
+            this.deviceId = Optional.ofNullable(deviceId);
+            return this;
+        }
+
+        /**
+         * The unique identifier for the Prove Key on the device.
+         * 
+         * <p>Required if success=true.
+         */
+        public Builder deviceId(Optional<String> deviceId) {
+            Utils.checkNotNull(deviceId, "deviceId");
+            this.deviceId = deviceId;
+            return this;
+        }
+
+
+        /**
+         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
         public Builder evaluation(Map<String, V3UnifyBindResponseEvaluation> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -178,7 +479,7 @@ public class V3UnifyBindResponse {
         }
 
         /**
-         * The evaluation result for the policy
+         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
         public Builder evaluation(Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -189,10 +490,50 @@ public class V3UnifyBindResponse {
 
         /**
          * The number of the mobile phone used during the process.
+         * 
+         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
+            this.phoneNumber = Optional.ofNullable(phoneNumber);
+            return this;
+        }
+
+        /**
+         * The number of the mobile phone used during the process.
+         * 
+         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
+         */
+        public Builder phoneNumber(Optional<String> phoneNumber) {
+            Utils.checkNotNull(phoneNumber, "phoneNumber");
             this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+
+        /**
+         * A unique ID to identify a specific customer obtained from a successful possession check.
+         * If an existing value is available (e.g. from a previous successful possession check) then it should
+         * be returned, otherwise a new value should be generated if success=true.
+         * 
+         * <p>Required if success=true.
+         */
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = Optional.ofNullable(proveId);
+            return this;
+        }
+
+        /**
+         * A unique ID to identify a specific customer obtained from a successful possession check.
+         * If an existing value is available (e.g. from a previous successful possession check) then it should
+         * be returned, otherwise a new value should be generated if success=true.
+         * 
+         * <p>Required if success=true.
+         */
+        public Builder proveId(Optional<String> proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
             return this;
         }
 
@@ -210,7 +551,9 @@ public class V3UnifyBindResponse {
         public V3UnifyBindResponse build() {
 
             return new V3UnifyBindResponse(
-                evaluation, phoneNumber, success);
+                clientHumanId, clientRequestId, deviceId,
+                evaluation, phoneNumber, proveId,
+                success);
         }
 
     }

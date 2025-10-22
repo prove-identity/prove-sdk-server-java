@@ -36,7 +36,9 @@ public class V3GetIdentityResponse {
     private Optional<String> carrier;
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientCustomerId")
@@ -64,14 +66,16 @@ public class V3GetIdentityResponse {
     private Optional<String> creationString;
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deviceId")
     private Optional<String> deviceId;
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("identityId")
@@ -85,7 +89,11 @@ public class V3GetIdentityResponse {
     private Optional<String> lineType;
 
     /**
-     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with Mobile Auth documentation for situations where this field is not required. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
+     * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
+     * passed in with or without a leading +1.
+     * 
+     * <p>Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
@@ -149,7 +157,9 @@ public class V3GetIdentityResponse {
     }
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
      */
     @JsonIgnore
     public Optional<String> clientCustomerId() {
@@ -181,7 +191,8 @@ public class V3GetIdentityResponse {
     }
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     @JsonIgnore
     public Optional<String> deviceId() {
@@ -189,7 +200,8 @@ public class V3GetIdentityResponse {
     }
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     @JsonIgnore
     public Optional<String> identityId() {
@@ -205,7 +217,11 @@ public class V3GetIdentityResponse {
     }
 
     /**
-     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with Mobile Auth documentation for situations where this field is not required. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
+     * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
+     * passed in with or without a leading +1.
+     * 
+     * <p>Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -256,7 +272,9 @@ public class V3GetIdentityResponse {
     }
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
      */
     public V3GetIdentityResponse withClientCustomerId(String clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -266,7 +284,9 @@ public class V3GetIdentityResponse {
 
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
      */
     public V3GetIdentityResponse withClientCustomerId(Optional<String> clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -332,7 +352,8 @@ public class V3GetIdentityResponse {
     }
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     public V3GetIdentityResponse withDeviceId(String deviceId) {
         Utils.checkNotNull(deviceId, "deviceId");
@@ -342,7 +363,8 @@ public class V3GetIdentityResponse {
 
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     public V3GetIdentityResponse withDeviceId(Optional<String> deviceId) {
         Utils.checkNotNull(deviceId, "deviceId");
@@ -351,7 +373,8 @@ public class V3GetIdentityResponse {
     }
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     public V3GetIdentityResponse withIdentityId(String identityId) {
         Utils.checkNotNull(identityId, "identityId");
@@ -361,7 +384,8 @@ public class V3GetIdentityResponse {
 
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     public V3GetIdentityResponse withIdentityId(Optional<String> identityId) {
         Utils.checkNotNull(identityId, "identityId");
@@ -389,7 +413,11 @@ public class V3GetIdentityResponse {
     }
 
     /**
-     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with Mobile Auth documentation for situations where this field is not required. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
+     * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
+     * passed in with or without a leading +1.
+     * 
+     * <p>Acceptable characters are: alphanumeric with symbols '+'.
      */
     public V3GetIdentityResponse withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -510,7 +538,9 @@ public class V3GetIdentityResponse {
 
 
         /**
-         * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+         * related to the same customer, across different requests or sessions. The format of this ID is
+         * defined by the client - Prove recommends using a GUID, but any format can be accepted.
          */
         public Builder clientCustomerId(String clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -519,7 +549,9 @@ public class V3GetIdentityResponse {
         }
 
         /**
-         * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+         * related to the same customer, across different requests or sessions. The format of this ID is
+         * defined by the client - Prove recommends using a GUID, but any format can be accepted.
          */
         public Builder clientCustomerId(Optional<String> clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -586,7 +618,8 @@ public class V3GetIdentityResponse {
 
 
         /**
-         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+         * leveraging Prove Unify.
          */
         public Builder deviceId(String deviceId) {
             Utils.checkNotNull(deviceId, "deviceId");
@@ -595,7 +628,8 @@ public class V3GetIdentityResponse {
         }
 
         /**
-         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+         * leveraging Prove Unify.
          */
         public Builder deviceId(Optional<String> deviceId) {
             Utils.checkNotNull(deviceId, "deviceId");
@@ -605,7 +639,8 @@ public class V3GetIdentityResponse {
 
 
         /**
-         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+         * reference the identity in future requests.
          */
         public Builder identityId(String identityId) {
             Utils.checkNotNull(identityId, "identityId");
@@ -614,7 +649,8 @@ public class V3GetIdentityResponse {
         }
 
         /**
-         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+         * reference the identity in future requests.
          */
         public Builder identityId(Optional<String> identityId) {
             Utils.checkNotNull(identityId, "identityId");
@@ -643,7 +679,11 @@ public class V3GetIdentityResponse {
 
 
         /**
-         * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with Mobile Auth documentation for situations where this field is not required. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+         * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
+         * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
+         * passed in with or without a leading +1.
+         * 
+         * <p>Acceptable characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

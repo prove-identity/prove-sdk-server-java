@@ -27,7 +27,8 @@ public class PostBatchResultItem {
     private Optional<String> error;
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("identityId")
@@ -56,7 +57,8 @@ public class PostBatchResultItem {
     }
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     @JsonIgnore
     public Optional<String> identityId() {
@@ -88,7 +90,8 @@ public class PostBatchResultItem {
     }
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     public PostBatchResultItem withIdentityId(String identityId) {
         Utils.checkNotNull(identityId, "identityId");
@@ -98,7 +101,8 @@ public class PostBatchResultItem {
 
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     public PostBatchResultItem withIdentityId(Optional<String> identityId) {
         Utils.checkNotNull(identityId, "identityId");
@@ -165,7 +169,8 @@ public class PostBatchResultItem {
 
 
         /**
-         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+         * reference the identity in future requests.
          */
         public Builder identityId(String identityId) {
             Utils.checkNotNull(identityId, "identityId");
@@ -174,7 +179,8 @@ public class PostBatchResultItem {
         }
 
         /**
-         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+         * reference the identity in future requests.
          */
         public Builder identityId(Optional<String> identityId) {
             Utils.checkNotNull(identityId, "identityId");

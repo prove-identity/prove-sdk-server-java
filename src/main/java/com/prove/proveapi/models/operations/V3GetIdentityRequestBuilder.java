@@ -7,8 +7,8 @@ import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.operations.V3GetIdentity;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -17,6 +17,7 @@ public class V3GetIdentityRequestBuilder {
     private String identityId;
     private Optional<String> clientRequestId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3GetIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,10 +50,10 @@ public class V3GetIdentityRequestBuilder {
         return request;
     }
 
-    public V3GetIdentityResponse call() throws Exception {
+    public V3GetIdentityResponse call() {
         
         RequestOperation<V3GetIdentityRequest, V3GetIdentityResponse> operation
-              = new V3GetIdentity.Sync(sdkConfiguration);
+              = new V3GetIdentity.Sync(sdkConfiguration, _headers);
         V3GetIdentityRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

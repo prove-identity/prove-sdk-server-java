@@ -8,174 +8,258 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.prove.proveapi.utils.Blob;
 import com.prove.proveapi.utils.Utils;
+import jakarta.annotation.Nullable;
+import java.io.InputStream;
+import java.lang.Exception;
 import java.lang.Long;
 import java.lang.Override;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.lang.Throwable;
+import java.net.http.HttpResponse;
 import java.util.Optional;
-
+import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("serial")
-public class Error extends RuntimeException {
-    /**
-     * Code is an internal error code that describes the problem category of the request.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("code")
-    private Optional<Long> code;
+public class Error extends ProveapiError {
 
-    /**
-     * Message is an error message describing the problem with the request.
-     */
-    @JsonProperty("message")
-    private String message;
+    @Nullable
+    private final Data data;
 
-    @JsonCreator
+    @Nullable
+    private final Throwable deserializationException;
+
     public Error(
-            @JsonProperty("code") Optional<Long> code,
-            @JsonProperty("message") String message) {
-        super("API error occurred");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(message, "message");
-        this.code = code;
-        this.message = message;
-    }
-    
-    public Error(
-            String message) {
-        this(Optional.empty(), message);
+                int code,
+                byte[] body,
+                HttpResponse<?> rawResponse,
+                @Nullable Data data,
+                @Nullable Throwable deserializationException) {
+        super("API error occurred", code, body, rawResponse, null);
+        this.data = data;
+        this.deserializationException = deserializationException;
     }
 
     /**
-     * Code is an internal error code that describes the problem category of the request.
-     */
-    @JsonIgnore
-    public Optional<Long> code() {
-        return code;
-    }
-
-    /**
-     * Message is an error message describing the problem with the request.
-     */
-    @JsonIgnore
-    public String message() {
-        return message;
-    }
-
-    @JsonIgnore
-    @Override
-    public String getMessage() {
-        return Utils.valueOrNull(message);
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
-    /**
-     * Code is an internal error code that describes the problem category of the request.
-     */
-    public Error withCode(long code) {
-        Utils.checkNotNull(code, "code");
-        this.code = Optional.ofNullable(code);
-        return this;
-    }
-
-
-    /**
-     * Code is an internal error code that describes the problem category of the request.
-     */
-    public Error withCode(Optional<Long> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
-
-    /**
-     * Message is an error message describing the problem with the request.
-     */
-    public Error withMessage(String message) {
-        Utils.checkNotNull(message, "message");
-        this.message = message;
-        return this;
-    }
-
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
+    * Parse a response into an instance of Error. If deserialization of the response body fails,
+    * the resulting Error instance will have a null data() value and a non-null deserializationException().
+    */
+    public static Error from(HttpResponse<InputStream> response) {
+        try {
+            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            Data data = Utils.mapper().readValue(bytes, Data.class);
+            return new Error(response.statusCode(), bytes, response, data, null);
+        } catch (Exception e) {
+            return new Error(response.statusCode(), null, response, null, e);
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Error other = (Error) o;
-        return 
-            Utils.enhancedDeepEquals(this.code, other.code) &&
-            Utils.enhancedDeepEquals(this.message, other.message);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(
-            code, message);
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(Error.class,
-                "code", code,
-                "message", message);
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
+    /**
+    * Parse a response into an instance of Error asynchronously. If deserialization of the response body fails,
+    * the resulting Error instance will have a null data() value and a non-null deserializationException().
+    */
+    public static CompletableFuture<Error> fromAsync(HttpResponse<Blob> response) {
+        return response.body()
+                .toByteArray()
+                .handle((bytes, err) -> {
+                    // if a body read error occurs, we want to transform the exception
+                    if (err != null) {
+                        throw new AsyncSDKError(
+                                "Error reading response body: " + err.getMessage(),
+                                response.statusCode(),
+                                null,
+                                response,
+                                err);
+                    }
 
-        private Optional<Long> code = Optional.empty();
+                    try {
+                        return new Error(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                Utils.mapper().readValue(
+                                        bytes,
+                                        new TypeReference<Data>() {
+                                        }),
+                                null);
+                    } catch (Exception e) {
+                        return new Error(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                null,
+                                e);
+                    }
+                });
+    }
 
+    public Optional<Data> data() {
+        return Optional.ofNullable(data);
+    }
+
+    /**
+     * Returns the exception if an error occurs while deserializing the response body.
+     */
+    public Optional<Throwable> deserializationException() {
+        return Optional.ofNullable(deserializationException);
+    }
+
+    public static class Data {
+        /**
+         * An error code that describes the problem category of the request.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("code")
+        private Optional<Long> code;
+
+        /**
+         * The error message describing the problem with the request.
+         */
+        @JsonProperty("message")
         private String message;
 
-        private Builder() {
-          // force use of static builder() method
+        @JsonCreator
+        public Data(
+                @JsonProperty("code") Optional<Long> code,
+                @JsonProperty("message") String message) {
+            Utils.checkNotNull(code, "code");
+            Utils.checkNotNull(message, "message");
+            this.code = code;
+            this.message = message;
+        }
+        
+        public Data(
+                String message) {
+            this(Optional.empty(), message);
+        }
+
+        /**
+         * An error code that describes the problem category of the request.
+         */
+        @JsonIgnore
+        public Optional<Long> code() {
+            return code;
+        }
+
+        /**
+         * The error message describing the problem with the request.
+         */
+        @JsonIgnore
+        public String message() {
+            return message;
+        }
+
+        public static Builder builder() {
+            return new Builder();
         }
 
 
         /**
-         * Code is an internal error code that describes the problem category of the request.
+         * An error code that describes the problem category of the request.
          */
-        public Builder code(long code) {
+        public Data withCode(long code) {
             Utils.checkNotNull(code, "code");
             this.code = Optional.ofNullable(code);
             return this;
         }
 
+
         /**
-         * Code is an internal error code that describes the problem category of the request.
+         * An error code that describes the problem category of the request.
          */
-        public Builder code(Optional<Long> code) {
+        public Data withCode(Optional<Long> code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
             return this;
         }
 
-
         /**
-         * Message is an error message describing the problem with the request.
+         * The error message describing the problem with the request.
          */
-        public Builder message(String message) {
+        public Data withMessage(String message) {
             Utils.checkNotNull(message, "message");
             this.message = message;
             return this;
         }
 
-        public Error build() {
-
-            return new Error(
+        @Override
+        public boolean equals(java.lang.Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Data other = (Data) o;
+            return 
+                Utils.enhancedDeepEquals(this.code, other.code) &&
+                Utils.enhancedDeepEquals(this.message, other.message);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Utils.enhancedHash(
                 code, message);
         }
+        
+        @Override
+        public String toString() {
+            return Utils.toString(Data.class,
+                    "code", code,
+                    "message", message);
+        }
 
+        @SuppressWarnings("UnusedReturnValue")
+        public final static class Builder {
+
+            private Optional<Long> code = Optional.empty();
+
+            private String message;
+
+            private Builder() {
+              // force use of static builder() method
+            }
+
+
+            /**
+             * An error code that describes the problem category of the request.
+             */
+            public Builder code(long code) {
+                Utils.checkNotNull(code, "code");
+                this.code = Optional.ofNullable(code);
+                return this;
+            }
+
+            /**
+             * An error code that describes the problem category of the request.
+             */
+            public Builder code(Optional<Long> code) {
+                Utils.checkNotNull(code, "code");
+                this.code = code;
+                return this;
+            }
+
+
+            /**
+             * The error message describing the problem with the request.
+             */
+            public Builder message(String message) {
+                Utils.checkNotNull(message, "message");
+                this.message = message;
+                return this;
+            }
+
+            public Data build() {
+
+                return new Data(
+                    code, message);
+            }
+
+        }
     }
+
 }
 

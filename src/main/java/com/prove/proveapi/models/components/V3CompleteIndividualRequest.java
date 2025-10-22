@@ -18,21 +18,24 @@ import java.util.Optional;
 
 public class V3CompleteIndividualRequest {
     /**
-     * Address of the individual. Note that though this is an array, only the first address in the array will be processed.
+     * Address of the individual. Note that though this is an array, only the first address in the array
+     * will be processed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<V3CompleteAddressEntryRequest>> addresses;
 
     /**
-     * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD.
+     * Acceptable characters are: numeric with symbol '-'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dob")
     private Optional<String> dob;
 
     /**
-     * Email address of the individual. Note that though this is an array, only the first email address in the array will be processed.
+     * Email address of the individual. Note that though this is an array, only the first email address in
+     * the array will be processed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emailAddresses")
@@ -87,7 +90,8 @@ public class V3CompleteIndividualRequest {
     }
 
     /**
-     * Address of the individual. Note that though this is an array, only the first address in the array will be processed.
+     * Address of the individual. Note that though this is an array, only the first address in the array
+     * will be processed.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -96,7 +100,8 @@ public class V3CompleteIndividualRequest {
     }
 
     /**
-     * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD.
+     * Acceptable characters are: numeric with symbol '-'.
      */
     @JsonIgnore
     public Optional<String> dob() {
@@ -104,7 +109,8 @@ public class V3CompleteIndividualRequest {
     }
 
     /**
-     * Email address of the individual. Note that though this is an array, only the first email address in the array will be processed.
+     * Email address of the individual. Note that though this is an array, only the first email address in
+     * the array will be processed.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -142,7 +148,8 @@ public class V3CompleteIndividualRequest {
 
 
     /**
-     * Address of the individual. Note that though this is an array, only the first address in the array will be processed.
+     * Address of the individual. Note that though this is an array, only the first address in the array
+     * will be processed.
      */
     public V3CompleteIndividualRequest withAddresses(List<V3CompleteAddressEntryRequest> addresses) {
         Utils.checkNotNull(addresses, "addresses");
@@ -152,7 +159,8 @@ public class V3CompleteIndividualRequest {
 
 
     /**
-     * Address of the individual. Note that though this is an array, only the first address in the array will be processed.
+     * Address of the individual. Note that though this is an array, only the first address in the array
+     * will be processed.
      */
     public V3CompleteIndividualRequest withAddresses(Optional<? extends List<V3CompleteAddressEntryRequest>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
@@ -161,7 +169,8 @@ public class V3CompleteIndividualRequest {
     }
 
     /**
-     * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD.
+     * Acceptable characters are: numeric with symbol '-'.
      */
     public V3CompleteIndividualRequest withDob(String dob) {
         Utils.checkNotNull(dob, "dob");
@@ -171,7 +180,8 @@ public class V3CompleteIndividualRequest {
 
 
     /**
-     * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+     * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD.
+     * Acceptable characters are: numeric with symbol '-'.
      */
     public V3CompleteIndividualRequest withDob(Optional<String> dob) {
         Utils.checkNotNull(dob, "dob");
@@ -180,7 +190,8 @@ public class V3CompleteIndividualRequest {
     }
 
     /**
-     * Email address of the individual. Note that though this is an array, only the first email address in the array will be processed.
+     * Email address of the individual. Note that though this is an array, only the first email address in
+     * the array will be processed.
      */
     public V3CompleteIndividualRequest withEmailAddresses(List<String> emailAddresses) {
         Utils.checkNotNull(emailAddresses, "emailAddresses");
@@ -190,7 +201,8 @@ public class V3CompleteIndividualRequest {
 
 
     /**
-     * Email address of the individual. Note that though this is an array, only the first email address in the array will be processed.
+     * Email address of the individual. Note that though this is an array, only the first email address in
+     * the array will be processed.
      */
     public V3CompleteIndividualRequest withEmailAddresses(Optional<? extends List<String>> emailAddresses) {
         Utils.checkNotNull(emailAddresses, "emailAddresses");
@@ -312,7 +324,8 @@ public class V3CompleteIndividualRequest {
 
 
         /**
-         * Address of the individual. Note that though this is an array, only the first address in the array will be processed.
+         * Address of the individual. Note that though this is an array, only the first address in the array
+         * will be processed.
          */
         public Builder addresses(List<V3CompleteAddressEntryRequest> addresses) {
             Utils.checkNotNull(addresses, "addresses");
@@ -321,7 +334,8 @@ public class V3CompleteIndividualRequest {
         }
 
         /**
-         * Address of the individual. Note that though this is an array, only the first address in the array will be processed.
+         * Address of the individual. Note that though this is an array, only the first address in the array
+         * will be processed.
          */
         public Builder addresses(Optional<? extends List<V3CompleteAddressEntryRequest>> addresses) {
             Utils.checkNotNull(addresses, "addresses");
@@ -331,7 +345,8 @@ public class V3CompleteIndividualRequest {
 
 
         /**
-         * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD.
+         * Acceptable characters are: numeric with symbol '-'.
          */
         public Builder dob(String dob) {
             Utils.checkNotNull(dob, "dob");
@@ -340,7 +355,8 @@ public class V3CompleteIndividualRequest {
         }
 
         /**
-         * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD. Acceptable characters are: numeric with symbol '-'.
+         * The date of birth of the individual in one of these formats: YYYY-MM-DD, YYYY-MM, or MM-DD.
+         * Acceptable characters are: numeric with symbol '-'.
          */
         public Builder dob(Optional<String> dob) {
             Utils.checkNotNull(dob, "dob");
@@ -350,7 +366,8 @@ public class V3CompleteIndividualRequest {
 
 
         /**
-         * Email address of the individual. Note that though this is an array, only the first email address in the array will be processed.
+         * Email address of the individual. Note that though this is an array, only the first email address in
+         * the array will be processed.
          */
         public Builder emailAddresses(List<String> emailAddresses) {
             Utils.checkNotNull(emailAddresses, "emailAddresses");
@@ -359,7 +376,8 @@ public class V3CompleteIndividualRequest {
         }
 
         /**
-         * Email address of the individual. Note that though this is an array, only the first email address in the array will be processed.
+         * Email address of the individual. Note that though this is an array, only the first email address in
+         * the array will be processed.
          */
         public Builder emailAddresses(Optional<? extends List<String>> emailAddresses) {
             Utils.checkNotNull(emailAddresses, "emailAddresses");

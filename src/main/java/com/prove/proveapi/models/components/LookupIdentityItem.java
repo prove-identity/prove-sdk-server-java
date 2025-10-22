@@ -36,7 +36,9 @@ public class LookupIdentityItem {
     private Optional<String> carrier;
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientCustomerId")
@@ -64,7 +66,8 @@ public class LookupIdentityItem {
     private Optional<String> creationString;
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deviceId")
@@ -85,7 +88,11 @@ public class LookupIdentityItem {
     private Optional<String> lineType;
 
     /**
-     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with Mobile Auth documentation for situations where this field is not required. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
+     * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
+     * passed in with or without a leading +1.
+     * 
+     * <p>Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
@@ -149,7 +156,9 @@ public class LookupIdentityItem {
     }
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
      */
     @JsonIgnore
     public Optional<String> clientCustomerId() {
@@ -181,7 +190,8 @@ public class LookupIdentityItem {
     }
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     @JsonIgnore
     public Optional<String> deviceId() {
@@ -205,7 +215,11 @@ public class LookupIdentityItem {
     }
 
     /**
-     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with Mobile Auth documentation for situations where this field is not required. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
+     * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
+     * passed in with or without a leading +1.
+     * 
+     * <p>Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -256,7 +270,9 @@ public class LookupIdentityItem {
     }
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
      */
     public LookupIdentityItem withClientCustomerId(String clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -266,7 +282,9 @@ public class LookupIdentityItem {
 
 
     /**
-     * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+     * related to the same customer, across different requests or sessions. The format of this ID is
+     * defined by the client - Prove recommends using a GUID, but any format can be accepted.
      */
     public LookupIdentityItem withClientCustomerId(Optional<String> clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -332,7 +350,8 @@ public class LookupIdentityItem {
     }
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     public LookupIdentityItem withDeviceId(String deviceId) {
         Utils.checkNotNull(deviceId, "deviceId");
@@ -342,7 +361,8 @@ public class LookupIdentityItem {
 
 
     /**
-     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+     * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+     * leveraging Prove Unify.
      */
     public LookupIdentityItem withDeviceId(Optional<String> deviceId) {
         Utils.checkNotNull(deviceId, "deviceId");
@@ -389,7 +409,11 @@ public class LookupIdentityItem {
     }
 
     /**
-     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with Mobile Auth documentation for situations where this field is not required. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
+     * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
+     * passed in with or without a leading +1.
+     * 
+     * <p>Acceptable characters are: alphanumeric with symbols '+'.
      */
     public LookupIdentityItem withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -510,7 +534,9 @@ public class LookupIdentityItem {
 
 
         /**
-         * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+         * related to the same customer, across different requests or sessions. The format of this ID is
+         * defined by the client - Prove recommends using a GUID, but any format can be accepted.
          */
         public Builder clientCustomerId(String clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -519,7 +545,9 @@ public class LookupIdentityItem {
         }
 
         /**
-         * A client-generated unique ID for a specific customer. This can be used by clients to link calls related to the same customer, across different requests or sessions.  The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * A client-generated unique ID for a specific customer. This can be used by clients to link calls
+         * related to the same customer, across different requests or sessions. The format of this ID is
+         * defined by the client - Prove recommends using a GUID, but any format can be accepted.
          */
         public Builder clientCustomerId(Optional<String> clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -586,7 +614,8 @@ public class LookupIdentityItem {
 
 
         /**
-         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+         * leveraging Prove Unify.
          */
         public Builder deviceId(String deviceId) {
             Utils.checkNotNull(deviceId, "deviceId");
@@ -595,7 +624,8 @@ public class LookupIdentityItem {
         }
 
         /**
-         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are leveraging Prove Unify.
+         * A string that is the unique identifier for the Prove Key on the device. Only applicable if you are
+         * leveraging Prove Unify.
          */
         public Builder deviceId(Optional<String> deviceId) {
             Utils.checkNotNull(deviceId, "deviceId");
@@ -643,7 +673,11 @@ public class LookupIdentityItem {
 
 
         /**
-         * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with Mobile Auth documentation for situations where this field is not required. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+         * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
+         * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
+         * passed in with or without a leading +1.
+         * 
+         * <p>Acceptable characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

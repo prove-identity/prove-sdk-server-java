@@ -42,18 +42,30 @@ import com.prove.proveapi.operations.V3DisenrollIdentity;
 import com.prove.proveapi.operations.V3EnrollIdentity;
 import com.prove.proveapi.operations.V3GetIdentitiesByPhoneNumber;
 import com.prove.proveapi.operations.V3GetIdentity;
+import com.prove.proveapi.utils.Headers;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class Identity {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncIdentity asyncSDK;
 
     Identity(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncIdentity(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncIdentity async() {
+        return asyncSDK;
     }
 
     /**
@@ -73,9 +85,9 @@ public class Identity {
      * <p>Return a list of all identities you have enrolled in Identity Manager.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3BatchGetIdentitiesResponse v3BatchGetIdentitiesDirect() throws Exception {
+    public V3BatchGetIdentitiesResponse v3BatchGetIdentitiesDirect() {
         return v3BatchGetIdentities(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -90,11 +102,11 @@ public class Identity {
      * @param startKey The pagination token for the GET /v3/identity API. Use this to retrieve the next page of results after a previous call to GET /v3/identity. This token is returned as lastKey in the GET /v3/identity API response - pass it in directly as startKey to get the next page of results.
      * @param showInactive Whether to show identities associated with the current client that are currently marked as inactive. Default value is false.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public V3BatchGetIdentitiesResponse v3BatchGetIdentities(
             Optional<String> clientRequestId, Optional<Long> limit,
-            Optional<String> startKey, Optional<Boolean> showInactive) throws Exception {
+            Optional<String> startKey, Optional<Boolean> showInactive) {
         V3BatchGetIdentitiesRequest request =
             V3BatchGetIdentitiesRequest
                 .builder()
@@ -104,7 +116,7 @@ public class Identity {
                 .showInactive(showInactive)
                 .build();
         RequestOperation<V3BatchGetIdentitiesRequest, V3BatchGetIdentitiesResponse> operation
-              = new V3BatchGetIdentities.Sync(sdkConfiguration);
+              = new V3BatchGetIdentities.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -125,9 +137,9 @@ public class Identity {
      * <p>Enrolls a single customer for monitoring using their phone number and unique identifier.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3EnrollIdentityResponse v3EnrollIdentityDirect() throws Exception {
+    public V3EnrollIdentityResponse v3EnrollIdentityDirect() {
         return v3EnrollIdentity(Optional.empty());
     }
 
@@ -138,11 +150,11 @@ public class Identity {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3EnrollIdentityResponse v3EnrollIdentity(Optional<? extends V3EnrollIdentityRequest> request) throws Exception {
+    public V3EnrollIdentityResponse v3EnrollIdentity(Optional<? extends V3EnrollIdentityRequest> request) {
         RequestOperation<Optional<? extends V3EnrollIdentityRequest>, V3EnrollIdentityResponse> operation
-              = new V3EnrollIdentity.Sync(sdkConfiguration);
+              = new V3EnrollIdentity.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -163,9 +175,9 @@ public class Identity {
      * <p>Enrolls multiple customers in a single request for efficient bulk operations (up to 100).
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3BatchEnrollIdentitiesResponse v3BatchEnrollIdentitiesDirect() throws Exception {
+    public V3BatchEnrollIdentitiesResponse v3BatchEnrollIdentitiesDirect() {
         return v3BatchEnrollIdentities(Optional.empty());
     }
 
@@ -176,18 +188,19 @@ public class Identity {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3BatchEnrollIdentitiesResponse v3BatchEnrollIdentities(Optional<? extends V3BatchEnrollIdentitiesRequest> request) throws Exception {
+    public V3BatchEnrollIdentitiesResponse v3BatchEnrollIdentities(Optional<? extends V3BatchEnrollIdentitiesRequest> request) {
         RequestOperation<Optional<? extends V3BatchEnrollIdentitiesRequest>, V3BatchEnrollIdentitiesResponse> operation
-              = new V3BatchEnrollIdentities.Sync(sdkConfiguration);
+              = new V3BatchEnrollIdentities.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Disenroll Identity
      * 
-     * <p>Disenrolls an identity from Identity Manager. If you wish to monitor in future, re-enrollment of that identity is required.
+     * <p>Disenrolls an identity from Identity Manager. If you wish to monitor in future, re-enrollment of
+     * that identity is required.
      * 
      * @return The call builder
      */
@@ -198,27 +211,29 @@ public class Identity {
     /**
      * Disenroll Identity
      * 
-     * <p>Disenrolls an identity from Identity Manager. If you wish to monitor in future, re-enrollment of that identity is required.
+     * <p>Disenrolls an identity from Identity Manager. If you wish to monitor in future, re-enrollment of
+     * that identity is required.
      * 
      * @param identityId A Prove-generated unique ID for a specific identity.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3DisenrollIdentityResponse v3DisenrollIdentity(String identityId) throws Exception {
+    public V3DisenrollIdentityResponse v3DisenrollIdentity(String identityId) {
         return v3DisenrollIdentity(identityId, Optional.empty());
     }
 
     /**
      * Disenroll Identity
      * 
-     * <p>Disenrolls an identity from Identity Manager. If you wish to monitor in future, re-enrollment of that identity is required.
+     * <p>Disenrolls an identity from Identity Manager. If you wish to monitor in future, re-enrollment of
+     * that identity is required.
      * 
      * @param identityId A Prove-generated unique ID for a specific identity.
      * @param clientRequestId A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3DisenrollIdentityResponse v3DisenrollIdentity(String identityId, Optional<String> clientRequestId) throws Exception {
+    public V3DisenrollIdentityResponse v3DisenrollIdentity(String identityId, Optional<String> clientRequestId) {
         V3DisenrollIdentityRequest request =
             V3DisenrollIdentityRequest
                 .builder()
@@ -226,7 +241,7 @@ public class Identity {
                 .clientRequestId(clientRequestId)
                 .build();
         RequestOperation<V3DisenrollIdentityRequest, V3DisenrollIdentityResponse> operation
-              = new V3DisenrollIdentity.Sync(sdkConfiguration);
+              = new V3DisenrollIdentity.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -248,9 +263,9 @@ public class Identity {
      * 
      * @param identityId A unique Prove-generated identifier for the enrolled identity.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetIdentityResponse v3GetIdentity(String identityId) throws Exception {
+    public V3GetIdentityResponse v3GetIdentity(String identityId) {
         return v3GetIdentity(identityId, Optional.empty());
     }
 
@@ -262,9 +277,9 @@ public class Identity {
      * @param identityId A unique Prove-generated identifier for the enrolled identity.
      * @param clientRequestId A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetIdentityResponse v3GetIdentity(String identityId, Optional<String> clientRequestId) throws Exception {
+    public V3GetIdentityResponse v3GetIdentity(String identityId, Optional<String> clientRequestId) {
         V3GetIdentityRequest request =
             V3GetIdentityRequest
                 .builder()
@@ -272,7 +287,7 @@ public class Identity {
                 .clientRequestId(clientRequestId)
                 .build();
         RequestOperation<V3GetIdentityRequest, V3GetIdentityResponse> operation
-              = new V3GetIdentity.Sync(sdkConfiguration);
+              = new V3GetIdentity.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -294,9 +309,9 @@ public class Identity {
      * 
      * @param identityId A Prove-generated unique ID for a specific identity.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ActivateIdentityResponse v3ActivateIdentity(String identityId) throws Exception {
+    public V3ActivateIdentityResponse v3ActivateIdentity(String identityId) {
         return v3ActivateIdentity(identityId, Optional.empty());
     }
 
@@ -308,9 +323,9 @@ public class Identity {
      * @param identityId A Prove-generated unique ID for a specific identity.
      * @param v3ActivateIdentityRequest Request body for the V3 Activate Identity API.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ActivateIdentityResponse v3ActivateIdentity(String identityId, Optional<? extends V3ActivateIdentityRequest> v3ActivateIdentityRequest) throws Exception {
+    public V3ActivateIdentityResponse v3ActivateIdentity(String identityId, Optional<? extends V3ActivateIdentityRequest> v3ActivateIdentityRequest) {
         com.prove.proveapi.models.operations.V3ActivateIdentityRequest request =
             com.prove.proveapi.models.operations.V3ActivateIdentityRequest
                 .builder()
@@ -318,7 +333,7 @@ public class Identity {
                 .v3ActivateIdentityRequest(v3ActivateIdentityRequest)
                 .build();
         RequestOperation<com.prove.proveapi.models.operations.V3ActivateIdentityRequest, V3ActivateIdentityResponse> operation
-              = new V3ActivateIdentity.Sync(sdkConfiguration);
+              = new V3ActivateIdentity.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -340,9 +355,9 @@ public class Identity {
      * 
      * @param identityId A Prove-generated unique ID for a specific identity.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CrossDomainIdentityResponse v3CrossDomainIdentity(String identityId) throws Exception {
+    public V3CrossDomainIdentityResponse v3CrossDomainIdentity(String identityId) {
         return v3CrossDomainIdentity(identityId, Optional.empty());
     }
 
@@ -354,9 +369,9 @@ public class Identity {
      * @param identityId A Prove-generated unique ID for a specific identity.
      * @param v3CrossDomainIdentityRequest Request body for the V3 Identity Cross Domain API.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CrossDomainIdentityResponse v3CrossDomainIdentity(String identityId, Optional<? extends V3CrossDomainIdentityRequest> v3CrossDomainIdentityRequest) throws Exception {
+    public V3CrossDomainIdentityResponse v3CrossDomainIdentity(String identityId, Optional<? extends V3CrossDomainIdentityRequest> v3CrossDomainIdentityRequest) {
         com.prove.proveapi.models.operations.V3CrossDomainIdentityRequest request =
             com.prove.proveapi.models.operations.V3CrossDomainIdentityRequest
                 .builder()
@@ -364,7 +379,7 @@ public class Identity {
                 .v3CrossDomainIdentityRequest(v3CrossDomainIdentityRequest)
                 .build();
         RequestOperation<com.prove.proveapi.models.operations.V3CrossDomainIdentityRequest, V3CrossDomainIdentityResponse> operation
-              = new V3CrossDomainIdentity.Sync(sdkConfiguration);
+              = new V3CrossDomainIdentity.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -386,9 +401,9 @@ public class Identity {
      * 
      * @param identityId A Prove-generated unique ID for a specific identity.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3DeactivateIdentityResponse v3DeactivateIdentity(String identityId) throws Exception {
+    public V3DeactivateIdentityResponse v3DeactivateIdentity(String identityId) {
         return v3DeactivateIdentity(identityId, Optional.empty());
     }
 
@@ -400,9 +415,9 @@ public class Identity {
      * @param identityId A Prove-generated unique ID for a specific identity.
      * @param v3IdentityDeactivateRequest Request body for the V3 Deactivate Identity API.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3DeactivateIdentityResponse v3DeactivateIdentity(String identityId, Optional<? extends V3IdentityDeactivateRequest> v3IdentityDeactivateRequest) throws Exception {
+    public V3DeactivateIdentityResponse v3DeactivateIdentity(String identityId, Optional<? extends V3IdentityDeactivateRequest> v3IdentityDeactivateRequest) {
         V3DeactivateIdentityRequest request =
             V3DeactivateIdentityRequest
                 .builder()
@@ -410,7 +425,7 @@ public class Identity {
                 .v3IdentityDeactivateRequest(v3IdentityDeactivateRequest)
                 .build();
         RequestOperation<V3DeactivateIdentityRequest, V3DeactivateIdentityResponse> operation
-              = new V3DeactivateIdentity.Sync(sdkConfiguration);
+              = new V3DeactivateIdentity.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -432,9 +447,9 @@ public class Identity {
      * 
      * @param mobileNumber The phone number to find identities for. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetIdentitiesByPhoneNumberResponse v3GetIdentitiesByPhoneNumber(String mobileNumber) throws Exception {
+    public V3GetIdentitiesByPhoneNumberResponse v3GetIdentitiesByPhoneNumber(String mobileNumber) {
         return v3GetIdentitiesByPhoneNumber(mobileNumber, Optional.empty());
     }
 
@@ -446,9 +461,9 @@ public class Identity {
      * @param mobileNumber The phone number to find identities for. US phone numbers can be passed in with or without a leading +1. Acceptable characters are: alphanumeric with symbols '+'.
      * @param clientRequestId A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetIdentitiesByPhoneNumberResponse v3GetIdentitiesByPhoneNumber(String mobileNumber, Optional<String> clientRequestId) throws Exception {
+    public V3GetIdentitiesByPhoneNumberResponse v3GetIdentitiesByPhoneNumber(String mobileNumber, Optional<String> clientRequestId) {
         V3GetIdentitiesByPhoneNumberRequest request =
             V3GetIdentitiesByPhoneNumberRequest
                 .builder()
@@ -456,7 +471,7 @@ public class Identity {
                 .clientRequestId(clientRequestId)
                 .build();
         RequestOperation<V3GetIdentitiesByPhoneNumberRequest, V3GetIdentitiesByPhoneNumberResponse> operation
-              = new V3GetIdentitiesByPhoneNumber.Sync(sdkConfiguration);
+              = new V3GetIdentitiesByPhoneNumber.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

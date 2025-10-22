@@ -21,7 +21,8 @@ import java.util.Optional;
  */
 public class V3BatchGetIdentitiesResponse {
     /**
-     * A pagination token for callers that have more identities left to return. Pass this back in directly to the Get Batch API with the startKey query parameter to get the next page of results.
+     * A pagination token for callers that have more identities left to return. Pass this back in directly
+     * to the Get Batch API with the startKey query parameter to get the next page of results.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastKey")
@@ -49,7 +50,8 @@ public class V3BatchGetIdentitiesResponse {
     }
 
     /**
-     * A pagination token for callers that have more identities left to return. Pass this back in directly to the Get Batch API with the startKey query parameter to get the next page of results.
+     * A pagination token for callers that have more identities left to return. Pass this back in directly
+     * to the Get Batch API with the startKey query parameter to get the next page of results.
      */
     @JsonIgnore
     public Optional<String> lastKey() {
@@ -70,7 +72,8 @@ public class V3BatchGetIdentitiesResponse {
 
 
     /**
-     * A pagination token for callers that have more identities left to return. Pass this back in directly to the Get Batch API with the startKey query parameter to get the next page of results.
+     * A pagination token for callers that have more identities left to return. Pass this back in directly
+     * to the Get Batch API with the startKey query parameter to get the next page of results.
      */
     public V3BatchGetIdentitiesResponse withLastKey(String lastKey) {
         Utils.checkNotNull(lastKey, "lastKey");
@@ -80,7 +83,8 @@ public class V3BatchGetIdentitiesResponse {
 
 
     /**
-     * A pagination token for callers that have more identities left to return. Pass this back in directly to the Get Batch API with the startKey query parameter to get the next page of results.
+     * A pagination token for callers that have more identities left to return. Pass this back in directly
+     * to the Get Batch API with the startKey query parameter to get the next page of results.
      */
     public V3BatchGetIdentitiesResponse withLastKey(Optional<String> lastKey) {
         Utils.checkNotNull(lastKey, "lastKey");
@@ -137,7 +141,8 @@ public class V3BatchGetIdentitiesResponse {
 
 
         /**
-         * A pagination token for callers that have more identities left to return. Pass this back in directly to the Get Batch API with the startKey query parameter to get the next page of results.
+         * A pagination token for callers that have more identities left to return. Pass this back in directly
+         * to the Get Batch API with the startKey query parameter to get the next page of results.
          */
         public Builder lastKey(String lastKey) {
             Utils.checkNotNull(lastKey, "lastKey");
@@ -146,7 +151,8 @@ public class V3BatchGetIdentitiesResponse {
         }
 
         /**
-         * A pagination token for callers that have more identities left to return. Pass this back in directly to the Get Batch API with the startKey query parameter to get the next page of results.
+         * A pagination token for callers that have more identities left to return. Pass this back in directly
+         * to the Get Batch API with the startKey query parameter to get the next page of results.
          */
         public Builder lastKey(Optional<String> lastKey) {
             Utils.checkNotNull(lastKey, "lastKey");

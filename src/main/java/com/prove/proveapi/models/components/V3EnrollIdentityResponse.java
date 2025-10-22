@@ -18,7 +18,8 @@ import java.lang.String;
  */
 public class V3EnrollIdentityResponse {
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     @JsonProperty("identityId")
     private String identityId;
@@ -40,7 +41,8 @@ public class V3EnrollIdentityResponse {
     }
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     @JsonIgnore
     public String identityId() {
@@ -61,7 +63,8 @@ public class V3EnrollIdentityResponse {
 
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
      */
     public V3EnrollIdentityResponse withIdentityId(String identityId) {
         Utils.checkNotNull(identityId, "identityId");
@@ -118,7 +121,8 @@ public class V3EnrollIdentityResponse {
 
 
         /**
-         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to reference the identity in future requests.
+         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+         * reference the identity in future requests.
          */
         public Builder identityId(String identityId) {
             Utils.checkNotNull(identityId, "identityId");

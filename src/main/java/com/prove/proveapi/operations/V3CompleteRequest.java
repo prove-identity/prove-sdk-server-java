@@ -4,18 +4,23 @@
 package com.prove.proveapi.operations;
 
 import static com.prove.proveapi.operations.Operations.RequestOperation;
+import static com.prove.proveapi.utils.Exceptions.unchecked;
+import static com.prove.proveapi.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.SecuritySource;
 import com.prove.proveapi.models.components.V3CompleteResponse;
+import com.prove.proveapi.models.errors.Error400;
 import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.errors.SDKError;
 import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
+import com.prove.proveapi.utils.Blob;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.HTTPRequest;
+import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Hook.AfterErrorContextImpl;
 import com.prove.proveapi.utils.Hook.AfterSuccessContextImpl;
 import com.prove.proveapi.utils.Hook.BeforeRequestContextImpl;
@@ -26,10 +31,12 @@ import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Optional;
-
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 
 public class V3CompleteRequest {
@@ -39,9 +46,11 @@ public class V3CompleteRequest {
         final String baseUrl;
         final SecuritySource securitySource;
         final HTTPClient client;
+        final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
@@ -77,8 +86,7 @@ public class V3CompleteRequest {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest> request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/v3/complete");
@@ -86,8 +94,7 @@ public class V3CompleteRequest {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest>>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "request",
@@ -96,6 +103,7 @@ public class V3CompleteRequest {
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -104,12 +112,12 @@ public class V3CompleteRequest {
 
     public static class Sync extends Base
             implements RequestOperation<Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest>, V3CompleteRequestResponse> {
-        public Sync(SDKConfiguration sdkConfiguration) {
-            super(sdkConfiguration);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private HttpRequest onBuildRequest(Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest> request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest>>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -125,8 +133,8 @@ public class V3CompleteRequest {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest> request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest> request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -136,7 +144,7 @@ public class V3CompleteRequest {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -144,7 +152,7 @@ public class V3CompleteRequest {
 
 
         @Override
-        public V3CompleteRequestResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V3CompleteRequestResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -160,108 +168,151 @@ public class V3CompleteRequest {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V3CompleteResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withV3CompleteResponse(out);
-                    return res;
+                    return res.withV3CompleteResponse(Utils.unmarshal(response, new TypeReference<V3CompleteResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "400")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    Error out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw Error400.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "401")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    Error401 out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw Error401.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "403")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    Error403 out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw Error403.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "500")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    Error out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw Error.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
                 // no content
-                throw new SDKError(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw SDKError.from("API error occurred", response);
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 // no content
-                throw new SDKError(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw SDKError.from("API error occurred", response);
             }
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
+        }
+    }
+    public static class Async extends Base
+            implements AsyncRequestOperation<Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest>, com.prove.proveapi.models.operations.async.V3CompleteRequestResponse> {
+
+        public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
+        }
+
+        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest>>() {});
+            return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onError(HttpResponse<Blob> response, Throwable error) {
+            return this.sdkConfiguration.asyncHooks().afterError(createAfterErrorContext(), response, error);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onSuccess(HttpResponse<Blob> response) {
+            return this.sdkConfiguration.asyncHooks().afterSuccess(createAfterSuccessContext(), response);
+        }
+
+        @Override
+        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends com.prove.proveapi.models.components.V3CompleteRequest> request) {
+            return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
+                    .handle((resp, err) -> {
+                        if (err != null) {
+                            return onError(null, err);
+                        }
+                        if (Utils.statusCodeMatches(resp.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
+                            return onError(resp, null);
+                        }
+                        return CompletableFuture.completedFuture(resp);
+                    })
+                    .thenCompose(Function.identity())
+                    .thenCompose(this::onSuccess);
+        }
+
+        @Override
+        public CompletableFuture<com.prove.proveapi.models.operations.async.V3CompleteRequestResponse> handleResponse(
+                HttpResponse<Blob> response) {
+            String contentType = response
+                    .headers()
+                    .firstValue("Content-Type")
+                    .orElse("application/octet-stream");
+            com.prove.proveapi.models.operations.async.V3CompleteRequestResponse.Builder resBuilder =
+                    com.prove.proveapi.models.operations.async.V3CompleteRequestResponse
+                            .builder()
+                            .contentType(contentType)
+                            .statusCode(response.statusCode())
+                            .rawResponse(response);
+
+            com.prove.proveapi.models.operations.async.V3CompleteRequestResponse res = resBuilder.build();
             
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return Utils.unmarshalAsync(response, new TypeReference<V3CompleteResponse>() {})
+                            .thenApply(res::withV3CompleteResponse);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "400")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return Error400.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "401")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return Error401.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "403")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return Error403.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "500")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return Error.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }
 }

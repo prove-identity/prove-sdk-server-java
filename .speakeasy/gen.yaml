@@ -16,24 +16,29 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.18.0
+  version: 0.19.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: proveapi
+  asyncMode: enabled
   baseErrorName: ProveapiError
   clientServerStatusCodesAsErrors: true
   companyEmail: info@prove.com
   companyName: Prove Identity
   companyURL: https://www.prove.com
   defaultErrorName: SDKError
-  enableAsync: false
   enableCustomCodeRegions: false
+  enableStreamingUploads: false
   flattenGlobalSecurity: true
+  generateSpringBootStarter: true
   githubURL: github.com/prove-identity/prove-sdk-server-java
   groupID: com.prove
   imports:
