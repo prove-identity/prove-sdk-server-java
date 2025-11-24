@@ -23,7 +23,33 @@ public class VerifyBatchResultItem {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("additionalIdentities")
-    private Optional<? extends List<AdditionalIdentity>> additionalIdentities;
+    private Optional<? extends List<Identity>> additionalIdentities;
+
+    /**
+     * Prove’s tiered confidence metric, ranging from -1 to 3, that dynamically adapts to user behavior and
+     * various authentication keys. It allows for adaptive security policies, meaning you can require
+     * different levels of verification for different types of transactions.
+     */
+    @JsonProperty("assuranceLevel")
+    private String assuranceLevel;
+
+    /**
+     * TODO: usage comment. Chances are this will be a part of Identity struct.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("businesses")
+    private Optional<? extends List<Business>> businesses;
+
+
+    @JsonProperty("clientCustomerId")
+    private String clientCustomerId;
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientHumanId")
+    private Optional<String> clientHumanId;
 
     /**
      * An error message for this corresponding specific verification.
@@ -40,8 +66,14 @@ public class VerifyBatchResultItem {
     private Optional<? extends Map<String, VerifyBatchResultItemEvaluation>> evaluation;
 
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("identity")
-    private Identity identity;
+    private Optional<? extends Identity> identity;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("linkedAccounts")
+    private Optional<? extends List<LinkedAccount>> linkedAccounts;
 
     /**
      * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
@@ -53,6 +85,25 @@ public class VerifyBatchResultItem {
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("proveAccountId")
+    private Optional<String> proveAccountId;
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("proveId")
+    private Optional<String> proveId;
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provePhoneAlias")
+    private Optional<String> provePhoneAlias;
+
     /**
      * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`,
      * `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession
@@ -63,32 +114,60 @@ public class VerifyBatchResultItem {
 
     @JsonCreator
     public VerifyBatchResultItem(
-            @JsonProperty("additionalIdentities") Optional<? extends List<AdditionalIdentity>> additionalIdentities,
+            @JsonProperty("additionalIdentities") Optional<? extends List<Identity>> additionalIdentities,
+            @JsonProperty("assuranceLevel") String assuranceLevel,
+            @JsonProperty("businesses") Optional<? extends List<Business>> businesses,
+            @JsonProperty("clientCustomerId") String clientCustomerId,
+            @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("error") Optional<String> error,
             @JsonProperty("evaluation") Optional<? extends Map<String, VerifyBatchResultItemEvaluation>> evaluation,
-            @JsonProperty("identity") Identity identity,
+            @JsonProperty("identity") Optional<? extends Identity> identity,
+            @JsonProperty("linkedAccounts") Optional<? extends List<LinkedAccount>> linkedAccounts,
             @JsonProperty("phoneNumber") String phoneNumber,
+            @JsonProperty("proveAccountId") Optional<String> proveAccountId,
+            @JsonProperty("proveId") Optional<String> proveId,
+            @JsonProperty("provePhoneAlias") Optional<String> provePhoneAlias,
             @JsonProperty("success") String success) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
+        Utils.checkNotNull(assuranceLevel, "assuranceLevel");
+        Utils.checkNotNull(businesses, "businesses");
+        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(identity, "identity");
+        Utils.checkNotNull(linkedAccounts, "linkedAccounts");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(proveAccountId, "proveAccountId");
+        Utils.checkNotNull(proveId, "proveId");
+        Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
         Utils.checkNotNull(success, "success");
         this.additionalIdentities = additionalIdentities;
+        this.assuranceLevel = assuranceLevel;
+        this.businesses = businesses;
+        this.clientCustomerId = clientCustomerId;
+        this.clientHumanId = clientHumanId;
         this.error = error;
         this.evaluation = evaluation;
         this.identity = identity;
+        this.linkedAccounts = linkedAccounts;
         this.phoneNumber = phoneNumber;
+        this.proveAccountId = proveAccountId;
+        this.proveId = proveId;
+        this.provePhoneAlias = provePhoneAlias;
         this.success = success;
     }
     
     public VerifyBatchResultItem(
-            Identity identity,
+            String assuranceLevel,
+            String clientCustomerId,
             String phoneNumber,
             String success) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            identity, phoneNumber, success);
+        this(Optional.empty(), assuranceLevel, Optional.empty(),
+            clientCustomerId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            phoneNumber, Optional.empty(), Optional.empty(),
+            Optional.empty(), success);
     }
 
     /**
@@ -96,8 +175,40 @@ public class VerifyBatchResultItem {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<AdditionalIdentity>> additionalIdentities() {
-        return (Optional<List<AdditionalIdentity>>) additionalIdentities;
+    public Optional<List<Identity>> additionalIdentities() {
+        return (Optional<List<Identity>>) additionalIdentities;
+    }
+
+    /**
+     * Prove’s tiered confidence metric, ranging from -1 to 3, that dynamically adapts to user behavior and
+     * various authentication keys. It allows for adaptive security policies, meaning you can require
+     * different levels of verification for different types of transactions.
+     */
+    @JsonIgnore
+    public String assuranceLevel() {
+        return assuranceLevel;
+    }
+
+    /**
+     * TODO: usage comment. Chances are this will be a part of Identity struct.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Business>> businesses() {
+        return (Optional<List<Business>>) businesses;
+    }
+
+    @JsonIgnore
+    public String clientCustomerId() {
+        return clientCustomerId;
+    }
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    @JsonIgnore
+    public Optional<String> clientHumanId() {
+        return clientHumanId;
     }
 
     /**
@@ -117,9 +228,16 @@ public class VerifyBatchResultItem {
         return (Optional<Map<String, VerifyBatchResultItemEvaluation>>) evaluation;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Identity identity() {
-        return identity;
+    public Optional<Identity> identity() {
+        return (Optional<Identity>) identity;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<LinkedAccount>> linkedAccounts() {
+        return (Optional<List<LinkedAccount>>) linkedAccounts;
     }
 
     /**
@@ -132,6 +250,27 @@ public class VerifyBatchResultItem {
     @JsonIgnore
     public String phoneNumber() {
         return phoneNumber;
+    }
+
+    @JsonIgnore
+    public Optional<String> proveAccountId() {
+        return proveAccountId;
+    }
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    @JsonIgnore
+    public Optional<String> proveId() {
+        return proveId;
+    }
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    @JsonIgnore
+    public Optional<String> provePhoneAlias() {
+        return provePhoneAlias;
     }
 
     /**
@@ -152,7 +291,7 @@ public class VerifyBatchResultItem {
     /**
      * (required IF verificationType=VerifiedUser)
      */
-    public VerifyBatchResultItem withAdditionalIdentities(List<AdditionalIdentity> additionalIdentities) {
+    public VerifyBatchResultItem withAdditionalIdentities(List<Identity> additionalIdentities) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
         this.additionalIdentities = Optional.ofNullable(additionalIdentities);
         return this;
@@ -162,9 +301,64 @@ public class VerifyBatchResultItem {
     /**
      * (required IF verificationType=VerifiedUser)
      */
-    public VerifyBatchResultItem withAdditionalIdentities(Optional<? extends List<AdditionalIdentity>> additionalIdentities) {
+    public VerifyBatchResultItem withAdditionalIdentities(Optional<? extends List<Identity>> additionalIdentities) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
         this.additionalIdentities = additionalIdentities;
+        return this;
+    }
+
+    /**
+     * Prove’s tiered confidence metric, ranging from -1 to 3, that dynamically adapts to user behavior and
+     * various authentication keys. It allows for adaptive security policies, meaning you can require
+     * different levels of verification for different types of transactions.
+     */
+    public VerifyBatchResultItem withAssuranceLevel(String assuranceLevel) {
+        Utils.checkNotNull(assuranceLevel, "assuranceLevel");
+        this.assuranceLevel = assuranceLevel;
+        return this;
+    }
+
+    /**
+     * TODO: usage comment. Chances are this will be a part of Identity struct.
+     */
+    public VerifyBatchResultItem withBusinesses(List<Business> businesses) {
+        Utils.checkNotNull(businesses, "businesses");
+        this.businesses = Optional.ofNullable(businesses);
+        return this;
+    }
+
+
+    /**
+     * TODO: usage comment. Chances are this will be a part of Identity struct.
+     */
+    public VerifyBatchResultItem withBusinesses(Optional<? extends List<Business>> businesses) {
+        Utils.checkNotNull(businesses, "businesses");
+        this.businesses = businesses;
+        return this;
+    }
+
+    public VerifyBatchResultItem withClientCustomerId(String clientCustomerId) {
+        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        this.clientCustomerId = clientCustomerId;
+        return this;
+    }
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    public VerifyBatchResultItem withClientHumanId(String clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = Optional.ofNullable(clientHumanId);
+        return this;
+    }
+
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    public VerifyBatchResultItem withClientHumanId(Optional<String> clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = clientHumanId;
         return this;
     }
 
@@ -208,7 +402,27 @@ public class VerifyBatchResultItem {
 
     public VerifyBatchResultItem withIdentity(Identity identity) {
         Utils.checkNotNull(identity, "identity");
+        this.identity = Optional.ofNullable(identity);
+        return this;
+    }
+
+
+    public VerifyBatchResultItem withIdentity(Optional<? extends Identity> identity) {
+        Utils.checkNotNull(identity, "identity");
         this.identity = identity;
+        return this;
+    }
+
+    public VerifyBatchResultItem withLinkedAccounts(List<LinkedAccount> linkedAccounts) {
+        Utils.checkNotNull(linkedAccounts, "linkedAccounts");
+        this.linkedAccounts = Optional.ofNullable(linkedAccounts);
+        return this;
+    }
+
+
+    public VerifyBatchResultItem withLinkedAccounts(Optional<? extends List<LinkedAccount>> linkedAccounts) {
+        Utils.checkNotNull(linkedAccounts, "linkedAccounts");
+        this.linkedAccounts = linkedAccounts;
         return this;
     }
 
@@ -222,6 +436,57 @@ public class VerifyBatchResultItem {
     public VerifyBatchResultItem withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public VerifyBatchResultItem withProveAccountId(String proveAccountId) {
+        Utils.checkNotNull(proveAccountId, "proveAccountId");
+        this.proveAccountId = Optional.ofNullable(proveAccountId);
+        return this;
+    }
+
+
+    public VerifyBatchResultItem withProveAccountId(Optional<String> proveAccountId) {
+        Utils.checkNotNull(proveAccountId, "proveAccountId");
+        this.proveAccountId = proveAccountId;
+        return this;
+    }
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    public VerifyBatchResultItem withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = Optional.ofNullable(proveId);
+        return this;
+    }
+
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    public VerifyBatchResultItem withProveId(Optional<String> proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
+        return this;
+    }
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    public VerifyBatchResultItem withProvePhoneAlias(String provePhoneAlias) {
+        Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
+        this.provePhoneAlias = Optional.ofNullable(provePhoneAlias);
+        return this;
+    }
+
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    public VerifyBatchResultItem withProvePhoneAlias(Optional<String> provePhoneAlias) {
+        Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
+        this.provePhoneAlias = provePhoneAlias;
         return this;
     }
 
@@ -247,43 +512,78 @@ public class VerifyBatchResultItem {
         VerifyBatchResultItem other = (VerifyBatchResultItem) o;
         return 
             Utils.enhancedDeepEquals(this.additionalIdentities, other.additionalIdentities) &&
+            Utils.enhancedDeepEquals(this.assuranceLevel, other.assuranceLevel) &&
+            Utils.enhancedDeepEquals(this.businesses, other.businesses) &&
+            Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
+            Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
             Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
             Utils.enhancedDeepEquals(this.identity, other.identity) &&
+            Utils.enhancedDeepEquals(this.linkedAccounts, other.linkedAccounts) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.proveAccountId, other.proveAccountId) &&
+            Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
+            Utils.enhancedDeepEquals(this.provePhoneAlias, other.provePhoneAlias) &&
             Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            additionalIdentities, error, evaluation,
-            identity, phoneNumber, success);
+            additionalIdentities, assuranceLevel, businesses,
+            clientCustomerId, clientHumanId, error,
+            evaluation, identity, linkedAccounts,
+            phoneNumber, proveAccountId, proveId,
+            provePhoneAlias, success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(VerifyBatchResultItem.class,
                 "additionalIdentities", additionalIdentities,
+                "assuranceLevel", assuranceLevel,
+                "businesses", businesses,
+                "clientCustomerId", clientCustomerId,
+                "clientHumanId", clientHumanId,
                 "error", error,
                 "evaluation", evaluation,
                 "identity", identity,
+                "linkedAccounts", linkedAccounts,
                 "phoneNumber", phoneNumber,
+                "proveAccountId", proveAccountId,
+                "proveId", proveId,
+                "provePhoneAlias", provePhoneAlias,
                 "success", success);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<AdditionalIdentity>> additionalIdentities = Optional.empty();
+        private Optional<? extends List<Identity>> additionalIdentities = Optional.empty();
+
+        private String assuranceLevel;
+
+        private Optional<? extends List<Business>> businesses = Optional.empty();
+
+        private String clientCustomerId;
+
+        private Optional<String> clientHumanId = Optional.empty();
 
         private Optional<String> error = Optional.empty();
 
         private Optional<? extends Map<String, VerifyBatchResultItemEvaluation>> evaluation = Optional.empty();
 
-        private Identity identity;
+        private Optional<? extends Identity> identity = Optional.empty();
+
+        private Optional<? extends List<LinkedAccount>> linkedAccounts = Optional.empty();
 
         private String phoneNumber;
+
+        private Optional<String> proveAccountId = Optional.empty();
+
+        private Optional<String> proveId = Optional.empty();
+
+        private Optional<String> provePhoneAlias = Optional.empty();
 
         private String success;
 
@@ -295,7 +595,7 @@ public class VerifyBatchResultItem {
         /**
          * (required IF verificationType=VerifiedUser)
          */
-        public Builder additionalIdentities(List<AdditionalIdentity> additionalIdentities) {
+        public Builder additionalIdentities(List<Identity> additionalIdentities) {
             Utils.checkNotNull(additionalIdentities, "additionalIdentities");
             this.additionalIdentities = Optional.ofNullable(additionalIdentities);
             return this;
@@ -304,9 +604,66 @@ public class VerifyBatchResultItem {
         /**
          * (required IF verificationType=VerifiedUser)
          */
-        public Builder additionalIdentities(Optional<? extends List<AdditionalIdentity>> additionalIdentities) {
+        public Builder additionalIdentities(Optional<? extends List<Identity>> additionalIdentities) {
             Utils.checkNotNull(additionalIdentities, "additionalIdentities");
             this.additionalIdentities = additionalIdentities;
+            return this;
+        }
+
+
+        /**
+         * Prove’s tiered confidence metric, ranging from -1 to 3, that dynamically adapts to user behavior and
+         * various authentication keys. It allows for adaptive security policies, meaning you can require
+         * different levels of verification for different types of transactions.
+         */
+        public Builder assuranceLevel(String assuranceLevel) {
+            Utils.checkNotNull(assuranceLevel, "assuranceLevel");
+            this.assuranceLevel = assuranceLevel;
+            return this;
+        }
+
+
+        /**
+         * TODO: usage comment. Chances are this will be a part of Identity struct.
+         */
+        public Builder businesses(List<Business> businesses) {
+            Utils.checkNotNull(businesses, "businesses");
+            this.businesses = Optional.ofNullable(businesses);
+            return this;
+        }
+
+        /**
+         * TODO: usage comment. Chances are this will be a part of Identity struct.
+         */
+        public Builder businesses(Optional<? extends List<Business>> businesses) {
+            Utils.checkNotNull(businesses, "businesses");
+            this.businesses = businesses;
+            return this;
+        }
+
+
+        public Builder clientCustomerId(String clientCustomerId) {
+            Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+            this.clientCustomerId = clientCustomerId;
+            return this;
+        }
+
+
+        /**
+         * (required IF verificationType=VerifiedUser)
+         */
+        public Builder clientHumanId(String clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = Optional.ofNullable(clientHumanId);
+            return this;
+        }
+
+        /**
+         * (required IF verificationType=VerifiedUser)
+         */
+        public Builder clientHumanId(Optional<String> clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = clientHumanId;
             return this;
         }
 
@@ -351,7 +708,26 @@ public class VerifyBatchResultItem {
 
         public Builder identity(Identity identity) {
             Utils.checkNotNull(identity, "identity");
+            this.identity = Optional.ofNullable(identity);
+            return this;
+        }
+
+        public Builder identity(Optional<? extends Identity> identity) {
+            Utils.checkNotNull(identity, "identity");
             this.identity = identity;
+            return this;
+        }
+
+
+        public Builder linkedAccounts(List<LinkedAccount> linkedAccounts) {
+            Utils.checkNotNull(linkedAccounts, "linkedAccounts");
+            this.linkedAccounts = Optional.ofNullable(linkedAccounts);
+            return this;
+        }
+
+        public Builder linkedAccounts(Optional<? extends List<LinkedAccount>> linkedAccounts) {
+            Utils.checkNotNull(linkedAccounts, "linkedAccounts");
+            this.linkedAccounts = linkedAccounts;
             return this;
         }
 
@@ -370,6 +746,57 @@ public class VerifyBatchResultItem {
         }
 
 
+        public Builder proveAccountId(String proveAccountId) {
+            Utils.checkNotNull(proveAccountId, "proveAccountId");
+            this.proveAccountId = Optional.ofNullable(proveAccountId);
+            return this;
+        }
+
+        public Builder proveAccountId(Optional<String> proveAccountId) {
+            Utils.checkNotNull(proveAccountId, "proveAccountId");
+            this.proveAccountId = proveAccountId;
+            return this;
+        }
+
+
+        /**
+         * (required IF verificationType=VerifiedUser)
+         */
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = Optional.ofNullable(proveId);
+            return this;
+        }
+
+        /**
+         * (required IF verificationType=VerifiedUser)
+         */
+        public Builder proveId(Optional<String> proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
+            return this;
+        }
+
+
+        /**
+         * (required IF verificationType=VerifiedUser)
+         */
+        public Builder provePhoneAlias(String provePhoneAlias) {
+            Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
+            this.provePhoneAlias = Optional.ofNullable(provePhoneAlias);
+            return this;
+        }
+
+        /**
+         * (required IF verificationType=VerifiedUser)
+         */
+        public Builder provePhoneAlias(Optional<String> provePhoneAlias) {
+            Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
+            this.provePhoneAlias = provePhoneAlias;
+            return this;
+        }
+
+
         /**
          * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`,
          * `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession
@@ -384,8 +811,11 @@ public class VerifyBatchResultItem {
         public VerifyBatchResultItem build() {
 
             return new VerifyBatchResultItem(
-                additionalIdentities, error, evaluation,
-                identity, phoneNumber, success);
+                additionalIdentities, assuranceLevel, businesses,
+                clientCustomerId, clientHumanId, error,
+                evaluation, identity, linkedAccounts,
+                phoneNumber, proveAccountId, proveId,
+                provePhoneAlias, success);
         }
 
     }

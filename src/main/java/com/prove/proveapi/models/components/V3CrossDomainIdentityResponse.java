@@ -27,17 +27,17 @@ public class V3CrossDomainIdentityResponse {
     /**
      * The list of identities from other linked accounts.
      */
-    @JsonProperty("identites")
-    private List<IdentityItem> identites;
+    @JsonProperty("identities")
+    private List<IdentityItem> identities;
 
     @JsonCreator
     public V3CrossDomainIdentityResponse(
             @JsonProperty("count") long count,
-            @JsonProperty("identites") List<IdentityItem> identites) {
+            @JsonProperty("identities") List<IdentityItem> identities) {
         Utils.checkNotNull(count, "count");
-        Utils.checkNotNull(identites, "identites");
+        Utils.checkNotNull(identities, "identities");
         this.count = count;
-        this.identites = identites;
+        this.identities = identities;
     }
 
     /**
@@ -52,8 +52,8 @@ public class V3CrossDomainIdentityResponse {
      * The list of identities from other linked accounts.
      */
     @JsonIgnore
-    public List<IdentityItem> identites() {
-        return identites;
+    public List<IdentityItem> identities() {
+        return identities;
     }
 
     public static Builder builder() {
@@ -73,9 +73,9 @@ public class V3CrossDomainIdentityResponse {
     /**
      * The list of identities from other linked accounts.
      */
-    public V3CrossDomainIdentityResponse withIdentites(List<IdentityItem> identites) {
-        Utils.checkNotNull(identites, "identites");
-        this.identites = identites;
+    public V3CrossDomainIdentityResponse withIdentities(List<IdentityItem> identities) {
+        Utils.checkNotNull(identities, "identities");
+        this.identities = identities;
         return this;
     }
 
@@ -90,20 +90,20 @@ public class V3CrossDomainIdentityResponse {
         V3CrossDomainIdentityResponse other = (V3CrossDomainIdentityResponse) o;
         return 
             Utils.enhancedDeepEquals(this.count, other.count) &&
-            Utils.enhancedDeepEquals(this.identites, other.identites);
+            Utils.enhancedDeepEquals(this.identities, other.identities);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            count, identites);
+            count, identities);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3CrossDomainIdentityResponse.class,
                 "count", count,
-                "identites", identites);
+                "identities", identities);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -111,7 +111,7 @@ public class V3CrossDomainIdentityResponse {
 
         private Long count;
 
-        private List<IdentityItem> identites;
+        private List<IdentityItem> identities;
 
         private Builder() {
           // force use of static builder() method
@@ -131,16 +131,16 @@ public class V3CrossDomainIdentityResponse {
         /**
          * The list of identities from other linked accounts.
          */
-        public Builder identites(List<IdentityItem> identites) {
-            Utils.checkNotNull(identites, "identites");
-            this.identites = identites;
+        public Builder identities(List<IdentityItem> identities) {
+            Utils.checkNotNull(identities, "identities");
+            this.identities = identities;
             return this;
         }
 
         public V3CrossDomainIdentityResponse build() {
 
             return new V3CrossDomainIdentityResponse(
-                count, identites);
+                count, identities);
         }
 
     }

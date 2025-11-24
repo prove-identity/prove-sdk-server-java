@@ -23,7 +23,26 @@ public class V3VerifyResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("additionalIdentities")
-    private Optional<? extends List<AdditionalIdentity>> additionalIdentities;
+    private Optional<? extends List<Identity>> additionalIdentities;
+
+    /**
+     * TODO: usage comment. Chances are this will be a part of Identity struct.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("businesses")
+    private Optional<? extends List<Business>> businesses;
+
+    /**
+     * Client-generated identifier for a given customer. This is returned as passed into the request.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientCustomerId")
+    private Optional<String> clientCustomerId;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientHumanId")
+    private Optional<String> clientHumanId;
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests.
@@ -52,8 +71,14 @@ public class V3VerifyResponse {
     private Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation;
 
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("identity")
-    private Identity identity;
+    private Optional<? extends Identity> identity;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("linkedAccounts")
+    private Optional<? extends List<LinkedAccount>> linkedAccounts;
 
     /**
      * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
@@ -65,6 +90,25 @@ public class V3VerifyResponse {
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("proveAccountId")
+    private Optional<String> proveAccountId;
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("proveId")
+    private Optional<String> proveId;
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provePhoneAlias")
+    private Optional<String> provePhoneAlias;
+
     /**
      * The result of verification
      */
@@ -73,37 +117,59 @@ public class V3VerifyResponse {
 
     @JsonCreator
     public V3VerifyResponse(
-            @JsonProperty("additionalIdentities") Optional<? extends List<AdditionalIdentity>> additionalIdentities,
+            @JsonProperty("additionalIdentities") Optional<? extends List<Identity>> additionalIdentities,
+            @JsonProperty("businesses") Optional<? extends List<Business>> businesses,
+            @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
+            @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("correlationId") String correlationId,
             @JsonProperty("evaluation") Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation,
-            @JsonProperty("identity") Identity identity,
+            @JsonProperty("identity") Optional<? extends Identity> identity,
+            @JsonProperty("linkedAccounts") Optional<? extends List<LinkedAccount>> linkedAccounts,
             @JsonProperty("phoneNumber") String phoneNumber,
+            @JsonProperty("proveAccountId") Optional<String> proveAccountId,
+            @JsonProperty("proveId") Optional<String> proveId,
+            @JsonProperty("provePhoneAlias") Optional<String> provePhoneAlias,
             @JsonProperty("success") String success) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
+        Utils.checkNotNull(businesses, "businesses");
+        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(identity, "identity");
+        Utils.checkNotNull(linkedAccounts, "linkedAccounts");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(proveAccountId, "proveAccountId");
+        Utils.checkNotNull(proveId, "proveId");
+        Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
         Utils.checkNotNull(success, "success");
         this.additionalIdentities = additionalIdentities;
+        this.businesses = businesses;
+        this.clientCustomerId = clientCustomerId;
+        this.clientHumanId = clientHumanId;
         this.clientRequestId = clientRequestId;
         this.correlationId = correlationId;
         this.evaluation = evaluation;
         this.identity = identity;
+        this.linkedAccounts = linkedAccounts;
         this.phoneNumber = phoneNumber;
+        this.proveAccountId = proveAccountId;
+        this.proveId = proveId;
+        this.provePhoneAlias = provePhoneAlias;
         this.success = success;
     }
     
     public V3VerifyResponse(
             String correlationId,
-            Identity identity,
             String phoneNumber,
             String success) {
-        this(Optional.empty(), Optional.empty(), correlationId,
-            Optional.empty(), identity, phoneNumber,
-            success);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), correlationId,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            phoneNumber, Optional.empty(), Optional.empty(),
+            Optional.empty(), success);
     }
 
     /**
@@ -111,8 +177,30 @@ public class V3VerifyResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<AdditionalIdentity>> additionalIdentities() {
-        return (Optional<List<AdditionalIdentity>>) additionalIdentities;
+    public Optional<List<Identity>> additionalIdentities() {
+        return (Optional<List<Identity>>) additionalIdentities;
+    }
+
+    /**
+     * TODO: usage comment. Chances are this will be a part of Identity struct.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Business>> businesses() {
+        return (Optional<List<Business>>) businesses;
+    }
+
+    /**
+     * Client-generated identifier for a given customer. This is returned as passed into the request.
+     */
+    @JsonIgnore
+    public Optional<String> clientCustomerId() {
+        return clientCustomerId;
+    }
+
+    @JsonIgnore
+    public Optional<String> clientHumanId() {
+        return clientHumanId;
     }
 
     /**
@@ -146,9 +234,16 @@ public class V3VerifyResponse {
         return (Optional<Map<String, V3VerifyResponseEvaluation>>) evaluation;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Identity identity() {
-        return identity;
+    public Optional<Identity> identity() {
+        return (Optional<Identity>) identity;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<LinkedAccount>> linkedAccounts() {
+        return (Optional<List<LinkedAccount>>) linkedAccounts;
     }
 
     /**
@@ -161,6 +256,27 @@ public class V3VerifyResponse {
     @JsonIgnore
     public String phoneNumber() {
         return phoneNumber;
+    }
+
+    @JsonIgnore
+    public Optional<String> proveAccountId() {
+        return proveAccountId;
+    }
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    @JsonIgnore
+    public Optional<String> proveId() {
+        return proveId;
+    }
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    @JsonIgnore
+    public Optional<String> provePhoneAlias() {
+        return provePhoneAlias;
     }
 
     /**
@@ -179,7 +295,7 @@ public class V3VerifyResponse {
     /**
      * (required IF verificationType=VerifiedUser)
      */
-    public V3VerifyResponse withAdditionalIdentities(List<AdditionalIdentity> additionalIdentities) {
+    public V3VerifyResponse withAdditionalIdentities(List<Identity> additionalIdentities) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
         this.additionalIdentities = Optional.ofNullable(additionalIdentities);
         return this;
@@ -189,9 +305,60 @@ public class V3VerifyResponse {
     /**
      * (required IF verificationType=VerifiedUser)
      */
-    public V3VerifyResponse withAdditionalIdentities(Optional<? extends List<AdditionalIdentity>> additionalIdentities) {
+    public V3VerifyResponse withAdditionalIdentities(Optional<? extends List<Identity>> additionalIdentities) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
         this.additionalIdentities = additionalIdentities;
+        return this;
+    }
+
+    /**
+     * TODO: usage comment. Chances are this will be a part of Identity struct.
+     */
+    public V3VerifyResponse withBusinesses(List<Business> businesses) {
+        Utils.checkNotNull(businesses, "businesses");
+        this.businesses = Optional.ofNullable(businesses);
+        return this;
+    }
+
+
+    /**
+     * TODO: usage comment. Chances are this will be a part of Identity struct.
+     */
+    public V3VerifyResponse withBusinesses(Optional<? extends List<Business>> businesses) {
+        Utils.checkNotNull(businesses, "businesses");
+        this.businesses = businesses;
+        return this;
+    }
+
+    /**
+     * Client-generated identifier for a given customer. This is returned as passed into the request.
+     */
+    public V3VerifyResponse withClientCustomerId(String clientCustomerId) {
+        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        this.clientCustomerId = Optional.ofNullable(clientCustomerId);
+        return this;
+    }
+
+
+    /**
+     * Client-generated identifier for a given customer. This is returned as passed into the request.
+     */
+    public V3VerifyResponse withClientCustomerId(Optional<String> clientCustomerId) {
+        Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        this.clientCustomerId = clientCustomerId;
+        return this;
+    }
+
+    public V3VerifyResponse withClientHumanId(String clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = Optional.ofNullable(clientHumanId);
+        return this;
+    }
+
+
+    public V3VerifyResponse withClientHumanId(Optional<String> clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = clientHumanId;
         return this;
     }
 
@@ -254,7 +421,27 @@ public class V3VerifyResponse {
 
     public V3VerifyResponse withIdentity(Identity identity) {
         Utils.checkNotNull(identity, "identity");
+        this.identity = Optional.ofNullable(identity);
+        return this;
+    }
+
+
+    public V3VerifyResponse withIdentity(Optional<? extends Identity> identity) {
+        Utils.checkNotNull(identity, "identity");
         this.identity = identity;
+        return this;
+    }
+
+    public V3VerifyResponse withLinkedAccounts(List<LinkedAccount> linkedAccounts) {
+        Utils.checkNotNull(linkedAccounts, "linkedAccounts");
+        this.linkedAccounts = Optional.ofNullable(linkedAccounts);
+        return this;
+    }
+
+
+    public V3VerifyResponse withLinkedAccounts(Optional<? extends List<LinkedAccount>> linkedAccounts) {
+        Utils.checkNotNull(linkedAccounts, "linkedAccounts");
+        this.linkedAccounts = linkedAccounts;
         return this;
     }
 
@@ -268,6 +455,57 @@ public class V3VerifyResponse {
     public V3VerifyResponse withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public V3VerifyResponse withProveAccountId(String proveAccountId) {
+        Utils.checkNotNull(proveAccountId, "proveAccountId");
+        this.proveAccountId = Optional.ofNullable(proveAccountId);
+        return this;
+    }
+
+
+    public V3VerifyResponse withProveAccountId(Optional<String> proveAccountId) {
+        Utils.checkNotNull(proveAccountId, "proveAccountId");
+        this.proveAccountId = proveAccountId;
+        return this;
+    }
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    public V3VerifyResponse withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = Optional.ofNullable(proveId);
+        return this;
+    }
+
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    public V3VerifyResponse withProveId(Optional<String> proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
+        return this;
+    }
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    public V3VerifyResponse withProvePhoneAlias(String provePhoneAlias) {
+        Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
+        this.provePhoneAlias = Optional.ofNullable(provePhoneAlias);
+        return this;
+    }
+
+
+    /**
+     * (required IF verificationType=VerifiedUser)
+     */
+    public V3VerifyResponse withProvePhoneAlias(Optional<String> provePhoneAlias) {
+        Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
+        this.provePhoneAlias = provePhoneAlias;
         return this;
     }
 
@@ -291,38 +529,60 @@ public class V3VerifyResponse {
         V3VerifyResponse other = (V3VerifyResponse) o;
         return 
             Utils.enhancedDeepEquals(this.additionalIdentities, other.additionalIdentities) &&
+            Utils.enhancedDeepEquals(this.businesses, other.businesses) &&
+            Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
+            Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
             Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
             Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
             Utils.enhancedDeepEquals(this.identity, other.identity) &&
+            Utils.enhancedDeepEquals(this.linkedAccounts, other.linkedAccounts) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.proveAccountId, other.proveAccountId) &&
+            Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
+            Utils.enhancedDeepEquals(this.provePhoneAlias, other.provePhoneAlias) &&
             Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            additionalIdentities, clientRequestId, correlationId,
-            evaluation, identity, phoneNumber,
-            success);
+            additionalIdentities, businesses, clientCustomerId,
+            clientHumanId, clientRequestId, correlationId,
+            evaluation, identity, linkedAccounts,
+            phoneNumber, proveAccountId, proveId,
+            provePhoneAlias, success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3VerifyResponse.class,
                 "additionalIdentities", additionalIdentities,
+                "businesses", businesses,
+                "clientCustomerId", clientCustomerId,
+                "clientHumanId", clientHumanId,
                 "clientRequestId", clientRequestId,
                 "correlationId", correlationId,
                 "evaluation", evaluation,
                 "identity", identity,
+                "linkedAccounts", linkedAccounts,
                 "phoneNumber", phoneNumber,
+                "proveAccountId", proveAccountId,
+                "proveId", proveId,
+                "provePhoneAlias", provePhoneAlias,
                 "success", success);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<AdditionalIdentity>> additionalIdentities = Optional.empty();
+        private Optional<? extends List<Identity>> additionalIdentities = Optional.empty();
+
+        private Optional<? extends List<Business>> businesses = Optional.empty();
+
+        private Optional<String> clientCustomerId = Optional.empty();
+
+        private Optional<String> clientHumanId = Optional.empty();
 
         private Optional<String> clientRequestId = Optional.empty();
 
@@ -330,9 +590,17 @@ public class V3VerifyResponse {
 
         private Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation = Optional.empty();
 
-        private Identity identity;
+        private Optional<? extends Identity> identity = Optional.empty();
+
+        private Optional<? extends List<LinkedAccount>> linkedAccounts = Optional.empty();
 
         private String phoneNumber;
+
+        private Optional<String> proveAccountId = Optional.empty();
+
+        private Optional<String> proveId = Optional.empty();
+
+        private Optional<String> provePhoneAlias = Optional.empty();
 
         private String success;
 
@@ -344,7 +612,7 @@ public class V3VerifyResponse {
         /**
          * (required IF verificationType=VerifiedUser)
          */
-        public Builder additionalIdentities(List<AdditionalIdentity> additionalIdentities) {
+        public Builder additionalIdentities(List<Identity> additionalIdentities) {
             Utils.checkNotNull(additionalIdentities, "additionalIdentities");
             this.additionalIdentities = Optional.ofNullable(additionalIdentities);
             return this;
@@ -353,9 +621,60 @@ public class V3VerifyResponse {
         /**
          * (required IF verificationType=VerifiedUser)
          */
-        public Builder additionalIdentities(Optional<? extends List<AdditionalIdentity>> additionalIdentities) {
+        public Builder additionalIdentities(Optional<? extends List<Identity>> additionalIdentities) {
             Utils.checkNotNull(additionalIdentities, "additionalIdentities");
             this.additionalIdentities = additionalIdentities;
+            return this;
+        }
+
+
+        /**
+         * TODO: usage comment. Chances are this will be a part of Identity struct.
+         */
+        public Builder businesses(List<Business> businesses) {
+            Utils.checkNotNull(businesses, "businesses");
+            this.businesses = Optional.ofNullable(businesses);
+            return this;
+        }
+
+        /**
+         * TODO: usage comment. Chances are this will be a part of Identity struct.
+         */
+        public Builder businesses(Optional<? extends List<Business>> businesses) {
+            Utils.checkNotNull(businesses, "businesses");
+            this.businesses = businesses;
+            return this;
+        }
+
+
+        /**
+         * Client-generated identifier for a given customer. This is returned as passed into the request.
+         */
+        public Builder clientCustomerId(String clientCustomerId) {
+            Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+            this.clientCustomerId = Optional.ofNullable(clientCustomerId);
+            return this;
+        }
+
+        /**
+         * Client-generated identifier for a given customer. This is returned as passed into the request.
+         */
+        public Builder clientCustomerId(Optional<String> clientCustomerId) {
+            Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+            this.clientCustomerId = clientCustomerId;
+            return this;
+        }
+
+
+        public Builder clientHumanId(String clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = Optional.ofNullable(clientHumanId);
+            return this;
+        }
+
+        public Builder clientHumanId(Optional<String> clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = clientHumanId;
             return this;
         }
 
@@ -420,7 +739,26 @@ public class V3VerifyResponse {
 
         public Builder identity(Identity identity) {
             Utils.checkNotNull(identity, "identity");
+            this.identity = Optional.ofNullable(identity);
+            return this;
+        }
+
+        public Builder identity(Optional<? extends Identity> identity) {
+            Utils.checkNotNull(identity, "identity");
             this.identity = identity;
+            return this;
+        }
+
+
+        public Builder linkedAccounts(List<LinkedAccount> linkedAccounts) {
+            Utils.checkNotNull(linkedAccounts, "linkedAccounts");
+            this.linkedAccounts = Optional.ofNullable(linkedAccounts);
+            return this;
+        }
+
+        public Builder linkedAccounts(Optional<? extends List<LinkedAccount>> linkedAccounts) {
+            Utils.checkNotNull(linkedAccounts, "linkedAccounts");
+            this.linkedAccounts = linkedAccounts;
             return this;
         }
 
@@ -439,6 +777,57 @@ public class V3VerifyResponse {
         }
 
 
+        public Builder proveAccountId(String proveAccountId) {
+            Utils.checkNotNull(proveAccountId, "proveAccountId");
+            this.proveAccountId = Optional.ofNullable(proveAccountId);
+            return this;
+        }
+
+        public Builder proveAccountId(Optional<String> proveAccountId) {
+            Utils.checkNotNull(proveAccountId, "proveAccountId");
+            this.proveAccountId = proveAccountId;
+            return this;
+        }
+
+
+        /**
+         * (required IF verificationType=VerifiedUser)
+         */
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = Optional.ofNullable(proveId);
+            return this;
+        }
+
+        /**
+         * (required IF verificationType=VerifiedUser)
+         */
+        public Builder proveId(Optional<String> proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
+            return this;
+        }
+
+
+        /**
+         * (required IF verificationType=VerifiedUser)
+         */
+        public Builder provePhoneAlias(String provePhoneAlias) {
+            Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
+            this.provePhoneAlias = Optional.ofNullable(provePhoneAlias);
+            return this;
+        }
+
+        /**
+         * (required IF verificationType=VerifiedUser)
+         */
+        public Builder provePhoneAlias(Optional<String> provePhoneAlias) {
+            Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
+            this.provePhoneAlias = provePhoneAlias;
+            return this;
+        }
+
+
         /**
          * The result of verification
          */
@@ -451,9 +840,11 @@ public class V3VerifyResponse {
         public V3VerifyResponse build() {
 
             return new V3VerifyResponse(
-                additionalIdentities, clientRequestId, correlationId,
-                evaluation, identity, phoneNumber,
-                success);
+                additionalIdentities, businesses, clientCustomerId,
+                clientHumanId, clientRequestId, correlationId,
+                evaluation, identity, linkedAccounts,
+                phoneNumber, proveAccountId, proveId,
+                provePhoneAlias, success);
         }
 
     }

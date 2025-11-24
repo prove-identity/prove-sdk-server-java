@@ -578,12 +578,12 @@ This endpoint allows you to initiate a Verified Users session.
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.Security;
-import com.prove.proveapi.models.components.V3VerifyRequest;
+import com.prove.proveapi.models.components.*;
 import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3VerifyRequestResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -597,15 +597,21 @@ public class Application {
             .build();
 
         V3VerifyRequest req = V3VerifyRequest.builder()
-                .phoneNumber("2001004011")
-                .verificationType("verificationType")
+                .phoneNumber("2001004053")
+                .verificationType(VerificationType.VERIFIED_USER)
+                .addOnFeature(List.of(
+                    "ageEstimation"))
+                .businessName("businessName")
                 .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                 .clientHumanId("aad25769-23bb-458c-80db-50296a82c91b")
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
-                .emailAddress("sbutrimovichb@who.int")
-                .firstName("Sheilakathryn")
+                .dateOfBirth("dateOfBirth")
+                .emailAddress("ecoldman1h@storify.com")
+                .firstName("Elena")
                 .ipAddress("192.168.1.1")
-                .lastName("Butrimovich")
+                .lastName("Coldman")
+                .nationalId("nationalId")
+                .proveId("proveId")
                 .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
                 .build();
 
@@ -672,24 +678,26 @@ public class Application {
         V3VerifyBatchRequest req = V3VerifyBatchRequest.builder()
                 .items(List.of(
                     VerifyItem.builder()
-                        .firstName("Sheilakathryn")
-                        .lastName("Butrimovich")
-                        .phoneNumber("2001004011")
+                        .firstName("Elena")
+                        .lastName("Coldman")
+                        .phoneNumber("2001004053")
                         .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                         .clientHumanId("clientHumanId")
-                        .emailAddress("sbutrimovichb@who.int")
+                        .emailAddress("ecoldman1h@storify.com")
                         .ipAddress("192.168.1.1")
+                        .proveId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
                         .verificationType("verificationType")
                         .build(),
                     VerifyItem.builder()
-                        .firstName("Sheilakathryn")
-                        .lastName("Butrimovich")
-                        .phoneNumber("2001004011")
+                        .firstName("Elena")
+                        .lastName("Coldman")
+                        .phoneNumber("2001004053")
                         .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                         .clientHumanId("clientHumanId")
-                        .emailAddress("sbutrimovichb@who.int")
+                        .emailAddress("ecoldman1h@storify.com")
                         .ipAddress("192.168.1.1")
+                        .proveId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
                         .verificationType("verificationType")
                         .build()))

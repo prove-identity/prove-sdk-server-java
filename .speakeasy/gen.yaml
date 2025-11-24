@@ -19,12 +19,13 @@ generation:
     hoistGlobalSecurity: true
   schemas:
     allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.19.0
+  version: 0.20.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: proveapi
@@ -36,8 +37,10 @@ java:
   companyURL: https://www.prove.com
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
+  enableSlf4jLogging: false
   enableStreamingUploads: false
   flattenGlobalSecurity: true
+  generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: github.com/prove-identity/prove-sdk-server-java
   groupID: com.prove
@@ -57,6 +60,9 @@ java:
     url: https://mit-license.org/
   maxMethodParams: 4
   nullFriendlyParameters: false
+  openUnions: true
+  operationScopedParams: true
   outputModelSuffix: output
   projectName: openapi
   templateVersion: v2
+  unionStrategy: populated-fields
