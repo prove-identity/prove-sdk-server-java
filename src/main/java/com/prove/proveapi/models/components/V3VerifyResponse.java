@@ -26,39 +26,28 @@ public class V3VerifyResponse {
     private Optional<? extends List<Identity>> additionalIdentities;
 
     /**
-     * TODO: usage comment. Chances are this will be a part of Identity struct.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("businesses")
-    private Optional<? extends List<Business>> businesses;
-
-    /**
-     * Client-generated identifier for a given customer. This is returned as passed into the request.
+     * The input ClientCustomerID.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientCustomerId")
     private Optional<String> clientCustomerId;
 
-
+    /**
+     * The input ClientHumanID.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientHumanId")
     private Optional<String> clientHumanId;
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-     * be accepted.
-     * 
-     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     * The input ClientRequestID.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
 
     /**
-     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
-     * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
-     * flow.
+     * The unique ID that Prove generates for the flow.
      */
     @JsonProperty("correlationId")
     private String correlationId;
@@ -75,27 +64,14 @@ public class V3VerifyResponse {
     @JsonProperty("identity")
     private Optional<? extends Identity> identity;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("linkedAccounts")
-    private Optional<? extends List<LinkedAccount>> linkedAccounts;
-
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The input phone number.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("proveAccountId")
-    private Optional<String> proveAccountId;
-
     /**
+     * A Prove-generated identifier for the consumer.
      * (required IF verificationType=VerifiedUser)
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -103,6 +79,7 @@ public class V3VerifyResponse {
     private Optional<String> proveId;
 
     /**
+     * A persistent ID that uniquely identifies a telephone subscriber.
      * (required IF verificationType=VerifiedUser)
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -110,7 +87,7 @@ public class V3VerifyResponse {
     private Optional<String> provePhoneAlias;
 
     /**
-     * The result of verification
+     * The result of verification.
      */
     @JsonProperty("success")
     private String success;
@@ -118,44 +95,35 @@ public class V3VerifyResponse {
     @JsonCreator
     public V3VerifyResponse(
             @JsonProperty("additionalIdentities") Optional<? extends List<Identity>> additionalIdentities,
-            @JsonProperty("businesses") Optional<? extends List<Business>> businesses,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("correlationId") String correlationId,
             @JsonProperty("evaluation") Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation,
             @JsonProperty("identity") Optional<? extends Identity> identity,
-            @JsonProperty("linkedAccounts") Optional<? extends List<LinkedAccount>> linkedAccounts,
             @JsonProperty("phoneNumber") String phoneNumber,
-            @JsonProperty("proveAccountId") Optional<String> proveAccountId,
             @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("provePhoneAlias") Optional<String> provePhoneAlias,
             @JsonProperty("success") String success) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
-        Utils.checkNotNull(businesses, "businesses");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(identity, "identity");
-        Utils.checkNotNull(linkedAccounts, "linkedAccounts");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
-        Utils.checkNotNull(proveAccountId, "proveAccountId");
         Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
         Utils.checkNotNull(success, "success");
         this.additionalIdentities = additionalIdentities;
-        this.businesses = businesses;
         this.clientCustomerId = clientCustomerId;
         this.clientHumanId = clientHumanId;
         this.clientRequestId = clientRequestId;
         this.correlationId = correlationId;
         this.evaluation = evaluation;
         this.identity = identity;
-        this.linkedAccounts = linkedAccounts;
         this.phoneNumber = phoneNumber;
-        this.proveAccountId = proveAccountId;
         this.proveId = proveId;
         this.provePhoneAlias = provePhoneAlias;
         this.success = success;
@@ -166,9 +134,8 @@ public class V3VerifyResponse {
             String phoneNumber,
             String success) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), correlationId,
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            phoneNumber, Optional.empty(), Optional.empty(),
+            Optional.empty(), correlationId, Optional.empty(),
+            Optional.empty(), phoneNumber, Optional.empty(),
             Optional.empty(), success);
     }
 
@@ -182,33 +149,23 @@ public class V3VerifyResponse {
     }
 
     /**
-     * TODO: usage comment. Chances are this will be a part of Identity struct.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<Business>> businesses() {
-        return (Optional<List<Business>>) businesses;
-    }
-
-    /**
-     * Client-generated identifier for a given customer. This is returned as passed into the request.
+     * The input ClientCustomerID.
      */
     @JsonIgnore
     public Optional<String> clientCustomerId() {
         return clientCustomerId;
     }
 
+    /**
+     * The input ClientHumanID.
+     */
     @JsonIgnore
     public Optional<String> clientHumanId() {
         return clientHumanId;
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-     * be accepted.
-     * 
-     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     * The input ClientRequestID.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -216,9 +173,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
-     * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
-     * flow.
+     * The unique ID that Prove generates for the flow.
      */
     @JsonIgnore
     public String correlationId() {
@@ -240,30 +195,16 @@ public class V3VerifyResponse {
         return (Optional<Identity>) identity;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<LinkedAccount>> linkedAccounts() {
-        return (Optional<List<LinkedAccount>>) linkedAccounts;
-    }
-
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The input phone number.
      */
     @JsonIgnore
     public String phoneNumber() {
         return phoneNumber;
     }
 
-    @JsonIgnore
-    public Optional<String> proveAccountId() {
-        return proveAccountId;
-    }
-
     /**
+     * A Prove-generated identifier for the consumer.
      * (required IF verificationType=VerifiedUser)
      */
     @JsonIgnore
@@ -272,6 +213,7 @@ public class V3VerifyResponse {
     }
 
     /**
+     * A persistent ID that uniquely identifies a telephone subscriber.
      * (required IF verificationType=VerifiedUser)
      */
     @JsonIgnore
@@ -280,7 +222,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The result of verification
+     * The result of verification.
      */
     @JsonIgnore
     public String success() {
@@ -312,26 +254,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * TODO: usage comment. Chances are this will be a part of Identity struct.
-     */
-    public V3VerifyResponse withBusinesses(List<Business> businesses) {
-        Utils.checkNotNull(businesses, "businesses");
-        this.businesses = Optional.ofNullable(businesses);
-        return this;
-    }
-
-
-    /**
-     * TODO: usage comment. Chances are this will be a part of Identity struct.
-     */
-    public V3VerifyResponse withBusinesses(Optional<? extends List<Business>> businesses) {
-        Utils.checkNotNull(businesses, "businesses");
-        this.businesses = businesses;
-        return this;
-    }
-
-    /**
-     * Client-generated identifier for a given customer. This is returned as passed into the request.
+     * The input ClientCustomerID.
      */
     public V3VerifyResponse withClientCustomerId(String clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -341,7 +264,7 @@ public class V3VerifyResponse {
 
 
     /**
-     * Client-generated identifier for a given customer. This is returned as passed into the request.
+     * The input ClientCustomerID.
      */
     public V3VerifyResponse withClientCustomerId(Optional<String> clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -349,6 +272,9 @@ public class V3VerifyResponse {
         return this;
     }
 
+    /**
+     * The input ClientHumanID.
+     */
     public V3VerifyResponse withClientHumanId(String clientHumanId) {
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         this.clientHumanId = Optional.ofNullable(clientHumanId);
@@ -356,6 +282,9 @@ public class V3VerifyResponse {
     }
 
 
+    /**
+     * The input ClientHumanID.
+     */
     public V3VerifyResponse withClientHumanId(Optional<String> clientHumanId) {
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         this.clientHumanId = clientHumanId;
@@ -363,11 +292,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-     * be accepted.
-     * 
-     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     * The input ClientRequestID.
      */
     public V3VerifyResponse withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -377,11 +302,7 @@ public class V3VerifyResponse {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-     * be accepted.
-     * 
-     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     * The input ClientRequestID.
      */
     public V3VerifyResponse withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -390,9 +311,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
-     * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
-     * flow.
+     * The unique ID that Prove generates for the flow.
      */
     public V3VerifyResponse withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -432,25 +351,8 @@ public class V3VerifyResponse {
         return this;
     }
 
-    public V3VerifyResponse withLinkedAccounts(List<LinkedAccount> linkedAccounts) {
-        Utils.checkNotNull(linkedAccounts, "linkedAccounts");
-        this.linkedAccounts = Optional.ofNullable(linkedAccounts);
-        return this;
-    }
-
-
-    public V3VerifyResponse withLinkedAccounts(Optional<? extends List<LinkedAccount>> linkedAccounts) {
-        Utils.checkNotNull(linkedAccounts, "linkedAccounts");
-        this.linkedAccounts = linkedAccounts;
-        return this;
-    }
-
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The input phone number.
      */
     public V3VerifyResponse withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -458,20 +360,8 @@ public class V3VerifyResponse {
         return this;
     }
 
-    public V3VerifyResponse withProveAccountId(String proveAccountId) {
-        Utils.checkNotNull(proveAccountId, "proveAccountId");
-        this.proveAccountId = Optional.ofNullable(proveAccountId);
-        return this;
-    }
-
-
-    public V3VerifyResponse withProveAccountId(Optional<String> proveAccountId) {
-        Utils.checkNotNull(proveAccountId, "proveAccountId");
-        this.proveAccountId = proveAccountId;
-        return this;
-    }
-
     /**
+     * A Prove-generated identifier for the consumer.
      * (required IF verificationType=VerifiedUser)
      */
     public V3VerifyResponse withProveId(String proveId) {
@@ -482,6 +372,7 @@ public class V3VerifyResponse {
 
 
     /**
+     * A Prove-generated identifier for the consumer.
      * (required IF verificationType=VerifiedUser)
      */
     public V3VerifyResponse withProveId(Optional<String> proveId) {
@@ -491,6 +382,7 @@ public class V3VerifyResponse {
     }
 
     /**
+     * A persistent ID that uniquely identifies a telephone subscriber.
      * (required IF verificationType=VerifiedUser)
      */
     public V3VerifyResponse withProvePhoneAlias(String provePhoneAlias) {
@@ -501,6 +393,7 @@ public class V3VerifyResponse {
 
 
     /**
+     * A persistent ID that uniquely identifies a telephone subscriber.
      * (required IF verificationType=VerifiedUser)
      */
     public V3VerifyResponse withProvePhoneAlias(Optional<String> provePhoneAlias) {
@@ -510,7 +403,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The result of verification
+     * The result of verification.
      */
     public V3VerifyResponse withSuccess(String success) {
         Utils.checkNotNull(success, "success");
@@ -529,16 +422,13 @@ public class V3VerifyResponse {
         V3VerifyResponse other = (V3VerifyResponse) o;
         return 
             Utils.enhancedDeepEquals(this.additionalIdentities, other.additionalIdentities) &&
-            Utils.enhancedDeepEquals(this.businesses, other.businesses) &&
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
             Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
             Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
             Utils.enhancedDeepEquals(this.identity, other.identity) &&
-            Utils.enhancedDeepEquals(this.linkedAccounts, other.linkedAccounts) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
-            Utils.enhancedDeepEquals(this.proveAccountId, other.proveAccountId) &&
             Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.provePhoneAlias, other.provePhoneAlias) &&
             Utils.enhancedDeepEquals(this.success, other.success);
@@ -547,10 +437,9 @@ public class V3VerifyResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            additionalIdentities, businesses, clientCustomerId,
-            clientHumanId, clientRequestId, correlationId,
-            evaluation, identity, linkedAccounts,
-            phoneNumber, proveAccountId, proveId,
+            additionalIdentities, clientCustomerId, clientHumanId,
+            clientRequestId, correlationId, evaluation,
+            identity, phoneNumber, proveId,
             provePhoneAlias, success);
     }
     
@@ -558,16 +447,13 @@ public class V3VerifyResponse {
     public String toString() {
         return Utils.toString(V3VerifyResponse.class,
                 "additionalIdentities", additionalIdentities,
-                "businesses", businesses,
                 "clientCustomerId", clientCustomerId,
                 "clientHumanId", clientHumanId,
                 "clientRequestId", clientRequestId,
                 "correlationId", correlationId,
                 "evaluation", evaluation,
                 "identity", identity,
-                "linkedAccounts", linkedAccounts,
                 "phoneNumber", phoneNumber,
-                "proveAccountId", proveAccountId,
                 "proveId", proveId,
                 "provePhoneAlias", provePhoneAlias,
                 "success", success);
@@ -577,8 +463,6 @@ public class V3VerifyResponse {
     public final static class Builder {
 
         private Optional<? extends List<Identity>> additionalIdentities = Optional.empty();
-
-        private Optional<? extends List<Business>> businesses = Optional.empty();
 
         private Optional<String> clientCustomerId = Optional.empty();
 
@@ -592,11 +476,7 @@ public class V3VerifyResponse {
 
         private Optional<? extends Identity> identity = Optional.empty();
 
-        private Optional<? extends List<LinkedAccount>> linkedAccounts = Optional.empty();
-
         private String phoneNumber;
-
-        private Optional<String> proveAccountId = Optional.empty();
 
         private Optional<String> proveId = Optional.empty();
 
@@ -629,26 +509,7 @@ public class V3VerifyResponse {
 
 
         /**
-         * TODO: usage comment. Chances are this will be a part of Identity struct.
-         */
-        public Builder businesses(List<Business> businesses) {
-            Utils.checkNotNull(businesses, "businesses");
-            this.businesses = Optional.ofNullable(businesses);
-            return this;
-        }
-
-        /**
-         * TODO: usage comment. Chances are this will be a part of Identity struct.
-         */
-        public Builder businesses(Optional<? extends List<Business>> businesses) {
-            Utils.checkNotNull(businesses, "businesses");
-            this.businesses = businesses;
-            return this;
-        }
-
-
-        /**
-         * Client-generated identifier for a given customer. This is returned as passed into the request.
+         * The input ClientCustomerID.
          */
         public Builder clientCustomerId(String clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -657,7 +518,7 @@ public class V3VerifyResponse {
         }
 
         /**
-         * Client-generated identifier for a given customer. This is returned as passed into the request.
+         * The input ClientCustomerID.
          */
         public Builder clientCustomerId(Optional<String> clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -666,12 +527,18 @@ public class V3VerifyResponse {
         }
 
 
+        /**
+         * The input ClientHumanID.
+         */
         public Builder clientHumanId(String clientHumanId) {
             Utils.checkNotNull(clientHumanId, "clientHumanId");
             this.clientHumanId = Optional.ofNullable(clientHumanId);
             return this;
         }
 
+        /**
+         * The input ClientHumanID.
+         */
         public Builder clientHumanId(Optional<String> clientHumanId) {
             Utils.checkNotNull(clientHumanId, "clientHumanId");
             this.clientHumanId = clientHumanId;
@@ -680,11 +547,7 @@ public class V3VerifyResponse {
 
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-         * be accepted.
-         * 
-         * <p>Do not include Personally Identifiable Information (PII) in this field.
+         * The input ClientRequestID.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -693,11 +556,7 @@ public class V3VerifyResponse {
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-         * be accepted.
-         * 
-         * <p>Do not include Personally Identifiable Information (PII) in this field.
+         * The input ClientRequestID.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -707,9 +566,7 @@ public class V3VerifyResponse {
 
 
         /**
-         * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
-         * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
-         * flow.
+         * The unique ID that Prove generates for the flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");
@@ -750,25 +607,8 @@ public class V3VerifyResponse {
         }
 
 
-        public Builder linkedAccounts(List<LinkedAccount> linkedAccounts) {
-            Utils.checkNotNull(linkedAccounts, "linkedAccounts");
-            this.linkedAccounts = Optional.ofNullable(linkedAccounts);
-            return this;
-        }
-
-        public Builder linkedAccounts(Optional<? extends List<LinkedAccount>> linkedAccounts) {
-            Utils.checkNotNull(linkedAccounts, "linkedAccounts");
-            this.linkedAccounts = linkedAccounts;
-            return this;
-        }
-
-
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-         * International phone numbers require a leading `+1`.
-         * 
-         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-         * characters are: alphanumeric with symbols '+'.
+         * The input phone number.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -777,20 +617,8 @@ public class V3VerifyResponse {
         }
 
 
-        public Builder proveAccountId(String proveAccountId) {
-            Utils.checkNotNull(proveAccountId, "proveAccountId");
-            this.proveAccountId = Optional.ofNullable(proveAccountId);
-            return this;
-        }
-
-        public Builder proveAccountId(Optional<String> proveAccountId) {
-            Utils.checkNotNull(proveAccountId, "proveAccountId");
-            this.proveAccountId = proveAccountId;
-            return this;
-        }
-
-
         /**
+         * A Prove-generated identifier for the consumer.
          * (required IF verificationType=VerifiedUser)
          */
         public Builder proveId(String proveId) {
@@ -800,6 +628,7 @@ public class V3VerifyResponse {
         }
 
         /**
+         * A Prove-generated identifier for the consumer.
          * (required IF verificationType=VerifiedUser)
          */
         public Builder proveId(Optional<String> proveId) {
@@ -810,6 +639,7 @@ public class V3VerifyResponse {
 
 
         /**
+         * A persistent ID that uniquely identifies a telephone subscriber.
          * (required IF verificationType=VerifiedUser)
          */
         public Builder provePhoneAlias(String provePhoneAlias) {
@@ -819,6 +649,7 @@ public class V3VerifyResponse {
         }
 
         /**
+         * A persistent ID that uniquely identifies a telephone subscriber.
          * (required IF verificationType=VerifiedUser)
          */
         public Builder provePhoneAlias(Optional<String> provePhoneAlias) {
@@ -829,7 +660,7 @@ public class V3VerifyResponse {
 
 
         /**
-         * The result of verification
+         * The result of verification.
          */
         public Builder success(String success) {
             Utils.checkNotNull(success, "success");
@@ -840,10 +671,9 @@ public class V3VerifyResponse {
         public V3VerifyResponse build() {
 
             return new V3VerifyResponse(
-                additionalIdentities, businesses, clientCustomerId,
-                clientHumanId, clientRequestId, correlationId,
-                evaluation, identity, linkedAccounts,
-                phoneNumber, proveAccountId, proveId,
+                additionalIdentities, clientCustomerId, clientHumanId,
+                clientRequestId, correlationId, evaluation,
+                identity, phoneNumber, proveId,
                 provePhoneAlias, success);
         }
 

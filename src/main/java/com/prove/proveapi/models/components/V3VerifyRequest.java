@@ -24,11 +24,6 @@ public class V3VerifyRequest {
     @JsonProperty("addOnFeature")
     private Optional<? extends List<String>> addOnFeature;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("businessName")
-    private Optional<String> businessName;
-
     /**
      * A client-generated unique ID for a specific customer. This can be used by clients to link calls
      * related to the same customer, across different requests or sessions. The format of this ID is
@@ -64,13 +59,6 @@ public class V3VerifyRequest {
     private Optional<String> clientRequestId;
 
     /**
-     * TODO: comments and validation
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("dateOfBirth")
-    private Optional<String> dateOfBirth;
-
-    /**
      * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -85,7 +73,7 @@ public class V3VerifyRequest {
     private Optional<String> firstName;
 
     /**
-     * The IP address of the customer.
+     * The public IP address of the session of the individual. Acceptable characters
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ipAddress")
@@ -98,11 +86,6 @@ public class V3VerifyRequest {
     @JsonProperty("lastName")
     private Optional<String> lastName;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("nationalId")
-    private Optional<String> nationalId;
-
     /**
      * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
      * International phone numbers require a leading `+1`.
@@ -113,13 +96,8 @@ public class V3VerifyRequest {
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("proveId")
-    private Optional<String> proveId;
-
     /**
-     * The User agent of the customer.
+     * The User agent of the session of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("userAgent")
@@ -135,48 +113,36 @@ public class V3VerifyRequest {
     @JsonCreator
     public V3VerifyRequest(
             @JsonProperty("addOnFeature") Optional<? extends List<String>> addOnFeature,
-            @JsonProperty("businessName") Optional<String> businessName,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
-            @JsonProperty("dateOfBirth") Optional<String> dateOfBirth,
             @JsonProperty("emailAddress") Optional<String> emailAddress,
             @JsonProperty("firstName") Optional<String> firstName,
             @JsonProperty("ipAddress") Optional<String> ipAddress,
             @JsonProperty("lastName") Optional<String> lastName,
-            @JsonProperty("nationalId") Optional<String> nationalId,
             @JsonProperty("phoneNumber") String phoneNumber,
-            @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("userAgent") Optional<String> userAgent,
             @JsonProperty("verificationType") VerificationType verificationType) {
         Utils.checkNotNull(addOnFeature, "addOnFeature");
-        Utils.checkNotNull(businessName, "businessName");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
-        Utils.checkNotNull(dateOfBirth, "dateOfBirth");
         Utils.checkNotNull(emailAddress, "emailAddress");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(nationalId, "nationalId");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
-        Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(userAgent, "userAgent");
         Utils.checkNotNull(verificationType, "verificationType");
         this.addOnFeature = addOnFeature;
-        this.businessName = businessName;
         this.clientCustomerId = clientCustomerId;
         this.clientHumanId = clientHumanId;
         this.clientRequestId = clientRequestId;
-        this.dateOfBirth = dateOfBirth;
         this.emailAddress = emailAddress;
         this.firstName = firstName;
         this.ipAddress = ipAddress;
         this.lastName = lastName;
-        this.nationalId = nationalId;
         this.phoneNumber = phoneNumber;
-        this.proveId = proveId;
         this.userAgent = userAgent;
         this.verificationType = verificationType;
     }
@@ -186,9 +152,8 @@ public class V3VerifyRequest {
             VerificationType verificationType) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), phoneNumber,
-            Optional.empty(), Optional.empty(), verificationType);
+            Optional.empty(), verificationType);
     }
 
     /**
@@ -198,11 +163,6 @@ public class V3VerifyRequest {
     @JsonIgnore
     public Optional<List<String>> addOnFeature() {
         return (Optional<List<String>>) addOnFeature;
-    }
-
-    @JsonIgnore
-    public Optional<String> businessName() {
-        return businessName;
     }
 
     /**
@@ -243,14 +203,6 @@ public class V3VerifyRequest {
     }
 
     /**
-     * TODO: comments and validation
-     */
-    @JsonIgnore
-    public Optional<String> dateOfBirth() {
-        return dateOfBirth;
-    }
-
-    /**
      * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
     @JsonIgnore
@@ -267,7 +219,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The IP address of the customer.
+     * The public IP address of the session of the individual. Acceptable characters
      */
     @JsonIgnore
     public Optional<String> ipAddress() {
@@ -282,11 +234,6 @@ public class V3VerifyRequest {
         return lastName;
     }
 
-    @JsonIgnore
-    public Optional<String> nationalId() {
-        return nationalId;
-    }
-
     /**
      * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
      * International phone numbers require a leading `+1`.
@@ -299,13 +246,8 @@ public class V3VerifyRequest {
         return phoneNumber;
     }
 
-    @JsonIgnore
-    public Optional<String> proveId() {
-        return proveId;
-    }
-
     /**
-     * The User agent of the customer.
+     * The User agent of the session of the individual.
      */
     @JsonIgnore
     public Optional<String> userAgent() {
@@ -342,19 +284,6 @@ public class V3VerifyRequest {
     public V3VerifyRequest withAddOnFeature(Optional<? extends List<String>> addOnFeature) {
         Utils.checkNotNull(addOnFeature, "addOnFeature");
         this.addOnFeature = addOnFeature;
-        return this;
-    }
-
-    public V3VerifyRequest withBusinessName(String businessName) {
-        Utils.checkNotNull(businessName, "businessName");
-        this.businessName = Optional.ofNullable(businessName);
-        return this;
-    }
-
-
-    public V3VerifyRequest withBusinessName(Optional<String> businessName) {
-        Utils.checkNotNull(businessName, "businessName");
-        this.businessName = businessName;
         return this;
     }
 
@@ -442,25 +371,6 @@ public class V3VerifyRequest {
     }
 
     /**
-     * TODO: comments and validation
-     */
-    public V3VerifyRequest withDateOfBirth(String dateOfBirth) {
-        Utils.checkNotNull(dateOfBirth, "dateOfBirth");
-        this.dateOfBirth = Optional.ofNullable(dateOfBirth);
-        return this;
-    }
-
-
-    /**
-     * TODO: comments and validation
-     */
-    public V3VerifyRequest withDateOfBirth(Optional<String> dateOfBirth) {
-        Utils.checkNotNull(dateOfBirth, "dateOfBirth");
-        this.dateOfBirth = dateOfBirth;
-        return this;
-    }
-
-    /**
      * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
     public V3VerifyRequest withEmailAddress(String emailAddress) {
@@ -499,7 +409,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The IP address of the customer.
+     * The public IP address of the session of the individual. Acceptable characters
      */
     public V3VerifyRequest withIpAddress(String ipAddress) {
         Utils.checkNotNull(ipAddress, "ipAddress");
@@ -509,7 +419,7 @@ public class V3VerifyRequest {
 
 
     /**
-     * The IP address of the customer.
+     * The public IP address of the session of the individual. Acceptable characters
      */
     public V3VerifyRequest withIpAddress(Optional<String> ipAddress) {
         Utils.checkNotNull(ipAddress, "ipAddress");
@@ -536,19 +446,6 @@ public class V3VerifyRequest {
         return this;
     }
 
-    public V3VerifyRequest withNationalId(String nationalId) {
-        Utils.checkNotNull(nationalId, "nationalId");
-        this.nationalId = Optional.ofNullable(nationalId);
-        return this;
-    }
-
-
-    public V3VerifyRequest withNationalId(Optional<String> nationalId) {
-        Utils.checkNotNull(nationalId, "nationalId");
-        this.nationalId = nationalId;
-        return this;
-    }
-
     /**
      * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
      * International phone numbers require a leading `+1`.
@@ -562,21 +459,8 @@ public class V3VerifyRequest {
         return this;
     }
 
-    public V3VerifyRequest withProveId(String proveId) {
-        Utils.checkNotNull(proveId, "proveId");
-        this.proveId = Optional.ofNullable(proveId);
-        return this;
-    }
-
-
-    public V3VerifyRequest withProveId(Optional<String> proveId) {
-        Utils.checkNotNull(proveId, "proveId");
-        this.proveId = proveId;
-        return this;
-    }
-
     /**
-     * The User agent of the customer.
+     * The User agent of the session of the individual.
      */
     public V3VerifyRequest withUserAgent(String userAgent) {
         Utils.checkNotNull(userAgent, "userAgent");
@@ -586,7 +470,7 @@ public class V3VerifyRequest {
 
 
     /**
-     * The User agent of the customer.
+     * The User agent of the session of the individual.
      */
     public V3VerifyRequest withUserAgent(Optional<String> userAgent) {
         Utils.checkNotNull(userAgent, "userAgent");
@@ -615,18 +499,14 @@ public class V3VerifyRequest {
         V3VerifyRequest other = (V3VerifyRequest) o;
         return 
             Utils.enhancedDeepEquals(this.addOnFeature, other.addOnFeature) &&
-            Utils.enhancedDeepEquals(this.businessName, other.businessName) &&
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
-            Utils.enhancedDeepEquals(this.dateOfBirth, other.dateOfBirth) &&
             Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.ipAddress, other.ipAddress) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
-            Utils.enhancedDeepEquals(this.nationalId, other.nationalId) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
-            Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.userAgent, other.userAgent) &&
             Utils.enhancedDeepEquals(this.verificationType, other.verificationType);
     }
@@ -634,29 +514,24 @@ public class V3VerifyRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            addOnFeature, businessName, clientCustomerId,
-            clientHumanId, clientRequestId, dateOfBirth,
-            emailAddress, firstName, ipAddress,
-            lastName, nationalId, phoneNumber,
-            proveId, userAgent, verificationType);
+            addOnFeature, clientCustomerId, clientHumanId,
+            clientRequestId, emailAddress, firstName,
+            ipAddress, lastName, phoneNumber,
+            userAgent, verificationType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3VerifyRequest.class,
                 "addOnFeature", addOnFeature,
-                "businessName", businessName,
                 "clientCustomerId", clientCustomerId,
                 "clientHumanId", clientHumanId,
                 "clientRequestId", clientRequestId,
-                "dateOfBirth", dateOfBirth,
                 "emailAddress", emailAddress,
                 "firstName", firstName,
                 "ipAddress", ipAddress,
                 "lastName", lastName,
-                "nationalId", nationalId,
                 "phoneNumber", phoneNumber,
-                "proveId", proveId,
                 "userAgent", userAgent,
                 "verificationType", verificationType);
     }
@@ -666,15 +541,11 @@ public class V3VerifyRequest {
 
         private Optional<? extends List<String>> addOnFeature = Optional.empty();
 
-        private Optional<String> businessName = Optional.empty();
-
         private Optional<String> clientCustomerId = Optional.empty();
 
         private Optional<String> clientHumanId = Optional.empty();
 
         private Optional<String> clientRequestId = Optional.empty();
-
-        private Optional<String> dateOfBirth = Optional.empty();
 
         private Optional<String> emailAddress = Optional.empty();
 
@@ -684,11 +555,7 @@ public class V3VerifyRequest {
 
         private Optional<String> lastName = Optional.empty();
 
-        private Optional<String> nationalId = Optional.empty();
-
         private String phoneNumber;
-
-        private Optional<String> proveId = Optional.empty();
 
         private Optional<String> userAgent = Optional.empty();
 
@@ -714,19 +581,6 @@ public class V3VerifyRequest {
         public Builder addOnFeature(Optional<? extends List<String>> addOnFeature) {
             Utils.checkNotNull(addOnFeature, "addOnFeature");
             this.addOnFeature = addOnFeature;
-            return this;
-        }
-
-
-        public Builder businessName(String businessName) {
-            Utils.checkNotNull(businessName, "businessName");
-            this.businessName = Optional.ofNullable(businessName);
-            return this;
-        }
-
-        public Builder businessName(Optional<String> businessName) {
-            Utils.checkNotNull(businessName, "businessName");
-            this.businessName = businessName;
             return this;
         }
 
@@ -815,25 +669,6 @@ public class V3VerifyRequest {
 
 
         /**
-         * TODO: comments and validation
-         */
-        public Builder dateOfBirth(String dateOfBirth) {
-            Utils.checkNotNull(dateOfBirth, "dateOfBirth");
-            this.dateOfBirth = Optional.ofNullable(dateOfBirth);
-            return this;
-        }
-
-        /**
-         * TODO: comments and validation
-         */
-        public Builder dateOfBirth(Optional<String> dateOfBirth) {
-            Utils.checkNotNull(dateOfBirth, "dateOfBirth");
-            this.dateOfBirth = dateOfBirth;
-            return this;
-        }
-
-
-        /**
          * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
          */
         public Builder emailAddress(String emailAddress) {
@@ -872,7 +707,7 @@ public class V3VerifyRequest {
 
 
         /**
-         * The IP address of the customer.
+         * The public IP address of the session of the individual. Acceptable characters
          */
         public Builder ipAddress(String ipAddress) {
             Utils.checkNotNull(ipAddress, "ipAddress");
@@ -881,7 +716,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * The IP address of the customer.
+         * The public IP address of the session of the individual. Acceptable characters
          */
         public Builder ipAddress(Optional<String> ipAddress) {
             Utils.checkNotNull(ipAddress, "ipAddress");
@@ -909,19 +744,6 @@ public class V3VerifyRequest {
         }
 
 
-        public Builder nationalId(String nationalId) {
-            Utils.checkNotNull(nationalId, "nationalId");
-            this.nationalId = Optional.ofNullable(nationalId);
-            return this;
-        }
-
-        public Builder nationalId(Optional<String> nationalId) {
-            Utils.checkNotNull(nationalId, "nationalId");
-            this.nationalId = nationalId;
-            return this;
-        }
-
-
         /**
          * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
          * International phone numbers require a leading `+1`.
@@ -936,21 +758,8 @@ public class V3VerifyRequest {
         }
 
 
-        public Builder proveId(String proveId) {
-            Utils.checkNotNull(proveId, "proveId");
-            this.proveId = Optional.ofNullable(proveId);
-            return this;
-        }
-
-        public Builder proveId(Optional<String> proveId) {
-            Utils.checkNotNull(proveId, "proveId");
-            this.proveId = proveId;
-            return this;
-        }
-
-
         /**
-         * The User agent of the customer.
+         * The User agent of the session of the individual.
          */
         public Builder userAgent(String userAgent) {
             Utils.checkNotNull(userAgent, "userAgent");
@@ -959,7 +768,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * The User agent of the customer.
+         * The User agent of the session of the individual.
          */
         public Builder userAgent(Optional<String> userAgent) {
             Utils.checkNotNull(userAgent, "userAgent");
@@ -981,11 +790,10 @@ public class V3VerifyRequest {
         public V3VerifyRequest build() {
 
             return new V3VerifyRequest(
-                addOnFeature, businessName, clientCustomerId,
-                clientHumanId, clientRequestId, dateOfBirth,
-                emailAddress, firstName, ipAddress,
-                lastName, nationalId, phoneNumber,
-                proveId, userAgent, verificationType);
+                addOnFeature, clientCustomerId, clientHumanId,
+                clientRequestId, emailAddress, firstName,
+                ipAddress, lastName, phoneNumber,
+                userAgent, verificationType);
         }
 
     }
