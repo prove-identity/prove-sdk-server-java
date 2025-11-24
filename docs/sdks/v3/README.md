@@ -601,17 +601,13 @@ public class Application {
                 .verificationType(VerificationType.VERIFIED_USER)
                 .addOnFeature(List.of(
                     "ageEstimation"))
-                .businessName("businessName")
                 .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                 .clientHumanId("aad25769-23bb-458c-80db-50296a82c91b")
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
-                .dateOfBirth("dateOfBirth")
                 .emailAddress("ecoldman1h@storify.com")
                 .firstName("Elena")
                 .ipAddress("192.168.1.1")
                 .lastName("Coldman")
-                .nationalId("nationalId")
-                .proveId("proveId")
                 .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
                 .build();
 
@@ -685,7 +681,6 @@ public class Application {
                         .clientHumanId("clientHumanId")
                         .emailAddress("ecoldman1h@storify.com")
                         .ipAddress("192.168.1.1")
-                        .proveId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
                         .verificationType("verificationType")
                         .build(),
@@ -697,7 +692,6 @@ public class Application {
                         .clientHumanId("clientHumanId")
                         .emailAddress("ecoldman1h@storify.com")
                         .ipAddress("192.168.1.1")
-                        .proveId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
                         .verificationType("verificationType")
                         .build()))

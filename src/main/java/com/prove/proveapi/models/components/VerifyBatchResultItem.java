@@ -40,11 +40,14 @@ public class VerifyBatchResultItem {
     @JsonProperty("businesses")
     private Optional<? extends List<Business>> businesses;
 
-
+    /**
+     * The input ClientCustomerID.
+     */
     @JsonProperty("clientCustomerId")
     private String clientCustomerId;
 
     /**
+     * The input ClientHumanID.
      * (required IF verificationType=VerifiedUser)
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -76,11 +79,7 @@ public class VerifyBatchResultItem {
     private Optional<? extends List<LinkedAccount>> linkedAccounts;
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The input phone number.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
@@ -91,6 +90,7 @@ public class VerifyBatchResultItem {
     private Optional<String> proveAccountId;
 
     /**
+     * A Prove-generated identifier for the consumer.
      * (required IF verificationType=VerifiedUser)
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -98,6 +98,7 @@ public class VerifyBatchResultItem {
     private Optional<String> proveId;
 
     /**
+     * A persistent ID that uniquely identifies a telephone subscriber.
      * (required IF verificationType=VerifiedUser)
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -105,9 +106,7 @@ public class VerifyBatchResultItem {
     private Optional<String> provePhoneAlias;
 
     /**
-     * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`,
-     * `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession
-     * are returned or one of them fails, blocking the other.
+     * The result of verification.
      */
     @JsonProperty("success")
     private String success;
@@ -198,12 +197,16 @@ public class VerifyBatchResultItem {
         return (Optional<List<Business>>) businesses;
     }
 
+    /**
+     * The input ClientCustomerID.
+     */
     @JsonIgnore
     public String clientCustomerId() {
         return clientCustomerId;
     }
 
     /**
+     * The input ClientHumanID.
      * (required IF verificationType=VerifiedUser)
      */
     @JsonIgnore
@@ -241,11 +244,7 @@ public class VerifyBatchResultItem {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The input phone number.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -258,6 +257,7 @@ public class VerifyBatchResultItem {
     }
 
     /**
+     * A Prove-generated identifier for the consumer.
      * (required IF verificationType=VerifiedUser)
      */
     @JsonIgnore
@@ -266,6 +266,7 @@ public class VerifyBatchResultItem {
     }
 
     /**
+     * A persistent ID that uniquely identifies a telephone subscriber.
      * (required IF verificationType=VerifiedUser)
      */
     @JsonIgnore
@@ -274,9 +275,7 @@ public class VerifyBatchResultItem {
     }
 
     /**
-     * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`,
-     * `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession
-     * are returned or one of them fails, blocking the other.
+     * The result of verification.
      */
     @JsonIgnore
     public String success() {
@@ -337,6 +336,9 @@ public class VerifyBatchResultItem {
         return this;
     }
 
+    /**
+     * The input ClientCustomerID.
+     */
     public VerifyBatchResultItem withClientCustomerId(String clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         this.clientCustomerId = clientCustomerId;
@@ -344,6 +346,7 @@ public class VerifyBatchResultItem {
     }
 
     /**
+     * The input ClientHumanID.
      * (required IF verificationType=VerifiedUser)
      */
     public VerifyBatchResultItem withClientHumanId(String clientHumanId) {
@@ -354,6 +357,7 @@ public class VerifyBatchResultItem {
 
 
     /**
+     * The input ClientHumanID.
      * (required IF verificationType=VerifiedUser)
      */
     public VerifyBatchResultItem withClientHumanId(Optional<String> clientHumanId) {
@@ -427,11 +431,7 @@ public class VerifyBatchResultItem {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The input phone number.
      */
     public VerifyBatchResultItem withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -453,6 +453,7 @@ public class VerifyBatchResultItem {
     }
 
     /**
+     * A Prove-generated identifier for the consumer.
      * (required IF verificationType=VerifiedUser)
      */
     public VerifyBatchResultItem withProveId(String proveId) {
@@ -463,6 +464,7 @@ public class VerifyBatchResultItem {
 
 
     /**
+     * A Prove-generated identifier for the consumer.
      * (required IF verificationType=VerifiedUser)
      */
     public VerifyBatchResultItem withProveId(Optional<String> proveId) {
@@ -472,6 +474,7 @@ public class VerifyBatchResultItem {
     }
 
     /**
+     * A persistent ID that uniquely identifies a telephone subscriber.
      * (required IF verificationType=VerifiedUser)
      */
     public VerifyBatchResultItem withProvePhoneAlias(String provePhoneAlias) {
@@ -482,6 +485,7 @@ public class VerifyBatchResultItem {
 
 
     /**
+     * A persistent ID that uniquely identifies a telephone subscriber.
      * (required IF verificationType=VerifiedUser)
      */
     public VerifyBatchResultItem withProvePhoneAlias(Optional<String> provePhoneAlias) {
@@ -491,9 +495,7 @@ public class VerifyBatchResultItem {
     }
 
     /**
-     * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`,
-     * `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession
-     * are returned or one of them fails, blocking the other.
+     * The result of verification.
      */
     public VerifyBatchResultItem withSuccess(String success) {
         Utils.checkNotNull(success, "success");
@@ -642,6 +644,9 @@ public class VerifyBatchResultItem {
         }
 
 
+        /**
+         * The input ClientCustomerID.
+         */
         public Builder clientCustomerId(String clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
             this.clientCustomerId = clientCustomerId;
@@ -650,6 +655,7 @@ public class VerifyBatchResultItem {
 
 
         /**
+         * The input ClientHumanID.
          * (required IF verificationType=VerifiedUser)
          */
         public Builder clientHumanId(String clientHumanId) {
@@ -659,6 +665,7 @@ public class VerifyBatchResultItem {
         }
 
         /**
+         * The input ClientHumanID.
          * (required IF verificationType=VerifiedUser)
          */
         public Builder clientHumanId(Optional<String> clientHumanId) {
@@ -733,11 +740,7 @@ public class VerifyBatchResultItem {
 
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-         * International phone numbers require a leading `+1`.
-         * 
-         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-         * characters are: alphanumeric with symbols '+'.
+         * The input phone number.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -760,6 +763,7 @@ public class VerifyBatchResultItem {
 
 
         /**
+         * A Prove-generated identifier for the consumer.
          * (required IF verificationType=VerifiedUser)
          */
         public Builder proveId(String proveId) {
@@ -769,6 +773,7 @@ public class VerifyBatchResultItem {
         }
 
         /**
+         * A Prove-generated identifier for the consumer.
          * (required IF verificationType=VerifiedUser)
          */
         public Builder proveId(Optional<String> proveId) {
@@ -779,6 +784,7 @@ public class VerifyBatchResultItem {
 
 
         /**
+         * A persistent ID that uniquely identifies a telephone subscriber.
          * (required IF verificationType=VerifiedUser)
          */
         public Builder provePhoneAlias(String provePhoneAlias) {
@@ -788,6 +794,7 @@ public class VerifyBatchResultItem {
         }
 
         /**
+         * A persistent ID that uniquely identifies a telephone subscriber.
          * (required IF verificationType=VerifiedUser)
          */
         public Builder provePhoneAlias(Optional<String> provePhoneAlias) {
@@ -798,9 +805,7 @@ public class VerifyBatchResultItem {
 
 
         /**
-         * The result of the combination of `verifyResult` and `possessionResult`. Possible values are `true`,
-         * `pending`, and `false`. The value will be `pending` until the results of both Verify and Possession
-         * are returned or one of them fails, blocking the other.
+         * The result of verification.
          */
         public Builder success(String success) {
             Utils.checkNotNull(success, "success");

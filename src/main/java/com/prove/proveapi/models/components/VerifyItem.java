@@ -74,11 +74,6 @@ public class VerifyItem {
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("proveId")
-    private Optional<String> proveId;
-
     /**
      * The User agent of the customer.
      */
@@ -102,7 +97,6 @@ public class VerifyItem {
             @JsonProperty("ipAddress") Optional<String> ipAddress,
             @JsonProperty("lastName") String lastName,
             @JsonProperty("phoneNumber") String phoneNumber,
-            @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("userAgent") Optional<String> userAgent,
             @JsonProperty("verificationType") Optional<String> verificationType) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -112,7 +106,6 @@ public class VerifyItem {
         Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
-        Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(userAgent, "userAgent");
         Utils.checkNotNull(verificationType, "verificationType");
         this.clientCustomerId = clientCustomerId;
@@ -122,7 +115,6 @@ public class VerifyItem {
         this.ipAddress = ipAddress;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.proveId = proveId;
         this.userAgent = userAgent;
         this.verificationType = verificationType;
     }
@@ -133,8 +125,7 @@ public class VerifyItem {
             String phoneNumber) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             firstName, Optional.empty(), lastName,
-            phoneNumber, Optional.empty(), Optional.empty(),
-            Optional.empty());
+            phoneNumber, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -204,11 +195,6 @@ public class VerifyItem {
     @JsonIgnore
     public String phoneNumber() {
         return phoneNumber;
-    }
-
-    @JsonIgnore
-    public Optional<String> proveId() {
-        return proveId;
     }
 
     /**
@@ -357,19 +343,6 @@ public class VerifyItem {
         return this;
     }
 
-    public VerifyItem withProveId(String proveId) {
-        Utils.checkNotNull(proveId, "proveId");
-        this.proveId = Optional.ofNullable(proveId);
-        return this;
-    }
-
-
-    public VerifyItem withProveId(Optional<String> proveId) {
-        Utils.checkNotNull(proveId, "proveId");
-        this.proveId = proveId;
-        return this;
-    }
-
     /**
      * The User agent of the customer.
      */
@@ -425,7 +398,6 @@ public class VerifyItem {
             Utils.enhancedDeepEquals(this.ipAddress, other.ipAddress) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
-            Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.userAgent, other.userAgent) &&
             Utils.enhancedDeepEquals(this.verificationType, other.verificationType);
     }
@@ -435,8 +407,7 @@ public class VerifyItem {
         return Utils.enhancedHash(
             clientCustomerId, clientHumanId, emailAddress,
             firstName, ipAddress, lastName,
-            phoneNumber, proveId, userAgent,
-            verificationType);
+            phoneNumber, userAgent, verificationType);
     }
     
     @Override
@@ -449,7 +420,6 @@ public class VerifyItem {
                 "ipAddress", ipAddress,
                 "lastName", lastName,
                 "phoneNumber", phoneNumber,
-                "proveId", proveId,
                 "userAgent", userAgent,
                 "verificationType", verificationType);
     }
@@ -470,8 +440,6 @@ public class VerifyItem {
         private String lastName;
 
         private String phoneNumber;
-
-        private Optional<String> proveId = Optional.empty();
 
         private Optional<String> userAgent = Optional.empty();
 
@@ -610,19 +578,6 @@ public class VerifyItem {
         }
 
 
-        public Builder proveId(String proveId) {
-            Utils.checkNotNull(proveId, "proveId");
-            this.proveId = Optional.ofNullable(proveId);
-            return this;
-        }
-
-        public Builder proveId(Optional<String> proveId) {
-            Utils.checkNotNull(proveId, "proveId");
-            this.proveId = proveId;
-            return this;
-        }
-
-
         /**
          * The User agent of the customer.
          */
@@ -665,8 +620,7 @@ public class VerifyItem {
             return new VerifyItem(
                 clientCustomerId, clientHumanId, emailAddress,
                 firstName, ipAddress, lastName,
-                phoneNumber, proveId, userAgent,
-                verificationType);
+                phoneNumber, userAgent, verificationType);
         }
 
     }
