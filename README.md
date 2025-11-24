@@ -39,7 +39,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.19.0'
+implementation 'com.prove:proveapi:0.20.0'
 ```
 
 Maven:
@@ -47,7 +47,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.19.0</version>
+    <version>0.20.0</version>
 </dependency>
 ```
 
@@ -162,6 +162,12 @@ public class Application {
 <details open>
 <summary>Available methods</summary>
 
+### [auth()](docs/sdks/auth/README.md)
+
+* [authContinueRequest](docs/sdks/auth/README.md#authcontinuerequest) - AuthContinue /v1/server/auth/continue
+* [authFinishRequest](docs/sdks/auth/README.md#authfinishrequest) - AuthFinish /v1/server/auth/finish
+* [authStartRequest](docs/sdks/auth/README.md#authstartrequest) - AuthStart /v1/server/auth/start
+
 ### [domain()](docs/sdks/domain/README.md)
 
 * [v3DomainConfirmLinkRequest](docs/sdks/domain/README.md#v3domainconfirmlinkrequest) - Confirm a domain link request
@@ -224,7 +230,11 @@ import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3TokenRequestResponse;
+import java.io.UncheckedIOException;
 import java.lang.Exception;
+import java.lang.Long;
+import java.lang.String;
+import java.util.Optional;
 
 public class Application {
 
@@ -232,30 +242,63 @@ public class Application {
 
         Proveapi sdk = Proveapi.builder()
             .build();
+        try {
 
-        V3TokenRequest req = V3TokenRequest.builder()
-                .clientId("customer_id")
-                .clientSecret("secret")
-                .grantType("client_credentials")
-                .build();
+            V3TokenRequest req = V3TokenRequest.builder()
+                    .clientId("customer_id")
+                    .clientSecret("secret")
+                    .grantType("client_credentials")
+                    .build();
 
-        V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
-                .request(req)
-                .call();
+            V3TokenRequestResponse res = sdk.v3().v3TokenRequest()
+                    .request(req)
+                    .call();
 
-        if (res.v3TokenResponse().isPresent()) {
-            // handle response
-        }
-    }
+            if (res.v3TokenResponse().isPresent()) {
+                // handle response
+            }
+        } catch (ProveapiError ex) { // all SDK exceptions inherit from ProveapiError
+
+            // ex.ToString() provides a detailed error message including
+            // HTTP status code, headers, and error payload (if any)
+            System.out.println(ex);
+
+            // Base exception fields
+            var rawResponse = ex.rawResponse();
+            var headers = ex.headers();
+            var contentType = headers.first("Content-Type");
+            int statusCode = ex.code();
+            Optional<byte[]> responseBody = ex.body();
+
+            // different error subclasses may be thrown 
+            // depending on the service call
+            if (ex instanceof Error400) {
+                var e = (Error400) ex;
+                // Check error data fields
+                e.data().ifPresent(payload -> {
+                      Optional<Long> code = payload.code();
+                      String message = payload.message();
+                });
+            }
+
+            // An underlying cause may be provided. If the error payload 
+            // cannot be deserialized then the deserialization exception 
+            // will be set as the cause.
+            if (ex.getCause() != null) {
+                var cause = ex.getCause();
+            }
+        } catch (UncheckedIOException ex) {
+            // handle IO error (connection, timeout, etc)
+        }    }
 }
 ```
 
 ### Error Classes
 **Primary errors:**
 * [`ProveapiError`](./src/main/java/models/errors/ProveapiError.java): The base class for HTTP error responses.
-  * [`com.prove.proveapi.models.errors.Error400`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error400.java): Bad Request. The server cannot process the request due to a client error. Status code `400`.
-  * [`com.prove.proveapi.models.errors.Error401`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error401.java): Unauthorized. Authentication is required and has failed or has not been provided. Status code `401`.
+  * [`com.prove.proveapi.models.errors.Error400`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error400.java): Error400 is a custom error for HTTP 400. This is used to support distinguishing between HTTP 400 and 500 in Speakeasy SDKs. Status code `400`.
   * [`com.prove.proveapi.models.errors.Error`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error.java): Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request. Status code `500`.
+  * [`com.prove.proveapi.models.errors.Error401`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error401.java): Unauthorized. Authentication is required and has failed or has not been provided. Status code `401`. *
   * [`com.prove.proveapi.models.errors.Error403`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error403.java): Forbidden. The server understood the request but refuses to authorize it. Status code `403`. *
 
 <details><summary>Less common errors (6)</summary>
@@ -306,7 +349,7 @@ public class Application {
     public static void main(String[] args) throws Error400, Error401, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
-                .server(Proveapi.AvailableServers.PROD_EU)
+                .server(Proveapi.AvailableServers.UAT_US)
             .build();
 
         V3TokenRequest req = V3TokenRequest.builder()
@@ -623,9 +666,11 @@ public class Application {
 ## Debugging
 
 ### Debug
+
 You can setup your SDK to emit debug logs for SDK requests and responses.
 
 For request and response logging (especially json bodies), call `enableHTTPDebugLogging(boolean)` on the SDK builder like so:
+
 ```java
 SDK.builder()
     .enableHTTPDebugLogging(true)
@@ -643,9 +688,10 @@ Response body:
   "token": "global"
 }
 ```
-__WARNING__: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+__WARNING__: This logging should only be used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
 
 __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging()`. The `SpeakeasyHTTPClient` honors this setting. If you are using a custom HTTP client, it is up to the custom client to honor this setting.
+
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->

@@ -1,23 +1,23 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: ecbb4f82e4361094b30a789f4f318192
+  docChecksum: 7c1eca2ca609cf1799cb8b2103bfce90
   docVersion: 1.0.0
-  speakeasyVersion: 1.638.0
-  generationVersion: 2.728.0
-  releaseVersion: 0.19.0
-  configChecksum: 9dbbca7d7fd4ddabc1bb1c8573100d4c
+  speakeasyVersion: 1.660.0
+  generationVersion: 2.760.2
+  releaseVersion: 0.20.0
+  configChecksum: 26b728199af458c102bab32a913249d7
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.53.0
+    core: 3.55.3
     examples: 2.81.6
     flattening: 2.81.1
     globalSecurity: 2.83.1
     globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.82.2
+    globalServerURLs: 2.83.0
     oauth2ClientCredentials: 1.1.0
     sdkHooks: 1.1.0
     serverIDs: 2.81.1
@@ -25,27 +25,104 @@ generatedFiles:
   - .gitattributes
   - USAGE.md
   - build.gradle
-  - docs/models/components/AdditionalIdentity.md
+  - docs/models/components/Address.md
   - docs/models/components/AmlTypeListResponseInternal.md
+  - docs/models/components/AuthContinueRequest.md
+  - docs/models/components/AuthContinueRequestSubjectMobile.md
+  - docs/models/components/AuthContinueRequestSubjectMobileClaim.md
+  - docs/models/components/AuthContinueRequestSubjects.md
+  - docs/models/components/AuthContinueResponse.md
+  - docs/models/components/AuthContinueResponseError.md
+  - docs/models/components/AuthContinueResponseSubjectCardResult.md
+  - docs/models/components/AuthContinueResponseSubjectMobileResult.md
+  - docs/models/components/AuthContinueResponseSubjectsResults.md
+  - docs/models/components/AuthFinishRequest.md
+  - docs/models/components/AuthFinishResponse.md
+  - docs/models/components/AuthFinishResponseCardError.md
+  - docs/models/components/AuthFinishResponseDelivery.md
+  - docs/models/components/AuthFinishResponseError.md
+  - docs/models/components/AuthFinishResponsePushDelivery.md
+  - docs/models/components/AuthFinishResponsePushDeliveryExtras.md
+  - docs/models/components/AuthFinishResponseRawSignals.md
+  - docs/models/components/AuthFinishResponseScanDelivery.md
+  - docs/models/components/AuthFinishResponseScanDeliveryExtras.md
+  - docs/models/components/AuthFinishResponseSubjectCardResultSuccess.md
+  - docs/models/components/AuthFinishResponseSubjectCardResultSuccessClaim.md
+  - docs/models/components/AuthFinishResponseSubjectCardsResult.md
+  - docs/models/components/AuthFinishResponseSubjectDeviceResult.md
+  - docs/models/components/AuthFinishResponseSubjectDeviceResultSuccess.md
+  - docs/models/components/AuthFinishResponseSubjectDeviceResultSuccessClaim.md
+  - docs/models/components/AuthFinishResponseSubjectDeviceResultSuccessExtras.md
+  - docs/models/components/AuthFinishResponseSubjectMobileResult.md
+  - docs/models/components/AuthFinishResponseSubjectMobileResultSuccess.md
+  - docs/models/components/AuthFinishResponseSubjectMobileResultSuccessClaim.md
+  - docs/models/components/AuthFinishResponseSubjectMobileResultSuccessExtras.md
+  - docs/models/components/AuthFinishResponseSubjectUserResult.md
+  - docs/models/components/AuthFinishResponseSubjectUserResultSuccess.md
+  - docs/models/components/AuthFinishResponseSubjectUserResultSuccessClaim.md
+  - docs/models/components/AuthFinishResponseSubjects.md
+  - docs/models/components/AuthFinishResponseUserExtras.md
+  - docs/models/components/AuthStartRequest.md
+  - docs/models/components/AuthStartRequestDelivery.md
+  - docs/models/components/AuthStartRequestDeliveryPush.md
+  - docs/models/components/AuthStartRequestDeliveryPushNotification.md
+  - docs/models/components/AuthStartRequestDeliveryScan.md
+  - docs/models/components/AuthStartRequestDeliveryScanNotification.md
+  - docs/models/components/AuthStartRequestInstantAuthConsent.md
+  - docs/models/components/AuthStartRequestSubjectCard.md
+  - docs/models/components/AuthStartRequestSubjectCardAuthenticatorAirKey.md
+  - docs/models/components/AuthStartRequestSubjectCardAuthenticatorAirKeyClaim.md
+  - docs/models/components/AuthStartRequestSubjectCardAuthenticators.md
+  - docs/models/components/AuthStartRequestSubjectDevice.md
+  - docs/models/components/AuthStartRequestSubjectDeviceAuthenticatorPassive.md
+  - docs/models/components/AuthStartRequestSubjectDeviceAuthenticators.md
+  - docs/models/components/AuthStartRequestSubjectDeviceClaim.md
+  - docs/models/components/AuthStartRequestSubjectMobile.md
+  - docs/models/components/AuthStartRequestSubjectMobileAuthenticatorInstant.md
+  - docs/models/components/AuthStartRequestSubjectMobileAuthenticatorInstantLink.md
+  - docs/models/components/AuthStartRequestSubjectMobileAuthenticatorOTP.md
+  - docs/models/components/AuthStartRequestSubjectMobileAuthenticatorPassive.md
+  - docs/models/components/AuthStartRequestSubjectMobileAuthenticatorUniversal.md
+  - docs/models/components/AuthStartRequestSubjectMobileAuthenticators.md
+  - docs/models/components/AuthStartRequestSubjectMobileClaim.md
+  - docs/models/components/AuthStartRequestSubjectUser.md
+  - docs/models/components/AuthStartRequestSubjectUserAuthenticatorPassive.md
+  - docs/models/components/AuthStartRequestSubjectUserAuthenticators.md
+  - docs/models/components/AuthStartRequestSubjectUserClaim.md
+  - docs/models/components/AuthStartRequestSubjects.md
+  - docs/models/components/AuthStartResponse.md
+  - docs/models/components/Business.md
+  - docs/models/components/BusinessAddress.md
   - docs/models/components/DataSourceAddressResponseInternal.md
   - docs/models/components/DataSourceEmailAddressResponseInternal.md
   - docs/models/components/DataSourceIdentifiersResponseInternal.md
   - docs/models/components/DataSourceInternal.md
   - docs/models/components/DataSourceNameResponseInternal.md
+  - docs/models/components/Docv.md
   - docs/models/components/Evaluation.md
+  - docs/models/components/Fingerprint.md
   - docs/models/components/GetBatchIdentityItem.md
   - docs/models/components/IDVDataInternal.md
   - docs/models/components/Identity.md
   - docs/models/components/IdentityItem.md
   - docs/models/components/KYCFieldTypeResponseInternal.md
   - docs/models/components/KYCInternal.md
+  - docs/models/components/LinkedAccount.md
   - docs/models/components/LinkedFrom.md
   - docs/models/components/LinkedTo.md
   - docs/models/components/LookupIdentityItem.md
   - docs/models/components/PostBatchResultItem.md
+  - docs/models/components/Ppb.md
+  - docs/models/components/Present.md
+  - docs/models/components/PushToken.md
+  - docs/models/components/RegistrationFiling.md
+  - docs/models/components/RelatedPerson.md
   - docs/models/components/RequestsFrom.md
   - docs/models/components/RequestsTo.md
   - docs/models/components/Security.md
+  - docs/models/components/SubScores.md
+  - docs/models/components/SubjectDeviceResultSuccessExtrasTrust.md
+  - docs/models/components/UserTrustScore.md
   - docs/models/components/V3ActivateIdentityRequest.md
   - docs/models/components/V3ActivateIdentityResponse.md
   - docs/models/components/V3BatchEnrollIdentitiesRequest.md
@@ -97,6 +174,7 @@ generatedFiles:
   - docs/models/components/V3VerifyRequest.md
   - docs/models/components/V3VerifyResponse.md
   - docs/models/components/V3VerifyResponseEvaluation.md
+  - docs/models/components/VerificationType.md
   - docs/models/components/VerifyBatchResultItem.md
   - docs/models/components/VerifyBatchResultItemEvaluation.md
   - docs/models/components/VerifyItem.md
@@ -104,6 +182,9 @@ generatedFiles:
   - docs/models/errors/Error400.md
   - docs/models/errors/Error401.md
   - docs/models/errors/Error403.md
+  - docs/models/operations/AuthContinueRequestResponse.md
+  - docs/models/operations/AuthFinishRequestResponse.md
+  - docs/models/operations/AuthStartRequestResponse.md
   - docs/models/operations/V3ActivateIdentityRequest.md
   - docs/models/operations/V3ActivateIdentityResponse.md
   - docs/models/operations/V3BatchEnrollIdentitiesResponse.md
@@ -135,6 +216,7 @@ generatedFiles:
   - docs/models/operations/V3ValidateRequestResponse.md
   - docs/models/operations/V3VerifyBatchRequestResponse.md
   - docs/models/operations/V3VerifyRequestResponse.md
+  - docs/sdks/auth/README.md
   - docs/sdks/domain/README.md
   - docs/sdks/identity/README.md
   - docs/sdks/v3/README.md
@@ -153,10 +235,12 @@ generatedFiles:
   - spring/proveapi-spring-boot-autoconfigure/src/main/java/com/prove/proveapi/ProveapiAutoConfigProperties.java
   - spring/proveapi-spring-boot-autoconfigure/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
   - spring/proveapi-spring-boot-starter/build.gradle
+  - src/main/java/com/prove/proveapi/AsyncAuth.java
   - src/main/java/com/prove/proveapi/AsyncDomain.java
   - src/main/java/com/prove/proveapi/AsyncIdentity.java
   - src/main/java/com/prove/proveapi/AsyncProveapi.java
   - src/main/java/com/prove/proveapi/AsyncV3.java
+  - src/main/java/com/prove/proveapi/Auth.java
   - src/main/java/com/prove/proveapi/Domain.java
   - src/main/java/com/prove/proveapi/Identity.java
   - src/main/java/com/prove/proveapi/Proveapi.java
@@ -164,27 +248,104 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/SecuritySource.java
   - src/main/java/com/prove/proveapi/V3.java
   - src/main/java/com/prove/proveapi/hooks/ClientCredentialsHook.java
-  - src/main/java/com/prove/proveapi/models/components/AdditionalIdentity.java
+  - src/main/java/com/prove/proveapi/models/components/Address.java
   - src/main/java/com/prove/proveapi/models/components/AmlTypeListResponseInternal.java
+  - src/main/java/com/prove/proveapi/models/components/AuthContinueRequest.java
+  - src/main/java/com/prove/proveapi/models/components/AuthContinueRequestSubjectMobile.java
+  - src/main/java/com/prove/proveapi/models/components/AuthContinueRequestSubjectMobileClaim.java
+  - src/main/java/com/prove/proveapi/models/components/AuthContinueRequestSubjects.java
+  - src/main/java/com/prove/proveapi/models/components/AuthContinueResponse.java
+  - src/main/java/com/prove/proveapi/models/components/AuthContinueResponseError.java
+  - src/main/java/com/prove/proveapi/models/components/AuthContinueResponseSubjectCardResult.java
+  - src/main/java/com/prove/proveapi/models/components/AuthContinueResponseSubjectMobileResult.java
+  - src/main/java/com/prove/proveapi/models/components/AuthContinueResponseSubjectsResults.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishRequest.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponse.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseCardError.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseDelivery.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseError.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponsePushDelivery.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponsePushDeliveryExtras.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseRawSignals.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseScanDelivery.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseScanDeliveryExtras.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectCardResultSuccess.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectCardResultSuccessClaim.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectCardsResult.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectDeviceResult.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectDeviceResultSuccess.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectDeviceResultSuccessClaim.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectDeviceResultSuccessExtras.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectMobileResult.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectMobileResultSuccess.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectMobileResultSuccessClaim.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectMobileResultSuccessExtras.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectUserResult.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectUserResultSuccess.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectUserResultSuccessClaim.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjects.java
+  - src/main/java/com/prove/proveapi/models/components/AuthFinishResponseUserExtras.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequest.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestDelivery.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestDeliveryPush.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestDeliveryPushNotification.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestDeliveryScan.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestDeliveryScanNotification.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestInstantAuthConsent.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectCard.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectCardAuthenticatorAirKey.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectCardAuthenticatorAirKeyClaim.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectCardAuthenticators.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectDevice.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectDeviceAuthenticatorPassive.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectDeviceAuthenticators.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectDeviceClaim.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobile.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticatorInstant.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticatorInstantLink.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticatorOTP.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticatorPassive.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticatorUniversal.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticators.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileClaim.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectUser.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectUserAuthenticatorPassive.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectUserAuthenticators.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectUserClaim.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjects.java
+  - src/main/java/com/prove/proveapi/models/components/AuthStartResponse.java
+  - src/main/java/com/prove/proveapi/models/components/Business.java
+  - src/main/java/com/prove/proveapi/models/components/BusinessAddress.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceAddressResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceEmailAddressResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceIdentifiersResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceInternal.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceNameResponseInternal.java
+  - src/main/java/com/prove/proveapi/models/components/Docv.java
   - src/main/java/com/prove/proveapi/models/components/Evaluation.java
+  - src/main/java/com/prove/proveapi/models/components/Fingerprint.java
   - src/main/java/com/prove/proveapi/models/components/GetBatchIdentityItem.java
   - src/main/java/com/prove/proveapi/models/components/IDVDataInternal.java
   - src/main/java/com/prove/proveapi/models/components/Identity.java
   - src/main/java/com/prove/proveapi/models/components/IdentityItem.java
   - src/main/java/com/prove/proveapi/models/components/KYCFieldTypeResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/KYCInternal.java
+  - src/main/java/com/prove/proveapi/models/components/LinkedAccount.java
   - src/main/java/com/prove/proveapi/models/components/LinkedFrom.java
   - src/main/java/com/prove/proveapi/models/components/LinkedTo.java
   - src/main/java/com/prove/proveapi/models/components/LookupIdentityItem.java
   - src/main/java/com/prove/proveapi/models/components/PostBatchResultItem.java
+  - src/main/java/com/prove/proveapi/models/components/Ppb.java
+  - src/main/java/com/prove/proveapi/models/components/Present.java
+  - src/main/java/com/prove/proveapi/models/components/PushToken.java
+  - src/main/java/com/prove/proveapi/models/components/RegistrationFiling.java
+  - src/main/java/com/prove/proveapi/models/components/RelatedPerson.java
   - src/main/java/com/prove/proveapi/models/components/RequestsFrom.java
   - src/main/java/com/prove/proveapi/models/components/RequestsTo.java
   - src/main/java/com/prove/proveapi/models/components/Security.java
+  - src/main/java/com/prove/proveapi/models/components/SubScores.java
+  - src/main/java/com/prove/proveapi/models/components/SubjectDeviceResultSuccessExtrasTrust.java
+  - src/main/java/com/prove/proveapi/models/components/UserTrustScore.java
   - src/main/java/com/prove/proveapi/models/components/V3ActivateIdentityRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3ActivateIdentityResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3BatchEnrollIdentitiesRequest.java
@@ -236,6 +397,7 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/V3VerifyRequest.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyResponseEvaluation.java
+  - src/main/java/com/prove/proveapi/models/components/VerificationType.java
   - src/main/java/com/prove/proveapi/models/components/VerifyBatchResultItem.java
   - src/main/java/com/prove/proveapi/models/components/VerifyBatchResultItemEvaluation.java
   - src/main/java/com/prove/proveapi/models/components/VerifyItem.java
@@ -247,6 +409,9 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/errors/Error403.java
   - src/main/java/com/prove/proveapi/models/errors/ProveapiError.java
   - src/main/java/com/prove/proveapi/models/errors/SDKError.java
+  - src/main/java/com/prove/proveapi/models/operations//async/AuthContinueRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations//async/AuthFinishRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations//async/AuthStartRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations//async/V3ActivateIdentityRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations//async/V3BatchEnrollIdentitiesRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations//async/V3BatchGetIdentitiesRequestBuilder.java
@@ -271,6 +436,12 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/operations//async/V3ValidateRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations//async/V3VerifyBatchRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations//async/V3VerifyRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/AuthContinueRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/AuthContinueRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/AuthFinishRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/AuthFinishRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/AuthStartRequestRequestBuilder.java
+  - src/main/java/com/prove/proveapi/models/operations/AuthStartRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3ActivateIdentityRequest.java
   - src/main/java/com/prove/proveapi/models/operations/V3ActivateIdentityRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3ActivateIdentityResponse.java
@@ -326,6 +497,9 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/operations/V3VerifyBatchRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/V3VerifyRequestRequestBuilder.java
   - src/main/java/com/prove/proveapi/models/operations/V3VerifyRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/async/AuthContinueRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/async/AuthFinishRequestResponse.java
+  - src/main/java/com/prove/proveapi/models/operations/async/AuthStartRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/async/V3ActivateIdentityResponse.java
   - src/main/java/com/prove/proveapi/models/operations/async/V3BatchEnrollIdentitiesResponse.java
   - src/main/java/com/prove/proveapi/models/operations/async/V3BatchGetIdentitiesResponse.java
@@ -350,6 +524,9 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/operations/async/V3ValidateRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/async/V3VerifyBatchRequestResponse.java
   - src/main/java/com/prove/proveapi/models/operations/async/V3VerifyRequestResponse.java
+  - src/main/java/com/prove/proveapi/operations/AuthContinueRequest.java
+  - src/main/java/com/prove/proveapi/operations/AuthFinishRequest.java
+  - src/main/java/com/prove/proveapi/operations/AuthStartRequest.java
   - src/main/java/com/prove/proveapi/operations/Operations.java
   - src/main/java/com/prove/proveapi/operations/V3ActivateIdentity.java
   - src/main/java/com/prove/proveapi/operations/V3BatchEnrollIdentities.java
@@ -392,6 +569,7 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/utils/EventStreamMessage.java
   - src/main/java/com/prove/proveapi/utils/Exceptions.java
   - src/main/java/com/prove/proveapi/utils/FormMetadata.java
+  - src/main/java/com/prove/proveapi/utils/GenericTypeIdResolver.java
   - src/main/java/com/prove/proveapi/utils/Globals.java
   - src/main/java/com/prove/proveapi/utils/HTTPClient.java
   - src/main/java/com/prove/proveapi/utils/HTTPRequest.java
@@ -430,10 +608,12 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/utils/SerializedBody.java
   - src/main/java/com/prove/proveapi/utils/SessionManager.java
   - src/main/java/com/prove/proveapi/utils/SpeakeasyHTTPClient.java
+  - src/main/java/com/prove/proveapi/utils/SpeakeasyLogger.java
   - src/main/java/com/prove/proveapi/utils/SpeakeasyMetadata.java
   - src/main/java/com/prove/proveapi/utils/StreamingParser.java
   - src/main/java/com/prove/proveapi/utils/TypedObject.java
   - src/main/java/com/prove/proveapi/utils/Types.java
+  - src/main/java/com/prove/proveapi/utils/UnknownType.java
   - src/main/java/com/prove/proveapi/utils/Utf8UrlEncoder.java
   - src/main/java/com/prove/proveapi/utils/Utils.java
   - src/main/java/com/prove/proveapi/utils/reactive/EventStream.java
@@ -447,11 +627,11 @@ examples:
         "200":
           application/json: {"access_token": "eyJ...", "expires_in": 3600, "refresh_expires_in": 3600, "refresh_token": "eyJ...", "token_type": "Bearer"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3ChallengeRequest:
     speakeasy-default-v3-challenge-request:
       requestBody:
@@ -530,13 +710,13 @@ examples:
         "200":
           application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "next": {"v3-validate": "/v3/validate"}}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3UnifyRequest:
     speakeasy-default-v3-unify-request:
       requestBody:
@@ -545,13 +725,13 @@ examples:
         "200":
           application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "success": "pending"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3UnifyBindRequest:
     speakeasy-default-v3-unify-bind-request:
       requestBody:
@@ -560,13 +740,13 @@ examples:
         "200":
           application/json: {"clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "evaluation": {"key": {}}, "phoneNumber": "2001004011", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "success": "true"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3UnifyStatusRequest:
     speakeasy-default-v3-unify-status-request:
       requestBody:
@@ -575,13 +755,13 @@ examples:
         "200":
           application/json: {"clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "evaluation": {"key": {}}, "phoneNumber": "2001004011", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "success": "true"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3ValidateRequest:
     speakeasy-default-v3-validate-request:
       requestBody:
@@ -612,18 +792,18 @@ examples:
   V3VerifyRequest:
     speakeasy-default-v3-verify-request:
       requestBody:
-        application/json: {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "aad25769-23bb-458c-80db-50296a82c91b", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "emailAddress": "sbutrimovichb@who.int", "firstName": "Sheilakathryn", "ipAddress": "192.168.1.1", "lastName": "Butrimovich", "phoneNumber": "2001004011", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verificationType"}
+        application/json: {"addOnFeature": ["ageEstimation"], "businessName": "businessName", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "aad25769-23bb-458c-80db-50296a82c91b", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "dateOfBirth": "dateOfBirth", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "ipAddress": "192.168.1.1", "lastName": "Coldman", "nationalId": "nationalId", "phoneNumber": "2001004053", "proveId": "proveId", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verifiedUser"}
       responses:
         "200":
-          application/json: {"additionalIdentities": [{"assuranceLevel": "AL-1", "firstName": "Sheilakathryn", "lastName": "Butrimovich", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "firstName": "Sheilakathryn", "lastName": "Butrimovich", "reasons": ["[AL-1a] (Poor quality identity)"]}], "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "evaluation": {"key": {}}, "identity": {"assuranceLevel": "AL-1", "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "firstName": "Sheilakathryn", "lastName": "Butrimovich", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4c01021a-7d72-4286-a8f8-d32d5b0cc342", "reasons": ["[AL-1a] (Poor quality identity)"]}, "phoneNumber": "2001004011", "success": "pending"}
+          application/json: {"additionalIdentities": [{"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL-1", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "dateOfBirth": "dateOfBirth", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "nationalId": "nationalId", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL-1", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "dateOfBirth": "dateOfBirth", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "nationalId": "nationalId", "reasons": ["[AL-1a] (Poor quality identity)"]}], "businesses": [{"businessAddress": {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, "businessName": "businessName", "registrationFiling": {"date": "2000-01-23T04:56:07Z", "region": "region", "registrationType": "registrationType"}, "relatedPersons": [{"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}, {"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}], "taxId": "taxId", "tradeName": "tradeName"}, {"businessAddress": {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, "businessName": "businessName", "registrationFiling": {"date": "2000-01-23T04:56:07Z", "region": "region", "registrationType": "registrationType"}, "relatedPersons": [{"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}, {"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}], "taxId": "taxId", "tradeName": "tradeName"}], "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "evaluation": {"authentication": {}, "identification": {}, "success": {}}, "identity": {"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL2", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "dateOfBirth": "dateOfBirth", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "nationalId": "nationalId", "reasons": ["[AL2a]"]}, "linkedAccounts": [{"customerName": "customerName", "proveAccountId": "proveAccountId", "proveId": "proveId"}, {"customerName": "customerName", "proveAccountId": "proveAccountId", "proveId": "proveId"}], "phoneNumber": "2001004053", "proveAccountId": "9e319768-19c3-4a15-9b8e-708a085933c1", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "true"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3VerifyStatusRequest:
     speakeasy-default-v3-verify-status-request:
       requestBody:
@@ -645,13 +825,13 @@ examples:
         "200":
           application/json: {"lastKey": "fNqtI2wVPka+yAFC5qRtrQ==", "results": [{"identityId": "4a6317c1-4855-4900-b369-bed138f4ec00"}, {"identityId": "e53c0597-1cce-4d8f-bd1b-e0a10f875ac9"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3EnrollIdentity:
     speakeasy-default-v3-enroll-identity:
       requestBody:
@@ -660,13 +840,13 @@ examples:
         "200":
           application/json: {"identityId": "863189q5-5555-4c15-89ba-15d08710aecz", "success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3BatchEnrollIdentities:
     speakeasy-default-v3-batch-enroll-identities:
       requestBody:
@@ -675,13 +855,13 @@ examples:
         "200":
           application/json: {"results": [{"identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc"}, {"error": "Invalid Phone Number"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DisenrollIdentity:
     speakeasy-default-v3-disenroll-identity:
       parameters:
@@ -691,13 +871,13 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3GetIdentity:
     speakeasy-default-v3-get-identity:
       parameters:
@@ -707,13 +887,13 @@ examples:
         "200":
           application/json: {"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3ActivateIdentity:
     speakeasy-default-v3-activate-identity:
       parameters:
@@ -725,13 +905,13 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DeactivateIdentity:
     speakeasy-default-v3-deactivate-identity:
       parameters:
@@ -743,13 +923,13 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3GetIdentitiesByPhoneNumber:
     speakeasy-default-v3-get-identities-by-phone-number:
       parameters:
@@ -759,13 +939,13 @@ examples:
         "200":
           application/json: {"items": [{"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}, {"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DomainID:
     speakeasy-default-v3-domain-ID:
       responses:
@@ -830,26 +1010,26 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DomainIDRequest:
     speakeasy-default-v3-domain-ID-request:
       responses:
         "200":
           application/json: {"name": "My Company", "pcid": "123456"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DomainLinkRequest:
     speakeasy-default-v3-domain-link-request:
       requestBody:
@@ -858,26 +1038,26 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DomainLinkedRequest:
     speakeasy-default-v3-domain-linked-request:
       responses:
         "200":
           application/json: {"linkedFrom": [{"acceptedAt": 0, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}, {"acceptedAt": 0, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}], "linkedTo": [{"acceptedAt": 6, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}, {"acceptedAt": 6, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}], "requestsFrom": [{"name": "name", "pcid": "pcid", "requestedAt": 1, "requestedString": "requestedString"}, {"name": "name", "pcid": "pcid", "requestedAt": 1, "requestedString": "requestedString"}], "requestsTo": [{"name": "name", "pcid": "pcid", "requestedAt": 5, "requestedString": "requestedString"}, {"name": "name", "pcid": "pcid", "requestedAt": 5, "requestedString": "requestedString"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DomainUnlinkRequest:
     speakeasy-default-v3-domain-unlink-request:
       requestBody:
@@ -886,13 +1066,13 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3CrossDomainIdentity:
     speakeasy-default-v3-cross-domain-identity:
       parameters:
@@ -902,30 +1082,63 @@ examples:
         application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81"}
       responses:
         "200":
-          application/json: {"count": 5, "identites": [{"clientName": "Client A", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "pcid": "12345"}]}
+          application/json: {"count": 5, "identities": [{"clientName": "Client A", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "pcid": "12345"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3VerifyBatchRequest:
     speakeasy-default-v3-verify-batch-request:
       requestBody:
-        application/json: {"clientRequestId": "clientRequestId", "items": [{"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "clientHumanId", "emailAddress": "sbutrimovichb@who.int", "firstName": "Sheilakathryn", "ipAddress": "192.168.1.1", "lastName": "Butrimovich", "phoneNumber": "2001004011", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verificationType"}, {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "clientHumanId", "emailAddress": "sbutrimovichb@who.int", "firstName": "Sheilakathryn", "ipAddress": "192.168.1.1", "lastName": "Butrimovich", "phoneNumber": "2001004011", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verificationType"}]}
+        application/json: {"clientRequestId": "clientRequestId", "items": [{"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "clientHumanId", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "ipAddress": "192.168.1.1", "lastName": "Coldman", "phoneNumber": "2001004053", "proveId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verificationType"}, {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "clientHumanId", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "ipAddress": "192.168.1.1", "lastName": "Coldman", "phoneNumber": "2001004053", "proveId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verificationType"}]}
       responses:
         "200":
-          application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "results": [{"additionalIdentities": [{"assuranceLevel": "AL-1", "firstName": "Sheilakathryn", "lastName": "Butrimovich", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "firstName": "Sheilakathryn", "lastName": "Butrimovich", "reasons": ["[AL-1a] (Poor quality identity)"]}], "error": "error", "evaluation": {"key": {}}, "identity": {"assuranceLevel": "AL-1", "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "firstName": "Sheilakathryn", "lastName": "Butrimovich", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4c01021a-7d72-4286-a8f8-d32d5b0cc342", "reasons": ["[AL-1a] (Poor quality identity)"]}, "phoneNumber": "2001004011", "success": "pending"}, {"additionalIdentities": [{"assuranceLevel": "AL-1", "firstName": "Sheilakathryn", "lastName": "Butrimovich", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "firstName": "Sheilakathryn", "lastName": "Butrimovich", "reasons": ["[AL-1a] (Poor quality identity)"]}], "error": "error", "evaluation": {"key": {}}, "identity": {"assuranceLevel": "AL-1", "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "firstName": "Sheilakathryn", "lastName": "Butrimovich", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4c01021a-7d72-4286-a8f8-d32d5b0cc342", "reasons": ["[AL-1a] (Poor quality identity)"]}, "phoneNumber": "2001004011", "success": "pending"}]}
+          application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "results": [{"additionalIdentities": [{"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL-1", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "dateOfBirth": "dateOfBirth", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "nationalId": "nationalId", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL-1", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "dateOfBirth": "dateOfBirth", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "nationalId": "nationalId", "reasons": ["[AL-1a] (Poor quality identity)"]}], "assuranceLevel": "AL-1", "businesses": [{"businessAddress": {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, "businessName": "businessName", "registrationFiling": {"date": "2000-01-23T04:56:07Z", "region": "region", "registrationType": "registrationType"}, "relatedPersons": [{"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}, {"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}], "taxId": "taxId", "tradeName": "tradeName"}, {"businessAddress": {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, "businessName": "businessName", "registrationFiling": {"date": "2000-01-23T04:56:07Z", "region": "region", "registrationType": "registrationType"}, "relatedPersons": [{"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}, {"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}], "taxId": "taxId", "tradeName": "tradeName"}], "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "error": "", "evaluation": {"authentication": {}, "identification": {}, "success": {}}, "identity": {"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL2", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "dateOfBirth": "dateOfBirth", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "nationalId": "nationalId", "reasons": ["[AL1a]"]}, "linkedAccounts": [{"customerName": "customerName", "proveAccountId": "proveAccountId", "proveId": "proveId"}, {"customerName": "customerName", "proveAccountId": "proveAccountId", "proveId": "proveId"}], "phoneNumber": "2001004053", "proveAccountId": "9e319768-19c3-4a15-9b8e-708a085933c1", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "true"}, {"additionalIdentities": [{"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL-1", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "dateOfBirth": "dateOfBirth", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "nationalId": "nationalId", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL-1", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "dateOfBirth": "dateOfBirth", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "nationalId": "nationalId", "reasons": ["[AL-1a] (Poor quality identity)"]}], "assuranceLevel": "AL-1", "businesses": [{"businessAddress": {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, "businessName": "businessName", "registrationFiling": {"date": "2000-01-23T04:56:07Z", "region": "region", "registrationType": "registrationType"}, "relatedPersons": [{"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}, {"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}], "taxId": "taxId", "tradeName": "tradeName"}, {"businessAddress": {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, "businessName": "businessName", "registrationFiling": {"date": "2000-01-23T04:56:07Z", "region": "region", "registrationType": "registrationType"}, "relatedPersons": [{"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}, {"firstName": "firstName", "lastName": "lastName", "middleName": "middleName", "title": "title"}], "taxId": "taxId", "tradeName": "tradeName"}], "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "error": "", "evaluation": {"authentication": {}, "risk": {}, "success": {}}, "identity": {"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL0", "clientHumanId": "21858b01-4cb9-4b14-a2d4-11e241e757dc", "dateOfBirth": "dateOfBirth", "emails": ["emails", "emails"], "firstName": "Alf", "lastName": "Novotni", "maxAge": 25, "minAge": 18, "nationalId": "nationalId", "reasons": ["[AL0b]"]}, "linkedAccounts": [{"customerName": "customerName", "proveAccountId": "proveAccountId", "proveId": "proveId"}, {"customerName": "customerName", "proveAccountId": "proveAccountId", "proveId": "proveId"}], "phoneNumber": "2001004054", "proveAccountId": "9e319768-19c3-4a15-9b8e-708a085933c1", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "false"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
+  AuthContinueRequest:
+    speakeasy-default-auth-continue-request:
+      requestBody:
+        application/json: {"authId": "713189b8-5555-4b08-83ba-75d08780aebd", "requestId": "eba12f3a-5555-47bc-b85d-21c0cbc4b973", "subjects": {"mobile": {"claim": {"mobileNumber": "12065550100"}}}}
+      responses:
+        "200":
+          application/json: {"subjects": {"card": {"error": {"code": 10004, "message": "device authentication missing"}, "success": true}, "mobile": {"error": {"code": 10004, "message": "device authentication missing"}, "success": true}}}
+        "400":
+          application/json: {"code": 1001, "message": "invalid request"}
+        "500":
+          application/json: {"code": 1000, "message": "error occurred"}
+  AuthFinishRequest:
+    speakeasy-default-auth-finish-request:
+      requestBody:
+        application/json: {"authId": "eba12f3a-5555-47bc-b85d-21c0cbc4b973"}
+      responses:
+        "200":
+          application/json: {"appNamespace": "prod", "authId": "713189b8-5555-4b08-83ba-75d08780aebd", "delivery": {"push": {"extras": {"distanceFromOriginatingIp": 0, "originatingIpGeolocation": "originatingIpGeolocation"}, "response": "response"}, "scan": {"extras": {"originatingIpGeolocation": "originatingIpGeolocation"}, "response": "response"}}, "subjects": {"card": {"error": {"code": 10004, "message": "device authentication missing", "puid": "puid"}, "success": {"authenticatorType": "authenticatorType", "claim": {"puid": "puid"}, "createdAt": 1666394795}}, "device": {"error": {"code": 10004, "message": "device authentication missing"}, "success": {"claim": {"deviceId": "eba12f3a-5555-47bc-b85d-21c0cbc4b973"}, "createdAt": 1666394795, "extras": {"deviceCapabilities": ["deviceCapabilities", "deviceCapabilities"], "deviceType": "deviceType", "keyType": "keyType", "rawSignals": {"fingerprint": {"key": {}}}, "supportedUvLevel": [6, 6], "trust": {"reasonCodes": [1, 1]}}, "uvLevel": 5}}, "mobile": {"error": {"code": 10004, "message": "device authentication missing"}, "success": {"authenticatorType": "instant", "claim": {"mobileNumber": "12065550100"}, "createdAt": 1666394795, "extras": {"ipMatch": "failure", "linkClicked": true, "mobileCountryCode": "310", "mobileOperatorName": "Verizon", "payfoneAlias": "37C2666C4VKR...", "phoneMatch": "success"}}}, "user": {"error": {"code": 10004, "message": "device authentication missing"}, "success": {"authenticatorType": "authenticatorType", "claim": {"userId": "userId"}, "createdAt": 1666394795, "extras": {"trust": {"fused": 5.637376656633329, "reasons": 2, "subScores": {"bluetoothConnected": 7.061401241503109, "bluetoothPaired": 9.301444243932576, "bluetoothScanned": 3.616076749251911, "distance": 2.027123023002322, "inclusion": 4.145608029883936, "wifiConnected": 7.386281948385884, "wifiScanned": 1.2315135367772556}}}}}}}
+        "400":
+          application/json: {"code": 1001, "message": "invalid request"}
+        "500":
+          application/json: {"code": 1000, "message": "error occurred"}
+  AuthStartRequest:
+    speakeasy-default-auth-start-request:
+      requestBody:
+        application/json: {"callbackUrl": "https://example.com/webhook", "delivery": {"push": {"notification": {"body": "Do you want to allow login from this device?", "confirmBtn": "Confirm", "denyBtn": "Deny", "originatingDevice": "iPhone12", "originatingIp": "198.51.100.10", "title": "Confirm Login"}}, "scan": {"notification": {"body": "Please confirm you are trying to sign in...", "confirmBtn": "Confirm", "denyBtn": "Deny", "originatingDevice": "Google Chrome on Windows", "originatingIp": "198.51.100.10", "title": "Confirm Sign In"}}}, "requestId": "eba12f3a-5555-47bc-b85d-21c0cbc4b973", "subjects": {"card": {"authenticators": {"airKey": {"claim": {"puids": ["puids", "puids"]}, "testMode": "testMode"}}}, "device": {"authenticators": {"passive": {"allowPasscodeFallback": true, "userVerificationLevel": "userVerificationLevel"}}, "claim": {"deviceId": "deviceId"}}, "mobile": {"authenticators": {"instant": {"consent": {"collectedTimestamp": "2022-02-17T00:00:00Z", "description": "Customer Application Name", "status": "optedIn", "transactionId": "eba12f3a-5555-47bc-b85d-21c0cbc4b973"}, "testMode": "testMode"}, "instantlink": {"allowMobileNumberRePrompt": true, "finalTargetUrl": "https://example.com/finishpage", "messageText": "Please click the link to authenticate your mobile number: ####", "sourceIp": "123...", "subscriptionCustomerId": "123", "testMode": "testMode"}, "otp": {"allowMobileNumberRePrompt": true, "allowOtpRetry": true, "messageText": "Your pin is: ####", "testMode": "testMode"}, "passive": {"cacheResult": true, "localDomain": true, "maxAge": 7776000, "testMode": "testMode"}, "universal": {"finalTargetUrl": "https://example.com/finishpage", "testMode": "testMode"}}, "claim": {"mobileNumber": "12065550100"}}, "user": {"authenticators": {"docv": {}, "passive": {"userVerificationLevel": "userVerificationLevel"}, "ppb": {}, "present": {}}, "claim": {"provided": true, "userId": "eba12f3a-5555-47bc-b85d-21c0cbc4b973"}}}}
+      responses:
+        "200":
+          application/json: {"authId": "713189b8-5555-4b08-83ba-75d08780aebd", "authToken": "eyJhbGciOi...", "pushTokens": [{"deviceId": "eba12f3a-5555-47bc-b85d-21c0cbc4b973", "platform": "web", "pushToken": "eba12f3a-5555-47bc-b85d-21c0cbc4b973", "registrationTimestamp": 1666394795}, {"deviceId": "eba12f3a-5555-47bc-b85d-21c0cbc4b973", "platform": "web", "pushToken": "eba12f3a-5555-47bc-b85d-21c0cbc4b973", "registrationTimestamp": 1666394795}], "universalRedirectUrl": "prove.com?token=<authToken>"}
+        "400":
+          application/json: {"code": 1001, "message": "invalid request"}
+        "500":
+          application/json: {"code": 1000, "message": "error occurred"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `proveapi.v3.v3UnifyRequest()`:  `request` **Changed** **Breaking** :warning:\n* `proveapi.v3.v3VerifyRequest()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `proveapi.v3.v3VerifyBatchRequest()`: **Added**\n* `proveapi.v3.v3VerifyStatusRequest()`: **Deleted** **Breaking** :warning:\n* `proveapi.v3.v3UnifyBindRequest()`:  `response` **Changed**\n* `proveapi.v3.v3UnifyStatusRequest()`:  `response` **Changed**\n"
+releaseNotes: "## Java SDK Changes Detected:\n* `proveapi.v3.v3VerifyRequest()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `proveapi.v3.v3VerifyBatchRequest()`: \n  *  `request.items.[].proveId` **Added**\n  *  `response.results.[]` **Changed** **Breaking** :warning:\n* `proveapi.identity.v3CrossDomainIdentity()`:  `response` **Changed** **Breaking** :warning:\n* `proveapi.auth.authContinueRequest()`: **Added**\n* `proveapi.auth.authFinishRequest()`: **Added**\n* `proveapi.auth.authStartRequest()`: **Added**\n"

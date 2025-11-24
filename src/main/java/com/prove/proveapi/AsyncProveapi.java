@@ -15,12 +15,18 @@ public class AsyncProveapi {
 
     private final AsyncV3 v3;
 
+    private final AsyncAuth auth;
+
     private final AsyncDomain domain;
 
     private final AsyncIdentity identity;
 
     public AsyncV3 v3() {
         return v3;
+    }
+
+    public AsyncAuth auth() {
+        return auth;
     }
 
     public AsyncDomain domain() {
@@ -38,6 +44,7 @@ public class AsyncProveapi {
         this.syncSDK = syncSDK;
         this.sdkConfiguration = sdkConfiguration;
         this.v3 = new AsyncV3(syncSDK.v3(), sdkConfiguration);
+        this.auth = new AsyncAuth(syncSDK.auth(), sdkConfiguration);
         this.domain = new AsyncDomain(syncSDK.domain(), sdkConfiguration);
         this.identity = new AsyncIdentity(syncSDK.identity(), sdkConfiguration);
     }
