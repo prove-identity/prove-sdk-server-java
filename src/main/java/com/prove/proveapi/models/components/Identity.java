@@ -25,14 +25,14 @@ public class Identity {
     private String assuranceLevel;
 
     /**
-     * The input first name.
+     * The first name of the identity.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("firstName")
     private Optional<String> firstName;
 
     /**
-     * The input last name.
+     * The last name of the identity.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastName")
@@ -78,7 +78,7 @@ public class Identity {
     }
 
     /**
-     * The input first name.
+     * The first name of the identity.
      */
     @JsonIgnore
     public Optional<String> firstName() {
@@ -86,7 +86,7 @@ public class Identity {
     }
 
     /**
-     * The input last name.
+     * The last name of the identity.
      */
     @JsonIgnore
     public Optional<String> lastName() {
@@ -118,7 +118,7 @@ public class Identity {
     }
 
     /**
-     * The input first name.
+     * The first name of the identity.
      */
     public Identity withFirstName(String firstName) {
         Utils.checkNotNull(firstName, "firstName");
@@ -128,7 +128,7 @@ public class Identity {
 
 
     /**
-     * The input first name.
+     * The first name of the identity.
      */
     public Identity withFirstName(Optional<String> firstName) {
         Utils.checkNotNull(firstName, "firstName");
@@ -137,7 +137,7 @@ public class Identity {
     }
 
     /**
-     * The input last name.
+     * The last name of the identity.
      */
     public Identity withLastName(String lastName) {
         Utils.checkNotNull(lastName, "lastName");
@@ -147,7 +147,7 @@ public class Identity {
 
 
     /**
-     * The input last name.
+     * The last name of the identity.
      */
     public Identity withLastName(Optional<String> lastName) {
         Utils.checkNotNull(lastName, "lastName");
@@ -225,7 +225,7 @@ public class Identity {
 
 
         /**
-         * The input first name.
+         * The first name of the identity.
          */
         public Builder firstName(String firstName) {
             Utils.checkNotNull(firstName, "firstName");
@@ -234,7 +234,7 @@ public class Identity {
         }
 
         /**
-         * The input first name.
+         * The first name of the identity.
          */
         public Builder firstName(Optional<String> firstName) {
             Utils.checkNotNull(firstName, "firstName");
@@ -244,7 +244,7 @@ public class Identity {
 
 
         /**
-         * The input last name.
+         * The last name of the identity.
          */
         public Builder lastName(String lastName) {
             Utils.checkNotNull(lastName, "lastName");
@@ -253,7 +253,7 @@ public class Identity {
         }
 
         /**
-         * The input last name.
+         * The last name of the identity.
          */
         public Builder lastName(Optional<String> lastName) {
             Utils.checkNotNull(lastName, "lastName");

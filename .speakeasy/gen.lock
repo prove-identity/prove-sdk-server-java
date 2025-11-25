@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: 53231dde27e6d3d3b522f44e6e446a0e
+  docChecksum: f00d26adbae9db156ed666d96e873ade
   docVersion: 1.0.0
   speakeasyVersion: 1.661.1
   generationVersion: 2.763.2
-  releaseVersion: 0.20.2
-  configChecksum: 67c82000d9fd2c8a3a0e9431e4480015
+  releaseVersion: 0.20.3
+  configChecksum: 7280778321bd6f2d9ca6cef4a33a26d7
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
@@ -1129,4 +1129,3 @@ examples:
           application/json: {"code": 1000, "message": "error occurred"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `proveapi.v3.v3VerifyRequest()`: \n  *  `request.addOnFeature` **Removed** **Breaking** :warning:\n  *  `response.additionalidentities.[]` **Changed** **Breaking** :warning:\n* `proveapi.v3.v3VerifyBatchRequest()`: \n  *  `request.items.[]` **Changed** **Breaking** :warning:\n  *  `response.results.[]` **Changed** **Breaking** :warning:\n"
