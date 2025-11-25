@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: 545951852b7c8e35798896cb77cabb7b
+  docChecksum: 53231dde27e6d3d3b522f44e6e446a0e
   docVersion: 1.0.0
-  speakeasyVersion: 1.660.0
-  generationVersion: 2.760.2
-  releaseVersion: 0.20.1
-  configChecksum: febb6df7531b95abcb8cc13346103810
+  speakeasyVersion: 1.661.1
+  generationVersion: 2.763.2
+  releaseVersion: 0.20.2
+  configChecksum: 67c82000d9fd2c8a3a0e9431e4480015
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.55.3
+    core: 3.55.5
     examples: 2.81.6
     flattening: 2.81.1
     globalSecurity: 2.83.1
@@ -25,7 +25,6 @@ generatedFiles:
   - .gitattributes
   - USAGE.md
   - build.gradle
-  - docs/models/components/Address.md
   - docs/models/components/AmlTypeListResponseInternal.md
   - docs/models/components/AuthContinueRequest.md
   - docs/models/components/AuthContinueRequestSubjectMobile.md
@@ -91,8 +90,6 @@ generatedFiles:
   - docs/models/components/AuthStartRequestSubjectUserClaim.md
   - docs/models/components/AuthStartRequestSubjects.md
   - docs/models/components/AuthStartResponse.md
-  - docs/models/components/Business.md
-  - docs/models/components/BusinessAddress.md
   - docs/models/components/DataSourceAddressResponseInternal.md
   - docs/models/components/DataSourceEmailAddressResponseInternal.md
   - docs/models/components/DataSourceIdentifiersResponseInternal.md
@@ -107,7 +104,6 @@ generatedFiles:
   - docs/models/components/IdentityItem.md
   - docs/models/components/KYCFieldTypeResponseInternal.md
   - docs/models/components/KYCInternal.md
-  - docs/models/components/LinkedAccount.md
   - docs/models/components/LinkedFrom.md
   - docs/models/components/LinkedTo.md
   - docs/models/components/LookupIdentityItem.md
@@ -115,8 +111,6 @@ generatedFiles:
   - docs/models/components/Ppb.md
   - docs/models/components/Present.md
   - docs/models/components/PushToken.md
-  - docs/models/components/RegistrationFiling.md
-  - docs/models/components/RelatedPerson.md
   - docs/models/components/RequestsFrom.md
   - docs/models/components/RequestsTo.md
   - docs/models/components/Security.md
@@ -175,9 +169,9 @@ generatedFiles:
   - docs/models/components/V3VerifyResponse.md
   - docs/models/components/V3VerifyResponseEvaluation.md
   - docs/models/components/VerificationType.md
+  - docs/models/components/VerifyBatchRequestItem.md
   - docs/models/components/VerifyBatchResultItem.md
   - docs/models/components/VerifyBatchResultItemEvaluation.md
-  - docs/models/components/VerifyItem.md
   - docs/models/errors/Error.md
   - docs/models/errors/Error400.md
   - docs/models/errors/Error401.md
@@ -248,7 +242,6 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/SecuritySource.java
   - src/main/java/com/prove/proveapi/V3.java
   - src/main/java/com/prove/proveapi/hooks/ClientCredentialsHook.java
-  - src/main/java/com/prove/proveapi/models/components/Address.java
   - src/main/java/com/prove/proveapi/models/components/AmlTypeListResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/AuthContinueRequest.java
   - src/main/java/com/prove/proveapi/models/components/AuthContinueRequestSubjectMobile.java
@@ -314,8 +307,6 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectUserClaim.java
   - src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjects.java
   - src/main/java/com/prove/proveapi/models/components/AuthStartResponse.java
-  - src/main/java/com/prove/proveapi/models/components/Business.java
-  - src/main/java/com/prove/proveapi/models/components/BusinessAddress.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceAddressResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceEmailAddressResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/DataSourceIdentifiersResponseInternal.java
@@ -330,7 +321,6 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/IdentityItem.java
   - src/main/java/com/prove/proveapi/models/components/KYCFieldTypeResponseInternal.java
   - src/main/java/com/prove/proveapi/models/components/KYCInternal.java
-  - src/main/java/com/prove/proveapi/models/components/LinkedAccount.java
   - src/main/java/com/prove/proveapi/models/components/LinkedFrom.java
   - src/main/java/com/prove/proveapi/models/components/LinkedTo.java
   - src/main/java/com/prove/proveapi/models/components/LookupIdentityItem.java
@@ -338,8 +328,6 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/Ppb.java
   - src/main/java/com/prove/proveapi/models/components/Present.java
   - src/main/java/com/prove/proveapi/models/components/PushToken.java
-  - src/main/java/com/prove/proveapi/models/components/RegistrationFiling.java
-  - src/main/java/com/prove/proveapi/models/components/RelatedPerson.java
   - src/main/java/com/prove/proveapi/models/components/RequestsFrom.java
   - src/main/java/com/prove/proveapi/models/components/RequestsTo.java
   - src/main/java/com/prove/proveapi/models/components/Security.java
@@ -398,9 +386,9 @@ generatedFiles:
   - src/main/java/com/prove/proveapi/models/components/V3VerifyResponse.java
   - src/main/java/com/prove/proveapi/models/components/V3VerifyResponseEvaluation.java
   - src/main/java/com/prove/proveapi/models/components/VerificationType.java
+  - src/main/java/com/prove/proveapi/models/components/VerifyBatchRequestItem.java
   - src/main/java/com/prove/proveapi/models/components/VerifyBatchResultItem.java
   - src/main/java/com/prove/proveapi/models/components/VerifyBatchResultItemEvaluation.java
-  - src/main/java/com/prove/proveapi/models/components/VerifyItem.java
   - src/main/java/com/prove/proveapi/models/errors/AsyncSDKError.java
   - src/main/java/com/prove/proveapi/models/errors/AuthException.java
   - src/main/java/com/prove/proveapi/models/errors/Error.java
@@ -792,10 +780,10 @@ examples:
   V3VerifyRequest:
     speakeasy-default-v3-verify-request:
       requestBody:
-        application/json: {"addOnFeature": ["ageEstimation"], "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "aad25769-23bb-458c-80db-50296a82c91b", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "ipAddress": "192.168.1.1", "lastName": "Coldman", "phoneNumber": "2001004053", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verifiedUser"}
+        application/json: {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "aad25769-23bb-458c-80db-50296a82c91b", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "ipAddress": "192.168.1.1", "lastName": "Coldman", "phoneNumber": "2001004053", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verifiedUser"}
       responses:
         "200":
-          application/json: {"additionalIdentities": [{"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL-1", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "reasons": ["[AL-1a] (Poor quality identity)"]}, {"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL-1", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "reasons": ["[AL-1a] (Poor quality identity)"]}], "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "evaluation": {"authentication": {}, "identification": {}, "success": {}}, "identity": {"addresses": [{"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}, {"address": "address", "city": "city", "extendedAddress": "extendedAddress", "region": "region", "zipCode": "zipCode"}], "assuranceLevel": "AL2", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "reasons": ["[AL2a]"]}, "phoneNumber": "2001004053", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "true"}
+          application/json: {"additionalIdentities": [{"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}], "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "evaluation": {"authentication": {}, "identification": {}}, "identity": {"assuranceLevel": "AL2", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL2a]"]}, "phoneNumber": "2001004053", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "true"}
         "400":
           application/json: {"code": 1001, "message": "invalid request"}
         "401":
@@ -1094,10 +1082,10 @@ examples:
   V3VerifyBatchRequest:
     speakeasy-default-v3-verify-batch-request:
       requestBody:
-        application/json: {"clientRequestId": "clientRequestId", "items": [{"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "clientHumanId", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "ipAddress": "192.168.1.1", "lastName": "Coldman", "phoneNumber": "2001004053", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verificationType"}, {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "clientHumanId", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "ipAddress": "192.168.1.1", "lastName": "Coldman", "phoneNumber": "2001004053", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verificationType"}]}
+        application/json: {"clientRequestId": "3d1215f7-ec3f-4fd2-9894-7b46f00e31a6", "items": [{"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "clientHumanId", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "ipAddress": "192.168.1.1", "lastName": "Coldman", "phoneNumber": "2001004053", "proveId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verifiedUser"}, {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "clientHumanId", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "ipAddress": "192.168.1.1", "lastName": "Coldman", "phoneNumber": "2001004053", "proveId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verifiedUser"}]}
       responses:
         "200":
-          application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "results": [{"additionalIdentities": [{"assuranceLevel": "AL-1", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "reasons": ["[AL-1a] (Poor quality identity)"]}], "assuranceLevel": "AL-1", "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "error": "", "evaluation": {"authentication": {}, "identification": {}, "success": {}}, "identity": {"assuranceLevel": "AL2", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "reasons": ["[AL1a]"]}, "phoneNumber": "2001004053", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "true"}, {"additionalIdentities": [{"assuranceLevel": "AL-1", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "emails": ["emails", "emails"], "firstName": "Elena", "lastName": "Coldman", "maxAge": 25, "minAge": 18, "reasons": ["[AL-1a] (Poor quality identity)"]}], "assuranceLevel": "AL-1", "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "error": "", "evaluation": {"authentication": {}, "risk": {}, "success": {}}, "identity": {"assuranceLevel": "AL0", "emails": ["emails", "emails"], "firstName": "Alf", "lastName": "Novotni", "maxAge": 25, "minAge": 18, "reasons": ["[AL0b]"]}, "phoneNumber": "2001004054", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "false"}]}
+          application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "results": [{"additionalIdentities": [{"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}], "assuranceLevel": "AL-1", "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "error": "", "evaluation": {"authentication": {}, "identification": {}}, "identity": {"assuranceLevel": "AL2", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL1a]"]}, "phoneNumber": "2001004053", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "true"}, {"additionalIdentities": [{"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}], "assuranceLevel": "AL-1", "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "error": "", "evaluation": {"authentication": {}, "risk": {}, "success": {}}, "identity": {"assuranceLevel": "AL0", "firstName": "Alf", "lastName": "Novotni", "reasons": ["[AL0b]"]}, "phoneNumber": "2001004054", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "false"}]}
         "400":
           application/json: {"code": 1001, "message": "invalid request"}
         "401":
@@ -1141,4 +1129,4 @@ examples:
           application/json: {"code": 1000, "message": "error occurred"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `proveapi.v3.v3VerifyRequest()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `proveapi.v3.v3VerifyBatchRequest()`: \n  *  `request.items.[].proveId` **Removed** **Breaking** :warning:\n  *  `response.results.[].additionalIdentities.[]` **Changed** **Breaking** :warning:\n"
+releaseNotes: "## Java SDK Changes Detected:\n* `proveapi.v3.v3VerifyRequest()`: \n  *  `request.addOnFeature` **Removed** **Breaking** :warning:\n  *  `response.additionalidentities.[]` **Changed** **Breaking** :warning:\n* `proveapi.v3.v3VerifyBatchRequest()`: \n  *  `request.items.[]` **Changed** **Breaking** :warning:\n  *  `response.results.[]` **Changed** **Breaking** :warning:\n"

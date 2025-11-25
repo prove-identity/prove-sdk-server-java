@@ -18,20 +18,14 @@ import java.util.Optional;
 
 public class V3VerifyBatchResponse {
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-     * be accepted.
-     * 
-     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     * The input ClientRequestID.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
 
     /**
-     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
-     * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
-     * flow.
+     * The unique ID that Prove generates for the flow.
      */
     @JsonProperty("correlationId")
     private String correlationId;
@@ -60,11 +54,7 @@ public class V3VerifyBatchResponse {
     }
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-     * be accepted.
-     * 
-     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     * The input ClientRequestID.
      */
     @JsonIgnore
     public Optional<String> clientRequestId() {
@@ -72,9 +62,7 @@ public class V3VerifyBatchResponse {
     }
 
     /**
-     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
-     * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
-     * flow.
+     * The unique ID that Prove generates for the flow.
      */
     @JsonIgnore
     public String correlationId() {
@@ -93,11 +81,7 @@ public class V3VerifyBatchResponse {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-     * be accepted.
-     * 
-     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     * The input ClientRequestID.
      */
     public V3VerifyBatchResponse withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -107,11 +91,7 @@ public class V3VerifyBatchResponse {
 
 
     /**
-     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-     * be accepted.
-     * 
-     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     * The input ClientRequestID.
      */
     public V3VerifyBatchResponse withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -120,9 +100,7 @@ public class V3VerifyBatchResponse {
     }
 
     /**
-     * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
-     * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
-     * flow.
+     * The unique ID that Prove generates for the flow.
      */
     public V3VerifyBatchResponse withCorrelationId(String correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
@@ -187,11 +165,7 @@ public class V3VerifyBatchResponse {
 
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-         * be accepted.
-         * 
-         * <p>Do not include Personally Identifiable Information (PII) in this field.
+         * The input ClientRequestID.
          */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -200,11 +174,7 @@ public class V3VerifyBatchResponse {
         }
 
         /**
-         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
-         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
-         * be accepted.
-         * 
-         * <p>Do not include Personally Identifiable Information (PII) in this field.
+         * The input ClientRequestID.
          */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -214,9 +184,7 @@ public class V3VerifyBatchResponse {
 
 
         /**
-         * The unique ID that Prove generates for the flow. To continue the flow, the field will also be used
-         * for each of the subsequent API calls in the same flow - it cannot be reused outside of a single
-         * flow.
+         * The unique ID that Prove generates for the flow.
          */
         public Builder correlationId(String correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");

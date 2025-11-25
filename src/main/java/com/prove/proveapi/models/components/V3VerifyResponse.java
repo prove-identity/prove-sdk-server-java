@@ -19,7 +19,7 @@ import java.util.Optional;
 
 public class V3VerifyResponse {
     /**
-     * (required IF verificationType=VerifiedUser)
+     * Additional Identities found as part of the verification flow.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("additionalIdentities")
@@ -53,7 +53,8 @@ public class V3VerifyResponse {
     private String correlationId;
 
     /**
-     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+     * encompass the different evaluation categories.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
@@ -72,7 +73,6 @@ public class V3VerifyResponse {
 
     /**
      * A Prove-generated identifier for the consumer.
-     * (required IF verificationType=VerifiedUser)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("proveId")
@@ -80,14 +80,13 @@ public class V3VerifyResponse {
 
     /**
      * A persistent ID that uniquely identifies a telephone subscriber.
-     * (required IF verificationType=VerifiedUser)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provePhoneAlias")
     private Optional<String> provePhoneAlias;
 
     /**
-     * The result of verification.
+     * The result of verification. This can be "true" or "false".
      */
     @JsonProperty("success")
     private String success;
@@ -140,7 +139,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * (required IF verificationType=VerifiedUser)
+     * Additional Identities found as part of the verification flow.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -181,7 +180,8 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+     * encompass the different evaluation categories.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -205,7 +205,6 @@ public class V3VerifyResponse {
 
     /**
      * A Prove-generated identifier for the consumer.
-     * (required IF verificationType=VerifiedUser)
      */
     @JsonIgnore
     public Optional<String> proveId() {
@@ -214,7 +213,6 @@ public class V3VerifyResponse {
 
     /**
      * A persistent ID that uniquely identifies a telephone subscriber.
-     * (required IF verificationType=VerifiedUser)
      */
     @JsonIgnore
     public Optional<String> provePhoneAlias() {
@@ -222,7 +220,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The result of verification.
+     * The result of verification. This can be "true" or "false".
      */
     @JsonIgnore
     public String success() {
@@ -235,7 +233,7 @@ public class V3VerifyResponse {
 
 
     /**
-     * (required IF verificationType=VerifiedUser)
+     * Additional Identities found as part of the verification flow.
      */
     public V3VerifyResponse withAdditionalIdentities(List<Identity> additionalIdentities) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
@@ -245,7 +243,7 @@ public class V3VerifyResponse {
 
 
     /**
-     * (required IF verificationType=VerifiedUser)
+     * Additional Identities found as part of the verification flow.
      */
     public V3VerifyResponse withAdditionalIdentities(Optional<? extends List<Identity>> additionalIdentities) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
@@ -320,7 +318,8 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+     * encompass the different evaluation categories.
      */
     public V3VerifyResponse withEvaluation(Map<String, V3VerifyResponseEvaluation> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -330,7 +329,8 @@ public class V3VerifyResponse {
 
 
     /**
-     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+     * encompass the different evaluation categories.
      */
     public V3VerifyResponse withEvaluation(Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -362,7 +362,6 @@ public class V3VerifyResponse {
 
     /**
      * A Prove-generated identifier for the consumer.
-     * (required IF verificationType=VerifiedUser)
      */
     public V3VerifyResponse withProveId(String proveId) {
         Utils.checkNotNull(proveId, "proveId");
@@ -373,7 +372,6 @@ public class V3VerifyResponse {
 
     /**
      * A Prove-generated identifier for the consumer.
-     * (required IF verificationType=VerifiedUser)
      */
     public V3VerifyResponse withProveId(Optional<String> proveId) {
         Utils.checkNotNull(proveId, "proveId");
@@ -383,7 +381,6 @@ public class V3VerifyResponse {
 
     /**
      * A persistent ID that uniquely identifies a telephone subscriber.
-     * (required IF verificationType=VerifiedUser)
      */
     public V3VerifyResponse withProvePhoneAlias(String provePhoneAlias) {
         Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
@@ -394,7 +391,6 @@ public class V3VerifyResponse {
 
     /**
      * A persistent ID that uniquely identifies a telephone subscriber.
-     * (required IF verificationType=VerifiedUser)
      */
     public V3VerifyResponse withProvePhoneAlias(Optional<String> provePhoneAlias) {
         Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
@@ -403,7 +399,7 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The result of verification.
+     * The result of verification. This can be "true" or "false".
      */
     public V3VerifyResponse withSuccess(String success) {
         Utils.checkNotNull(success, "success");
@@ -490,7 +486,7 @@ public class V3VerifyResponse {
 
 
         /**
-         * (required IF verificationType=VerifiedUser)
+         * Additional Identities found as part of the verification flow.
          */
         public Builder additionalIdentities(List<Identity> additionalIdentities) {
             Utils.checkNotNull(additionalIdentities, "additionalIdentities");
@@ -499,7 +495,7 @@ public class V3VerifyResponse {
         }
 
         /**
-         * (required IF verificationType=VerifiedUser)
+         * Additional Identities found as part of the verification flow.
          */
         public Builder additionalIdentities(Optional<? extends List<Identity>> additionalIdentities) {
             Utils.checkNotNull(additionalIdentities, "additionalIdentities");
@@ -576,7 +572,8 @@ public class V3VerifyResponse {
 
 
         /**
-         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+         * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+         * encompass the different evaluation categories.
          */
         public Builder evaluation(Map<String, V3VerifyResponseEvaluation> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -585,7 +582,8 @@ public class V3VerifyResponse {
         }
 
         /**
-         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+         * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+         * encompass the different evaluation categories.
          */
         public Builder evaluation(Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -619,7 +617,6 @@ public class V3VerifyResponse {
 
         /**
          * A Prove-generated identifier for the consumer.
-         * (required IF verificationType=VerifiedUser)
          */
         public Builder proveId(String proveId) {
             Utils.checkNotNull(proveId, "proveId");
@@ -629,7 +626,6 @@ public class V3VerifyResponse {
 
         /**
          * A Prove-generated identifier for the consumer.
-         * (required IF verificationType=VerifiedUser)
          */
         public Builder proveId(Optional<String> proveId) {
             Utils.checkNotNull(proveId, "proveId");
@@ -640,7 +636,6 @@ public class V3VerifyResponse {
 
         /**
          * A persistent ID that uniquely identifies a telephone subscriber.
-         * (required IF verificationType=VerifiedUser)
          */
         public Builder provePhoneAlias(String provePhoneAlias) {
             Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
@@ -650,7 +645,6 @@ public class V3VerifyResponse {
 
         /**
          * A persistent ID that uniquely identifies a telephone subscriber.
-         * (required IF verificationType=VerifiedUser)
          */
         public Builder provePhoneAlias(Optional<String> provePhoneAlias) {
             Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
@@ -660,7 +654,7 @@ public class V3VerifyResponse {
 
 
         /**
-         * The result of verification.
+         * The result of verification. This can be "true" or "false".
          */
         public Builder success(String success) {
             Utils.checkNotNull(success, "success");

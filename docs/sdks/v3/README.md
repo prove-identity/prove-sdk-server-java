@@ -569,7 +569,7 @@ public class Application {
 
 ## v3VerifyRequest
 
-This endpoint allows you to initiate a Verified Users session.
+This endpoint allows you to verify a user depending on your particular use case.
 
 ### Example Usage
 
@@ -583,7 +583,6 @@ import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3VerifyRequestResponse;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -599,8 +598,6 @@ public class Application {
         V3VerifyRequest req = V3VerifyRequest.builder()
                 .phoneNumber("2001004053")
                 .verificationType(VerificationType.VERIFIED_USER)
-                .addOnFeature(List.of(
-                    "ageEstimation"))
                 .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                 .clientHumanId("aad25769-23bb-458c-80db-50296a82c91b")
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
@@ -673,29 +670,31 @@ public class Application {
 
         V3VerifyBatchRequest req = V3VerifyBatchRequest.builder()
                 .items(List.of(
-                    VerifyItem.builder()
+                    VerifyBatchRequestItem.builder()
                         .firstName("Elena")
                         .lastName("Coldman")
                         .phoneNumber("2001004053")
+                        .verificationType("verifiedUser")
                         .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                         .clientHumanId("clientHumanId")
                         .emailAddress("ecoldman1h@storify.com")
                         .ipAddress("192.168.1.1")
+                        .proveId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
-                        .verificationType("verificationType")
                         .build(),
-                    VerifyItem.builder()
+                    VerifyBatchRequestItem.builder()
                         .firstName("Elena")
                         .lastName("Coldman")
                         .phoneNumber("2001004053")
+                        .verificationType("verifiedUser")
                         .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                         .clientHumanId("clientHumanId")
                         .emailAddress("ecoldman1h@storify.com")
                         .ipAddress("192.168.1.1")
+                        .proveId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
-                        .verificationType("verificationType")
                         .build()))
-                .clientRequestId("clientRequestId")
+                .clientRequestId("3d1215f7-ec3f-4fd2-9894-7b46f00e31a6")
                 .build();
 
         V3VerifyBatchRequestResponse res = sdk.v3().v3VerifyBatchRequest()

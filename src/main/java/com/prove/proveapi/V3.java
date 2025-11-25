@@ -371,7 +371,7 @@ public class V3 {
     /**
      * Initiate Verified Users Session
      * 
-     * <p>This endpoint allows you to initiate a Verified Users session.
+     * <p>This endpoint allows you to verify a user depending on your particular use case.
      * 
      * @return The call builder
      */
@@ -382,7 +382,7 @@ public class V3 {
     /**
      * Initiate Verified Users Session
      * 
-     * <p>This endpoint allows you to initiate a Verified Users session.
+     * <p>This endpoint allows you to verify a user depending on your particular use case.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -394,7 +394,7 @@ public class V3 {
     /**
      * Initiate Verified Users Session
      * 
-     * <p>This endpoint allows you to initiate a Verified Users session.
+     * <p>This endpoint allows you to verify a user depending on your particular use case.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
