@@ -14,7 +14,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class VerifyItem {
+public class VerifyBatchRequestItem {
     /**
      * A client-generated unique ID for a specific customer. This can be used by clients to link calls
      * related to the same customer, across different requests or sessions. The format of this ID is
@@ -74,6 +74,11 @@ public class VerifyItem {
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("proveId")
+    private Optional<String> proveId;
+
     /**
      * The User agent of the customer.
      */
@@ -84,12 +89,11 @@ public class VerifyItem {
     /**
      * The verification method based on the use case and authorization level.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("verificationType")
-    private Optional<String> verificationType;
+    private String verificationType;
 
     @JsonCreator
-    public VerifyItem(
+    public VerifyBatchRequestItem(
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("emailAddress") Optional<String> emailAddress,
@@ -97,8 +101,9 @@ public class VerifyItem {
             @JsonProperty("ipAddress") Optional<String> ipAddress,
             @JsonProperty("lastName") String lastName,
             @JsonProperty("phoneNumber") String phoneNumber,
+            @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("userAgent") Optional<String> userAgent,
-            @JsonProperty("verificationType") Optional<String> verificationType) {
+            @JsonProperty("verificationType") String verificationType) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(emailAddress, "emailAddress");
@@ -106,6 +111,7 @@ public class VerifyItem {
         Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(userAgent, "userAgent");
         Utils.checkNotNull(verificationType, "verificationType");
         this.clientCustomerId = clientCustomerId;
@@ -115,17 +121,20 @@ public class VerifyItem {
         this.ipAddress = ipAddress;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.proveId = proveId;
         this.userAgent = userAgent;
         this.verificationType = verificationType;
     }
     
-    public VerifyItem(
+    public VerifyBatchRequestItem(
             String firstName,
             String lastName,
-            String phoneNumber) {
+            String phoneNumber,
+            String verificationType) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             firstName, Optional.empty(), lastName,
-            phoneNumber, Optional.empty(), Optional.empty());
+            phoneNumber, Optional.empty(), Optional.empty(),
+            verificationType);
     }
 
     /**
@@ -197,6 +206,11 @@ public class VerifyItem {
         return phoneNumber;
     }
 
+    @JsonIgnore
+    public Optional<String> proveId() {
+        return proveId;
+    }
+
     /**
      * The User agent of the customer.
      */
@@ -209,7 +223,7 @@ public class VerifyItem {
      * The verification method based on the use case and authorization level.
      */
     @JsonIgnore
-    public Optional<String> verificationType() {
+    public String verificationType() {
         return verificationType;
     }
 
@@ -226,7 +240,7 @@ public class VerifyItem {
      * <p>Prove does not offer any functionality around the Client Customer ID. Do not include personally
      * identifiable information (PII) in this field.
      */
-    public VerifyItem withClientCustomerId(String clientCustomerId) {
+    public VerifyBatchRequestItem withClientCustomerId(String clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         this.clientCustomerId = Optional.ofNullable(clientCustomerId);
         return this;
@@ -241,7 +255,7 @@ public class VerifyItem {
      * <p>Prove does not offer any functionality around the Client Customer ID. Do not include personally
      * identifiable information (PII) in this field.
      */
-    public VerifyItem withClientCustomerId(Optional<String> clientCustomerId) {
+    public VerifyBatchRequestItem withClientCustomerId(Optional<String> clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         this.clientCustomerId = clientCustomerId;
         return this;
@@ -254,7 +268,7 @@ public class VerifyItem {
      * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
      * Do not include personally identifiable information (PII) in this field.
      */
-    public VerifyItem withClientHumanId(String clientHumanId) {
+    public VerifyBatchRequestItem withClientHumanId(String clientHumanId) {
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         this.clientHumanId = Optional.ofNullable(clientHumanId);
         return this;
@@ -268,7 +282,7 @@ public class VerifyItem {
      * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
      * Do not include personally identifiable information (PII) in this field.
      */
-    public VerifyItem withClientHumanId(Optional<String> clientHumanId) {
+    public VerifyBatchRequestItem withClientHumanId(Optional<String> clientHumanId) {
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         this.clientHumanId = clientHumanId;
         return this;
@@ -277,7 +291,7 @@ public class VerifyItem {
     /**
      * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
-    public VerifyItem withEmailAddress(String emailAddress) {
+    public VerifyBatchRequestItem withEmailAddress(String emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = Optional.ofNullable(emailAddress);
         return this;
@@ -287,7 +301,7 @@ public class VerifyItem {
     /**
      * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
      */
-    public VerifyItem withEmailAddress(Optional<String> emailAddress) {
+    public VerifyBatchRequestItem withEmailAddress(Optional<String> emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = emailAddress;
         return this;
@@ -296,7 +310,7 @@ public class VerifyItem {
     /**
      * The first name of the individual.
      */
-    public VerifyItem withFirstName(String firstName) {
+    public VerifyBatchRequestItem withFirstName(String firstName) {
         Utils.checkNotNull(firstName, "firstName");
         this.firstName = firstName;
         return this;
@@ -305,7 +319,7 @@ public class VerifyItem {
     /**
      * The IP address of the customer.
      */
-    public VerifyItem withIpAddress(String ipAddress) {
+    public VerifyBatchRequestItem withIpAddress(String ipAddress) {
         Utils.checkNotNull(ipAddress, "ipAddress");
         this.ipAddress = Optional.ofNullable(ipAddress);
         return this;
@@ -315,7 +329,7 @@ public class VerifyItem {
     /**
      * The IP address of the customer.
      */
-    public VerifyItem withIpAddress(Optional<String> ipAddress) {
+    public VerifyBatchRequestItem withIpAddress(Optional<String> ipAddress) {
         Utils.checkNotNull(ipAddress, "ipAddress");
         this.ipAddress = ipAddress;
         return this;
@@ -324,7 +338,7 @@ public class VerifyItem {
     /**
      * The last name of the individual.
      */
-    public VerifyItem withLastName(String lastName) {
+    public VerifyBatchRequestItem withLastName(String lastName) {
         Utils.checkNotNull(lastName, "lastName");
         this.lastName = lastName;
         return this;
@@ -337,16 +351,29 @@ public class VerifyItem {
      * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
      * characters are: alphanumeric with symbols '+'.
      */
-    public VerifyItem withPhoneNumber(String phoneNumber) {
+    public VerifyBatchRequestItem withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public VerifyBatchRequestItem withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = Optional.ofNullable(proveId);
+        return this;
+    }
+
+
+    public VerifyBatchRequestItem withProveId(Optional<String> proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
 
     /**
      * The User agent of the customer.
      */
-    public VerifyItem withUserAgent(String userAgent) {
+    public VerifyBatchRequestItem withUserAgent(String userAgent) {
         Utils.checkNotNull(userAgent, "userAgent");
         this.userAgent = Optional.ofNullable(userAgent);
         return this;
@@ -356,7 +383,7 @@ public class VerifyItem {
     /**
      * The User agent of the customer.
      */
-    public VerifyItem withUserAgent(Optional<String> userAgent) {
+    public VerifyBatchRequestItem withUserAgent(Optional<String> userAgent) {
         Utils.checkNotNull(userAgent, "userAgent");
         this.userAgent = userAgent;
         return this;
@@ -365,17 +392,7 @@ public class VerifyItem {
     /**
      * The verification method based on the use case and authorization level.
      */
-    public VerifyItem withVerificationType(String verificationType) {
-        Utils.checkNotNull(verificationType, "verificationType");
-        this.verificationType = Optional.ofNullable(verificationType);
-        return this;
-    }
-
-
-    /**
-     * The verification method based on the use case and authorization level.
-     */
-    public VerifyItem withVerificationType(Optional<String> verificationType) {
+    public VerifyBatchRequestItem withVerificationType(String verificationType) {
         Utils.checkNotNull(verificationType, "verificationType");
         this.verificationType = verificationType;
         return this;
@@ -389,7 +406,7 @@ public class VerifyItem {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        VerifyItem other = (VerifyItem) o;
+        VerifyBatchRequestItem other = (VerifyBatchRequestItem) o;
         return 
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
@@ -398,6 +415,7 @@ public class VerifyItem {
             Utils.enhancedDeepEquals(this.ipAddress, other.ipAddress) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.userAgent, other.userAgent) &&
             Utils.enhancedDeepEquals(this.verificationType, other.verificationType);
     }
@@ -407,12 +425,13 @@ public class VerifyItem {
         return Utils.enhancedHash(
             clientCustomerId, clientHumanId, emailAddress,
             firstName, ipAddress, lastName,
-            phoneNumber, userAgent, verificationType);
+            phoneNumber, proveId, userAgent,
+            verificationType);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(VerifyItem.class,
+        return Utils.toString(VerifyBatchRequestItem.class,
                 "clientCustomerId", clientCustomerId,
                 "clientHumanId", clientHumanId,
                 "emailAddress", emailAddress,
@@ -420,6 +439,7 @@ public class VerifyItem {
                 "ipAddress", ipAddress,
                 "lastName", lastName,
                 "phoneNumber", phoneNumber,
+                "proveId", proveId,
                 "userAgent", userAgent,
                 "verificationType", verificationType);
     }
@@ -441,9 +461,11 @@ public class VerifyItem {
 
         private String phoneNumber;
 
+        private Optional<String> proveId = Optional.empty();
+
         private Optional<String> userAgent = Optional.empty();
 
-        private Optional<String> verificationType = Optional.empty();
+        private String verificationType;
 
         private Builder() {
           // force use of static builder() method
@@ -578,6 +600,19 @@ public class VerifyItem {
         }
 
 
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = Optional.ofNullable(proveId);
+            return this;
+        }
+
+        public Builder proveId(Optional<String> proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
+            return this;
+        }
+
+
         /**
          * The User agent of the customer.
          */
@@ -602,25 +637,17 @@ public class VerifyItem {
          */
         public Builder verificationType(String verificationType) {
             Utils.checkNotNull(verificationType, "verificationType");
-            this.verificationType = Optional.ofNullable(verificationType);
-            return this;
-        }
-
-        /**
-         * The verification method based on the use case and authorization level.
-         */
-        public Builder verificationType(Optional<String> verificationType) {
-            Utils.checkNotNull(verificationType, "verificationType");
             this.verificationType = verificationType;
             return this;
         }
 
-        public VerifyItem build() {
+        public VerifyBatchRequestItem build() {
 
-            return new VerifyItem(
+            return new VerifyBatchRequestItem(
                 clientCustomerId, clientHumanId, emailAddress,
                 firstName, ipAddress, lastName,
-                phoneNumber, userAgent, verificationType);
+                phoneNumber, proveId, userAgent,
+                verificationType);
         }
 
     }

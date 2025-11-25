@@ -16,7 +16,13 @@ import java.util.Optional;
 
 
 public class V3VerifyBatchRequest {
-
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
@@ -25,12 +31,12 @@ public class V3VerifyBatchRequest {
      * Batch of verify requests to process. The array length cannot exceed 1000 items.
      */
     @JsonProperty("items")
-    private List<VerifyItem> items;
+    private List<VerifyBatchRequestItem> items;
 
     @JsonCreator
     public V3VerifyBatchRequest(
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
-            @JsonProperty("items") List<VerifyItem> items) {
+            @JsonProperty("items") List<VerifyBatchRequestItem> items) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(items, "items");
         this.clientRequestId = clientRequestId;
@@ -38,10 +44,17 @@ public class V3VerifyBatchRequest {
     }
     
     public V3VerifyBatchRequest(
-            List<VerifyItem> items) {
+            List<VerifyBatchRequestItem> items) {
         this(Optional.empty(), items);
     }
 
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     */
     @JsonIgnore
     public Optional<String> clientRequestId() {
         return clientRequestId;
@@ -51,7 +64,7 @@ public class V3VerifyBatchRequest {
      * Batch of verify requests to process. The array length cannot exceed 1000 items.
      */
     @JsonIgnore
-    public List<VerifyItem> items() {
+    public List<VerifyBatchRequestItem> items() {
         return items;
     }
 
@@ -60,6 +73,13 @@ public class V3VerifyBatchRequest {
     }
 
 
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     */
     public V3VerifyBatchRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         this.clientRequestId = Optional.ofNullable(clientRequestId);
@@ -67,6 +87,13 @@ public class V3VerifyBatchRequest {
     }
 
 
+    /**
+     * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+     * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+     * be accepted.
+     * 
+     * <p>Do not include Personally Identifiable Information (PII) in this field.
+     */
     public V3VerifyBatchRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         this.clientRequestId = clientRequestId;
@@ -76,7 +103,7 @@ public class V3VerifyBatchRequest {
     /**
      * Batch of verify requests to process. The array length cannot exceed 1000 items.
      */
-    public V3VerifyBatchRequest withItems(List<VerifyItem> items) {
+    public V3VerifyBatchRequest withItems(List<VerifyBatchRequestItem> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
         return this;
@@ -114,19 +141,33 @@ public class V3VerifyBatchRequest {
 
         private Optional<String> clientRequestId = Optional.empty();
 
-        private List<VerifyItem> items;
+        private List<VerifyBatchRequestItem> items;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
+        /**
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
+         */
         public Builder clientRequestId(String clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
             this.clientRequestId = Optional.ofNullable(clientRequestId);
             return this;
         }
 
+        /**
+         * A client-generated unique ID for a specific session. This can be used to identify specific requests.
+         * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
+         * be accepted.
+         * 
+         * <p>Do not include Personally Identifiable Information (PII) in this field.
+         */
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
             this.clientRequestId = clientRequestId;
@@ -137,7 +178,7 @@ public class V3VerifyBatchRequest {
         /**
          * Batch of verify requests to process. The array length cannot exceed 1000 items.
          */
-        public Builder items(List<VerifyItem> items) {
+        public Builder items(List<VerifyBatchRequestItem> items) {
             Utils.checkNotNull(items, "items");
             this.items = items;
             return this;

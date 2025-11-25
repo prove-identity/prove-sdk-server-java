@@ -9,20 +9,13 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
-import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
 
 public class Identity {
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("addresses")
-    private Optional<? extends List<Address>> addresses;
-
     /**
      * Prove’s tiered confidence metric, ranging from -1 to 3, that dynamically adapts to user behavior and
      * various authentication keys. It allows for adaptive security policies, meaning you can require
@@ -31,34 +24,19 @@ public class Identity {
     @JsonProperty("assuranceLevel")
     private String assuranceLevel;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("emails")
-    private Optional<? extends List<String>> emails;
-
     /**
-     * The input first name. (required IF verificationType=VerifiedUser)
+     * The input first name.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("firstName")
     private Optional<String> firstName;
 
     /**
-     * The input last name. (required IF verificationType=VerifiedUser)
+     * The input last name.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastName")
     private Optional<String> lastName;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("maxAge")
-    private Optional<Long> maxAge;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("minAge")
-    private Optional<Long> minAge;
 
     /**
      * Codes explaining the verification outcome
@@ -68,44 +46,25 @@ public class Identity {
 
     @JsonCreator
     public Identity(
-            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
             @JsonProperty("assuranceLevel") String assuranceLevel,
-            @JsonProperty("emails") Optional<? extends List<String>> emails,
             @JsonProperty("firstName") Optional<String> firstName,
             @JsonProperty("lastName") Optional<String> lastName,
-            @JsonProperty("maxAge") Optional<Long> maxAge,
-            @JsonProperty("minAge") Optional<Long> minAge,
             @JsonProperty("reasons") List<String> reasons) {
-        Utils.checkNotNull(addresses, "addresses");
         Utils.checkNotNull(assuranceLevel, "assuranceLevel");
-        Utils.checkNotNull(emails, "emails");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(maxAge, "maxAge");
-        Utils.checkNotNull(minAge, "minAge");
         Utils.checkNotNull(reasons, "reasons");
-        this.addresses = addresses;
         this.assuranceLevel = assuranceLevel;
-        this.emails = emails;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.maxAge = maxAge;
-        this.minAge = minAge;
         this.reasons = reasons;
     }
     
     public Identity(
             String assuranceLevel,
             List<String> reasons) {
-        this(Optional.empty(), assuranceLevel, Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), reasons);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<Address>> addresses() {
-        return (Optional<List<Address>>) addresses;
+        this(assuranceLevel, Optional.empty(), Optional.empty(),
+            reasons);
     }
 
     /**
@@ -118,14 +77,8 @@ public class Identity {
         return assuranceLevel;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<String>> emails() {
-        return (Optional<List<String>>) emails;
-    }
-
     /**
-     * The input first name. (required IF verificationType=VerifiedUser)
+     * The input first name.
      */
     @JsonIgnore
     public Optional<String> firstName() {
@@ -133,21 +86,11 @@ public class Identity {
     }
 
     /**
-     * The input last name. (required IF verificationType=VerifiedUser)
+     * The input last name.
      */
     @JsonIgnore
     public Optional<String> lastName() {
         return lastName;
-    }
-
-    @JsonIgnore
-    public Optional<Long> maxAge() {
-        return maxAge;
-    }
-
-    @JsonIgnore
-    public Optional<Long> minAge() {
-        return minAge;
     }
 
     /**
@@ -163,19 +106,6 @@ public class Identity {
     }
 
 
-    public Identity withAddresses(List<Address> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
-
-
-    public Identity withAddresses(Optional<? extends List<Address>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = addresses;
-        return this;
-    }
-
     /**
      * Prove’s tiered confidence metric, ranging from -1 to 3, that dynamically adapts to user behavior and
      * various authentication keys. It allows for adaptive security policies, meaning you can require
@@ -187,21 +117,8 @@ public class Identity {
         return this;
     }
 
-    public Identity withEmails(List<String> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = Optional.ofNullable(emails);
-        return this;
-    }
-
-
-    public Identity withEmails(Optional<? extends List<String>> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = emails;
-        return this;
-    }
-
     /**
-     * The input first name. (required IF verificationType=VerifiedUser)
+     * The input first name.
      */
     public Identity withFirstName(String firstName) {
         Utils.checkNotNull(firstName, "firstName");
@@ -211,7 +128,7 @@ public class Identity {
 
 
     /**
-     * The input first name. (required IF verificationType=VerifiedUser)
+     * The input first name.
      */
     public Identity withFirstName(Optional<String> firstName) {
         Utils.checkNotNull(firstName, "firstName");
@@ -220,7 +137,7 @@ public class Identity {
     }
 
     /**
-     * The input last name. (required IF verificationType=VerifiedUser)
+     * The input last name.
      */
     public Identity withLastName(String lastName) {
         Utils.checkNotNull(lastName, "lastName");
@@ -230,37 +147,11 @@ public class Identity {
 
 
     /**
-     * The input last name. (required IF verificationType=VerifiedUser)
+     * The input last name.
      */
     public Identity withLastName(Optional<String> lastName) {
         Utils.checkNotNull(lastName, "lastName");
         this.lastName = lastName;
-        return this;
-    }
-
-    public Identity withMaxAge(long maxAge) {
-        Utils.checkNotNull(maxAge, "maxAge");
-        this.maxAge = Optional.ofNullable(maxAge);
-        return this;
-    }
-
-
-    public Identity withMaxAge(Optional<Long> maxAge) {
-        Utils.checkNotNull(maxAge, "maxAge");
-        this.maxAge = maxAge;
-        return this;
-    }
-
-    public Identity withMinAge(long minAge) {
-        Utils.checkNotNull(minAge, "minAge");
-        this.minAge = Optional.ofNullable(minAge);
-        return this;
-    }
-
-
-    public Identity withMinAge(Optional<Long> minAge) {
-        Utils.checkNotNull(minAge, "minAge");
-        this.minAge = minAge;
         return this;
     }
 
@@ -283,71 +174,41 @@ public class Identity {
         }
         Identity other = (Identity) o;
         return 
-            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
             Utils.enhancedDeepEquals(this.assuranceLevel, other.assuranceLevel) &&
-            Utils.enhancedDeepEquals(this.emails, other.emails) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
-            Utils.enhancedDeepEquals(this.maxAge, other.maxAge) &&
-            Utils.enhancedDeepEquals(this.minAge, other.minAge) &&
             Utils.enhancedDeepEquals(this.reasons, other.reasons);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            addresses, assuranceLevel, emails,
-            firstName, lastName, maxAge,
-            minAge, reasons);
+            assuranceLevel, firstName, lastName,
+            reasons);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Identity.class,
-                "addresses", addresses,
                 "assuranceLevel", assuranceLevel,
-                "emails", emails,
                 "firstName", firstName,
                 "lastName", lastName,
-                "maxAge", maxAge,
-                "minAge", minAge,
                 "reasons", reasons);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<Address>> addresses = Optional.empty();
-
         private String assuranceLevel;
-
-        private Optional<? extends List<String>> emails = Optional.empty();
 
         private Optional<String> firstName = Optional.empty();
 
         private Optional<String> lastName = Optional.empty();
 
-        private Optional<Long> maxAge = Optional.empty();
-
-        private Optional<Long> minAge = Optional.empty();
-
         private List<String> reasons;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder addresses(List<Address> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        public Builder addresses(Optional<? extends List<Address>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = addresses;
-            return this;
         }
 
 
@@ -363,21 +224,8 @@ public class Identity {
         }
 
 
-        public Builder emails(List<String> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = Optional.ofNullable(emails);
-            return this;
-        }
-
-        public Builder emails(Optional<? extends List<String>> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = emails;
-            return this;
-        }
-
-
         /**
-         * The input first name. (required IF verificationType=VerifiedUser)
+         * The input first name.
          */
         public Builder firstName(String firstName) {
             Utils.checkNotNull(firstName, "firstName");
@@ -386,7 +234,7 @@ public class Identity {
         }
 
         /**
-         * The input first name. (required IF verificationType=VerifiedUser)
+         * The input first name.
          */
         public Builder firstName(Optional<String> firstName) {
             Utils.checkNotNull(firstName, "firstName");
@@ -396,7 +244,7 @@ public class Identity {
 
 
         /**
-         * The input last name. (required IF verificationType=VerifiedUser)
+         * The input last name.
          */
         public Builder lastName(String lastName) {
             Utils.checkNotNull(lastName, "lastName");
@@ -405,37 +253,11 @@ public class Identity {
         }
 
         /**
-         * The input last name. (required IF verificationType=VerifiedUser)
+         * The input last name.
          */
         public Builder lastName(Optional<String> lastName) {
             Utils.checkNotNull(lastName, "lastName");
             this.lastName = lastName;
-            return this;
-        }
-
-
-        public Builder maxAge(long maxAge) {
-            Utils.checkNotNull(maxAge, "maxAge");
-            this.maxAge = Optional.ofNullable(maxAge);
-            return this;
-        }
-
-        public Builder maxAge(Optional<Long> maxAge) {
-            Utils.checkNotNull(maxAge, "maxAge");
-            this.maxAge = maxAge;
-            return this;
-        }
-
-
-        public Builder minAge(long minAge) {
-            Utils.checkNotNull(minAge, "minAge");
-            this.minAge = Optional.ofNullable(minAge);
-            return this;
-        }
-
-        public Builder minAge(Optional<Long> minAge) {
-            Utils.checkNotNull(minAge, "minAge");
-            this.minAge = minAge;
             return this;
         }
 
@@ -452,9 +274,8 @@ public class Identity {
         public Identity build() {
 
             return new Identity(
-                addresses, assuranceLevel, emails,
-                firstName, lastName, maxAge,
-                minAge, reasons);
+                assuranceLevel, firstName, lastName,
+                reasons);
         }
 
     }

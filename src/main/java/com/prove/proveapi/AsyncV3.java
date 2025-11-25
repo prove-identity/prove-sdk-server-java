@@ -373,7 +373,7 @@ public class AsyncV3 {
     /**
      * Initiate Verified Users Session
      * 
-     * <p>This endpoint allows you to initiate a Verified Users session.
+     * <p>This endpoint allows you to verify a user depending on your particular use case.
      * 
      * @return The async call builder
      */
@@ -384,7 +384,7 @@ public class AsyncV3 {
     /**
      * Initiate Verified Users Session
      * 
-     * <p>This endpoint allows you to initiate a Verified Users session.
+     * <p>This endpoint allows you to verify a user depending on your particular use case.
      * 
      * @return {@code CompletableFuture<V3VerifyRequestResponse>} - The async response
      */
@@ -395,7 +395,7 @@ public class AsyncV3 {
     /**
      * Initiate Verified Users Session
      * 
-     * <p>This endpoint allows you to initiate a Verified Users session.
+     * <p>This endpoint allows you to verify a user depending on your particular use case.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<V3VerifyRequestResponse>} - The async response

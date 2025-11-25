@@ -11,19 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.List;
 import java.util.Optional;
 
 
 public class V3VerifyRequest {
-    /**
-     * An optional list of add-on features. Current allowed values: "ageEstimation"
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("addOnFeature")
-    private Optional<? extends List<String>> addOnFeature;
-
     /**
      * A client-generated unique ID for a specific customer. This can be used by clients to link calls
      * related to the same customer, across different requests or sessions. The format of this ID is
@@ -39,9 +30,10 @@ public class V3VerifyRequest {
     /**
      * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
      * business lines. If the Enterprise customer has been able to identify a consumer across business
-     * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+     * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
      * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
-     * Do not include personally identifiable information (PII) in this field.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientHumanId")
@@ -66,7 +58,7 @@ public class V3VerifyRequest {
     private Optional<String> emailAddress;
 
     /**
-     * The first name of the individual. (required IF verificationType=VerifiedUser)
+     * The first name of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("firstName")
@@ -80,7 +72,7 @@ public class V3VerifyRequest {
     private Optional<String> ipAddress;
 
     /**
-     * The last name of the individual. (required IF verificationType=VerifiedUser)
+     * The last name of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastName")
@@ -112,7 +104,6 @@ public class V3VerifyRequest {
 
     @JsonCreator
     public V3VerifyRequest(
-            @JsonProperty("addOnFeature") Optional<? extends List<String>> addOnFeature,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
@@ -123,7 +114,6 @@ public class V3VerifyRequest {
             @JsonProperty("phoneNumber") String phoneNumber,
             @JsonProperty("userAgent") Optional<String> userAgent,
             @JsonProperty("verificationType") VerificationType verificationType) {
-        Utils.checkNotNull(addOnFeature, "addOnFeature");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
@@ -134,7 +124,6 @@ public class V3VerifyRequest {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(userAgent, "userAgent");
         Utils.checkNotNull(verificationType, "verificationType");
-        this.addOnFeature = addOnFeature;
         this.clientCustomerId = clientCustomerId;
         this.clientHumanId = clientHumanId;
         this.clientRequestId = clientRequestId;
@@ -152,17 +141,8 @@ public class V3VerifyRequest {
             VerificationType verificationType) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), phoneNumber,
-            Optional.empty(), verificationType);
-    }
-
-    /**
-     * An optional list of add-on features. Current allowed values: "ageEstimation"
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<String>> addOnFeature() {
-        return (Optional<List<String>>) addOnFeature;
+            Optional.empty(), phoneNumber, Optional.empty(),
+            verificationType);
     }
 
     /**
@@ -181,9 +161,10 @@ public class V3VerifyRequest {
     /**
      * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
      * business lines. If the Enterprise customer has been able to identify a consumer across business
-     * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+     * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
      * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
-     * Do not include personally identifiable information (PII) in this field.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
      */
     @JsonIgnore
     public Optional<String> clientHumanId() {
@@ -211,7 +192,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The first name of the individual. (required IF verificationType=VerifiedUser)
+     * The first name of the individual.
      */
     @JsonIgnore
     public Optional<String> firstName() {
@@ -227,7 +208,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The last name of the individual. (required IF verificationType=VerifiedUser)
+     * The last name of the individual.
      */
     @JsonIgnore
     public Optional<String> lastName() {
@@ -269,25 +250,6 @@ public class V3VerifyRequest {
 
 
     /**
-     * An optional list of add-on features. Current allowed values: "ageEstimation"
-     */
-    public V3VerifyRequest withAddOnFeature(List<String> addOnFeature) {
-        Utils.checkNotNull(addOnFeature, "addOnFeature");
-        this.addOnFeature = Optional.ofNullable(addOnFeature);
-        return this;
-    }
-
-
-    /**
-     * An optional list of add-on features. Current allowed values: "ageEstimation"
-     */
-    public V3VerifyRequest withAddOnFeature(Optional<? extends List<String>> addOnFeature) {
-        Utils.checkNotNull(addOnFeature, "addOnFeature");
-        this.addOnFeature = addOnFeature;
-        return this;
-    }
-
-    /**
      * A client-generated unique ID for a specific customer. This can be used by clients to link calls
      * related to the same customer, across different requests or sessions. The format of this ID is
      * defined by the client - Prove recommends using a GUID, but any format can be accepted.
@@ -319,9 +281,10 @@ public class V3VerifyRequest {
     /**
      * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
      * business lines. If the Enterprise customer has been able to identify a consumer across business
-     * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+     * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
      * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
-     * Do not include personally identifiable information (PII) in this field.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
      */
     public V3VerifyRequest withClientHumanId(String clientHumanId) {
         Utils.checkNotNull(clientHumanId, "clientHumanId");
@@ -333,9 +296,10 @@ public class V3VerifyRequest {
     /**
      * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
      * business lines. If the Enterprise customer has been able to identify a consumer across business
-     * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+     * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
      * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
-     * Do not include personally identifiable information (PII) in this field.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
      */
     public V3VerifyRequest withClientHumanId(Optional<String> clientHumanId) {
         Utils.checkNotNull(clientHumanId, "clientHumanId");
@@ -390,7 +354,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The first name of the individual. (required IF verificationType=VerifiedUser)
+     * The first name of the individual.
      */
     public V3VerifyRequest withFirstName(String firstName) {
         Utils.checkNotNull(firstName, "firstName");
@@ -400,7 +364,7 @@ public class V3VerifyRequest {
 
 
     /**
-     * The first name of the individual. (required IF verificationType=VerifiedUser)
+     * The first name of the individual.
      */
     public V3VerifyRequest withFirstName(Optional<String> firstName) {
         Utils.checkNotNull(firstName, "firstName");
@@ -428,7 +392,7 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The last name of the individual. (required IF verificationType=VerifiedUser)
+     * The last name of the individual.
      */
     public V3VerifyRequest withLastName(String lastName) {
         Utils.checkNotNull(lastName, "lastName");
@@ -438,7 +402,7 @@ public class V3VerifyRequest {
 
 
     /**
-     * The last name of the individual. (required IF verificationType=VerifiedUser)
+     * The last name of the individual.
      */
     public V3VerifyRequest withLastName(Optional<String> lastName) {
         Utils.checkNotNull(lastName, "lastName");
@@ -498,7 +462,6 @@ public class V3VerifyRequest {
         }
         V3VerifyRequest other = (V3VerifyRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.addOnFeature, other.addOnFeature) &&
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
@@ -514,16 +477,15 @@ public class V3VerifyRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            addOnFeature, clientCustomerId, clientHumanId,
-            clientRequestId, emailAddress, firstName,
-            ipAddress, lastName, phoneNumber,
-            userAgent, verificationType);
+            clientCustomerId, clientHumanId, clientRequestId,
+            emailAddress, firstName, ipAddress,
+            lastName, phoneNumber, userAgent,
+            verificationType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3VerifyRequest.class,
-                "addOnFeature", addOnFeature,
                 "clientCustomerId", clientCustomerId,
                 "clientHumanId", clientHumanId,
                 "clientRequestId", clientRequestId,
@@ -538,8 +500,6 @@ public class V3VerifyRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends List<String>> addOnFeature = Optional.empty();
 
         private Optional<String> clientCustomerId = Optional.empty();
 
@@ -563,25 +523,6 @@ public class V3VerifyRequest {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        /**
-         * An optional list of add-on features. Current allowed values: "ageEstimation"
-         */
-        public Builder addOnFeature(List<String> addOnFeature) {
-            Utils.checkNotNull(addOnFeature, "addOnFeature");
-            this.addOnFeature = Optional.ofNullable(addOnFeature);
-            return this;
-        }
-
-        /**
-         * An optional list of add-on features. Current allowed values: "ageEstimation"
-         */
-        public Builder addOnFeature(Optional<? extends List<String>> addOnFeature) {
-            Utils.checkNotNull(addOnFeature, "addOnFeature");
-            this.addOnFeature = addOnFeature;
-            return this;
         }
 
 
@@ -617,9 +558,10 @@ public class V3VerifyRequest {
         /**
          * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
          * business lines. If the Enterprise customer has been able to identify a consumer across business
-         * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+         * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
          * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
-         * Do not include personally identifiable information (PII) in this field.
+         * 
+         * <p>Do not include personally identifiable information (PII) in this field.
          */
         public Builder clientHumanId(String clientHumanId) {
             Utils.checkNotNull(clientHumanId, "clientHumanId");
@@ -630,9 +572,10 @@ public class V3VerifyRequest {
         /**
          * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
          * business lines. If the Enterprise customer has been able to identify a consumer across business
-         * lines and has a unique identifier for the consumer, they would input this value to Prove.The format
+         * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
          * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
-         * Do not include personally identifiable information (PII) in this field.
+         * 
+         * <p>Do not include personally identifiable information (PII) in this field.
          */
         public Builder clientHumanId(Optional<String> clientHumanId) {
             Utils.checkNotNull(clientHumanId, "clientHumanId");
@@ -688,7 +631,7 @@ public class V3VerifyRequest {
 
 
         /**
-         * The first name of the individual. (required IF verificationType=VerifiedUser)
+         * The first name of the individual.
          */
         public Builder firstName(String firstName) {
             Utils.checkNotNull(firstName, "firstName");
@@ -697,7 +640,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * The first name of the individual. (required IF verificationType=VerifiedUser)
+         * The first name of the individual.
          */
         public Builder firstName(Optional<String> firstName) {
             Utils.checkNotNull(firstName, "firstName");
@@ -726,7 +669,7 @@ public class V3VerifyRequest {
 
 
         /**
-         * The last name of the individual. (required IF verificationType=VerifiedUser)
+         * The last name of the individual.
          */
         public Builder lastName(String lastName) {
             Utils.checkNotNull(lastName, "lastName");
@@ -735,7 +678,7 @@ public class V3VerifyRequest {
         }
 
         /**
-         * The last name of the individual. (required IF verificationType=VerifiedUser)
+         * The last name of the individual.
          */
         public Builder lastName(Optional<String> lastName) {
             Utils.checkNotNull(lastName, "lastName");
@@ -790,10 +733,10 @@ public class V3VerifyRequest {
         public V3VerifyRequest build() {
 
             return new V3VerifyRequest(
-                addOnFeature, clientCustomerId, clientHumanId,
-                clientRequestId, emailAddress, firstName,
-                ipAddress, lastName, phoneNumber,
-                userAgent, verificationType);
+                clientCustomerId, clientHumanId, clientRequestId,
+                emailAddress, firstName, ipAddress,
+                lastName, phoneNumber, userAgent,
+                verificationType);
         }
 
     }
