@@ -369,7 +369,7 @@ public class V3 {
     }
 
     /**
-     * Initiate Verified Users Session
+     * Verify User
      * 
      * <p>This endpoint allows you to verify a user depending on your particular use case.
      * 
@@ -380,7 +380,7 @@ public class V3 {
     }
 
     /**
-     * Initiate Verified Users Session
+     * Verify User
      * 
      * <p>This endpoint allows you to verify a user depending on your particular use case.
      * 
@@ -392,7 +392,7 @@ public class V3 {
     }
 
     /**
-     * Initiate Verified Users Session
+     * Verify User
      * 
      * <p>This endpoint allows you to verify a user depending on your particular use case.
      * 
