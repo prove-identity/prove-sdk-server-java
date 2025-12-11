@@ -1,5 +1,4 @@
 # V3
-(*v3()*)
 
 ## Overview
 
@@ -401,8 +400,8 @@ public class Application {
             .build();
 
         V3UnifyBindRequest req = V3UnifyBindRequest.builder()
-                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .phoneNumber("2001004011")
                 .build();
 
@@ -467,8 +466,8 @@ public class Application {
             .build();
 
         V3UnifyStatusRequest req = V3UnifyStatusRequest.builder()
-                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .phoneNumber("2001004011")
                 .build();
 

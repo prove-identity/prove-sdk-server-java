@@ -39,7 +39,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.20.3'
+implementation 'com.prove:proveapi:0.21.0'
 ```
 
 Maven:
@@ -47,7 +47,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.20.3</version>
+    <version>0.21.0</version>
 </dependency>
 ```
 
@@ -162,13 +162,13 @@ public class Application {
 <details open>
 <summary>Available methods</summary>
 
-### [auth()](docs/sdks/auth/README.md)
+### [Auth](docs/sdks/auth/README.md)
 
 * [authContinueRequest](docs/sdks/auth/README.md#authcontinuerequest) - AuthContinue /v1/server/auth/continue
 * [authFinishRequest](docs/sdks/auth/README.md#authfinishrequest) - AuthFinish /v1/server/auth/finish
 * [authStartRequest](docs/sdks/auth/README.md#authstartrequest) - AuthStart /v1/server/auth/start
 
-### [domain()](docs/sdks/domain/README.md)
+### [Domain](docs/sdks/domain/README.md)
 
 * [v3DomainConfirmLinkRequest](docs/sdks/domain/README.md#v3domainconfirmlinkrequest) - Confirm a domain link request
 * [v3DomainIDRequest](docs/sdks/domain/README.md#v3domainidrequest) - Get Domain Details
@@ -176,7 +176,7 @@ public class Application {
 * [v3DomainLinkedRequest](docs/sdks/domain/README.md#v3domainlinkedrequest) - Get the list of domains that are linked to this domain.
 * [v3DomainUnlinkRequest](docs/sdks/domain/README.md#v3domainunlinkrequest) - Remove a domain link or request
 
-### [identity()](docs/sdks/identity/README.md)
+### [Identity](docs/sdks/identity/README.md)
 
 * [v3BatchGetIdentities](docs/sdks/identity/README.md#v3batchgetidentities) - Batch Get Identities
 * [v3EnrollIdentity](docs/sdks/identity/README.md#v3enrollidentity) - Enroll Identity
@@ -188,7 +188,7 @@ public class Application {
 * [v3DeactivateIdentity](docs/sdks/identity/README.md#v3deactivateidentity) - Deactivate Identity
 * [v3GetIdentitiesByPhoneNumber](docs/sdks/identity/README.md#v3getidentitiesbyphonenumber) - Get Identities By Phone Number
 
-### [v3()](docs/sdks/v3/README.md)
+### [V3](docs/sdks/v3/README.md)
 
 * [v3TokenRequest](docs/sdks/v3/README.md#v3tokenrequest) - Request OAuth Token
 * [v3ChallengeRequest](docs/sdks/v3/README.md#v3challengerequest) - Submit Challenge

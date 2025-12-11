@@ -1,5 +1,4 @@
 # Identity
-(*identity()*)
 
 ## Overview
 
