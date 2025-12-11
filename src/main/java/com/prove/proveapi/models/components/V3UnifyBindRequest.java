@@ -29,9 +29,8 @@ public class V3UnifyBindRequest {
      * The unique ID that Prove generates for the flow. It is returned
      * from the v3/unify endpoint and cannot be reused outside of a single flow.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("correlationId")
-    private Optional<String> correlationId;
+    private String correlationId;
 
     /**
      * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
@@ -50,7 +49,7 @@ public class V3UnifyBindRequest {
     @JsonCreator
     public V3UnifyBindRequest(
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
-            @JsonProperty("correlationId") Optional<String> correlationId,
+            @JsonProperty("correlationId") String correlationId,
             @JsonProperty("phoneNumber") Optional<String> phoneNumber) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(correlationId, "correlationId");
@@ -60,8 +59,9 @@ public class V3UnifyBindRequest {
         this.phoneNumber = phoneNumber;
     }
     
-    public V3UnifyBindRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+    public V3UnifyBindRequest(
+            String correlationId) {
+        this(Optional.empty(), correlationId, Optional.empty());
     }
 
     /**
@@ -80,7 +80,7 @@ public class V3UnifyBindRequest {
      * from the v3/unify endpoint and cannot be reused outside of a single flow.
      */
     @JsonIgnore
-    public Optional<String> correlationId() {
+    public String correlationId() {
         return correlationId;
     }
 
@@ -134,17 +134,6 @@ public class V3UnifyBindRequest {
      * from the v3/unify endpoint and cannot be reused outside of a single flow.
      */
     public V3UnifyBindRequest withCorrelationId(String correlationId) {
-        Utils.checkNotNull(correlationId, "correlationId");
-        this.correlationId = Optional.ofNullable(correlationId);
-        return this;
-    }
-
-
-    /**
-     * The unique ID that Prove generates for the flow. It is returned
-     * from the v3/unify endpoint and cannot be reused outside of a single flow.
-     */
-    public V3UnifyBindRequest withCorrelationId(Optional<String> correlationId) {
         Utils.checkNotNull(correlationId, "correlationId");
         this.correlationId = correlationId;
         return this;
@@ -217,7 +206,7 @@ public class V3UnifyBindRequest {
 
         private Optional<String> clientRequestId = Optional.empty();
 
-        private Optional<String> correlationId = Optional.empty();
+        private String correlationId;
 
         private Optional<String> phoneNumber = Optional.empty();
 
@@ -256,16 +245,6 @@ public class V3UnifyBindRequest {
          * from the v3/unify endpoint and cannot be reused outside of a single flow.
          */
         public Builder correlationId(String correlationId) {
-            Utils.checkNotNull(correlationId, "correlationId");
-            this.correlationId = Optional.ofNullable(correlationId);
-            return this;
-        }
-
-        /**
-         * The unique ID that Prove generates for the flow. It is returned
-         * from the v3/unify endpoint and cannot be reused outside of a single flow.
-         */
-        public Builder correlationId(Optional<String> correlationId) {
             Utils.checkNotNull(correlationId, "correlationId");
             this.correlationId = correlationId;
             return this;
