@@ -39,7 +39,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.21.0'
+implementation 'com.prove:proveapi:0.21.1'
 ```
 
 Maven:
@@ -47,7 +47,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.21.0</version>
+    <version>0.21.1</version>
 </dependency>
 ```
 
@@ -161,12 +161,6 @@ public class Application {
 
 <details open>
 <summary>Available methods</summary>
-
-### [Auth](docs/sdks/auth/README.md)
-
-* [authContinueRequest](docs/sdks/auth/README.md#authcontinuerequest) - AuthContinue /v1/server/auth/continue
-* [authFinishRequest](docs/sdks/auth/README.md#authfinishrequest) - AuthFinish /v1/server/auth/finish
-* [authStartRequest](docs/sdks/auth/README.md#authstartrequest) - AuthStart /v1/server/auth/start
 
 ### [Domain](docs/sdks/domain/README.md)
 
@@ -296,9 +290,9 @@ public class Application {
 ### Error Classes
 **Primary errors:**
 * [`ProveapiError`](./src/main/java/models/errors/ProveapiError.java): The base class for HTTP error responses.
-  * [`com.prove.proveapi.models.errors.Error400`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error400.java): Error400 is a custom error for HTTP 400. This is used to support distinguishing between HTTP 400 and 500 in Speakeasy SDKs. Status code `400`.
+  * [`com.prove.proveapi.models.errors.Error400`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error400.java): Bad Request. The server cannot process the request due to a client error. Status code `400`.
+  * [`com.prove.proveapi.models.errors.Error401`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error401.java): Unauthorized. Authentication is required and has failed or has not been provided. Status code `401`.
   * [`com.prove.proveapi.models.errors.Error`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error.java): Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request. Status code `500`.
-  * [`com.prove.proveapi.models.errors.Error401`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error401.java): Unauthorized. Authentication is required and has failed or has not been provided. Status code `401`. *
   * [`com.prove.proveapi.models.errors.Error403`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error403.java): Forbidden. The server understood the request but refuses to authorize it. Status code `403`. *
 
 <details><summary>Less common errors (6)</summary>

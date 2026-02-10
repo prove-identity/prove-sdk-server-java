@@ -32,36 +32,19 @@ public class V3UnifyStatusRequest {
     @JsonProperty("correlationId")
     private String correlationId;
 
-    /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-     * Unify request.
-     * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("phoneNumber")
-    private Optional<String> phoneNumber;
-
     @JsonCreator
     public V3UnifyStatusRequest(
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
-            @JsonProperty("correlationId") String correlationId,
-            @JsonProperty("phoneNumber") Optional<String> phoneNumber) {
+            @JsonProperty("correlationId") String correlationId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(correlationId, "correlationId");
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.clientRequestId = clientRequestId;
         this.correlationId = correlationId;
-        this.phoneNumber = phoneNumber;
     }
     
     public V3UnifyStatusRequest(
             String correlationId) {
-        this(Optional.empty(), correlationId, Optional.empty());
+        this(Optional.empty(), correlationId);
     }
 
     /**
@@ -82,21 +65,6 @@ public class V3UnifyStatusRequest {
     @JsonIgnore
     public String correlationId() {
         return correlationId;
-    }
-
-    /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-     * Unify request.
-     * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
-     */
-    @JsonIgnore
-    public Optional<String> phoneNumber() {
-        return phoneNumber;
     }
 
     public static Builder builder() {
@@ -139,39 +107,6 @@ public class V3UnifyStatusRequest {
         return this;
     }
 
-    /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-     * Unify request.
-     * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
-     */
-    public V3UnifyStatusRequest withPhoneNumber(String phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        this.phoneNumber = Optional.ofNullable(phoneNumber);
-        return this;
-    }
-
-
-    /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-     * Unify request.
-     * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
-     */
-    public V3UnifyStatusRequest withPhoneNumber(Optional<String> phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -183,22 +118,20 @@ public class V3UnifyStatusRequest {
         V3UnifyStatusRequest other = (V3UnifyStatusRequest) o;
         return 
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
-            Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
-            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.correlationId, other.correlationId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            clientRequestId, correlationId, phoneNumber);
+            clientRequestId, correlationId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3UnifyStatusRequest.class,
                 "clientRequestId", clientRequestId,
-                "correlationId", correlationId,
-                "phoneNumber", phoneNumber);
+                "correlationId", correlationId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -207,8 +140,6 @@ public class V3UnifyStatusRequest {
         private Optional<String> clientRequestId = Optional.empty();
 
         private String correlationId;
-
-        private Optional<String> phoneNumber = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -250,43 +181,10 @@ public class V3UnifyStatusRequest {
             return this;
         }
 
-
-        /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-         * International phone numbers require a leading `+1`.
-         * 
-         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-         * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-         * Unify request.
-         * 
-         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
-         */
-        public Builder phoneNumber(String phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
-            this.phoneNumber = Optional.ofNullable(phoneNumber);
-            return this;
-        }
-
-        /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-         * International phone numbers require a leading `+1`.
-         * 
-         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-         * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-         * Unify request.
-         * 
-         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
-         */
-        public Builder phoneNumber(Optional<String> phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
-            this.phoneNumber = phoneNumber;
-            return this;
-        }
-
         public V3UnifyStatusRequest build() {
 
             return new V3UnifyStatusRequest(
-                clientRequestId, correlationId, phoneNumber);
+                clientRequestId, correlationId);
         }
 
     }

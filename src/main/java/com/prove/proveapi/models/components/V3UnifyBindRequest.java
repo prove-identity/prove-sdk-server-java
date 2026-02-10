@@ -39,18 +39,15 @@ public class V3UnifyBindRequest {
      * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
      * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
      * Unify request.
-     * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
-    private Optional<String> phoneNumber;
+    private String phoneNumber;
 
     @JsonCreator
     public V3UnifyBindRequest(
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("correlationId") String correlationId,
-            @JsonProperty("phoneNumber") Optional<String> phoneNumber) {
+            @JsonProperty("phoneNumber") String phoneNumber) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -60,8 +57,9 @@ public class V3UnifyBindRequest {
     }
     
     public V3UnifyBindRequest(
-            String correlationId) {
-        this(Optional.empty(), correlationId, Optional.empty());
+            String correlationId,
+            String phoneNumber) {
+        this(Optional.empty(), correlationId, phoneNumber);
     }
 
     /**
@@ -91,11 +89,9 @@ public class V3UnifyBindRequest {
      * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
      * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
      * Unify request.
-     * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     @JsonIgnore
-    public Optional<String> phoneNumber() {
+    public String phoneNumber() {
         return phoneNumber;
     }
 
@@ -146,27 +142,8 @@ public class V3UnifyBindRequest {
      * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
      * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
      * Unify request.
-     * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
     public V3UnifyBindRequest withPhoneNumber(String phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        this.phoneNumber = Optional.ofNullable(phoneNumber);
-        return this;
-    }
-
-
-    /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-     * Unify request.
-     * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
-     */
-    public V3UnifyBindRequest withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
         return this;
@@ -208,7 +185,7 @@ public class V3UnifyBindRequest {
 
         private String correlationId;
 
-        private Optional<String> phoneNumber = Optional.empty();
+        private String phoneNumber;
 
         private Builder() {
           // force use of static builder() method
@@ -258,26 +235,8 @@ public class V3UnifyBindRequest {
          * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
          * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
          * Unify request.
-         * 
-         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
          */
         public Builder phoneNumber(String phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
-            this.phoneNumber = Optional.ofNullable(phoneNumber);
-            return this;
-        }
-
-        /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-         * International phone numbers require a leading `+1`.
-         * 
-         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-         * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-         * Unify request.
-         * 
-         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
-         */
-        public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
             this.phoneNumber = phoneNumber;
             return this;

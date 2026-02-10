@@ -13,6 +13,7 @@ generation:
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
+    sharedNestedComponentsJan2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
@@ -20,13 +21,14 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  versioningStrategy: automatic
   persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.21.0
+  version: 0.21.1
   additionalDependencies: []
   additionalPlugins: []
   artifactID: proveapi
@@ -41,6 +43,7 @@ java:
   enableSlf4jLogging: false
   enableStreamingUploads: false
   flattenGlobalSecurity: true
+  forwardCompatibleEnumsByDefault: false
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: github.com/prove-identity/prove-sdk-server-java
@@ -67,5 +70,6 @@ java:
   operationScopedParams: true
   outputModelSuffix: output
   projectName: openapi
+  respectTitlesForPrimitiveUnionMembers: false
   templateVersion: v2
   unionStrategy: populated-fields
