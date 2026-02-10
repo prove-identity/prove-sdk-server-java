@@ -55,7 +55,7 @@ public class V3UnifyBindResponse {
     /**
      * The number of the mobile phone used during the process.
      * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
+     * <p>Required
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
@@ -154,7 +154,7 @@ public class V3UnifyBindResponse {
     /**
      * The number of the mobile phone used during the process.
      * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
+     * <p>Required
      */
     @JsonIgnore
     public Optional<String> phoneNumber() {
@@ -280,7 +280,7 @@ public class V3UnifyBindResponse {
     /**
      * The number of the mobile phone used during the process.
      * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
+     * <p>Required
      */
     public V3UnifyBindResponse withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -292,7 +292,7 @@ public class V3UnifyBindResponse {
     /**
      * The number of the mobile phone used during the process.
      * 
-     * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
+     * <p>Required
      */
     public V3UnifyBindResponse withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -491,7 +491,7 @@ public class V3UnifyBindResponse {
         /**
          * The number of the mobile phone used during the process.
          * 
-         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
+         * <p>Required
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -502,7 +502,7 @@ public class V3UnifyBindResponse {
         /**
          * The number of the mobile phone used during the process.
          * 
-         * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
+         * <p>Required
          */
         public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

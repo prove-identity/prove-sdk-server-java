@@ -97,7 +97,7 @@ public class V3ChallengeRequest {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));

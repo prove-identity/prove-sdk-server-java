@@ -79,9 +79,50 @@ public class Application {
 
 This endpoint allows you to submit challenge information.
 
-### Example Usage
+### Example Usage: Response with Failed Evaluation
 
-<!-- UsageSnippet language="java" operationID="V3ChallengeRequest" method="post" path="/v3/challenge" -->
+<!-- UsageSnippet language="java" operationID="V3ChallengeRequest" method="post" path="/v3/challenge" example="Response with Failed Evaluation" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3ChallengeRequest;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3ChallengeRequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3ChallengeRequest req = V3ChallengeRequest.builder()
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .dob("1981-01")
+                .ssn("0596")
+                .build();
+
+        V3ChallengeRequestResponse res = sdk.v3().v3ChallengeRequest()
+                .request(req)
+                .call();
+
+        if (res.v3ChallengeResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: Response with Success Evaluation
+
+<!-- UsageSnippet language="java" operationID="V3ChallengeRequest" method="post" path="/v3/challenge" example="Response with Success Evaluation" -->
 ```java
 package hello.world;
 
@@ -145,9 +186,339 @@ public class Application {
 
 This endpoint allows you to verify the user and complete the flow.
 
-### Example Usage
+### Example Usage: Response with Failed Evaluation
 
-<!-- UsageSnippet language="java" operationID="V3CompleteRequest" method="post" path="/v3/complete" -->
+<!-- UsageSnippet language="java" operationID="V3CompleteRequest" method="post" path="/v3/complete" example="Response with Failed Evaluation" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.*;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3CompleteRequest req = V3CompleteRequest.builder()
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .individual(V3CompleteIndividualRequest.builder()
+                    .addresses(List.of(
+                        V3CompleteAddressEntryRequest.builder()
+                            .address("39 South Trail")
+                            .city("San Antonio")
+                            .extendedAddress("Apt 23")
+                            .postalCode("78285")
+                            .region("TX")
+                            .build()))
+                    .dob("1981-01")
+                    .emailAddresses(List.of(
+                        "jdoe@example.com"))
+                    .firstName("Tod")
+                    .lastName("Weedall")
+                    .ssn("265228370")
+                    .build())
+                .build();
+
+        V3CompleteRequestResponse res = sdk.v3().v3CompleteRequest()
+                .request(req)
+                .call();
+
+        if (res.v3CompleteResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: Response with High MultiCIP
+
+<!-- UsageSnippet language="java" operationID="V3CompleteRequest" method="post" path="/v3/complete" example="Response with High MultiCIP" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.*;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3CompleteRequest req = V3CompleteRequest.builder()
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .individual(V3CompleteIndividualRequest.builder()
+                    .addresses(List.of(
+                        V3CompleteAddressEntryRequest.builder()
+                            .address("39 South Trail")
+                            .city("San Antonio")
+                            .extendedAddress("Apt 23")
+                            .postalCode("78285")
+                            .region("TX")
+                            .build()))
+                    .dob("1981-01")
+                    .emailAddresses(List.of(
+                        "jdoe@example.com"))
+                    .firstName("Tod")
+                    .lastName("Weedall")
+                    .ssn("265228370")
+                    .build())
+                .build();
+
+        V3CompleteRequestResponse res = sdk.v3().v3CompleteRequest()
+                .request(req)
+                .call();
+
+        if (res.v3CompleteResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: Response with KYC - 0 hits
+
+<!-- UsageSnippet language="java" operationID="V3CompleteRequest" method="post" path="/v3/complete" example="Response with KYC - 0 hits" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.*;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3CompleteRequest req = V3CompleteRequest.builder()
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .individual(V3CompleteIndividualRequest.builder()
+                    .addresses(List.of(
+                        V3CompleteAddressEntryRequest.builder()
+                            .address("39 South Trail")
+                            .city("San Antonio")
+                            .extendedAddress("Apt 23")
+                            .postalCode("78285")
+                            .region("TX")
+                            .build()))
+                    .dob("1981-01")
+                    .emailAddresses(List.of(
+                        "jdoe@example.com"))
+                    .firstName("Tod")
+                    .lastName("Weedall")
+                    .ssn("265228370")
+                    .build())
+                .build();
+
+        V3CompleteRequestResponse res = sdk.v3().v3CompleteRequest()
+                .request(req)
+                .call();
+
+        if (res.v3CompleteResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: Response with KYC - 4 hits
+
+<!-- UsageSnippet language="java" operationID="V3CompleteRequest" method="post" path="/v3/complete" example="Response with KYC - 4 hits" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.*;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3CompleteRequest req = V3CompleteRequest.builder()
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .individual(V3CompleteIndividualRequest.builder()
+                    .addresses(List.of(
+                        V3CompleteAddressEntryRequest.builder()
+                            .address("39 South Trail")
+                            .city("San Antonio")
+                            .extendedAddress("Apt 23")
+                            .postalCode("78285")
+                            .region("TX")
+                            .build()))
+                    .dob("1981-01")
+                    .emailAddresses(List.of(
+                        "jdoe@example.com"))
+                    .firstName("Tod")
+                    .lastName("Weedall")
+                    .ssn("265228370")
+                    .build())
+                .build();
+
+        V3CompleteRequestResponse res = sdk.v3().v3CompleteRequest()
+                .request(req)
+                .call();
+
+        if (res.v3CompleteResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: Response with Low MultiCIP
+
+<!-- UsageSnippet language="java" operationID="V3CompleteRequest" method="post" path="/v3/complete" example="Response with Low MultiCIP" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.*;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3CompleteRequest req = V3CompleteRequest.builder()
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .individual(V3CompleteIndividualRequest.builder()
+                    .addresses(List.of(
+                        V3CompleteAddressEntryRequest.builder()
+                            .address("39 South Trail")
+                            .city("San Antonio")
+                            .extendedAddress("Apt 23")
+                            .postalCode("78285")
+                            .region("TX")
+                            .build()))
+                    .dob("1981-01")
+                    .emailAddresses(List.of(
+                        "jdoe@example.com"))
+                    .firstName("Tod")
+                    .lastName("Weedall")
+                    .ssn("265228370")
+                    .build())
+                .build();
+
+        V3CompleteRequestResponse res = sdk.v3().v3CompleteRequest()
+                .request(req)
+                .call();
+
+        if (res.v3CompleteResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: Response with Success Evaluation
+
+<!-- UsageSnippet language="java" operationID="V3CompleteRequest" method="post" path="/v3/complete" example="Response with Success Evaluation" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.*;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3CompleteRequestResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3CompleteRequest req = V3CompleteRequest.builder()
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .individual(V3CompleteIndividualRequest.builder()
+                    .addresses(List.of(
+                        V3CompleteAddressEntryRequest.builder()
+                            .address("39 South Trail")
+                            .city("San Antonio")
+                            .extendedAddress("Apt 23")
+                            .postalCode("78285")
+                            .region("TX")
+                            .build()))
+                    .dob("1981-01")
+                    .emailAddresses(List.of(
+                        "jdoe@example.com"))
+                    .firstName("Tod")
+                    .lastName("Weedall")
+                    .ssn("265228370")
+                    .build())
+                .build();
+
+        V3CompleteRequestResponse res = sdk.v3().v3CompleteRequest()
+                .request(req)
+                .call();
+
+        if (res.v3CompleteResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: Standard Response
+
+<!-- UsageSnippet language="java" operationID="V3CompleteRequest" method="post" path="/v3/complete" example="Standard Response" -->
 ```java
 package hello.world;
 
@@ -401,8 +772,8 @@ public class Application {
 
         V3UnifyBindRequest req = V3UnifyBindRequest.builder()
                 .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
-                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .phoneNumber("2001004011")
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .build();
 
         V3UnifyBindRequestResponse res = sdk.v3().v3UnifyBindRequest()
@@ -440,9 +811,9 @@ public class Application {
 
 This endpoint allows you to check the status of a Unify session and get the possession result.
 
-### Example Usage
+### Example Usage: Response with Failed Evaluation
 
-<!-- UsageSnippet language="java" operationID="V3UnifyStatusRequest" method="post" path="/v3/unify-status" -->
+<!-- UsageSnippet language="java" operationID="V3UnifyStatusRequest" method="post" path="/v3/unify-status" example="Response with Failed Evaluation" -->
 ```java
 package hello.world;
 
@@ -468,7 +839,46 @@ public class Application {
         V3UnifyStatusRequest req = V3UnifyStatusRequest.builder()
                 .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
-                .phoneNumber("2001004011")
+                .build();
+
+        V3UnifyStatusRequestResponse res = sdk.v3().v3UnifyStatusRequest()
+                .request(req)
+                .call();
+
+        if (res.v3UnifyStatusResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: Response with Success Evaluation
+
+<!-- UsageSnippet language="java" operationID="V3UnifyStatusRequest" method="post" path="/v3/unify-status" example="Response with Success Evaluation" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3UnifyStatusRequest;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3UnifyStatusRequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3UnifyStatusRequest req = V3UnifyStatusRequest.builder()
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .build();
 
         V3UnifyStatusRequestResponse res = sdk.v3().v3UnifyStatusRequest()
@@ -506,9 +916,48 @@ public class Application {
 
 This endpoint allows you to check if the phone number entered/discovered earlier in the flow is validated.
 
-### Example Usage
+### Example Usage: Response with Failed Evaluation
 
-<!-- UsageSnippet language="java" operationID="V3ValidateRequest" method="post" path="/v3/validate" -->
+<!-- UsageSnippet language="java" operationID="V3ValidateRequest" method="post" path="/v3/validate" example="Response with Failed Evaluation" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3ValidateRequest;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3ValidateRequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3ValidateRequest req = V3ValidateRequest.builder()
+                .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
+                .build();
+
+        V3ValidateRequestResponse res = sdk.v3().v3ValidateRequest()
+                .request(req)
+                .call();
+
+        if (res.v3ValidateResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: Response with Success Evaluation
+
+<!-- UsageSnippet language="java" operationID="V3ValidateRequest" method="post" path="/v3/validate" example="Response with Success Evaluation" -->
 ```java
 package hello.world;
 

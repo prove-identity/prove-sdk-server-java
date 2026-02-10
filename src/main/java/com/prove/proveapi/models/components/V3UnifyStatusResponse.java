@@ -44,7 +44,8 @@ public class V3UnifyStatusResponse {
     private Optional<String> deviceId;
 
     /**
-     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+     * encompass the different evaluation categories.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
@@ -138,7 +139,8 @@ public class V3UnifyStatusResponse {
     }
 
     /**
-     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+     * encompass the different evaluation categories.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -249,7 +251,8 @@ public class V3UnifyStatusResponse {
     }
 
     /**
-     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+     * encompass the different evaluation categories.
      */
     public V3UnifyStatusResponse withEvaluation(Map<String, V3UnifyStatusResponseEvaluation> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -259,7 +262,8 @@ public class V3UnifyStatusResponse {
 
 
     /**
-     * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+     * encompass the different evaluation categories.
      */
     public V3UnifyStatusResponse withEvaluation(Optional<? extends Map<String, V3UnifyStatusResponseEvaluation>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -454,7 +458,8 @@ public class V3UnifyStatusResponse {
 
 
         /**
-         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+         * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+         * encompass the different evaluation categories.
          */
         public Builder evaluation(Map<String, V3UnifyStatusResponseEvaluation> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -463,7 +468,8 @@ public class V3UnifyStatusResponse {
         }
 
         /**
-         * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
+         * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
+         * encompass the different evaluation categories.
          */
         public Builder evaluation(Optional<? extends Map<String, V3UnifyStatusResponseEvaluation>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
