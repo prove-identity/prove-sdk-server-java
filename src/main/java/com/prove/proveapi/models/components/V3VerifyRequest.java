@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -65,6 +67,13 @@ public class V3VerifyRequest {
     private Optional<String> firstName;
 
     /**
+     * An optional list of identity attributes
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("identityAttributes")
+    private Optional<? extends List<IdentityAttribute>> identityAttributes;
+
+    /**
      * The public IP address of the session of the individual. Acceptable characters
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -79,11 +88,12 @@ public class V3VerifyRequest {
     private Optional<String> lastName;
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
@@ -109,6 +119,7 @@ public class V3VerifyRequest {
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("emailAddress") Optional<String> emailAddress,
             @JsonProperty("firstName") Optional<String> firstName,
+            @JsonProperty("identityAttributes") Optional<? extends List<IdentityAttribute>> identityAttributes,
             @JsonProperty("ipAddress") Optional<String> ipAddress,
             @JsonProperty("lastName") Optional<String> lastName,
             @JsonProperty("phoneNumber") String phoneNumber,
@@ -119,6 +130,7 @@ public class V3VerifyRequest {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(emailAddress, "emailAddress");
         Utils.checkNotNull(firstName, "firstName");
+        Utils.checkNotNull(identityAttributes, "identityAttributes");
         Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -129,6 +141,7 @@ public class V3VerifyRequest {
         this.clientRequestId = clientRequestId;
         this.emailAddress = emailAddress;
         this.firstName = firstName;
+        this.identityAttributes = identityAttributes;
         this.ipAddress = ipAddress;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -141,8 +154,8 @@ public class V3VerifyRequest {
             VerificationType verificationType) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), phoneNumber, Optional.empty(),
-            verificationType);
+            Optional.empty(), Optional.empty(), phoneNumber,
+            Optional.empty(), verificationType);
     }
 
     /**
@@ -200,6 +213,15 @@ public class V3VerifyRequest {
     }
 
     /**
+     * An optional list of identity attributes
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<IdentityAttribute>> identityAttributes() {
+        return (Optional<List<IdentityAttribute>>) identityAttributes;
+    }
+
+    /**
      * The public IP address of the session of the individual. Acceptable characters
      */
     @JsonIgnore
@@ -216,11 +238,12 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -373,6 +396,25 @@ public class V3VerifyRequest {
     }
 
     /**
+     * An optional list of identity attributes
+     */
+    public V3VerifyRequest withIdentityAttributes(List<IdentityAttribute> identityAttributes) {
+        Utils.checkNotNull(identityAttributes, "identityAttributes");
+        this.identityAttributes = Optional.ofNullable(identityAttributes);
+        return this;
+    }
+
+
+    /**
+     * An optional list of identity attributes
+     */
+    public V3VerifyRequest withIdentityAttributes(Optional<? extends List<IdentityAttribute>> identityAttributes) {
+        Utils.checkNotNull(identityAttributes, "identityAttributes");
+        this.identityAttributes = identityAttributes;
+        return this;
+    }
+
+    /**
      * The public IP address of the session of the individual. Acceptable characters
      */
     public V3VerifyRequest withIpAddress(String ipAddress) {
@@ -411,11 +453,12 @@ public class V3VerifyRequest {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      */
     public V3VerifyRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -467,6 +510,7 @@ public class V3VerifyRequest {
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
             Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.identityAttributes, other.identityAttributes) &&
             Utils.enhancedDeepEquals(this.ipAddress, other.ipAddress) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
@@ -478,9 +522,9 @@ public class V3VerifyRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             clientCustomerId, clientHumanId, clientRequestId,
-            emailAddress, firstName, ipAddress,
-            lastName, phoneNumber, userAgent,
-            verificationType);
+            emailAddress, firstName, identityAttributes,
+            ipAddress, lastName, phoneNumber,
+            userAgent, verificationType);
     }
     
     @Override
@@ -491,6 +535,7 @@ public class V3VerifyRequest {
                 "clientRequestId", clientRequestId,
                 "emailAddress", emailAddress,
                 "firstName", firstName,
+                "identityAttributes", identityAttributes,
                 "ipAddress", ipAddress,
                 "lastName", lastName,
                 "phoneNumber", phoneNumber,
@@ -510,6 +555,8 @@ public class V3VerifyRequest {
         private Optional<String> emailAddress = Optional.empty();
 
         private Optional<String> firstName = Optional.empty();
+
+        private Optional<? extends List<IdentityAttribute>> identityAttributes = Optional.empty();
 
         private Optional<String> ipAddress = Optional.empty();
 
@@ -650,6 +697,25 @@ public class V3VerifyRequest {
 
 
         /**
+         * An optional list of identity attributes
+         */
+        public Builder identityAttributes(List<IdentityAttribute> identityAttributes) {
+            Utils.checkNotNull(identityAttributes, "identityAttributes");
+            this.identityAttributes = Optional.ofNullable(identityAttributes);
+            return this;
+        }
+
+        /**
+         * An optional list of identity attributes
+         */
+        public Builder identityAttributes(Optional<? extends List<IdentityAttribute>> identityAttributes) {
+            Utils.checkNotNull(identityAttributes, "identityAttributes");
+            this.identityAttributes = identityAttributes;
+            return this;
+        }
+
+
+        /**
          * The public IP address of the session of the individual. Acceptable characters
          */
         public Builder ipAddress(String ipAddress) {
@@ -688,11 +754,12 @@ public class V3VerifyRequest {
 
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-         * International phone numbers require a leading `+1`.
-         * 
-         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-         * characters are: alphanumeric with symbols '+'.
+         * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+         * `+1`.
+         * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+         * endpoint URL
+         * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+         * '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -734,9 +801,9 @@ public class V3VerifyRequest {
 
             return new V3VerifyRequest(
                 clientCustomerId, clientHumanId, clientRequestId,
-                emailAddress, firstName, ipAddress,
-                lastName, phoneNumber, userAgent,
-                verificationType);
+                emailAddress, firstName, identityAttributes,
+                ipAddress, lastName, phoneNumber,
+                userAgent, verificationType);
         }
 
     }

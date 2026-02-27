@@ -14,6 +14,7 @@ generation:
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
     sharedNestedComponentsJan2026: false
+    nameOverrideFeb2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
@@ -28,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.21.1
+  version: 0.21.2
   additionalDependencies: []
   additionalPlugins: []
   artifactID: proveapi
@@ -40,10 +41,12 @@ java:
   companyURL: https://www.prove.com
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
+  enableFormatting: false
   enableSlf4jLogging: false
   enableStreamingUploads: false
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: github.com/prove-identity/prove-sdk-server-java
@@ -66,7 +69,6 @@ java:
   maxMethodParams: 4
   multipartArrayFormat: legacy
   nullFriendlyParameters: false
-  openUnions: true
   operationScopedParams: true
   outputModelSuffix: output
   projectName: openapi

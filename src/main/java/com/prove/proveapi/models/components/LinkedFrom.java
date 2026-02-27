@@ -12,6 +12,8 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -36,25 +38,33 @@ public class LinkedFrom {
     @JsonProperty("pcid")
     private Optional<String> pcid;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("scopes")
+    private Optional<? extends List<String>> scopes;
+
     @JsonCreator
     public LinkedFrom(
             @JsonProperty("acceptedAt") Optional<Long> acceptedAt,
             @JsonProperty("acceptedString") Optional<String> acceptedString,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("pcid") Optional<String> pcid) {
+            @JsonProperty("pcid") Optional<String> pcid,
+            @JsonProperty("scopes") Optional<? extends List<String>> scopes) {
         Utils.checkNotNull(acceptedAt, "acceptedAt");
         Utils.checkNotNull(acceptedString, "acceptedString");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pcid, "pcid");
+        Utils.checkNotNull(scopes, "scopes");
         this.acceptedAt = acceptedAt;
         this.acceptedString = acceptedString;
         this.name = name;
         this.pcid = pcid;
+        this.scopes = scopes;
     }
     
     public LinkedFrom() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -75,6 +85,12 @@ public class LinkedFrom {
     @JsonIgnore
     public Optional<String> pcid() {
         return pcid;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> scopes() {
+        return (Optional<List<String>>) scopes;
     }
 
     public static Builder builder() {
@@ -134,6 +150,19 @@ public class LinkedFrom {
         return this;
     }
 
+    public LinkedFrom withScopes(List<String> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = Optional.ofNullable(scopes);
+        return this;
+    }
+
+
+    public LinkedFrom withScopes(Optional<? extends List<String>> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = scopes;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,14 +176,15 @@ public class LinkedFrom {
             Utils.enhancedDeepEquals(this.acceptedAt, other.acceptedAt) &&
             Utils.enhancedDeepEquals(this.acceptedString, other.acceptedString) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
-            Utils.enhancedDeepEquals(this.pcid, other.pcid);
+            Utils.enhancedDeepEquals(this.pcid, other.pcid) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             acceptedAt, acceptedString, name,
-            pcid);
+            pcid, scopes);
     }
     
     @Override
@@ -163,7 +193,8 @@ public class LinkedFrom {
                 "acceptedAt", acceptedAt,
                 "acceptedString", acceptedString,
                 "name", name,
-                "pcid", pcid);
+                "pcid", pcid,
+                "scopes", scopes);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -176,6 +207,8 @@ public class LinkedFrom {
         private Optional<String> name = Optional.empty();
 
         private Optional<String> pcid = Optional.empty();
+
+        private Optional<? extends List<String>> scopes = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -233,11 +266,24 @@ public class LinkedFrom {
             return this;
         }
 
+
+        public Builder scopes(List<String> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = Optional.ofNullable(scopes);
+            return this;
+        }
+
+        public Builder scopes(Optional<? extends List<String>> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = scopes;
+            return this;
+        }
+
         public LinkedFrom build() {
 
             return new LinkedFrom(
                 acceptedAt, acceptedString, name,
-                pcid);
+                pcid, scopes);
         }
 
     }

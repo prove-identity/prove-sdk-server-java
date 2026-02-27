@@ -9,3 +9,4 @@
 | `pcid`              | *Optional\<String>* | :heavy_minus_sign:  | N/A                 |
 | `requestedAt`       | *Optional\<Long>*   | :heavy_minus_sign:  | N/A                 |
 | `requestedString`   | *Optional\<String>* | :heavy_minus_sign:  | N/A                 |
+| `scopes`            | List\<*String*>     | :heavy_minus_sign:  | N/A                 |

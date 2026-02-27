@@ -12,6 +12,8 @@ import com.prove.proveapi.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -36,25 +38,33 @@ public class RequestsFrom {
     @JsonProperty("requestedString")
     private Optional<String> requestedString;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("scopes")
+    private Optional<? extends List<String>> scopes;
+
     @JsonCreator
     public RequestsFrom(
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("pcid") Optional<String> pcid,
             @JsonProperty("requestedAt") Optional<Long> requestedAt,
-            @JsonProperty("requestedString") Optional<String> requestedString) {
+            @JsonProperty("requestedString") Optional<String> requestedString,
+            @JsonProperty("scopes") Optional<? extends List<String>> scopes) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pcid, "pcid");
         Utils.checkNotNull(requestedAt, "requestedAt");
         Utils.checkNotNull(requestedString, "requestedString");
+        Utils.checkNotNull(scopes, "scopes");
         this.name = name;
         this.pcid = pcid;
         this.requestedAt = requestedAt;
         this.requestedString = requestedString;
+        this.scopes = scopes;
     }
     
     public RequestsFrom() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -75,6 +85,12 @@ public class RequestsFrom {
     @JsonIgnore
     public Optional<String> requestedString() {
         return requestedString;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> scopes() {
+        return (Optional<List<String>>) scopes;
     }
 
     public static Builder builder() {
@@ -134,6 +150,19 @@ public class RequestsFrom {
         return this;
     }
 
+    public RequestsFrom withScopes(List<String> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = Optional.ofNullable(scopes);
+        return this;
+    }
+
+
+    public RequestsFrom withScopes(Optional<? extends List<String>> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = scopes;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,14 +176,15 @@ public class RequestsFrom {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.pcid, other.pcid) &&
             Utils.enhancedDeepEquals(this.requestedAt, other.requestedAt) &&
-            Utils.enhancedDeepEquals(this.requestedString, other.requestedString);
+            Utils.enhancedDeepEquals(this.requestedString, other.requestedString) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             name, pcid, requestedAt,
-            requestedString);
+            requestedString, scopes);
     }
     
     @Override
@@ -163,7 +193,8 @@ public class RequestsFrom {
                 "name", name,
                 "pcid", pcid,
                 "requestedAt", requestedAt,
-                "requestedString", requestedString);
+                "requestedString", requestedString,
+                "scopes", scopes);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -176,6 +207,8 @@ public class RequestsFrom {
         private Optional<Long> requestedAt = Optional.empty();
 
         private Optional<String> requestedString = Optional.empty();
+
+        private Optional<? extends List<String>> scopes = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -233,11 +266,24 @@ public class RequestsFrom {
             return this;
         }
 
+
+        public Builder scopes(List<String> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = Optional.ofNullable(scopes);
+            return this;
+        }
+
+        public Builder scopes(Optional<? extends List<String>> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = scopes;
+            return this;
+        }
+
         public RequestsFrom build() {
 
             return new RequestsFrom(
                 name, pcid, requestedAt,
-                requestedString);
+                requestedString, scopes);
         }
 
     }

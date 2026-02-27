@@ -67,12 +67,16 @@ public class V3StartRequest {
     private Optional<String> ipAddress;
 
     /**
-     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+     * The number of the mobile phone.
+     * US and Canada phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+` followed by the country code.
+     * Refer to the [Prove Pre-Fill Implementation
      * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
-     * and [Prove Identity Implementation
+     * and
+     * [Prove Identity Implementation
      * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
-     * for situations where this field is not required. Acceptable characters are: alphanumeric with
-     * symbols '+'.
+     * for situations
+     * where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
@@ -201,12 +205,16 @@ public class V3StartRequest {
     }
 
     /**
-     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+     * The number of the mobile phone.
+     * US and Canada phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+` followed by the country code.
+     * Refer to the [Prove Pre-Fill Implementation
      * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
-     * and [Prove Identity Implementation
+     * and
+     * [Prove Identity Implementation
      * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
-     * for situations where this field is not required. Acceptable characters are: alphanumeric with
-     * symbols '+'.
+     * for situations
+     * where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
      */
     @JsonIgnore
     public Optional<String> phoneNumber() {
@@ -369,12 +377,16 @@ public class V3StartRequest {
     }
 
     /**
-     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+     * The number of the mobile phone.
+     * US and Canada phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+` followed by the country code.
+     * Refer to the [Prove Pre-Fill Implementation
      * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
-     * and [Prove Identity Implementation
+     * and
+     * [Prove Identity Implementation
      * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
-     * for situations where this field is not required. Acceptable characters are: alphanumeric with
-     * symbols '+'.
+     * for situations
+     * where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
      */
     public V3StartRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -384,12 +396,16 @@ public class V3StartRequest {
 
 
     /**
-     * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+     * The number of the mobile phone.
+     * US and Canada phone numbers can be passed in with or without a leading `+1`.
+     * International phone numbers require a leading `+` followed by the country code.
+     * Refer to the [Prove Pre-Fill Implementation
      * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
-     * and [Prove Identity Implementation
+     * and
+     * [Prove Identity Implementation
      * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
-     * for situations where this field is not required. Acceptable characters are: alphanumeric with
-     * symbols '+'.
+     * for situations
+     * where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
      */
     public V3StartRequest withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -653,12 +669,16 @@ public class V3StartRequest {
 
 
         /**
-         * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+         * The number of the mobile phone.
+         * US and Canada phone numbers can be passed in with or without a leading `+1`.
+         * International phone numbers require a leading `+` followed by the country code.
+         * Refer to the [Prove Pre-Fill Implementation
          * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
-         * and [Prove Identity Implementation
+         * and
+         * [Prove Identity Implementation
          * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
-         * for situations where this field is not required. Acceptable characters are: alphanumeric with
-         * symbols '+'.
+         * for situations
+         * where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -667,12 +687,16 @@ public class V3StartRequest {
         }
 
         /**
-         * The number of the mobile phone. Refer to the [Prove Pre-Fill Implementation
+         * The number of the mobile phone.
+         * US and Canada phone numbers can be passed in with or without a leading `+1`.
+         * International phone numbers require a leading `+` followed by the country code.
+         * Refer to the [Prove Pre-Fill Implementation
          * guide](https://developer.prove.com/docs/prove-pre-fill-implementation-guide#implement-prove-pre-fill)
-         * and [Prove Identity Implementation
+         * and
+         * [Prove Identity Implementation
          * guide](https://developer.prove.com/docs/prove-identity-implementation-guide#implement-prove-identity)
-         * for situations where this field is not required. Acceptable characters are: alphanumeric with
-         * symbols '+'.
+         * for situations
+         * where this field is not required. Acceptable characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

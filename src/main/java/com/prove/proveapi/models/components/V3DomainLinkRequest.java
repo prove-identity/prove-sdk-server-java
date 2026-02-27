@@ -5,10 +5,15 @@ package com.prove.proveapi.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Optional;
 
 
 public class V3DomainLinkRequest {
@@ -16,16 +21,35 @@ public class V3DomainLinkRequest {
     @JsonProperty("pcid")
     private String pcid;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("scopes")
+    private Optional<? extends List<String>> scopes;
+
     @JsonCreator
     public V3DomainLinkRequest(
-            @JsonProperty("pcid") String pcid) {
+            @JsonProperty("pcid") String pcid,
+            @JsonProperty("scopes") Optional<? extends List<String>> scopes) {
         Utils.checkNotNull(pcid, "pcid");
+        Utils.checkNotNull(scopes, "scopes");
         this.pcid = pcid;
+        this.scopes = scopes;
+    }
+    
+    public V3DomainLinkRequest(
+            String pcid) {
+        this(pcid, Optional.empty());
     }
 
     @JsonIgnore
     public String pcid() {
         return pcid;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> scopes() {
+        return (Optional<List<String>>) scopes;
     }
 
     public static Builder builder() {
@@ -39,6 +63,19 @@ public class V3DomainLinkRequest {
         return this;
     }
 
+    public V3DomainLinkRequest withScopes(List<String> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = Optional.ofNullable(scopes);
+        return this;
+    }
+
+
+    public V3DomainLinkRequest withScopes(Optional<? extends List<String>> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = scopes;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,25 +86,29 @@ public class V3DomainLinkRequest {
         }
         V3DomainLinkRequest other = (V3DomainLinkRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.pcid, other.pcid);
+            Utils.enhancedDeepEquals(this.pcid, other.pcid) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pcid);
+            pcid, scopes);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3DomainLinkRequest.class,
-                "pcid", pcid);
+                "pcid", pcid,
+                "scopes", scopes);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private String pcid;
+
+        private Optional<? extends List<String>> scopes = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -80,10 +121,23 @@ public class V3DomainLinkRequest {
             return this;
         }
 
+
+        public Builder scopes(List<String> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = Optional.ofNullable(scopes);
+            return this;
+        }
+
+        public Builder scopes(Optional<? extends List<String>> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = scopes;
+            return this;
+        }
+
         public V3DomainLinkRequest build() {
 
             return new V3DomainLinkRequest(
-                pcid);
+                pcid, scopes);
         }
 
     }

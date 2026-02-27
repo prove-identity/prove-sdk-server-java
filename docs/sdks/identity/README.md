@@ -4,6 +4,7 @@
 
 ### Available Operations
 
+* [v3FetchRequest](#v3fetchrequest) - Fetch Identity Attributes
 * [v3BatchGetIdentities](#v3batchgetidentities) - Batch Get Identities
 * [v3EnrollIdentity](#v3enrollidentity) - Enroll Identity
 * [v3BatchEnrollIdentities](#v3batchenrollidentities) - Batch Enroll Identities
@@ -13,6 +14,69 @@
 * [v3CrossDomainIdentity](#v3crossdomainidentity) - Cross Domain Identity
 * [v3DeactivateIdentity](#v3deactivateidentity) - Deactivate Identity
 * [v3GetIdentitiesByPhoneNumber](#v3getidentitiesbyphonenumber) - Get Identities By Phone Number
+
+## v3FetchRequest
+
+Fetch actual identity attribute values (e.g., walletID) based on the customer ProveID and attribute UUID.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="V3FetchRequest" method="get" path="/v3/fetch" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3FetchRequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error404, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3FetchRequestResponse res = sdk.identity().v3FetchRequest()
+                .proveId("<id>")
+                .attributeId("<id>")
+                .call();
+
+        if (res.v3FetchResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                                                                    | Type                                                                                                                                                                                                                                                                                         | Required                                                                                                                                                                                                                                                                                     | Description                                                                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `proveId`                                                                                                                                                                                                                                                                                    | *String*                                                                                                                                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                                                                                                                           | A unique Prove-generated identifier for the enrolled identity (UUID).                                                                                                                                                                                                                        |
+| `attributeId`                                                                                                                                                                                                                                                                                | *String*                                                                                                                                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                                                                                                                           | A unique identifier for the identity attribute (UUID), as returned by the discover endpoint.                                                                                                                                                                                                 |
+| `clientRequestId`                                                                                                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                                                                           | A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field. |
+
+### Response
+
+**[V3FetchRequestResponse](../../models/operations/V3FetchRequestResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
+| models/errors/Error404 | 404                    | application/json       |
+| models/errors/Error    | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## v3BatchGetIdentities
 
@@ -86,12 +150,12 @@ Enrolls a single customer for monitoring using their phone number and unique ide
 package hello.world;
 
 import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.Security;
-import com.prove.proveapi.models.components.V3EnrollIdentityRequest;
+import com.prove.proveapi.models.components.*;
 import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3EnrollIdentityResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -109,6 +173,11 @@ public class Application {
                 .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .deviceId("bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc")
+                .identityAttributes(List.of(
+                    IdentityAttribute.builder()
+                        .attributeType("myWalletId")
+                        .attributeValue("token123")
+                        .build()))
                 .build();
 
         V3EnrollIdentityResponse res = sdk.identity().v3EnrollIdentity()

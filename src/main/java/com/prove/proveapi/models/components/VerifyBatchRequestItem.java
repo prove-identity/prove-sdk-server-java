@@ -65,11 +65,12 @@ public class VerifyBatchRequestItem {
     private String lastName;
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
@@ -195,11 +196,12 @@ public class VerifyBatchRequestItem {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -345,11 +347,12 @@ public class VerifyBatchRequestItem {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      */
     public VerifyBatchRequestItem withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -587,11 +590,12 @@ public class VerifyBatchRequestItem {
 
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-         * International phone numbers require a leading `+1`.
-         * 
-         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-         * characters are: alphanumeric with symbols '+'.
+         * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+         * `+1`.
+         * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+         * endpoint URL
+         * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+         * '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

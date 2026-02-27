@@ -80,6 +80,9 @@ public class Proveapi {
     private final V3 v3;
 
 
+    private final Auth auth;
+
+
     private final Domain domain;
 
 
@@ -88,6 +91,11 @@ public class Proveapi {
 
     public V3 v3() {
         return v3;
+    }
+
+
+    public Auth auth() {
+        return auth;
     }
 
 
@@ -252,6 +260,7 @@ public class Proveapi {
     public Proveapi(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.v3 = new V3(sdkConfiguration);
+        this.auth = new Auth(sdkConfiguration);
         this.domain = new Domain(sdkConfiguration);
         this.identity = new Identity(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(

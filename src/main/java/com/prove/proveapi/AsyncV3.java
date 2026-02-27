@@ -7,6 +7,7 @@ import static com.prove.proveapi.operations.Operations.AsyncRequestOperation;
 
 import com.prove.proveapi.models.components.V3ChallengeRequest;
 import com.prove.proveapi.models.components.V3CompleteRequest;
+import com.prove.proveapi.models.components.V3DeviceRevokeRequest;
 import com.prove.proveapi.models.components.V3StartRequest;
 import com.prove.proveapi.models.components.V3TokenRequest;
 import com.prove.proveapi.models.components.V3UnifyBindRequest;
@@ -19,6 +20,8 @@ import com.prove.proveapi.models.operations.async.V3ChallengeRequestRequestBuild
 import com.prove.proveapi.models.operations.async.V3ChallengeRequestResponse;
 import com.prove.proveapi.models.operations.async.V3CompleteRequestRequestBuilder;
 import com.prove.proveapi.models.operations.async.V3CompleteRequestResponse;
+import com.prove.proveapi.models.operations.async.V3DeviceRevokeRequestRequestBuilder;
+import com.prove.proveapi.models.operations.async.V3DeviceRevokeRequestResponse;
 import com.prove.proveapi.models.operations.async.V3StartRequestRequestBuilder;
 import com.prove.proveapi.models.operations.async.V3StartRequestResponse;
 import com.prove.proveapi.models.operations.async.V3TokenRequestRequestBuilder;
@@ -169,6 +172,47 @@ public class AsyncV3 {
     public CompletableFuture<V3CompleteRequestResponse> v3CompleteRequest(Optional<? extends V3CompleteRequest> request) {
         AsyncRequestOperation<Optional<? extends V3CompleteRequest>, V3CompleteRequestResponse> operation
               = new com.prove.proveapi.operations.V3CompleteRequest.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Revoke Device
+     * 
+     * <p>This endpoint allows you to revoke a Prove Key device, marking it as inactive
+     * so it can no longer be used in an auth flow.
+     * 
+     * @return The async call builder
+     */
+    public V3DeviceRevokeRequestRequestBuilder v3DeviceRevokeRequest() {
+        return new V3DeviceRevokeRequestRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Revoke Device
+     * 
+     * <p>This endpoint allows you to revoke a Prove Key device, marking it as inactive
+     * so it can no longer be used in an auth flow.
+     * 
+     * @return {@code CompletableFuture<V3DeviceRevokeRequestResponse>} - The async response
+     */
+    public CompletableFuture<V3DeviceRevokeRequestResponse> v3DeviceRevokeRequestDirect() {
+        return v3DeviceRevokeRequest(Optional.empty());
+    }
+
+    /**
+     * Revoke Device
+     * 
+     * <p>This endpoint allows you to revoke a Prove Key device, marking it as inactive
+     * so it can no longer be used in an auth flow.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<V3DeviceRevokeRequestResponse>} - The async response
+     */
+    public CompletableFuture<V3DeviceRevokeRequestResponse> v3DeviceRevokeRequest(Optional<? extends V3DeviceRevokeRequest> request) {
+        AsyncRequestOperation<Optional<? extends V3DeviceRevokeRequest>, V3DeviceRevokeRequestResponse> operation
+              = new com.prove.proveapi.operations.V3DeviceRevokeRequest.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
