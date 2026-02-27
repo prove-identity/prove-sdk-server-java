@@ -85,11 +85,12 @@ public class V3UnifyRequest {
     private Optional<String> ipAddress;
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      * 
      * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
@@ -271,11 +272,12 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      * 
      * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
@@ -504,11 +506,12 @@ public class V3UnifyRequest {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      * 
      * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
@@ -520,11 +523,12 @@ public class V3UnifyRequest {
 
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      * 
      * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
      */
@@ -885,11 +889,12 @@ public class V3UnifyRequest {
 
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-         * International phone numbers require a leading `+1`.
-         * 
-         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-         * characters are: alphanumeric with symbols '+'.
+         * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+         * `+1`.
+         * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+         * endpoint URL
+         * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+         * '+'.
          * 
          * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
          */
@@ -900,11 +905,12 @@ public class V3UnifyRequest {
         }
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-         * International phone numbers require a leading `+1`.
-         * 
-         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-         * characters are: alphanumeric with symbols '+'.
+         * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+         * `+1`.
+         * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+         * endpoint URL
+         * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+         * '+'.
          * 
          * <p>Required except when MobileAuth is used in US or a valid ProveID is provided.
          */

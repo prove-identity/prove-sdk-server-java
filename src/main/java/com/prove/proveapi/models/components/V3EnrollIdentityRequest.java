@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -50,8 +52,17 @@ public class V3EnrollIdentityRequest {
     private Optional<String> deviceId;
 
     /**
-     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a
-     * leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * Attributes is a list of objects contains attribute Type and Value.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("identityAttributes")
+    private Optional<? extends List<IdentityAttribute>> identityAttributes;
+
+    /**
+     * The number of the consumer being enrolled. US and Canada phone numbers can be passed in with or
+     * without a leading `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Acceptable
+     * characters are: alphanumeric with symbols '+'.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
@@ -61,21 +72,24 @@ public class V3EnrollIdentityRequest {
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("deviceId") Optional<String> deviceId,
+            @JsonProperty("identityAttributes") Optional<? extends List<IdentityAttribute>> identityAttributes,
             @JsonProperty("phoneNumber") String phoneNumber) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(deviceId, "deviceId");
+        Utils.checkNotNull(identityAttributes, "identityAttributes");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.clientCustomerId = clientCustomerId;
         this.clientRequestId = clientRequestId;
         this.deviceId = deviceId;
+        this.identityAttributes = identityAttributes;
         this.phoneNumber = phoneNumber;
     }
     
     public V3EnrollIdentityRequest(
             String phoneNumber) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            phoneNumber);
+            Optional.empty(), phoneNumber);
     }
 
     /**
@@ -112,8 +126,19 @@ public class V3EnrollIdentityRequest {
     }
 
     /**
-     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a
-     * leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * Attributes is a list of objects contains attribute Type and Value.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<IdentityAttribute>> identityAttributes() {
+        return (Optional<List<IdentityAttribute>>) identityAttributes;
+    }
+
+    /**
+     * The number of the consumer being enrolled. US and Canada phone numbers can be passed in with or
+     * without a leading `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Acceptable
+     * characters are: alphanumeric with symbols '+'.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -201,8 +226,29 @@ public class V3EnrollIdentityRequest {
     }
 
     /**
-     * The number of the consumer being enrolled. US phone numbers can be passed in with or without a
-     * leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+     * Attributes is a list of objects contains attribute Type and Value.
+     */
+    public V3EnrollIdentityRequest withIdentityAttributes(List<IdentityAttribute> identityAttributes) {
+        Utils.checkNotNull(identityAttributes, "identityAttributes");
+        this.identityAttributes = Optional.ofNullable(identityAttributes);
+        return this;
+    }
+
+
+    /**
+     * Attributes is a list of objects contains attribute Type and Value.
+     */
+    public V3EnrollIdentityRequest withIdentityAttributes(Optional<? extends List<IdentityAttribute>> identityAttributes) {
+        Utils.checkNotNull(identityAttributes, "identityAttributes");
+        this.identityAttributes = identityAttributes;
+        return this;
+    }
+
+    /**
+     * The number of the consumer being enrolled. US and Canada phone numbers can be passed in with or
+     * without a leading `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Acceptable
+     * characters are: alphanumeric with symbols '+'.
      */
     public V3EnrollIdentityRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -223,6 +269,7 @@ public class V3EnrollIdentityRequest {
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
             Utils.enhancedDeepEquals(this.deviceId, other.deviceId) &&
+            Utils.enhancedDeepEquals(this.identityAttributes, other.identityAttributes) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
     }
     
@@ -230,7 +277,7 @@ public class V3EnrollIdentityRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             clientCustomerId, clientRequestId, deviceId,
-            phoneNumber);
+            identityAttributes, phoneNumber);
     }
     
     @Override
@@ -239,6 +286,7 @@ public class V3EnrollIdentityRequest {
                 "clientCustomerId", clientCustomerId,
                 "clientRequestId", clientRequestId,
                 "deviceId", deviceId,
+                "identityAttributes", identityAttributes,
                 "phoneNumber", phoneNumber);
     }
 
@@ -250,6 +298,8 @@ public class V3EnrollIdentityRequest {
         private Optional<String> clientRequestId = Optional.empty();
 
         private Optional<String> deviceId = Optional.empty();
+
+        private Optional<? extends List<IdentityAttribute>> identityAttributes = Optional.empty();
 
         private String phoneNumber;
 
@@ -334,8 +384,29 @@ public class V3EnrollIdentityRequest {
 
 
         /**
-         * The number of the consumer being enrolled. US phone numbers can be passed in with or without a
-         * leading +1. Acceptable characters are: alphanumeric with symbols '+'.
+         * Attributes is a list of objects contains attribute Type and Value.
+         */
+        public Builder identityAttributes(List<IdentityAttribute> identityAttributes) {
+            Utils.checkNotNull(identityAttributes, "identityAttributes");
+            this.identityAttributes = Optional.ofNullable(identityAttributes);
+            return this;
+        }
+
+        /**
+         * Attributes is a list of objects contains attribute Type and Value.
+         */
+        public Builder identityAttributes(Optional<? extends List<IdentityAttribute>> identityAttributes) {
+            Utils.checkNotNull(identityAttributes, "identityAttributes");
+            this.identityAttributes = identityAttributes;
+            return this;
+        }
+
+
+        /**
+         * The number of the consumer being enrolled. US and Canada phone numbers can be passed in with or
+         * without a leading `+1`.
+         * International phone numbers require a leading `+` followed by the country code. Acceptable
+         * characters are: alphanumeric with symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -347,7 +418,7 @@ public class V3EnrollIdentityRequest {
 
             return new V3EnrollIdentityRequest(
                 clientCustomerId, clientRequestId, deviceId,
-                phoneNumber);
+                identityAttributes, phoneNumber);
         }
 
     }

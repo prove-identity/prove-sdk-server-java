@@ -7,6 +7,7 @@
 * [v3TokenRequest](#v3tokenrequest) - Request OAuth Token
 * [v3ChallengeRequest](#v3challengerequest) - Submit Challenge
 * [v3CompleteRequest](#v3completerequest) - Complete Flow
+* [v3DeviceRevokeRequest](#v3devicerevokerequest) - Revoke Device
 * [v3StartRequest](#v3startrequest) - Start Flow
 * [v3UnifyRequest](#v3unifyrequest) - Initiate Possession Check
 * [v3UnifyBindRequest](#v3unifybindrequest) - Bind Prove Key
@@ -592,6 +593,72 @@ public class Application {
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
+## v3DeviceRevokeRequest
+
+This endpoint allows you to revoke a Prove Key device, marking it as inactive
+so it can no longer be used in an auth flow.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="V3DeviceRevokeRequest" method="post" path="/v3/device/revoke" -->
+```java
+package hello.world;
+
+import com.prove.proveapi.Proveapi;
+import com.prove.proveapi.models.components.Security;
+import com.prove.proveapi.models.components.V3DeviceRevokeRequest;
+import com.prove.proveapi.models.errors.*;
+import com.prove.proveapi.models.errors.Error;
+import com.prove.proveapi.models.operations.V3DeviceRevokeRequestResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+
+        Proveapi sdk = Proveapi.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3DeviceRevokeRequest req = V3DeviceRevokeRequest.builder()
+                .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
+                .deviceId("bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc")
+                .build();
+
+        V3DeviceRevokeRequestResponse res = sdk.v3().v3DeviceRevokeRequest()
+                .request(req)
+                .call();
+
+        if (res.v3DeviceRevokeResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [V3DeviceRevokeRequest](../../models/shared/V3DeviceRevokeRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+
+### Response
+
+**[V3DeviceRevokeRequestResponse](../../models/operations/V3DeviceRevokeRequestResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error400 | 400                    | application/json       |
+| models/errors/Error401 | 401                    | application/json       |
+| models/errors/Error403 | 403                    | application/json       |
+| models/errors/Error    | 500                    | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
 ## v3StartRequest
 
 This endpoint allows you to start the solution flow.
@@ -1031,6 +1098,7 @@ import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3VerifyRequestResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -1051,6 +1119,11 @@ public class Application {
                 .clientRequestId("71010d88-d0e7-4a24-9297-d1be6fefde81")
                 .emailAddress("ecoldman1h@storify.com")
                 .firstName("Elena")
+                .identityAttributes(List.of(
+                    IdentityAttribute.builder()
+                        .attributeType("walletId")
+                        .attributeValue("wallet123")
+                        .build()))
                 .ipAddress("192.168.1.1")
                 .lastName("Coldman")
                 .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")

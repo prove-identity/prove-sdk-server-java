@@ -33,12 +33,12 @@ public class V3UnifyBindRequest {
     private String correlationId;
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-     * Unify request.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
@@ -83,12 +83,12 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-     * Unify request.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -136,12 +136,12 @@ public class V3UnifyBindRequest {
     }
 
     /**
-     * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-     * International phone numbers require a leading `+1`.
-     * 
-     * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-     * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-     * Unify request.
+     * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+     * `+1`.
+     * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+     * endpoint URL
+     * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+     * '+'.
      */
     public V3UnifyBindRequest withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -229,12 +229,12 @@ public class V3UnifyBindRequest {
 
 
         /**
-         * The mobile phone number. US phone numbers can be passed in with or without a leading `+1`.
-         * International phone numbers require a leading `+1`.
-         * 
-         * <p>Use the appropriate endpoint URL based on the region the number originates from. Acceptable
-         * characters are: alphanumeric with symbols '+'. Required when `possessionType=none` in the initial
-         * Unify request.
+         * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
+         * `+1`.
+         * International phone numbers require a leading `+` followed by the country code. Use the appropriate
+         * endpoint URL
+         * based on the region the number originates from. Acceptable characters are: alphanumeric with symbols
+         * '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

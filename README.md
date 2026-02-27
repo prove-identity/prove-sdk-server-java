@@ -39,7 +39,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.21.1'
+implementation 'com.prove:proveapi:0.21.2'
 ```
 
 Maven:
@@ -47,7 +47,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.21.1</version>
+    <version>0.21.2</version>
 </dependency>
 ```
 
@@ -162,6 +162,12 @@ public class Application {
 <details open>
 <summary>Available methods</summary>
 
+### [Auth](docs/sdks/auth/README.md)
+
+* [authContinueRequest](docs/sdks/auth/README.md#authcontinuerequest) - AuthContinue /v1/server/auth/continue
+* [authFinishRequest](docs/sdks/auth/README.md#authfinishrequest) - AuthFinish /v1/server/auth/finish
+* [authStartRequest](docs/sdks/auth/README.md#authstartrequest) - AuthStart /v1/server/auth/start
+
 ### [Domain](docs/sdks/domain/README.md)
 
 * [v3DomainConfirmLinkRequest](docs/sdks/domain/README.md#v3domainconfirmlinkrequest) - Confirm a domain link request
@@ -172,6 +178,7 @@ public class Application {
 
 ### [Identity](docs/sdks/identity/README.md)
 
+* [v3FetchRequest](docs/sdks/identity/README.md#v3fetchrequest) - Fetch Identity Attributes
 * [v3BatchGetIdentities](docs/sdks/identity/README.md#v3batchgetidentities) - Batch Get Identities
 * [v3EnrollIdentity](docs/sdks/identity/README.md#v3enrollidentity) - Enroll Identity
 * [v3BatchEnrollIdentities](docs/sdks/identity/README.md#v3batchenrollidentities) - Batch Enroll Identities
@@ -187,6 +194,7 @@ public class Application {
 * [v3TokenRequest](docs/sdks/v3/README.md#v3tokenrequest) - Request OAuth Token
 * [v3ChallengeRequest](docs/sdks/v3/README.md#v3challengerequest) - Submit Challenge
 * [v3CompleteRequest](docs/sdks/v3/README.md#v3completerequest) - Complete Flow
+* [v3DeviceRevokeRequest](docs/sdks/v3/README.md#v3devicerevokerequest) - Revoke Device
 * [v3StartRequest](docs/sdks/v3/README.md#v3startrequest) - Start Flow
 * [v3UnifyRequest](docs/sdks/v3/README.md#v3unifyrequest) - Initiate Possession Check
 * [v3UnifyBindRequest](docs/sdks/v3/README.md#v3unifybindrequest) - Bind Prove Key
@@ -290,12 +298,12 @@ public class Application {
 ### Error Classes
 **Primary errors:**
 * [`ProveapiError`](./src/main/java/models/errors/ProveapiError.java): The base class for HTTP error responses.
-  * [`com.prove.proveapi.models.errors.Error400`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error400.java): Bad Request. The server cannot process the request due to a client error. Status code `400`.
-  * [`com.prove.proveapi.models.errors.Error401`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error401.java): Unauthorized. Authentication is required and has failed or has not been provided. Status code `401`.
+  * [`com.prove.proveapi.models.errors.Error400`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error400.java): Error400 is a custom error for HTTP 400. This is used to support distinguishing between HTTP 400 and 500 in Speakeasy SDKs. Status code `400`.
   * [`com.prove.proveapi.models.errors.Error`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error.java): Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request. Status code `500`.
+  * [`com.prove.proveapi.models.errors.Error401`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error401.java): Unauthorized. Authentication is required and has failed or has not been provided. Status code `401`. *
   * [`com.prove.proveapi.models.errors.Error403`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error403.java): Forbidden. The server understood the request but refuses to authorize it. Status code `403`. *
 
-<details><summary>Less common errors (6)</summary>
+<details><summary>Less common errors (7)</summary>
 
 <br />
 
@@ -305,6 +313,7 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ProveapiError`](./src/main/java/models/errors/ProveapiError.java)**:
+* [`com.prove.proveapi.models.errors.Error404`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error404.java): Not Found. The server cannot find the requested resource. Status code `404`. Applicable to 1 of 29 methods.*
 
 
 </details>

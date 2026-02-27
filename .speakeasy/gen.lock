@@ -1,28 +1,29 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: 64cef79b47ecf5ed392784a4ff68cb6f
+  docChecksum: a1cabeebfee7d9b887987bbe82430bfb
   docVersion: 1.0.0
-  speakeasyVersion: 1.709.3
-  generationVersion: 2.814.0
-  releaseVersion: 0.21.1
-  configChecksum: 578e011a2ef49f02b2bfa43871048894
+  speakeasyVersion: 1.731.4
+  generationVersion: 2.845.5
+  releaseVersion: 0.21.2
+  configChecksum: 0b2f0f7f49f2f350c04fc71bc41810fa
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
+  installationURL: https://github.com/prove-identity/prove-sdk-server-java
   published: true
 persistentEdits:
-  generation_id: 96ff149c-bdc2-4314-84ff-6b522584d076
-  pristine_commit_hash: dade1949e7fea3447c59f6a1e9b7248edfa7204c
-  pristine_tree_hash: bcfff73abe3aa801c9e0473a958c55c1d50fda5e
+  generation_id: 176c4113-68db-4d35-be95-63f0cdcf3cba
+  pristine_commit_hash: 00a101e1dda57f48c67f50e2c4a033e044cf2cb7
+  pristine_tree_hash: e3ea94fb4e4f30a92e302bf06a558a5f11210ed1
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.55.10
-    examples: 2.81.6
+    core: 3.55.16
+    examples: 2.81.7
     flattening: 2.81.1
     globalSecurity: 2.83.2
     globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.83.0
-    oauth2ClientCredentials: 1.1.1
+    globalServerURLs: 2.83.1
+    oauth2ClientCredentials: 1.1.4
     sdkHooks: 1.2.0
     serverIDs: 2.81.1
 trackedFiles:
@@ -42,6 +43,262 @@ trackedFiles:
     id: def2f8d9aad9
     last_write_checksum: sha1:e4a91b5541eb7c8ed287dee8d8f6d9edb2d89874
     pristine_git_object: 48016ce8a05e01a3a18f1fc20db70283faad3b82
+  docs/models/components/AuthContinueRequest.md:
+    id: 18e383130948
+    last_write_checksum: sha1:7bf627bed76c495ef884f388e7b8adafc9043c1d
+    pristine_git_object: d40b08068485a73406bce617fced17557d3088aa
+  docs/models/components/AuthContinueRequestSubjectMobile.md:
+    id: f4063143ce15
+    last_write_checksum: sha1:78cc58e17f3cf2709925cdabc6230b7e09217ac5
+    pristine_git_object: 34c9da9c42553a835cbd810f00e4299e3d0dab07
+  docs/models/components/AuthContinueRequestSubjectMobileClaim.md:
+    id: 2083c5ea579d
+    last_write_checksum: sha1:8ed0dd77c878e3d1c569ddb18379e87f0c73e64e
+    pristine_git_object: d7e68dddc4d3ed968d94f134a1eda9306598beb0
+  docs/models/components/AuthContinueRequestSubjects.md:
+    id: 09e691cf516e
+    last_write_checksum: sha1:02f42c800f0c18e6a4583207ed13615fb2e196b3
+    pristine_git_object: 601d4a22216259ae29216fbcee68cad4c5c04ca8
+  docs/models/components/AuthContinueResponse.md:
+    id: 29bcde33896f
+    last_write_checksum: sha1:44d3c69467ad080c82c3c7d813f95c810d61f9f2
+    pristine_git_object: 4b790158fc4c3d0808a4e33b3cd64af4fba9141f
+  docs/models/components/AuthContinueResponseError.md:
+    id: c4826b0b9374
+    last_write_checksum: sha1:0fbe348ccd75e8417d80a7e350dcd72d7c20898b
+    pristine_git_object: 9dce32d309c5f66b25c42cfb1269d11c9596458b
+  docs/models/components/AuthContinueResponseSubjectCardResult.md:
+    id: 546b7a3a12f8
+    last_write_checksum: sha1:2c5e0083331254e72a1e1622b0d28a1e9a672227
+    pristine_git_object: 4c5ba30ed88792d78fe18ec7f7ca3e15b5561227
+  docs/models/components/AuthContinueResponseSubjectMobileResult.md:
+    id: 1ad78c90ff88
+    last_write_checksum: sha1:a14b562d5b39d7ac5bfc7aa7b97260be814915d1
+    pristine_git_object: bab968cf100004ac70435d14a8a661ad574b9423
+  docs/models/components/AuthContinueResponseSubjectsResults.md:
+    id: 0e4400cd0043
+    last_write_checksum: sha1:fc397a150528f5740ed9ef1d69f718da50d749f7
+    pristine_git_object: 72ff445e7698e23aa47705ba61eff45a25462c75
+  docs/models/components/AuthFinishRequest.md:
+    id: 3de8fabd50b0
+    last_write_checksum: sha1:c4b0ecb203b876618aa1394caa7a03a7166dc056
+    pristine_git_object: ca89f0710db4666de90a98e85ddf5384c21a5e97
+  docs/models/components/AuthFinishResponse.md:
+    id: 8e912ba7c5c4
+    last_write_checksum: sha1:63de74ebb3c1bcca4641aebe6b2167f9a9e41bca
+    pristine_git_object: 354ca4753bf05f41d2c19151cdf3a23afcf3d4cf
+  docs/models/components/AuthFinishResponseCardError.md:
+    id: 636b3d79548e
+    last_write_checksum: sha1:950d3a1edbb80e1d4e5dbcd81b79d5e3d02a2ad3
+    pristine_git_object: b964698e404a86a3ddc0a075fa8ff27c3f1062e2
+  docs/models/components/AuthFinishResponseDelivery.md:
+    id: 69b488302ec7
+    last_write_checksum: sha1:b09fa2269412edf67d9ef32057e20164fac16a29
+    pristine_git_object: 94303499f1cf8a32ef5141c622cc38ef6eebcebd
+  docs/models/components/AuthFinishResponseError.md:
+    id: 9e338328c5ab
+    last_write_checksum: sha1:cd13ead3d368264d4741b2cd1ab7db8cc3827df1
+    pristine_git_object: c6008d67cfa7e2ca9c22e1d5113aa3498f167119
+  docs/models/components/AuthFinishResponsePushDelivery.md:
+    id: 8b4d147b4864
+    last_write_checksum: sha1:9b755e14646efb05687eab446713a79b4ab4a162
+    pristine_git_object: 4eeb98f6ca32003cd255401859162ebd0f43c715
+  docs/models/components/AuthFinishResponsePushDeliveryExtras.md:
+    id: 55c69f026725
+    last_write_checksum: sha1:6f05cde4e1b9cd7c6fae9751bf147a85a1ded26b
+    pristine_git_object: c25db41257a1e57ba8856dbbe19bee006e43e039
+  docs/models/components/AuthFinishResponseRawSignals.md:
+    id: e89d2a063388
+    last_write_checksum: sha1:e20560f31bf3d6e104fd240d7ccb74ea36f05e96
+    pristine_git_object: ba50f71491209f2503f78cf1bc98ce4c77ff1a7a
+  docs/models/components/AuthFinishResponseScanDelivery.md:
+    id: 036e08d117f2
+    last_write_checksum: sha1:fb19f71c07674629585e329aa6d39f3928c3b32e
+    pristine_git_object: f316bbd5f41d0e1818cac185394c6e153ffa58e6
+  docs/models/components/AuthFinishResponseScanDeliveryExtras.md:
+    id: f2b4b8fbc4b9
+    last_write_checksum: sha1:b244da8d261e9c11f09982a498f6dde87051ab2b
+    pristine_git_object: 7e6f27e47b5308476fcd536a704774f09e8511ad
+  docs/models/components/AuthFinishResponseSubjectCardResultSuccess.md:
+    id: cf02d92f84a7
+    last_write_checksum: sha1:a663afdb2a14f5a82fcd5fc13efa63a11c44763f
+    pristine_git_object: 69166b93bf512f0ad8515981b9d6f6cdd6f6ee0a
+  docs/models/components/AuthFinishResponseSubjectCardResultSuccessClaim.md:
+    id: cac743a544e8
+    last_write_checksum: sha1:457ee43ad80fda3e2cb69d1a44586a15fd8807a0
+    pristine_git_object: 746601b1532d2e832b6b37f61265c0ac69140ac1
+  docs/models/components/AuthFinishResponseSubjectCardsResult.md:
+    id: 306c19365752
+    last_write_checksum: sha1:930585f845e52453cd07f939454715a767182265
+    pristine_git_object: 54c19c2c63bef71838e64faae94265672a1fee8a
+  docs/models/components/AuthFinishResponseSubjectDeviceResult.md:
+    id: a3d4d158f3bd
+    last_write_checksum: sha1:48b985324a1f83e884a1a457b546bbf90acc274c
+    pristine_git_object: 65f821144b0d23db761919010fc99126600ee8b0
+  docs/models/components/AuthFinishResponseSubjectDeviceResultSuccess.md:
+    id: b9bcf01a23ec
+    last_write_checksum: sha1:3258c0ae1dd145ff37867b42c63c99bc5d569534
+    pristine_git_object: 170e46efd70b7e7244ca407b1b99fee8327338e9
+  docs/models/components/AuthFinishResponseSubjectDeviceResultSuccessClaim.md:
+    id: 8b828da15a1d
+    last_write_checksum: sha1:237c89dbe9cb17ed060fd1dc23e07b5342022527
+    pristine_git_object: ab35ad58b6e32cc5d919db6641d88ad6afdb1a3d
+  docs/models/components/AuthFinishResponseSubjectDeviceResultSuccessExtras.md:
+    id: 5fe3fa314dad
+    last_write_checksum: sha1:ee8a4ed85d38901a26244ac1955f4ccc1855e89b
+    pristine_git_object: deb2b8e945e8eaed68bcc2ca48c7541598bbed70
+  docs/models/components/AuthFinishResponseSubjectMobileResult.md:
+    id: 971f81c8806b
+    last_write_checksum: sha1:cf0e4a3f2b39ed0122c4c999f4f318844798b396
+    pristine_git_object: 16c718eed3af4d85249b0952dd0942464d7daf66
+  docs/models/components/AuthFinishResponseSubjectMobileResultSuccess.md:
+    id: b0f5f0905abb
+    last_write_checksum: sha1:ffbd9b3df09fbfda47071d9b22e434b8e4caceb5
+    pristine_git_object: 7c42458fe2c8e3ff4fb6e07093febdd85575a6cf
+  docs/models/components/AuthFinishResponseSubjectMobileResultSuccessClaim.md:
+    id: dc7d835569ac
+    last_write_checksum: sha1:55b6095c2953920e607c3e88584730d691bcb8c1
+    pristine_git_object: 2d72a16af64e74d99918a8f49517668576a94ae1
+  docs/models/components/AuthFinishResponseSubjectMobileResultSuccessExtras.md:
+    id: 890aec51fd06
+    last_write_checksum: sha1:dc34088f5b421b3cb4268fa02878d46bd105de8f
+    pristine_git_object: ef924c65e9f7f347689be9faef3fd6c348e36133
+  docs/models/components/AuthFinishResponseSubjectUserResult.md:
+    id: 1469ef59eadd
+    last_write_checksum: sha1:d8bfe7594d7b7aca6ffeb52c1ce8b1c53f302f8f
+    pristine_git_object: f119b71a2b8f4bc4efff977c2a06b36e15877133
+  docs/models/components/AuthFinishResponseSubjectUserResultSuccess.md:
+    id: be5a8fb01680
+    last_write_checksum: sha1:a8c808f959f3a1616aa5083243bfcf97287516cf
+    pristine_git_object: 95c508776f62d9a27ebf46e9ebd8db248a3e3125
+  docs/models/components/AuthFinishResponseSubjectUserResultSuccessClaim.md:
+    id: 714c889e3982
+    last_write_checksum: sha1:75ef8a5a07fcc5283d050eab5daf0d30b7460bf1
+    pristine_git_object: a9f9d65a864cbb874529d440e275562d0795dbd2
+  docs/models/components/AuthFinishResponseSubjects.md:
+    id: eac986129f9f
+    last_write_checksum: sha1:08cbe2becaf8a48919dde774926486810929a91a
+    pristine_git_object: fc05e9527eb9b3456249b969c585eb08a9a71331
+  docs/models/components/AuthFinishResponseUserExtras.md:
+    id: 6eb451fa15e1
+    last_write_checksum: sha1:41c5e7e9338092d57fac61ef643b6aeb4c37bd6f
+    pristine_git_object: f76febc38cd73b521d21d43dc2530a0469d2d539
+  docs/models/components/AuthStartRequest.md:
+    id: f05a3488cf1b
+    last_write_checksum: sha1:592492ee2db23ec9fc2c1a935791fc3315804bc2
+    pristine_git_object: 77b5f68d4c6cfacd3c761fd2962ce02ede1543f4
+  docs/models/components/AuthStartRequestDelivery.md:
+    id: 08f5c02c248c
+    last_write_checksum: sha1:ac2400c9dfe1a50a220d48a6b201dd552d860b1e
+    pristine_git_object: 6a2f90fab10f2f223b50e5cce17188d2ae793f25
+  docs/models/components/AuthStartRequestDeliveryPush.md:
+    id: caf7dfa14b63
+    last_write_checksum: sha1:394b56cae4054f2f2f052d023ed012924cb962f1
+    pristine_git_object: e35f52c768a2be07987cf7bea1d8fe90d21bbc37
+  docs/models/components/AuthStartRequestDeliveryPushNotification.md:
+    id: a4f38dc5f863
+    last_write_checksum: sha1:0e2e93e10859a8232f46e5fe6b8d3633f468f5e5
+    pristine_git_object: 4dab333c4785ead87f75690fc4b07a947cb68f7c
+  docs/models/components/AuthStartRequestDeliveryScan.md:
+    id: 56ea869c1773
+    last_write_checksum: sha1:b159007a8ffd23b627261ea7fc65721c7c6198b1
+    pristine_git_object: 6b51fcaf6bbdcaa4868a7aca54e2cbbb98d5db5b
+  docs/models/components/AuthStartRequestDeliveryScanNotification.md:
+    id: c4339fac849d
+    last_write_checksum: sha1:02744df6b3ab1bc8ea89df70ee8dcaa896d934da
+    pristine_git_object: 2c4898c6bd81feb94a5bc90b6624580bec9d730e
+  docs/models/components/AuthStartRequestInstantAuthConsent.md:
+    id: 56687b33c386
+    last_write_checksum: sha1:9afa1645db1915ed3b7a18c2ccb8e301790d3614
+    pristine_git_object: 11cd900367e9ce87801f9c0032b164259149a50e
+  docs/models/components/AuthStartRequestSubjectCard.md:
+    id: "570181045605"
+    last_write_checksum: sha1:b0b7838cd572b60802477368e5920a35fd28f8d5
+    pristine_git_object: 1785085bb59fea0799a25569bd80068ce3568f2e
+  docs/models/components/AuthStartRequestSubjectCardAuthenticatorAirKey.md:
+    id: daec3e99bea5
+    last_write_checksum: sha1:f8319d17c7f333a655797b0baa4bb059d0572652
+    pristine_git_object: 8095a5c84a9ed12feb314d7eb194751651f97637
+  docs/models/components/AuthStartRequestSubjectCardAuthenticatorAirKeyClaim.md:
+    id: c91f5caa0bf2
+    last_write_checksum: sha1:c16bd4bb41926910a91c0b9e70cf616f70bd8ee3
+    pristine_git_object: 65a758124c7fdb6ead05a0d42ed2aef1cf10f99f
+  docs/models/components/AuthStartRequestSubjectCardAuthenticators.md:
+    id: 2356456c03d7
+    last_write_checksum: sha1:008a7ea995002a1c7b8447a2fb7a0ff1bbded887
+    pristine_git_object: 982d7d9f146685cfc529c959eb31b47ebbb05a76
+  docs/models/components/AuthStartRequestSubjectDevice.md:
+    id: 427fd143ba8e
+    last_write_checksum: sha1:86720d3e6d940eaf6a4dc3ca2c07070765bfe095
+    pristine_git_object: 5c1efe250003cdbe1ca17aa2b7c67a2c9e41bb07
+  docs/models/components/AuthStartRequestSubjectDeviceAuthenticatorPassive.md:
+    id: 2adec2e93586
+    last_write_checksum: sha1:b123073f5bb86139c9c2ca11adf166fbb9e08e39
+    pristine_git_object: 07339007babaf5403a70e0a7bde718c25561c39a
+  docs/models/components/AuthStartRequestSubjectDeviceAuthenticators.md:
+    id: 5e97cdee62b0
+    last_write_checksum: sha1:3eb03e4c974d367c955032ae776b58826da0ce07
+    pristine_git_object: 94cd0a3983f5803b796b3a65d0344c3d1f56093a
+  docs/models/components/AuthStartRequestSubjectDeviceClaim.md:
+    id: c9baa32e6f1e
+    last_write_checksum: sha1:611627226b229b8e8ab519b9d1b788dadc49b59b
+    pristine_git_object: 113600deda97d4592714152ad2e7638739dd8a7c
+  docs/models/components/AuthStartRequestSubjectMobile.md:
+    id: 480959b0f543
+    last_write_checksum: sha1:e4b3ecb9d2e00e538e22df3a7b5fa5588f42c542
+    pristine_git_object: d93fe79762e4816e2bc792bfee5875dad00347e9
+  docs/models/components/AuthStartRequestSubjectMobileAuthenticatorInstant.md:
+    id: 80aac75d714d
+    last_write_checksum: sha1:cb8ae742e3351781758b22b2166f33fc4f0a5bff
+    pristine_git_object: 16e116431a663e2fd70ca8dd36b8a16ca79920f5
+  docs/models/components/AuthStartRequestSubjectMobileAuthenticatorInstantLink.md:
+    id: 9794bb66ad4d
+    last_write_checksum: sha1:a1876f833fd5b2dc69729af33b2f47128a95d2ad
+    pristine_git_object: 12bd2e07f6d1c08b8c773a099d1c7797e3aa88bd
+  docs/models/components/AuthStartRequestSubjectMobileAuthenticatorOTP.md:
+    id: aacd561300b1
+    last_write_checksum: sha1:773feb2e040a558be3c24858596073ec905f6b5f
+    pristine_git_object: ef900d0f469a2291dc1d467949fbf5fafc41461c
+  docs/models/components/AuthStartRequestSubjectMobileAuthenticatorPassive.md:
+    id: 187ebc3205ca
+    last_write_checksum: sha1:955801cc32980c752300c7d9727ce465645432a2
+    pristine_git_object: 487d4c0a0ab521998cbc33bda0f384682704059c
+  docs/models/components/AuthStartRequestSubjectMobileAuthenticatorUniversal.md:
+    id: 337dc339355d
+    last_write_checksum: sha1:c553616e3ea8a459f79bd684734f9c8678e01231
+    pristine_git_object: 87c4c4aa3077bb1d37becf9f43ea702e701c43b8
+  docs/models/components/AuthStartRequestSubjectMobileAuthenticators.md:
+    id: 00a53506525a
+    last_write_checksum: sha1:0d43b156ec251eefbc2b77a9293927bdc2c080ec
+    pristine_git_object: 166b4129ca82e0a3db4a76f61000a7dc39c4cae7
+  docs/models/components/AuthStartRequestSubjectMobileClaim.md:
+    id: ee44654f7be9
+    last_write_checksum: sha1:117f90ccb8d99f79829dbc00e2a0b17e80307c5a
+    pristine_git_object: 0f59569a82c65419b817053ec86e289d33e29905
+  docs/models/components/AuthStartRequestSubjectUser.md:
+    id: b4c1c1e60e5a
+    last_write_checksum: sha1:fd9387abfa3cf3c039f38e37aad266ec6634c2f0
+    pristine_git_object: 729445888f00d842f5d266864e26f1e6231af359
+  docs/models/components/AuthStartRequestSubjectUserAuthenticatorPassive.md:
+    id: 4494c2aed3da
+    last_write_checksum: sha1:f54f178283863e314a0c1e6c585cfe9d7bed20af
+    pristine_git_object: 9381faf22672872e1db3816e80261ef96be1f85b
+  docs/models/components/AuthStartRequestSubjectUserAuthenticators.md:
+    id: f4aa439783be
+    last_write_checksum: sha1:292c27f960caf0fa2c87afa4ba1ea1bb746fb105
+    pristine_git_object: 16c2db235fb1f1efb30557329afc44c063b5a4ac
+  docs/models/components/AuthStartRequestSubjectUserClaim.md:
+    id: c20c1e14b3a0
+    last_write_checksum: sha1:fd0a7e2b20af8a6bd38806921ba239bcc1355f48
+    pristine_git_object: b6689ba4475dc2b23c4b479ba6ac5df64ca73aad
+  docs/models/components/AuthStartRequestSubjects.md:
+    id: fbff0897804f
+    last_write_checksum: sha1:64b2a42e829b9efcf611cf128791d08256fc79b2
+    pristine_git_object: 876b4a94fb7c6a18d572ad2ae5ca633243eaae17
+  docs/models/components/AuthStartResponse.md:
+    id: 5f29d43b86d4
+    last_write_checksum: sha1:9e419e0e1f841cc08ef1fdb1ba6d2b319ead61ec
+    pristine_git_object: 6d78e630b8a5f416f9845093a9120d5a5714c445
   docs/models/components/DataSourceAddressResponseInternal.md:
     id: 2af3d464fe4b
     last_write_checksum: sha1:0043ee07a64636bd6b4b137aaf2f73da88babb41
@@ -62,10 +319,22 @@ trackedFiles:
     id: 9259cf4858cb
     last_write_checksum: sha1:9965223600576914031302d0d22a006744e1a33f
     pristine_git_object: 449f8416a10f93dd3deab0a2222e2faf20aeb12a
+  docs/models/components/Docv.md:
+    id: 375c93ddd294
+    last_write_checksum: sha1:0588a25a55c2dc085f1aa4d20f92c24ed792d07f
+    pristine_git_object: 41a7fe9384657abfad8933a219eed3d34272d26e
   docs/models/components/Evaluation.md:
     id: 774e12073ff9
     last_write_checksum: sha1:6ce98ccc6d809488566860452d66106878d6f851
     pristine_git_object: f96f7f1ca2fe62cabbc60f8a7bb7cf6afc668cf2
+  docs/models/components/FetchResult.md:
+    id: f73544af94de
+    last_write_checksum: sha1:687a85e7c36cce46bdb4e22f7bb57c9f0bdf1596
+    pristine_git_object: 50dca61239e0b74fd2e8cf593552d5baf320991a
+  docs/models/components/Fingerprint.md:
+    id: 7b5269bf9e6d
+    last_write_checksum: sha1:aff134a456e8c4aa2997a2d1b994615aefc5affa
+    pristine_git_object: 37b82ffc97b815e8eacee1668d1ef5f916496c60
   docs/models/components/GetBatchIdentityItem.md:
     id: 2638ce55bfca
     last_write_checksum: sha1:ad03309923b88be9b7ef0c4d2813f8887b7e4036
@@ -78,6 +347,10 @@ trackedFiles:
     id: d4727a3fe7c8
     last_write_checksum: sha1:b30463cb64a7be56d00fa5e617ea2563d9c0f834
     pristine_git_object: 6df1792235e84203fea0fbbc2eb8a2ae93dc960f
+  docs/models/components/IdentityAttribute.md:
+    id: 6bfd7adc026d
+    last_write_checksum: sha1:106372b5f979c8d56edd0b3604d0e08c43a7c58c
+    pristine_git_object: ea2df20fda92f909761128e2ac739acb46028b85
   docs/models/components/IdentityItem.md:
     id: 179c2eab1b2e
     last_write_checksum: sha1:1d23cdc97d7e67c5792dc5ac0c4d34082c3829a6
@@ -92,32 +365,56 @@ trackedFiles:
     pristine_git_object: 1742c8a9c5790fcb0bcf020143ee7ebed7ef4d6b
   docs/models/components/LinkedFrom.md:
     id: edb0ed7f4c98
-    last_write_checksum: sha1:113a2d80772497b13d6b1d35aa70d99fe2882755
-    pristine_git_object: 596ab8f76a2abfa542c9227cf9bdfb90e9d36abd
+    last_write_checksum: sha1:ff54d3c3642dfd26f97f89bd6a3db9cb05919c24
+    pristine_git_object: 88b6933c28be49a6ac2127fd811fe15344542fe0
   docs/models/components/LinkedTo.md:
     id: a13daa426f38
-    last_write_checksum: sha1:257ed69388db077a6a3b4cf22b91b3d5a6916493
-    pristine_git_object: e4558c5b019f8c3c1f78fef6e3016fc26054592d
+    last_write_checksum: sha1:aaa038d8783f5ba484305648c8674508d07ab78e
+    pristine_git_object: e782bfd5fd40568d689343eccd0ddd5eb3d47e87
   docs/models/components/LookupIdentityItem.md:
     id: d1df7d433b83
-    last_write_checksum: sha1:319da4e3186b0862f78f096b06ffe1f720cef029
-    pristine_git_object: 558d77b8a5323752e07762da234d03c8321d0649
+    last_write_checksum: sha1:9c393bb1fcd7291f6543a1272417b04b86265495
+    pristine_git_object: dffc7158dd0f4805d2fcf916ae188213a7243373
   docs/models/components/PostBatchResultItem.md:
     id: 1e6136459f87
     last_write_checksum: sha1:e2935cfe974ed3931444017510ffc7bbb4508dc8
     pristine_git_object: 3981c7ba16d79c58a837d4c80ce329c748a59319
+  docs/models/components/Ppb.md:
+    id: 1303e5c6166b
+    last_write_checksum: sha1:ff706ebd91054e3762c5c0c14d42b4f160233f09
+    pristine_git_object: c389a7b69a85ee876552f0b0ed722053f60e68ec
+  docs/models/components/Present.md:
+    id: 768abe3d255c
+    last_write_checksum: sha1:cac05eac7ab9b1ffd6553a9f579959de0400e457
+    pristine_git_object: 5344cb6e009ac6db0a7e6cd355b7142141cbb58f
+  docs/models/components/PushToken.md:
+    id: 0d20dd109d17
+    last_write_checksum: sha1:bfad3ce7ee2b9fb28a6e80591f1aa38042cc46d6
+    pristine_git_object: d3f41a037ce7d8e229455761fe68880e6a647c90
   docs/models/components/RequestsFrom.md:
     id: cf4bd8bb5524
-    last_write_checksum: sha1:0d25b7bba4d64c7757e2034b7fc64f28408607d9
-    pristine_git_object: 182c6eb0093d0244b511b817a0ca35e22ee9ef86
+    last_write_checksum: sha1:f9d8b4e277621d82896999db7e84e37167770afd
+    pristine_git_object: d009f43a05e4e0bb403c5de3ff9b11fd3db863a5
   docs/models/components/RequestsTo.md:
     id: 70e978d10d79
-    last_write_checksum: sha1:d6085d77c97b88f66f8f544683358b07fce77414
-    pristine_git_object: 2b4b38c715b1085edae475a519cb0646cf111d58
+    last_write_checksum: sha1:73df42f57663f5a5ae5abbbb5e4440a1f39ecbaa
+    pristine_git_object: d7f515afdd2c6b063efbc6bf544d8e2de96368b0
   docs/models/components/Security.md:
     id: 3878f0f84029
     last_write_checksum: sha1:44ec27db16ed05af620943d8a70d2339371e5a74
     pristine_git_object: 050ec68b7ed7b8dc9fb4b18fbde0a0061f63325a
+  docs/models/components/SubScores.md:
+    id: 90caaedd3b92
+    last_write_checksum: sha1:e31cf36258f49291a7de0f00dd2bd6ce542ff1e9
+    pristine_git_object: 16aa3c45a91b81d9ab6da7956a4298921df557c0
+  docs/models/components/SubjectDeviceResultSuccessExtrasTrust.md:
+    id: aab9f1475c13
+    last_write_checksum: sha1:7f2f54aac644be0eacb5f53e858c34fb2024111e
+    pristine_git_object: 1c172e5dba0ed89c6240ebad2d3fd08d2830cbf3
+  docs/models/components/UserTrustScore.md:
+    id: 42938aee4e19
+    last_write_checksum: sha1:80fd291eb10b3091d7fd575032f7b164b12ee3d2
+    pristine_git_object: cdab495760470bf9da49d4c119c97d0d06100ef1
   docs/models/components/V3ActivateIdentityRequest.md:
     id: e10c4ac9a4d8
     last_write_checksum: sha1:0b6dcb6e515e5b798b67e640c805dcee5b7e56f1
@@ -186,6 +483,14 @@ trackedFiles:
     id: a6cb33b39a9c
     last_write_checksum: sha1:830da63966ae4b6e4ad8ddaec75798dd21422617
     pristine_git_object: 68bb6612079116f9bde0523952ca422367cbbb78
+  docs/models/components/V3DeviceRevokeRequest.md:
+    id: 55acab0fa672
+    last_write_checksum: sha1:a60010c3e3dba40e8fc10a0dc4964011e7158025
+    pristine_git_object: a4782401b1c41355025f322e15fb51f9eeae38ab
+  docs/models/components/V3DeviceRevokeResponse.md:
+    id: 62710d564d66
+    last_write_checksum: sha1:3f12025b275edbbbba28e4d5bfc0c96e233d96ba
+    pristine_git_object: 2640bf58e4128a2940d3127e9117ece5f5b43fcf
   docs/models/components/V3DisenrollIdentityResponse.md:
     id: 390f6c660701
     last_write_checksum: sha1:0c439824d057ae38ce5f1e3ddd8f9eb23806ea68
@@ -204,8 +509,8 @@ trackedFiles:
     pristine_git_object: 2a7faaf92211aaf9af73d1b36da9875412099179
   docs/models/components/V3DomainLinkRequest.md:
     id: 05ac4c46ad0a
-    last_write_checksum: sha1:f893adeebb97f091694e0852c8906f1830709075
-    pristine_git_object: 93a1aadf46cbe49c36be122be8a7b3955c2924ef
+    last_write_checksum: sha1:0d11282404f0e2ac29251be618a9b409b3c4e787
+    pristine_git_object: 90e23cb355ba4de7d328699860c466190546e917
   docs/models/components/V3DomainLinkResponse.md:
     id: fbc46baf5f72
     last_write_checksum: sha1:9f92beee32ef5699774ac4be90fc315044d26293
@@ -224,28 +529,32 @@ trackedFiles:
     pristine_git_object: 05df51fd7424e91868b9f2369e7c6c55ff7f3acd
   docs/models/components/V3EnrollIdentityRequest.md:
     id: 4101076493d5
-    last_write_checksum: sha1:0f6949a2377e6fbe88c39b58049c966ff512d5e6
-    pristine_git_object: 95320fc6b91e17bcaf1be9ada6fe8b554612185a
+    last_write_checksum: sha1:3cc98f9f77eca1f2e9003d28ffca8fb7db4e638c
+    pristine_git_object: b1dceb4e50731de3a2f852224335138798014a23
   docs/models/components/V3EnrollIdentityResponse.md:
     id: ff41a4eb8dff
     last_write_checksum: sha1:6613dc341e86a1b7f028ec5ddfea946abc8bd8fe
     pristine_git_object: fec96b55ed3b7ce4f8bf5df80cec2b9ee05113d2
+  docs/models/components/V3FetchResponse.md:
+    id: 2ddc85a1f0f0
+    last_write_checksum: sha1:34c9179e0167826f864f66888ece6ad7ef699671
+    pristine_git_object: 47673c8c724d5286f278dc1e122a9a51b11e0631
   docs/models/components/V3GetIdentitiesByPhoneNumberResponse.md:
     id: ae470e052d2d
     last_write_checksum: sha1:46a0bf6c3f790ab7e5f513a33a971964cf3803de
     pristine_git_object: fa3389ec50b09d5b7d6cb6a6f24dcb265436be96
   docs/models/components/V3GetIdentityResponse.md:
     id: 63ca23501399
-    last_write_checksum: sha1:9ae7cb2300a43e25e568a0b7128e6dc4aa35177c
-    pristine_git_object: 2793a24dbb068db9a5dc84e9cbac60cd057f6af8
+    last_write_checksum: sha1:fd26724f7fb80eed4db879862b573f7aec63e1e8
+    pristine_git_object: 5313f12d5299d28581b42d38c3b5400afe8b15a3
   docs/models/components/V3IdentityDeactivateRequest.md:
     id: 09a4b081d246
     last_write_checksum: sha1:7955fdd48f39a3850419784736b6a09dba9457c0
     pristine_git_object: aa33af223d8d5fd8a631481b00b7bd5924ac73e7
   docs/models/components/V3StartRequest.md:
     id: df0550bb2ab5
-    last_write_checksum: sha1:5ed356645b1a1a51a9ceafbc4c15934f65c29048
-    pristine_git_object: 2a6cc73f59313e5df7fd329a053c2656ae67b6d9
+    last_write_checksum: sha1:86ecfa517ead7b22b80bb8268dd82a5603e6f42c
+    pristine_git_object: 52d4a6fb2725094104fc6fc94db2ad0e5ff3fe53
   docs/models/components/V3StartResponse.md:
     id: ef0961866323
     last_write_checksum: sha1:578904cd6122a9003c705296d923d53a76d082de
@@ -260,8 +569,8 @@ trackedFiles:
     pristine_git_object: 04f72e2a8c2e9138ee5f170338f30959cfa0ab4a
   docs/models/components/V3UnifyBindRequest.md:
     id: c711f4f2a76f
-    last_write_checksum: sha1:3c42a7180daefa68b7e70cad4ff90ed6ef0862f0
-    pristine_git_object: c23596ab523978e00d4c6ed57518984a6760be5f
+    last_write_checksum: sha1:b4afe83d1985f757bda9c179e0ec93c99c9d8ef1
+    pristine_git_object: 6c264011d7fd0f60a9a0b473c561be29a39b8c4e
   docs/models/components/V3UnifyBindResponse.md:
     id: 114585ad15bd
     last_write_checksum: sha1:2d92eff81bd91f308c5408023c4dd55182e9981c
@@ -272,8 +581,8 @@ trackedFiles:
     pristine_git_object: 8f497103e707d1eb766cb362088330523ca95ccb
   docs/models/components/V3UnifyRequest.md:
     id: 1efaf775803b
-    last_write_checksum: sha1:cb0ecc5f6cb000f799355829c6390e7a9886975c
-    pristine_git_object: cb86a44eb3c9243cd424f6de389fe6858309cb50
+    last_write_checksum: sha1:a3d7a9aa61164c90a74c9ab2ba6a24e3a065ee77
+    pristine_git_object: 7655d60e4b1382de0dca3692eacf9906fbe374ba
   docs/models/components/V3UnifyResponse.md:
     id: 3ceed6cd6a0b
     last_write_checksum: sha1:80e0952018e70f6fc12b5ea48bbc0ce261c49611
@@ -312,8 +621,8 @@ trackedFiles:
     pristine_git_object: 83c48bebd03850491b8ce92d898d95edfa9b39c0
   docs/models/components/V3VerifyRequest.md:
     id: "318165031926"
-    last_write_checksum: sha1:e4243a953f5ebea99c67af4ddf186dce567a1244
-    pristine_git_object: 8ff877651d8947e9a035fdaef310c30835bb6eb5
+    last_write_checksum: sha1:d7a7cf63edefeeab4f9c16d38c468d5ff3298e28
+    pristine_git_object: 6fc83a6479ced7a42639efe240a478edde90e401
   docs/models/components/V3VerifyResponse.md:
     id: 88fcc1547adf
     last_write_checksum: sha1:658d0f83a7bde29a0f6c9143c951a81e39ca2198
@@ -328,8 +637,8 @@ trackedFiles:
     pristine_git_object: 0b933b338a7e6548b4f8a421a7a5ac76dc867f36
   docs/models/components/VerifyBatchRequestItem.md:
     id: 1b74710ab473
-    last_write_checksum: sha1:80d0c188c026a08e45450476b80fdeeb3a102448
-    pristine_git_object: b0094400994f590dcd719a23c28fdee13cd6b625
+    last_write_checksum: sha1:bd2418c1104fb1b37ee05d7be463259ade833ec8
+    pristine_git_object: b44c139fc609f1b737129d7fa1c4bc3f527838d2
   docs/models/components/VerifyBatchResultItem.md:
     id: 78b3cfaf9c44
     last_write_checksum: sha1:c2591c7b9ac8c38899d5d98a27eb6788362ced8c
@@ -340,12 +649,12 @@ trackedFiles:
     pristine_git_object: cfd1302131143e9297312636f43e3a33f27ea437
   docs/models/errors/Error.md:
     id: d5611a80937b
-    last_write_checksum: sha1:83ed480ee3c8abf935a306d7b4a5917995e66321
-    pristine_git_object: 9dbc7a6eafc4475704cb528ccd5de3d12c05ca80
+    last_write_checksum: sha1:d528359edb413029ab85b1b405ff621260329a02
+    pristine_git_object: f8281898c4d50c16255c35325f9aa29e4399dfbc
   docs/models/errors/Error400.md:
     id: 7ea7ee61b012
-    last_write_checksum: sha1:1ccb8e604aa9bfc881f224288012bc85152c34cc
-    pristine_git_object: 4cb6ddc3dd28d51815c18710d8ec2f8256a9ae18
+    last_write_checksum: sha1:13a9a44fab1d8a005a8726eb5b706280baa92df8
+    pristine_git_object: 81027009163a39511ef719e4ebfa58e5f62892ee
   docs/models/errors/Error401.md:
     id: 4eaec075c1df
     last_write_checksum: sha1:d9f150097b07190e3f86ae729ae6b0cb23d143a4
@@ -354,6 +663,22 @@ trackedFiles:
     id: c2e554b8de1e
     last_write_checksum: sha1:6d284bded119bb65eeba170acc39fab3e161e1ca
     pristine_git_object: a7743090bfb6a02325c4f42d99e8f7a3871a9e26
+  docs/models/errors/Error404.md:
+    id: 47eeca2ce378
+    last_write_checksum: sha1:21d800d51a04f72d078e0191f000528d3eba9ecc
+    pristine_git_object: 583e201ce684397798cac8aa5897d13646d81bb9
+  docs/models/operations/AuthContinueRequestResponse.md:
+    id: b7a8aea84eeb
+    last_write_checksum: sha1:d7d0c6775eb36b4c75bf1e04273cefe682773aa2
+    pristine_git_object: f7b9aaee0a4f8259cc614111c8e34734da567c3d
+  docs/models/operations/AuthFinishRequestResponse.md:
+    id: 02b75ca6fd58
+    last_write_checksum: sha1:a8c8493583b5e8329f2370d6e6d99bb95de93358
+    pristine_git_object: 7414d5ceb1df49c5a7f098bca38efeb0c2869f31
+  docs/models/operations/AuthStartRequestResponse.md:
+    id: eef86c6dc5b9
+    last_write_checksum: sha1:a6208f84b652e858924573a65841677b6e0c6062
+    pristine_git_object: df0f2b982b42bf341ea875680c199b925b971867
   docs/models/operations/V3ActivateIdentityRequest.md:
     id: af2ec857a12c
     last_write_checksum: sha1:24d8cb5557774c22f46b0bf70f9547ee41878ee8
@@ -398,6 +723,10 @@ trackedFiles:
     id: 882e2e9b3695
     last_write_checksum: sha1:85ac6476e66db8f6e906db7f374806c1912563cb
     pristine_git_object: b6001441eeb02d1150fb6ee1ac7f61c72ad3be47
+  docs/models/operations/V3DeviceRevokeRequestResponse.md:
+    id: dfecbae7a606
+    last_write_checksum: sha1:7e27f9511d00d1f9107d47bbeef62caaec6df3d3
+    pristine_git_object: fc26a77a141b6ca204a41dc4460eac3be4c4da35
   docs/models/operations/V3DisenrollIdentityRequest.md:
     id: c5fb209d5854
     last_write_checksum: sha1:0cc9ff396dda58bde3036922adb51db4d011ed38
@@ -420,8 +749,8 @@ trackedFiles:
     pristine_git_object: edce0e4949d0338ec839d2ed602f52021e642b37
   docs/models/operations/V3DomainLinkedRequestResponse.md:
     id: 0265482ccb42
-    last_write_checksum: sha1:ad979635522731765820f0919c83d16fdb1ff225
-    pristine_git_object: 4ca5b0457143d35492f163e6e9fe6e65f2226108
+    last_write_checksum: sha1:6b36fff0fcadcc699689811d63792634248df25a
+    pristine_git_object: 6af99ec8c84583bb0528d9c6770026af97a2532c
   docs/models/operations/V3DomainUnlinkRequestResponse.md:
     id: d58956dfe471
     last_write_checksum: sha1:c95b14926bd5b6bbd01929e0582714878f430891
@@ -430,6 +759,14 @@ trackedFiles:
     id: db647431d34e
     last_write_checksum: sha1:bd84caa6e5d6ba515313a5aa6e6973b77e679b49
     pristine_git_object: f241038e4b7648146489de63ebc01dedec2bb529
+  docs/models/operations/V3FetchRequestRequest.md:
+    id: a6142c2e52b9
+    last_write_checksum: sha1:12f66b7362d3ca1a94bf0fa35c4aaceae43777dc
+    pristine_git_object: 97070de1ad8c2db7542d98419468b7f0bc401b49
+  docs/models/operations/V3FetchRequestResponse.md:
+    id: d190b7ef6b83
+    last_write_checksum: sha1:2bf91c4be432d65d3ce9eba9ef56913c13ad1cd7
+    pristine_git_object: 341231866b60d5ff2cef205258a6f5076bc7ee62
   docs/models/operations/V3GetIdentitiesByPhoneNumberRequest.md:
     id: 4cb8b28bdb88
     last_write_checksum: sha1:ab659693ce83a9c439d4c3597d2f6d34b059c409
@@ -478,26 +815,30 @@ trackedFiles:
     id: 66a0915b3709
     last_write_checksum: sha1:a6f79dd203a7d191c520e2c263d448c778b4d3e8
     pristine_git_object: 0accfde67ba1eee5fd5118ebcb7d9ba6f5ef15bb
+  docs/sdks/auth/README.md:
+    id: e9724f17945f
+    last_write_checksum: sha1:ba43bf543213ba7614bddde1707e816e1c6ebb4b
+    pristine_git_object: 5045979fd64e7c9d5eb1b2a125bc86e3c0b6b725
   docs/sdks/domain/README.md:
     id: 3a95838ace20
-    last_write_checksum: sha1:0278ef81c040149e3e3f37ac116e28bf0adbf5ab
-    pristine_git_object: 312df8d45b2ba954127619bc6ba6a06f412c2cde
+    last_write_checksum: sha1:a98fafbad4de2768aef9b19322f7b46536de71c3
+    pristine_git_object: b06782de6274c79b16a5a803163356988547ae19
   docs/sdks/identity/README.md:
     id: 8ebb743ced6f
-    last_write_checksum: sha1:63150989e8b4833784592fd1bc5c81737c26ea9c
-    pristine_git_object: 3b3625ea79d25ed109a72c8eed9b41ea8bd3a63b
+    last_write_checksum: sha1:2d922e820f7f3e5f1d059d6053215b9939f533f5
+    pristine_git_object: 95f44cc90cfb378371911793f989177de877ed6e
   docs/sdks/v3/README.md:
     id: ee683463fcdd
-    last_write_checksum: sha1:3ecf114be0be043232bcb6682536c67c6d9a54b6
-    pristine_git_object: e49d013cd45d6df5b5babe5d2d5331223c2dd330
+    last_write_checksum: sha1:f82f03041a9fbcd2b7e330160c176c5c6fb37c22
+    pristine_git_object: af6b53f68c6a637ac26597812a14d12130afaade
   docs/utils/Blob.md:
     id: 3d9a7c4ad67a
     last_write_checksum: sha1:ac74fb0add0d0d1c00e9d833b54e09a9ee08d939
     pristine_git_object: 0032649da03c06826d436fbe31e0d1d0ce931f0c
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:ca0e5a25b84a6fe303baac06564cf1270f5c9101
-    pristine_git_object: 1cf1057436e2e3a7a15edd7f2279424e37699ef8
+    last_write_checksum: sha1:cc8a54d92e754d0a8c5ee9e3dbc4e0f32e42bd77
+    pristine_git_object: 78b89c9530bc6a73495286cd38efbc9eae47e5da
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -536,8 +877,8 @@ trackedFiles:
     pristine_git_object: 59dd782451d64f7fa95f4c78594edb031f05413a
   spring/proveapi-spring-boot-autoconfigure/src/main/java/com/prove/proveapi/ProveapiAutoConfig.java:
     id: 28f7d684f8e7
-    last_write_checksum: sha1:83d108441b55e666ca6d91b51821bac42265ec0c
-    pristine_git_object: fadb884dfaf40007402cd71fbb3f6e9873ed73cb
+    last_write_checksum: sha1:f869bd6afb148390dedfa9db84f941aaab622400
+    pristine_git_object: eab6ee07138dbf0e9da743dff1e08458de929c94
   spring/proveapi-spring-boot-autoconfigure/src/main/java/com/prove/proveapi/ProveapiAutoConfigProperties.java:
     id: bf58172d8b64
     last_write_checksum: sha1:8a75caffb93d1d7e9a2915980da5dddbd55eebd6
@@ -550,46 +891,54 @@ trackedFiles:
     id: ed3bf2fc59ab
     last_write_checksum: sha1:74c236b9d69721e05e4acd37d3a449a59c74f851
     pristine_git_object: dc7b3c7120ceb0beebe82197d48d5f28423f116b
+  src/main/java/com/prove/proveapi/AsyncAuth.java:
+    id: dc5dcccd2766
+    last_write_checksum: sha1:11a5e7ac054adb5aff1aa55089b210d887f488a1
+    pristine_git_object: f4ccbe89af5ba557d4a7e5aabce3a3c9d2c956aa
   src/main/java/com/prove/proveapi/AsyncDomain.java:
     id: e23785573681
     last_write_checksum: sha1:3c33759e69c1a81a8640764f8d86f491dde560d4
     pristine_git_object: 41b56d2aea169ba2fc1f272e596ca7f1f95e0f8a
   src/main/java/com/prove/proveapi/AsyncIdentity.java:
     id: 252059b5549e
-    last_write_checksum: sha1:4686cf0c2502309d566d240ef1ed84787d073c67
-    pristine_git_object: 3b1ded0af515a3577064abecdc3a5f039fffd815
+    last_write_checksum: sha1:eac8f7204143ccaf80c858a5d9747b1ebd585880
+    pristine_git_object: f560f2eed93228f050d16c344238f17ac4575068
   src/main/java/com/prove/proveapi/AsyncProveapi.java:
     id: b09f2da6f354
-    last_write_checksum: sha1:a4bdd46fa35a4de622e93dd595083a9effe6516c
-    pristine_git_object: 0b2728ed7185fae3eb327e313b063f6ac5b874cb
+    last_write_checksum: sha1:3cce612b00b9f6ff807b04604fd5ba2ac390a763
+    pristine_git_object: e684107ebe1021c1e1266d70d5468e7527c765b4
   src/main/java/com/prove/proveapi/AsyncV3.java:
     id: bdd17257fd65
-    last_write_checksum: sha1:9050e0686e394548713e720ae2978ee7007b8e03
-    pristine_git_object: 02481d437711e6068f581d6722d8b1856d323dc3
+    last_write_checksum: sha1:cb5919de78752f39ac1ac7caa6edef8a2c57e6d2
+    pristine_git_object: d6d3c6f09c8d3931767d1e8c6f4d3d735bdcc55a
+  src/main/java/com/prove/proveapi/Auth.java:
+    id: 22c0af9af9e2
+    last_write_checksum: sha1:a3e12acb79c12b06e12fc5d1221b492d94e73f8c
+    pristine_git_object: c4f677b722055bd1e4953e339d91bd3961d374a0
   src/main/java/com/prove/proveapi/Domain.java:
     id: cd9681036700
     last_write_checksum: sha1:8bf8a92057f24132ac4801c1a5b714236154473b
     pristine_git_object: 06fd109d51400a9c2af10d0ba2e179185cdbbc2f
   src/main/java/com/prove/proveapi/Identity.java:
     id: a9f3ba44f595
-    last_write_checksum: sha1:2deb9ce2e5b5111db456c7dfbe1db42b70d0dc41
-    pristine_git_object: 9e0daeac1a2a30efd9435d81b22848c2e98a7276
+    last_write_checksum: sha1:04f704012538106d3df8bfc9321263c2dac61c96
+    pristine_git_object: cefad6d0e17a131982061b1a37a6cc9884861fa3
   src/main/java/com/prove/proveapi/Proveapi.java:
     id: d7667f6bc586
-    last_write_checksum: sha1:9cec4bd9feeb9af0c40fde27b4424157b7baaf2e
-    pristine_git_object: 5e02c623f2cbc78c1388b15f18edeaa4cf26ca5d
+    last_write_checksum: sha1:140be77e6219cdc5bd543cc627e6adf40ed7a53e
+    pristine_git_object: 8eee70fb3ae5558f514ee1753509e042cb294e26
   src/main/java/com/prove/proveapi/SDKConfiguration.java:
     id: 69255d11af4e
-    last_write_checksum: sha1:f0deb5b694cad949dd8e4b4a470ecfff9d367edb
-    pristine_git_object: deb5e257af12322c490a349d89a7e660906ed672
+    last_write_checksum: sha1:5f4f0346e9f183d3ae1b5494f00954c6c0f417be
+    pristine_git_object: 7c354e73f17c2aac1f0d123e685048baf07afcd1
   src/main/java/com/prove/proveapi/SecuritySource.java:
     id: 99a381f305ca
     last_write_checksum: sha1:303afdfe77cc60804e6d8ab53ea11fe6336e671e
     pristine_git_object: e30159d57502d637ccf9c37d13f61ea138c4b804
   src/main/java/com/prove/proveapi/V3.java:
     id: 31dad68fc03b
-    last_write_checksum: sha1:69090d263aa3f1d81ffcb74db047a29026eeeb52
-    pristine_git_object: 8f47173d95c1fa715a67644ebe3fba4a6eecf3ff
+    last_write_checksum: sha1:cef8a110b5fc64e13ec69344f9daadd210d2af19
+    pristine_git_object: 7ca54b5723933c6812cc771ea70208fe0353f2bb
   src/main/java/com/prove/proveapi/hooks/ClientCredentialsHook.java:
     id: e33dca8f3b85
     last_write_checksum: sha1:e942a0e27545fa342707743f5f543a9c1f2f4ea9
@@ -598,6 +947,262 @@ trackedFiles:
     id: 6554c2f5167d
     last_write_checksum: sha1:637a32736f83070b7f55b4b40d743f65e4b6f1e2
     pristine_git_object: a395916257835717993cd4742992c0dbf2fb6990
+  src/main/java/com/prove/proveapi/models/components/AuthContinueRequest.java:
+    id: 93ef86a297b5
+    last_write_checksum: sha1:a5226b04722083beba7fa6ec6d707d8f94150335
+    pristine_git_object: 2ef03dc72b9148df9e2fcc7b79b2489152ce3e97
+  src/main/java/com/prove/proveapi/models/components/AuthContinueRequestSubjectMobile.java:
+    id: 114955bbd8cb
+    last_write_checksum: sha1:668e6f71af9fc27a8b04aa86c44c143c2fb02d75
+    pristine_git_object: b57e8479dcca4e27e01b34b06cadc61f16364a23
+  src/main/java/com/prove/proveapi/models/components/AuthContinueRequestSubjectMobileClaim.java:
+    id: 1f7efb612094
+    last_write_checksum: sha1:b78be95d67e1a8781f9e0790cc5ac7c854a06b47
+    pristine_git_object: f3e386915c4b6e785c296aaea4e80476f7e730ac
+  src/main/java/com/prove/proveapi/models/components/AuthContinueRequestSubjects.java:
+    id: c8e917cea8a1
+    last_write_checksum: sha1:df22aad5b556fb4170cf15b83a5c29feff19116b
+    pristine_git_object: dd5c7f0ece8dc32014bea375651ffd95ba4f9660
+  src/main/java/com/prove/proveapi/models/components/AuthContinueResponse.java:
+    id: 14b17295ecb5
+    last_write_checksum: sha1:db51382256458a74fae6f7d2be390d312cae551d
+    pristine_git_object: a3fee3fc518eb5b1e4bedd7e1f97b74850395a53
+  src/main/java/com/prove/proveapi/models/components/AuthContinueResponseError.java:
+    id: 495858de3f59
+    last_write_checksum: sha1:e6bda9d61ce65c72ce76e01b4bb04eabb07647c2
+    pristine_git_object: befbf715d1add7ccded9dba6c5402e33d0cf647d
+  src/main/java/com/prove/proveapi/models/components/AuthContinueResponseSubjectCardResult.java:
+    id: f412594a984c
+    last_write_checksum: sha1:b8c8b39ee4a4661b1ba897978c81b0ac96133079
+    pristine_git_object: 48a9252137812bd594d5fefa3e533f937820276c
+  src/main/java/com/prove/proveapi/models/components/AuthContinueResponseSubjectMobileResult.java:
+    id: 3ccc625deec7
+    last_write_checksum: sha1:023f662e03cd2f8e5fba6e16916a356407d1f813
+    pristine_git_object: 38d37b2e6075a98b94e78a3805319ee567caf412
+  src/main/java/com/prove/proveapi/models/components/AuthContinueResponseSubjectsResults.java:
+    id: 5c207441c580
+    last_write_checksum: sha1:ed714dc4a6b07cb59ad868b7eb784426987936f6
+    pristine_git_object: 7160c3516655b8b73a7a0fb517e2ba146ce476bb
+  src/main/java/com/prove/proveapi/models/components/AuthFinishRequest.java:
+    id: bf61e1b26851
+    last_write_checksum: sha1:b94ca7722fffa83ae73b5adf3b65b7c4e9e2ac4c
+    pristine_git_object: 0ad62a01ba65ec229d744e16bc21fdd709625293
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponse.java:
+    id: 162fa02637e4
+    last_write_checksum: sha1:442a141611684c0b6cb9e0125f81e24abb15fb7b
+    pristine_git_object: 482f69f92c5d41b5cae5d7d8639be171ed7e52e1
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseCardError.java:
+    id: 014d94dd9ccd
+    last_write_checksum: sha1:06e93c2dd9c179b6055286015dd5eb8527c039b4
+    pristine_git_object: f47aa9fc206777624812e6216b3ba4d0f0a1c593
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseDelivery.java:
+    id: 2f22e2d93bf9
+    last_write_checksum: sha1:4ec6ef2c0ae412ea155450e3ff7c544a14040424
+    pristine_git_object: d22f711f451e7c7a82cdf58aa6358f66da966a2a
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseError.java:
+    id: 90ca5d3db2d5
+    last_write_checksum: sha1:ceb817e041e1f087af23169213ff1fe89296f348
+    pristine_git_object: efb4f6dff1e6306693e1c82f7f26494e023cfe5b
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponsePushDelivery.java:
+    id: 6168a88ca4ac
+    last_write_checksum: sha1:e70c64c80a242d490a08f752e31fb6acb8fd8af2
+    pristine_git_object: 97322225e3bc9846c9504e4785cc840ebd4230a9
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponsePushDeliveryExtras.java:
+    id: 73ffc3576773
+    last_write_checksum: sha1:b8cf74c9ac4354035d73ec4c39baeee207c78c1b
+    pristine_git_object: 53087c78127e350e7e5e74380b3c536d76fdc799
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseRawSignals.java:
+    id: aa32ad8aeb42
+    last_write_checksum: sha1:57a1902ae06f89a1973846fb76e0f71f34adde67
+    pristine_git_object: b3610689a75278536491003658c5c717062e27a0
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseScanDelivery.java:
+    id: 141b982d9045
+    last_write_checksum: sha1:af8b041742c4abb8efbe3d98c20bf87afc5abe6e
+    pristine_git_object: 88780108f6ca42759a6987fafc61fc42b523d242
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseScanDeliveryExtras.java:
+    id: 9cbe9a0a5886
+    last_write_checksum: sha1:37780f77d986a5cb68ad4164ed39167d9706c0fd
+    pristine_git_object: 17e673eba03b1374552854ca2ef8662d50af23ee
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectCardResultSuccess.java:
+    id: c62ff4ea77c7
+    last_write_checksum: sha1:817d0763a84f654fad348ef7ed77b9c843de2a0a
+    pristine_git_object: c1ba2ad59fce3d4dbd22984272be0fba588da0cb
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectCardResultSuccessClaim.java:
+    id: 6902f3a87dd8
+    last_write_checksum: sha1:6a92a54191171c4f0409888e577052754835499b
+    pristine_git_object: 0813822a83d0d7a9132a98ed687d158e219769f5
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectCardsResult.java:
+    id: 3b12c4d7de58
+    last_write_checksum: sha1:a367adfa1cf6a364aaab005fc7df63b85d487dcb
+    pristine_git_object: 06edcefc7183ca3a31f987c69185bb99bdc36c64
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectDeviceResult.java:
+    id: f545e19accb1
+    last_write_checksum: sha1:40614827b350e01740cea340843b4d8de5cb0cc9
+    pristine_git_object: f029979bf3b8ec9b8d842c34f8068cf4eb5a84b7
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectDeviceResultSuccess.java:
+    id: 133fada93b4d
+    last_write_checksum: sha1:d5827706fb2d7bde8933888a0a05f76be4a43d1e
+    pristine_git_object: 04621091f51f5013a438862dc3e79e635ee97544
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectDeviceResultSuccessClaim.java:
+    id: 275c69985009
+    last_write_checksum: sha1:505d0642d67a916dfe0e7d9deb63b51157c2ac96
+    pristine_git_object: e9457e1df46a886e7e24738ff5ca093121674f46
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectDeviceResultSuccessExtras.java:
+    id: 8e6f86f99073
+    last_write_checksum: sha1:4aa7b7847d2d2a92a99a0b8709b38033401deda9
+    pristine_git_object: 3dbe496ee6eda6d0aa31f90d903020919462c442
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectMobileResult.java:
+    id: 7370042427a2
+    last_write_checksum: sha1:f883b694fd30a6b0b723f630311691f05230cc10
+    pristine_git_object: 3c80bb6e6dd7ac71c0c22af071ba421a284a8338
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectMobileResultSuccess.java:
+    id: 773ea90bc6c7
+    last_write_checksum: sha1:cc3ed5018a1807b5d85d715d354cb52f691246d3
+    pristine_git_object: e8e64bd1035a6704eacd8b62c3320626f0285b7c
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectMobileResultSuccessClaim.java:
+    id: b0980a898bd6
+    last_write_checksum: sha1:8bc3bbe6c882d309246f5b41728df7a7b09e1c41
+    pristine_git_object: 649427efee6818129357c380a6e203df43600ffd
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectMobileResultSuccessExtras.java:
+    id: 4ad338181d11
+    last_write_checksum: sha1:98629457d13abd39d21da0583d30be6cf5735811
+    pristine_git_object: 51f917685fffc1844e189338ee14dcd773566208
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectUserResult.java:
+    id: 83a15f2f7b6c
+    last_write_checksum: sha1:e4fb62273e3f8612d78987acf44d784efe21c6f1
+    pristine_git_object: be6a524e8fee98e7a5cef9f9f263f193ca60327f
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectUserResultSuccess.java:
+    id: c045e8599c1d
+    last_write_checksum: sha1:1338ca9abe892950814bd30d5a5b7845ce7e21f9
+    pristine_git_object: bfeaa2a89e8fbcd935c9f8c539fcaeaaf8d68e00
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjectUserResultSuccessClaim.java:
+    id: 8b1279d11082
+    last_write_checksum: sha1:d944f6d0a239db9313284cb284b1dcaf5873e8db
+    pristine_git_object: eb61921ed9066725ab3f1c756f7e9f0a6baf304a
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseSubjects.java:
+    id: e30093b1abc6
+    last_write_checksum: sha1:11a39dbd22422fdaa6e8c8e8d1b3f224bf7a1481
+    pristine_git_object: 87f59ebe9081f07fa44ec027f74f91180a13e6c1
+  src/main/java/com/prove/proveapi/models/components/AuthFinishResponseUserExtras.java:
+    id: d671b399bc78
+    last_write_checksum: sha1:aa0d7a26c934e4c672beccda367227da87675408
+    pristine_git_object: 1c457d408ade9f71b2ad432b3cfa30229ed462ba
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequest.java:
+    id: 41276240eea8
+    last_write_checksum: sha1:4660d5bc843ba4161b70acaecabcfd0274e12d4e
+    pristine_git_object: 92e213eefb339815ba38ba6b3220ac642519e929
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestDelivery.java:
+    id: 1bd26d60a2d4
+    last_write_checksum: sha1:eb7625d55e009798342352a8507a493e39685af9
+    pristine_git_object: 44fbf44236d32588be700d782f1a3613bde18e42
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestDeliveryPush.java:
+    id: 3ab278561b04
+    last_write_checksum: sha1:ebba81544a4a11aa08e8c370afece2b8e6c4e734
+    pristine_git_object: 9276ba97fb8790dfae9321f37decb8d2f7f96ddd
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestDeliveryPushNotification.java:
+    id: 8a796cff240b
+    last_write_checksum: sha1:c28c7548811c52f8ef0d5af42cbfa05444995738
+    pristine_git_object: a669a8c126d456b44210f50811231629fb99247f
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestDeliveryScan.java:
+    id: 78c339c9d62d
+    last_write_checksum: sha1:0a0048d068286f74c9c2f9144be95071f7f9ac4d
+    pristine_git_object: b6365637b8ed56321d612919692fab087ea00127
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestDeliveryScanNotification.java:
+    id: ab58d2bfeee2
+    last_write_checksum: sha1:4e5a67d17b4f687151ea751bc8b0a4115ac1ceb8
+    pristine_git_object: 9b6df9e4a23386028eb4ae5557bcffe2af95e16c
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestInstantAuthConsent.java:
+    id: 6bd067b5e3da
+    last_write_checksum: sha1:0e0e4e0b4119bf464b82361aa0f45d35f30aa70b
+    pristine_git_object: 7dac3b0fe0339d2ed43a3d5078199b5c1849ca8c
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectCard.java:
+    id: 9baafd1de52e
+    last_write_checksum: sha1:afa0c7c3ba559573e5a6d2e0e0a29330cb80365d
+    pristine_git_object: 461d2d8db4ae8ab58cf07b9adf5752090e5040e1
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectCardAuthenticatorAirKey.java:
+    id: 33f56f8b001f
+    last_write_checksum: sha1:859c786e7967d53ea09afc6f62837147b9dbcc44
+    pristine_git_object: 8d573cc7f5e6c5a7c26813140e1034d4d8198d26
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectCardAuthenticatorAirKeyClaim.java:
+    id: b1c48ff259b1
+    last_write_checksum: sha1:cc003980b15682df5f3775690afe3d99836507da
+    pristine_git_object: 265b9223b15c4f1b435e87a4a4cf4a48df161bb4
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectCardAuthenticators.java:
+    id: e968ff456a6c
+    last_write_checksum: sha1:5c2b7e8b47d11404bef36a4fdb4d0f23df12c802
+    pristine_git_object: 21fee9b2d16b437295ebb6457be1be0bc3169997
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectDevice.java:
+    id: 32ee98620bd2
+    last_write_checksum: sha1:010a1184279bb70d8e629020be65af498d4a362e
+    pristine_git_object: 45dc7551b174581782639d6e8c0b67193e44e338
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectDeviceAuthenticatorPassive.java:
+    id: bf20650ced78
+    last_write_checksum: sha1:a93fdd14f9346a1be62d74f8a70bf97293050a6e
+    pristine_git_object: d826def6c6e9ca0557a1e988ea5b8db740264c75
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectDeviceAuthenticators.java:
+    id: 9fa51d89b55a
+    last_write_checksum: sha1:27159b113f4a37b3738b972435e4de9820e6de34
+    pristine_git_object: 7cc7b6a802bdd7df7ed7e1ddb8a9d04bf417dc2d
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectDeviceClaim.java:
+    id: d73011743688
+    last_write_checksum: sha1:b2af730131622af1a9fc552df13f9d5126a4fa1a
+    pristine_git_object: 1e1135961619940937e3ddda7ad4e0c59f9a4749
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobile.java:
+    id: a1f0c81a97fd
+    last_write_checksum: sha1:a0d39323723938b4eaf65d0206def281e78927e3
+    pristine_git_object: 3ae0486e58e1673f813d8bad05104a57ffbe22aa
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticatorInstant.java:
+    id: "9656770546e0"
+    last_write_checksum: sha1:c33d6a92de43aad56b1b01523d801e9ef0a59cdb
+    pristine_git_object: 9dad1d06d5df003ecaa4ef65be61439bb09ed7d2
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticatorInstantLink.java:
+    id: 0b455468c565
+    last_write_checksum: sha1:4a8ca5fd6e0eabbf81c47d1019ae177596158620
+    pristine_git_object: bc2ec36736975fe491db4f6c2cd99afca8c2b195
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticatorOTP.java:
+    id: 46d0801ed14a
+    last_write_checksum: sha1:7d0b206b86e2de6c70c34e6dc303b414190dab78
+    pristine_git_object: c0617ce04bd23e1c52b8496c15913e7216f95618
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticatorPassive.java:
+    id: ca3dac303fe5
+    last_write_checksum: sha1:0af431145ddc1a2f630b497aba4727b8c5a487ae
+    pristine_git_object: 523df2f8e1e093977173087ebddd18b5b6cfc4e5
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticatorUniversal.java:
+    id: e7c6da52e183
+    last_write_checksum: sha1:752c60b142328553ed6ba56c5c81ecd47d562ec5
+    pristine_git_object: e0707bc12066beecb57a01d131c327455bdc0ea4
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileAuthenticators.java:
+    id: 66f6feafc2bf
+    last_write_checksum: sha1:18b6d38e378a963c078ee76d5522dedb892c3db3
+    pristine_git_object: b3aef1da75adf62955305ea7bd5e6451d043bdd0
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectMobileClaim.java:
+    id: 63041f69e0bd
+    last_write_checksum: sha1:f001940a6f5d9ce59e010e630f82b32c146bfbbb
+    pristine_git_object: 8630813be6272f71ab5bb043e04ccf305bb0da30
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectUser.java:
+    id: e55a6477e9b1
+    last_write_checksum: sha1:0af71e38a3de8bd0ab8902920c075b02acba8099
+    pristine_git_object: cecb526f6fad98d944fbe58d1da781a3526d684a
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectUserAuthenticatorPassive.java:
+    id: 3e8c24b8689c
+    last_write_checksum: sha1:b562397802adfda6783467a55f0d26d630f94be5
+    pristine_git_object: 4ad70dc9dbe0496938bb0bb2f23dbfd8e5b62720
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectUserAuthenticators.java:
+    id: af3858705739
+    last_write_checksum: sha1:6095c28f2d43d6b04b8b05dc0baa71ec16c41d47
+    pristine_git_object: 179f3f7a442622cb9d361d7fe2e5d6edfb88a124
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjectUserClaim.java:
+    id: 9151eda8b05c
+    last_write_checksum: sha1:4458b54b86aa9e001cffae40c701c1ef8239935b
+    pristine_git_object: 1402d8dca2427680a3f1c119eb65aa4b6b4b26fe
+  src/main/java/com/prove/proveapi/models/components/AuthStartRequestSubjects.java:
+    id: 04ce5965cee5
+    last_write_checksum: sha1:28773e282f6dc6c1264968e4cca639d55bb70bbd
+    pristine_git_object: eb82f9f151e4912710dacbd5bf293bb9fd043f56
+  src/main/java/com/prove/proveapi/models/components/AuthStartResponse.java:
+    id: 41e744ff79fc
+    last_write_checksum: sha1:e473ab42ddd1f916d9f100c7b576809e3004f382
+    pristine_git_object: 2860518b66167be03aa58ad1b730b42669cf503c
   src/main/java/com/prove/proveapi/models/components/DataSourceAddressResponseInternal.java:
     id: c525cbaf68ae
     last_write_checksum: sha1:99f49772ee1229908a4de4ae67bedb359232e984
@@ -618,10 +1223,22 @@ trackedFiles:
     id: cdb81d41e8d2
     last_write_checksum: sha1:1a4549a50f31c4a6dfd34eac83eda27b0dd6b2f7
     pristine_git_object: 20cf241406b82657dc69812dfc204147280fd852
+  src/main/java/com/prove/proveapi/models/components/Docv.java:
+    id: 44812a3ce7a6
+    last_write_checksum: sha1:14199e15dfdac747fb6ef82a4e7ff742cef4f1bf
+    pristine_git_object: 8177614abadc5d899869f6bde759ccdb17a5c2c9
   src/main/java/com/prove/proveapi/models/components/Evaluation.java:
     id: 45c811579b33
     last_write_checksum: sha1:d3f99bea282faa604cff5297ad79b87349f44ddd
     pristine_git_object: 095ba6cfa4746b3248592f39549d8cf13d0f4116
+  src/main/java/com/prove/proveapi/models/components/FetchResult.java:
+    id: 3a3d2a4e3062
+    last_write_checksum: sha1:119530070c7911f4134ef8365a0ae1974948baca
+    pristine_git_object: ed936335293ab41f1494c61eea3decb61a5e2bff
+  src/main/java/com/prove/proveapi/models/components/Fingerprint.java:
+    id: fd445606395f
+    last_write_checksum: sha1:3f02ce66634611bd6d40a4321893d1ab4d8a4647
+    pristine_git_object: f6d4606024d871e5bc408e078a62ee699cbe9216
   src/main/java/com/prove/proveapi/models/components/GetBatchIdentityItem.java:
     id: 7e8e27ba44b3
     last_write_checksum: sha1:7bbde4e20ddf3f6d988087f40068fb83202137e7
@@ -634,6 +1251,10 @@ trackedFiles:
     id: dd9797c6056e
     last_write_checksum: sha1:bea65b9958346e56150691e4b7382b59f00adf1f
     pristine_git_object: ef6ee916395f1c7b4bdca64f1b7ad5bedfd3aa39
+  src/main/java/com/prove/proveapi/models/components/IdentityAttribute.java:
+    id: 06d6b85c39d5
+    last_write_checksum: sha1:e2211dd112da0ddce10e6ad6feb8474ea4c9dfc8
+    pristine_git_object: c9dbe5cfa04b74b56c01d2d9052f003578d93b30
   src/main/java/com/prove/proveapi/models/components/IdentityItem.java:
     id: d346b2bb3c16
     last_write_checksum: sha1:cb67f4e24a4028f6f41310b9ceb4e70abb57bba5
@@ -648,32 +1269,56 @@ trackedFiles:
     pristine_git_object: 4f144a49964ed527a0a1f5f72e59e3a63d00751a
   src/main/java/com/prove/proveapi/models/components/LinkedFrom.java:
     id: 8ebd2856d279
-    last_write_checksum: sha1:d3f5bbd98eed56ff4823d56f7f03136126469fbd
-    pristine_git_object: c03471a63eda65dd031c51755658742ca0ff22d8
+    last_write_checksum: sha1:13f666be7fdccf1ca668db5a2f7a66a081350e75
+    pristine_git_object: 60e642ad6577e69589ba0d12778ec4ae572ee3b4
   src/main/java/com/prove/proveapi/models/components/LinkedTo.java:
     id: e7115d38ebc7
-    last_write_checksum: sha1:5f7381ce89b575e83b79edd9a68abe6aa2fcc8dd
-    pristine_git_object: f581270c57e6aefcef6c76639403ff4b3f14669a
+    last_write_checksum: sha1:8b6fdde3bca29a8e88fa2ccbf9340b0761ef089f
+    pristine_git_object: 767c3270ccac7f8031d954a373995a129fa9efc7
   src/main/java/com/prove/proveapi/models/components/LookupIdentityItem.java:
     id: 92735ede84a0
-    last_write_checksum: sha1:f02b74f8f994be5f6d04b7b5f47d1570d2de7405
-    pristine_git_object: 6295054bd1d3213259d6b3e22ae0ff092712b09a
+    last_write_checksum: sha1:54d1d96bb1f1ce799edabc4af38563f5f4b15e86
+    pristine_git_object: b050eec64f6deb1c4ada4bc0ee2c4f58a4ee5020
   src/main/java/com/prove/proveapi/models/components/PostBatchResultItem.java:
     id: 576e164c4790
     last_write_checksum: sha1:9cb74355338b75e48cc1be0855d538d09c57e824
     pristine_git_object: 9437754955aff5b7e6bd72ddee9b89ed327b2e3a
+  src/main/java/com/prove/proveapi/models/components/Ppb.java:
+    id: c66bb4345a55
+    last_write_checksum: sha1:7f64a6853db5835ea1de0deca8606cf816793f5f
+    pristine_git_object: bb061cc574f366eba6e11fdd273167d8666ff88f
+  src/main/java/com/prove/proveapi/models/components/Present.java:
+    id: ef2b0a9ce970
+    last_write_checksum: sha1:e4408fe84a5417528a822a2bc6d40a99e3505953
+    pristine_git_object: 8a669bf0a898a2ede1660dc6392c94b48944dae9
+  src/main/java/com/prove/proveapi/models/components/PushToken.java:
+    id: b28e20897e6b
+    last_write_checksum: sha1:55e661511420e8eff81098b3c206aec07e6230db
+    pristine_git_object: b5a24ef4abbd8415d1cffbe32ad6420e41ecbcd9
   src/main/java/com/prove/proveapi/models/components/RequestsFrom.java:
     id: 1d67788bb33a
-    last_write_checksum: sha1:1678182fdf6894f4bdd32a235a7a9df0f185bf46
-    pristine_git_object: 7b32b926198e9c132ac83316f74ac4bbba2d024f
+    last_write_checksum: sha1:5e8266186cf1c666cf1829b8c85e56cd4d37548a
+    pristine_git_object: 39ecc77c238f1d29011a15339041806260774a78
   src/main/java/com/prove/proveapi/models/components/RequestsTo.java:
     id: fc323309aaff
-    last_write_checksum: sha1:8275c5262836c4c62928338b5879e6d5f1eb2990
-    pristine_git_object: faf79c60929f8d7f30f2db0c36aca0022ac5894a
+    last_write_checksum: sha1:6c9ae3fde43ed4329f2308012f849f305d934a13
+    pristine_git_object: 36a1c022a943653771a1679d38fdc54b22174094
   src/main/java/com/prove/proveapi/models/components/Security.java:
     id: e29bdb2bb918
     last_write_checksum: sha1:58cdbf3ccd41f189baa15599889d0480225f5783
     pristine_git_object: 01d6807e514166f28a8506656a17066335204889
+  src/main/java/com/prove/proveapi/models/components/SubScores.java:
+    id: a69354699b29
+    last_write_checksum: sha1:fe560b9ead204e074e0ab136c56e5bf486a50efc
+    pristine_git_object: d878d445094ac33fcf63080ddd086a3c5707298e
+  src/main/java/com/prove/proveapi/models/components/SubjectDeviceResultSuccessExtrasTrust.java:
+    id: 2c009b0b0b7e
+    last_write_checksum: sha1:8a5420ce56bb2f46932dff64d28d79605ecdb810
+    pristine_git_object: a5958751d0a804ff777d08e16d0fa082588f887e
+  src/main/java/com/prove/proveapi/models/components/UserTrustScore.java:
+    id: 7e75d9ea7427
+    last_write_checksum: sha1:db8b6ac9f076021f141bfe91047f6dfbf2bafae1
+    pristine_git_object: 24fbf77a81b463223064588e62e1697c98438990
   src/main/java/com/prove/proveapi/models/components/V3ActivateIdentityRequest.java:
     id: dff329b13206
     last_write_checksum: sha1:2d4b39e554c6b51c177050e992efe689b8af86cb
@@ -742,6 +1387,14 @@ trackedFiles:
     id: 17fdaa48b13f
     last_write_checksum: sha1:c2cf7c26a46c8fdcd90eb50ff6cad7eecfb08e95
     pristine_git_object: 03dd6f7d3350ceec2c4b531cea3ad275e3c71c09
+  src/main/java/com/prove/proveapi/models/components/V3DeviceRevokeRequest.java:
+    id: 882fde13f1b0
+    last_write_checksum: sha1:88761b4ca33d187bdbcc7bc8e38b5006b6d163fb
+    pristine_git_object: a01ca970eab9f5120ca3570aecc8edb87ff2081d
+  src/main/java/com/prove/proveapi/models/components/V3DeviceRevokeResponse.java:
+    id: ee1b74b5125d
+    last_write_checksum: sha1:911faaf79b1508db2b05666ab0ebb5136b8eb569
+    pristine_git_object: 9a5bd75e9d09397fd15f9f8c5af45789eaf5fd9a
   src/main/java/com/prove/proveapi/models/components/V3DisenrollIdentityResponse.java:
     id: 6bfe1a5a63dd
     last_write_checksum: sha1:13b7196b71bae9adfc82071bf1e969270fb7507d
@@ -760,8 +1413,8 @@ trackedFiles:
     pristine_git_object: 42ecaa4d58708b5ec7a3febd227b8f268037c281
   src/main/java/com/prove/proveapi/models/components/V3DomainLinkRequest.java:
     id: 706d5a18b2c6
-    last_write_checksum: sha1:8425c982f8c563737511b84a6c730f4276af7917
-    pristine_git_object: 7fef1505b874d4a6eda22971652b50c58eed4e5d
+    last_write_checksum: sha1:3c666aa694cba7fa349dabc50b97bd76943125ef
+    pristine_git_object: 0398be058a9c3143866028c1d289d468e8d448c1
   src/main/java/com/prove/proveapi/models/components/V3DomainLinkResponse.java:
     id: 1dbdd1b0ab7b
     last_write_checksum: sha1:c16f9d0995b13005f48c91574741d3a9a74b5a8d
@@ -780,28 +1433,32 @@ trackedFiles:
     pristine_git_object: 253def67fb29728b8e0b5302a973a59a2ea765fd
   src/main/java/com/prove/proveapi/models/components/V3EnrollIdentityRequest.java:
     id: 3bcb24dbb7ed
-    last_write_checksum: sha1:d36dca53e3f0eca3600edf1eaa83db1796b29c04
-    pristine_git_object: 7fbdbcd0c2604a91810a33d142da21650dbb903a
+    last_write_checksum: sha1:9083fd75b6b9571e73d87db5b6b930631e071c36
+    pristine_git_object: 0672afb995522981a3d2bfb994a46d635ae63435
   src/main/java/com/prove/proveapi/models/components/V3EnrollIdentityResponse.java:
     id: 65ba0d2f39bc
     last_write_checksum: sha1:a036bea16dbba3b7ba6c7d7c79926a78ede58184
     pristine_git_object: 3f431153eba9e4040fbb87f058d55fe4d2a80265
+  src/main/java/com/prove/proveapi/models/components/V3FetchResponse.java:
+    id: 3b2e915f6317
+    last_write_checksum: sha1:5fc28057ff24c00e078991e1ba3729a35e386624
+    pristine_git_object: 3f44eda58254603c51014c59cc595ef75dc71971
   src/main/java/com/prove/proveapi/models/components/V3GetIdentitiesByPhoneNumberResponse.java:
     id: de856082d1b8
     last_write_checksum: sha1:ad9dd3c800e001dc7bb646a22f19dd7324a5f3c5
     pristine_git_object: 8b72782285825f2b8f58fc4adc652acbfce4718e
   src/main/java/com/prove/proveapi/models/components/V3GetIdentityResponse.java:
     id: aac3df6c6841
-    last_write_checksum: sha1:801c363ec199555f5412d3a67968a3e0907a4434
-    pristine_git_object: 2b80dd9d836d4e9604f9a91e37fa2a7148853b17
+    last_write_checksum: sha1:6d8e47d39b55491d7eb8088f0aa3f0a982d346a5
+    pristine_git_object: 8eaeaf3d593c81821b5abf3b962bf7569bca9718
   src/main/java/com/prove/proveapi/models/components/V3IdentityDeactivateRequest.java:
     id: ef5124935f3c
     last_write_checksum: sha1:7b4120ad697dfdc5ff337c9ebe068fe3eb83a670
     pristine_git_object: c709632a0baf74dc600c194c80e9f5124d41bee0
   src/main/java/com/prove/proveapi/models/components/V3StartRequest.java:
     id: 894bfbd6d6cb
-    last_write_checksum: sha1:7e52362339d2df53e66ff4ee8a73d14c39274c30
-    pristine_git_object: 443acc41b2a7473ca5dbbc91f8f4bbbca9387495
+    last_write_checksum: sha1:5c1f369b6744dff0637544f733f2b331f9ab3ca5
+    pristine_git_object: 183dd595e98a576aa902ee7195487805c78122ec
   src/main/java/com/prove/proveapi/models/components/V3StartResponse.java:
     id: f519bb2742ac
     last_write_checksum: sha1:6e9ab9777562f12b197500e2df861dedf6c0141a
@@ -816,8 +1473,8 @@ trackedFiles:
     pristine_git_object: 52b171ddccf6d000f7af2acac3573fe444ff4d4d
   src/main/java/com/prove/proveapi/models/components/V3UnifyBindRequest.java:
     id: efab60308ea7
-    last_write_checksum: sha1:41503b825f9e9170dca81e9c41b60f2875ec729b
-    pristine_git_object: 6ecffb88c996307a5e9141716293de93d8828fb3
+    last_write_checksum: sha1:cb43a9b2faf7e94c2a83b2d05710c02e9715bcce
+    pristine_git_object: ad7bc5826f5db5192bb51f7ac4e86cd18aecf965
   src/main/java/com/prove/proveapi/models/components/V3UnifyBindResponse.java:
     id: f68d42aa5110
     last_write_checksum: sha1:ed9a13e50c425e47e736e358cac070d8b820cdbe
@@ -828,8 +1485,8 @@ trackedFiles:
     pristine_git_object: 2fd8ac5e6e74be1633b6db7e6a97b93b1f470f5d
   src/main/java/com/prove/proveapi/models/components/V3UnifyRequest.java:
     id: 5207d4bb8ca0
-    last_write_checksum: sha1:a7db0d5c37c15e72c91516c617650e7258bf2acc
-    pristine_git_object: 016ecc10a4f775769192075a9d229173e767f5f5
+    last_write_checksum: sha1:e50c24e5f7502960f93ef908369cbc293223fe98
+    pristine_git_object: 1301c5605d7d7013976a2a0e2a49659ab32fc7dd
   src/main/java/com/prove/proveapi/models/components/V3UnifyResponse.java:
     id: 56e147e07d6b
     last_write_checksum: sha1:95b7c713eeb96b76ac1b5ad22683e8d8b2189304
@@ -868,8 +1525,8 @@ trackedFiles:
     pristine_git_object: 22c8a2748711109cca16a1126baa601ab861cbd9
   src/main/java/com/prove/proveapi/models/components/V3VerifyRequest.java:
     id: e031b0d34a40
-    last_write_checksum: sha1:72257405cddaafae82c9dbf3cdff0aed19cc5be0
-    pristine_git_object: 63d12ca01abb1f0f79ba309c9d1c862255f0eaa7
+    last_write_checksum: sha1:c2ef9f0bfa91890dc87dfc8fddadb76deb50387f
+    pristine_git_object: f3311813b2f290a6e3d0cb76d22f71e335c824f7
   src/main/java/com/prove/proveapi/models/components/V3VerifyResponse.java:
     id: ab1f568839d7
     last_write_checksum: sha1:d274b3d3fec64ac3332dfd94cc70e5b5b31ce266
@@ -884,8 +1541,8 @@ trackedFiles:
     pristine_git_object: 2390fdd23ef611873caff6753732eb535861d881
   src/main/java/com/prove/proveapi/models/components/VerifyBatchRequestItem.java:
     id: 0a22bea9e70f
-    last_write_checksum: sha1:8a4bcfa69d9416a31cedc18f71f9f3990a6b6596
-    pristine_git_object: 8ce4d48b44bb015c5f4aa7e6f0c1667f4066318e
+    last_write_checksum: sha1:9b6c43c7a66d8c823f563e5ccfdc0e902bf32775
+    pristine_git_object: 6f439a11f79d10825f1044f0eedd965585db6cd4
   src/main/java/com/prove/proveapi/models/components/VerifyBatchResultItem.java:
     id: 9a190c36c583
     last_write_checksum: sha1:da577efeeb0e1663f9f016e27f70478c94cb1699
@@ -904,12 +1561,12 @@ trackedFiles:
     pristine_git_object: 85d1c0b8d4f38f4862d31d83266c6ca9660e3da5
   src/main/java/com/prove/proveapi/models/errors/Error.java:
     id: 5fdb0464b0f1
-    last_write_checksum: sha1:33638a500f35d5418771939743c944bcc7cf3bcf
-    pristine_git_object: 97c11f0a594f28ff4a03258c94ceada787b5eef5
+    last_write_checksum: sha1:adf5666af60849e70c98c019a6972f6fa4cf774c
+    pristine_git_object: 6f9d928bcdd47f2809cddac2ef66c814a80c2d3d
   src/main/java/com/prove/proveapi/models/errors/Error400.java:
     id: c2c51f6d5d98
-    last_write_checksum: sha1:3ca545376de7df6b6a92ebefd90d3636f6046c53
-    pristine_git_object: 767c0adbb3248a6bb385a7dd11743d125c409975
+    last_write_checksum: sha1:07237e10e5dcd0fea333d9fb56cfb81ce272f683
+    pristine_git_object: ac095b41ca2b7994a902232e7edd3f652ff88745
   src/main/java/com/prove/proveapi/models/errors/Error401.java:
     id: fb7b173ca41e
     last_write_checksum: sha1:6ab8732e3879e6555797c9bc1172c699461ad951
@@ -918,6 +1575,10 @@ trackedFiles:
     id: 42de3463cad0
     last_write_checksum: sha1:e67c662caf9f26e7efe3fdcd0fb3ee0338e5569f
     pristine_git_object: 6b48f87eebd8f18b80f4e261824df23a70941ccf
+  src/main/java/com/prove/proveapi/models/errors/Error404.java:
+    id: 4d76cb45235d
+    last_write_checksum: sha1:7983ebf3b040c067741a705206f197c436094e91
+    pristine_git_object: 9451eeee7c013b46718d70fa2b9a8c0bca6c85cd
   src/main/java/com/prove/proveapi/models/errors/ProveapiError.java:
     id: 707654863a83
     last_write_checksum: sha1:e09c1f489fa9e7045eda7395357643302564c75f
@@ -926,6 +1587,18 @@ trackedFiles:
     id: 33dd182b9f47
     last_write_checksum: sha1:5171098f9a7fa7e7af70db67470cf5437f637591
     pristine_git_object: 5bf81b331c54694e0540280c675a0896f5303880
+  src/main/java/com/prove/proveapi/models/operations//async/AuthContinueRequestRequestBuilder.java:
+    id: 89c707f34b09
+    last_write_checksum: sha1:2371b9c23c760022e47327250d6390ae51f711ba
+    pristine_git_object: 07664cb463242742074c66a563e00e1a00cf957a
+  src/main/java/com/prove/proveapi/models/operations//async/AuthFinishRequestRequestBuilder.java:
+    id: dd3192ee20e6
+    last_write_checksum: sha1:ece7d12a002ff9f0c55175c88d4e7fb82c49acfa
+    pristine_git_object: a5eac67e9bc5431095ab7d18a1494b243def58d9
+  src/main/java/com/prove/proveapi/models/operations//async/AuthStartRequestRequestBuilder.java:
+    id: 994680d9a872
+    last_write_checksum: sha1:5f7221036411c94fb2c4cc4627d50c06a9455d66
+    pristine_git_object: 6c7e4e3316384b15279ea88b1d039dbbd05e5f7f
   src/main/java/com/prove/proveapi/models/operations//async/V3ActivateIdentityRequestBuilder.java:
     id: 8a231762f987
     last_write_checksum: sha1:2787070e9e4dad877dbd0b71b1ef9bf1ab5b279b
@@ -954,6 +1627,10 @@ trackedFiles:
     id: 14fc8887dd74
     last_write_checksum: sha1:a19a89e579a5637c37cf2cfeb6ec0168ef32c17e
     pristine_git_object: 87428b91ed6dae5deb6c774531ca3b60af116137
+  src/main/java/com/prove/proveapi/models/operations//async/V3DeviceRevokeRequestRequestBuilder.java:
+    id: 54f9be7c8189
+    last_write_checksum: sha1:68060b93ecf9d54d56114f7159c79afc8cad4f19
+    pristine_git_object: 75d178d7d9b654dd3d4bc7f12586b6b1180a9484
   src/main/java/com/prove/proveapi/models/operations//async/V3DisenrollIdentityRequestBuilder.java:
     id: 182358e0d5a1
     last_write_checksum: sha1:9bdb43f5712c4ca171fa48e268b570ff647ff375
@@ -982,6 +1659,10 @@ trackedFiles:
     id: b2c582e5d2e0
     last_write_checksum: sha1:a0e91fc6ad77bbb75f8f2ea39e40d5b0d56b10aa
     pristine_git_object: e26f4fc8e166fec761b300bfc2389e7ca34cc356
+  src/main/java/com/prove/proveapi/models/operations//async/V3FetchRequestRequestBuilder.java:
+    id: eb4505325cfc
+    last_write_checksum: sha1:37434b2cbab4f6a8ee18a7ac4342439f07f8e2b3
+    pristine_git_object: 09a3aaca4081ef15f100f96ce70bead3a1ba25e5
   src/main/java/com/prove/proveapi/models/operations//async/V3GetIdentitiesByPhoneNumberRequestBuilder.java:
     id: 9f8a41983e28
     last_write_checksum: sha1:56b29e2dfd4c82eaa91dd90081390142324f23cd
@@ -1022,6 +1703,30 @@ trackedFiles:
     id: 868ddab19ec3
     last_write_checksum: sha1:afaff4a35573ae1c277bf808ae39d073ef656189
     pristine_git_object: 17cf5f3f8cc001845ad17ef2e36a5d688ba56341
+  src/main/java/com/prove/proveapi/models/operations/AuthContinueRequestRequestBuilder.java:
+    id: 656e1075a994
+    last_write_checksum: sha1:e8e9376b9933183f5276ffa64dff8aa34e93489a
+    pristine_git_object: 867c1eebe22a9510f56ae6073501acdea9e8ed45
+  src/main/java/com/prove/proveapi/models/operations/AuthContinueRequestResponse.java:
+    id: 0f06fd5254cc
+    last_write_checksum: sha1:861fbf3bd664a0f923f70bf32b2a6eaf8e82eb72
+    pristine_git_object: 15b413d347900dd8471f46c98e869068b18814a6
+  src/main/java/com/prove/proveapi/models/operations/AuthFinishRequestRequestBuilder.java:
+    id: 7bcddb0fb4bc
+    last_write_checksum: sha1:4c0a8b3a512b23f8a33e88646c5c094893498eff
+    pristine_git_object: af7c15f84c5fa4fd488093277465c80e84eca377
+  src/main/java/com/prove/proveapi/models/operations/AuthFinishRequestResponse.java:
+    id: 4078a792c10f
+    last_write_checksum: sha1:ed64fcc45a6f0d6e30b6c41b16e8be375839eaaa
+    pristine_git_object: 018d71abb7126eb20d94bbd8cb0a6b46116816fe
+  src/main/java/com/prove/proveapi/models/operations/AuthStartRequestRequestBuilder.java:
+    id: 35e3c7190888
+    last_write_checksum: sha1:f27b442623f8537471c87467f03c2811c7d8fb45
+    pristine_git_object: f201ad3774f82f9b3a8d87825d8e4b5dfa7f5d9c
+  src/main/java/com/prove/proveapi/models/operations/AuthStartRequestResponse.java:
+    id: 7d354b4235ac
+    last_write_checksum: sha1:033e796626533bf94bc85328150999cf3fbf9bba
+    pristine_git_object: ae0c8d5a6e0ca08bdb10f362c12ee9c2cd64162e
   src/main/java/com/prove/proveapi/models/operations/V3ActivateIdentityRequest.java:
     id: 71e2629c4bcb
     last_write_checksum: sha1:63d251f5f11625961641706a030655360458e678
@@ -1094,6 +1799,14 @@ trackedFiles:
     id: 527c52259e0e
     last_write_checksum: sha1:571cbde05a310247f15ae7097032d1c88b846bf1
     pristine_git_object: 1a2247dd347da9ce43f14150cb817206400f2dc8
+  src/main/java/com/prove/proveapi/models/operations/V3DeviceRevokeRequestRequestBuilder.java:
+    id: daf11dcfb998
+    last_write_checksum: sha1:21af67a65ae12971a646157adaf6b69fea276359
+    pristine_git_object: 6e04bdf95d6ba1f4f5b697a8f068182b6110bed7
+  src/main/java/com/prove/proveapi/models/operations/V3DeviceRevokeRequestResponse.java:
+    id: a0e534b69a3f
+    last_write_checksum: sha1:176d046189d03c202dace382feeae01efb45883e
+    pristine_git_object: 87287d87989c7a4d975ce0e1097f0830c3a879c6
   src/main/java/com/prove/proveapi/models/operations/V3DisenrollIdentityRequest.java:
     id: afb29ebed945
     last_write_checksum: sha1:620957c022d549b4f8f113e136b9ec3cfc7a0e17
@@ -1154,6 +1867,18 @@ trackedFiles:
     id: 67a7bb973b4b
     last_write_checksum: sha1:7b8efbae15fa9f4a6c4fd07331ca8158d7894b63
     pristine_git_object: 633369134bb2702028cc563399d1c70bd399db17
+  src/main/java/com/prove/proveapi/models/operations/V3FetchRequestRequest.java:
+    id: cb7c26964e9f
+    last_write_checksum: sha1:fefeff02efb16a6c2324bfec4610ab5eb75113d9
+    pristine_git_object: ec7c598fcc60d207cd89326b56c56031f4e447a5
+  src/main/java/com/prove/proveapi/models/operations/V3FetchRequestRequestBuilder.java:
+    id: 88bbcfeed11d
+    last_write_checksum: sha1:9c579dd6fab2e4e12de3eebc9895915ce04fb895
+    pristine_git_object: bddbdd17e640148894abc8875daa8574e3658ebb
+  src/main/java/com/prove/proveapi/models/operations/V3FetchRequestResponse.java:
+    id: c724b476e4da
+    last_write_checksum: sha1:52fceca455d781904e6a3e1e0282624fdefa48b7
+    pristine_git_object: 4bb0ded8ac3ba618f340c726c9c0df30eec62cb9
   src/main/java/com/prove/proveapi/models/operations/V3GetIdentitiesByPhoneNumberRequest.java:
     id: a158f17fb3ab
     last_write_checksum: sha1:5f0d3c92d59c8b78b9119b61d96c184be8613435
@@ -1242,6 +1967,18 @@ trackedFiles:
     id: 6667818192da
     last_write_checksum: sha1:0a45b21fecb7530b7d921416a21a94a1d5595282
     pristine_git_object: 6c8b168d515300684883bc5feef7738e13a57712
+  src/main/java/com/prove/proveapi/models/operations/async/AuthContinueRequestResponse.java:
+    id: eb08aec649ba
+    last_write_checksum: sha1:5a0c09e487bb4ac39d97ada97bc7d9b27ca8c5df
+    pristine_git_object: 27a54f2656aae6480f48c29a5c3d5c3ebf819fee
+  src/main/java/com/prove/proveapi/models/operations/async/AuthFinishRequestResponse.java:
+    id: e811341c3343
+    last_write_checksum: sha1:12a5a5b7cbe0a798e3ded31b4e21df64a77aec8c
+    pristine_git_object: 7f863f760fc6a0b052b474c91e068c37b8fb2595
+  src/main/java/com/prove/proveapi/models/operations/async/AuthStartRequestResponse.java:
+    id: 018007749ec1
+    last_write_checksum: sha1:170efc6bc83d9f661923cbc87f0b6bba7fd132a6
+    pristine_git_object: 77c5fad96b8198bb5ce468afb790a658a84dcd20
   src/main/java/com/prove/proveapi/models/operations/async/V3ActivateIdentityResponse.java:
     id: 0b9e40a9904a
     last_write_checksum: sha1:5cbedec7712f75400ad1e1f9ef1d5644e864d3c7
@@ -1270,6 +2007,10 @@ trackedFiles:
     id: 6d17595d30fb
     last_write_checksum: sha1:284be2fb2090b8bf530bf39c5e69503c9209abf3
     pristine_git_object: 4cb7ae362d1e696e9259f617a04f76743206b1d5
+  src/main/java/com/prove/proveapi/models/operations/async/V3DeviceRevokeRequestResponse.java:
+    id: 33d6885b0478
+    last_write_checksum: sha1:e1d5e18c17d550508fbf310f3951c03635c5b921
+    pristine_git_object: 3870c29467d463dbfc53c9a598d8dfc6984369f7
   src/main/java/com/prove/proveapi/models/operations/async/V3DisenrollIdentityResponse.java:
     id: 3d1b39dbb450
     last_write_checksum: sha1:5e745b441ee0e6cc9083286fa411618d9cc08b85
@@ -1298,6 +2039,10 @@ trackedFiles:
     id: 21d285fa47ab
     last_write_checksum: sha1:c0f9b17090ab36ea49fd27bcc6b39a4e62b94585
     pristine_git_object: 691b34ff4ff0b519b0505f3493062f21848c7a40
+  src/main/java/com/prove/proveapi/models/operations/async/V3FetchRequestResponse.java:
+    id: e9d2ecde25af
+    last_write_checksum: sha1:a34c3e417566fd05923698a0ffa06cc0e23e1b99
+    pristine_git_object: b500efbb2e2bcf295ecbfce14b8e28322284af6c
   src/main/java/com/prove/proveapi/models/operations/async/V3GetIdentitiesByPhoneNumberResponse.java:
     id: 77ec688cc744
     last_write_checksum: sha1:749573fa36b452ca2992da48393c5712e16639ca
@@ -1338,6 +2083,18 @@ trackedFiles:
     id: 62f43a3769ef
     last_write_checksum: sha1:574e9da33eb66ca7a5b179028b626b23b3e855da
     pristine_git_object: 32011a5d6c9cb7daf5902ebeeb2d46ae30d88e35
+  src/main/java/com/prove/proveapi/operations/AuthContinueRequest.java:
+    id: 5757b14dcf0c
+    last_write_checksum: sha1:90bbb473d3e1d2d50ca8835a511f962fbaca3a64
+    pristine_git_object: 866df5d5fd9d215ea1df56a803079ee226f7674d
+  src/main/java/com/prove/proveapi/operations/AuthFinishRequest.java:
+    id: a40588385585
+    last_write_checksum: sha1:2e92a2b91d4f09f12120447288f4ed5ae3ff5819
+    pristine_git_object: a4b4cf25b5c1650e10abd0b5d34c09d1731da219
+  src/main/java/com/prove/proveapi/operations/AuthStartRequest.java:
+    id: ec475dcf4254
+    last_write_checksum: sha1:5ced0b878711be68b33c0c79e148c878cc12f76c
+    pristine_git_object: e99b69961736cb24b584b7440d1e1a82c0e59eef
   src/main/java/com/prove/proveapi/operations/Operations.java:
     id: a8b2fbdafd2e
     last_write_checksum: sha1:41bac0274a5c3e8e553f156fe82d8a95c3139f40
@@ -1370,6 +2127,10 @@ trackedFiles:
     id: c6b91d6f9f6f
     last_write_checksum: sha1:a9e2cd9fe9039a4f92ca71bebd234f703a34ee85
     pristine_git_object: 2b8aa707de07f702ec45011cf266a7423ef13e6a
+  src/main/java/com/prove/proveapi/operations/V3DeviceRevokeRequest.java:
+    id: 28b7258381a9
+    last_write_checksum: sha1:215a33b597db745a0524e17eacf0ba18cc8b6e5e
+    pristine_git_object: 5d69ea81a14f0132793a2a6c33e52b9c3bab98ff
   src/main/java/com/prove/proveapi/operations/V3DisenrollIdentity.java:
     id: d56a558a5ffb
     last_write_checksum: sha1:2428b9a4c7d9da1105f93ac971d51f72f7db9886
@@ -1398,6 +2159,10 @@ trackedFiles:
     id: 6960faa6ff9f
     last_write_checksum: sha1:2cbac8622a7ab3d568ed9168916326003be2620b
     pristine_git_object: 31100ba8047b29d82b88d0eb5471f1844bb0b515
+  src/main/java/com/prove/proveapi/operations/V3FetchRequest.java:
+    id: 7500deb410ce
+    last_write_checksum: sha1:aafe9c1c8267f54bcabb9abb72b657f38cbcd642
+    pristine_git_object: 5b583e89f701cd88384eb2bf28a5f3a325736950
   src/main/java/com/prove/proveapi/operations/V3GetIdentitiesByPhoneNumber.java:
     id: 0e31af14d13c
     last_write_checksum: sha1:ed72f408ef1c7ac9c0e95045132ddf881baea531
@@ -1412,8 +2177,8 @@ trackedFiles:
     pristine_git_object: 33c9ea4899d05fa5e0960bf5b0b48a5eaf9912b9
   src/main/java/com/prove/proveapi/operations/V3TokenRequest.java:
     id: 97d79d3ac573
-    last_write_checksum: sha1:4a96baa68a737240d63becfda69d5d8a46beff0f
-    pristine_git_object: 2c96b3846f7de5d97d5c180d7357774adcd8ece0
+    last_write_checksum: sha1:400371d6382057be52e6983e707541f5e031fffe
+    pristine_git_object: 72a4a14ccf57fe2686559943c54a58f7bcbc9843
   src/main/java/com/prove/proveapi/operations/V3UnifyBindRequest.java:
     id: 001f34b193c6
     last_write_checksum: sha1:182ff28f33bc11d71143f6d8b00933d24691524c
@@ -1711,11 +2476,11 @@ examples:
         "200":
           application/json: {"access_token": "eyJ...", "expires_in": 3600, "refresh_expires_in": 3600, "refresh_token": "eyJ...", "token_type": "Bearer"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3ChallengeRequest:
     speakeasy-default-v3-challenge-request:
       requestBody:
@@ -1794,13 +2559,13 @@ examples:
         "200":
           application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "next": {"v3-validate": "/v3/validate"}}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3UnifyRequest:
     speakeasy-default-v3-unify-request:
       requestBody:
@@ -1809,13 +2574,13 @@ examples:
         "200":
           application/json: {"authToken": "eyJhbGciOi...", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "success": "pending"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3UnifyBindRequest:
     speakeasy-default-v3-unify-bind-request:
       requestBody:
@@ -1824,13 +2589,13 @@ examples:
         "200":
           application/json: {"clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "evaluation": {"key": {}}, "phoneNumber": "2001004011", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "success": "true"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3UnifyStatusRequest:
     speakeasy-default-v3-unify-status-request:
       requestBody:
@@ -1888,18 +2653,18 @@ examples:
   V3VerifyRequest:
     speakeasy-default-v3-verify-request:
       requestBody:
-        application/json: {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "aad25769-23bb-458c-80db-50296a82c91b", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "ipAddress": "192.168.1.1", "lastName": "Coldman", "phoneNumber": "2001004053", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verifiedUser"}
+        application/json: {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientHumanId": "aad25769-23bb-458c-80db-50296a82c91b", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "emailAddress": "ecoldman1h@storify.com", "firstName": "Elena", "identityAttributes": [{"attributeType": "walletId", "attributeValue": "wallet123"}], "ipAddress": "192.168.1.1", "lastName": "Coldman", "phoneNumber": "2001004053", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0", "verificationType": "verifiedUser"}
       responses:
         "200":
           application/json: {"additionalIdentities": [{"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}], "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "evaluation": {"authentication": {}, "identification": {}}, "identity": {"assuranceLevel": "AL2", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL2a]"]}, "phoneNumber": "2001004053", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "true"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3VerifyStatusRequest:
     speakeasy-default-v3-verify-status-request:
       requestBody:
@@ -1921,28 +2686,28 @@ examples:
         "200":
           application/json: {"lastKey": "fNqtI2wVPka+yAFC5qRtrQ==", "results": [{"identityId": "4a6317c1-4855-4900-b369-bed138f4ec00"}, {"identityId": "e53c0597-1cce-4d8f-bd1b-e0a10f875ac9"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3EnrollIdentity:
     speakeasy-default-v3-enroll-identity:
       requestBody:
-        application/json: {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "phoneNumber": "2001001695"}
+        application/json: {"clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityAttributes": [{"attributeType": "myWalletId", "attributeValue": "token123"}], "phoneNumber": "2001001695"}
       responses:
         "200":
           application/json: {"identityId": "863189q5-5555-4c15-89ba-15d08710aecz", "success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3BatchEnrollIdentities:
     speakeasy-default-v3-batch-enroll-identities:
       requestBody:
@@ -1951,13 +2716,13 @@ examples:
         "200":
           application/json: {"results": [{"identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc"}, {"error": "Invalid Phone Number"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DisenrollIdentity:
     speakeasy-default-v3-disenroll-identity:
       parameters:
@@ -1967,13 +2732,13 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3GetIdentity:
     speakeasy-default-v3-get-identity:
       parameters:
@@ -1983,13 +2748,13 @@ examples:
         "200":
           application/json: {"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3ActivateIdentity:
     speakeasy-default-v3-activate-identity:
       parameters:
@@ -2001,13 +2766,13 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DeactivateIdentity:
     speakeasy-default-v3-deactivate-identity:
       parameters:
@@ -2019,13 +2784,13 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3GetIdentitiesByPhoneNumber:
     speakeasy-default-v3-get-identities-by-phone-number:
       parameters:
@@ -2035,13 +2800,13 @@ examples:
         "200":
           application/json: {"items": [{"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}, {"active": true, "carrier": "Verizon", "clientCustomerId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "countryCode": "US", "createdAt": 1747671792, "creationString": "2025-05-19T16:23:12.475Z", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "lineType": "mobile", "phoneNumber": "2001001695"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DomainID:
     speakeasy-default-v3-domain-ID:
       responses:
@@ -2106,54 +2871,54 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DomainIDRequest:
     speakeasy-default-v3-domain-ID-request:
       responses:
         "200":
           application/json: {"name": "My Company", "pcid": "123456"}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DomainLinkRequest:
     speakeasy-default-v3-domain-link-request:
       requestBody:
-        application/json: {"pcid": "pcid"}
+        application/json: {"pcid": "pcid", "scopes": ["scopes", "scopes"]}
       responses:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DomainLinkedRequest:
     speakeasy-default-v3-domain-linked-request:
       responses:
         "200":
-          application/json: {"linkedFrom": [{"acceptedAt": 0, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}, {"acceptedAt": 0, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}], "linkedTo": [{"acceptedAt": 6, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}, {"acceptedAt": 6, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid"}], "requestsFrom": [{"name": "name", "pcid": "pcid", "requestedAt": 1, "requestedString": "requestedString"}, {"name": "name", "pcid": "pcid", "requestedAt": 1, "requestedString": "requestedString"}], "requestsTo": [{"name": "name", "pcid": "pcid", "requestedAt": 5, "requestedString": "requestedString"}, {"name": "name", "pcid": "pcid", "requestedAt": 5, "requestedString": "requestedString"}]}
+          application/json: {"linkedFrom": [{"acceptedAt": 0, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid", "scopes": ["scopes", "scopes"]}, {"acceptedAt": 0, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid", "scopes": ["scopes", "scopes"]}], "linkedTo": [{"acceptedAt": 6, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid", "scopes": ["scopes", "scopes"]}, {"acceptedAt": 6, "acceptedString": "acceptedString", "name": "name", "pcid": "pcid", "scopes": ["scopes", "scopes"]}], "requestsFrom": [{"name": "name", "pcid": "pcid", "requestedAt": 1, "requestedString": "requestedString", "scopes": ["scopes", "scopes"]}, {"name": "name", "pcid": "pcid", "requestedAt": 1, "requestedString": "requestedString", "scopes": ["scopes", "scopes"]}], "requestsTo": [{"name": "name", "pcid": "pcid", "requestedAt": 5, "requestedString": "requestedString", "scopes": ["scopes", "scopes"]}, {"name": "name", "pcid": "pcid", "requestedAt": 5, "requestedString": "requestedString", "scopes": ["scopes", "scopes"]}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3DomainUnlinkRequest:
     speakeasy-default-v3-domain-unlink-request:
       requestBody:
@@ -2162,13 +2927,13 @@ examples:
         "200":
           application/json: {"success": true}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3CrossDomainIdentity:
     speakeasy-default-v3-cross-domain-identity:
       parameters:
@@ -2180,13 +2945,13 @@ examples:
         "200":
           application/json: {"count": 5, "identities": [{"clientName": "Client A", "identityId": "e0f78bc2-f748-4eda-9d29-d756844507fc", "pcid": "12345"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   V3VerifyBatchRequest:
     speakeasy-default-v3-verify-batch-request:
       requestBody:
@@ -2195,13 +2960,13 @@ examples:
         "200":
           application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd", "results": [{"additionalIdentities": [{"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}], "assuranceLevel": "AL-1", "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "error": "", "evaluation": {"authentication": {}, "identification": {}}, "identity": {"assuranceLevel": "AL2", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL1a]"]}, "phoneNumber": "2001004053", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "true"}, {"additionalIdentities": [{"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}, {"assuranceLevel": "AL-1", "firstName": "Elena", "lastName": "Coldman", "reasons": ["[AL-1a] (Poor quality identity)"]}], "assuranceLevel": "AL-1", "clientCustomerId": "261ffa66-961a-4f90-8d93-6c85a450633d", "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "error": "", "evaluation": {"authentication": {}, "risk": {}, "success": {}}, "identity": {"assuranceLevel": "AL0", "firstName": "Alf", "lastName": "Novotni", "reasons": ["[AL0b]"]}, "phoneNumber": "2001004054", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "provePhoneAlias": "4B2C41FC4VKDEO100F960011D0AD4A8050MEK19P4SF9PD23EFE27CD2C76A6FAA8375E60AC0550604F6G32D9ED60E06262CCC570F3C15F2D16900184E", "success": "false"}]}
         "400":
-          application/json: {"code": 8002, "message": "not authorized"}
+          application/json: {"code": 1001, "message": "invalid request"}
         "401":
           application/json: {"code": 8002, "message": "not authorized"}
         "403":
           application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
         "500":
-          application/json: {"code": 8000, "message": "error at prove, try again later"}
+          application/json: {"code": 1000, "message": "error occurred"}
   AuthContinueRequest:
     speakeasy-default-auth-continue-request:
       requestBody:
@@ -2235,9 +3000,43 @@ examples:
           application/json: {"code": 1001, "message": "invalid request"}
         "500":
           application/json: {"code": 1000, "message": "error occurred"}
+  V3DeviceRevokeRequest:
+    speakeasy-default-v3-device-revoke-request:
+      requestBody:
+        application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc"}
+      responses:
+        "200":
+          application/json: {"success": true}
+        "400":
+          application/json: {"code": 1001, "message": "invalid request"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "500":
+          application/json: {"code": 1000, "message": "error occurred"}
+  V3FetchRequest:
+    speakeasy-default-v3-fetch-request:
+      parameters:
+        query:
+          proveId: "<id>"
+          attributeId: "<id>"
+      responses:
+        "200":
+          application/json: {"results": [{"attributeId": "550e8400-e29b-41d4-a716-446655440000", "attributeValue": "ext-wallet-992834", "issuerId": "Aeropay"}, {"attributeId": "550e8400-e29b-41d4-a716-446655440000", "attributeValue": "ext-wallet-992834", "issuerId": "Aeropay"}]}
+        "400":
+          application/json: {"code": 1001, "message": "invalid request"}
+        "401":
+          application/json: {"code": 8002, "message": "not authorized"}
+        "403":
+          application/json: {"code": 8003, "message": "Access forbidden: insufficient permissions"}
+        "404":
+          application/json: {"code": 8011, "message": "Identity Not Found"}
+        "500":
+          application/json: {"code": 1000, "message": "error occurred"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `proveapi.v3.v3UnifyBindRequest()`: \n  *  `request.phoneNumber` **Changed** (Breaking ⚠️)\n* `proveapi.v3.v3UnifyStatusRequest()`: \n  *  `request.phoneNumber` **Removed** (Breaking ⚠️)\n* `proveapi.auth.authContinueRequest()`: **Removed** (Breaking ⚠️)\n* `proveapi.auth.authFinishRequest()`: **Removed** (Breaking ⚠️)\n* `proveapi.auth.authStartRequest()`: **Removed** (Breaking ⚠️)\n"
+releaseNotes: "## Java SDK Changes:\n* `proveapi.v3.v3DeviceRevokeRequest()`: **Added**\n* `proveapi.auth.authContinueRequest()`: **Added**\n* `proveapi.auth.authFinishRequest()`: **Added**\n* `proveapi.auth.authStartRequest()`: **Added**\n* `proveapi.identity.v3FetchRequest()`: **Added**\n* `proveapi.v3.v3VerifyRequest()`: \n  *  `request.identityAttributes` **Added**\n* `proveapi.domain.v3DomainLinkRequest()`: \n  *  `request.scopes` **Added**\n* `proveapi.domain.v3DomainLinkedRequest()`:  `response` **Changed**\n* `proveapi.identity.v3EnrollIdentity()`: \n  *  `request.identityAttributes` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

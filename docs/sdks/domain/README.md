@@ -143,6 +143,7 @@ import com.prove.proveapi.models.errors.*;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.operations.V3DomainLinkRequestResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -157,6 +158,9 @@ public class Application {
 
         V3DomainLinkRequest req = V3DomainLinkRequest.builder()
                 .pcid("pcid")
+                .scopes(List.of(
+                    "scopes",
+                    "scopes"))
                 .build();
 
         V3DomainLinkRequestResponse res = sdk.domain().v3DomainLinkRequest()

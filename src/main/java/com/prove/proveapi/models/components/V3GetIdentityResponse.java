@@ -90,10 +90,11 @@ public class V3GetIdentityResponse {
 
     /**
      * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
-     * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
-     * passed in with or without a leading +1.
-     * 
-     * <p>Acceptable characters are: alphanumeric with symbols '+'.
+     * Mobile Auth documentation for situations
+     * where this field is not required. US and Canada phone numbers can be passed in with or without a
+     * leading `+1`. International phone numbers
+     * require a leading `+` followed by the country code. Acceptable characters are: alphanumeric with
+     * symbols '+'.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
@@ -218,10 +219,11 @@ public class V3GetIdentityResponse {
 
     /**
      * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
-     * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
-     * passed in with or without a leading +1.
-     * 
-     * <p>Acceptable characters are: alphanumeric with symbols '+'.
+     * Mobile Auth documentation for situations
+     * where this field is not required. US and Canada phone numbers can be passed in with or without a
+     * leading `+1`. International phone numbers
+     * require a leading `+` followed by the country code. Acceptable characters are: alphanumeric with
+     * symbols '+'.
      */
     @JsonIgnore
     public String phoneNumber() {
@@ -414,10 +416,11 @@ public class V3GetIdentityResponse {
 
     /**
      * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
-     * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
-     * passed in with or without a leading +1.
-     * 
-     * <p>Acceptable characters are: alphanumeric with symbols '+'.
+     * Mobile Auth documentation for situations
+     * where this field is not required. US and Canada phone numbers can be passed in with or without a
+     * leading `+1`. International phone numbers
+     * require a leading `+` followed by the country code. Acceptable characters are: alphanumeric with
+     * symbols '+'.
      */
     public V3GetIdentityResponse withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -680,10 +683,11 @@ public class V3GetIdentityResponse {
 
         /**
          * The number of the mobile phone. Refer to the Prove Pre-Fill with Mobile Auth and Prove Identity with
-         * Mobile Auth documentation for situations where this field is not required. US phone numbers can be
-         * passed in with or without a leading +1.
-         * 
-         * <p>Acceptable characters are: alphanumeric with symbols '+'.
+         * Mobile Auth documentation for situations
+         * where this field is not required. US and Canada phone numbers can be passed in with or without a
+         * leading `+1`. International phone numbers
+         * require a leading `+` followed by the country code. Acceptable characters are: alphanumeric with
+         * symbols '+'.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

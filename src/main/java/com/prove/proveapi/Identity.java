@@ -27,6 +27,9 @@ import com.prove.proveapi.models.operations.V3DisenrollIdentityRequestBuilder;
 import com.prove.proveapi.models.operations.V3DisenrollIdentityResponse;
 import com.prove.proveapi.models.operations.V3EnrollIdentityRequestBuilder;
 import com.prove.proveapi.models.operations.V3EnrollIdentityResponse;
+import com.prove.proveapi.models.operations.V3FetchRequestRequest;
+import com.prove.proveapi.models.operations.V3FetchRequestRequestBuilder;
+import com.prove.proveapi.models.operations.V3FetchRequestResponse;
 import com.prove.proveapi.models.operations.V3GetIdentitiesByPhoneNumberRequest;
 import com.prove.proveapi.models.operations.V3GetIdentitiesByPhoneNumberRequestBuilder;
 import com.prove.proveapi.models.operations.V3GetIdentitiesByPhoneNumberResponse;
@@ -40,6 +43,7 @@ import com.prove.proveapi.operations.V3CrossDomainIdentity;
 import com.prove.proveapi.operations.V3DeactivateIdentity;
 import com.prove.proveapi.operations.V3DisenrollIdentity;
 import com.prove.proveapi.operations.V3EnrollIdentity;
+import com.prove.proveapi.operations.V3FetchRequest;
 import com.prove.proveapi.operations.V3GetIdentitiesByPhoneNumber;
 import com.prove.proveapi.operations.V3GetIdentity;
 import com.prove.proveapi.utils.Headers;
@@ -66,6 +70,60 @@ public class Identity {
      */
     public AsyncIdentity async() {
         return asyncSDK;
+    }
+
+    /**
+     * Fetch Identity Attributes
+     * 
+     * <p>Fetch actual identity attribute values (e.g., walletID) based on the customer ProveID and attribute
+     * UUID.
+     * 
+     * @return The call builder
+     */
+    public V3FetchRequestRequestBuilder v3FetchRequest() {
+        return new V3FetchRequestRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Fetch Identity Attributes
+     * 
+     * <p>Fetch actual identity attribute values (e.g., walletID) based on the customer ProveID and attribute
+     * UUID.
+     * 
+     * @param proveId A unique Prove-generated identifier for the enrolled identity (UUID).
+     * @param attributeId A unique identifier for the identity attribute (UUID), as returned by the discover endpoint.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3FetchRequestResponse v3FetchRequest(String proveId, String attributeId) {
+        return v3FetchRequest(proveId, attributeId, Optional.empty());
+    }
+
+    /**
+     * Fetch Identity Attributes
+     * 
+     * <p>Fetch actual identity attribute values (e.g., walletID) based on the customer ProveID and attribute
+     * UUID.
+     * 
+     * @param proveId A unique Prove-generated identifier for the enrolled identity (UUID).
+     * @param attributeId A unique identifier for the identity attribute (UUID), as returned by the discover endpoint.
+     * @param clientRequestId A client-generated unique ID for a specific session. This can be used to identify specific requests. The format of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted. Do not include Personally Identifiable Information (PII) in this field.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3FetchRequestResponse v3FetchRequest(
+            String proveId, String attributeId,
+            Optional<String> clientRequestId) {
+        V3FetchRequestRequest request =
+            V3FetchRequestRequest
+                .builder()
+                .proveId(proveId)
+                .attributeId(attributeId)
+                .clientRequestId(clientRequestId)
+                .build();
+        RequestOperation<V3FetchRequestRequest, V3FetchRequestResponse> operation
+              = new V3FetchRequest.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
