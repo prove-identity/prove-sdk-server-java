@@ -25,6 +25,7 @@ OpenAPI Spec - generated.
   * [Authentication](#authentication)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
+  * [Jackson Configuration](#jackson-configuration)
 
 <!-- End Table of Contents [toc] -->
 
@@ -39,7 +40,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.21.2'
+implementation 'com.prove:proveapi:0.21.3'
 ```
 
 Maven:
@@ -47,7 +48,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.21.2</version>
+    <version>0.21.3</version>
 </dependency>
 ```
 
@@ -110,7 +111,7 @@ public class Application {
                 .call();
 
         if (res.v3StartResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3StartResponse().get());
         }
     }
 }
@@ -146,7 +147,7 @@ public class Application {
 
         resFut.thenAccept(res -> {
             if (res.v3TokenResponse().isPresent()) {
-            // handle response
+                System.out.println(res.v3TokenResponse().get());
             }
         });
     }
@@ -257,7 +258,7 @@ public class Application {
                     .call();
 
             if (res.v3TokenResponse().isPresent()) {
-                // handle response
+                System.out.println(res.v3TokenResponse().get());
             }
         } catch (ProveapiError ex) { // all SDK exceptions inherit from ProveapiError
 
@@ -366,7 +367,7 @@ public class Application {
                 .call();
 
         if (res.v3TokenResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3TokenResponse().get());
         }
     }
 }
@@ -404,7 +405,7 @@ public class Application {
                 .call();
 
         if (res.v3TokenResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3TokenResponse().get());
         }
     }
 }
@@ -522,7 +523,7 @@ public class Application {
                 .call();
 
         if (res.v3TokenResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3TokenResponse().get());
         }
     }
 }
@@ -698,5 +699,35 @@ __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->
+
+<!-- Start Jackson Configuration [jackson] -->
+## Jackson Configuration
+
+The SDK ships with a pre-configured Jackson [`ObjectMapper`][jackson-databind] accessible via
+`JSON.getMapper()`. It is set up with type modules, strict deserializers, and the feature flags
+needed for full SDK compatibility (including ISO-8601 `OffsetDateTime` serialization):
+
+```java
+import com.prove.proveapi.utils.JSON;
+
+String json = JSON.getMapper().writeValueAsString(response);
+```
+
+To compose with your own `ObjectMapper`, register the provided `ProveapiJacksonModule`, which
+bundles all the same modules and feature flags as a single plug-and-play module:
+
+```java
+import com.prove.proveapi.utils.ProveapiJacksonModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+ObjectMapper myMapper = new ObjectMapper()
+    .registerModule(new ProveapiJacksonModule());
+
+String json = myMapper.writeValueAsString(response);
+```
+
+[jackson-databind]: https://github.com/FasterXML/jackson-databind
+[jackson-jsr310]: https://github.com/FasterXML/jackson-modules-java8/tree/master/datetime
+<!-- End Jackson Configuration [jackson] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
