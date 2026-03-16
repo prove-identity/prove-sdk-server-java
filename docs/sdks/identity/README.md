@@ -49,7 +49,7 @@ public class Application {
                 .call();
 
         if (res.v3FetchResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3FetchResponse().get());
         }
     }
 }
@@ -110,7 +110,7 @@ public class Application {
                 .call();
 
         if (res.v3BatchGetIdentitiesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3BatchGetIdentitiesResponse().get());
         }
     }
 }
@@ -185,7 +185,7 @@ public class Application {
                 .call();
 
         if (res.v3EnrollIdentityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3EnrollIdentityResponse().get());
         }
     }
 }
@@ -260,7 +260,7 @@ public class Application {
                 .call();
 
         if (res.v3BatchEnrollIdentitiesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3BatchEnrollIdentitiesResponse().get());
         }
     }
 }
@@ -319,7 +319,7 @@ public class Application {
                 .call();
 
         if (res.v3DisenrollIdentityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3DisenrollIdentityResponse().get());
         }
     }
 }
@@ -379,7 +379,7 @@ public class Application {
                 .call();
 
         if (res.v3GetIdentityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3GetIdentityResponse().get());
         }
     }
 }
@@ -443,7 +443,7 @@ public class Application {
                 .call();
 
         if (res.v3ActivateIdentityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ActivateIdentityResponse().get());
         }
     }
 }
@@ -507,7 +507,7 @@ public class Application {
                 .call();
 
         if (res.v3CrossDomainIdentityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CrossDomainIdentityResponse().get());
         }
     }
 }
@@ -571,7 +571,7 @@ public class Application {
                 .call();
 
         if (res.v3DeactivateIdentityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3DeactivateIdentityResponse().get());
         }
     }
 }
@@ -631,7 +631,7 @@ public class Application {
                 .call();
 
         if (res.v3GetIdentitiesByPhoneNumberResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3GetIdentitiesByPhoneNumberResponse().get());
         }
     }
 }

@@ -1,40 +1,40 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: a1cabeebfee7d9b887987bbe82430bfb
+  docChecksum: 8f73866b8e62dc0e7b368ec25e78aade
   docVersion: 1.0.0
-  speakeasyVersion: 1.731.4
-  generationVersion: 2.845.5
-  releaseVersion: 0.21.2
-  configChecksum: 0b2f0f7f49f2f350c04fc71bc41810fa
+  speakeasyVersion: 1.755.0
+  generationVersion: 2.865.2
+  releaseVersion: 0.21.3
+  configChecksum: 290e4fa304f157c03811a0d5793518ed
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   installationURL: https://github.com/prove-identity/prove-sdk-server-java
   published: true
 persistentEdits:
-  generation_id: 176c4113-68db-4d35-be95-63f0cdcf3cba
-  pristine_commit_hash: 00a101e1dda57f48c67f50e2c4a033e044cf2cb7
-  pristine_tree_hash: e3ea94fb4e4f30a92e302bf06a558a5f11210ed1
+  generation_id: 46ace9c9-4521-4870-8fd2-ba6814e19c4a
+  pristine_commit_hash: f1a4b690a0c5d59745c639a2221b905e03fb0967
+  pristine_tree_hash: 3f1d4c8f4e704ed94eddc1de960378d6d6749462
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.55.16
-    examples: 2.81.7
+    core: 3.55.22
+    examples: 2.81.8
     flattening: 2.81.1
     globalSecurity: 2.83.2
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.83.1
-    oauth2ClientCredentials: 1.1.4
+    oauth2ClientCredentials: 1.1.5
     sdkHooks: 1.2.0
     serverIDs: 2.81.1
 trackedFiles:
   .gitattributes:
     id: 24139dae6567
-    last_write_checksum: sha1:18563f88a3e50e55f2ae6f2b62440464808f5d6f
-    pristine_git_object: 87cd6547287adad3b806972ee22a765ed80ab806
+    last_write_checksum: sha1:2b27a763ec2b5c70648554e408dc254181222d09
+    pristine_git_object: 8f8da085659bbf87d293b49b4593e43137a4acb0
   USAGE.md:
     id: 3aed33ce6e6f
-    last_write_checksum: sha1:8048c457e5b32a483a65096261e3d9745a8cb74f
-    pristine_git_object: 5f878d685ad6c583e8cf6aceb5b20eec3d4d7e26
+    last_write_checksum: sha1:ba87bf1d79042afb1da04420db6219bea5fbdf11
+    pristine_git_object: 9192f65979bca8824f5204ae10bd295b249fe5d0
   build.gradle:
     id: f07866736216
     last_write_checksum: sha1:5470c16502b96d4743b1cf7ee0eb156bdd384338
@@ -633,8 +633,8 @@ trackedFiles:
     pristine_git_object: 8a367cc61974d37b40ad5f7610e01b39a075dc05
   docs/models/components/VerificationType.md:
     id: 752770a96807
-    last_write_checksum: sha1:acc68f306a7f1d9405307ef599e416fa68f47161
-    pristine_git_object: 0b933b338a7e6548b4f8a421a7a5ac76dc867f36
+    last_write_checksum: sha1:953919e4115a0e0df1d0b5cd8376aa1c0368e5a0
+    pristine_git_object: b91d18b2145acd642dd94592c660ca0df6e61e46
   docs/models/components/VerifyBatchRequestItem.md:
     id: 1b74710ab473
     last_write_checksum: sha1:bd2418c1104fb1b37ee05d7be463259ade833ec8
@@ -817,28 +817,28 @@ trackedFiles:
     pristine_git_object: 0accfde67ba1eee5fd5118ebcb7d9ba6f5ef15bb
   docs/sdks/auth/README.md:
     id: e9724f17945f
-    last_write_checksum: sha1:ba43bf543213ba7614bddde1707e816e1c6ebb4b
-    pristine_git_object: 5045979fd64e7c9d5eb1b2a125bc86e3c0b6b725
+    last_write_checksum: sha1:2f74e404fac18f76e615dee7a85d1cc89ebf3168
+    pristine_git_object: e1b613715cd658c9bacd224c250a84bc7a815c4c
   docs/sdks/domain/README.md:
     id: 3a95838ace20
-    last_write_checksum: sha1:a98fafbad4de2768aef9b19322f7b46536de71c3
-    pristine_git_object: b06782de6274c79b16a5a803163356988547ae19
+    last_write_checksum: sha1:995864b673b54636d11746148bb1694e6f973e8c
+    pristine_git_object: c562c968e196ebd4de9f54e9521dfd6a0ae5a5d1
   docs/sdks/identity/README.md:
     id: 8ebb743ced6f
-    last_write_checksum: sha1:2d922e820f7f3e5f1d059d6053215b9939f533f5
-    pristine_git_object: 95f44cc90cfb378371911793f989177de877ed6e
+    last_write_checksum: sha1:896a66ee812c5a45c2e0c36ddfbcd4aa5f9e4902
+    pristine_git_object: 51ad1b8c579f3f561dfac4edbf41cff25de0c4ba
   docs/sdks/v3/README.md:
     id: ee683463fcdd
-    last_write_checksum: sha1:f82f03041a9fbcd2b7e330160c176c5c6fb37c22
-    pristine_git_object: af6b53f68c6a637ac26597812a14d12130afaade
+    last_write_checksum: sha1:a732ec24540d1e837e7e4ee674449249d13a97a6
+    pristine_git_object: d66c7f5982ec555ee86a1fed310649edc1eebe72
   docs/utils/Blob.md:
     id: 3d9a7c4ad67a
     last_write_checksum: sha1:ac74fb0add0d0d1c00e9d833b54e09a9ee08d939
     pristine_git_object: 0032649da03c06826d436fbe31e0d1d0ce931f0c
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:cc8a54d92e754d0a8c5ee9e3dbc4e0f32e42bd77
-    pristine_git_object: 78b89c9530bc6a73495286cd38efbc9eae47e5da
+    last_write_checksum: sha1:e495191245a17491001e36835d2bfa237c3ecf0e
+    pristine_git_object: 13ba028adbea972b8278901478948ed886d5d995
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -929,8 +929,8 @@ trackedFiles:
     pristine_git_object: 8eee70fb3ae5558f514ee1753509e042cb294e26
   src/main/java/com/prove/proveapi/SDKConfiguration.java:
     id: 69255d11af4e
-    last_write_checksum: sha1:5f4f0346e9f183d3ae1b5494f00954c6c0f417be
-    pristine_git_object: 7c354e73f17c2aac1f0d123e685048baf07afcd1
+    last_write_checksum: sha1:b0ad07ab7e7b7633dacf55295ace725710d2b75e
+    pristine_git_object: 27286eaa11525ebb7863ed0fa0c0f09df98bf799
   src/main/java/com/prove/proveapi/SecuritySource.java:
     id: 99a381f305ca
     last_write_checksum: sha1:303afdfe77cc60804e6d8ab53ea11fe6336e671e
@@ -2217,8 +2217,8 @@ trackedFiles:
     pristine_git_object: 272543a6279382bd077a4fd831641e6807f42c69
   src/main/java/com/prove/proveapi/utils/AsyncRetries.java:
     id: 5c0ea73b3b61
-    last_write_checksum: sha1:7dc677a80508162890f183188ae19991f24d02be
-    pristine_git_object: 5acbc49398da7b599c78a0e95839ed975cd083cd
+    last_write_checksum: sha1:12414d75cc4173f0749e13057cd3ff58936b2d21
+    pristine_git_object: ae08fdf6180e7a3d10bf8b46614a6e4bcee750ea
   src/main/java/com/prove/proveapi/utils/AsyncRetryableException.java:
     id: eed6a21706a6
     last_write_checksum: sha1:4eee391043ee5dafb86639f9ba4fefea82ccb205
@@ -2257,8 +2257,8 @@ trackedFiles:
     pristine_git_object: a17230dca2a0080e54b3434a690fc6a9f9cccc4a
   src/main/java/com/prove/proveapi/utils/EventStream.java:
     id: 0f1e170935a7
-    last_write_checksum: sha1:a4296f163b496870c0ef2a8f7b3cf63b89ee5946
-    pristine_git_object: ab9a83cfb4f47512cda71fcdd21b52d8ee60645d
+    last_write_checksum: sha1:365f4df3e6bbed26b5a4cc38581d9c97dbe2fbe1
+    pristine_git_object: b650a1712dc92f255006c91f805a90aaa9645f9f
   src/main/java/com/prove/proveapi/utils/EventStreamMessage.java:
     id: 2a68c0423710
     last_write_checksum: sha1:487cd3793353ec444b0fa8104e67589e2350318d
@@ -2355,6 +2355,10 @@ trackedFiles:
     id: 7b787df0e9a5
     last_write_checksum: sha1:1979798817b5a56126b2316fd503ee8ecea65c86
     pristine_git_object: 79c4e015f90d71fe2781989d6ffbc51d33b97a76
+  src/main/java/com/prove/proveapi/utils/ProveapiJacksonModule.java:
+    id: 61486e5d9da5
+    last_write_checksum: sha1:7429c92bfe76c4606264a164f1d6e6664fdc9228
+    pristine_git_object: 9f869706c2fbb9b62e3a9c0b60de7568cffafca6
   src/main/java/com/prove/proveapi/utils/QueryEncoding.java:
     id: 79f3314630bc
     last_write_checksum: sha1:0bf73f705c3436a7831f18d16b886fab7cc93bf0
@@ -2397,8 +2401,8 @@ trackedFiles:
     pristine_git_object: d25639e5f2a96afbc3362f8bbc1406dc544d7a75
   src/main/java/com/prove/proveapi/utils/Retries.java:
     id: df5c79f7b631
-    last_write_checksum: sha1:6a2c32dbd87c9c19bb4690a63814a9d8b05fb885
-    pristine_git_object: 672c0f4c051e6f92e5f0bdd6a1f9e2195c459929
+    last_write_checksum: sha1:9137aa8db2671e7b6675ff716d92fa102a1f4c9f
+    pristine_git_object: 3b27a5ae99d738225bd878264c1d6b76a33e6a71
   src/main/java/com/prove/proveapi/utils/RetryConfig.java:
     id: 954306436fa2
     last_write_checksum: sha1:bcb751dd7d894d2b16547b8766f83e12f1265bc0
@@ -2461,8 +2465,8 @@ trackedFiles:
     pristine_git_object: d49c7371c354522754c574863c146442dca3941a
   src/main/java/com/prove/proveapi/utils/reactive/EventStream.java:
     id: 11994a9056cb
-    last_write_checksum: sha1:59c6a7981f5b3312615f0ec63e07aec38a2e067f
-    pristine_git_object: 1e561d25f56d885667fb0489037d4e077e3b9037
+    last_write_checksum: sha1:768d8dd7f4e66967c5268dd8d9703b70c395b64e
+    pristine_git_object: 32f65439c64aa5d202d827f0cd04e2aff3181c34
   src/main/java/com/prove/proveapi/utils/reactive/ReactiveUtils.java:
     id: 04ca1c65cc17
     last_write_checksum: sha1:4712cbdde3d25e8547afbbdea703eef95c06f403
@@ -3036,7 +3040,6 @@ examples:
           application/json: {"code": 1000, "message": "error occurred"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `proveapi.v3.v3DeviceRevokeRequest()`: **Added**\n* `proveapi.auth.authContinueRequest()`: **Added**\n* `proveapi.auth.authFinishRequest()`: **Added**\n* `proveapi.auth.authStartRequest()`: **Added**\n* `proveapi.identity.v3FetchRequest()`: **Added**\n* `proveapi.v3.v3VerifyRequest()`: \n  *  `request.identityAttributes` **Added**\n* `proveapi.domain.v3DomainLinkRequest()`: \n  *  `request.scopes` **Added**\n* `proveapi.domain.v3DomainLinkedRequest()`:  `response` **Changed**\n* `proveapi.identity.v3EnrollIdentity()`: \n  *  `request.identityAttributes` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
