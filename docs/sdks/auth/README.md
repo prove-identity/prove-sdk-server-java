@@ -57,7 +57,7 @@ public class Application {
                 .call();
 
         if (res.authContinueResponse().isPresent()) {
-            // handle response
+            System.out.println(res.authContinueResponse().get());
         }
     }
 }
@@ -121,7 +121,7 @@ public class Application {
                 .call();
 
         if (res.authFinishResponse().isPresent()) {
-            // handle response
+            System.out.println(res.authFinishResponse().get());
         }
     }
 }
@@ -292,7 +292,7 @@ public class Application {
                 .call();
 
         if (res.authStartResponse().isPresent()) {
-            // handle response
+            System.out.println(res.authStartResponse().get());
         }
     }
 }

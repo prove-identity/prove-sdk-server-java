@@ -51,7 +51,7 @@ public class Application {
                 .call();
 
         if (res.v3TokenResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3TokenResponse().get());
         }
     }
 }
@@ -116,7 +116,7 @@ public class Application {
                 .call();
 
         if (res.v3ChallengeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ChallengeResponse().get());
         }
     }
 }
@@ -157,7 +157,7 @@ public class Application {
                 .call();
 
         if (res.v3ChallengeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ChallengeResponse().get());
         }
     }
 }
@@ -237,7 +237,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -292,7 +292,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -347,7 +347,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -402,7 +402,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -457,7 +457,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -512,7 +512,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -567,7 +567,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -633,7 +633,7 @@ public class Application {
                 .call();
 
         if (res.v3DeviceRevokeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3DeviceRevokeResponse().get());
         }
     }
 }
@@ -705,7 +705,7 @@ public class Application {
                 .call();
 
         if (res.v3StartResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3StartResponse().get());
         }
     }
 }
@@ -782,7 +782,7 @@ public class Application {
                 .call();
 
         if (res.v3UnifyResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3UnifyResponse().get());
         }
     }
 }
@@ -848,7 +848,7 @@ public class Application {
                 .call();
 
         if (res.v3UnifyBindResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3UnifyBindResponse().get());
         }
     }
 }
@@ -913,7 +913,7 @@ public class Application {
                 .call();
 
         if (res.v3UnifyStatusResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3UnifyStatusResponse().get());
         }
     }
 }
@@ -953,7 +953,7 @@ public class Application {
                 .call();
 
         if (res.v3UnifyStatusResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3UnifyStatusResponse().get());
         }
     }
 }
@@ -1017,7 +1017,7 @@ public class Application {
                 .call();
 
         if (res.v3ValidateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ValidateResponse().get());
         }
     }
 }
@@ -1056,7 +1056,7 @@ public class Application {
                 .call();
 
         if (res.v3ValidateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ValidateResponse().get());
         }
     }
 }
@@ -1134,7 +1134,7 @@ public class Application {
                 .call();
 
         if (res.v3VerifyResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3VerifyResponse().get());
         }
     }
 }
@@ -1223,7 +1223,7 @@ public class Application {
                 .call();
 
         if (res.v3VerifyBatchResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3VerifyBatchResponse().get());
         }
     }
 }
