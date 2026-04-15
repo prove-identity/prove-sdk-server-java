@@ -244,6 +244,17 @@ public class ProveapiAutoConfig {
         return proveapi.v3();
     }
     /**
+     * Creates a Auth sub-SDK bean if none exists.
+     *
+     * @param proveapi the main SDK instance
+     * @return A configured Auth instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Auth auth(Proveapi proveapi) {
+        return proveapi.auth();
+    }
+    /**
      * Creates a Identity sub-SDK bean if none exists.
      *
      * @param proveapi the main SDK instance
@@ -288,6 +299,17 @@ public class ProveapiAutoConfig {
     @ConditionalOnMissingBean
     public AsyncV3 asyncV3(AsyncProveapi asyncProveapi) {
         return asyncProveapi.v3();
+    }
+    /**
+     * Creates an AsyncAuth sub-SDK bean if none exists.
+     *
+     * @param asyncProveapi the async SDK instance
+     * @return A configured AsyncAuth instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncAuth asyncAuth(AsyncProveapi asyncProveapi) {
+        return asyncProveapi.auth();
     }
     /**
      * Creates an AsyncIdentity sub-SDK bean if none exists.

@@ -50,8 +50,8 @@ public class Application {
                 .proveId("<id>")
                 .call();
 
-        if (res.v3FetchResponse().isPresent()) {
-            System.out.println(res.v3FetchResponse().get());
+        if (res.v3DiscoverResponse().isPresent()) {
+            System.out.println(res.v3DiscoverResponse().get());
         }
     }
 }
