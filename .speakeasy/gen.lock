@@ -5,15 +5,15 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.761.5
   generationVersion: 2.879.13
-  releaseVersion: 0.21.4
-  configChecksum: 2adfe8109bdb11bd2847b3cdd0372abc
+  releaseVersion: 0.21.5
+  configChecksum: 0a4378b89716323ae0b24ec54fc43f41
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   installationURL: https://github.com/prove-identity/prove-sdk-server-java
   published: true
 persistentEdits:
-  generation_id: 59a0b63e-9abf-4ed8-826f-9ae81acaade5
-  pristine_commit_hash: 02ca9c24a1f6c89d53db989e594e728ab45def72
-  pristine_tree_hash: 06410686ea47e77366c43087f7880a0a02e49ed6
+  generation_id: 9041af12-9b4b-4d2d-a907-e89eac44f36c
+  pristine_commit_hash: 657654bf60c77c9fd25704a6662feb4fa669a427
+  pristine_tree_hash: d9c275c34ad7a12132352f0347ca37da7a77b50c
 features:
   java:
     additionalDependencies: 0.1.0
@@ -853,8 +853,8 @@ trackedFiles:
     pristine_git_object: 0032649da03c06826d436fbe31e0d1d0ce931f0c
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:090996972a4ecb5c8526bb8b455c8d8958a5dbbf
-    pristine_git_object: ca77a83f05abf2ebb2731416efcde02054bc3684
+    last_write_checksum: sha1:f4cec6e9a6b7acbf12ec231d6e329a952b23f820
+    pristine_git_object: bcf7b56b7e77e6fe135f737e5fd86c2e2b41aacf
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -945,8 +945,8 @@ trackedFiles:
     pristine_git_object: fa831b1185ff1b0dcb490c24debb92245d233c0d
   src/main/java/com/prove/proveapi/SDKConfiguration.java:
     id: 69255d11af4e
-    last_write_checksum: sha1:121785b65b767a0ff073dada5104a03f7d1d25f5
-    pristine_git_object: f1720ea58574f17b6aa5a0e2832e5c968cb33a47
+    last_write_checksum: sha1:005024f0b4f5bd209da5848e5b04a61f95cce8f4
+    pristine_git_object: 0fb05b84d3b405f18599bf8b34e4ccb392660ea3
   src/main/java/com/prove/proveapi/SecuritySource.java:
     id: 99a381f305ca
     last_write_checksum: sha1:303afdfe77cc60804e6d8ab53ea11fe6336e671e
@@ -3112,12 +3112,6 @@ examples:
           application/json: {"code": 1000, "message": "error occurred"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `proveapi.identity.v3DiscoverRequest()`:  `response.results` **Changed** (Breaking ⚠️)
-  * `proveapi.auth.authContinueRequest()`: **Added**
-  * `proveapi.auth.authFinishRequest()`: **Added**
-  * `proveapi.auth.authStartRequest()`: **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
