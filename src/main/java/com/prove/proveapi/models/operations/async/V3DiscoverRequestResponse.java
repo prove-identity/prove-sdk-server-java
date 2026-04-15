@@ -5,7 +5,7 @@ package com.prove.proveapi.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.prove.proveapi.models.components.V3FetchResponse;
+import com.prove.proveapi.models.components.V3DiscoverResponse;
 import com.prove.proveapi.utils.AsyncResponse;
 import com.prove.proveapi.utils.Blob;
 import com.prove.proveapi.utils.Utils;
@@ -14,6 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -34,32 +36,40 @@ public class V3DiscoverRequestResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * V3FetchResponse
+     * Successful Request.
      */
-    private Optional<? extends V3FetchResponse> v3FetchResponse;
+    private Optional<? extends V3DiscoverResponse> v3DiscoverResponse;
+
+
+    private Map<String, List<String>> headers;
 
     @JsonCreator
     public V3DiscoverRequestResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends V3FetchResponse> v3FetchResponse) {
+            Optional<? extends V3DiscoverResponse> v3DiscoverResponse,
+            Map<String, List<String>> headers) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(v3FetchResponse, "v3FetchResponse");
+        Utils.checkNotNull(v3DiscoverResponse, "v3DiscoverResponse");
+        headers = Utils.emptyMapIfNull(headers);
+        Utils.checkNotNull(headers, "headers");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.v3FetchResponse = v3FetchResponse;
+        this.v3DiscoverResponse = v3DiscoverResponse;
+        this.headers = headers;
     }
     
     public V3DiscoverRequestResponse(
             String contentType,
             int statusCode,
-            HttpResponse<Blob> rawResponse) {
+            HttpResponse<Blob> rawResponse,
+            Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty());
+            Optional.empty(), headers);
     }
 
     /**
@@ -87,12 +97,17 @@ public class V3DiscoverRequestResponse implements AsyncResponse {
     }
 
     /**
-     * V3FetchResponse
+     * Successful Request.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V3FetchResponse> v3FetchResponse() {
-        return (Optional<V3FetchResponse>) v3FetchResponse;
+    public Optional<V3DiscoverResponse> v3DiscoverResponse() {
+        return (Optional<V3DiscoverResponse>) v3DiscoverResponse;
+    }
+
+    @JsonIgnore
+    public Map<String, List<String>> headers() {
+        return headers;
     }
 
     public static Builder builder() {
@@ -128,21 +143,27 @@ public class V3DiscoverRequestResponse implements AsyncResponse {
     }
 
     /**
-     * V3FetchResponse
+     * Successful Request.
      */
-    public V3DiscoverRequestResponse withV3FetchResponse(V3FetchResponse v3FetchResponse) {
-        Utils.checkNotNull(v3FetchResponse, "v3FetchResponse");
-        this.v3FetchResponse = Optional.ofNullable(v3FetchResponse);
+    public V3DiscoverRequestResponse withV3DiscoverResponse(V3DiscoverResponse v3DiscoverResponse) {
+        Utils.checkNotNull(v3DiscoverResponse, "v3DiscoverResponse");
+        this.v3DiscoverResponse = Optional.ofNullable(v3DiscoverResponse);
         return this;
     }
 
 
     /**
-     * V3FetchResponse
+     * Successful Request.
      */
-    public V3DiscoverRequestResponse withV3FetchResponse(Optional<? extends V3FetchResponse> v3FetchResponse) {
-        Utils.checkNotNull(v3FetchResponse, "v3FetchResponse");
-        this.v3FetchResponse = v3FetchResponse;
+    public V3DiscoverRequestResponse withV3DiscoverResponse(Optional<? extends V3DiscoverResponse> v3DiscoverResponse) {
+        Utils.checkNotNull(v3DiscoverResponse, "v3DiscoverResponse");
+        this.v3DiscoverResponse = v3DiscoverResponse;
+        return this;
+    }
+
+    public V3DiscoverRequestResponse withHeaders(Map<String, List<String>> headers) {
+        Utils.checkNotNull(headers, "headers");
+        this.headers = headers;
         return this;
     }
 
@@ -159,14 +180,15 @@ public class V3DiscoverRequestResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.v3FetchResponse, other.v3FetchResponse);
+            Utils.enhancedDeepEquals(this.v3DiscoverResponse, other.v3DiscoverResponse) &&
+            Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            v3FetchResponse);
+            v3DiscoverResponse, headers);
     }
     
     @Override
@@ -175,7 +197,8 @@ public class V3DiscoverRequestResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v3FetchResponse", v3FetchResponse);
+                "v3DiscoverResponse", v3DiscoverResponse,
+                "headers", headers);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +210,9 @@ public class V3DiscoverRequestResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends V3FetchResponse> v3FetchResponse = Optional.empty();
+        private Optional<? extends V3DiscoverResponse> v3DiscoverResponse = Optional.empty();
+
+        private Map<String, List<String>> headers;
 
         private Builder() {
           // force use of static builder() method
@@ -225,20 +250,27 @@ public class V3DiscoverRequestResponse implements AsyncResponse {
 
 
         /**
-         * V3FetchResponse
+         * Successful Request.
          */
-        public Builder v3FetchResponse(V3FetchResponse v3FetchResponse) {
-            Utils.checkNotNull(v3FetchResponse, "v3FetchResponse");
-            this.v3FetchResponse = Optional.ofNullable(v3FetchResponse);
+        public Builder v3DiscoverResponse(V3DiscoverResponse v3DiscoverResponse) {
+            Utils.checkNotNull(v3DiscoverResponse, "v3DiscoverResponse");
+            this.v3DiscoverResponse = Optional.ofNullable(v3DiscoverResponse);
             return this;
         }
 
         /**
-         * V3FetchResponse
+         * Successful Request.
          */
-        public Builder v3FetchResponse(Optional<? extends V3FetchResponse> v3FetchResponse) {
-            Utils.checkNotNull(v3FetchResponse, "v3FetchResponse");
-            this.v3FetchResponse = v3FetchResponse;
+        public Builder v3DiscoverResponse(Optional<? extends V3DiscoverResponse> v3DiscoverResponse) {
+            Utils.checkNotNull(v3DiscoverResponse, "v3DiscoverResponse");
+            this.v3DiscoverResponse = v3DiscoverResponse;
+            return this;
+        }
+
+
+        public Builder headers(Map<String, List<String>> headers) {
+            Utils.checkNotNull(headers, "headers");
+            this.headers = headers;
             return this;
         }
 
@@ -246,7 +278,7 @@ public class V3DiscoverRequestResponse implements AsyncResponse {
 
             return new V3DiscoverRequestResponse(
                 contentType, statusCode, rawResponse,
-                v3FetchResponse);
+                v3DiscoverResponse, headers);
         }
 
     }

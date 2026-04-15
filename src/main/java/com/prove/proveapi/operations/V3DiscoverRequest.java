@@ -10,7 +10,7 @@ import static com.prove.proveapi.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.SecuritySource;
-import com.prove.proveapi.models.components.V3FetchResponse;
+import com.prove.proveapi.models.components.V3DiscoverResponse;
 import com.prove.proveapi.models.errors.Error400;
 import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error403;
@@ -161,8 +161,9 @@ public class V3DiscoverRequest {
             V3DiscoverRequestResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withV3FetchResponse(Utils.unmarshal(response, new TypeReference<V3FetchResponse>() {}));
+                    return res.withV3DiscoverResponse(Utils.unmarshal(response, new TypeReference<V3DiscoverResponse>() {}));
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -266,9 +267,10 @@ public class V3DiscoverRequest {
             com.prove.proveapi.models.operations.async.V3DiscoverRequestResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<V3FetchResponse>() {})
-                            .thenApply(res::withV3FetchResponse);
+                    return Utils.unmarshalAsync(response, new TypeReference<V3DiscoverResponse>() {})
+                            .thenApply(res::withV3DiscoverResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
