@@ -31,17 +31,17 @@ public class PostBatchResultItem {
      * reference the identity in future requests.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("identityId")
-    private Optional<String> identityId;
+    @JsonProperty("proveId")
+    private Optional<String> proveId;
 
     @JsonCreator
     public PostBatchResultItem(
             @JsonProperty("error") Optional<String> error,
-            @JsonProperty("identityId") Optional<String> identityId) {
+            @JsonProperty("proveId") Optional<String> proveId) {
         Utils.checkNotNull(error, "error");
-        Utils.checkNotNull(identityId, "identityId");
+        Utils.checkNotNull(proveId, "proveId");
         this.error = error;
-        this.identityId = identityId;
+        this.proveId = proveId;
     }
     
     public PostBatchResultItem() {
@@ -61,8 +61,8 @@ public class PostBatchResultItem {
      * reference the identity in future requests.
      */
     @JsonIgnore
-    public Optional<String> identityId() {
-        return identityId;
+    public Optional<String> proveId() {
+        return proveId;
     }
 
     public static Builder builder() {
@@ -93,9 +93,9 @@ public class PostBatchResultItem {
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
      * reference the identity in future requests.
      */
-    public PostBatchResultItem withIdentityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = Optional.ofNullable(identityId);
+    public PostBatchResultItem withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = Optional.ofNullable(proveId);
         return this;
     }
 
@@ -104,9 +104,9 @@ public class PostBatchResultItem {
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
      * reference the identity in future requests.
      */
-    public PostBatchResultItem withIdentityId(Optional<String> identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
+    public PostBatchResultItem withProveId(Optional<String> proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
 
@@ -121,20 +121,20 @@ public class PostBatchResultItem {
         PostBatchResultItem other = (PostBatchResultItem) o;
         return 
             Utils.enhancedDeepEquals(this.error, other.error) &&
-            Utils.enhancedDeepEquals(this.identityId, other.identityId);
+            Utils.enhancedDeepEquals(this.proveId, other.proveId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            error, identityId);
+            error, proveId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PostBatchResultItem.class,
                 "error", error,
-                "identityId", identityId);
+                "proveId", proveId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -142,7 +142,7 @@ public class PostBatchResultItem {
 
         private Optional<String> error = Optional.empty();
 
-        private Optional<String> identityId = Optional.empty();
+        private Optional<String> proveId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -172,9 +172,9 @@ public class PostBatchResultItem {
          * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
          * reference the identity in future requests.
          */
-        public Builder identityId(String identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = Optional.ofNullable(identityId);
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = Optional.ofNullable(proveId);
             return this;
         }
 
@@ -182,16 +182,16 @@ public class PostBatchResultItem {
          * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
          * reference the identity in future requests.
          */
-        public Builder identityId(Optional<String> identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = identityId;
+        public Builder proveId(Optional<String> proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
             return this;
         }
 
         public PostBatchResultItem build() {
 
             return new PostBatchResultItem(
-                error, identityId);
+                error, proveId);
         }
 
     }

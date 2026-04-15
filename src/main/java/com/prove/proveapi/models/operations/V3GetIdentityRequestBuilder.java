@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public class V3GetIdentityRequestBuilder {
 
-    private String identityId;
+    private String proveId;
     private Optional<String> clientRequestId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -23,9 +23,9 @@ public class V3GetIdentityRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V3GetIdentityRequestBuilder identityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
+    public V3GetIdentityRequestBuilder proveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
                 
@@ -44,7 +44,7 @@ public class V3GetIdentityRequestBuilder {
 
     private V3GetIdentityRequest buildRequest() {
 
-        V3GetIdentityRequest request = new V3GetIdentityRequest(identityId,
+        V3GetIdentityRequest request = new V3GetIdentityRequest(proveId,
             clientRequestId);
 
         return request;

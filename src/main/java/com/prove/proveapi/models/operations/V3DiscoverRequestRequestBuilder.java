@@ -6,55 +6,55 @@ package com.prove.proveapi.models.operations;
 import static com.prove.proveapi.operations.Operations.RequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
-import com.prove.proveapi.operations.V3DisenrollIdentity;
+import com.prove.proveapi.operations.V3DiscoverRequest;
 import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
 
-public class V3DisenrollIdentityRequestBuilder {
+public class V3DiscoverRequestRequestBuilder {
 
     private String proveId;
     private Optional<String> clientRequestId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
-    public V3DisenrollIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
+    public V3DiscoverRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V3DisenrollIdentityRequestBuilder proveId(String proveId) {
+    public V3DiscoverRequestRequestBuilder proveId(String proveId) {
         Utils.checkNotNull(proveId, "proveId");
         this.proveId = proveId;
         return this;
     }
                 
-    public V3DisenrollIdentityRequestBuilder clientRequestId(String clientRequestId) {
+    public V3DiscoverRequestRequestBuilder clientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         this.clientRequestId = Optional.of(clientRequestId);
         return this;
     }
 
-    public V3DisenrollIdentityRequestBuilder clientRequestId(Optional<String> clientRequestId) {
+    public V3DiscoverRequestRequestBuilder clientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         this.clientRequestId = clientRequestId;
         return this;
     }
 
 
-    private V3DisenrollIdentityRequest buildRequest() {
+    private V3DiscoverRequestRequest buildRequest() {
 
-        V3DisenrollIdentityRequest request = new V3DisenrollIdentityRequest(proveId,
+        V3DiscoverRequestRequest request = new V3DiscoverRequestRequest(proveId,
             clientRequestId);
 
         return request;
     }
 
-    public V3DisenrollIdentityResponse call() {
+    public V3DiscoverRequestResponse call() {
         
-        RequestOperation<V3DisenrollIdentityRequest, V3DisenrollIdentityResponse> operation
-              = new V3DisenrollIdentity.Sync(sdkConfiguration, _headers);
-        V3DisenrollIdentityRequest request = buildRequest();
+        RequestOperation<V3DiscoverRequestRequest, V3DiscoverRequestResponse> operation
+              = new V3DiscoverRequest.Sync(sdkConfiguration, _headers);
+        V3DiscoverRequestRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

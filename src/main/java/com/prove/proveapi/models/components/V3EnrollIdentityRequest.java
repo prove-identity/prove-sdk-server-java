@@ -33,6 +33,18 @@ public class V3EnrollIdentityRequest {
     private Optional<String> clientCustomerId;
 
     /**
+     * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+     * business lines. If the Enterprise customer has been able to identify a consumer across business
+     * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
+     * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientHumanId")
+    private Optional<String> clientHumanId;
+
+    /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests.
      * The format of this ID is defined by the client - Prove recommends using a GUID, but any format can
      * be accepted.
@@ -70,16 +82,19 @@ public class V3EnrollIdentityRequest {
     @JsonCreator
     public V3EnrollIdentityRequest(
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
+            @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("deviceId") Optional<String> deviceId,
             @JsonProperty("identityAttributes") Optional<? extends List<IdentityAttribute>> identityAttributes,
             @JsonProperty("phoneNumber") String phoneNumber) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(deviceId, "deviceId");
         Utils.checkNotNull(identityAttributes, "identityAttributes");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.clientCustomerId = clientCustomerId;
+        this.clientHumanId = clientHumanId;
         this.clientRequestId = clientRequestId;
         this.deviceId = deviceId;
         this.identityAttributes = identityAttributes;
@@ -89,7 +104,7 @@ public class V3EnrollIdentityRequest {
     public V3EnrollIdentityRequest(
             String phoneNumber) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), phoneNumber);
+            Optional.empty(), Optional.empty(), phoneNumber);
     }
 
     /**
@@ -102,6 +117,19 @@ public class V3EnrollIdentityRequest {
     @JsonIgnore
     public Optional<String> clientCustomerId() {
         return clientCustomerId;
+    }
+
+    /**
+     * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+     * business lines. If the Enterprise customer has been able to identify a consumer across business
+     * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
+     * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
+     */
+    @JsonIgnore
+    public Optional<String> clientHumanId() {
+        return clientHumanId;
     }
 
     /**
@@ -174,6 +202,35 @@ public class V3EnrollIdentityRequest {
     public V3EnrollIdentityRequest withClientCustomerId(Optional<String> clientCustomerId) {
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         this.clientCustomerId = clientCustomerId;
+        return this;
+    }
+
+    /**
+     * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+     * business lines. If the Enterprise customer has been able to identify a consumer across business
+     * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
+     * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
+     */
+    public V3EnrollIdentityRequest withClientHumanId(String clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = Optional.ofNullable(clientHumanId);
+        return this;
+    }
+
+
+    /**
+     * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+     * business lines. If the Enterprise customer has been able to identify a consumer across business
+     * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
+     * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+     * 
+     * <p>Do not include personally identifiable information (PII) in this field.
+     */
+    public V3EnrollIdentityRequest withClientHumanId(Optional<String> clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = clientHumanId;
         return this;
     }
 
@@ -267,6 +324,7 @@ public class V3EnrollIdentityRequest {
         V3EnrollIdentityRequest other = (V3EnrollIdentityRequest) o;
         return 
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
+            Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
             Utils.enhancedDeepEquals(this.deviceId, other.deviceId) &&
             Utils.enhancedDeepEquals(this.identityAttributes, other.identityAttributes) &&
@@ -276,14 +334,15 @@ public class V3EnrollIdentityRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            clientCustomerId, clientRequestId, deviceId,
-            identityAttributes, phoneNumber);
+            clientCustomerId, clientHumanId, clientRequestId,
+            deviceId, identityAttributes, phoneNumber);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3EnrollIdentityRequest.class,
                 "clientCustomerId", clientCustomerId,
+                "clientHumanId", clientHumanId,
                 "clientRequestId", clientRequestId,
                 "deviceId", deviceId,
                 "identityAttributes", identityAttributes,
@@ -294,6 +353,8 @@ public class V3EnrollIdentityRequest {
     public final static class Builder {
 
         private Optional<String> clientCustomerId = Optional.empty();
+
+        private Optional<String> clientHumanId = Optional.empty();
 
         private Optional<String> clientRequestId = Optional.empty();
 
@@ -331,6 +392,35 @@ public class V3EnrollIdentityRequest {
         public Builder clientCustomerId(Optional<String> clientCustomerId) {
             Utils.checkNotNull(clientCustomerId, "clientCustomerId");
             this.clientCustomerId = clientCustomerId;
+            return this;
+        }
+
+
+        /**
+         * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+         * business lines. If the Enterprise customer has been able to identify a consumer across business
+         * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
+         * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * 
+         * <p>Do not include personally identifiable information (PII) in this field.
+         */
+        public Builder clientHumanId(String clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = Optional.ofNullable(clientHumanId);
+            return this;
+        }
+
+        /**
+         * An optional client-generated unique ID our Enterprise customer inputs for that consumer across
+         * business lines. If the Enterprise customer has been able to identify a consumer across business
+         * lines and has a unique identifier for the consumer, they would input this value to Prove. The format
+         * of this ID is defined by the client - Prove recommends using a GUID, but any format can be accepted.
+         * 
+         * <p>Do not include personally identifiable information (PII) in this field.
+         */
+        public Builder clientHumanId(Optional<String> clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = clientHumanId;
             return this;
         }
 
@@ -417,8 +507,8 @@ public class V3EnrollIdentityRequest {
         public V3EnrollIdentityRequest build() {
 
             return new V3EnrollIdentityRequest(
-                clientCustomerId, clientRequestId, deviceId,
-                identityAttributes, phoneNumber);
+                clientCustomerId, clientHumanId, clientRequestId,
+                deviceId, identityAttributes, phoneNumber);
         }
 
     }

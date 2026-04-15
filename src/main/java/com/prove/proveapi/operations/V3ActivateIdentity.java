@@ -90,7 +90,7 @@ public class V3ActivateIdentity {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/v3/identity/{identityId}/activate",
+                    "/v3/identity/{proveId}/activate",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

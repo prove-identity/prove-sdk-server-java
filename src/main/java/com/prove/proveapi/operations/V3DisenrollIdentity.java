@@ -87,7 +87,7 @@ public class V3DisenrollIdentity {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/v3/identity/{identityId}",
+                    "/v3/identity/{proveId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
             req.addHeader("Accept", "application/json")

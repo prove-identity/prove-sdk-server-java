@@ -25,6 +25,7 @@ OpenAPI Spec - generated.
   * [Authentication](#authentication)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
+  * [Jackson Configuration](#jackson-configuration)
 
 <!-- End Table of Contents [toc] -->
 
@@ -39,7 +40,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.21.2'
+implementation 'com.prove:proveapi:0.21.4'
 ```
 
 Maven:
@@ -47,7 +48,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.21.2</version>
+    <version>0.21.4</version>
 </dependency>
 ```
 
@@ -110,7 +111,7 @@ public class Application {
                 .call();
 
         if (res.v3StartResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3StartResponse().get());
         }
     }
 }
@@ -146,7 +147,7 @@ public class Application {
 
         resFut.thenAccept(res -> {
             if (res.v3TokenResponse().isPresent()) {
-            // handle response
+                System.out.println(res.v3TokenResponse().get());
             }
         });
     }
@@ -178,16 +179,17 @@ public class Application {
 
 ### [Identity](docs/sdks/identity/README.md)
 
+* [v3DiscoverRequest](docs/sdks/identity/README.md#v3discoverrequest) - Discover Identity Attributes
 * [v3FetchRequest](docs/sdks/identity/README.md#v3fetchrequest) - Fetch Identity Attributes
 * [v3BatchGetIdentities](docs/sdks/identity/README.md#v3batchgetidentities) - Batch Get Identities
 * [v3EnrollIdentity](docs/sdks/identity/README.md#v3enrollidentity) - Enroll Identity
 * [v3BatchEnrollIdentities](docs/sdks/identity/README.md#v3batchenrollidentities) - Batch Enroll Identities
+* [v3CrossDomainIdentity](docs/sdks/identity/README.md#v3crossdomainidentity) - Cross Domain Identity
+* [v3GetIdentitiesByPhoneNumber](docs/sdks/identity/README.md#v3getidentitiesbyphonenumber) - Get Identities By Phone Number
 * [v3DisenrollIdentity](docs/sdks/identity/README.md#v3disenrollidentity) - Disenroll Identity
 * [v3GetIdentity](docs/sdks/identity/README.md#v3getidentity) - Get Identity
 * [v3ActivateIdentity](docs/sdks/identity/README.md#v3activateidentity) - Activate Identity
-* [v3CrossDomainIdentity](docs/sdks/identity/README.md#v3crossdomainidentity) - Cross Domain Identity
 * [v3DeactivateIdentity](docs/sdks/identity/README.md#v3deactivateidentity) - Deactivate Identity
-* [v3GetIdentitiesByPhoneNumber](docs/sdks/identity/README.md#v3getidentitiesbyphonenumber) - Get Identities By Phone Number
 
 ### [V3](docs/sdks/v3/README.md)
 
@@ -257,7 +259,7 @@ public class Application {
                     .call();
 
             if (res.v3TokenResponse().isPresent()) {
-                // handle response
+                System.out.println(res.v3TokenResponse().get());
             }
         } catch (ProveapiError ex) { // all SDK exceptions inherit from ProveapiError
 
@@ -313,7 +315,7 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ProveapiError`](./src/main/java/models/errors/ProveapiError.java)**:
-* [`com.prove.proveapi.models.errors.Error404`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error404.java): Not Found. The server cannot find the requested resource. Status code `404`. Applicable to 1 of 29 methods.*
+* [`com.prove.proveapi.models.errors.Error404`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error404.java): Not Found. The server cannot find the requested resource. Status code `404`. Applicable to 3 of 30 methods.*
 
 
 </details>
@@ -366,7 +368,7 @@ public class Application {
                 .call();
 
         if (res.v3TokenResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3TokenResponse().get());
         }
     }
 }
@@ -404,7 +406,7 @@ public class Application {
                 .call();
 
         if (res.v3TokenResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3TokenResponse().get());
         }
     }
 }
@@ -522,7 +524,7 @@ public class Application {
                 .call();
 
         if (res.v3TokenResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3TokenResponse().get());
         }
     }
 }
@@ -698,5 +700,35 @@ __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->
+
+<!-- Start Jackson Configuration [jackson] -->
+## Jackson Configuration
+
+The SDK ships with a pre-configured Jackson [`ObjectMapper`][jackson-databind] accessible via
+`JSON.getMapper()`. It is set up with type modules, strict deserializers, and the feature flags
+needed for full SDK compatibility (including ISO-8601 `OffsetDateTime` serialization):
+
+```java
+import com.prove.proveapi.utils.JSON;
+
+String json = JSON.getMapper().writeValueAsString(response);
+```
+
+To compose with your own `ObjectMapper`, register the provided `ProveapiJacksonModule`, which
+bundles all the same modules and feature flags as a single plug-and-play module:
+
+```java
+import com.prove.proveapi.utils.ProveapiJacksonModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+ObjectMapper myMapper = new ObjectMapper()
+    .registerModule(new ProveapiJacksonModule());
+
+String json = myMapper.writeValueAsString(response);
+```
+
+[jackson-databind]: https://github.com/FasterXML/jackson-databind
+[jackson-jsr310]: https://github.com/FasterXML/jackson-modules-java8/tree/master/datetime
+<!-- End Jackson Configuration [jackson] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

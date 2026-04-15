@@ -48,7 +48,7 @@ public class Application {
                 .call();
 
         if (res.v3DomainConfirmLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3DomainConfirmLinkResponse().get());
         }
     }
 }
@@ -106,7 +106,7 @@ public class Application {
                 .call();
 
         if (res.v3DomainIDResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3DomainIDResponse().get());
         }
     }
 }
@@ -168,7 +168,7 @@ public class Application {
                 .call();
 
         if (res.v3DomainLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3DomainLinkResponse().get());
         }
     }
 }
@@ -226,7 +226,7 @@ public class Application {
                 .call();
 
         if (res.v3DomainLinkedResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3DomainLinkedResponse().get());
         }
     }
 }
@@ -285,7 +285,7 @@ public class Application {
                 .call();
 
         if (res.v3DomainUnlinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3DomainUnlinkResponse().get());
         }
     }
 }

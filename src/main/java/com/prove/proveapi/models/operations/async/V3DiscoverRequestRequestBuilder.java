@@ -6,57 +6,57 @@ package com.prove.proveapi.models.operations.async;
 import static com.prove.proveapi.operations.Operations.AsyncRequestOperation;
 
 import com.prove.proveapi.SDKConfiguration;
-import com.prove.proveapi.models.operations.V3GetIdentityRequest;
-import com.prove.proveapi.operations.V3GetIdentity;
+import com.prove.proveapi.models.operations.V3DiscoverRequestRequest;
+import com.prove.proveapi.operations.V3DiscoverRequest;
 import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-public class V3GetIdentityRequestBuilder {
+public class V3DiscoverRequestRequestBuilder {
 
     private String proveId;
     private Optional<String> clientRequestId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
-    public V3GetIdentityRequestBuilder(SDKConfiguration sdkConfiguration) {
+    public V3DiscoverRequestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V3GetIdentityRequestBuilder proveId(String proveId) {
+    public V3DiscoverRequestRequestBuilder proveId(String proveId) {
         Utils.checkNotNull(proveId, "proveId");
         this.proveId = proveId;
         return this;
     }
                 
-    public V3GetIdentityRequestBuilder clientRequestId(String clientRequestId) {
+    public V3DiscoverRequestRequestBuilder clientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         this.clientRequestId = Optional.of(clientRequestId);
         return this;
     }
 
-    public V3GetIdentityRequestBuilder clientRequestId(Optional<String> clientRequestId) {
+    public V3DiscoverRequestRequestBuilder clientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         this.clientRequestId = clientRequestId;
         return this;
     }
 
 
-    private V3GetIdentityRequest buildRequest() {
+    private V3DiscoverRequestRequest buildRequest() {
 
-        V3GetIdentityRequest request = new V3GetIdentityRequest(proveId,
+        V3DiscoverRequestRequest request = new V3DiscoverRequestRequest(proveId,
             clientRequestId);
 
         return request;
     }
 
-    public CompletableFuture<V3GetIdentityResponse> call() {
+    public CompletableFuture<V3DiscoverRequestResponse> call() {
         
-        AsyncRequestOperation<V3GetIdentityRequest, V3GetIdentityResponse> operation
-              = new V3GetIdentity.Async(sdkConfiguration, _headers);
-        V3GetIdentityRequest request = buildRequest();
+        AsyncRequestOperation<V3DiscoverRequestRequest, V3DiscoverRequestResponse> operation
+              = new V3DiscoverRequest.Async(sdkConfiguration, _headers);
+        V3DiscoverRequestRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class V3DeactivateIdentityRequestBuilder {
 
-    private String identityId;
+    private String proveId;
     private Optional<? extends V3IdentityDeactivateRequest> v3IdentityDeactivateRequest = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -24,9 +24,9 @@ public class V3DeactivateIdentityRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V3DeactivateIdentityRequestBuilder identityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
+    public V3DeactivateIdentityRequestBuilder proveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
                 
@@ -45,7 +45,7 @@ public class V3DeactivateIdentityRequestBuilder {
 
     private V3DeactivateIdentityRequest buildRequest() {
 
-        V3DeactivateIdentityRequest request = new V3DeactivateIdentityRequest(identityId,
+        V3DeactivateIdentityRequest request = new V3DeactivateIdentityRequest(proveId,
             v3IdentityDeactivateRequest);
 
         return request;

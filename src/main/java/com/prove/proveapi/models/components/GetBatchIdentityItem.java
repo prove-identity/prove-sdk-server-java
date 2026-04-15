@@ -20,14 +20,14 @@ public class GetBatchIdentityItem {
      * reference the identity in future requests.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("identityId")
-    private Optional<String> identityId;
+    @JsonProperty("proveId")
+    private Optional<String> proveId;
 
     @JsonCreator
     public GetBatchIdentityItem(
-            @JsonProperty("identityId") Optional<String> identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
+            @JsonProperty("proveId") Optional<String> proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
     }
     
     public GetBatchIdentityItem() {
@@ -39,8 +39,8 @@ public class GetBatchIdentityItem {
      * reference the identity in future requests.
      */
     @JsonIgnore
-    public Optional<String> identityId() {
-        return identityId;
+    public Optional<String> proveId() {
+        return proveId;
     }
 
     public static Builder builder() {
@@ -52,9 +52,9 @@ public class GetBatchIdentityItem {
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
      * reference the identity in future requests.
      */
-    public GetBatchIdentityItem withIdentityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = Optional.ofNullable(identityId);
+    public GetBatchIdentityItem withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = Optional.ofNullable(proveId);
         return this;
     }
 
@@ -63,9 +63,9 @@ public class GetBatchIdentityItem {
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
      * reference the identity in future requests.
      */
-    public GetBatchIdentityItem withIdentityId(Optional<String> identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
+    public GetBatchIdentityItem withProveId(Optional<String> proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
 
@@ -79,25 +79,25 @@ public class GetBatchIdentityItem {
         }
         GetBatchIdentityItem other = (GetBatchIdentityItem) o;
         return 
-            Utils.enhancedDeepEquals(this.identityId, other.identityId);
+            Utils.enhancedDeepEquals(this.proveId, other.proveId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            identityId);
+            proveId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetBatchIdentityItem.class,
-                "identityId", identityId);
+                "proveId", proveId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> identityId = Optional.empty();
+        private Optional<String> proveId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -108,9 +108,9 @@ public class GetBatchIdentityItem {
          * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
          * reference the identity in future requests.
          */
-        public Builder identityId(String identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = Optional.ofNullable(identityId);
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = Optional.ofNullable(proveId);
             return this;
         }
 
@@ -118,16 +118,16 @@ public class GetBatchIdentityItem {
          * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
          * reference the identity in future requests.
          */
-        public Builder identityId(Optional<String> identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = identityId;
+        public Builder proveId(Optional<String> proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
             return this;
         }
 
         public GetBatchIdentityItem build() {
 
             return new GetBatchIdentityItem(
-                identityId);
+                proveId);
         }
 
     }

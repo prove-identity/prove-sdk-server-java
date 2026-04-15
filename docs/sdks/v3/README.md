@@ -51,7 +51,7 @@ public class Application {
                 .call();
 
         if (res.v3TokenResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3TokenResponse().get());
         }
     }
 }
@@ -116,7 +116,7 @@ public class Application {
                 .call();
 
         if (res.v3ChallengeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ChallengeResponse().get());
         }
     }
 }
@@ -157,7 +157,7 @@ public class Application {
                 .call();
 
         if (res.v3ChallengeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ChallengeResponse().get());
         }
     }
 }
@@ -237,7 +237,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -292,7 +292,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -347,7 +347,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -402,7 +402,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -457,7 +457,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -512,7 +512,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -567,7 +567,7 @@ public class Application {
                 .call();
 
         if (res.v3CompleteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CompleteResponse().get());
         }
     }
 }
@@ -614,7 +614,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
+    public static void main(String[] args) throws Error400, Error401, Error403, Error404, Error, Exception {
 
         Proveapi sdk = Proveapi.builder()
                 .security(Security.builder()
@@ -633,7 +633,7 @@ public class Application {
                 .call();
 
         if (res.v3DeviceRevokeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3DeviceRevokeResponse().get());
         }
     }
 }
@@ -656,6 +656,7 @@ public class Application {
 | models/errors/Error400 | 400                    | application/json       |
 | models/errors/Error401 | 401                    | application/json       |
 | models/errors/Error403 | 403                    | application/json       |
+| models/errors/Error404 | 404                    | application/json       |
 | models/errors/Error    | 500                    | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
@@ -705,7 +706,7 @@ public class Application {
                 .call();
 
         if (res.v3StartResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3StartResponse().get());
         }
     }
 }
@@ -771,6 +772,7 @@ public class Application {
                 .emailAddress("sbutrimovichb@who.int")
                 .finalTargetUrl("https://www.example.com/landing-page")
                 .ipAddress("192.168.0.1")
+                .mobileAuthEnabled(true)
                 .phoneNumber("2001004011")
                 .proveId("a07b94ce-218c-461f-beda-d92480e40f61")
                 .rebind(true)
@@ -782,7 +784,7 @@ public class Application {
                 .call();
 
         if (res.v3UnifyResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3UnifyResponse().get());
         }
     }
 }
@@ -848,7 +850,7 @@ public class Application {
                 .call();
 
         if (res.v3UnifyBindResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3UnifyBindResponse().get());
         }
     }
 }
@@ -913,7 +915,7 @@ public class Application {
                 .call();
 
         if (res.v3UnifyStatusResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3UnifyStatusResponse().get());
         }
     }
 }
@@ -953,7 +955,7 @@ public class Application {
                 .call();
 
         if (res.v3UnifyStatusResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3UnifyStatusResponse().get());
         }
     }
 }
@@ -1017,7 +1019,7 @@ public class Application {
                 .call();
 
         if (res.v3ValidateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ValidateResponse().get());
         }
     }
 }
@@ -1056,7 +1058,7 @@ public class Application {
                 .call();
 
         if (res.v3ValidateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ValidateResponse().get());
         }
     }
 }
@@ -1134,7 +1136,7 @@ public class Application {
                 .call();
 
         if (res.v3VerifyResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3VerifyResponse().get());
         }
     }
 }
@@ -1223,7 +1225,7 @@ public class Application {
                 .call();
 
         if (res.v3VerifyBatchResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3VerifyBatchResponse().get());
         }
     }
 }

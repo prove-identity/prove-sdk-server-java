@@ -38,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.v3StartResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3StartResponse().get());
         }
     }
 }

@@ -16,8 +16,8 @@ public class V3DisenrollIdentityRequest {
     /**
      * A Prove-generated unique ID for a specific identity.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=identityId")
-    private String identityId;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=proveId")
+    private String proveId;
 
     /**
      * A client-generated unique ID for a specific session. This can be used to identify specific requests.
@@ -31,25 +31,25 @@ public class V3DisenrollIdentityRequest {
 
     @JsonCreator
     public V3DisenrollIdentityRequest(
-            String identityId,
+            String proveId,
             Optional<String> clientRequestId) {
-        Utils.checkNotNull(identityId, "identityId");
+        Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
-        this.identityId = identityId;
+        this.proveId = proveId;
         this.clientRequestId = clientRequestId;
     }
     
     public V3DisenrollIdentityRequest(
-            String identityId) {
-        this(identityId, Optional.empty());
+            String proveId) {
+        this(proveId, Optional.empty());
     }
 
     /**
      * A Prove-generated unique ID for a specific identity.
      */
     @JsonIgnore
-    public String identityId() {
-        return identityId;
+    public String proveId() {
+        return proveId;
     }
 
     /**
@@ -72,9 +72,9 @@ public class V3DisenrollIdentityRequest {
     /**
      * A Prove-generated unique ID for a specific identity.
      */
-    public V3DisenrollIdentityRequest withIdentityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
+    public V3DisenrollIdentityRequest withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
 
@@ -115,27 +115,27 @@ public class V3DisenrollIdentityRequest {
         }
         V3DisenrollIdentityRequest other = (V3DisenrollIdentityRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
+            Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            identityId, clientRequestId);
+            proveId, clientRequestId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3DisenrollIdentityRequest.class,
-                "identityId", identityId,
+                "proveId", proveId,
                 "clientRequestId", clientRequestId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String identityId;
+        private String proveId;
 
         private Optional<String> clientRequestId = Optional.empty();
 
@@ -147,9 +147,9 @@ public class V3DisenrollIdentityRequest {
         /**
          * A Prove-generated unique ID for a specific identity.
          */
-        public Builder identityId(String identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = identityId;
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
             return this;
         }
 
@@ -183,7 +183,7 @@ public class V3DisenrollIdentityRequest {
         public V3DisenrollIdentityRequest build() {
 
             return new V3DisenrollIdentityRequest(
-                identityId, clientRequestId);
+                proveId, clientRequestId);
         }
 
     }

@@ -255,17 +255,6 @@ public class ProveapiAutoConfig {
         return proveapi.auth();
     }
     /**
-     * Creates a Domain sub-SDK bean if none exists.
-     *
-     * @param proveapi the main SDK instance
-     * @return A configured Domain instance
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    public Domain domain(Proveapi proveapi) {
-        return proveapi.domain();
-    }
-    /**
      * Creates a Identity sub-SDK bean if none exists.
      *
      * @param proveapi the main SDK instance
@@ -275,6 +264,17 @@ public class ProveapiAutoConfig {
     @ConditionalOnMissingBean
     public Identity identity(Proveapi proveapi) {
         return proveapi.identity();
+    }
+    /**
+     * Creates a Domain sub-SDK bean if none exists.
+     *
+     * @param proveapi the main SDK instance
+     * @return A configured Domain instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Domain domain(Proveapi proveapi) {
+        return proveapi.domain();
     }
 
     /**
@@ -312,17 +312,6 @@ public class ProveapiAutoConfig {
         return asyncProveapi.auth();
     }
     /**
-     * Creates an AsyncDomain sub-SDK bean if none exists.
-     *
-     * @param asyncProveapi the async SDK instance
-     * @return A configured AsyncDomain instance
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    public AsyncDomain asyncDomain(AsyncProveapi asyncProveapi) {
-        return asyncProveapi.domain();
-    }
-    /**
      * Creates an AsyncIdentity sub-SDK bean if none exists.
      *
      * @param asyncProveapi the async SDK instance
@@ -332,5 +321,16 @@ public class ProveapiAutoConfig {
     @ConditionalOnMissingBean
     public AsyncIdentity asyncIdentity(AsyncProveapi asyncProveapi) {
         return asyncProveapi.identity();
+    }
+    /**
+     * Creates an AsyncDomain sub-SDK bean if none exists.
+     *
+     * @param asyncProveapi the async SDK instance
+     * @return A configured AsyncDomain instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncDomain asyncDomain(AsyncProveapi asyncProveapi) {
+        return asyncProveapi.domain();
     }
 }

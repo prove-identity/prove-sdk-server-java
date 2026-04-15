@@ -74,13 +74,6 @@ public class LookupIdentityItem {
     private Optional<String> deviceId;
 
     /**
-     * A Prove-generated unique ID for a specific identity.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("identityId")
-    private Optional<String> identityId;
-
-    /**
      * The type of line associated with this identity/mobile number.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -98,6 +91,13 @@ public class LookupIdentityItem {
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
+    /**
+     * A Prove-generated unique ID for a specific identity.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("proveId")
+    private Optional<String> proveId;
+
     @JsonCreator
     public LookupIdentityItem(
             @JsonProperty("active") Optional<Boolean> active,
@@ -107,9 +107,9 @@ public class LookupIdentityItem {
             @JsonProperty("createdAt") Optional<Long> createdAt,
             @JsonProperty("creationString") Optional<String> creationString,
             @JsonProperty("deviceId") Optional<String> deviceId,
-            @JsonProperty("identityId") Optional<String> identityId,
             @JsonProperty("lineType") Optional<String> lineType,
-            @JsonProperty("phoneNumber") String phoneNumber) {
+            @JsonProperty("phoneNumber") String phoneNumber,
+            @JsonProperty("proveId") Optional<String> proveId) {
         Utils.checkNotNull(active, "active");
         Utils.checkNotNull(carrier, "carrier");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -117,9 +117,9 @@ public class LookupIdentityItem {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(creationString, "creationString");
         Utils.checkNotNull(deviceId, "deviceId");
-        Utils.checkNotNull(identityId, "identityId");
         Utils.checkNotNull(lineType, "lineType");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(proveId, "proveId");
         this.active = active;
         this.carrier = carrier;
         this.clientCustomerId = clientCustomerId;
@@ -127,17 +127,17 @@ public class LookupIdentityItem {
         this.createdAt = createdAt;
         this.creationString = creationString;
         this.deviceId = deviceId;
-        this.identityId = identityId;
         this.lineType = lineType;
         this.phoneNumber = phoneNumber;
+        this.proveId = proveId;
     }
     
     public LookupIdentityItem(
             String phoneNumber) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            phoneNumber);
+            Optional.empty(), Optional.empty(), phoneNumber,
+            Optional.empty());
     }
 
     /**
@@ -200,14 +200,6 @@ public class LookupIdentityItem {
     }
 
     /**
-     * A Prove-generated unique ID for a specific identity.
-     */
-    @JsonIgnore
-    public Optional<String> identityId() {
-        return identityId;
-    }
-
-    /**
      * The type of line associated with this identity/mobile number.
      */
     @JsonIgnore
@@ -226,6 +218,14 @@ public class LookupIdentityItem {
     @JsonIgnore
     public String phoneNumber() {
         return phoneNumber;
+    }
+
+    /**
+     * A Prove-generated unique ID for a specific identity.
+     */
+    @JsonIgnore
+    public Optional<String> proveId() {
+        return proveId;
     }
 
     public static Builder builder() {
@@ -373,25 +373,6 @@ public class LookupIdentityItem {
     }
 
     /**
-     * A Prove-generated unique ID for a specific identity.
-     */
-    public LookupIdentityItem withIdentityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = Optional.ofNullable(identityId);
-        return this;
-    }
-
-
-    /**
-     * A Prove-generated unique ID for a specific identity.
-     */
-    public LookupIdentityItem withIdentityId(Optional<String> identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
-        return this;
-    }
-
-    /**
      * The type of line associated with this identity/mobile number.
      */
     public LookupIdentityItem withLineType(String lineType) {
@@ -424,6 +405,25 @@ public class LookupIdentityItem {
         return this;
     }
 
+    /**
+     * A Prove-generated unique ID for a specific identity.
+     */
+    public LookupIdentityItem withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = Optional.ofNullable(proveId);
+        return this;
+    }
+
+
+    /**
+     * A Prove-generated unique ID for a specific identity.
+     */
+    public LookupIdentityItem withProveId(Optional<String> proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -441,9 +441,9 @@ public class LookupIdentityItem {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.creationString, other.creationString) &&
             Utils.enhancedDeepEquals(this.deviceId, other.deviceId) &&
-            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
             Utils.enhancedDeepEquals(this.lineType, other.lineType) &&
-            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.proveId, other.proveId);
     }
     
     @Override
@@ -451,8 +451,8 @@ public class LookupIdentityItem {
         return Utils.enhancedHash(
             active, carrier, clientCustomerId,
             countryCode, createdAt, creationString,
-            deviceId, identityId, lineType,
-            phoneNumber);
+            deviceId, lineType, phoneNumber,
+            proveId);
     }
     
     @Override
@@ -465,9 +465,9 @@ public class LookupIdentityItem {
                 "createdAt", createdAt,
                 "creationString", creationString,
                 "deviceId", deviceId,
-                "identityId", identityId,
                 "lineType", lineType,
-                "phoneNumber", phoneNumber);
+                "phoneNumber", phoneNumber,
+                "proveId", proveId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -487,11 +487,11 @@ public class LookupIdentityItem {
 
         private Optional<String> deviceId = Optional.empty();
 
-        private Optional<String> identityId = Optional.empty();
-
         private Optional<String> lineType = Optional.empty();
 
         private String phoneNumber;
+
+        private Optional<String> proveId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -638,25 +638,6 @@ public class LookupIdentityItem {
 
 
         /**
-         * A Prove-generated unique ID for a specific identity.
-         */
-        public Builder identityId(String identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = Optional.ofNullable(identityId);
-            return this;
-        }
-
-        /**
-         * A Prove-generated unique ID for a specific identity.
-         */
-        public Builder identityId(Optional<String> identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = identityId;
-            return this;
-        }
-
-
-        /**
          * The type of line associated with this identity/mobile number.
          */
         public Builder lineType(String lineType) {
@@ -689,13 +670,32 @@ public class LookupIdentityItem {
             return this;
         }
 
+
+        /**
+         * A Prove-generated unique ID for a specific identity.
+         */
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = Optional.ofNullable(proveId);
+            return this;
+        }
+
+        /**
+         * A Prove-generated unique ID for a specific identity.
+         */
+        public Builder proveId(Optional<String> proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
+            return this;
+        }
+
         public LookupIdentityItem build() {
 
             return new LookupIdentityItem(
                 active, carrier, clientCustomerId,
                 countryCode, createdAt, creationString,
-                deviceId, identityId, lineType,
-                phoneNumber);
+                deviceId, lineType, phoneNumber,
+                proveId);
         }
 
     }

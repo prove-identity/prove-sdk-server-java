@@ -10,14 +10,15 @@ import static com.prove.proveapi.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.prove.proveapi.SDKConfiguration;
 import com.prove.proveapi.SecuritySource;
-import com.prove.proveapi.models.components.V3DeviceRevokeResponse;
+import com.prove.proveapi.models.components.V3DiscoverResponse;
 import com.prove.proveapi.models.errors.Error400;
 import com.prove.proveapi.models.errors.Error401;
 import com.prove.proveapi.models.errors.Error403;
 import com.prove.proveapi.models.errors.Error404;
 import com.prove.proveapi.models.errors.Error;
 import com.prove.proveapi.models.errors.SDKError;
-import com.prove.proveapi.models.operations.V3DeviceRevokeRequestResponse;
+import com.prove.proveapi.models.operations.V3DiscoverRequestRequest;
+import com.prove.proveapi.models.operations.V3DiscoverRequestResponse;
 import com.prove.proveapi.utils.Blob;
 import com.prove.proveapi.utils.HTTPClient;
 import com.prove.proveapi.utils.HTTPRequest;
@@ -25,12 +26,9 @@ import com.prove.proveapi.utils.Headers;
 import com.prove.proveapi.utils.Hook.AfterErrorContextImpl;
 import com.prove.proveapi.utils.Hook.AfterSuccessContextImpl;
 import com.prove.proveapi.utils.Hook.BeforeRequestContextImpl;
-import com.prove.proveapi.utils.SerializedBody;
-import com.prove.proveapi.utils.Utils.JsonShape;
 import com.prove.proveapi.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
@@ -40,7 +38,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 
-public class V3DeviceRevokeRequest {
+public class V3DiscoverRequest {
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -65,7 +63,7 @@ public class V3DeviceRevokeRequest {
             return new BeforeRequestContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DeviceRevokeRequest",
+                    "V3DiscoverRequest",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
@@ -74,7 +72,7 @@ public class V3DeviceRevokeRequest {
             return new AfterSuccessContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DeviceRevokeRequest",
+                    "V3DiscoverRequest",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
@@ -83,28 +81,23 @@ public class V3DeviceRevokeRequest {
             return new AfterErrorContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "V3DeviceRevokeRequest",
+                    "V3DiscoverRequest",
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/v3/device/revoke");
-            HTTPRequest req = new HTTPRequest(url, "POST");
-            Object convertedRequest = Utils.convertToShape(
-                    request,
-                    JsonShape.DEFAULT,
-                    typeReference);
-            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
-                    convertedRequest,
-                    "",
-                    "json",
-                    false);
-            req.setBody(Optional.ofNullable(serializedRequestBody));
+                    "/v3/discover");
+            HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -112,13 +105,13 @@ public class V3DeviceRevokeRequest {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends com.prove.proveapi.models.components.V3DeviceRevokeRequest>, V3DeviceRevokeRequestResponse> {
+            implements RequestOperation<V3DiscoverRequestRequest, V3DiscoverRequestResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends com.prove.proveapi.models.components.V3DeviceRevokeRequest> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3DeviceRevokeRequest>>() {});
+        private HttpRequest onBuildRequest(V3DiscoverRequestRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, V3DiscoverRequestRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -134,7 +127,7 @@ public class V3DeviceRevokeRequest {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends com.prove.proveapi.models.components.V3DeviceRevokeRequest> request) {
+        public HttpResponse<InputStream> doRequest(V3DiscoverRequestRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -153,24 +146,24 @@ public class V3DeviceRevokeRequest {
 
 
         @Override
-        public V3DeviceRevokeRequestResponse handleResponse(HttpResponse<InputStream> response) {
+        public V3DiscoverRequestResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
                     .orElse("application/octet-stream");
-            V3DeviceRevokeRequestResponse.Builder resBuilder =
-                    V3DeviceRevokeRequestResponse
+            V3DiscoverRequestResponse.Builder resBuilder =
+                    V3DiscoverRequestResponse
                             .builder()
                             .contentType(contentType)
                             .statusCode(response.statusCode())
                             .rawResponse(response);
 
-            V3DeviceRevokeRequestResponse res = resBuilder.build();
+            V3DiscoverRequestResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withV3DeviceRevokeResponse(Utils.unmarshal(response, new TypeReference<V3DeviceRevokeResponse>() {}));
+                    return res.withV3DiscoverResponse(Utils.unmarshal(response, new TypeReference<V3DiscoverResponse>() {}));
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -222,14 +215,14 @@ public class V3DeviceRevokeRequest {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends com.prove.proveapi.models.components.V3DeviceRevokeRequest>, com.prove.proveapi.models.operations.async.V3DeviceRevokeRequestResponse> {
+            implements AsyncRequestOperation<V3DiscoverRequestRequest, com.prove.proveapi.models.operations.async.V3DiscoverRequestResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends com.prove.proveapi.models.components.V3DeviceRevokeRequest> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends com.prove.proveapi.models.components.V3DeviceRevokeRequest>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(V3DiscoverRequestRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, V3DiscoverRequestRequest.class);
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -242,7 +235,7 @@ public class V3DeviceRevokeRequest {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends com.prove.proveapi.models.components.V3DeviceRevokeRequest> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(V3DiscoverRequestRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {
@@ -258,26 +251,26 @@ public class V3DeviceRevokeRequest {
         }
 
         @Override
-        public CompletableFuture<com.prove.proveapi.models.operations.async.V3DeviceRevokeRequestResponse> handleResponse(
+        public CompletableFuture<com.prove.proveapi.models.operations.async.V3DiscoverRequestResponse> handleResponse(
                 HttpResponse<Blob> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
                     .orElse("application/octet-stream");
-            com.prove.proveapi.models.operations.async.V3DeviceRevokeRequestResponse.Builder resBuilder =
-                    com.prove.proveapi.models.operations.async.V3DeviceRevokeRequestResponse
+            com.prove.proveapi.models.operations.async.V3DiscoverRequestResponse.Builder resBuilder =
+                    com.prove.proveapi.models.operations.async.V3DiscoverRequestResponse
                             .builder()
                             .contentType(contentType)
                             .statusCode(response.statusCode())
                             .rawResponse(response);
 
-            com.prove.proveapi.models.operations.async.V3DeviceRevokeRequestResponse res = resBuilder.build();
+            com.prove.proveapi.models.operations.async.V3DiscoverRequestResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<V3DeviceRevokeResponse>() {})
-                            .thenApply(res::withV3DeviceRevokeResponse);
+                    return Utils.unmarshalAsync(response, new TypeReference<V3DiscoverResponse>() {})
+                            .thenApply(res::withV3DiscoverResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
