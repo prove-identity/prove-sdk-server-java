@@ -21,8 +21,8 @@ public class V3EnrollIdentityResponse {
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
      * reference the identity in future requests.
      */
-    @JsonProperty("identityId")
-    private String identityId;
+    @JsonProperty("proveId")
+    private String proveId;
 
     /**
      * If true, the request was successful and the identity was created.
@@ -32,11 +32,11 @@ public class V3EnrollIdentityResponse {
 
     @JsonCreator
     public V3EnrollIdentityResponse(
-            @JsonProperty("identityId") String identityId,
+            @JsonProperty("proveId") String proveId,
             @JsonProperty("success") boolean success) {
-        Utils.checkNotNull(identityId, "identityId");
+        Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(success, "success");
-        this.identityId = identityId;
+        this.proveId = proveId;
         this.success = success;
     }
 
@@ -45,8 +45,8 @@ public class V3EnrollIdentityResponse {
      * reference the identity in future requests.
      */
     @JsonIgnore
-    public String identityId() {
-        return identityId;
+    public String proveId() {
+        return proveId;
     }
 
     /**
@@ -66,9 +66,9 @@ public class V3EnrollIdentityResponse {
      * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
      * reference the identity in future requests.
      */
-    public V3EnrollIdentityResponse withIdentityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
+    public V3EnrollIdentityResponse withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
 
@@ -91,27 +91,27 @@ public class V3EnrollIdentityResponse {
         }
         V3EnrollIdentityResponse other = (V3EnrollIdentityResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
+            Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            identityId, success);
+            proveId, success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3EnrollIdentityResponse.class,
-                "identityId", identityId,
+                "proveId", proveId,
                 "success", success);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String identityId;
+        private String proveId;
 
         private Boolean success;
 
@@ -124,9 +124,9 @@ public class V3EnrollIdentityResponse {
          * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
          * reference the identity in future requests.
          */
-        public Builder identityId(String identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = identityId;
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
             return this;
         }
 
@@ -143,7 +143,7 @@ public class V3EnrollIdentityResponse {
         public V3EnrollIdentityResponse build() {
 
             return new V3EnrollIdentityResponse(
-                identityId, success);
+                proveId, success);
         }
 
     }

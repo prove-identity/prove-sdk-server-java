@@ -80,13 +80,10 @@ public class Proveapi {
     private final V3 v3;
 
 
-    private final Auth auth;
+    private final Identity identity;
 
 
     private final Domain domain;
-
-
-    private final Identity identity;
 
 
     public V3 v3() {
@@ -94,18 +91,13 @@ public class Proveapi {
     }
 
 
-    public Auth auth() {
-        return auth;
+    public Identity identity() {
+        return identity;
     }
 
 
     public Domain domain() {
         return domain;
-    }
-
-
-    public Identity identity() {
-        return identity;
     }
     private final AsyncProveapi asyncSDK;
 
@@ -260,9 +252,8 @@ public class Proveapi {
     public Proveapi(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.v3 = new V3(sdkConfiguration);
-        this.auth = new Auth(sdkConfiguration);
-        this.domain = new Domain(sdkConfiguration);
         this.identity = new Identity(sdkConfiguration);
+        this.domain = new Domain(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(
                 new SdkInitData(
                         sdkConfiguration.resolvedServerUrl(), 

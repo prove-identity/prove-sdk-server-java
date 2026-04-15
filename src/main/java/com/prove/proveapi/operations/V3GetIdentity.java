@@ -87,7 +87,7 @@ public class V3GetIdentity {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/v3/identity/{identityId}",
+                    "/v3/identity/{proveId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/json")

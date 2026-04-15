@@ -13,6 +13,12 @@ import java.lang.String;
 
 public class V3DomainIDResponse {
     /**
+     * Issuer ID
+     */
+    @JsonProperty("issuerId")
+    private String issuerId;
+
+    /**
      * Customer friendly name
      */
     @JsonProperty("name")
@@ -26,12 +32,23 @@ public class V3DomainIDResponse {
 
     @JsonCreator
     public V3DomainIDResponse(
+            @JsonProperty("issuerId") String issuerId,
             @JsonProperty("name") String name,
             @JsonProperty("pcid") String pcid) {
+        Utils.checkNotNull(issuerId, "issuerId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pcid, "pcid");
+        this.issuerId = issuerId;
         this.name = name;
         this.pcid = pcid;
+    }
+
+    /**
+     * Issuer ID
+     */
+    @JsonIgnore
+    public String issuerId() {
+        return issuerId;
     }
 
     /**
@@ -54,6 +71,15 @@ public class V3DomainIDResponse {
         return new Builder();
     }
 
+
+    /**
+     * Issuer ID
+     */
+    public V3DomainIDResponse withIssuerId(String issuerId) {
+        Utils.checkNotNull(issuerId, "issuerId");
+        this.issuerId = issuerId;
+        return this;
+    }
 
     /**
      * Customer friendly name
@@ -83,6 +109,7 @@ public class V3DomainIDResponse {
         }
         V3DomainIDResponse other = (V3DomainIDResponse) o;
         return 
+            Utils.enhancedDeepEquals(this.issuerId, other.issuerId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.pcid, other.pcid);
     }
@@ -90,12 +117,13 @@ public class V3DomainIDResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, pcid);
+            issuerId, name, pcid);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3DomainIDResponse.class,
+                "issuerId", issuerId,
                 "name", name,
                 "pcid", pcid);
     }
@@ -103,12 +131,24 @@ public class V3DomainIDResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private String issuerId;
+
         private String name;
 
         private String pcid;
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Issuer ID
+         */
+        public Builder issuerId(String issuerId) {
+            Utils.checkNotNull(issuerId, "issuerId");
+            this.issuerId = issuerId;
+            return this;
         }
 
 
@@ -134,7 +174,7 @@ public class V3DomainIDResponse {
         public V3DomainIDResponse build() {
 
             return new V3DomainIDResponse(
-                name, pcid);
+                issuerId, name, pcid);
         }
 
     }

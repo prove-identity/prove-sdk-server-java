@@ -12,10 +12,11 @@ import java.util.Optional;
  * VerificationType
  * 
  * <p>The verification method based on the use case and authorization level. Current allowed values:
- * "verifiedUser", "accountOpening", "bot", "prefill", "prefillForBiz", "identityResolution".
+ * "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz",
+ * "identityResolution".
  */
 public enum VerificationType {
-    BOT("bot"),
+    HUMAN_ASSURANCE("humanAssurance"),
     VERIFIED_USER("verifiedUser"),
     ACCOUNT_OPENING("accountOpening"),
     PREFILL("prefill"),

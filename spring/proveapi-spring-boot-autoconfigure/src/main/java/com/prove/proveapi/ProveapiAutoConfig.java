@@ -244,15 +244,15 @@ public class ProveapiAutoConfig {
         return proveapi.v3();
     }
     /**
-     * Creates a Auth sub-SDK bean if none exists.
+     * Creates a Identity sub-SDK bean if none exists.
      *
      * @param proveapi the main SDK instance
-     * @return A configured Auth instance
+     * @return A configured Identity instance
      */
     @Bean
     @ConditionalOnMissingBean
-    public Auth auth(Proveapi proveapi) {
-        return proveapi.auth();
+    public Identity identity(Proveapi proveapi) {
+        return proveapi.identity();
     }
     /**
      * Creates a Domain sub-SDK bean if none exists.
@@ -264,17 +264,6 @@ public class ProveapiAutoConfig {
     @ConditionalOnMissingBean
     public Domain domain(Proveapi proveapi) {
         return proveapi.domain();
-    }
-    /**
-     * Creates a Identity sub-SDK bean if none exists.
-     *
-     * @param proveapi the main SDK instance
-     * @return A configured Identity instance
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    public Identity identity(Proveapi proveapi) {
-        return proveapi.identity();
     }
 
     /**
@@ -301,15 +290,15 @@ public class ProveapiAutoConfig {
         return asyncProveapi.v3();
     }
     /**
-     * Creates an AsyncAuth sub-SDK bean if none exists.
+     * Creates an AsyncIdentity sub-SDK bean if none exists.
      *
      * @param asyncProveapi the async SDK instance
-     * @return A configured AsyncAuth instance
+     * @return A configured AsyncIdentity instance
      */
     @Bean
     @ConditionalOnMissingBean
-    public AsyncAuth asyncAuth(AsyncProveapi asyncProveapi) {
-        return asyncProveapi.auth();
+    public AsyncIdentity asyncIdentity(AsyncProveapi asyncProveapi) {
+        return asyncProveapi.identity();
     }
     /**
      * Creates an AsyncDomain sub-SDK bean if none exists.
@@ -321,16 +310,5 @@ public class ProveapiAutoConfig {
     @ConditionalOnMissingBean
     public AsyncDomain asyncDomain(AsyncProveapi asyncProveapi) {
         return asyncProveapi.domain();
-    }
-    /**
-     * Creates an AsyncIdentity sub-SDK bean if none exists.
-     *
-     * @param asyncProveapi the async SDK instance
-     * @return A configured AsyncIdentity instance
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    public AsyncIdentity asyncIdentity(AsyncProveapi asyncProveapi) {
-        return asyncProveapi.identity();
     }
 }

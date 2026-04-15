@@ -107,7 +107,8 @@ public class V3VerifyRequest {
 
     /**
      * The verification method based on the use case and authorization level. Current allowed values:
-     * "verifiedUser", "accountOpening", "bot", "prefill", "prefillForBiz", "identityResolution".
+     * "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz",
+     * "identityResolution".
      */
     @JsonProperty("verificationType")
     private VerificationType verificationType;
@@ -260,7 +261,8 @@ public class V3VerifyRequest {
 
     /**
      * The verification method based on the use case and authorization level. Current allowed values:
-     * "verifiedUser", "accountOpening", "bot", "prefill", "prefillForBiz", "identityResolution".
+     * "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz",
+     * "identityResolution".
      */
     @JsonIgnore
     public VerificationType verificationType() {
@@ -487,7 +489,8 @@ public class V3VerifyRequest {
 
     /**
      * The verification method based on the use case and authorization level. Current allowed values:
-     * "verifiedUser", "accountOpening", "bot", "prefill", "prefillForBiz", "identityResolution".
+     * "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz",
+     * "identityResolution".
      */
     public V3VerifyRequest withVerificationType(VerificationType verificationType) {
         Utils.checkNotNull(verificationType, "verificationType");
@@ -789,7 +792,8 @@ public class V3VerifyRequest {
 
         /**
          * The verification method based on the use case and authorization level. Current allowed values:
-         * "verifiedUser", "accountOpening", "bot", "prefill", "prefillForBiz", "identityResolution".
+         * "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz",
+         * "identityResolution".
          */
         public Builder verificationType(VerificationType verificationType) {
             Utils.checkNotNull(verificationType, "verificationType");

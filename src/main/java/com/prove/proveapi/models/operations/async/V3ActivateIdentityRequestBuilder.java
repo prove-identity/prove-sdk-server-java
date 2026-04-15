@@ -16,7 +16,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class V3ActivateIdentityRequestBuilder {
 
-    private String identityId;
+    private String proveId;
     private Optional<? extends V3ActivateIdentityRequest> v3ActivateIdentityRequest = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -25,9 +25,9 @@ public class V3ActivateIdentityRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V3ActivateIdentityRequestBuilder identityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
+    public V3ActivateIdentityRequestBuilder proveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
                 
@@ -46,7 +46,7 @@ public class V3ActivateIdentityRequestBuilder {
 
     private com.prove.proveapi.models.operations.V3ActivateIdentityRequest buildRequest() {
 
-        com.prove.proveapi.models.operations.V3ActivateIdentityRequest request = new com.prove.proveapi.models.operations.V3ActivateIdentityRequest(identityId,
+        com.prove.proveapi.models.operations.V3ActivateIdentityRequest request = new com.prove.proveapi.models.operations.V3ActivateIdentityRequest(proveId,
             v3ActivateIdentityRequest);
 
         return request;

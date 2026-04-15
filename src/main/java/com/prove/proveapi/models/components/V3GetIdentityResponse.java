@@ -74,14 +74,6 @@ public class V3GetIdentityResponse {
     private Optional<String> deviceId;
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
-     * reference the identity in future requests.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("identityId")
-    private Optional<String> identityId;
-
-    /**
      * The type of line associated with this identity/mobile number.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -99,6 +91,14 @@ public class V3GetIdentityResponse {
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
+    /**
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("proveId")
+    private Optional<String> proveId;
+
     @JsonCreator
     public V3GetIdentityResponse(
             @JsonProperty("active") Optional<Boolean> active,
@@ -108,9 +108,9 @@ public class V3GetIdentityResponse {
             @JsonProperty("createdAt") Optional<Long> createdAt,
             @JsonProperty("creationString") Optional<String> creationString,
             @JsonProperty("deviceId") Optional<String> deviceId,
-            @JsonProperty("identityId") Optional<String> identityId,
             @JsonProperty("lineType") Optional<String> lineType,
-            @JsonProperty("phoneNumber") String phoneNumber) {
+            @JsonProperty("phoneNumber") String phoneNumber,
+            @JsonProperty("proveId") Optional<String> proveId) {
         Utils.checkNotNull(active, "active");
         Utils.checkNotNull(carrier, "carrier");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
@@ -118,9 +118,9 @@ public class V3GetIdentityResponse {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(creationString, "creationString");
         Utils.checkNotNull(deviceId, "deviceId");
-        Utils.checkNotNull(identityId, "identityId");
         Utils.checkNotNull(lineType, "lineType");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(proveId, "proveId");
         this.active = active;
         this.carrier = carrier;
         this.clientCustomerId = clientCustomerId;
@@ -128,17 +128,17 @@ public class V3GetIdentityResponse {
         this.createdAt = createdAt;
         this.creationString = creationString;
         this.deviceId = deviceId;
-        this.identityId = identityId;
         this.lineType = lineType;
         this.phoneNumber = phoneNumber;
+        this.proveId = proveId;
     }
     
     public V3GetIdentityResponse(
             String phoneNumber) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            phoneNumber);
+            Optional.empty(), Optional.empty(), phoneNumber,
+            Optional.empty());
     }
 
     /**
@@ -201,15 +201,6 @@ public class V3GetIdentityResponse {
     }
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
-     * reference the identity in future requests.
-     */
-    @JsonIgnore
-    public Optional<String> identityId() {
-        return identityId;
-    }
-
-    /**
      * The type of line associated with this identity/mobile number.
      */
     @JsonIgnore
@@ -228,6 +219,15 @@ public class V3GetIdentityResponse {
     @JsonIgnore
     public String phoneNumber() {
         return phoneNumber;
+    }
+
+    /**
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
+     */
+    @JsonIgnore
+    public Optional<String> proveId() {
+        return proveId;
     }
 
     public static Builder builder() {
@@ -375,27 +375,6 @@ public class V3GetIdentityResponse {
     }
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
-     * reference the identity in future requests.
-     */
-    public V3GetIdentityResponse withIdentityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = Optional.ofNullable(identityId);
-        return this;
-    }
-
-
-    /**
-     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
-     * reference the identity in future requests.
-     */
-    public V3GetIdentityResponse withIdentityId(Optional<String> identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
-        return this;
-    }
-
-    /**
      * The type of line associated with this identity/mobile number.
      */
     public V3GetIdentityResponse withLineType(String lineType) {
@@ -428,6 +407,27 @@ public class V3GetIdentityResponse {
         return this;
     }
 
+    /**
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
+     */
+    public V3GetIdentityResponse withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = Optional.ofNullable(proveId);
+        return this;
+    }
+
+
+    /**
+     * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+     * reference the identity in future requests.
+     */
+    public V3GetIdentityResponse withProveId(Optional<String> proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -445,9 +445,9 @@ public class V3GetIdentityResponse {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.creationString, other.creationString) &&
             Utils.enhancedDeepEquals(this.deviceId, other.deviceId) &&
-            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
             Utils.enhancedDeepEquals(this.lineType, other.lineType) &&
-            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.proveId, other.proveId);
     }
     
     @Override
@@ -455,8 +455,8 @@ public class V3GetIdentityResponse {
         return Utils.enhancedHash(
             active, carrier, clientCustomerId,
             countryCode, createdAt, creationString,
-            deviceId, identityId, lineType,
-            phoneNumber);
+            deviceId, lineType, phoneNumber,
+            proveId);
     }
     
     @Override
@@ -469,9 +469,9 @@ public class V3GetIdentityResponse {
                 "createdAt", createdAt,
                 "creationString", creationString,
                 "deviceId", deviceId,
-                "identityId", identityId,
                 "lineType", lineType,
-                "phoneNumber", phoneNumber);
+                "phoneNumber", phoneNumber,
+                "proveId", proveId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -491,11 +491,11 @@ public class V3GetIdentityResponse {
 
         private Optional<String> deviceId = Optional.empty();
 
-        private Optional<String> identityId = Optional.empty();
-
         private Optional<String> lineType = Optional.empty();
 
         private String phoneNumber;
+
+        private Optional<String> proveId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -642,27 +642,6 @@ public class V3GetIdentityResponse {
 
 
         /**
-         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
-         * reference the identity in future requests.
-         */
-        public Builder identityId(String identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = Optional.ofNullable(identityId);
-            return this;
-        }
-
-        /**
-         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
-         * reference the identity in future requests.
-         */
-        public Builder identityId(Optional<String> identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = identityId;
-            return this;
-        }
-
-
-        /**
          * The type of line associated with this identity/mobile number.
          */
         public Builder lineType(String lineType) {
@@ -695,13 +674,34 @@ public class V3GetIdentityResponse {
             return this;
         }
 
+
+        /**
+         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+         * reference the identity in future requests.
+         */
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = Optional.ofNullable(proveId);
+            return this;
+        }
+
+        /**
+         * A unique Prove-generated identifier for the enrolled identity. This is a UUID that can be used to
+         * reference the identity in future requests.
+         */
+        public Builder proveId(Optional<String> proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
+            return this;
+        }
+
         public V3GetIdentityResponse build() {
 
             return new V3GetIdentityResponse(
                 active, carrier, clientCustomerId,
                 countryCode, createdAt, creationString,
-                deviceId, identityId, lineType,
-                phoneNumber);
+                deviceId, lineType, phoneNumber,
+                proveId);
         }
 
     }

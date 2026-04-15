@@ -16,7 +16,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class V3DisenrollIdentityRequestBuilder {
 
-    private String identityId;
+    private String proveId;
     private Optional<String> clientRequestId = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -25,9 +25,9 @@ public class V3DisenrollIdentityRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V3DisenrollIdentityRequestBuilder identityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
+    public V3DisenrollIdentityRequestBuilder proveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
                 
@@ -46,7 +46,7 @@ public class V3DisenrollIdentityRequestBuilder {
 
     private V3DisenrollIdentityRequest buildRequest() {
 
-        V3DisenrollIdentityRequest request = new V3DisenrollIdentityRequest(identityId,
+        V3DisenrollIdentityRequest request = new V3DisenrollIdentityRequest(proveId,
             clientRequestId);
 
         return request;

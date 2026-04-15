@@ -90,7 +90,7 @@ public class V3DeactivateIdentity {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/v3/identity/{identityId}/deactivate",
+                    "/v3/identity/{proveId}/deactivate",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

@@ -17,8 +17,8 @@ public class V3ActivateIdentityRequest {
     /**
      * A Prove-generated unique ID for a specific identity.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=identityId")
-    private String identityId;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=proveId")
+    private String proveId;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -26,25 +26,25 @@ public class V3ActivateIdentityRequest {
 
     @JsonCreator
     public V3ActivateIdentityRequest(
-            String identityId,
+            String proveId,
             Optional<? extends com.prove.proveapi.models.components.V3ActivateIdentityRequest> v3ActivateIdentityRequest) {
-        Utils.checkNotNull(identityId, "identityId");
+        Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(v3ActivateIdentityRequest, "v3ActivateIdentityRequest");
-        this.identityId = identityId;
+        this.proveId = proveId;
         this.v3ActivateIdentityRequest = v3ActivateIdentityRequest;
     }
     
     public V3ActivateIdentityRequest(
-            String identityId) {
-        this(identityId, Optional.empty());
+            String proveId) {
+        this(proveId, Optional.empty());
     }
 
     /**
      * A Prove-generated unique ID for a specific identity.
      */
     @JsonIgnore
-    public String identityId() {
-        return identityId;
+    public String proveId() {
+        return proveId;
     }
 
     @SuppressWarnings("unchecked")
@@ -61,9 +61,9 @@ public class V3ActivateIdentityRequest {
     /**
      * A Prove-generated unique ID for a specific identity.
      */
-    public V3ActivateIdentityRequest withIdentityId(String identityId) {
-        Utils.checkNotNull(identityId, "identityId");
-        this.identityId = identityId;
+    public V3ActivateIdentityRequest withProveId(String proveId) {
+        Utils.checkNotNull(proveId, "proveId");
+        this.proveId = proveId;
         return this;
     }
 
@@ -90,27 +90,27 @@ public class V3ActivateIdentityRequest {
         }
         V3ActivateIdentityRequest other = (V3ActivateIdentityRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.identityId, other.identityId) &&
+            Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.v3ActivateIdentityRequest, other.v3ActivateIdentityRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            identityId, v3ActivateIdentityRequest);
+            proveId, v3ActivateIdentityRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3ActivateIdentityRequest.class,
-                "identityId", identityId,
+                "proveId", proveId,
                 "v3ActivateIdentityRequest", v3ActivateIdentityRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String identityId;
+        private String proveId;
 
         private Optional<? extends com.prove.proveapi.models.components.V3ActivateIdentityRequest> v3ActivateIdentityRequest = Optional.empty();
 
@@ -122,9 +122,9 @@ public class V3ActivateIdentityRequest {
         /**
          * A Prove-generated unique ID for a specific identity.
          */
-        public Builder identityId(String identityId) {
-            Utils.checkNotNull(identityId, "identityId");
-            this.identityId = identityId;
+        public Builder proveId(String proveId) {
+            Utils.checkNotNull(proveId, "proveId");
+            this.proveId = proveId;
             return this;
         }
 
@@ -144,7 +144,7 @@ public class V3ActivateIdentityRequest {
         public V3ActivateIdentityRequest build() {
 
             return new V3ActivateIdentityRequest(
-                identityId, v3ActivateIdentityRequest);
+                proveId, v3ActivateIdentityRequest);
         }
 
     }

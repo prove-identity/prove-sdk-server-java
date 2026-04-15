@@ -12,11 +12,11 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class V3GetIdentityRequest {
+public class V3DiscoverRequestRequest {
     /**
-     * A unique Prove-generated identifier for the enrolled identity.
+     * A unique Prove-generated identifier for the enrolled identity (UUID).
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=proveId")
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=proveId")
     private String proveId;
 
     /**
@@ -30,7 +30,7 @@ public class V3GetIdentityRequest {
     private Optional<String> clientRequestId;
 
     @JsonCreator
-    public V3GetIdentityRequest(
+    public V3DiscoverRequestRequest(
             String proveId,
             Optional<String> clientRequestId) {
         Utils.checkNotNull(proveId, "proveId");
@@ -39,13 +39,13 @@ public class V3GetIdentityRequest {
         this.clientRequestId = clientRequestId;
     }
     
-    public V3GetIdentityRequest(
+    public V3DiscoverRequestRequest(
             String proveId) {
         this(proveId, Optional.empty());
     }
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity.
+     * A unique Prove-generated identifier for the enrolled identity (UUID).
      */
     @JsonIgnore
     public String proveId() {
@@ -70,9 +70,9 @@ public class V3GetIdentityRequest {
 
 
     /**
-     * A unique Prove-generated identifier for the enrolled identity.
+     * A unique Prove-generated identifier for the enrolled identity (UUID).
      */
-    public V3GetIdentityRequest withProveId(String proveId) {
+    public V3DiscoverRequestRequest withProveId(String proveId) {
         Utils.checkNotNull(proveId, "proveId");
         this.proveId = proveId;
         return this;
@@ -85,7 +85,7 @@ public class V3GetIdentityRequest {
      * 
      * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
-    public V3GetIdentityRequest withClientRequestId(String clientRequestId) {
+    public V3DiscoverRequestRequest withClientRequestId(String clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         this.clientRequestId = Optional.ofNullable(clientRequestId);
         return this;
@@ -99,7 +99,7 @@ public class V3GetIdentityRequest {
      * 
      * <p>Do not include Personally Identifiable Information (PII) in this field.
      */
-    public V3GetIdentityRequest withClientRequestId(Optional<String> clientRequestId) {
+    public V3DiscoverRequestRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         this.clientRequestId = clientRequestId;
         return this;
@@ -113,7 +113,7 @@ public class V3GetIdentityRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        V3GetIdentityRequest other = (V3GetIdentityRequest) o;
+        V3DiscoverRequestRequest other = (V3DiscoverRequestRequest) o;
         return 
             Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId);
@@ -127,7 +127,7 @@ public class V3GetIdentityRequest {
     
     @Override
     public String toString() {
-        return Utils.toString(V3GetIdentityRequest.class,
+        return Utils.toString(V3DiscoverRequestRequest.class,
                 "proveId", proveId,
                 "clientRequestId", clientRequestId);
     }
@@ -145,7 +145,7 @@ public class V3GetIdentityRequest {
 
 
         /**
-         * A unique Prove-generated identifier for the enrolled identity.
+         * A unique Prove-generated identifier for the enrolled identity (UUID).
          */
         public Builder proveId(String proveId) {
             Utils.checkNotNull(proveId, "proveId");
@@ -180,9 +180,9 @@ public class V3GetIdentityRequest {
             return this;
         }
 
-        public V3GetIdentityRequest build() {
+        public V3DiscoverRequestRequest build() {
 
-            return new V3GetIdentityRequest(
+            return new V3DiscoverRequestRequest(
                 proveId, clientRequestId);
         }
 
