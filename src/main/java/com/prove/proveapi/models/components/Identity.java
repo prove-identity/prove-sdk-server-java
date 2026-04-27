@@ -9,13 +9,20 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
 
 public class Identity {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("addresses")
+    private Optional<? extends List<Address>> addresses;
+
     /**
      * Prove’s tiered confidence metric, ranging from -1 to 3, that dynamically adapts to user behavior and
      * various authentication keys. It allows for adaptive security policies, meaning you can require
@@ -23,6 +30,18 @@ public class Identity {
      */
     @JsonProperty("assuranceLevel")
     private String assuranceLevel;
+
+    /**
+     * TODO: comments and validation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("dateOfBirth")
+    private Optional<String> dateOfBirth;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("emails")
+    private Optional<? extends List<String>> emails;
 
     /**
      * The first name of the identity.
@@ -38,6 +57,21 @@ public class Identity {
     @JsonProperty("lastName")
     private Optional<String> lastName;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("maxAge")
+    private Optional<Long> maxAge;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("minAge")
+    private Optional<Long> minAge;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("nationalId")
+    private Optional<String> nationalId;
+
     /**
      * Codes explaining the verification outcome
      */
@@ -46,25 +80,51 @@ public class Identity {
 
     @JsonCreator
     public Identity(
+            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
             @JsonProperty("assuranceLevel") String assuranceLevel,
+            @JsonProperty("dateOfBirth") Optional<String> dateOfBirth,
+            @JsonProperty("emails") Optional<? extends List<String>> emails,
             @JsonProperty("firstName") Optional<String> firstName,
             @JsonProperty("lastName") Optional<String> lastName,
+            @JsonProperty("maxAge") Optional<Long> maxAge,
+            @JsonProperty("minAge") Optional<Long> minAge,
+            @JsonProperty("nationalId") Optional<String> nationalId,
             @JsonProperty("reasons") List<String> reasons) {
+        Utils.checkNotNull(addresses, "addresses");
         Utils.checkNotNull(assuranceLevel, "assuranceLevel");
+        Utils.checkNotNull(dateOfBirth, "dateOfBirth");
+        Utils.checkNotNull(emails, "emails");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
+        Utils.checkNotNull(maxAge, "maxAge");
+        Utils.checkNotNull(minAge, "minAge");
+        Utils.checkNotNull(nationalId, "nationalId");
         Utils.checkNotNull(reasons, "reasons");
+        this.addresses = addresses;
         this.assuranceLevel = assuranceLevel;
+        this.dateOfBirth = dateOfBirth;
+        this.emails = emails;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.maxAge = maxAge;
+        this.minAge = minAge;
+        this.nationalId = nationalId;
         this.reasons = reasons;
     }
     
     public Identity(
             String assuranceLevel,
             List<String> reasons) {
-        this(assuranceLevel, Optional.empty(), Optional.empty(),
+        this(Optional.empty(), assuranceLevel, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             reasons);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Address>> addresses() {
+        return (Optional<List<Address>>) addresses;
     }
 
     /**
@@ -75,6 +135,20 @@ public class Identity {
     @JsonIgnore
     public String assuranceLevel() {
         return assuranceLevel;
+    }
+
+    /**
+     * TODO: comments and validation
+     */
+    @JsonIgnore
+    public Optional<String> dateOfBirth() {
+        return dateOfBirth;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> emails() {
+        return (Optional<List<String>>) emails;
     }
 
     /**
@@ -93,6 +167,21 @@ public class Identity {
         return lastName;
     }
 
+    @JsonIgnore
+    public Optional<Long> maxAge() {
+        return maxAge;
+    }
+
+    @JsonIgnore
+    public Optional<Long> minAge() {
+        return minAge;
+    }
+
+    @JsonIgnore
+    public Optional<String> nationalId() {
+        return nationalId;
+    }
+
     /**
      * Codes explaining the verification outcome
      */
@@ -106,6 +195,19 @@ public class Identity {
     }
 
 
+    public Identity withAddresses(List<Address> addresses) {
+        Utils.checkNotNull(addresses, "addresses");
+        this.addresses = Optional.ofNullable(addresses);
+        return this;
+    }
+
+
+    public Identity withAddresses(Optional<? extends List<Address>> addresses) {
+        Utils.checkNotNull(addresses, "addresses");
+        this.addresses = addresses;
+        return this;
+    }
+
     /**
      * Prove’s tiered confidence metric, ranging from -1 to 3, that dynamically adapts to user behavior and
      * various authentication keys. It allows for adaptive security policies, meaning you can require
@@ -114,6 +216,38 @@ public class Identity {
     public Identity withAssuranceLevel(String assuranceLevel) {
         Utils.checkNotNull(assuranceLevel, "assuranceLevel");
         this.assuranceLevel = assuranceLevel;
+        return this;
+    }
+
+    /**
+     * TODO: comments and validation
+     */
+    public Identity withDateOfBirth(String dateOfBirth) {
+        Utils.checkNotNull(dateOfBirth, "dateOfBirth");
+        this.dateOfBirth = Optional.ofNullable(dateOfBirth);
+        return this;
+    }
+
+
+    /**
+     * TODO: comments and validation
+     */
+    public Identity withDateOfBirth(Optional<String> dateOfBirth) {
+        Utils.checkNotNull(dateOfBirth, "dateOfBirth");
+        this.dateOfBirth = dateOfBirth;
+        return this;
+    }
+
+    public Identity withEmails(List<String> emails) {
+        Utils.checkNotNull(emails, "emails");
+        this.emails = Optional.ofNullable(emails);
+        return this;
+    }
+
+
+    public Identity withEmails(Optional<? extends List<String>> emails) {
+        Utils.checkNotNull(emails, "emails");
+        this.emails = emails;
         return this;
     }
 
@@ -155,6 +289,45 @@ public class Identity {
         return this;
     }
 
+    public Identity withMaxAge(long maxAge) {
+        Utils.checkNotNull(maxAge, "maxAge");
+        this.maxAge = Optional.ofNullable(maxAge);
+        return this;
+    }
+
+
+    public Identity withMaxAge(Optional<Long> maxAge) {
+        Utils.checkNotNull(maxAge, "maxAge");
+        this.maxAge = maxAge;
+        return this;
+    }
+
+    public Identity withMinAge(long minAge) {
+        Utils.checkNotNull(minAge, "minAge");
+        this.minAge = Optional.ofNullable(minAge);
+        return this;
+    }
+
+
+    public Identity withMinAge(Optional<Long> minAge) {
+        Utils.checkNotNull(minAge, "minAge");
+        this.minAge = minAge;
+        return this;
+    }
+
+    public Identity withNationalId(String nationalId) {
+        Utils.checkNotNull(nationalId, "nationalId");
+        this.nationalId = Optional.ofNullable(nationalId);
+        return this;
+    }
+
+
+    public Identity withNationalId(Optional<String> nationalId) {
+        Utils.checkNotNull(nationalId, "nationalId");
+        this.nationalId = nationalId;
+        return this;
+    }
+
     /**
      * Codes explaining the verification outcome
      */
@@ -174,41 +347,80 @@ public class Identity {
         }
         Identity other = (Identity) o;
         return 
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
             Utils.enhancedDeepEquals(this.assuranceLevel, other.assuranceLevel) &&
+            Utils.enhancedDeepEquals(this.dateOfBirth, other.dateOfBirth) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.maxAge, other.maxAge) &&
+            Utils.enhancedDeepEquals(this.minAge, other.minAge) &&
+            Utils.enhancedDeepEquals(this.nationalId, other.nationalId) &&
             Utils.enhancedDeepEquals(this.reasons, other.reasons);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            assuranceLevel, firstName, lastName,
+            addresses, assuranceLevel, dateOfBirth,
+            emails, firstName, lastName,
+            maxAge, minAge, nationalId,
             reasons);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Identity.class,
+                "addresses", addresses,
                 "assuranceLevel", assuranceLevel,
+                "dateOfBirth", dateOfBirth,
+                "emails", emails,
                 "firstName", firstName,
                 "lastName", lastName,
+                "maxAge", maxAge,
+                "minAge", minAge,
+                "nationalId", nationalId,
                 "reasons", reasons);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<? extends List<Address>> addresses = Optional.empty();
+
         private String assuranceLevel;
+
+        private Optional<String> dateOfBirth = Optional.empty();
+
+        private Optional<? extends List<String>> emails = Optional.empty();
 
         private Optional<String> firstName = Optional.empty();
 
         private Optional<String> lastName = Optional.empty();
 
+        private Optional<Long> maxAge = Optional.empty();
+
+        private Optional<Long> minAge = Optional.empty();
+
+        private Optional<String> nationalId = Optional.empty();
+
         private List<String> reasons;
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder addresses(List<Address> addresses) {
+            Utils.checkNotNull(addresses, "addresses");
+            this.addresses = Optional.ofNullable(addresses);
+            return this;
+        }
+
+        public Builder addresses(Optional<? extends List<Address>> addresses) {
+            Utils.checkNotNull(addresses, "addresses");
+            this.addresses = addresses;
+            return this;
         }
 
 
@@ -220,6 +432,38 @@ public class Identity {
         public Builder assuranceLevel(String assuranceLevel) {
             Utils.checkNotNull(assuranceLevel, "assuranceLevel");
             this.assuranceLevel = assuranceLevel;
+            return this;
+        }
+
+
+        /**
+         * TODO: comments and validation
+         */
+        public Builder dateOfBirth(String dateOfBirth) {
+            Utils.checkNotNull(dateOfBirth, "dateOfBirth");
+            this.dateOfBirth = Optional.ofNullable(dateOfBirth);
+            return this;
+        }
+
+        /**
+         * TODO: comments and validation
+         */
+        public Builder dateOfBirth(Optional<String> dateOfBirth) {
+            Utils.checkNotNull(dateOfBirth, "dateOfBirth");
+            this.dateOfBirth = dateOfBirth;
+            return this;
+        }
+
+
+        public Builder emails(List<String> emails) {
+            Utils.checkNotNull(emails, "emails");
+            this.emails = Optional.ofNullable(emails);
+            return this;
+        }
+
+        public Builder emails(Optional<? extends List<String>> emails) {
+            Utils.checkNotNull(emails, "emails");
+            this.emails = emails;
             return this;
         }
 
@@ -262,6 +506,45 @@ public class Identity {
         }
 
 
+        public Builder maxAge(long maxAge) {
+            Utils.checkNotNull(maxAge, "maxAge");
+            this.maxAge = Optional.ofNullable(maxAge);
+            return this;
+        }
+
+        public Builder maxAge(Optional<Long> maxAge) {
+            Utils.checkNotNull(maxAge, "maxAge");
+            this.maxAge = maxAge;
+            return this;
+        }
+
+
+        public Builder minAge(long minAge) {
+            Utils.checkNotNull(minAge, "minAge");
+            this.minAge = Optional.ofNullable(minAge);
+            return this;
+        }
+
+        public Builder minAge(Optional<Long> minAge) {
+            Utils.checkNotNull(minAge, "minAge");
+            this.minAge = minAge;
+            return this;
+        }
+
+
+        public Builder nationalId(String nationalId) {
+            Utils.checkNotNull(nationalId, "nationalId");
+            this.nationalId = Optional.ofNullable(nationalId);
+            return this;
+        }
+
+        public Builder nationalId(Optional<String> nationalId) {
+            Utils.checkNotNull(nationalId, "nationalId");
+            this.nationalId = nationalId;
+            return this;
+        }
+
+
         /**
          * Codes explaining the verification outcome
          */
@@ -274,7 +557,9 @@ public class Identity {
         public Identity build() {
 
             return new Identity(
-                assuranceLevel, firstName, lastName,
+                addresses, assuranceLevel, dateOfBirth,
+                emails, firstName, lastName,
+                maxAge, minAge, nationalId,
                 reasons);
         }
 

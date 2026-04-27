@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -24,6 +25,13 @@ public class V3VerifyResponse {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("additionalIdentities")
     private Optional<? extends List<Identity>> additionalIdentities;
+
+    /**
+     * Businesses is used for business prefill.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("businesses")
+    private Optional<? extends List<Business>> businesses;
 
     /**
      * The input ClientCustomerID.
@@ -66,6 +74,13 @@ public class V3VerifyResponse {
     private Optional<? extends Identity> identity;
 
     /**
+     * IsEnrolled indicates whether the identity was successfully enrolled into Identity Manager.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("isEnrolled")
+    private Optional<Boolean> isEnrolled;
+
+    /**
      * The input phone number.
      */
     @JsonProperty("phoneNumber")
@@ -94,34 +109,40 @@ public class V3VerifyResponse {
     @JsonCreator
     public V3VerifyResponse(
             @JsonProperty("additionalIdentities") Optional<? extends List<Identity>> additionalIdentities,
+            @JsonProperty("businesses") Optional<? extends List<Business>> businesses,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("correlationId") String correlationId,
             @JsonProperty("evaluation") Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation,
             @JsonProperty("identity") Optional<? extends Identity> identity,
+            @JsonProperty("isEnrolled") Optional<Boolean> isEnrolled,
             @JsonProperty("phoneNumber") String phoneNumber,
             @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("provePhoneAlias") Optional<String> provePhoneAlias,
             @JsonProperty("success") String success) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
+        Utils.checkNotNull(businesses, "businesses");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(identity, "identity");
+        Utils.checkNotNull(isEnrolled, "isEnrolled");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
         Utils.checkNotNull(success, "success");
         this.additionalIdentities = additionalIdentities;
+        this.businesses = businesses;
         this.clientCustomerId = clientCustomerId;
         this.clientHumanId = clientHumanId;
         this.clientRequestId = clientRequestId;
         this.correlationId = correlationId;
         this.evaluation = evaluation;
         this.identity = identity;
+        this.isEnrolled = isEnrolled;
         this.phoneNumber = phoneNumber;
         this.proveId = proveId;
         this.provePhoneAlias = provePhoneAlias;
@@ -133,9 +154,10 @@ public class V3VerifyResponse {
             String phoneNumber,
             String success) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), correlationId, Optional.empty(),
-            Optional.empty(), phoneNumber, Optional.empty(),
-            Optional.empty(), success);
+            Optional.empty(), Optional.empty(), correlationId,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            phoneNumber, Optional.empty(), Optional.empty(),
+            success);
     }
 
     /**
@@ -145,6 +167,15 @@ public class V3VerifyResponse {
     @JsonIgnore
     public Optional<List<Identity>> additionalIdentities() {
         return (Optional<List<Identity>>) additionalIdentities;
+    }
+
+    /**
+     * Businesses is used for business prefill.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Business>> businesses() {
+        return (Optional<List<Business>>) businesses;
     }
 
     /**
@@ -193,6 +224,14 @@ public class V3VerifyResponse {
     @JsonIgnore
     public Optional<Identity> identity() {
         return (Optional<Identity>) identity;
+    }
+
+    /**
+     * IsEnrolled indicates whether the identity was successfully enrolled into Identity Manager.
+     */
+    @JsonIgnore
+    public Optional<Boolean> isEnrolled() {
+        return isEnrolled;
     }
 
     /**
@@ -248,6 +287,25 @@ public class V3VerifyResponse {
     public V3VerifyResponse withAdditionalIdentities(Optional<? extends List<Identity>> additionalIdentities) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
         this.additionalIdentities = additionalIdentities;
+        return this;
+    }
+
+    /**
+     * Businesses is used for business prefill.
+     */
+    public V3VerifyResponse withBusinesses(List<Business> businesses) {
+        Utils.checkNotNull(businesses, "businesses");
+        this.businesses = Optional.ofNullable(businesses);
+        return this;
+    }
+
+
+    /**
+     * Businesses is used for business prefill.
+     */
+    public V3VerifyResponse withBusinesses(Optional<? extends List<Business>> businesses) {
+        Utils.checkNotNull(businesses, "businesses");
+        this.businesses = businesses;
         return this;
     }
 
@@ -352,6 +410,25 @@ public class V3VerifyResponse {
     }
 
     /**
+     * IsEnrolled indicates whether the identity was successfully enrolled into Identity Manager.
+     */
+    public V3VerifyResponse withIsEnrolled(boolean isEnrolled) {
+        Utils.checkNotNull(isEnrolled, "isEnrolled");
+        this.isEnrolled = Optional.ofNullable(isEnrolled);
+        return this;
+    }
+
+
+    /**
+     * IsEnrolled indicates whether the identity was successfully enrolled into Identity Manager.
+     */
+    public V3VerifyResponse withIsEnrolled(Optional<Boolean> isEnrolled) {
+        Utils.checkNotNull(isEnrolled, "isEnrolled");
+        this.isEnrolled = isEnrolled;
+        return this;
+    }
+
+    /**
      * The input phone number.
      */
     public V3VerifyResponse withPhoneNumber(String phoneNumber) {
@@ -418,12 +495,14 @@ public class V3VerifyResponse {
         V3VerifyResponse other = (V3VerifyResponse) o;
         return 
             Utils.enhancedDeepEquals(this.additionalIdentities, other.additionalIdentities) &&
+            Utils.enhancedDeepEquals(this.businesses, other.businesses) &&
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
             Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
             Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
             Utils.enhancedDeepEquals(this.identity, other.identity) &&
+            Utils.enhancedDeepEquals(this.isEnrolled, other.isEnrolled) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
             Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.provePhoneAlias, other.provePhoneAlias) &&
@@ -433,22 +512,25 @@ public class V3VerifyResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            additionalIdentities, clientCustomerId, clientHumanId,
-            clientRequestId, correlationId, evaluation,
-            identity, phoneNumber, proveId,
-            provePhoneAlias, success);
+            additionalIdentities, businesses, clientCustomerId,
+            clientHumanId, clientRequestId, correlationId,
+            evaluation, identity, isEnrolled,
+            phoneNumber, proveId, provePhoneAlias,
+            success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3VerifyResponse.class,
                 "additionalIdentities", additionalIdentities,
+                "businesses", businesses,
                 "clientCustomerId", clientCustomerId,
                 "clientHumanId", clientHumanId,
                 "clientRequestId", clientRequestId,
                 "correlationId", correlationId,
                 "evaluation", evaluation,
                 "identity", identity,
+                "isEnrolled", isEnrolled,
                 "phoneNumber", phoneNumber,
                 "proveId", proveId,
                 "provePhoneAlias", provePhoneAlias,
@@ -459,6 +541,8 @@ public class V3VerifyResponse {
     public final static class Builder {
 
         private Optional<? extends List<Identity>> additionalIdentities = Optional.empty();
+
+        private Optional<? extends List<Business>> businesses = Optional.empty();
 
         private Optional<String> clientCustomerId = Optional.empty();
 
@@ -471,6 +555,8 @@ public class V3VerifyResponse {
         private Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation = Optional.empty();
 
         private Optional<? extends Identity> identity = Optional.empty();
+
+        private Optional<Boolean> isEnrolled = Optional.empty();
 
         private String phoneNumber;
 
@@ -500,6 +586,25 @@ public class V3VerifyResponse {
         public Builder additionalIdentities(Optional<? extends List<Identity>> additionalIdentities) {
             Utils.checkNotNull(additionalIdentities, "additionalIdentities");
             this.additionalIdentities = additionalIdentities;
+            return this;
+        }
+
+
+        /**
+         * Businesses is used for business prefill.
+         */
+        public Builder businesses(List<Business> businesses) {
+            Utils.checkNotNull(businesses, "businesses");
+            this.businesses = Optional.ofNullable(businesses);
+            return this;
+        }
+
+        /**
+         * Businesses is used for business prefill.
+         */
+        public Builder businesses(Optional<? extends List<Business>> businesses) {
+            Utils.checkNotNull(businesses, "businesses");
+            this.businesses = businesses;
             return this;
         }
 
@@ -606,6 +711,25 @@ public class V3VerifyResponse {
 
 
         /**
+         * IsEnrolled indicates whether the identity was successfully enrolled into Identity Manager.
+         */
+        public Builder isEnrolled(boolean isEnrolled) {
+            Utils.checkNotNull(isEnrolled, "isEnrolled");
+            this.isEnrolled = Optional.ofNullable(isEnrolled);
+            return this;
+        }
+
+        /**
+         * IsEnrolled indicates whether the identity was successfully enrolled into Identity Manager.
+         */
+        public Builder isEnrolled(Optional<Boolean> isEnrolled) {
+            Utils.checkNotNull(isEnrolled, "isEnrolled");
+            this.isEnrolled = isEnrolled;
+            return this;
+        }
+
+
+        /**
          * The input phone number.
          */
         public Builder phoneNumber(String phoneNumber) {
@@ -665,10 +789,11 @@ public class V3VerifyResponse {
         public V3VerifyResponse build() {
 
             return new V3VerifyResponse(
-                additionalIdentities, clientCustomerId, clientHumanId,
-                clientRequestId, correlationId, evaluation,
-                identity, phoneNumber, proveId,
-                provePhoneAlias, success);
+                additionalIdentities, businesses, clientCustomerId,
+                clientHumanId, clientRequestId, correlationId,
+                evaluation, identity, isEnrolled,
+                phoneNumber, proveId, provePhoneAlias,
+                success);
         }
 
     }

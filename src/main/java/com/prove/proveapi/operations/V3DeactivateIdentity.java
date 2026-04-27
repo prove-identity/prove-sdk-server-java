@@ -140,7 +140,7 @@ public class V3DeactivateIdentity {
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
-                if (Utils.statusCodeMatches(httpRes.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
+                if (Utils.statusCodeMatches(httpRes.statusCode(), "4XX", "5XX")) {
                     httpRes = onError(httpRes, null);
                 } else {
                     httpRes = onSuccess(httpRes);
@@ -241,7 +241,7 @@ public class V3DeactivateIdentity {
                         if (err != null) {
                             return onError(null, err);
                         }
-                        if (Utils.statusCodeMatches(resp.statusCode(), "400", "401", "403", "4XX", "500", "5XX")) {
+                        if (Utils.statusCodeMatches(resp.statusCode(), "4XX", "5XX")) {
                             return onError(resp, null);
                         }
                         return CompletableFuture.completedFuture(resp);

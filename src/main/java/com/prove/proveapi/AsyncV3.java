@@ -415,9 +415,63 @@ public class AsyncV3 {
 
 
     /**
-     * Verify User
+     * Verify
      * 
-     * <p>This endpoint allows you to verify a user depending on your particular use case.
+     * <p>Runs Prove verification flows in one endpoint. Set `verificationType` in the request body to select
+     * the flow.
+     * 
+     * <p>## Pre-fill for consumers (identity)
+     * 
+     * <p>Use `verificationType` = `prefill` for consumer identity pre-fill. Requires the appropriate pre-fill
+     * product on the token.
+     * Response fields vary by flow; for pre-fill, `identity` may include name, contact, address, and
+     * assurance fields, and
+     * `evaluation` may include `authentication`, `identification`, and `risk` objects with a `result` (for
+     * example `pass` or `fail`).
+     * 
+     * <p>Illustrative **200** response body for this flow (values are synthetic, not real data):
+     * 
+     * <p>{
+     * "success": "true",
+     * "correlationId": "11111111-2222-3333-4444-555555555555",
+     * "phoneNumber": "+15555550123",
+     * "proveId": "22222222-3333-4444-5555-666666666666",
+     * "provePhoneAlias": "SYNTHPFA00000000000000000000000000000000000000000000000000000001",
+     * "clientRequestId": "client-synthetic-prefill-001",
+     * "identity": {
+     * "firstName": "Sample",
+     * "lastName": "Person",
+     * "dateOfBirth": "1990-06-15",
+     * "nationalId": "900-00-0000",
+     * "emails": [
+     * "sample.person@example.invalid",
+     * "s.person@example.invalid"
+     * ],
+     * "addresses": [
+     * {
+     * "address": "100 Synthetic St",
+     * "extendedAddress": "Unit 1",
+     * "city": "Exampletown",
+     * "region": "EX",
+     * "zipCode": "00001"
+     * },
+     * {
+     * "address": "200 Placeholder Rd",
+     * "extendedAddress": "",
+     * "city": "Demo City",
+     * "region": "DM",
+     * "zipCode": "00002"
+     * }
+     * ],
+     * "assuranceLevel": "AL3",
+     * "reasons": ["AL3a"]
+     * },
+     * "evaluation": {
+     * "authentication": { "result": "pass" },
+     * "identification": { "result": "pass" },
+     * "risk": { "result": "pass" }
+     * }
+     * }
      * 
      * @return The async call builder
      */
@@ -426,9 +480,63 @@ public class AsyncV3 {
     }
 
     /**
-     * Verify User
+     * Verify
      * 
-     * <p>This endpoint allows you to verify a user depending on your particular use case.
+     * <p>Runs Prove verification flows in one endpoint. Set `verificationType` in the request body to select
+     * the flow.
+     * 
+     * <p>## Pre-fill for consumers (identity)
+     * 
+     * <p>Use `verificationType` = `prefill` for consumer identity pre-fill. Requires the appropriate pre-fill
+     * product on the token.
+     * Response fields vary by flow; for pre-fill, `identity` may include name, contact, address, and
+     * assurance fields, and
+     * `evaluation` may include `authentication`, `identification`, and `risk` objects with a `result` (for
+     * example `pass` or `fail`).
+     * 
+     * <p>Illustrative **200** response body for this flow (values are synthetic, not real data):
+     * 
+     * <p>{
+     * "success": "true",
+     * "correlationId": "11111111-2222-3333-4444-555555555555",
+     * "phoneNumber": "+15555550123",
+     * "proveId": "22222222-3333-4444-5555-666666666666",
+     * "provePhoneAlias": "SYNTHPFA00000000000000000000000000000000000000000000000000000001",
+     * "clientRequestId": "client-synthetic-prefill-001",
+     * "identity": {
+     * "firstName": "Sample",
+     * "lastName": "Person",
+     * "dateOfBirth": "1990-06-15",
+     * "nationalId": "900-00-0000",
+     * "emails": [
+     * "sample.person@example.invalid",
+     * "s.person@example.invalid"
+     * ],
+     * "addresses": [
+     * {
+     * "address": "100 Synthetic St",
+     * "extendedAddress": "Unit 1",
+     * "city": "Exampletown",
+     * "region": "EX",
+     * "zipCode": "00001"
+     * },
+     * {
+     * "address": "200 Placeholder Rd",
+     * "extendedAddress": "",
+     * "city": "Demo City",
+     * "region": "DM",
+     * "zipCode": "00002"
+     * }
+     * ],
+     * "assuranceLevel": "AL3",
+     * "reasons": ["AL3a"]
+     * },
+     * "evaluation": {
+     * "authentication": { "result": "pass" },
+     * "identification": { "result": "pass" },
+     * "risk": { "result": "pass" }
+     * }
+     * }
      * 
      * @return {@code CompletableFuture<V3VerifyRequestResponse>} - The async response
      */
@@ -437,9 +545,63 @@ public class AsyncV3 {
     }
 
     /**
-     * Verify User
+     * Verify
      * 
-     * <p>This endpoint allows you to verify a user depending on your particular use case.
+     * <p>Runs Prove verification flows in one endpoint. Set `verificationType` in the request body to select
+     * the flow.
+     * 
+     * <p>## Pre-fill for consumers (identity)
+     * 
+     * <p>Use `verificationType` = `prefill` for consumer identity pre-fill. Requires the appropriate pre-fill
+     * product on the token.
+     * Response fields vary by flow; for pre-fill, `identity` may include name, contact, address, and
+     * assurance fields, and
+     * `evaluation` may include `authentication`, `identification`, and `risk` objects with a `result` (for
+     * example `pass` or `fail`).
+     * 
+     * <p>Illustrative **200** response body for this flow (values are synthetic, not real data):
+     * 
+     * <p>{
+     * "success": "true",
+     * "correlationId": "11111111-2222-3333-4444-555555555555",
+     * "phoneNumber": "+15555550123",
+     * "proveId": "22222222-3333-4444-5555-666666666666",
+     * "provePhoneAlias": "SYNTHPFA00000000000000000000000000000000000000000000000000000001",
+     * "clientRequestId": "client-synthetic-prefill-001",
+     * "identity": {
+     * "firstName": "Sample",
+     * "lastName": "Person",
+     * "dateOfBirth": "1990-06-15",
+     * "nationalId": "900-00-0000",
+     * "emails": [
+     * "sample.person@example.invalid",
+     * "s.person@example.invalid"
+     * ],
+     * "addresses": [
+     * {
+     * "address": "100 Synthetic St",
+     * "extendedAddress": "Unit 1",
+     * "city": "Exampletown",
+     * "region": "EX",
+     * "zipCode": "00001"
+     * },
+     * {
+     * "address": "200 Placeholder Rd",
+     * "extendedAddress": "",
+     * "city": "Demo City",
+     * "region": "DM",
+     * "zipCode": "00002"
+     * }
+     * ],
+     * "assuranceLevel": "AL3",
+     * "reasons": ["AL3a"]
+     * },
+     * "evaluation": {
+     * "authentication": { "result": "pass" },
+     * "identification": { "result": "pass" },
+     * "risk": { "result": "pass" }
+     * }
+     * }
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<V3VerifyRequestResponse>} - The async response
