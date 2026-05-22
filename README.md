@@ -40,7 +40,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.prove:proveapi:0.21.6'
+implementation 'com.prove:proveapi:0.21.7'
 ```
 
 Maven:
@@ -48,7 +48,7 @@ Maven:
 <dependency>
     <groupId>com.prove</groupId>
     <artifactId>proveapi</artifactId>
-    <version>0.21.6</version>
+    <version>0.21.7</version>
 </dependency>
 ```
 
@@ -203,7 +203,6 @@ public class Application {
 * [v3UnifyStatusRequest](docs/sdks/v3/README.md#v3unifystatusrequest) - Check Status
 * [v3ValidateRequest](docs/sdks/v3/README.md#v3validaterequest) - Validate Phone Number
 * [v3VerifyRequest](docs/sdks/v3/README.md#v3verifyrequest) - Verify
-* [v3VerifyBatchRequest](docs/sdks/v3/README.md#v3verifybatchrequest) - Batch Verify Users
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -315,7 +314,7 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ProveapiError`](./src/main/java/models/errors/ProveapiError.java)**:
-* [`com.prove.proveapi.models.errors.Error404`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error404.java): Not Found. The server cannot find the requested resource. Status code `404`. Applicable to 3 of 30 methods.*
+* [`com.prove.proveapi.models.errors.Error404`](./src/main/java/models/errors/com.prove.proveapi.models.errors.Error404.java): Not Found. The server cannot find the requested resource. Status code `404`. Applicable to 3 of 29 methods.*
 
 
 </details>

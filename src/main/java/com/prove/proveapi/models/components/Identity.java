@@ -32,6 +32,13 @@ public class Identity {
     private String assuranceLevel;
 
     /**
+     * The unique ID that we generate for the identity.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clientHumanId")
+    private Optional<String> clientHumanId;
+
+    /**
      * TODO: comments and validation
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -82,6 +89,7 @@ public class Identity {
     public Identity(
             @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
             @JsonProperty("assuranceLevel") String assuranceLevel,
+            @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("dateOfBirth") Optional<String> dateOfBirth,
             @JsonProperty("emails") Optional<? extends List<String>> emails,
             @JsonProperty("firstName") Optional<String> firstName,
@@ -92,6 +100,7 @@ public class Identity {
             @JsonProperty("reasons") List<String> reasons) {
         Utils.checkNotNull(addresses, "addresses");
         Utils.checkNotNull(assuranceLevel, "assuranceLevel");
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(dateOfBirth, "dateOfBirth");
         Utils.checkNotNull(emails, "emails");
         Utils.checkNotNull(firstName, "firstName");
@@ -102,6 +111,7 @@ public class Identity {
         Utils.checkNotNull(reasons, "reasons");
         this.addresses = addresses;
         this.assuranceLevel = assuranceLevel;
+        this.clientHumanId = clientHumanId;
         this.dateOfBirth = dateOfBirth;
         this.emails = emails;
         this.firstName = firstName;
@@ -118,7 +128,7 @@ public class Identity {
         this(Optional.empty(), assuranceLevel, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            reasons);
+            Optional.empty(), reasons);
     }
 
     @SuppressWarnings("unchecked")
@@ -135,6 +145,14 @@ public class Identity {
     @JsonIgnore
     public String assuranceLevel() {
         return assuranceLevel;
+    }
+
+    /**
+     * The unique ID that we generate for the identity.
+     */
+    @JsonIgnore
+    public Optional<String> clientHumanId() {
+        return clientHumanId;
     }
 
     /**
@@ -216,6 +234,25 @@ public class Identity {
     public Identity withAssuranceLevel(String assuranceLevel) {
         Utils.checkNotNull(assuranceLevel, "assuranceLevel");
         this.assuranceLevel = assuranceLevel;
+        return this;
+    }
+
+    /**
+     * The unique ID that we generate for the identity.
+     */
+    public Identity withClientHumanId(String clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = Optional.ofNullable(clientHumanId);
+        return this;
+    }
+
+
+    /**
+     * The unique ID that we generate for the identity.
+     */
+    public Identity withClientHumanId(Optional<String> clientHumanId) {
+        Utils.checkNotNull(clientHumanId, "clientHumanId");
+        this.clientHumanId = clientHumanId;
         return this;
     }
 
@@ -349,6 +386,7 @@ public class Identity {
         return 
             Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
             Utils.enhancedDeepEquals(this.assuranceLevel, other.assuranceLevel) &&
+            Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.dateOfBirth, other.dateOfBirth) &&
             Utils.enhancedDeepEquals(this.emails, other.emails) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
@@ -362,10 +400,10 @@ public class Identity {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            addresses, assuranceLevel, dateOfBirth,
-            emails, firstName, lastName,
-            maxAge, minAge, nationalId,
-            reasons);
+            addresses, assuranceLevel, clientHumanId,
+            dateOfBirth, emails, firstName,
+            lastName, maxAge, minAge,
+            nationalId, reasons);
     }
     
     @Override
@@ -373,6 +411,7 @@ public class Identity {
         return Utils.toString(Identity.class,
                 "addresses", addresses,
                 "assuranceLevel", assuranceLevel,
+                "clientHumanId", clientHumanId,
                 "dateOfBirth", dateOfBirth,
                 "emails", emails,
                 "firstName", firstName,
@@ -389,6 +428,8 @@ public class Identity {
         private Optional<? extends List<Address>> addresses = Optional.empty();
 
         private String assuranceLevel;
+
+        private Optional<String> clientHumanId = Optional.empty();
 
         private Optional<String> dateOfBirth = Optional.empty();
 
@@ -432,6 +473,25 @@ public class Identity {
         public Builder assuranceLevel(String assuranceLevel) {
             Utils.checkNotNull(assuranceLevel, "assuranceLevel");
             this.assuranceLevel = assuranceLevel;
+            return this;
+        }
+
+
+        /**
+         * The unique ID that we generate for the identity.
+         */
+        public Builder clientHumanId(String clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = Optional.ofNullable(clientHumanId);
+            return this;
+        }
+
+        /**
+         * The unique ID that we generate for the identity.
+         */
+        public Builder clientHumanId(Optional<String> clientHumanId) {
+            Utils.checkNotNull(clientHumanId, "clientHumanId");
+            this.clientHumanId = clientHumanId;
             return this;
         }
 
@@ -557,10 +617,10 @@ public class Identity {
         public Identity build() {
 
             return new Identity(
-                addresses, assuranceLevel, dateOfBirth,
-                emails, firstName, lastName,
-                maxAge, minAge, nationalId,
-                reasons);
+                addresses, assuranceLevel, clientHumanId,
+                dateOfBirth, emails, firstName,
+                lastName, maxAge, minAge,
+                nationalId, reasons);
         }
 
     }

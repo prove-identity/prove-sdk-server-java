@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -23,7 +24,7 @@ public class V3ChallengeResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
-    private Optional<? extends Map<String, Evaluation>> evaluation;
+    private Optional<? extends Map<String, Object>> evaluation;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -44,7 +45,7 @@ public class V3ChallengeResponse {
 
     @JsonCreator
     public V3ChallengeResponse(
-            @JsonProperty("evaluation") Optional<? extends Map<String, Evaluation>> evaluation,
+            @JsonProperty("evaluation") Optional<? extends Map<String, Object>> evaluation,
             @JsonProperty("individual") Optional<? extends V3ChallengeIndividualRequest> individual,
             @JsonProperty("next") Map<String, String> next,
             @JsonProperty("success") boolean success) {
@@ -71,8 +72,8 @@ public class V3ChallengeResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Evaluation>> evaluation() {
-        return (Optional<Map<String, Evaluation>>) evaluation;
+    public Optional<Map<String, Object>> evaluation() {
+        return (Optional<Map<String, Object>>) evaluation;
     }
 
     @SuppressWarnings("unchecked")
@@ -105,7 +106,7 @@ public class V3ChallengeResponse {
     /**
      * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
-    public V3ChallengeResponse withEvaluation(Map<String, Evaluation> evaluation) {
+    public V3ChallengeResponse withEvaluation(Map<String, Object> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = Optional.ofNullable(evaluation);
         return this;
@@ -115,7 +116,7 @@ public class V3ChallengeResponse {
     /**
      * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
-    public V3ChallengeResponse withEvaluation(Optional<? extends Map<String, Evaluation>> evaluation) {
+    public V3ChallengeResponse withEvaluation(Optional<? extends Map<String, Object>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = evaluation;
         return this;
@@ -187,7 +188,7 @@ public class V3ChallengeResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Map<String, Evaluation>> evaluation = Optional.empty();
+        private Optional<? extends Map<String, Object>> evaluation = Optional.empty();
 
         private Optional<? extends V3ChallengeIndividualRequest> individual = Optional.empty();
 
@@ -203,7 +204,7 @@ public class V3ChallengeResponse {
         /**
          * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
-        public Builder evaluation(Map<String, Evaluation> evaluation) {
+        public Builder evaluation(Map<String, Object> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = Optional.ofNullable(evaluation);
             return this;
@@ -212,7 +213,7 @@ public class V3ChallengeResponse {
         /**
          * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
-        public Builder evaluation(Optional<? extends Map<String, Evaluation>> evaluation) {
+        public Builder evaluation(Optional<? extends Map<String, Object>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = evaluation;
             return this;

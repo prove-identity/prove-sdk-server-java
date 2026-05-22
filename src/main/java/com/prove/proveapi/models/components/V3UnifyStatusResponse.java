@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -49,7 +50,7 @@ public class V3UnifyStatusResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
-    private Optional<? extends Map<String, V3UnifyStatusResponseEvaluation>> evaluation;
+    private Optional<? extends Map<String, Object>> evaluation;
 
     /**
      * The number of the mobile phone used during the process.
@@ -82,7 +83,7 @@ public class V3UnifyStatusResponse {
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("deviceId") Optional<String> deviceId,
-            @JsonProperty("evaluation") Optional<? extends Map<String, V3UnifyStatusResponseEvaluation>> evaluation,
+            @JsonProperty("evaluation") Optional<? extends Map<String, Object>> evaluation,
             @JsonProperty("phoneNumber") Optional<String> phoneNumber,
             @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("success") String success) {
@@ -144,8 +145,8 @@ public class V3UnifyStatusResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, V3UnifyStatusResponseEvaluation>> evaluation() {
-        return (Optional<Map<String, V3UnifyStatusResponseEvaluation>>) evaluation;
+    public Optional<Map<String, Object>> evaluation() {
+        return (Optional<Map<String, Object>>) evaluation;
     }
 
     /**
@@ -254,7 +255,7 @@ public class V3UnifyStatusResponse {
      * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
      * encompass the different evaluation categories.
      */
-    public V3UnifyStatusResponse withEvaluation(Map<String, V3UnifyStatusResponseEvaluation> evaluation) {
+    public V3UnifyStatusResponse withEvaluation(Map<String, Object> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = Optional.ofNullable(evaluation);
         return this;
@@ -265,7 +266,7 @@ public class V3UnifyStatusResponse {
      * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
      * encompass the different evaluation categories.
      */
-    public V3UnifyStatusResponse withEvaluation(Optional<? extends Map<String, V3UnifyStatusResponseEvaluation>> evaluation) {
+    public V3UnifyStatusResponse withEvaluation(Optional<? extends Map<String, Object>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = evaluation;
         return this;
@@ -377,7 +378,7 @@ public class V3UnifyStatusResponse {
 
         private Optional<String> deviceId = Optional.empty();
 
-        private Optional<? extends Map<String, V3UnifyStatusResponseEvaluation>> evaluation = Optional.empty();
+        private Optional<? extends Map<String, Object>> evaluation = Optional.empty();
 
         private Optional<String> phoneNumber = Optional.empty();
 
@@ -461,7 +462,7 @@ public class V3UnifyStatusResponse {
          * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
          * encompass the different evaluation categories.
          */
-        public Builder evaluation(Map<String, V3UnifyStatusResponseEvaluation> evaluation) {
+        public Builder evaluation(Map<String, Object> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = Optional.ofNullable(evaluation);
             return this;
@@ -471,7 +472,7 @@ public class V3UnifyStatusResponse {
          * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
          * encompass the different evaluation categories.
          */
-        public Builder evaluation(Optional<? extends Map<String, V3UnifyStatusResponseEvaluation>> evaluation) {
+        public Builder evaluation(Optional<? extends Map<String, Object>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = evaluation;
             return this;

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -23,7 +24,7 @@ public class V3CompleteResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
-    private Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation;
+    private Optional<? extends Map<String, Object>> evaluation;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -49,7 +50,7 @@ public class V3CompleteResponse {
 
     @JsonCreator
     public V3CompleteResponse(
-            @JsonProperty("evaluation") Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation,
+            @JsonProperty("evaluation") Optional<? extends Map<String, Object>> evaluation,
             @JsonProperty("idv") Optional<? extends IDVDataInternal> idv,
             @JsonProperty("kyc") Optional<? extends KYCInternal> kyc,
             @JsonProperty("next") Map<String, String> next,
@@ -79,8 +80,8 @@ public class V3CompleteResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, V3CompleteResponseEvaluation>> evaluation() {
-        return (Optional<Map<String, V3CompleteResponseEvaluation>>) evaluation;
+    public Optional<Map<String, Object>> evaluation() {
+        return (Optional<Map<String, Object>>) evaluation;
     }
 
     @SuppressWarnings("unchecked")
@@ -119,7 +120,7 @@ public class V3CompleteResponse {
     /**
      * The evaluation result for the policy
      */
-    public V3CompleteResponse withEvaluation(Map<String, V3CompleteResponseEvaluation> evaluation) {
+    public V3CompleteResponse withEvaluation(Map<String, Object> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = Optional.ofNullable(evaluation);
         return this;
@@ -129,7 +130,7 @@ public class V3CompleteResponse {
     /**
      * The evaluation result for the policy
      */
-    public V3CompleteResponse withEvaluation(Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation) {
+    public V3CompleteResponse withEvaluation(Optional<? extends Map<String, Object>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = evaluation;
         return this;
@@ -216,7 +217,7 @@ public class V3CompleteResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation = Optional.empty();
+        private Optional<? extends Map<String, Object>> evaluation = Optional.empty();
 
         private Optional<? extends IDVDataInternal> idv = Optional.empty();
 
@@ -234,7 +235,7 @@ public class V3CompleteResponse {
         /**
          * The evaluation result for the policy
          */
-        public Builder evaluation(Map<String, V3CompleteResponseEvaluation> evaluation) {
+        public Builder evaluation(Map<String, Object> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = Optional.ofNullable(evaluation);
             return this;
@@ -243,7 +244,7 @@ public class V3CompleteResponse {
         /**
          * The evaluation result for the policy
          */
-        public Builder evaluation(Optional<? extends Map<String, V3CompleteResponseEvaluation>> evaluation) {
+        public Builder evaluation(Optional<? extends Map<String, Object>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = evaluation;
             return this;

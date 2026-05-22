@@ -14,7 +14,6 @@ import com.prove.proveapi.models.components.V3UnifyBindRequest;
 import com.prove.proveapi.models.components.V3UnifyRequest;
 import com.prove.proveapi.models.components.V3UnifyStatusRequest;
 import com.prove.proveapi.models.components.V3ValidateRequest;
-import com.prove.proveapi.models.components.V3VerifyBatchRequest;
 import com.prove.proveapi.models.components.V3VerifyRequest;
 import com.prove.proveapi.models.operations.V3ChallengeRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3ChallengeRequestResponse;
@@ -34,8 +33,6 @@ import com.prove.proveapi.models.operations.V3UnifyStatusRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3UnifyStatusRequestResponse;
 import com.prove.proveapi.models.operations.V3ValidateRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3ValidateRequestResponse;
-import com.prove.proveapi.models.operations.V3VerifyBatchRequestRequestBuilder;
-import com.prove.proveapi.models.operations.V3VerifyBatchRequestResponse;
 import com.prove.proveapi.models.operations.V3VerifyRequestRequestBuilder;
 import com.prove.proveapi.models.operations.V3VerifyRequestResponse;
 import com.prove.proveapi.utils.Headers;
@@ -609,44 +606,6 @@ public class V3 {
     public V3VerifyRequestResponse v3VerifyRequest(Optional<? extends V3VerifyRequest> request) {
         RequestOperation<Optional<? extends V3VerifyRequest>, V3VerifyRequestResponse> operation
               = new com.prove.proveapi.operations.V3VerifyRequest.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Batch Verify Users
-     * 
-     * <p>This endpoint allows you to batch verify and enroll users.
-     * 
-     * @return The call builder
-     */
-    public V3VerifyBatchRequestRequestBuilder v3VerifyBatchRequest() {
-        return new V3VerifyBatchRequestRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Batch Verify Users
-     * 
-     * <p>This endpoint allows you to batch verify and enroll users.
-     * 
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V3VerifyBatchRequestResponse v3VerifyBatchRequestDirect() {
-        return v3VerifyBatchRequest(Optional.empty());
-    }
-
-    /**
-     * Batch Verify Users
-     * 
-     * <p>This endpoint allows you to batch verify and enroll users.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V3VerifyBatchRequestResponse v3VerifyBatchRequest(Optional<? extends V3VerifyBatchRequest> request) {
-        RequestOperation<Optional<? extends V3VerifyBatchRequest>, V3VerifyBatchRequestResponse> operation
-              = new com.prove.proveapi.operations.V3VerifyBatchRequest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

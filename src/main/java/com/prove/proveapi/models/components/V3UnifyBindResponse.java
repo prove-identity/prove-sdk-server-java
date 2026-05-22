@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -50,7 +51,7 @@ public class V3UnifyBindResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
-    private Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation;
+    private Optional<? extends Map<String, Object>> evaluation;
 
     /**
      * The number of the mobile phone used during the process.
@@ -84,7 +85,7 @@ public class V3UnifyBindResponse {
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("deviceId") Optional<String> deviceId,
-            @JsonProperty("evaluation") Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation,
+            @JsonProperty("evaluation") Optional<? extends Map<String, Object>> evaluation,
             @JsonProperty("phoneNumber") Optional<String> phoneNumber,
             @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("success") String success) {
@@ -147,8 +148,8 @@ public class V3UnifyBindResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, V3UnifyBindResponseEvaluation>> evaluation() {
-        return (Optional<Map<String, V3UnifyBindResponseEvaluation>>) evaluation;
+    public Optional<Map<String, Object>> evaluation() {
+        return (Optional<Map<String, Object>>) evaluation;
     }
 
     /**
@@ -261,7 +262,7 @@ public class V3UnifyBindResponse {
     /**
      * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
-    public V3UnifyBindResponse withEvaluation(Map<String, V3UnifyBindResponseEvaluation> evaluation) {
+    public V3UnifyBindResponse withEvaluation(Map<String, Object> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = Optional.ofNullable(evaluation);
         return this;
@@ -271,7 +272,7 @@ public class V3UnifyBindResponse {
     /**
      * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
      */
-    public V3UnifyBindResponse withEvaluation(Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation) {
+    public V3UnifyBindResponse withEvaluation(Optional<? extends Map<String, Object>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = evaluation;
         return this;
@@ -385,7 +386,7 @@ public class V3UnifyBindResponse {
 
         private Optional<String> deviceId = Optional.empty();
 
-        private Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation = Optional.empty();
+        private Optional<? extends Map<String, Object>> evaluation = Optional.empty();
 
         private Optional<String> phoneNumber = Optional.empty();
 
@@ -472,7 +473,7 @@ public class V3UnifyBindResponse {
         /**
          * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
-        public Builder evaluation(Map<String, V3UnifyBindResponseEvaluation> evaluation) {
+        public Builder evaluation(Map<String, Object> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = Optional.ofNullable(evaluation);
             return this;
@@ -481,7 +482,7 @@ public class V3UnifyBindResponse {
         /**
          * The evaluation result for the policy. This is an upcoming field but is not yet enabled.
          */
-        public Builder evaluation(Optional<? extends Map<String, V3UnifyBindResponseEvaluation>> evaluation) {
+        public Builder evaluation(Optional<? extends Map<String, Object>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = evaluation;
             return this;
