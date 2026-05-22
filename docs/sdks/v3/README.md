@@ -14,7 +14,6 @@
 * [v3UnifyStatusRequest](#v3unifystatusrequest) - Check Status
 * [v3ValidateRequest](#v3validaterequest) - Validate Phone Number
 * [v3VerifyRequest](#v3verifyrequest) - Verify
-* [v3VerifyBatchRequest](#v3verifybatchrequest) - Batch Verify Users
 
 ## v3TokenRequest
 
@@ -772,7 +771,6 @@ public class Application {
                 .emailAddress("sbutrimovichb@who.int")
                 .finalTargetUrl("https://www.example.com/landing-page")
                 .ipAddress("192.168.0.1")
-                .mobileAuthEnabled(true)
                 .phoneNumber("2001004011")
                 .proveId("a07b94ce-218c-461f-beda-d92480e40f61")
                 .rebind(true)
@@ -1201,95 +1199,6 @@ public class Application {
 ### Response
 
 **[V3VerifyRequestResponse](../../models/operations/V3VerifyRequestResponse.md)**
-
-### Errors
-
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error400 | 400                    | application/json       |
-| models/errors/Error401 | 401                    | application/json       |
-| models/errors/Error403 | 403                    | application/json       |
-| models/errors/Error    | 500                    | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
-
-## v3VerifyBatchRequest
-
-This endpoint allows you to batch verify and enroll users.
-
-### Example Usage
-
-<!-- UsageSnippet language="java" operationID="V3VerifyBatchRequest" method="post" path="/v3/verify/batch" -->
-```java
-package hello.world;
-
-import com.prove.proveapi.Proveapi;
-import com.prove.proveapi.models.components.*;
-import com.prove.proveapi.models.errors.*;
-import com.prove.proveapi.models.errors.Error;
-import com.prove.proveapi.models.operations.V3VerifyBatchRequestResponse;
-import java.lang.Exception;
-import java.util.List;
-
-public class Application {
-
-    public static void main(String[] args) throws Error400, Error401, Error403, Error, Exception {
-
-        Proveapi sdk = Proveapi.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
-            .build();
-
-        V3VerifyBatchRequest req = V3VerifyBatchRequest.builder()
-                .items(List.of(
-                    VerifyBatchRequestItem.builder()
-                        .firstName("Elena")
-                        .lastName("Coldman")
-                        .phoneNumber("2001004053")
-                        .verificationType("verifiedUser")
-                        .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
-                        .clientHumanId("clientHumanId")
-                        .emailAddress("ecoldman1h@storify.com")
-                        .ipAddress("192.168.1.1")
-                        .proveId("e0f78bc2-f748-4eda-9d29-d756844507fc")
-                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
-                        .build(),
-                    VerifyBatchRequestItem.builder()
-                        .firstName("Elena")
-                        .lastName("Coldman")
-                        .phoneNumber("2001004053")
-                        .verificationType("verifiedUser")
-                        .clientCustomerId("e0f78bc2-f748-4eda-9d29-d756844507fc")
-                        .clientHumanId("clientHumanId")
-                        .emailAddress("ecoldman1h@storify.com")
-                        .ipAddress("192.168.1.1")
-                        .proveId("e0f78bc2-f748-4eda-9d29-d756844507fc")
-                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0")
-                        .build()))
-                .clientRequestId("3d1215f7-ec3f-4fd2-9894-7b46f00e31a6")
-                .build();
-
-        V3VerifyBatchRequestResponse res = sdk.v3().v3VerifyBatchRequest()
-                .request(req)
-                .call();
-
-        if (res.v3VerifyBatchResponse().isPresent()) {
-            System.out.println(res.v3VerifyBatchResponse().get());
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [V3VerifyBatchRequest](../../models/shared/V3VerifyBatchRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
-
-### Response
-
-**[V3VerifyBatchRequestResponse](../../models/operations/V3VerifyBatchRequestResponse.md)**
 
 ### Errors
 

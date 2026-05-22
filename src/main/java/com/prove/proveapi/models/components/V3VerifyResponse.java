@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -66,7 +67,7 @@ public class V3VerifyResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
-    private Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation;
+    private Optional<? extends Map<String, Object>> evaluation;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -114,7 +115,7 @@ public class V3VerifyResponse {
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("correlationId") String correlationId,
-            @JsonProperty("evaluation") Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation,
+            @JsonProperty("evaluation") Optional<? extends Map<String, Object>> evaluation,
             @JsonProperty("identity") Optional<? extends Identity> identity,
             @JsonProperty("isEnrolled") Optional<Boolean> isEnrolled,
             @JsonProperty("phoneNumber") String phoneNumber,
@@ -216,8 +217,8 @@ public class V3VerifyResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, V3VerifyResponseEvaluation>> evaluation() {
-        return (Optional<Map<String, V3VerifyResponseEvaluation>>) evaluation;
+    public Optional<Map<String, Object>> evaluation() {
+        return (Optional<Map<String, Object>>) evaluation;
     }
 
     @SuppressWarnings("unchecked")
@@ -379,7 +380,7 @@ public class V3VerifyResponse {
      * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
      * encompass the different evaluation categories.
      */
-    public V3VerifyResponse withEvaluation(Map<String, V3VerifyResponseEvaluation> evaluation) {
+    public V3VerifyResponse withEvaluation(Map<String, Object> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = Optional.ofNullable(evaluation);
         return this;
@@ -390,7 +391,7 @@ public class V3VerifyResponse {
      * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
      * encompass the different evaluation categories.
      */
-    public V3VerifyResponse withEvaluation(Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation) {
+    public V3VerifyResponse withEvaluation(Optional<? extends Map<String, Object>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
         this.evaluation = evaluation;
         return this;
@@ -552,7 +553,7 @@ public class V3VerifyResponse {
 
         private String correlationId;
 
-        private Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation = Optional.empty();
+        private Optional<? extends Map<String, Object>> evaluation = Optional.empty();
 
         private Optional<? extends Identity> identity = Optional.empty();
 
@@ -680,7 +681,7 @@ public class V3VerifyResponse {
          * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
          * encompass the different evaluation categories.
          */
-        public Builder evaluation(Map<String, V3VerifyResponseEvaluation> evaluation) {
+        public Builder evaluation(Map<String, Object> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = Optional.ofNullable(evaluation);
             return this;
@@ -690,7 +691,7 @@ public class V3VerifyResponse {
          * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
          * encompass the different evaluation categories.
          */
-        public Builder evaluation(Optional<? extends Map<String, V3VerifyResponseEvaluation>> evaluation) {
+        public Builder evaluation(Optional<? extends Map<String, Object>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
             this.evaluation = evaluation;
             return this;

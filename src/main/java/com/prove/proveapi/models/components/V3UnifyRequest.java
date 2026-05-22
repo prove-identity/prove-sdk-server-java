@@ -85,15 +85,6 @@ public class V3UnifyRequest {
     private Optional<String> ipAddress;
 
     /**
-     * A workaround input parameter to indicate if Mobile Auth should be enabled for this Unified Auth
-     * session.
-     * This input parameter should not be communicated to any customer except Bumble.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("mobileAuthEnabled")
-    private Optional<Boolean> mobileAuthEnabled;
-
-    /**
      * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
      * `+1`.
      * International phone numbers require a leading `+` followed by the country code. Use the appropriate
@@ -157,7 +148,6 @@ public class V3UnifyRequest {
             @JsonProperty("emailAddress") Optional<String> emailAddress,
             @JsonProperty("finalTargetUrl") Optional<String> finalTargetUrl,
             @JsonProperty("ipAddress") Optional<String> ipAddress,
-            @JsonProperty("mobileAuthEnabled") Optional<Boolean> mobileAuthEnabled,
             @JsonProperty("phoneNumber") Optional<String> phoneNumber,
             @JsonProperty("possessionType") String possessionType,
             @JsonProperty("proveId") Optional<String> proveId,
@@ -172,7 +162,6 @@ public class V3UnifyRequest {
         Utils.checkNotNull(emailAddress, "emailAddress");
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
         Utils.checkNotNull(ipAddress, "ipAddress");
-        Utils.checkNotNull(mobileAuthEnabled, "mobileAuthEnabled");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(possessionType, "possessionType");
         Utils.checkNotNull(proveId, "proveId");
@@ -187,7 +176,6 @@ public class V3UnifyRequest {
         this.emailAddress = emailAddress;
         this.finalTargetUrl = finalTargetUrl;
         this.ipAddress = ipAddress;
-        this.mobileAuthEnabled = mobileAuthEnabled;
         this.phoneNumber = phoneNumber;
         this.possessionType = possessionType;
         this.proveId = proveId;
@@ -201,8 +189,8 @@ public class V3UnifyRequest {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), clientRequestId, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), possessionType,
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), possessionType, Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -281,16 +269,6 @@ public class V3UnifyRequest {
     @JsonIgnore
     public Optional<String> ipAddress() {
         return ipAddress;
-    }
-
-    /**
-     * A workaround input parameter to indicate if Mobile Auth should be enabled for this Unified Auth
-     * session.
-     * This input parameter should not be communicated to any customer except Bumble.
-     */
-    @JsonIgnore
-    public Optional<Boolean> mobileAuthEnabled() {
-        return mobileAuthEnabled;
     }
 
     /**
@@ -528,29 +506,6 @@ public class V3UnifyRequest {
     }
 
     /**
-     * A workaround input parameter to indicate if Mobile Auth should be enabled for this Unified Auth
-     * session.
-     * This input parameter should not be communicated to any customer except Bumble.
-     */
-    public V3UnifyRequest withMobileAuthEnabled(boolean mobileAuthEnabled) {
-        Utils.checkNotNull(mobileAuthEnabled, "mobileAuthEnabled");
-        this.mobileAuthEnabled = Optional.ofNullable(mobileAuthEnabled);
-        return this;
-    }
-
-
-    /**
-     * A workaround input parameter to indicate if Mobile Auth should be enabled for this Unified Auth
-     * session.
-     * This input parameter should not be communicated to any customer except Bumble.
-     */
-    public V3UnifyRequest withMobileAuthEnabled(Optional<Boolean> mobileAuthEnabled) {
-        Utils.checkNotNull(mobileAuthEnabled, "mobileAuthEnabled");
-        this.mobileAuthEnabled = mobileAuthEnabled;
-        return this;
-    }
-
-    /**
      * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
      * `+1`.
      * International phone numbers require a leading `+` followed by the country code. Use the appropriate
@@ -690,7 +645,6 @@ public class V3UnifyRequest {
             Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
             Utils.enhancedDeepEquals(this.finalTargetUrl, other.finalTargetUrl) &&
             Utils.enhancedDeepEquals(this.ipAddress, other.ipAddress) &&
-            Utils.enhancedDeepEquals(this.mobileAuthEnabled, other.mobileAuthEnabled) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
             Utils.enhancedDeepEquals(this.possessionType, other.possessionType) &&
             Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
@@ -704,8 +658,8 @@ public class V3UnifyRequest {
             allowOTPRetry, checkReputation, clientCustomerId,
             clientHumanId, clientRequestId, deviceId,
             emailAddress, finalTargetUrl, ipAddress,
-            mobileAuthEnabled, phoneNumber, possessionType,
-            proveId, rebind, smsMessage);
+            phoneNumber, possessionType, proveId,
+            rebind, smsMessage);
     }
     
     @Override
@@ -720,7 +674,6 @@ public class V3UnifyRequest {
                 "emailAddress", emailAddress,
                 "finalTargetUrl", finalTargetUrl,
                 "ipAddress", ipAddress,
-                "mobileAuthEnabled", mobileAuthEnabled,
                 "phoneNumber", phoneNumber,
                 "possessionType", possessionType,
                 "proveId", proveId,
@@ -748,8 +701,6 @@ public class V3UnifyRequest {
         private Optional<String> finalTargetUrl = Optional.empty();
 
         private Optional<String> ipAddress = Optional.empty();
-
-        private Optional<Boolean> mobileAuthEnabled = Optional.empty();
 
         private Optional<String> phoneNumber = Optional.empty();
 
@@ -938,29 +889,6 @@ public class V3UnifyRequest {
 
 
         /**
-         * A workaround input parameter to indicate if Mobile Auth should be enabled for this Unified Auth
-         * session.
-         * This input parameter should not be communicated to any customer except Bumble.
-         */
-        public Builder mobileAuthEnabled(boolean mobileAuthEnabled) {
-            Utils.checkNotNull(mobileAuthEnabled, "mobileAuthEnabled");
-            this.mobileAuthEnabled = Optional.ofNullable(mobileAuthEnabled);
-            return this;
-        }
-
-        /**
-         * A workaround input parameter to indicate if Mobile Auth should be enabled for this Unified Auth
-         * session.
-         * This input parameter should not be communicated to any customer except Bumble.
-         */
-        public Builder mobileAuthEnabled(Optional<Boolean> mobileAuthEnabled) {
-            Utils.checkNotNull(mobileAuthEnabled, "mobileAuthEnabled");
-            this.mobileAuthEnabled = mobileAuthEnabled;
-            return this;
-        }
-
-
-        /**
          * The mobile phone number. US and Canada phone numbers can be passed in with or without a leading
          * `+1`.
          * International phone numbers require a leading `+` followed by the country code. Use the appropriate
@@ -1087,8 +1015,8 @@ public class V3UnifyRequest {
                 allowOTPRetry, checkReputation, clientCustomerId,
                 clientHumanId, clientRequestId, deviceId,
                 emailAddress, finalTargetUrl, ipAddress,
-                mobileAuthEnabled, phoneNumber, possessionType,
-                proveId, rebind, smsMessage);
+                phoneNumber, possessionType, proveId,
+                rebind, smsMessage);
         }
 
     }

@@ -14,7 +14,6 @@ import com.prove.proveapi.models.components.V3UnifyBindRequest;
 import com.prove.proveapi.models.components.V3UnifyRequest;
 import com.prove.proveapi.models.components.V3UnifyStatusRequest;
 import com.prove.proveapi.models.components.V3ValidateRequest;
-import com.prove.proveapi.models.components.V3VerifyBatchRequest;
 import com.prove.proveapi.models.components.V3VerifyRequest;
 import com.prove.proveapi.models.operations.async.V3ChallengeRequestRequestBuilder;
 import com.prove.proveapi.models.operations.async.V3ChallengeRequestResponse;
@@ -34,8 +33,6 @@ import com.prove.proveapi.models.operations.async.V3UnifyStatusRequestRequestBui
 import com.prove.proveapi.models.operations.async.V3UnifyStatusRequestResponse;
 import com.prove.proveapi.models.operations.async.V3ValidateRequestRequestBuilder;
 import com.prove.proveapi.models.operations.async.V3ValidateRequestResponse;
-import com.prove.proveapi.models.operations.async.V3VerifyBatchRequestRequestBuilder;
-import com.prove.proveapi.models.operations.async.V3VerifyBatchRequestResponse;
 import com.prove.proveapi.models.operations.async.V3VerifyRequestRequestBuilder;
 import com.prove.proveapi.models.operations.async.V3VerifyRequestResponse;
 import com.prove.proveapi.utils.Headers;
@@ -609,44 +606,6 @@ public class AsyncV3 {
     public CompletableFuture<V3VerifyRequestResponse> v3VerifyRequest(Optional<? extends V3VerifyRequest> request) {
         AsyncRequestOperation<Optional<? extends V3VerifyRequest>, V3VerifyRequestResponse> operation
               = new com.prove.proveapi.operations.V3VerifyRequest.Async(sdkConfiguration, _headers);
-        return operation.doRequest(request)
-            .thenCompose(operation::handleResponse);
-    }
-
-
-    /**
-     * Batch Verify Users
-     * 
-     * <p>This endpoint allows you to batch verify and enroll users.
-     * 
-     * @return The async call builder
-     */
-    public V3VerifyBatchRequestRequestBuilder v3VerifyBatchRequest() {
-        return new V3VerifyBatchRequestRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Batch Verify Users
-     * 
-     * <p>This endpoint allows you to batch verify and enroll users.
-     * 
-     * @return {@code CompletableFuture<V3VerifyBatchRequestResponse>} - The async response
-     */
-    public CompletableFuture<V3VerifyBatchRequestResponse> v3VerifyBatchRequestDirect() {
-        return v3VerifyBatchRequest(Optional.empty());
-    }
-
-    /**
-     * Batch Verify Users
-     * 
-     * <p>This endpoint allows you to batch verify and enroll users.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<V3VerifyBatchRequestResponse>} - The async response
-     */
-    public CompletableFuture<V3VerifyBatchRequestResponse> v3VerifyBatchRequest(Optional<? extends V3VerifyBatchRequest> request) {
-        AsyncRequestOperation<Optional<? extends V3VerifyBatchRequest>, V3VerifyBatchRequestResponse> operation
-              = new com.prove.proveapi.operations.V3VerifyBatchRequest.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
