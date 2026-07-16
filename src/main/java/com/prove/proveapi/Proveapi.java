@@ -257,7 +257,7 @@ public class Proveapi {
         return new Builder();
     }
 
-    public Proveapi(SDKConfiguration sdkConfiguration) {
+    private Proveapi(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.v3 = new V3(sdkConfiguration);
         this.auth = new Auth(sdkConfiguration);

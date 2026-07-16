@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -17,6 +18,15 @@ import java.util.Optional;
 
 
 public class V3VerifyRequest {
+    /**
+     * An optional list of addresses submitted by the user for validation. Used with
+     * verificationType=validate
+     * to validate user-edited addresses against data-service records via SmartyStreets normalisation.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("addresses")
+    private Optional<? extends List<Address>> addresses;
+
     /**
      * A client-generated unique ID for a specific customer. This can be used by clients to link calls
      * related to the same customer, across different requests or sessions. The format of this ID is
@@ -51,6 +61,14 @@ public class V3VerifyRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientRequestId")
     private Optional<String> clientRequestId;
+
+    /**
+     * Indicates whether the consumer has provided consent. Accepts true or false. Defaults to false if not
+     * provided.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("consent")
+    private Optional<Boolean> consent;
 
     /**
      * The email address of the customer. Acceptable characters are: alphanumeric with symbols '@.+'.
@@ -99,6 +117,14 @@ public class V3VerifyRequest {
     private String phoneNumber;
 
     /**
+     * PreviousCorrelationID is the correlationId returned by the preceding prefill response.
+     * When provided, it is echoed back in the validate response to link the two flows.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("previousCorrelationId")
+    private Optional<String> previousCorrelationId;
+
+    /**
      * The User agent of the session of the individual.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -108,44 +134,53 @@ public class V3VerifyRequest {
     /**
      * The verification method based on the use case and authorization level. Current allowed values:
      * "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz",
-     * "identityResolution".
+     * "identityResolution", "validate".
      */
     @JsonProperty("verificationType")
     private VerificationType verificationType;
 
     @JsonCreator
     public V3VerifyRequest(
+            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
+            @JsonProperty("consent") Optional<Boolean> consent,
             @JsonProperty("emailAddress") Optional<String> emailAddress,
             @JsonProperty("firstName") Optional<String> firstName,
             @JsonProperty("identityAttributes") Optional<? extends List<IdentityAttribute>> identityAttributes,
             @JsonProperty("ipAddress") Optional<String> ipAddress,
             @JsonProperty("lastName") Optional<String> lastName,
             @JsonProperty("phoneNumber") String phoneNumber,
+            @JsonProperty("previousCorrelationId") Optional<String> previousCorrelationId,
             @JsonProperty("userAgent") Optional<String> userAgent,
             @JsonProperty("verificationType") VerificationType verificationType) {
+        Utils.checkNotNull(addresses, "addresses");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
+        Utils.checkNotNull(consent, "consent");
         Utils.checkNotNull(emailAddress, "emailAddress");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(identityAttributes, "identityAttributes");
         Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(previousCorrelationId, "previousCorrelationId");
         Utils.checkNotNull(userAgent, "userAgent");
         Utils.checkNotNull(verificationType, "verificationType");
+        this.addresses = addresses;
         this.clientCustomerId = clientCustomerId;
         this.clientHumanId = clientHumanId;
         this.clientRequestId = clientRequestId;
+        this.consent = consent;
         this.emailAddress = emailAddress;
         this.firstName = firstName;
         this.identityAttributes = identityAttributes;
         this.ipAddress = ipAddress;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.previousCorrelationId = previousCorrelationId;
         this.userAgent = userAgent;
         this.verificationType = verificationType;
     }
@@ -155,8 +190,20 @@ public class V3VerifyRequest {
             VerificationType verificationType) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), phoneNumber,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), phoneNumber, Optional.empty(),
             Optional.empty(), verificationType);
+    }
+
+    /**
+     * An optional list of addresses submitted by the user for validation. Used with
+     * verificationType=validate
+     * to validate user-edited addresses against data-service records via SmartyStreets normalisation.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Address>> addresses() {
+        return (Optional<List<Address>>) addresses;
     }
 
     /**
@@ -195,6 +242,15 @@ public class V3VerifyRequest {
     @JsonIgnore
     public Optional<String> clientRequestId() {
         return clientRequestId;
+    }
+
+    /**
+     * Indicates whether the consumer has provided consent. Accepts true or false. Defaults to false if not
+     * provided.
+     */
+    @JsonIgnore
+    public Optional<Boolean> consent() {
+        return consent;
     }
 
     /**
@@ -252,6 +308,15 @@ public class V3VerifyRequest {
     }
 
     /**
+     * PreviousCorrelationID is the correlationId returned by the preceding prefill response.
+     * When provided, it is echoed back in the validate response to link the two flows.
+     */
+    @JsonIgnore
+    public Optional<String> previousCorrelationId() {
+        return previousCorrelationId;
+    }
+
+    /**
      * The User agent of the session of the individual.
      */
     @JsonIgnore
@@ -262,7 +327,7 @@ public class V3VerifyRequest {
     /**
      * The verification method based on the use case and authorization level. Current allowed values:
      * "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz",
-     * "identityResolution".
+     * "identityResolution", "validate".
      */
     @JsonIgnore
     public VerificationType verificationType() {
@@ -273,6 +338,29 @@ public class V3VerifyRequest {
         return new Builder();
     }
 
+
+    /**
+     * An optional list of addresses submitted by the user for validation. Used with
+     * verificationType=validate
+     * to validate user-edited addresses against data-service records via SmartyStreets normalisation.
+     */
+    public V3VerifyRequest withAddresses(List<Address> addresses) {
+        Utils.checkNotNull(addresses, "addresses");
+        this.addresses = Optional.ofNullable(addresses);
+        return this;
+    }
+
+
+    /**
+     * An optional list of addresses submitted by the user for validation. Used with
+     * verificationType=validate
+     * to validate user-edited addresses against data-service records via SmartyStreets normalisation.
+     */
+    public V3VerifyRequest withAddresses(Optional<? extends List<Address>> addresses) {
+        Utils.checkNotNull(addresses, "addresses");
+        this.addresses = addresses;
+        return this;
+    }
 
     /**
      * A client-generated unique ID for a specific customer. This can be used by clients to link calls
@@ -356,6 +444,27 @@ public class V3VerifyRequest {
     public V3VerifyRequest withClientRequestId(Optional<String> clientRequestId) {
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         this.clientRequestId = clientRequestId;
+        return this;
+    }
+
+    /**
+     * Indicates whether the consumer has provided consent. Accepts true or false. Defaults to false if not
+     * provided.
+     */
+    public V3VerifyRequest withConsent(boolean consent) {
+        Utils.checkNotNull(consent, "consent");
+        this.consent = Optional.ofNullable(consent);
+        return this;
+    }
+
+
+    /**
+     * Indicates whether the consumer has provided consent. Accepts true or false. Defaults to false if not
+     * provided.
+     */
+    public V3VerifyRequest withConsent(Optional<Boolean> consent) {
+        Utils.checkNotNull(consent, "consent");
+        this.consent = consent;
         return this;
     }
 
@@ -469,6 +578,27 @@ public class V3VerifyRequest {
     }
 
     /**
+     * PreviousCorrelationID is the correlationId returned by the preceding prefill response.
+     * When provided, it is echoed back in the validate response to link the two flows.
+     */
+    public V3VerifyRequest withPreviousCorrelationId(String previousCorrelationId) {
+        Utils.checkNotNull(previousCorrelationId, "previousCorrelationId");
+        this.previousCorrelationId = Optional.ofNullable(previousCorrelationId);
+        return this;
+    }
+
+
+    /**
+     * PreviousCorrelationID is the correlationId returned by the preceding prefill response.
+     * When provided, it is echoed back in the validate response to link the two flows.
+     */
+    public V3VerifyRequest withPreviousCorrelationId(Optional<String> previousCorrelationId) {
+        Utils.checkNotNull(previousCorrelationId, "previousCorrelationId");
+        this.previousCorrelationId = previousCorrelationId;
+        return this;
+    }
+
+    /**
      * The User agent of the session of the individual.
      */
     public V3VerifyRequest withUserAgent(String userAgent) {
@@ -490,7 +620,7 @@ public class V3VerifyRequest {
     /**
      * The verification method based on the use case and authorization level. Current allowed values:
      * "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz",
-     * "identityResolution".
+     * "identityResolution", "validate".
      */
     public V3VerifyRequest withVerificationType(VerificationType verificationType) {
         Utils.checkNotNull(verificationType, "verificationType");
@@ -508,15 +638,18 @@ public class V3VerifyRequest {
         }
         V3VerifyRequest other = (V3VerifyRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
+            Utils.enhancedDeepEquals(this.consent, other.consent) &&
             Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.identityAttributes, other.identityAttributes) &&
             Utils.enhancedDeepEquals(this.ipAddress, other.ipAddress) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.previousCorrelationId, other.previousCorrelationId) &&
             Utils.enhancedDeepEquals(this.userAgent, other.userAgent) &&
             Utils.enhancedDeepEquals(this.verificationType, other.verificationType);
     }
@@ -524,24 +657,28 @@ public class V3VerifyRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            clientCustomerId, clientHumanId, clientRequestId,
-            emailAddress, firstName, identityAttributes,
-            ipAddress, lastName, phoneNumber,
+            addresses, clientCustomerId, clientHumanId,
+            clientRequestId, consent, emailAddress,
+            firstName, identityAttributes, ipAddress,
+            lastName, phoneNumber, previousCorrelationId,
             userAgent, verificationType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3VerifyRequest.class,
+                "addresses", addresses,
                 "clientCustomerId", clientCustomerId,
                 "clientHumanId", clientHumanId,
                 "clientRequestId", clientRequestId,
+                "consent", consent,
                 "emailAddress", emailAddress,
                 "firstName", firstName,
                 "identityAttributes", identityAttributes,
                 "ipAddress", ipAddress,
                 "lastName", lastName,
                 "phoneNumber", phoneNumber,
+                "previousCorrelationId", previousCorrelationId,
                 "userAgent", userAgent,
                 "verificationType", verificationType);
     }
@@ -549,11 +686,15 @@ public class V3VerifyRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<? extends List<Address>> addresses = Optional.empty();
+
         private Optional<String> clientCustomerId = Optional.empty();
 
         private Optional<String> clientHumanId = Optional.empty();
 
         private Optional<String> clientRequestId = Optional.empty();
+
+        private Optional<Boolean> consent = Optional.empty();
 
         private Optional<String> emailAddress = Optional.empty();
 
@@ -567,12 +708,37 @@ public class V3VerifyRequest {
 
         private String phoneNumber;
 
+        private Optional<String> previousCorrelationId = Optional.empty();
+
         private Optional<String> userAgent = Optional.empty();
 
         private VerificationType verificationType;
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * An optional list of addresses submitted by the user for validation. Used with
+         * verificationType=validate
+         * to validate user-edited addresses against data-service records via SmartyStreets normalisation.
+         */
+        public Builder addresses(List<Address> addresses) {
+            Utils.checkNotNull(addresses, "addresses");
+            this.addresses = Optional.ofNullable(addresses);
+            return this;
+        }
+
+        /**
+         * An optional list of addresses submitted by the user for validation. Used with
+         * verificationType=validate
+         * to validate user-edited addresses against data-service records via SmartyStreets normalisation.
+         */
+        public Builder addresses(Optional<? extends List<Address>> addresses) {
+            Utils.checkNotNull(addresses, "addresses");
+            this.addresses = addresses;
+            return this;
         }
 
 
@@ -657,6 +823,27 @@ public class V3VerifyRequest {
         public Builder clientRequestId(Optional<String> clientRequestId) {
             Utils.checkNotNull(clientRequestId, "clientRequestId");
             this.clientRequestId = clientRequestId;
+            return this;
+        }
+
+
+        /**
+         * Indicates whether the consumer has provided consent. Accepts true or false. Defaults to false if not
+         * provided.
+         */
+        public Builder consent(boolean consent) {
+            Utils.checkNotNull(consent, "consent");
+            this.consent = Optional.ofNullable(consent);
+            return this;
+        }
+
+        /**
+         * Indicates whether the consumer has provided consent. Accepts true or false. Defaults to false if not
+         * provided.
+         */
+        public Builder consent(Optional<Boolean> consent) {
+            Utils.checkNotNull(consent, "consent");
+            this.consent = consent;
             return this;
         }
 
@@ -772,6 +959,27 @@ public class V3VerifyRequest {
 
 
         /**
+         * PreviousCorrelationID is the correlationId returned by the preceding prefill response.
+         * When provided, it is echoed back in the validate response to link the two flows.
+         */
+        public Builder previousCorrelationId(String previousCorrelationId) {
+            Utils.checkNotNull(previousCorrelationId, "previousCorrelationId");
+            this.previousCorrelationId = Optional.ofNullable(previousCorrelationId);
+            return this;
+        }
+
+        /**
+         * PreviousCorrelationID is the correlationId returned by the preceding prefill response.
+         * When provided, it is echoed back in the validate response to link the two flows.
+         */
+        public Builder previousCorrelationId(Optional<String> previousCorrelationId) {
+            Utils.checkNotNull(previousCorrelationId, "previousCorrelationId");
+            this.previousCorrelationId = previousCorrelationId;
+            return this;
+        }
+
+
+        /**
          * The User agent of the session of the individual.
          */
         public Builder userAgent(String userAgent) {
@@ -793,7 +1001,7 @@ public class V3VerifyRequest {
         /**
          * The verification method based on the use case and authorization level. Current allowed values:
          * "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz",
-         * "identityResolution".
+         * "identityResolution", "validate".
          */
         public Builder verificationType(VerificationType verificationType) {
             Utils.checkNotNull(verificationType, "verificationType");
@@ -804,9 +1012,10 @@ public class V3VerifyRequest {
         public V3VerifyRequest build() {
 
             return new V3VerifyRequest(
-                clientCustomerId, clientHumanId, clientRequestId,
-                emailAddress, firstName, identityAttributes,
-                ipAddress, lastName, phoneNumber,
+                addresses, clientCustomerId, clientHumanId,
+                clientRequestId, consent, emailAddress,
+                firstName, identityAttributes, ipAddress,
+                lastName, phoneNumber, previousCorrelationId,
                 userAgent, verificationType);
         }
 

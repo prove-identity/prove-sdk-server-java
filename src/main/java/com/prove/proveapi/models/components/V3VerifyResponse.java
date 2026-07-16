@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prove.proveapi.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -26,6 +27,15 @@ public class V3VerifyResponse {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("additionalIdentities")
     private Optional<? extends List<Identity>> additionalIdentities;
+
+    /**
+     * AddressMatchScore is the fuzzy address match score (0–100) produced during validate flow.
+     * Absent when no address was provided in the request.
+     * Only present for verificationType=validate.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("addressMatchScore")
+    private Optional<Long> addressMatchScore;
 
     /**
      * Businesses is used for business prefill.
@@ -62,8 +72,8 @@ public class V3VerifyResponse {
     private String correlationId;
 
     /**
-     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
-     * encompass the different evaluation categories.
+     * Policy evaluation outputs from Luna. May include authentication, identification, and risk
+     * categories. Omitted from the response when evaluation.includeEvaluation is not enabled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluation")
@@ -82,10 +92,28 @@ public class V3VerifyResponse {
     private Optional<Boolean> isEnrolled;
 
     /**
+     * NameMatchScore is the fuzzy name match score (0–100) produced during validate flow.
+     * Absent when name scoring was not performed.
+     * Only present for verificationType=validate.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("nameMatchScore")
+    private Optional<Long> nameMatchScore;
+
+    /**
      * The input phone number.
      */
     @JsonProperty("phoneNumber")
     private String phoneNumber;
+
+    /**
+     * PreviousCorrelationID is the correlationId from the prefill response that preceded this
+     * validate request. Set to an empty string when no preceding prefill was cached.
+     * Only present for verificationType=validate.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("previousCorrelationId")
+    private Optional<String> previousCorrelationId;
 
     /**
      * A Prove-generated identifier for the consumer.
@@ -102,14 +130,32 @@ public class V3VerifyResponse {
     private Optional<String> provePhoneAlias;
 
     /**
-     * The result of verification. This can be "true" or "false".
+     * Signals
      */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("signals")
+    private Optional<? extends List<Map<String, Signals>>> signals;
+
+    /**
+     * The result of verification. This can be "true" or "false".
+     * Omitted from the response when blank.
+     */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("success")
-    private String success;
+    private Optional<String> success;
+
+    /**
+     * ValidationStatus indicates whether all configured thresholds passed.
+     * Only present for verificationType=validate.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("validationStatus")
+    private Optional<Boolean> validationStatus;
 
     @JsonCreator
     public V3VerifyResponse(
             @JsonProperty("additionalIdentities") Optional<? extends List<Identity>> additionalIdentities,
+            @JsonProperty("addressMatchScore") Optional<Long> addressMatchScore,
             @JsonProperty("businesses") Optional<? extends List<Business>> businesses,
             @JsonProperty("clientCustomerId") Optional<String> clientCustomerId,
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
@@ -118,11 +164,16 @@ public class V3VerifyResponse {
             @JsonProperty("evaluation") Optional<? extends Map<String, Object>> evaluation,
             @JsonProperty("identity") Optional<? extends Identity> identity,
             @JsonProperty("isEnrolled") Optional<Boolean> isEnrolled,
+            @JsonProperty("nameMatchScore") Optional<Long> nameMatchScore,
             @JsonProperty("phoneNumber") String phoneNumber,
+            @JsonProperty("previousCorrelationId") Optional<String> previousCorrelationId,
             @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("provePhoneAlias") Optional<String> provePhoneAlias,
-            @JsonProperty("success") String success) {
+            @JsonProperty("signals") Optional<? extends List<Map<String, Signals>>> signals,
+            @JsonProperty("success") Optional<String> success,
+            @JsonProperty("validationStatus") Optional<Boolean> validationStatus) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
+        Utils.checkNotNull(addressMatchScore, "addressMatchScore");
         Utils.checkNotNull(businesses, "businesses");
         Utils.checkNotNull(clientCustomerId, "clientCustomerId");
         Utils.checkNotNull(clientHumanId, "clientHumanId");
@@ -131,11 +182,16 @@ public class V3VerifyResponse {
         Utils.checkNotNull(evaluation, "evaluation");
         Utils.checkNotNull(identity, "identity");
         Utils.checkNotNull(isEnrolled, "isEnrolled");
+        Utils.checkNotNull(nameMatchScore, "nameMatchScore");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(previousCorrelationId, "previousCorrelationId");
         Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(provePhoneAlias, "provePhoneAlias");
+        Utils.checkNotNull(signals, "signals");
         Utils.checkNotNull(success, "success");
+        Utils.checkNotNull(validationStatus, "validationStatus");
         this.additionalIdentities = additionalIdentities;
+        this.addressMatchScore = addressMatchScore;
         this.businesses = businesses;
         this.clientCustomerId = clientCustomerId;
         this.clientHumanId = clientHumanId;
@@ -144,21 +200,25 @@ public class V3VerifyResponse {
         this.evaluation = evaluation;
         this.identity = identity;
         this.isEnrolled = isEnrolled;
+        this.nameMatchScore = nameMatchScore;
         this.phoneNumber = phoneNumber;
+        this.previousCorrelationId = previousCorrelationId;
         this.proveId = proveId;
         this.provePhoneAlias = provePhoneAlias;
+        this.signals = signals;
         this.success = success;
+        this.validationStatus = validationStatus;
     }
     
     public V3VerifyResponse(
             String correlationId,
-            String phoneNumber,
-            String success) {
+            String phoneNumber) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), correlationId,
             Optional.empty(), Optional.empty(), Optional.empty(),
-            phoneNumber, Optional.empty(), Optional.empty(),
-            success);
+            correlationId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), phoneNumber,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -168,6 +228,16 @@ public class V3VerifyResponse {
     @JsonIgnore
     public Optional<List<Identity>> additionalIdentities() {
         return (Optional<List<Identity>>) additionalIdentities;
+    }
+
+    /**
+     * AddressMatchScore is the fuzzy address match score (0–100) produced during validate flow.
+     * Absent when no address was provided in the request.
+     * Only present for verificationType=validate.
+     */
+    @JsonIgnore
+    public Optional<Long> addressMatchScore() {
+        return addressMatchScore;
     }
 
     /**
@@ -212,8 +282,8 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
-     * encompass the different evaluation categories.
+     * Policy evaluation outputs from Luna. May include authentication, identification, and risk
+     * categories. Omitted from the response when evaluation.includeEvaluation is not enabled.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -236,11 +306,31 @@ public class V3VerifyResponse {
     }
 
     /**
+     * NameMatchScore is the fuzzy name match score (0–100) produced during validate flow.
+     * Absent when name scoring was not performed.
+     * Only present for verificationType=validate.
+     */
+    @JsonIgnore
+    public Optional<Long> nameMatchScore() {
+        return nameMatchScore;
+    }
+
+    /**
      * The input phone number.
      */
     @JsonIgnore
     public String phoneNumber() {
         return phoneNumber;
+    }
+
+    /**
+     * PreviousCorrelationID is the correlationId from the prefill response that preceded this
+     * validate request. Set to an empty string when no preceding prefill was cached.
+     * Only present for verificationType=validate.
+     */
+    @JsonIgnore
+    public Optional<String> previousCorrelationId() {
+        return previousCorrelationId;
     }
 
     /**
@@ -260,11 +350,30 @@ public class V3VerifyResponse {
     }
 
     /**
+     * Signals
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Map<String, Signals>>> signals() {
+        return (Optional<List<Map<String, Signals>>>) signals;
+    }
+
+    /**
      * The result of verification. This can be "true" or "false".
+     * Omitted from the response when blank.
      */
     @JsonIgnore
-    public String success() {
+    public Optional<String> success() {
         return success;
+    }
+
+    /**
+     * ValidationStatus indicates whether all configured thresholds passed.
+     * Only present for verificationType=validate.
+     */
+    @JsonIgnore
+    public Optional<Boolean> validationStatus() {
+        return validationStatus;
     }
 
     public static Builder builder() {
@@ -288,6 +397,29 @@ public class V3VerifyResponse {
     public V3VerifyResponse withAdditionalIdentities(Optional<? extends List<Identity>> additionalIdentities) {
         Utils.checkNotNull(additionalIdentities, "additionalIdentities");
         this.additionalIdentities = additionalIdentities;
+        return this;
+    }
+
+    /**
+     * AddressMatchScore is the fuzzy address match score (0–100) produced during validate flow.
+     * Absent when no address was provided in the request.
+     * Only present for verificationType=validate.
+     */
+    public V3VerifyResponse withAddressMatchScore(long addressMatchScore) {
+        Utils.checkNotNull(addressMatchScore, "addressMatchScore");
+        this.addressMatchScore = Optional.ofNullable(addressMatchScore);
+        return this;
+    }
+
+
+    /**
+     * AddressMatchScore is the fuzzy address match score (0–100) produced during validate flow.
+     * Absent when no address was provided in the request.
+     * Only present for verificationType=validate.
+     */
+    public V3VerifyResponse withAddressMatchScore(Optional<Long> addressMatchScore) {
+        Utils.checkNotNull(addressMatchScore, "addressMatchScore");
+        this.addressMatchScore = addressMatchScore;
         return this;
     }
 
@@ -377,8 +509,8 @@ public class V3VerifyResponse {
     }
 
     /**
-     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
-     * encompass the different evaluation categories.
+     * Policy evaluation outputs from Luna. May include authentication, identification, and risk
+     * categories. Omitted from the response when evaluation.includeEvaluation is not enabled.
      */
     public V3VerifyResponse withEvaluation(Map<String, Object> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -388,8 +520,8 @@ public class V3VerifyResponse {
 
 
     /**
-     * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
-     * encompass the different evaluation categories.
+     * Policy evaluation outputs from Luna. May include authentication, identification, and risk
+     * categories. Omitted from the response when evaluation.includeEvaluation is not enabled.
      */
     public V3VerifyResponse withEvaluation(Optional<? extends Map<String, Object>> evaluation) {
         Utils.checkNotNull(evaluation, "evaluation");
@@ -430,11 +562,57 @@ public class V3VerifyResponse {
     }
 
     /**
+     * NameMatchScore is the fuzzy name match score (0–100) produced during validate flow.
+     * Absent when name scoring was not performed.
+     * Only present for verificationType=validate.
+     */
+    public V3VerifyResponse withNameMatchScore(long nameMatchScore) {
+        Utils.checkNotNull(nameMatchScore, "nameMatchScore");
+        this.nameMatchScore = Optional.ofNullable(nameMatchScore);
+        return this;
+    }
+
+
+    /**
+     * NameMatchScore is the fuzzy name match score (0–100) produced during validate flow.
+     * Absent when name scoring was not performed.
+     * Only present for verificationType=validate.
+     */
+    public V3VerifyResponse withNameMatchScore(Optional<Long> nameMatchScore) {
+        Utils.checkNotNull(nameMatchScore, "nameMatchScore");
+        this.nameMatchScore = nameMatchScore;
+        return this;
+    }
+
+    /**
      * The input phone number.
      */
     public V3VerifyResponse withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    /**
+     * PreviousCorrelationID is the correlationId from the prefill response that preceded this
+     * validate request. Set to an empty string when no preceding prefill was cached.
+     * Only present for verificationType=validate.
+     */
+    public V3VerifyResponse withPreviousCorrelationId(String previousCorrelationId) {
+        Utils.checkNotNull(previousCorrelationId, "previousCorrelationId");
+        this.previousCorrelationId = Optional.ofNullable(previousCorrelationId);
+        return this;
+    }
+
+
+    /**
+     * PreviousCorrelationID is the correlationId from the prefill response that preceded this
+     * validate request. Set to an empty string when no preceding prefill was cached.
+     * Only present for verificationType=validate.
+     */
+    public V3VerifyResponse withPreviousCorrelationId(Optional<String> previousCorrelationId) {
+        Utils.checkNotNull(previousCorrelationId, "previousCorrelationId");
+        this.previousCorrelationId = previousCorrelationId;
         return this;
     }
 
@@ -477,11 +655,63 @@ public class V3VerifyResponse {
     }
 
     /**
+     * Signals
+     */
+    public V3VerifyResponse withSignals(List<Map<String, Signals>> signals) {
+        Utils.checkNotNull(signals, "signals");
+        this.signals = Optional.ofNullable(signals);
+        return this;
+    }
+
+
+    /**
+     * Signals
+     */
+    public V3VerifyResponse withSignals(Optional<? extends List<Map<String, Signals>>> signals) {
+        Utils.checkNotNull(signals, "signals");
+        this.signals = signals;
+        return this;
+    }
+
+    /**
      * The result of verification. This can be "true" or "false".
+     * Omitted from the response when blank.
      */
     public V3VerifyResponse withSuccess(String success) {
         Utils.checkNotNull(success, "success");
+        this.success = Optional.ofNullable(success);
+        return this;
+    }
+
+
+    /**
+     * The result of verification. This can be "true" or "false".
+     * Omitted from the response when blank.
+     */
+    public V3VerifyResponse withSuccess(Optional<String> success) {
+        Utils.checkNotNull(success, "success");
         this.success = success;
+        return this;
+    }
+
+    /**
+     * ValidationStatus indicates whether all configured thresholds passed.
+     * Only present for verificationType=validate.
+     */
+    public V3VerifyResponse withValidationStatus(boolean validationStatus) {
+        Utils.checkNotNull(validationStatus, "validationStatus");
+        this.validationStatus = Optional.ofNullable(validationStatus);
+        return this;
+    }
+
+
+    /**
+     * ValidationStatus indicates whether all configured thresholds passed.
+     * Only present for verificationType=validate.
+     */
+    public V3VerifyResponse withValidationStatus(Optional<Boolean> validationStatus) {
+        Utils.checkNotNull(validationStatus, "validationStatus");
+        this.validationStatus = validationStatus;
         return this;
     }
 
@@ -496,6 +726,7 @@ public class V3VerifyResponse {
         V3VerifyResponse other = (V3VerifyResponse) o;
         return 
             Utils.enhancedDeepEquals(this.additionalIdentities, other.additionalIdentities) &&
+            Utils.enhancedDeepEquals(this.addressMatchScore, other.addressMatchScore) &&
             Utils.enhancedDeepEquals(this.businesses, other.businesses) &&
             Utils.enhancedDeepEquals(this.clientCustomerId, other.clientCustomerId) &&
             Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
@@ -504,26 +735,32 @@ public class V3VerifyResponse {
             Utils.enhancedDeepEquals(this.evaluation, other.evaluation) &&
             Utils.enhancedDeepEquals(this.identity, other.identity) &&
             Utils.enhancedDeepEquals(this.isEnrolled, other.isEnrolled) &&
+            Utils.enhancedDeepEquals(this.nameMatchScore, other.nameMatchScore) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.previousCorrelationId, other.previousCorrelationId) &&
             Utils.enhancedDeepEquals(this.proveId, other.proveId) &&
             Utils.enhancedDeepEquals(this.provePhoneAlias, other.provePhoneAlias) &&
-            Utils.enhancedDeepEquals(this.success, other.success);
+            Utils.enhancedDeepEquals(this.signals, other.signals) &&
+            Utils.enhancedDeepEquals(this.success, other.success) &&
+            Utils.enhancedDeepEquals(this.validationStatus, other.validationStatus);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            additionalIdentities, businesses, clientCustomerId,
-            clientHumanId, clientRequestId, correlationId,
-            evaluation, identity, isEnrolled,
-            phoneNumber, proveId, provePhoneAlias,
-            success);
+            additionalIdentities, addressMatchScore, businesses,
+            clientCustomerId, clientHumanId, clientRequestId,
+            correlationId, evaluation, identity,
+            isEnrolled, nameMatchScore, phoneNumber,
+            previousCorrelationId, proveId, provePhoneAlias,
+            signals, success, validationStatus);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3VerifyResponse.class,
                 "additionalIdentities", additionalIdentities,
+                "addressMatchScore", addressMatchScore,
                 "businesses", businesses,
                 "clientCustomerId", clientCustomerId,
                 "clientHumanId", clientHumanId,
@@ -532,16 +769,22 @@ public class V3VerifyResponse {
                 "evaluation", evaluation,
                 "identity", identity,
                 "isEnrolled", isEnrolled,
+                "nameMatchScore", nameMatchScore,
                 "phoneNumber", phoneNumber,
+                "previousCorrelationId", previousCorrelationId,
                 "proveId", proveId,
                 "provePhoneAlias", provePhoneAlias,
-                "success", success);
+                "signals", signals,
+                "success", success,
+                "validationStatus", validationStatus);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private Optional<? extends List<Identity>> additionalIdentities = Optional.empty();
+
+        private Optional<Long> addressMatchScore = Optional.empty();
 
         private Optional<? extends List<Business>> businesses = Optional.empty();
 
@@ -559,13 +802,21 @@ public class V3VerifyResponse {
 
         private Optional<Boolean> isEnrolled = Optional.empty();
 
+        private Optional<Long> nameMatchScore = Optional.empty();
+
         private String phoneNumber;
+
+        private Optional<String> previousCorrelationId = Optional.empty();
 
         private Optional<String> proveId = Optional.empty();
 
         private Optional<String> provePhoneAlias = Optional.empty();
 
-        private String success;
+        private Optional<? extends List<Map<String, Signals>>> signals = Optional.empty();
+
+        private Optional<String> success = Optional.empty();
+
+        private Optional<Boolean> validationStatus = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -587,6 +838,29 @@ public class V3VerifyResponse {
         public Builder additionalIdentities(Optional<? extends List<Identity>> additionalIdentities) {
             Utils.checkNotNull(additionalIdentities, "additionalIdentities");
             this.additionalIdentities = additionalIdentities;
+            return this;
+        }
+
+
+        /**
+         * AddressMatchScore is the fuzzy address match score (0–100) produced during validate flow.
+         * Absent when no address was provided in the request.
+         * Only present for verificationType=validate.
+         */
+        public Builder addressMatchScore(long addressMatchScore) {
+            Utils.checkNotNull(addressMatchScore, "addressMatchScore");
+            this.addressMatchScore = Optional.ofNullable(addressMatchScore);
+            return this;
+        }
+
+        /**
+         * AddressMatchScore is the fuzzy address match score (0–100) produced during validate flow.
+         * Absent when no address was provided in the request.
+         * Only present for verificationType=validate.
+         */
+        public Builder addressMatchScore(Optional<Long> addressMatchScore) {
+            Utils.checkNotNull(addressMatchScore, "addressMatchScore");
+            this.addressMatchScore = addressMatchScore;
             return this;
         }
 
@@ -678,8 +952,8 @@ public class V3VerifyResponse {
 
 
         /**
-         * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
-         * encompass the different evaluation categories.
+         * Policy evaluation outputs from Luna. May include authentication, identification, and risk
+         * categories. Omitted from the response when evaluation.includeEvaluation is not enabled.
          */
         public Builder evaluation(Map<String, Object> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -688,8 +962,8 @@ public class V3VerifyResponse {
         }
 
         /**
-         * The evaluation result for the policy. This will contain keys titled "authentication" and "risk" that
-         * encompass the different evaluation categories.
+         * Policy evaluation outputs from Luna. May include authentication, identification, and risk
+         * categories. Omitted from the response when evaluation.includeEvaluation is not enabled.
          */
         public Builder evaluation(Optional<? extends Map<String, Object>> evaluation) {
             Utils.checkNotNull(evaluation, "evaluation");
@@ -731,11 +1005,57 @@ public class V3VerifyResponse {
 
 
         /**
+         * NameMatchScore is the fuzzy name match score (0–100) produced during validate flow.
+         * Absent when name scoring was not performed.
+         * Only present for verificationType=validate.
+         */
+        public Builder nameMatchScore(long nameMatchScore) {
+            Utils.checkNotNull(nameMatchScore, "nameMatchScore");
+            this.nameMatchScore = Optional.ofNullable(nameMatchScore);
+            return this;
+        }
+
+        /**
+         * NameMatchScore is the fuzzy name match score (0–100) produced during validate flow.
+         * Absent when name scoring was not performed.
+         * Only present for verificationType=validate.
+         */
+        public Builder nameMatchScore(Optional<Long> nameMatchScore) {
+            Utils.checkNotNull(nameMatchScore, "nameMatchScore");
+            this.nameMatchScore = nameMatchScore;
+            return this;
+        }
+
+
+        /**
          * The input phone number.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
             this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+
+        /**
+         * PreviousCorrelationID is the correlationId from the prefill response that preceded this
+         * validate request. Set to an empty string when no preceding prefill was cached.
+         * Only present for verificationType=validate.
+         */
+        public Builder previousCorrelationId(String previousCorrelationId) {
+            Utils.checkNotNull(previousCorrelationId, "previousCorrelationId");
+            this.previousCorrelationId = Optional.ofNullable(previousCorrelationId);
+            return this;
+        }
+
+        /**
+         * PreviousCorrelationID is the correlationId from the prefill response that preceded this
+         * validate request. Set to an empty string when no preceding prefill was cached.
+         * Only present for verificationType=validate.
+         */
+        public Builder previousCorrelationId(Optional<String> previousCorrelationId) {
+            Utils.checkNotNull(previousCorrelationId, "previousCorrelationId");
+            this.previousCorrelationId = previousCorrelationId;
             return this;
         }
 
@@ -779,22 +1099,74 @@ public class V3VerifyResponse {
 
 
         /**
+         * Signals
+         */
+        public Builder signals(List<Map<String, Signals>> signals) {
+            Utils.checkNotNull(signals, "signals");
+            this.signals = Optional.ofNullable(signals);
+            return this;
+        }
+
+        /**
+         * Signals
+         */
+        public Builder signals(Optional<? extends List<Map<String, Signals>>> signals) {
+            Utils.checkNotNull(signals, "signals");
+            this.signals = signals;
+            return this;
+        }
+
+
+        /**
          * The result of verification. This can be "true" or "false".
+         * Omitted from the response when blank.
          */
         public Builder success(String success) {
             Utils.checkNotNull(success, "success");
+            this.success = Optional.ofNullable(success);
+            return this;
+        }
+
+        /**
+         * The result of verification. This can be "true" or "false".
+         * Omitted from the response when blank.
+         */
+        public Builder success(Optional<String> success) {
+            Utils.checkNotNull(success, "success");
             this.success = success;
+            return this;
+        }
+
+
+        /**
+         * ValidationStatus indicates whether all configured thresholds passed.
+         * Only present for verificationType=validate.
+         */
+        public Builder validationStatus(boolean validationStatus) {
+            Utils.checkNotNull(validationStatus, "validationStatus");
+            this.validationStatus = Optional.ofNullable(validationStatus);
+            return this;
+        }
+
+        /**
+         * ValidationStatus indicates whether all configured thresholds passed.
+         * Only present for verificationType=validate.
+         */
+        public Builder validationStatus(Optional<Boolean> validationStatus) {
+            Utils.checkNotNull(validationStatus, "validationStatus");
+            this.validationStatus = validationStatus;
             return this;
         }
 
         public V3VerifyResponse build() {
 
             return new V3VerifyResponse(
-                additionalIdentities, businesses, clientCustomerId,
-                clientHumanId, clientRequestId, correlationId,
-                evaluation, identity, isEnrolled,
-                phoneNumber, proveId, provePhoneAlias,
-                success);
+                additionalIdentities, addressMatchScore, businesses,
+                clientCustomerId, clientHumanId, clientRequestId,
+                correlationId, evaluation, identity,
+                isEnrolled, nameMatchScore, phoneNumber,
+                previousCorrelationId, proveId, provePhoneAlias,
+                signals, success, validationStatus);
         }
 
     }

@@ -13,7 +13,7 @@ import java.util.Optional;
  * 
  * <p>The verification method based on the use case and authorization level. Current allowed values:
  * "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz",
- * "identityResolution".
+ * "identityResolution", "validate".
  */
 public enum VerificationType {
     HUMAN_ASSURANCE("humanAssurance"),
@@ -21,7 +21,8 @@ public enum VerificationType {
     ACCOUNT_OPENING("accountOpening"),
     PREFILL("prefill"),
     PREFILL_FOR_BIZ("prefillForBiz"),
-    IDENTITY_RESOLUTION("identityResolution");
+    IDENTITY_RESOLUTION("identityResolution"),
+    VALIDATE("validate");
 
     @JsonValue
     private final String value;
