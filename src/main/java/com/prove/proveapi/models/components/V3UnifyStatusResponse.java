@@ -18,6 +18,11 @@ import java.util.Optional;
 
 
 public class V3UnifyStatusResponse {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("authenticationResults")
+    private Optional<? extends AuthenticationResults> authenticationResults;
+
     /**
      * A client-generated unique ID to identify a specific customer across business lines.
      * Required if success=true.
@@ -80,6 +85,7 @@ public class V3UnifyStatusResponse {
 
     @JsonCreator
     public V3UnifyStatusResponse(
+            @JsonProperty("authenticationResults") Optional<? extends AuthenticationResults> authenticationResults,
             @JsonProperty("clientHumanId") Optional<String> clientHumanId,
             @JsonProperty("clientRequestId") Optional<String> clientRequestId,
             @JsonProperty("deviceId") Optional<String> deviceId,
@@ -87,6 +93,7 @@ public class V3UnifyStatusResponse {
             @JsonProperty("phoneNumber") Optional<String> phoneNumber,
             @JsonProperty("proveId") Optional<String> proveId,
             @JsonProperty("success") String success) {
+        Utils.checkNotNull(authenticationResults, "authenticationResults");
         Utils.checkNotNull(clientHumanId, "clientHumanId");
         Utils.checkNotNull(clientRequestId, "clientRequestId");
         Utils.checkNotNull(deviceId, "deviceId");
@@ -94,6 +101,7 @@ public class V3UnifyStatusResponse {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(proveId, "proveId");
         Utils.checkNotNull(success, "success");
+        this.authenticationResults = authenticationResults;
         this.clientHumanId = clientHumanId;
         this.clientRequestId = clientRequestId;
         this.deviceId = deviceId;
@@ -107,7 +115,13 @@ public class V3UnifyStatusResponse {
             String success) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            success);
+            Optional.empty(), success);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<AuthenticationResults> authenticationResults() {
+        return (Optional<AuthenticationResults>) authenticationResults;
     }
 
     /**
@@ -183,6 +197,19 @@ public class V3UnifyStatusResponse {
         return new Builder();
     }
 
+
+    public V3UnifyStatusResponse withAuthenticationResults(AuthenticationResults authenticationResults) {
+        Utils.checkNotNull(authenticationResults, "authenticationResults");
+        this.authenticationResults = Optional.ofNullable(authenticationResults);
+        return this;
+    }
+
+
+    public V3UnifyStatusResponse withAuthenticationResults(Optional<? extends AuthenticationResults> authenticationResults) {
+        Utils.checkNotNull(authenticationResults, "authenticationResults");
+        this.authenticationResults = authenticationResults;
+        return this;
+    }
 
     /**
      * A client-generated unique ID to identify a specific customer across business lines.
@@ -340,6 +367,7 @@ public class V3UnifyStatusResponse {
         }
         V3UnifyStatusResponse other = (V3UnifyStatusResponse) o;
         return 
+            Utils.enhancedDeepEquals(this.authenticationResults, other.authenticationResults) &&
             Utils.enhancedDeepEquals(this.clientHumanId, other.clientHumanId) &&
             Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
             Utils.enhancedDeepEquals(this.deviceId, other.deviceId) &&
@@ -352,14 +380,15 @@ public class V3UnifyStatusResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            clientHumanId, clientRequestId, deviceId,
-            evaluation, phoneNumber, proveId,
-            success);
+            authenticationResults, clientHumanId, clientRequestId,
+            deviceId, evaluation, phoneNumber,
+            proveId, success);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3UnifyStatusResponse.class,
+                "authenticationResults", authenticationResults,
                 "clientHumanId", clientHumanId,
                 "clientRequestId", clientRequestId,
                 "deviceId", deviceId,
@@ -371,6 +400,8 @@ public class V3UnifyStatusResponse {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<? extends AuthenticationResults> authenticationResults = Optional.empty();
 
         private Optional<String> clientHumanId = Optional.empty();
 
@@ -388,6 +419,19 @@ public class V3UnifyStatusResponse {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder authenticationResults(AuthenticationResults authenticationResults) {
+            Utils.checkNotNull(authenticationResults, "authenticationResults");
+            this.authenticationResults = Optional.ofNullable(authenticationResults);
+            return this;
+        }
+
+        public Builder authenticationResults(Optional<? extends AuthenticationResults> authenticationResults) {
+            Utils.checkNotNull(authenticationResults, "authenticationResults");
+            this.authenticationResults = authenticationResults;
+            return this;
         }
 
 
@@ -540,9 +584,9 @@ public class V3UnifyStatusResponse {
         public V3UnifyStatusResponse build() {
 
             return new V3UnifyStatusResponse(
-                clientHumanId, clientRequestId, deviceId,
-                evaluation, phoneNumber, proveId,
-                success);
+                authenticationResults, clientHumanId, clientRequestId,
+                deviceId, evaluation, phoneNumber,
+                proveId, success);
         }
 
     }

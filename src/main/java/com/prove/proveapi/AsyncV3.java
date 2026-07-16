@@ -425,11 +425,11 @@ public class AsyncV3 {
      * assurance fields, and
      * `evaluation` may include `authentication`, `identification`, and `risk` objects with a `result` (for
      * example `pass` or `fail`).
+     * Evaluation is omitted from the response when `evaluation.includeEvaluation` is not enabled.
      * 
      * <p>Illustrative **200** response body for this flow (values are synthetic, not real data):
      * 
      * <p>{
-     * "success": "true",
      * "correlationId": "11111111-2222-3333-4444-555555555555",
      * "phoneNumber": "+15555550123",
      * "proveId": "22222222-3333-4444-5555-666666666666",
@@ -490,11 +490,11 @@ public class AsyncV3 {
      * assurance fields, and
      * `evaluation` may include `authentication`, `identification`, and `risk` objects with a `result` (for
      * example `pass` or `fail`).
+     * Evaluation is omitted from the response when `evaluation.includeEvaluation` is not enabled.
      * 
      * <p>Illustrative **200** response body for this flow (values are synthetic, not real data):
      * 
      * <p>{
-     * "success": "true",
      * "correlationId": "11111111-2222-3333-4444-555555555555",
      * "phoneNumber": "+15555550123",
      * "proveId": "22222222-3333-4444-5555-666666666666",
@@ -555,11 +555,11 @@ public class AsyncV3 {
      * assurance fields, and
      * `evaluation` may include `authentication`, `identification`, and `risk` objects with a `result` (for
      * example `pass` or `fail`).
+     * Evaluation is omitted from the response when `evaluation.includeEvaluation` is not enabled.
      * 
      * <p>Illustrative **200** response body for this flow (values are synthetic, not real data):
      * 
      * <p>{
-     * "success": "true",
      * "correlationId": "11111111-2222-3333-4444-555555555555",
      * "phoneNumber": "+15555550123",
      * "proveId": "22222222-3333-4444-5555-666666666666",

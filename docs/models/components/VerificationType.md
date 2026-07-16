@@ -1,6 +1,6 @@
 # VerificationType
 
-The verification method based on the use case and authorization level. Current allowed values: "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz", "identityResolution".
+The verification method based on the use case and authorization level. Current allowed values: "verifiedUser", "accountOpening", "humanAssurance", "prefill", "prefillForBiz", "identityResolution", "validate".
 
 ## Example Usage
 
@@ -21,3 +21,4 @@ VerificationType value = VerificationType.HUMAN_ASSURANCE;
 | `PREFILL`             | prefill               |
 | `PREFILL_FOR_BIZ`     | prefillForBiz         |
 | `IDENTITY_RESOLUTION` | identityResolution    |
+| `VALIDATE`            | validate              |
