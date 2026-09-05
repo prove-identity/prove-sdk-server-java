@@ -1,29 +1,29 @@
 lockVersion: 2.0.0
 id: 2bae4a56-72c3-41b1-b7a0-1a941293145a
 management:
-  docChecksum: b79ae79a4f4e6bd4050b20e5ffe6ea5f
+  docChecksum: bde2c4d90becca55124adaff86672ee8
   docVersion: 1.0.0
-  speakeasyVersion: 1.790.2
-  generationVersion: 2.918.3
-  releaseVersion: 0.21.8
-  configChecksum: f8d6ebfa7f65dfe4f8c3eba87a9229a3
+  speakeasyVersion: 1.796.4
+  generationVersion: 2.935.1
+  releaseVersion: 0.22.0
+  configChecksum: 5686c91a773f386d45400d612ac96ec0
   repoURL: https://github.com/prove-identity/prove-sdk-server-java.git
   installationURL: https://github.com/prove-identity/prove-sdk-server-java
   published: true
 persistentEdits:
-  generation_id: 479e2835-7d55-4ca0-9510-6caa73efa34f
-  pristine_commit_hash: edea4c28f41c7177266e2bd40a77eff41f395123
-  pristine_tree_hash: b999cbb9ec7dd99a2b9cffa05c7213488638b4ef
+  generation_id: 1cde0532-8895-46ee-8710-90293f7de277
+  pristine_commit_hash: e0714fe2e9ee6b09a6fe428189cd0f8c7c570843
+  pristine_tree_hash: 400c0796d1fc5d500e8017fc4a05bab381679c23
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.55.31
+    core: 3.57.2
     examples: 2.81.9
     flattening: 2.81.1
     globalSecurity: 2.83.4
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.83.1
-    oauth2ClientCredentials: 1.1.5
+    oauth2ClientCredentials: 1.1.7
     sdkHooks: 1.2.0
     serverIDs: 2.81.1
 trackedFiles:
@@ -833,8 +833,8 @@ trackedFiles:
     pristine_git_object: 0032649da03c06826d436fbe31e0d1d0ce931f0c
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:6f2d1c0be3227bd296c5663aabf8d03fb779762a
-    pristine_git_object: ed138c62d0bb8f76037ce16469653a3e42c3f0ec
+    last_write_checksum: sha1:21248080a823884724310909aa973ea300981e62
+    pristine_git_object: 3dbf80c1f8ff6c1dc8ab5b6f2011615a7ea260c3
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -897,8 +897,8 @@ trackedFiles:
     pristine_git_object: e6ba2cc509a269850b971bcd4ce61fc9cdf183c1
   src/main/java/com/prove/proveapi/SDKConfiguration.java:
     id: 69255d11af4e
-    last_write_checksum: sha1:bd22d0492419b1f1ebff9a9d726f88b957b0ecf1
-    pristine_git_object: fae532225746c22dd0b47aeaa6d184c7ec9db8c2
+    last_write_checksum: sha1:0922d0752f4f6a26aab6d21ea1037efc8f8dc413
+    pristine_git_object: 01ba66ae7b524c11a62ec96a0f29ffbd3ed3398c
   src/main/java/com/prove/proveapi/SecuritySource.java:
     id: 99a381f305ca
     last_write_checksum: sha1:303afdfe77cc60804e6d8ab53ea11fe6336e671e
@@ -909,8 +909,8 @@ trackedFiles:
     pristine_git_object: b39a62729d64e943a60fdd3d043e0324492d3768
   src/main/java/com/prove/proveapi/hooks/ClientCredentialsHook.java:
     id: e33dca8f3b85
-    last_write_checksum: sha1:e942a0e27545fa342707743f5f543a9c1f2f4ea9
-    pristine_git_object: e1715bab8fc7074d577657a85cecc46238cf8d3c
+    last_write_checksum: sha1:0547d5368ac0ad234bbb2b945649eaf045d2be08
+    pristine_git_object: 672d675daf1b252b2f8b8c0f1c86a6ea1684d827
   src/main/java/com/prove/proveapi/models/components/Address.java:
     id: 0ff46666d0fe
     last_write_checksum: sha1:361bf99e550f2854339f3b22a8549a21c5e865e8
@@ -2293,8 +2293,8 @@ trackedFiles:
     pristine_git_object: 78a4bc0b3a7512371268aa38c0bd8df190b23fe4
   src/main/java/com/prove/proveapi/utils/Multipart.java:
     id: ebedb788dbff
-    last_write_checksum: sha1:4f5e62ab1567f7279a6ca081ffc1f034779a79f2
-    pristine_git_object: 087c2c0bb87020152af744454f78feaadefb0417
+    last_write_checksum: sha1:6e549ef93def76054790eea70d55256c4fa89714
+    pristine_git_object: d2b9b19b2633a7be155a6a18546c0135d13ccf3c
   src/main/java/com/prove/proveapi/utils/MultipartFormMetadata.java:
     id: e9d900ec2d18
     last_write_checksum: sha1:6c067abb73081ad0ce07090efa7f1442ba241a57
@@ -2393,8 +2393,8 @@ trackedFiles:
     pristine_git_object: 435eac220b041bf32db5c3d4a5a4a395d9c53f3c
   src/main/java/com/prove/proveapi/utils/SpeakeasyHTTPClient.java:
     id: 115e72f19305
-    last_write_checksum: sha1:3b6da18d6a2c6671a8bf7a072ce700a593edb089
-    pristine_git_object: f59d13fe791bcc7f8f148dd161f4c8d9d54aa04f
+    last_write_checksum: sha1:3c323af115b7506d7226ae7b6c7ba584d337581e
+    pristine_git_object: 6e2dbc1a1e05346d26f755d895f7169ecd3215cd
   src/main/java/com/prove/proveapi/utils/SpeakeasyLogger.java:
     id: 54ed1320410a
     last_write_checksum: sha1:b12559538fbb348e52886004ee71f4f18c039866
@@ -2584,7 +2584,7 @@ examples:
         application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd"}
       responses:
         "200":
-          application/json: {"clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "evaluation": {"authentication": {"result": "pass"}, "identification": {"result": "pass"}, "success": true}, "phoneNumber": "2001004011", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "success": "true"}
+          application/json: {"authenticationResults": {"mobile": "otp"}, "clientHumanId": "7bfbb91d-9df8-4ec0-99a6-de05ecc23a9e", "clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "deviceId": "bf9ea15d-7dfa-4bb4-a64c-6c26b53472fc", "evaluation": {"authentication": {"result": "pass"}, "identification": {"result": "pass"}, "success": true}, "phoneNumber": "2001004011", "proveId": "a07b94ce-218c-461f-beda-d92480e40f61", "success": "true"}
     Response with Failed Evaluation:
       requestBody:
         application/json: {"clientRequestId": "71010d88-d0e7-4a24-9297-d1be6fefde81", "correlationId": "713189b8-5555-4b08-83ba-75d08780aebd"}
@@ -3034,7 +3034,6 @@ examples:
           application/json: {"code": 1000, "message": "error occurred"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `proveapi.v3.v3UnifyStatusRequest()`:  `response.authenticationResults` **Added**\n* `proveapi.v3.v3VerifyRequest()`: \n  *  `request` **Changed**\n  *  `response` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
