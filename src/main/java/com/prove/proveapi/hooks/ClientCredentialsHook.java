@@ -78,6 +78,9 @@ public final class ClientCredentialsHook implements SdkInit, BeforeRequest, Afte
     public HttpResponse<InputStream> afterError(AfterErrorContext context, Optional<HttpResponse<InputStream>> response,
             Optional<Exception> error) throws Exception {
         if (isHookDisabled(context)) {
+            if (error.isPresent()) {
+                throw error.get();
+            }
             return response.get();
         }
 
