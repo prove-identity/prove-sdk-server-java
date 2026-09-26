@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.21.8
+  version: 0.22.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: proveapi
@@ -47,12 +47,14 @@ java:
   explicitDocImports: false
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false
-  forwardCompatibleUnionsByDefault: "false"
+  forwardCompatibleUnionsByDefault: true
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   generateUnionDocs: false
+  getterStyle: presence-aware
   githubURL: github.com/prove-identity/prove-sdk-server-java
   groupID: com.prove
+  httpClient: jdk
   imports:
     option: openapi
     paths:
