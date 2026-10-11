@@ -46,7 +46,7 @@ public class V3StartRequest {
      * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
      * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      * 
-     * <p>Max length is 128 characters.
+     * <p>Max length is 2048 characters.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("finalTargetUrl")
@@ -180,7 +180,7 @@ public class V3StartRequest {
      * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
      * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      * 
-     * <p>Max length is 128 characters.
+     * <p>Max length is 2048 characters.
      */
     @JsonIgnore
     public Optional<String> finalTargetUrl() {
@@ -326,7 +326,7 @@ public class V3StartRequest {
      * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
      * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      * 
-     * <p>Max length is 128 characters.
+     * <p>Max length is 2048 characters.
      */
     public V3StartRequest withFinalTargetUrl(String finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -339,7 +339,7 @@ public class V3StartRequest {
      * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
      * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
      * 
-     * <p>Max length is 128 characters.
+     * <p>Max length is 2048 characters.
      */
     public V3StartRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -617,7 +617,7 @@ public class V3StartRequest {
          * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
          * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          * 
-         * <p>Max length is 128 characters.
+         * <p>Max length is 2048 characters.
          */
         public Builder finalTargetUrl(String finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -629,7 +629,7 @@ public class V3StartRequest {
          * The URL where the end user will be redirected at the end of the Instant Link flow. Required only
          * when `flowType=desktop`. Acceptable characters are: alphanumeric with symbols '-._+=/:?'.
          * 
-         * <p>Max length is 128 characters.
+         * <p>Max length is 2048 characters.
          */
         public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
