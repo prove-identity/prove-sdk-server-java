@@ -31,6 +31,13 @@ public class V3ChallengeRequest {
     private Optional<String> dob;
 
     /**
+     * The email address of the individual.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("email")
+    private Optional<String> email;
+
+    /**
      * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -41,18 +48,22 @@ public class V3ChallengeRequest {
     public V3ChallengeRequest(
             @JsonProperty("correlationId") String correlationId,
             @JsonProperty("dob") Optional<String> dob,
+            @JsonProperty("email") Optional<String> email,
             @JsonProperty("ssn") Optional<String> ssn) {
         Utils.checkNotNull(correlationId, "correlationId");
         Utils.checkNotNull(dob, "dob");
+        Utils.checkNotNull(email, "email");
         Utils.checkNotNull(ssn, "ssn");
         this.correlationId = correlationId;
         this.dob = dob;
+        this.email = email;
         this.ssn = ssn;
     }
     
     public V3ChallengeRequest(
             String correlationId) {
-        this(correlationId, Optional.empty(), Optional.empty());
+        this(correlationId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -71,6 +82,14 @@ public class V3ChallengeRequest {
     @JsonIgnore
     public Optional<String> dob() {
         return dob;
+    }
+
+    /**
+     * The email address of the individual.
+     */
+    @JsonIgnore
+    public Optional<String> email() {
+        return email;
     }
 
     /**
@@ -118,6 +137,25 @@ public class V3ChallengeRequest {
     }
 
     /**
+     * The email address of the individual.
+     */
+    public V3ChallengeRequest withEmail(String email) {
+        Utils.checkNotNull(email, "email");
+        this.email = Optional.ofNullable(email);
+        return this;
+    }
+
+
+    /**
+     * The email address of the individual.
+     */
+    public V3ChallengeRequest withEmail(Optional<String> email) {
+        Utils.checkNotNull(email, "email");
+        this.email = email;
+        return this;
+    }
+
+    /**
      * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
      */
     public V3ChallengeRequest withSsn(String ssn) {
@@ -148,13 +186,15 @@ public class V3ChallengeRequest {
         return 
             Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
             Utils.enhancedDeepEquals(this.dob, other.dob) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
             Utils.enhancedDeepEquals(this.ssn, other.ssn);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            correlationId, dob, ssn);
+            correlationId, dob, email,
+            ssn);
     }
     
     @Override
@@ -162,6 +202,7 @@ public class V3ChallengeRequest {
         return Utils.toString(V3ChallengeRequest.class,
                 "correlationId", correlationId,
                 "dob", dob,
+                "email", email,
                 "ssn", ssn);
     }
 
@@ -171,6 +212,8 @@ public class V3ChallengeRequest {
         private String correlationId;
 
         private Optional<String> dob = Optional.empty();
+
+        private Optional<String> email = Optional.empty();
 
         private Optional<String> ssn = Optional.empty();
 
@@ -212,6 +255,25 @@ public class V3ChallengeRequest {
 
 
         /**
+         * The email address of the individual.
+         */
+        public Builder email(String email) {
+            Utils.checkNotNull(email, "email");
+            this.email = Optional.ofNullable(email);
+            return this;
+        }
+
+        /**
+         * The email address of the individual.
+         */
+        public Builder email(Optional<String> email) {
+            Utils.checkNotNull(email, "email");
+            this.email = email;
+            return this;
+        }
+
+
+        /**
          * The full or last 4 numbers of the social security number. Acceptable characters are: numeric.
          */
         public Builder ssn(String ssn) {
@@ -232,7 +294,8 @@ public class V3ChallengeRequest {
         public V3ChallengeRequest build() {
 
             return new V3ChallengeRequest(
-                correlationId, dob, ssn);
+                correlationId, dob, email,
+                ssn);
         }
 
     }

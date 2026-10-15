@@ -16,6 +16,13 @@ import java.util.Optional;
 
 public class AuthenticationResults {
     /**
+     * An indication of the last authentication method used when the Prove Key was created.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("keySource")
+    private Optional<String> keySource;
+
+    /**
      * An indication of which mobile authentication method was used.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -24,13 +31,24 @@ public class AuthenticationResults {
 
     @JsonCreator
     public AuthenticationResults(
+            @JsonProperty("keySource") Optional<String> keySource,
             @JsonProperty("mobile") Optional<String> mobile) {
+        Utils.checkNotNull(keySource, "keySource");
         Utils.checkNotNull(mobile, "mobile");
+        this.keySource = keySource;
         this.mobile = mobile;
     }
     
     public AuthenticationResults() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * An indication of the last authentication method used when the Prove Key was created.
+     */
+    @JsonIgnore
+    public Optional<String> keySource() {
+        return keySource;
     }
 
     /**
@@ -45,6 +63,25 @@ public class AuthenticationResults {
         return new Builder();
     }
 
+
+    /**
+     * An indication of the last authentication method used when the Prove Key was created.
+     */
+    public AuthenticationResults withKeySource(String keySource) {
+        Utils.checkNotNull(keySource, "keySource");
+        this.keySource = Optional.ofNullable(keySource);
+        return this;
+    }
+
+
+    /**
+     * An indication of the last authentication method used when the Prove Key was created.
+     */
+    public AuthenticationResults withKeySource(Optional<String> keySource) {
+        Utils.checkNotNull(keySource, "keySource");
+        this.keySource = keySource;
+        return this;
+    }
 
     /**
      * An indication of which mobile authentication method was used.
@@ -75,28 +112,51 @@ public class AuthenticationResults {
         }
         AuthenticationResults other = (AuthenticationResults) o;
         return 
+            Utils.enhancedDeepEquals(this.keySource, other.keySource) &&
             Utils.enhancedDeepEquals(this.mobile, other.mobile);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            mobile);
+            keySource, mobile);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AuthenticationResults.class,
+                "keySource", keySource,
                 "mobile", mobile);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<String> keySource = Optional.empty();
+
         private Optional<String> mobile = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * An indication of the last authentication method used when the Prove Key was created.
+         */
+        public Builder keySource(String keySource) {
+            Utils.checkNotNull(keySource, "keySource");
+            this.keySource = Optional.ofNullable(keySource);
+            return this;
+        }
+
+        /**
+         * An indication of the last authentication method used when the Prove Key was created.
+         */
+        public Builder keySource(Optional<String> keySource) {
+            Utils.checkNotNull(keySource, "keySource");
+            this.keySource = keySource;
+            return this;
         }
 
 
@@ -121,7 +181,7 @@ public class AuthenticationResults {
         public AuthenticationResults build() {
 
             return new AuthenticationResults(
-                mobile);
+                keySource, mobile);
         }
 
     }

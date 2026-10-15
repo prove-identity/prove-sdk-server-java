@@ -13,6 +13,7 @@ import com.prove.proveapi.utils.Blob;
 import com.prove.proveapi.utils.Utils;
 import jakarta.annotation.Nullable;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.Override;
@@ -48,12 +49,17 @@ public class Error403 extends ProveapiError {
     * the resulting Error403 instance will have a null data() value and a non-null deserializationException().
     */
     public static Error403 from(HttpResponse<InputStream> response) {
+        byte[] bytes;
         try {
-            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            bytes = Utils.extractByteArrayFromBody(response);
+        } catch (Exception e) {
+            return new Error403(response.statusCode(), null, response, null, e);
+        }
+        try {
             Data data = Utils.mapper().readValue(bytes, Data.class);
             return new Error403(response.statusCode(), bytes, response, data, null);
         } catch (Exception e) {
-            return new Error403(response.statusCode(), null, response, null, e);
+            return new Error403(response.statusCode(), bytes, response, null, e);
         }
     }
 
@@ -96,6 +102,22 @@ public class Error403 extends ProveapiError {
                 });
     }
 
+    /**
+     * The input ClientRequestID, echoed when provided on the request.
+     */
+    @Deprecated
+    public Optional<String> clientRequestId() {
+        return data().flatMap(Data::clientRequestId);
+    }
+
+    /**
+     * The correlation ID for the flow, echoed when available.
+     */
+    @Deprecated
+    public Optional<String> correlationId() {
+        return data().flatMap(Data::correlationId);
+    }
+
     public Optional<Data> data() {
         return Optional.ofNullable(data);
     }
@@ -109,11 +131,25 @@ public class Error403 extends ProveapiError {
 
     public static class Data {
         /**
+         * The input ClientRequestID, echoed when provided on the request.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("clientRequestId")
+        private Optional<String> clientRequestId;
+
+        /**
          * An error code that identifies the specific authorization issue.
          */
         @JsonInclude(Include.NON_ABSENT)
         @JsonProperty("code")
         private Optional<Long> code;
+
+        /**
+         * The correlation ID for the flow, echoed when available.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("correlationId")
+        private Optional<String> correlationId;
 
         /**
          * The error message describing why access is forbidden.
@@ -123,17 +159,32 @@ public class Error403 extends ProveapiError {
 
         @JsonCreator
         public Data(
+                @JsonProperty("clientRequestId") Optional<String> clientRequestId,
                 @JsonProperty("code") Optional<Long> code,
+                @JsonProperty("correlationId") Optional<String> correlationId,
                 @JsonProperty("message") String message) {
+            Utils.checkNotNull(clientRequestId, "clientRequestId");
             Utils.checkNotNull(code, "code");
+            Utils.checkNotNull(correlationId, "correlationId");
             Utils.checkNotNull(message, "message");
+            this.clientRequestId = clientRequestId;
             this.code = code;
+            this.correlationId = correlationId;
             this.message = message;
         }
         
         public Data(
                 String message) {
-            this(Optional.empty(), message);
+            this(Optional.empty(), Optional.empty(), Optional.empty(),
+                message);
+        }
+
+        /**
+         * The input ClientRequestID, echoed when provided on the request.
+         */
+        @JsonIgnore
+        public Optional<String> clientRequestId() {
+            return clientRequestId;
         }
 
         /**
@@ -142,6 +193,14 @@ public class Error403 extends ProveapiError {
         @JsonIgnore
         public Optional<Long> code() {
             return code;
+        }
+
+        /**
+         * The correlation ID for the flow, echoed when available.
+         */
+        @JsonIgnore
+        public Optional<String> correlationId() {
+            return correlationId;
         }
 
         /**
@@ -156,6 +215,25 @@ public class Error403 extends ProveapiError {
             return new Builder();
         }
 
+
+        /**
+         * The input ClientRequestID, echoed when provided on the request.
+         */
+        public Data withClientRequestId(String clientRequestId) {
+            Utils.checkNotNull(clientRequestId, "clientRequestId");
+            this.clientRequestId = Optional.ofNullable(clientRequestId);
+            return this;
+        }
+
+
+        /**
+         * The input ClientRequestID, echoed when provided on the request.
+         */
+        public Data withClientRequestId(Optional<String> clientRequestId) {
+            Utils.checkNotNull(clientRequestId, "clientRequestId");
+            this.clientRequestId = clientRequestId;
+            return this;
+        }
 
         /**
          * An error code that identifies the specific authorization issue.
@@ -173,6 +251,25 @@ public class Error403 extends ProveapiError {
         public Data withCode(Optional<Long> code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
+            return this;
+        }
+
+        /**
+         * The correlation ID for the flow, echoed when available.
+         */
+        public Data withCorrelationId(String correlationId) {
+            Utils.checkNotNull(correlationId, "correlationId");
+            this.correlationId = Optional.ofNullable(correlationId);
+            return this;
+        }
+
+
+        /**
+         * The correlation ID for the flow, echoed when available.
+         */
+        public Data withCorrelationId(Optional<String> correlationId) {
+            Utils.checkNotNull(correlationId, "correlationId");
+            this.correlationId = correlationId;
             return this;
         }
 
@@ -195,32 +292,60 @@ public class Error403 extends ProveapiError {
             }
             Data other = (Data) o;
             return 
+                Utils.enhancedDeepEquals(this.clientRequestId, other.clientRequestId) &&
                 Utils.enhancedDeepEquals(this.code, other.code) &&
+                Utils.enhancedDeepEquals(this.correlationId, other.correlationId) &&
                 Utils.enhancedDeepEquals(this.message, other.message);
         }
         
         @Override
         public int hashCode() {
             return Utils.enhancedHash(
-                code, message);
+                clientRequestId, code, correlationId,
+                message);
         }
         
         @Override
         public String toString() {
             return Utils.toString(Data.class,
+                    "clientRequestId", clientRequestId,
                     "code", code,
+                    "correlationId", correlationId,
                     "message", message);
         }
 
         @SuppressWarnings("UnusedReturnValue")
         public final static class Builder {
 
+            private Optional<String> clientRequestId = Optional.empty();
+
             private Optional<Long> code = Optional.empty();
+
+            private Optional<String> correlationId = Optional.empty();
 
             private String message;
 
             private Builder() {
               // force use of static builder() method
+            }
+
+
+            /**
+             * The input ClientRequestID, echoed when provided on the request.
+             */
+            public Builder clientRequestId(String clientRequestId) {
+                Utils.checkNotNull(clientRequestId, "clientRequestId");
+                this.clientRequestId = Optional.ofNullable(clientRequestId);
+                return this;
+            }
+
+            /**
+             * The input ClientRequestID, echoed when provided on the request.
+             */
+            public Builder clientRequestId(Optional<String> clientRequestId) {
+                Utils.checkNotNull(clientRequestId, "clientRequestId");
+                this.clientRequestId = clientRequestId;
+                return this;
             }
 
 
@@ -244,6 +369,25 @@ public class Error403 extends ProveapiError {
 
 
             /**
+             * The correlation ID for the flow, echoed when available.
+             */
+            public Builder correlationId(String correlationId) {
+                Utils.checkNotNull(correlationId, "correlationId");
+                this.correlationId = Optional.ofNullable(correlationId);
+                return this;
+            }
+
+            /**
+             * The correlation ID for the flow, echoed when available.
+             */
+            public Builder correlationId(Optional<String> correlationId) {
+                Utils.checkNotNull(correlationId, "correlationId");
+                this.correlationId = correlationId;
+                return this;
+            }
+
+
+            /**
              * The error message describing why access is forbidden.
              */
             public Builder message(String message) {
@@ -255,7 +399,8 @@ public class Error403 extends ProveapiError {
             public Data build() {
 
                 return new Data(
-                    code, message);
+                    clientRequestId, code, correlationId,
+                    message);
             }
 
         }
