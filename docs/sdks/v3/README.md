@@ -107,6 +107,7 @@ public class Application {
         V3ChallengeRequest req = V3ChallengeRequest.builder()
                 .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
                 .dob("1981-01")
+                .email("user@example.com")
                 .ssn("0596")
                 .build();
 
@@ -148,6 +149,7 @@ public class Application {
         V3ChallengeRequest req = V3ChallengeRequest.builder()
                 .correlationId("713189b8-5555-4b08-83ba-75d08780aebd")
                 .dob("1981-01")
+                .email("user@example.com")
                 .ssn("0596")
                 .build();
 

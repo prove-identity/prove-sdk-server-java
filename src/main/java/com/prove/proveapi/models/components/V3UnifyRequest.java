@@ -71,7 +71,7 @@ public class V3UnifyRequest {
     /**
      * The URL where the end user will be redirected at the end of Instant Link flow. Required when
      * `possessionType=desktop`.
-     * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+     * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 2048 characters.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("finalTargetUrl")
@@ -256,7 +256,7 @@ public class V3UnifyRequest {
     /**
      * The URL where the end user will be redirected at the end of Instant Link flow. Required when
      * `possessionType=desktop`.
-     * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+     * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 2048 characters.
      */
     @JsonIgnore
     public Optional<String> finalTargetUrl() {
@@ -466,7 +466,7 @@ public class V3UnifyRequest {
     /**
      * The URL where the end user will be redirected at the end of Instant Link flow. Required when
      * `possessionType=desktop`.
-     * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+     * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 2048 characters.
      */
     public V3UnifyRequest withFinalTargetUrl(String finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -478,7 +478,7 @@ public class V3UnifyRequest {
     /**
      * The URL where the end user will be redirected at the end of Instant Link flow. Required when
      * `possessionType=desktop`.
-     * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+     * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 2048 characters.
      */
     public V3UnifyRequest withFinalTargetUrl(Optional<String> finalTargetUrl) {
         Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -849,7 +849,7 @@ public class V3UnifyRequest {
         /**
          * The URL where the end user will be redirected at the end of Instant Link flow. Required when
          * `possessionType=desktop`.
-         * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+         * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 2048 characters.
          */
         public Builder finalTargetUrl(String finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
@@ -860,7 +860,7 @@ public class V3UnifyRequest {
         /**
          * The URL where the end user will be redirected at the end of Instant Link flow. Required when
          * `possessionType=desktop`.
-         * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 128 characters.
+         * Acceptable characters are: alphanumeric with symbols '-._+=/:?'. Max length is 2048 characters.
          */
         public Builder finalTargetUrl(Optional<String> finalTargetUrl) {
             Utils.checkNotNull(finalTargetUrl, "finalTargetUrl");
